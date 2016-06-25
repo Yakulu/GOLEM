@@ -37,5 +37,5 @@ class GolemMember(models.Model):
     _inherit = 'mail.thread'
     _inherits = {'res.partner': 'partner_id'}
 
-    number = fields.Char('Number', size=50)
+    number = fields.Char('Number', size=50, index=True)
     pictures_agreement = fields.Boolean('Pictures agreement?')
