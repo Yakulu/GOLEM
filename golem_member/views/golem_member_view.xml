@@ -74,6 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="email" widget="email"
                       placeholder="name@example.org" />
                     <field name="opt_out" />
+                    <field name="opt_out_sms" />
                     <field name="website" widget="url"
                       placeholder="e.g. www.odoo.com"/>
                   </group>
