@@ -155,10 +155,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="view_id" ref="base.res_partner_kanban_view"/>
       <field name="act_window_id" ref="golem_member_action"/>
     </record>
+    <act_window id="golem_member_tags_action_list" name="GOLEM Members Tags"
+      res_model="res.partner.category" view_mode="tree,form" />
 
     <!-- Menu items -->
-    <menuitem id="menu_golem_members" name="GOLEM Members"
+    <menuitem id="golem_members_menu" name="GOLEM Members"
       parent="membership.menu_membership" sequence="5"
       action="golem_member_action" />
+    <menuitem id="golem_members_menu_tags" name="Member Tags"
+      parent="base.menu_marketing_config_association" sequence="10"
+      action="golem_member_tags_action_list" />
   </data>
 </openerp>
