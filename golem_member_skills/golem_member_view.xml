@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_member_view_add_skills">
+      <field name="name">Add skills to Others tab</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_view_form" />
+      <field name="arch" type="xml">
+        <field name="category_id" position="before">
+          <field name="skill_ids" widget="many2many_tags"
+            placeholder="Skills..." />
+        </field>
+      </field>
+    </record>
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_member_view_filter_add_skills">
+      <field name="name">Add Skills Group By Filter</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
+      <field name="arch" type="xml">
+        <field name="email" position="after">
+          <field name="skill_ids" widget="many2one" />
+        </field>
+      </field>
+    </record>
+    <!-- Tree -->
+    <record id="golem_member_skill_view_tree" model="ir.ui.view">
+      <field name="name">Member skills</field>
+      <field name="model">golem.member.skill</field>
+      <field name="arch" type="xml">
+        <tree editable="top"><field name="name"/></tree>
+      </field>
+    </record>
+    <!-- Actions -->
+    <act_window id="golem_member_skills_action_list" name="GOLEM Member Skills"
+      res_model="golem.member.skill" />
+    <!-- Menus -->
+    <menuitem id="golem_member_skill_menu_list"
+      name="Member skills"
+      parent="base.menu_marketing_config_association"
+      action="golem_member_skills_action_list"
+      sequence="5" />
+
+  </data>
+</openerp>
