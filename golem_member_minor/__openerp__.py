@@ -23,7 +23,7 @@
     'category': 'Non-profit management',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
     'depends': ['golem_member'],
     'data': ['golem_member_view.xml']
