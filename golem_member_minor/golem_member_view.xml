@@ -52,12 +52,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
       <field name="arch" type="xml">
-        <filter name="group_city" position="before">
+        <group string="Group By" position="before">
           <filter name="filter_is_minor" string="Is minor"
             domain="[('is_minor', '=', True)]"/>
           <filter name="filter_is_adult" string="Is adult"
             domain="[('is_minor', '!=', True)]"/>
-        </filter>
+        </group>
       </field>
     </record>
 

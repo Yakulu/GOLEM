@@ -119,8 +119,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <search>
-          <filter name="group_city" string="By city"
-            context="{'group_by': 'city'}"/>
+          <group string="Group By">
+            <filter name="group_city" string="By city"
+              context="{'group_by': 'city'}"/>
+          </group>
         </search>
       </field>
     </record>
