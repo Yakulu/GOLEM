@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_view_form" />
       <field name="arch" type="xml">
         <field name="category_id" position="before">
+          <field name="is_volunteer" />
           <field name="skill_ids" widget="many2many_tags"
             placeholder="Skills..." />
         </field>
@@ -33,12 +34,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
     <!-- Searches -->
     <record model="ir.ui.view" id="golem_member_view_filter_add_skills">
-      <field name="name">Add Skills Group By Filter</field>
+      <field name="name">Add Skills Search and Filter</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
       <field name="arch" type="xml">
         <field name="email" position="after">
           <field name="skill_ids" widget="many2one" />
+          <filter name="filter_is_volunteer" string="Is volunteer"
+           domain="[('is_volunteer', '=', True)]" />
         </field>
       </field>
     </record>

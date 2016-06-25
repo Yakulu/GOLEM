@@ -21,6 +21,7 @@ from openerp import models, fields
 class GolemMember(models.Model):
     _inherit = 'golem.member'
 
+    is_volunteer = fields.Boolean('Volunteer?')
     skill_ids = fields.Many2many('golem.member.skill', string='Skills')
 
 
