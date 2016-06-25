@@ -81,8 +81,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </page>
               <page name="other_page" string="Others">
                 <group>
-                  <field name="category_id"
-                    widget="many2many_tags"
+                  <field name="category_id" widget="many2many_tags"
                     placeholder="Tags..."/>
                   <field name="comment" placeholder="Put an internal note..." />
                 </group>
@@ -119,6 +118,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <search>
+          <field name="number" />
+          <field name="name" />
+          <field name="contact_address" />
+          <field name="city" />
+          <field name="phone" />
+          <field name="mobile" />
+          <field name="email" />
           <group string="Group By">
             <filter name="group_city" string="By city"
               context="{'group_by': 'city'}"/>
@@ -151,10 +157,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Menu items -->
-    <menuitem id="menu_golem_members"
-      name="GOLEM Members"
-      parent="membership.menu_membership"
-      sequence="5"
+    <menuitem id="menu_golem_members" name="GOLEM Members"
+      parent="membership.menu_membership" sequence="5"
       action="golem_member_action" />
   </data>
 </openerp>
