@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_member_view_add_minor">
+      <field name="name">Add Minor Page/Tab</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_view_form" />
+      <field name="arch" type="xml">
+        <field name="pictures_agreement" position="replace" />
+      </field>
+      <field name="arch" type="xml">
+        <page name="contact_details" position="after">
+          <page name="minor_page" string="Minor"
+            attrs="{'invisible': [('is_minor', '=', False)]}">
+            <group name="minor_group">
+              <group>
+                <field name="is_minor" invisible="True" />
+                <field name="legal_guardian"/>
+              </group>
+              <group>
+                <field name="activities_participation"/>
+              </group>
+            </group>
+          </page>
+        </page>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record model="ir.ui.view" id="golem_member_view_filter_add_minor">
+      <field name="name">Add Minor/Adult filters</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
+      <field name="arch" type="xml">
+        <filter name="group_city" position="before">
+          <filter name="filter_is_minor" string="Is minor"
+            domain="[('is_minor', '=', True)]"/>
+          <filter name="filter_is_adult" string="Is adult"
+            domain="[('is_minor', '!=', True)]"/>
+        </filter>
+      </field>
+    </record>
+
+  </data>
+</openerp>
