@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+    <!-- Forms -->
+    <record id="golem_member_view_form" model="ir.ui.view">
+      <field name="name">GOLEM Member Form</field>
+      <field name="model">golem.member</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="image" widget="image" class="oe_left oe_avatar"
+                  options="{'preview_image': 'image_medium', 'size': [90, 90]}" />
+                <field name="name" class="oe_inline" readonly="True" />
+              </h1>
+            </div>
+            <group string="Personal details">
+              <group>
+                <field name="lastname" required="True" />
+                <field name="firstname" required="True" />
+                <field name="number" />
+              </group>
+              <group>
+                <field name="gender" />
+                <field name="birthdate_date" />
+                <field name="nationality_id" />
+                <field name="function" />
+              </group>
+            </group>
+            <notebook>
+              <page name="contact_details" string="Contact details">
+                <group string="Address">
+                  <group>
+                    <field name="street" placeholder="Street..." />
+                    <field name="street2" />
+                    <field name="zip" placeholder="ZIP" />
+                    <field name="city" placeholder="City" />
+                  </group>
+                  <group>
+                    <field name="state_id" class="oe_no_button"
+                      placeholder="State" />
+                    <field name="country_id" placeholder="Country"
+                      class="oe_no_button" />
+                  </group>
+                </group>
+                <group string="Communication">
+                  <group>
+                    <field name="phone" placeholder="0000000000"
+                      widget="phonefr" />
+                    <field name="mobile" placeholder="0000000000"
+                      widget="phonefr" />
+                    <field name="pictures_agreement"/>
+                  </group>
+                  <group>
+                    <field name="email" widget="email"
+                      placeholder="name@example.org" />
+                    <field name="opt_out" />
+                    <field name="website" widget="url"
+                      placeholder="e.g. www.odoo.com"/>
+                  </group>
+                </group>
+              </page>
+              <page name="other_page" string="Others">
+                <group>
+                  <field name="category_id"
+                    widget="many2many_tags"
+                    placeholder="Tags..."/>
+                  <field name="comment" placeholder="Put an internal note..." />
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers" />
+              <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Trees -->
+    <record model="ir.ui.view" id="golem_member_view_tree">
+      <field name="name">GOLEM Member Tree/List</field>
+      <field name="model">golem.member</field>
+      <field name="arch" type="xml">
+        <tree string="GOLEM Members">
+          <field name="number" />
+          <field name="name" />
+          <field name="contact_address" />
+          <field name="phone" />
+          <field name="mobile" />
+          <field name="email" widget="email" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <record id="golem_member_view_filter" model="ir.ui.view">
+      <field name="name">GOLEM Member Filters</field>
+      <field name="model">golem.member</field>
+      <field name="arch" type="xml">
+        <search>
+          <filter name="group_city" string="By city"
+            context="{'group_by': 'city'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Graphs -->
+    <record model="ir.ui.view" id="view_graph_golem_member">
+      <field name="name">GOLEM Member Graph</field>
+      <field name="model">golem.member</field>
+      <field name="arch" type="xml">
+        <graph string="GOLEM Members" type="pivot">
+          <field name="partner_id" />
+        </graph>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_member_action"
+      name="GOLEM Members"
+      res_model="golem.member"
+      view_mode="kanban,tree,form,graph" />
+    <record model="ir.actions.act_window.view"
+      id="golem_member_view_kanban">
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="base.res_partner_kanban_view"/>
+      <field name="act_window_id" ref="golem_member_action"/>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem id="menu_golem_members"
+      name="GOLEM Members"
+      parent="membership.menu_membership"
+      sequence="5"
+      action="golem_member_action" />
+  </data>
+</openerp>
