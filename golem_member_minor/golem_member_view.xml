@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record model="ir.ui.view" id="golem_member_view_add_minor">
+    <record model="ir.ui.view" id="view_add_minor">
       <field name="name">Add Minor Page/Tab</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.golem_member_view_form" />
+      <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
         <field name="pictures_agreement" position="replace" />
       </field>
@@ -47,10 +47,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record model="ir.ui.view" id="golem_member_view_filter_add_minor">
+    <record model="ir.ui.view" id="view_filter_add_minor">
       <field name="name">Add Minor/Adult filters</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
+      <field name="inherit_id" ref="golem_member.view_filter" />
       <field name="arch" type="xml">
         <group string="Group By" position="before">
           <filter name="filter_is_minor" string="Is minor"

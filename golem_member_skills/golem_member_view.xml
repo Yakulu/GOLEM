@@ -20,10 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
     <!-- Form -->
-    <record model="ir.ui.view" id="golem_member_view_add_skills">
+    <record model="ir.ui.view" id="view_add_skills">
       <field name="name">Add skills to Others tab</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.golem_member_view_form" />
+      <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
         <field name="category_id" position="before">
           <field name="is_volunteer" />
@@ -33,10 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Searches -->
-    <record model="ir.ui.view" id="golem_member_view_filter_add_skills">
+    <record model="ir.ui.view" id="view_filter_add_skills">
       <field name="name">Add Skills Search and Filter</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.golem_member_view_filter" />
+      <field name="inherit_id" ref="golem_member.view_filter" />
       <field name="arch" type="xml">
         <field name="email" position="after">
           <field name="skill_ids" widget="many2one" />
@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Tree -->
-    <record id="golem_member_skill_view_tree" model="ir.ui.view">
+    <record id="skill_view_tree" model="ir.ui.view">
       <field name="name">Member skills</field>
       <field name="model">golem.member.skill</field>
       <field name="arch" type="xml">
@@ -54,13 +54,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Actions -->
-    <act_window id="golem_member_skills_action_list" name="GOLEM Member Skills"
+    <act_window id="skills_action_list" name="GOLEM Member Skills"
       res_model="golem.member.skill" />
     <!-- Menus -->
-    <menuitem id="golem_member_skill_menu_list"
+    <menuitem id="skill_menu_list"
       name="Member skills"
       parent="base.menu_marketing_config_association"
-      action="golem_member_skills_action_list"
+      action="skills_action_list"
       sequence="5" />
 
   </data>

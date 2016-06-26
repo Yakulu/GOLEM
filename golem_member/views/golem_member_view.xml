@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
     <!-- Forms -->
-    <record id="golem_member_view_form" model="ir.ui.view">
+    <record id="view_form" model="ir.ui.view">
       <field name="name">GOLEM Member Form</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -103,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Trees -->
-    <record model="ir.ui.view" id="golem_member_view_tree">
+    <record model="ir.ui.view" id="view_tree">
       <field name="name">GOLEM Member Tree/List</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -119,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Searches -->
-    <record id="golem_member_view_filter" model="ir.ui.view">
+    <record id="view_filter" model="ir.ui.view">
       <field name="name">GOLEM Member Filters</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -155,26 +155,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="golem_member_action"
+    <act_window id="action"
       name="GOLEM Members"
       res_model="golem.member"
       view_mode="kanban,tree,form,graph"
       context="{'search_default_season_default': True}" />
     <record model="ir.actions.act_window.view"
-      id="golem_member_view_kanban">
+      id="view_kanban">
       <field name="view_mode">kanban</field>
       <field name="view_id" ref="base.res_partner_kanban_view"/>
-      <field name="act_window_id" ref="golem_member_action"/>
+      <field name="act_window_id" ref="action"/>
     </record>
-    <act_window id="golem_member_tags_action_list" name="GOLEM Members Tags"
+    <act_window id="tags_action_list" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
 
     <!-- Menu items -->
     <menuitem id="golem_members_menu" name="GOLEM Members"
       parent="membership.menu_membership" sequence="5"
-      action="golem_member_action" />
+      action="action" />
     <menuitem id="golem_members_menu_tags" name="Member Tags"
       parent="base.menu_marketing_config_association" sequence="10"
-      action="golem_member_tags_action_list" />
+      action="tags_action_list" />
   </data>
 </openerp>
