@@ -47,10 +47,7 @@ class GolemMember(models.Model):
     @api.depends('season_ids')
     def _compute_is_current(self):
         """ Checks if member is active for current season """
-        today = fields.Date.context_today(self)
+        domain = [('is_default', '=', True)]
+        default_season = self.env['golem.season'].search(domain)
         for member in self:
-            is_current = False
-            for s in member.season_ids:
-                if s.date_start <= today <= s.date_end:
-                    is_current = True
-            member.is_current = is_current
+            member.is_current = default_season in member.season_ids

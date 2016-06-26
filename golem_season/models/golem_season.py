@@ -27,6 +27,7 @@ class GolemSeason(models.Model):
     name = fields.Char('Season name')
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
+    is_default = fields.Boolean('Default season for views?')
 
     @api.constrains('date_start', 'date_end')
     def _check_period(self):
@@ -54,10 +55,13 @@ class GolemSeason(models.Model):
 
     @api.multi
     def write(self, values):
-        """ Extends write to recomputes all current members in case of date
-        changes """
-        date_start = values.get('date_start')
-        date_end = values.get('date_end')
-        if date_start or date_end:
-            self.env['golem.member']._compute_is_current()
-        return super(GolemSeason, self).write(values)
+        """ Extends write to recomputes all current members in case of
+        is_default changes and ensures that only one is_default is active """
+        is_new_default = values.get('is_default')
+        old_default_season = self.search([('is_default', '=', True)])
+        res = super(GolemSeason, self).write(values)
+        if is_new_default:
+            if old_default_season:
+                old_default_season.is_default = False
+        self.env['golem.member'].search([])._compute_is_current()
+        return res
