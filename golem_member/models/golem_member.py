@@ -40,3 +40,4 @@ class GolemMember(models.Model):
     number = fields.Char('Number', size=50, index=True)
     pictures_agreement = fields.Boolean('Pictures agreement?')
     opt_out_sms = fields.Boolean('Out of SMS campaigns')
+    season_ids = fields.Many2many('golem.season', string='Seasons')
