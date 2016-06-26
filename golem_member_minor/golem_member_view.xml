@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record model="ir.ui.view" id="view_add_minor">
+    <record model="ir.ui.view" id="minor_add_form">
       <field name="name">Add Minor Page/Tab</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record model="ir.ui.view" id="view_filter_add_minor">
+    <record model="ir.ui.view" id="minor_add_search">
       <field name="name">Add Minor/Adult filters</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_filter" />

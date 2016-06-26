@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
     <!-- Form -->
-    <record model="ir.ui.view" id="view_add_skills">
+    <record model="ir.ui.view" id="skills_form">
       <field name="name">Add skills to Others tab</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Searches -->
-    <record model="ir.ui.view" id="view_filter_add_skills">
+    <record model="ir.ui.view" id="skills_search">
       <field name="name">Add Skills Search and Filter</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_filter" />
@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Tree -->
-    <record id="skill_view_tree" model="ir.ui.view">
+    <record id="skill_tree" model="ir.ui.view">
       <field name="name">Member skills</field>
       <field name="model">golem.member.skill</field>
       <field name="arch" type="xml">
