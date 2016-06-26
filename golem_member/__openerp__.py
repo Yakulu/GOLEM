@@ -31,6 +31,7 @@
                 'partner_contact_gender',
                 'partner_contact_nationality',
                 'membership',
+                'account_voucher',
                 'mail',
                 'l10n_fr_state',
                 'l10n_fr_department',
@@ -38,6 +39,7 @@
                 'l10n_fr_siret',
                 'web_widget_phone_check_fr',
                 'web_widget_email_check',
-                'web_widget_url_check'],
+                'web_widget_url_check',
+                'golem_season'],
     'data': ['views/golem_member_view.xml']
 }
