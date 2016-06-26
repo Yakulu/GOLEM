@@ -26,16 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form>
           <sheet>
-            <div class="oe_title">
-              <h1>
-                <field name="image" widget="image" class="oe_left oe_avatar"
-                  options="{'preview_image': 'image_medium', 'size': [90, 90]}" />
-                <field name="name" class="oe_inline" readonly="True" />
-              </h1>
+            <group>
+              <div class="oe_title">
+                <h1>
+                  <field name="image" widget="image" class="oe_left oe_avatar"
+                    options="{'preview_image': 'image_medium', 'size': [90, 90]}" />
+                  <field name="name" class="oe_inline" readonly="True" />
+                </h1>
+              </div>
               <group>
                 <field name="season_ids" widget="many2many_tags" />
               </group>
-            </div>
+            </group>
             <group string="Personal details">
               <group>
                 <field name="lastname" required="True" />
@@ -131,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="mobile" />
           <field name="email" />
           <field name="category_id" widget="many2one" />
-          <filter name="season_current" string="Is active in current season"
+          <filter name="season_current" string="Current season"
            domain="[('is_current', '=', True)]" />
           <group string="Group By">
             <filter name="group_city" string="By city"
@@ -156,7 +158,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <act_window id="golem_member_action"
       name="GOLEM Members"
       res_model="golem.member"
-      view_mode="kanban,tree,form,graph" />
+      view_mode="kanban,tree,form,graph"
+      context="{'search_default_season_current': True}" />
     <record model="ir.actions.act_window.view"
       id="golem_member_view_kanban">
       <field name="view_mode">kanban</field>
