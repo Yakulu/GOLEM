@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+    <!-- Form -->
+    <record model="ir.ui.view" id="member_tab_add">
+      <field name="name">Add family management to new tab</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.view_form" />
+      <field name="arch" type="xml">
+        <!--
+        <div class="oe_title" position="before">
+          <div class="oe_right oe_button_box">
+            <button
+              class="oe_inline oe_stat_button" type="object"
+              context="{'default_memberfrom_id': partner_id}"
+              name="button_family_members" icon="fa-list">
+              <field string="Family" name="family_count" widget="statinfo"/>
+            </button>
+          </div>
+        </div>
+        -->
+        <page name="contact_details" position="after">
+          <page name="family" string="Family">
+            <field name="family_ids" widget="one2many"
+              domain="['|',
+              ('memberfrom_id', '=', active_id),
+              ('memberto_id', '=', active_id)]"
+              context="{'default_memberfrom_id': active_id}" />
+          </page>
+        </page>
+      </field>
+    </record>
+
+    <!-- Tree -->
+    <record id="family_tree" model="ir.ui.view">
+      <field name="name">Family list</field>
+      <field name="model">golem.member.family</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="memberfrom_id" string="Family Member From" />
+          <field name="relation_id" string="is the ... of" />
+          <field name="memberto_id" string="Family Member To" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Searches -->
+
+    <!-- Actions -->
+    <act_window id="family_action_list" name="GOLEM Family Relations List"
+      res_model="golem.member.family" view_mode="tree" />
+    <!-- Menus -->
+    <menuitem id="family_menu_list" name="Family relations"
+      parent="membership.menu_membership" action="family_action_list"
+      sequence="10" />
+
+  </data>
+</openerp>
