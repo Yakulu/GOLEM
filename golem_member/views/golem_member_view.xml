@@ -131,6 +131,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="mobile" />
           <field name="email" />
           <field name="category_id" widget="many2one" />
+          <filter name="season_current" string="Is active in current season"
+           domain="[('is_current', '=', True)]" />
           <group string="Group By">
             <filter name="group_city" string="By city"
               context="{'group_by': 'city'}"/>

@@ -39,7 +39,6 @@ class GolemSeason(models.Model):
             else:
                 seasons = self.env['golem.season'].search([])
                 for s in seasons:
-                    print s.name
                     if s.date_start < season.date_start < s.date_end:
                         msg = _('Start of the period is in range of an '
                                 'existing period {}'.format(s.name))
@@ -52,3 +51,13 @@ class GolemSeason(models.Model):
                         msg = _('Period {} cannot be included into current '
                                 'period'.format(s.name))
                         raise models.ValidationError(msg)
+
+    @api.multi
+    def write(self, values):
+        """ Extends write to recomputes all current members in case of date
+        changes """
+        date_start = values.get('date_start')
+        date_end = values.get('date_end')
+        if date_start or date_end:
+            self.env['golem.member']._compute_is_current()
+        return super(GolemSeason, self).write(values)
