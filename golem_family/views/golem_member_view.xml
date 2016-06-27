@@ -25,27 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
-        <!--
-        <div class="oe_title" position="before">
+        <div class="oe_title" position="after">
           <div class="oe_right oe_button_box">
             <button
               class="oe_inline oe_stat_button" type="object"
-              context="{'default_memberfrom_id': partner_id}"
-              name="button_family_members" icon="fa-list">
-              <field string="Family" name="family_count" widget="statinfo"/>
+              name="button_family_members" icon="fa-users">
+              <field string="Family Relations" name="family_count" widget="statinfo" />
             </button>
           </div>
         </div>
-        -->
-        <page name="contact_details" position="after">
-          <page name="family" string="Family">
-            <field name="family_ids" widget="one2many"
-              domain="['|',
-              ('memberfrom_id', '=', active_id),
-              ('memberto_id', '=', active_id)]"
-              context="{'default_memberfrom_id': active_id}" />
-          </page>
-        </page>
       </field>
     </record>
 
@@ -55,14 +43,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member.family</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="memberfrom_id" string="Family Member From" />
+          <field name="partnerfrom_id" string="Family Member From" />
           <field name="relation_id" string="is the ... of" />
-          <field name="memberto_id" string="Family Member To" />
+          <field name="partnerto_id" string="Family Member To" />
         </tree>
       </field>
     </record>
 
     <!-- Searches -->
+    <record id="view_filter" model="ir.ui.view">
+      <field name="name">GOLEM Families Filters</field>
+      <field name="model">golem.member.family</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="fullrelation" />
+          <field name="relation_id" widget="many2one" />
+          <group string="Group By">
+            <filter name="group_relation" string="By relation"
+              context="{'group_by': 'relation_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
 
     <!-- Actions -->
     <act_window id="family_action_list" name="GOLEM Family Relations List"

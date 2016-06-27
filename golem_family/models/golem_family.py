@@ -15,40 +15,63 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields
+from openerp import models, fields, api, _
 
 
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
+class GolemMember(models.Model):
+    _inherit = 'golem.member'
 
-    family_ids = fields.Many2many('golem.member.family',
-                                  string='Family member')
+    family_count = fields.Integer('Family', compute='_compute_family_count')
 
-    # @api.multi
-    # def button_family_members(self):
-    #     self.ensure_one()
-    #     return {'name': _('Family Members'),
-    #             'type': 'ir.actions.act_window',
-    #             'res_model': 'golem.member.family',
-    #             'view_mode': 'tree',
-    #             'domain': [('memberfrom_id', '=', self[0].id)]}
+    @api.one
+    def _compute_family_count(self):
+        pid = self.partner_id.id
+        dmn = ['|', ('partnerfrom_id', '=', pid), ('partnerto_id', '=', pid)]
+        self.family_count = self.env['golem.member.family'].search_count(dmn)
+
+    @api.multi
+    def button_family_members(self):
+        self.ensure_one()
+        pid = self.partner_id.id
+        return {'name': _('Family Members'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'golem.member.family',
+                'view_mode': 'tree',
+                'context': {'default_partnerfrom_id': pid},
+                'domain': ['|',
+                           ('partnerfrom_id', '=', pid),
+                           ('partnerto_id', '=', pid)]}
 
 
 class GolemFamily(models.Model):
     _name = 'golem.member.family'
     _description = 'GOLEM Member Family'
 
-    memberfrom_id = fields.Many2one('golem.member', 'Family member 1')
-    memberto_id = fields.Many2one('golem.member', string='Family member 2')
+    partnerfrom_id = fields.Many2one('res.partner', 'Family member from',
+                                     required=True, index=True,
+                                     domain=[('is_company', '=', False)])
+    partnerto_id = fields.Many2one('res.partner', 'Family member to',
+                                   required=True, index=True,
+                                   domain=[('is_company', '=', False)])
     relation_id = fields.Many2one('golem.member.family.relation',
+                                  required=True, index=True,
                                   string='Family relation')
+    fullrelation = fields.Char('Full relation string',
+                               compute='_compute_fullrelation', store=True)
 
-    # @api.onchange('member_id')
-    # def onchange_member_id(self):
-    #     mid = self.env.context.get('default_member_id')
-    #     member = self.env['golem.member'].browse([mid])
-    #     self.member_id = member.partner_id.id
-    #     return self
+    @api.depends('partnerfrom_id', 'partnerto_id', 'relation_id')
+    def _compute_fullrelation(self):
+        for r in self:
+            r.fullrelation = '{} -> {} -> {}'.format(r.partnerfrom_id.name,
+                                                     r.relation_id.name,
+                                                     r.partnerto_id.name)
+
+    @api.onchange('partnerfrom_id')
+    def onchange_partnerfrom_id(self):
+        """ If tree from member, use ctx default partner to populate from """
+        default_pid = self.env.context.get('default_partnerfrom_id')
+        if default_pid:
+            self.partnerfrom_id = default_pid
 
 
 class GolemFamilyRelation(models.Model):
