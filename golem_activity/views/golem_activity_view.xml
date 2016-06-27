@@ -84,6 +84,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
+          <group string="Group By">
+            <filter name="group_category" string="By category"
+              context="{'group_by': 'categ_id'}"/>
+          </group>
         </search>
       </field>
     </record>
@@ -94,14 +98,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Activities</field>
       <field name="res_model">golem.activity</field>
       <field name="view_mode">kanban,tree,form</field>
-      <field name="domain" eval="[('categ_id', 'child_of', ref('golem_activity.golem_product_category_all_activities'))]" />
+      <field name="view_id" ref="product.product_template_kanban_view"/>
       <field name="context"
         eval="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_all_activities')}" />
-    </record>
-    <record model="ir.actions.act_window.view" id="act_view_kanban">
-      <field name="view_mode">kanban</field>
-      <field name="view_id" ref="product.product_template_kanban_view"/>
-      <field name="act_window_id" ref="action"/>
     </record>
     <record id="category_action" model="ir.actions.act_window">
       <field name="name">Activities Categories</field>
@@ -116,7 +115,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="activity_list" name="List"
       parent="activity_menu" sequence="0"
       action="action" />
-    <menuitem  id="activity_categ" name="Activities categories"
+    <menuitem  id="activity_categ" name="Categories"
       parent="activity_menu" sequence="10"
       action="category_action" />
 
