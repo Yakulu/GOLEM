@@ -64,4 +64,5 @@ class GolemSeason(models.Model):
             if old_default_season:
                 old_default_season.is_default = False
         self.env['golem.member'].search([])._compute_is_current()
+        self.env['product.template'].search([])._golem_compute_is_current()
         return res
