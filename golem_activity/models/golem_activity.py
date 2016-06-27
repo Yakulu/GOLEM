@@ -22,11 +22,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # Make default service for type
-    type = fields.Selection([('consu', 'Consumable'), ('service', 'Service')],
-                            'Product Type', default='service', required=True,
-                            help="Consumable are product where you don't "
-                            "manage stock, a service is a non-material "
-                            "product provided by a company or an individual.")
+    type = fields.Selection(default='service')
 
 
 class GolemActivity(models.Model):
@@ -34,33 +30,34 @@ class GolemActivity(models.Model):
     _description = 'GOLEM Activity'
     _inherit = 'mail.thread'
     _inherits = {'product.template': 'product_id'}
+    _rec_name = 'activity_name'
 
     season_id = fields.Many2one('golem.season', string='Seasons',
                                 required=True)
-    animator = fields.Many2one('res.partner', string="Animator",
-                               domain=[('is_company', '=', False)])
+    animator_id = fields.Many2one('res.partner', string="Animator",
+                                  domain=[('is_company', '=', False)])
     places = fields.Integer('Places', default=0)
-    is_surcharged = fields.Boolean('Allow surcharge?', default=False)
-    places_surcharged = fields.Integer('Places with surcharge', default=0)
+    is_overbooked = fields.Boolean('Allow overbook?', default=False)
+    places_overbooked = fields.Integer('Places with overbook', default=0)
 
-    @api.onchange('is_surcharged', 'places')
-    def onchange_is_surcharged(self):
+    @api.onchange('is_overbooked', 'places')
+    def onchange_is_overbooked(self):
         for a in self:
-            if a.places and a.is_surcharged:
-                if not a.places_surcharged or (a.places_surcharged < a.places):
-                    a.places_surcharged = a.places
+            if a.places and a.is_overbooked:
+                if not a.places_overbooked or (a.places_overbooked < a.places):
+                    a.places_overbooked = a.places + 1
 
-    @api.constrains('places', 'places_surcharged')
+    @api.constrains('places', 'places_overbooked')
     def _check_places(self):
-        """ Check integers are signed and surcharged to be superior than
+        """ Check integers are signed and overbooked to be superior than
         normal places """
         for v in self:
-            for f in ['places', 'places_surcharged']:
+            for f in ['places', 'places_overbooked']:
                 if v[f] < 0:
                     emsg = _('Number of places cannot be negative.')
                     raise models.ValidationError(emsg)
-            if v.places < v.places_surcharged:
-                emsg = _('Surcharged places cannot be inferieur than places')
+            if v.is_overbooked and (v.places_overbooked <= v.places):
+                emsg = _('Overbooked places cannot be inferior than places')
                 raise models.ValidationError(emsg)
 
     date_start = fields.Date('Start date')
@@ -100,3 +97,16 @@ class GolemActivity(models.Model):
         default_season = self.env['golem.season'].search(domain)
         for a in self:
             a.is_current = (default_season == a.season_id)
+
+    activity_name = fields.Char('Name', compute='_compute_name', store=True,
+                                index=True)
+
+    @api.depends('name', 'default_code')
+    def _compute_name(self):
+        """ Provide a better displayed name """
+        for a in self:
+            activity_name = unicode(a.name)
+            if a.default_code:
+                activity_name = u'[{}] {}'.format(a.default_code,
+                                                  activity_name)
+            a.activity_name = activity_name
