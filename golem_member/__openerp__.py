@@ -41,5 +41,5 @@
                 'web_widget_email_check',
                 'web_widget_url_check',
                 'golem_season'],
-    'data': ['views/golem_member_view.xml']
+    'data': ['views/golem_member_view.xml', 'views/members_menu.xml']
 }
