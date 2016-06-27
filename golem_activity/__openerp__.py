@@ -31,5 +31,5 @@
                 'l10n_fr_tax_sale_ttc',
                 'l10n_fr_siret',
                 'golem_season'],
-    'data': ['views/golem_activity_view.xml']
+    'data': ['data/golem_activity_data.xml', 'views/golem_activity_view.xml']
 }
