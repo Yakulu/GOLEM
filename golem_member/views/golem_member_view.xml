@@ -136,6 +136,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
           <group string="Group By">
+            <filter name="group_age" string="By age"
+              context="{'group_by': 'is_minor'}"/>
+            <filter name="group_gender" string="By gender"
+              context="{'group_by': 'gender'}"/>
             <filter name="group_city" string="By city"
               context="{'group_by': 'city'}"/>
           </group>
