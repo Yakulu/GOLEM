@@ -36,30 +36,6 @@ class GolemActivity(models.Model):
                                 required=True)
     animator_id = fields.Many2one('res.partner', string="Animator",
                                   domain=[('is_company', '=', False)])
-    places = fields.Integer('Places', default=0)
-    is_overbooked = fields.Boolean('Allow overbook?', default=False)
-    places_overbooked = fields.Integer('Places with overbook', default=0)
-
-    @api.onchange('is_overbooked', 'places')
-    def onchange_is_overbooked(self):
-        for a in self:
-            if a.places and a.is_overbooked:
-                if not a.places_overbooked or (a.places_overbooked < a.places):
-                    a.places_overbooked = a.places + 1
-
-    @api.constrains('places', 'places_overbooked')
-    def _check_places(self):
-        """ Check integers are signed and overbooked to be superior than
-        normal places """
-        for v in self:
-            for f in ['places', 'places_overbooked']:
-                if v[f] < 0:
-                    emsg = _('Number of places cannot be negative.')
-                    raise models.ValidationError(emsg)
-            if v.is_overbooked and (v.places_overbooked <= v.places):
-                emsg = _('Overbooked places cannot be inferior than places')
-                raise models.ValidationError(emsg)
-
     date_start = fields.Date('Start date')
     date_end = fields.Date('End date')
 

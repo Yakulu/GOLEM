@@ -43,6 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                 <field name="activity_id" />
                 <field name="animator_id" />
+                <field name="places" />
+                <field name="is_overbooked" />
+                <field name="places_overbooked"
+                  attrs="{'invisible': [('is_overbooked', '=', False)]}" />
               </group>
               <group>
                 <field name="is_recurrent" readonly="True" />
@@ -51,16 +55,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="hour_end" widget="float_time" />
               </group>
             </group>
-            <group>
-              <field name="note" />
-            </group>
+            <notebook>
+              <page string="Members">
+                <group>
+                  <field name="places_remain" readonly="True" />
+                  <field name="member_ids" />
+                </group>
+              </page>
+              <page string="Note">
+                <field name="note" />
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
     </record>
 
     <!-- Tree -->
-    <record id="family_tree" model="ir.ui.view">
+    <record id="session_tree" model="ir.ui.view">
       <field name="name">Session list</field>
       <field name="model">golem.activity.session</field>
       <field name="arch" type="xml">

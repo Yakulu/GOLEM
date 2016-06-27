@@ -26,5 +26,5 @@
     'application': False,
     'installable': True,
     'depends': ['golem_activity'],
-    'data': ['views/golem_activity_view.xml']
+    'data': ['views/golem_activity_view.xml', 'views/golem_member_view.xml']
 }

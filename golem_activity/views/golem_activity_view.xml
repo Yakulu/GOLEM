@@ -42,14 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group colspan="2">
                 <field name="default_code" />
                 <field name="categ_id" />
-                <field name="animator_id" />
                 <field name="list_price" />
               </group>
               <group colspan="2">
-                <field name="places" />
-                <field name="is_overbooked" />
-                <field name="places_overbooked"
-                  attrs="{'invisible': [('is_overbooked', '=', False)]}" />
+                <field name="animator_id" />
                 <field name="date_start" />
                 <field name="date_end" />
               </group>
