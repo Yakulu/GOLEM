@@ -24,8 +24,7 @@ class ResPartner(models.Model):
     def _get_default_nationality_id(self):
         return self.env.ref('base.main_company').country_id
 
-    nationality_id = fields.Many2one('res.country', 'Nationality',
-                                     default=_get_default_nationality_id)
+    nationality_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')])
