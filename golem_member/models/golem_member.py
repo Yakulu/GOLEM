@@ -32,8 +32,8 @@ class ResPartner(models.Model):
 
 
 class GolemMember(models.Model):
-    """ GOLEM Member """
     _name = 'golem.member'
+    _description = 'GOLEM Member'
     _inherit = 'mail.thread'
     _inherits = {'res.partner': 'partner_id'}
 
