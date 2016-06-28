@@ -1,0 +1,873 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_member
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:16+0000\n"
+"PO-Revision-Date: 2016-06-28 03:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "0000000000"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,associate_member:0
+msgid "A member with whom you want to associate your membership.It will consider the membership state of the associated member."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_account_payable:0
+msgid "Account Payable"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_account_receivable:0
+msgid "Account Receivable"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,active:0
+msgid "Active"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Address"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,type:0
+msgid "Address Type"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,associate_member:0
+msgid "Associate Member"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,partner_id:0
+msgid "Automatically created field to link to parent res.partner"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,bank_ids:0
+msgid "Banks"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,birthdate:0
+#: field:golem.member,birthdate_date:0
+msgid "Birthdate"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_filter
+msgid "By age"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_filter
+msgid "By city"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_filter
+msgid "By gender"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,membership_cancel:0
+msgid "Cancel Membership Date"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,is_company:0
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,vat_subjected:0
+msgid "Check this box if the partner is subjected to the VAT. It will be used for the VAT legal statement."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,customer:0
+msgid "Check this box if this contact is a customer."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,supplier:0
+msgid "Check this box if this contact is a supplier. If it's not checked, purchase people will not see it when encoding a purchase order."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,employee:0
+msgid "Check this box if this contact is an Employee."
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+#: field:golem.member,city:0
+msgid "City"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,color:0
+msgid "Color Index"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,commercial_partner_id:0
+msgid "Commercial Entity"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Communication"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,ref_companies:0
+msgid "Companies that refers to partner"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,company_registry:0
+msgid "Company Registry"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,contact_address:0
+msgid "Complete Address"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,ref:0
+msgid "Contact Reference"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Contact details"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,child_ids:0
+msgid "Contacts"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,contract_ids:0
+#: field:golem.member,contracts_count:0
+msgid "Contracts"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+#: field:golem.member,country_id:0
+msgid "Country"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,credit_limit:0
+msgid "Credit Limit"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,membership_state:0
+msgid "Current Membership Status"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,is_current:0
+msgid "Current user?"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,customer:0
+msgid "Customer"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_payment_term:0
+msgid "Customer Payment Term"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,date:0
+msgid "Date"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,membership_start:0
+msgid "Date from which membership becomes active."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,membership_cancel:0
+msgid "Date on which membership has been cancelled"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,last_reconciliation_date:0
+msgid "Date on which the partner accounting entries were fully reconciled last time. It differs from the last date where a reconciliation has been made for this partner, as here we depict the fact that nothing more was to be reconciled at this date. This can be achieved in 2 different ways: either the last unreconciled debit/credit entry of this partner was reconciled, either the user pressed the button \"Nothing more to reconcile\" during the manual reconciliation process."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,membership_stop:0
+msgid "Date until which membership remains active."
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_filter
+msgid "Default season"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,department_id:0
+msgid "Department"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,ean13:0
+msgid "EAN13"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,email:0
+msgid "Email"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,employee:0
+msgid "Employee"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,fax:0
+msgid "Fax"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,firstname:0
+msgid "First name"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_account_position:0
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_follower_ids:0
+msgid "Followers"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,free_member:0
+msgid "Free Member"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_member
+msgid "GOLEM Member"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_graph_golem_member
+#: view:golem.member:golem_member.view_tree
+#: model:ir.actions.act_window,name:golem_member.action
+#: model:ir.ui.menu,name:golem_member.golem_members_menu
+msgid "GOLEM Members"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.actions.act_window,name:golem_member.tags_action_list
+msgid "GOLEM Members Tags"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,gender:0
+msgid "Gender"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_filter
+msgid "Group By"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,id:0
+msgid "ID"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,opt_out:0
+msgid "If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,lang:0
+msgid "If the selected language is loaded in the system, all documents related to this contact will be printed in this language. If not, it will be English."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,image:0
+msgid "Image"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,invoice_ids:0
+msgid "Invoices"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,is_company:0
+msgid "Is a Company"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,membership_state:0
+msgid "It indicates the membership state.\n"
+"-Non Member: A partner who has not applied for any membership.\n"
+"-Cancelled Member: A member who has cancelled his membership.\n"
+"-Old Member: A member whose membership date has expired.\n"
+"-Waiting Member: A member who has applied for the membership and whose invoice is going to be created.\n"
+"-Invoiced Member: A member whose invoice has been created.\n"
+"-Paying member: A member who has paid the membership fee."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,function:0
+msgid "Job Position"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,journal_item_count:0
+msgid "Journal Items"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,lang:0
+msgid "Language"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,lastname:0
+msgid "Last name"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,last_reconciliation_date:0
+msgid "Latest Full Reconciliation Date"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,image_medium:0
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,image_medium:0
+msgid "Medium-sized image of this contact. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.menu,name:golem_member.golem_members_menu_tags
+msgid "Member Tags"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,member_lines:0
+msgid "Membership"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,membership_amount:0
+msgid "Membership Amount"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,membership_stop:0
+msgid "Membership End Date"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,membership_start:0
+msgid "Membership Start Date"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_ids:0
+msgid "Messages"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,mobile:0
+msgid "Mobile"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,nic:0
+msgid "NIC"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,name:0
+msgid "Name"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,nationality_id:0
+msgid "Nationality"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,comment:0
+msgid "Notes"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,number:0
+msgid "Number"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,opt_out:0
+msgid "Opt-Out"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Others"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,opt_out_sms:0
+msgid "Out of SMS campaigns"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,parent_name:0
+msgid "Parent name"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,debit_limit:0
+msgid "Payable Limit"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Personal details"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,phone:0
+msgid "Phone"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,pictures_agreement:0
+msgid "Pictures agreement?"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,notify_email:0
+msgid "Policy to receive emails for new messages pushed to your personal Inbox:\n"
+"- Never: no emails are sent\n"
+"- All Messages: for every notification you receive in your Inbox"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Put an internal note..."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,notify_email:0
+msgid "Receive Inbox Notifications by Email"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,parent_id:0
+msgid "Related Company"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,siren:0
+msgid "SIREN"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,siret:0
+msgid "SIRET"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_product_pricelist:0
+msgid "Sale Pricelist"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,user_id:0
+msgid "Salesperson"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,season_ids:0
+msgid "Seasons"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,free_member:0
+msgid "Select if you want to give free membership."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,use_parent_address:0
+msgid "Select this if you want to set company's address information  for this contact"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,signup_expiration:0
+msgid "Signup Expiration"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,signup_token:0
+msgid "Signup Token"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,signup_type:0
+msgid "Signup Token Type"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,signup_valid:0
+msgid "Signup Token is Valid"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,signup_url:0
+msgid "Signup URL"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,image_small:0
+msgid "Small-sized image"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,image_small:0
+msgid "Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+#: field:golem.member,state_id:0
+msgid "State"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,street:0
+msgid "Street"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Street..."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,street2:0
+msgid "Street2"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,supplier:0
+msgid "Supplier"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,property_supplier_payment_term:0
+msgid "Supplier Payment Term"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,vat:0
+msgid "TIN"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,category_id:0
+msgid "Tags"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "Tags..."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,vat:0
+msgid "Tax Identification Number. Check the box if this contact is subjected to taxes. Used by the some of the legal statements."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,nic:0
+msgid "The NIC number is the official rank number of this office in the company in France. It makes the last 5 digits of the SIRET number."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,siren:0
+msgid "The SIREN number is the official identity number of the company in France. It makes the first 9 digits of the SIRET number."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,siret:0
+msgid "The SIRET number is the official identity number of this company's office in France. It is composed of the 9 digits of the SIREN number and the 5 digits of the NIC number, ie. 14 digits."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_account_position:0
+msgid "The fiscal position will determine taxes and accounts used for the partner."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,user_id:0
+msgid "The internal user that is in charge of communicating with this contact if any."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,company_registry:0
+msgid "The name of official registry where this company was declared."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,tz:0
+msgid "The partner's timezone, used to output proper date and time values inside printed reports. It is important to set a value for this field. You should use the same timezone that is otherwise used to pick and render date and time values: your computer's timezone."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,membership_amount:0
+msgid "The price negotiated by the partner"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_account_payable:0
+msgid "This account will be used instead of the default one as the payable account for the current partner"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_account_receivable:0
+msgid "This account will be used instead of the default one as the receivable account for the current partner"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,image:0
+msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_supplier_payment_term:0
+msgid "This payment term will be used instead of the default one for purchase orders and supplier invoices"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_payment_term:0
+msgid "This payment term will be used instead of the default one for sale orders and customer invoices"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,property_product_pricelist:0
+msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,tz:0
+msgid "Timezone"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,tz_offset:0
+msgid "Timezone offset"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,title:0
+msgid "Title"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,total_invoiced:0
+msgid "Total Invoiced"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,debit:0
+msgid "Total Payable"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,credit:0
+msgid "Total Receivable"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,credit:0
+msgid "Total amount this customer owes you."
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,debit:0
+msgid "Total amount you have to pay to this supplier."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,message_unread:0
+msgid "Unread Messages"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,use_parent_address:0
+msgid "Use Company Address"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,type:0
+msgid "Used to select automatically the right address according to the context in sales and purchases documents."
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,user_ids:0
+msgid "Users"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,vat_subjected:0
+msgid "VAT Legal Statement"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,website:0
+msgid "Website"
+msgstr ""
+
+#. module: golem_member
+#: help:golem.member,website:0
+msgid "Website of Partner or Company"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "ZIP"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,zip:0
+msgid "Zip"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "e.g. www.odoo.com"
+msgstr ""
+
+#. module: golem_member
+#: view:golem.member:golem_member.view_form
+msgid "name@example.org"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,has_image:0
+msgid "unknown"
+msgstr ""
+

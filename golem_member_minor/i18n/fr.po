@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_member_minor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:17+0000\n"
+"PO-Revision-Date: 2016-06-28 03:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: golem_member_minor
+#: field:golem.member,activities_participation:0
+msgid "Activities participation?"
+msgstr "Participation aux activités?"
+
+#. module: golem_member_minor
+#: model:ir.model,name:golem_member_minor.model_golem_member
+msgid "GOLEM Member"
+msgstr "GOLEM : Adhérent"
+
+#. module: golem_member_minor
+#: view:golem.member:golem_member_minor.minor_add_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: golem_member_minor
+#: view:golem.member:golem_member_minor.minor_add_search
+msgid "Is adult"
+msgstr "Est adulte"
+
+#. module: golem_member_minor
+#: view:golem.member:golem_member_minor.minor_add_search
+msgid "Is minor"
+msgstr "Est mineur"
+
+#. module: golem_member_minor
+#: field:golem.member,is_minor:0
+msgid "Is minor?"
+msgstr "Est mineur?"
+
+#. module: golem_member_minor
+#: field:golem.member,legal_guardian:0
+msgid "Legal guardian"
+msgstr "Représentant légal"
+
+#. module: golem_member_minor
+#: view:golem.member:golem_member_minor.minor_add_form
+msgid "Minor"
+msgstr "Mineur"
+

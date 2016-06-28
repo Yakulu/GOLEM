@@ -1,0 +1,615 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:14+0000\n"
+"PO-Revision-Date: 2016-06-28 03:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_activity
+#: field:golem.activity,product_variant_count:0
+msgid "# of Product Variants"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,description_sale:0
+msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,description_purchase:0
+msgid "A description of the Product that you want to communicate to your suppliers. This description will be copied to every Purchase Order, Receipt and Supplier Invoice/Refund."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,description:0
+msgid "A precise description of the Product, used only for internal information purposes."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,active:0
+msgid "Active"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.ui.menu,name:golem_activity.activity_menu
+msgid "Activities"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.actions.act_window,name:golem_activity.category_action
+msgid "Activities Categories"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "Activity Name"
+msgstr ""
+
+#. module: golem_activity
+#: model:product.category,name:golem_activity.golem_product_category_activities
+msgid "Activités"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,animator_id:0
+msgid "Animator"
+msgstr ""
+
+#. module: golem_activity
+#: model:product.category,name:golem_activity.golem_product_category_workshops
+msgid "Ateliers"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,product_id:0
+msgid "Automatically created field to link to parent product.template"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,list_price:0
+msgid "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_filter
+msgid "By category"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,rental:0
+msgid "Can be Rent"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,sale_ok:0
+msgid "Can be Sold"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.ui.menu,name:golem_activity.activity_categ
+msgid "Categories"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,membership:0
+msgid "Check if the product is eligible for membership."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,uos_coeff:0
+msgid "Coefficient to convert default Unit of Measure to Unit of Sale\n"
+" uos = uom * coeff"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,color:0
+msgid "Color Index"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,type:0
+msgid "Consumable are product where you don't manage stock, a service is a non-material product provided by a company or an individual."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,standard_price:0
+msgid "Cost Price"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,standard_price:0
+msgid "Cost price of the product template used for standard stock valuation in accounting and used as a base price on purchase orders. Expressed in the default unit of measure of the product."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,is_current:0
+msgid "Current season?"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,taxes_id:0
+msgid "Customer Taxes"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,membership_date_from:0
+msgid "Date from which membership becomes active."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,membership_date_to:0
+msgid "Date until which membership remains active."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,uom_id:0
+msgid "Default Unit of Measure used for all stock operation."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,uom_po_id:0
+msgid "Default Unit of Measure used for purchase orders. It must be in the same category than the default unit of measure."
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_filter
+msgid "Default season"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,description:0
+msgid "Description"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "Details"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,ean13:0
+msgid "EAN13 Barcode"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,date_end:0
+msgid "End date"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,property_account_expense:0
+msgid "Expense Account"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_follower_ids:0
+msgid "Followers"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.actions.act_window,name:golem_activity.action
+msgid "GOLEM Activities"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model,name:golem_activity.model_golem_activity
+msgid "GOLEM Activity"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,packaging_ids:0
+msgid "Gives the different ways to package the same product. This has no impact on the picking order and is mainly used if you use the EDI module."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,weight:0
+msgid "Gross Weight"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_filter
+msgid "Group By"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,id:0
+msgid "ID"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,active:0
+msgid "If unchecked, it will allow you to hide the product without removing it."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,image:0
+msgid "Image"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,property_account_income:0
+msgid "Income Account"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "Information"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,categ_id:0
+msgid "Internal Category"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,default_code:0
+msgid "Internal Reference"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,is_product_variant:0
+msgid "Is product variant"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.ui.menu,name:golem_activity.activity_list
+msgid "List"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,packaging_ids:0
+msgid "Logistical Units"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,seller_id:0
+msgid "Main Supplier"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,seller_id:0
+msgid "Main Supplier who has highest priority in Supplier List."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,mes_type:0
+msgid "Measure Type"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,image_medium:0
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,image_medium:0
+msgid "Medium-sized image of the product. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,membership:0
+msgid "Membership"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,membership_date_to:0
+msgid "Membership End Date"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,membership_date_from:0
+msgid "Membership Start Date"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_ids:0
+msgid "Messages"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,activity_name:0
+#: field:golem.activity,name:0
+msgid "Name"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,weight_net:0
+msgid "Net Weight"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "Others"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,price:0
+msgid "Price"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,pricelist_id:0
+msgid "Pricelist"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,attribute_line_ids:0
+msgid "Product Attributes"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,product_manager:0
+msgid "Product Manager"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model,name:golem_activity.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,type:0
+msgid "Product Type"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,product_variant_ids:0
+msgid "Products"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,lst_price:0
+msgid "Public Price"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,description_purchase:0
+msgid "Purchase Description"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,uom_po_id:0
+msgid "Purchase Unit of Measure"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,description_sale:0
+msgid "Sale Description"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,list_price:0
+msgid "Sale Price"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,season_id:0
+msgid "Seasons"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,categ_id:0
+msgid "Select category for the current product"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,image_small:0
+msgid "Small-sized image"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,image_small:0
+msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,uos_id:0
+msgid "Specify a unit of measure here if invoicing is made in another unit of measure than inventory. Keep empty to use the default unit of measure."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,sale_ok:0
+msgid "Specify if the product can be selected in a sales order line."
+msgstr ""
+
+#. module: golem_activity
+#: model:product.category,name:golem_activity.golem_product_category_trainings
+msgid "Stages"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,date_start:0
+msgid "Start date"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:47
+#, python-format
+msgid "Start of the period cannot be after end of the period."
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,state:0
+msgid "Status"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,seller_ids:0
+msgid "Supplier"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,seller_delay:0
+msgid "Supplier Lead Time"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,seller_qty:0
+msgid "Supplier Quantity"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,supplier_taxes_id:0
+msgid "Supplier Taxes"
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,weight:0
+msgid "The gross weight in Kg."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,weight_net:0
+msgid "The net weight in Kg."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,volume:0
+msgid "The volume in m3."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,property_account_expense:0
+msgid "This account will be used for invoices instead of the default one to value expenses for the current product."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,property_account_income:0
+msgid "This account will be used for invoices instead of the default one to value sales for the current product."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,image:0
+msgid "This field holds the image used as image for the product, limited to 1024x1024px."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,seller_qty:0
+msgid "This is minimum quantity to purchase from Main Supplier."
+msgstr ""
+
+#. module: golem_activity
+#: help:golem.activity,seller_delay:0
+msgid "This is the average delay in days between the purchase order confirmation and the receipts for this product and for the default supplier. It is used by the scheduler to order requests based on reordering delays."
+msgstr ""
+
+#. module: golem_activity
+#: model:product.category,name:golem_activity.golem_product_category_all_activities
+msgid "Toutes les activités"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,uom_id:0
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,uos_coeff:0
+msgid "Unit of Measure -> UOS Coeff"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,uos_id:0
+msgid "Unit of Sale"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,message_unread:0
+msgid "Unread Messages"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,volume:0
+msgid "Volume"
+msgstr ""
+
+#. module: golem_activity
+#: field:golem.activity,warranty:0
+msgid "Warranty"
+msgstr ""
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "describe the activity characteristics..."
+msgstr ""
+

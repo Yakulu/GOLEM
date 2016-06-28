@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_season
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:18+0000\n"
+"PO-Revision-Date: 2016-06-28 03:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_season
+#: field:golem.season,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: golem_season
+#: view:golem.season:golem_season.filter
+msgid "Default season"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,is_default:0
+msgid "Default season for views?"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_season
+#: code:addons/golem_season/models/golem_season.py:49
+#, python-format
+msgid "End of the period is in range of an existing period {}"
+msgstr ""
+
+#. module: golem_season
+#: model:ir.model,name:golem_season.model_golem_season
+msgid "GOLEM Season"
+msgstr ""
+
+#. module: golem_season
+#: model:ir.actions.act_window,name:golem_season.action_list
+#: model:ir.ui.menu,name:golem_season.menu_seasons
+msgid "GOLEM Seasons"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,id:0
+msgid "ID"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,date_end:0
+msgid "Period end"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,date_start:0
+msgid "Period start"
+msgstr ""
+
+#. module: golem_season
+#: code:addons/golem_season/models/golem_season.py:53
+#, python-format
+msgid "Period {} cannot be included into current period"
+msgstr ""
+
+#. module: golem_season
+#: view:golem.season:golem_season.form
+msgid "Season"
+msgstr ""
+
+#. module: golem_season
+#: field:golem.season,name:0
+msgid "Season name"
+msgstr ""
+
+#. module: golem_season
+#: code:addons/golem_season/models/golem_season.py:38
+#, python-format
+msgid "Start of the period cannot be after end of the period."
+msgstr ""
+
+#. module: golem_season
+#: code:addons/golem_season/models/golem_season.py:45
+#, python-format
+msgid "Start of the period is in range of an existing period {}"
+msgstr ""
+

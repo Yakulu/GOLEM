@@ -1,0 +1,264 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_session
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:15+0000\n"
+"PO-Revision-Date: 2016-06-28 03:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_activity_session
+#: view:golem.member:golem_activity_session.sessions_inscription
+#: field:golem.member,activity_session_ids:0
+msgid "Activities"
+msgstr ""
+
+#. module: golem_activity_session
+#: model:ir.ui.menu,name:golem_activity_session.session_menu_list
+msgid "Activities sessions"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.view_form
+msgid "Activity Session"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:43
+#, python-format
+msgid "Activity Sessions"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,activity_id:0
+msgid "Activité"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,is_overbooked:0
+msgid "Allow overbook?"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,animator_id:0
+msgid "Animator"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.searches
+msgid "By animator"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.searches
+msgid "By weekday"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,hour_end:0
+msgid "End time"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:74
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Friday"
+msgstr ""
+
+#. module: golem_activity_session
+#: model:ir.model,name:golem_activity_session.model_golem_activity_session
+msgid "GOLEM Activities Sessions"
+msgstr ""
+
+#. module: golem_activity_session
+#: model:ir.actions.act_window,name:golem_activity_session.session_action_list
+msgid "GOLEM Activities Sessions List"
+msgstr ""
+
+#. module: golem_activity_session
+#: model:ir.model,name:golem_activity_session.model_golem_activity
+msgid "GOLEM Activity"
+msgstr ""
+
+#. module: golem_activity_session
+#: model:ir.model,name:golem_activity_session.model_golem_member
+msgid "GOLEM Member"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.searches
+msgid "Group By"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,id:0
+msgid "ID"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,is_recurrent:0
+msgid "Is recurrent ?"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.view_form
+#: field:golem.activity.session,member_ids:0
+msgid "Members"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:70
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Monday"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,name:0
+msgid "Name"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.view_form
+#: field:golem.activity.session,note:0
+msgid "Note"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:125
+#, python-format
+msgid "Number of places cannot be negative."
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:128
+#, python-format
+msgid "Overbooked places cannot be inferior than places"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,places:0
+msgid "Places"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,places_overbooked:0
+msgid "Places with overbook"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,places_remain:0
+msgid "Remaining places"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:75
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Saturday"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity,session_count:0
+msgid "Sessions"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:108
+#, python-format
+msgid "Sorry, there is no more place !"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:85
+#, python-format
+msgid "Start of the period cannot be after end of the period."
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,hour_start:0
+msgid "Start time"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:76
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Sunday"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:73
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Thursday"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:71
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Tuesday"
+msgstr ""
+
+#. module: golem_activity_session
+#: code:addons/golem_activity_session/models/golem_activity_session.py:72
+#: selection:golem.activity.session,weekday:0
+#, python-format
+msgid "Wednesday"
+msgstr ""
+
+#. module: golem_activity_session
+#: view:golem.activity:golem_activity_session.session_smart
+msgid "Week sessions"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,weekday:0
+msgid "Weekday"
+msgstr ""
+
+#. module: golem_activity_session
+#: help:golem.activity.session,is_recurrent:0
+msgid "Work in progress"
+msgstr ""
+

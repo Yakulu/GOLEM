@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_member_skills
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 03:18+0000\n"
+"PO-Revision-Date: 2016-06-28 03:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_member_skills
+#: model:ir.model,name:golem_member_skills.model_golem_member
+msgid "GOLEM Member"
+msgstr "GOLEM : adhérent"
+
+#. module: golem_member_skills
+#: model:ir.model,name:golem_member_skills.model_golem_member_skill
+msgid "GOLEM Member Skill"
+msgstr "GOLEM : compétence de l'adhérent"
+
+#. module: golem_member_skills
+#: model:ir.actions.act_window,name:golem_member_skills.skills_action_list
+msgid "GOLEM Member Skills"
+msgstr "GOLEM : compétences des adhérents"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_member_skills
+#: view:golem.member:golem_member_skills.skills_search
+msgid "Is volunteer"
+msgstr "Est bénévole"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: golem_member_skills
+#: sql_constraint:golem.member.skill:0
+msgid "Member skill must be unique."
+msgstr "Les compétences adhérents doivent être unique."
+
+#. module: golem_member_skills
+#: model:ir.ui.menu,name:golem_member_skills.skill_menu_list
+msgid "Member skills"
+msgstr "Compétences de l'adhérent"
+
+#. module: golem_member_skills
+#: field:golem.member.skill,name:0
+msgid "Skill"
+msgstr "Compétence"
+
+#. module: golem_member_skills
+#: field:golem.member,skill_ids:0
+msgid "Skills"
+msgstr "Compétences"
+
+#. module: golem_member_skills
+#: view:golem.member:golem_member_skills.skills_form
+msgid "Skills..."
+msgstr "Compétences..."
+
+#. module: golem_member_skills
+#: field:golem.member,is_volunteer:0
+msgid "Volunteer?"
+msgstr "Bénévole?"
+
