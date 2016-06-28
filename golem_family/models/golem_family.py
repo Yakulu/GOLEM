@@ -62,9 +62,9 @@ class GolemFamily(models.Model):
     @api.depends('partnerfrom_id', 'partnerto_id', 'relation_id')
     def _compute_fullrelation(self):
         for r in self:
-            r.fullrelation = '{} -> {} -> {}'.format(r.partnerfrom_id.name,
-                                                     r.relation_id.name,
-                                                     r.partnerto_id.name)
+            r.fullrelation = u'{} -> {} -> {}'.format(r.partnerfrom_id.name,
+                                                      r.relation_id.name,
+                                                      r.partnerto_id.name)
 
     @api.onchange('partnerfrom_id')
     def onchange_partnerfrom_id(self):
