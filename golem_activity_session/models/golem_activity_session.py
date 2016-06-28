@@ -61,6 +61,13 @@ class GolemActivitySession(models.Model):
             s.name = s.activity_id.activity_name
 
     member_ids = fields.Many2many('golem.member', string='Members')
+    places_used = fields.Integer('Places used', compute='_compute_places_used')
+
+    @api.depends('member_ids')
+    def _compute_places_used(self):
+        for s in self:
+            s.places_used = len(s.member_ids)
+
     # TODO: recurrence etc... to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activité',
                                   required=True)
@@ -86,6 +93,8 @@ class GolemActivitySession(models.Model):
                                                'after end of the period.'))
 
     places = fields.Integer('Places', default=0)
+    places_min = fields.Integer('Minimum places', default=0,
+                                help="Minimum places to maintain the session")
     is_overbooked = fields.Boolean('Allow overbook?', default=False)
     places_overbooked = fields.Integer('Places with overbook', default=0)
     places_remain = fields.Integer('Remaining places', store=True,

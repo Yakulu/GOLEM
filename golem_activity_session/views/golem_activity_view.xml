@@ -44,6 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="activity_id" />
                 <field name="animator_id" />
                 <field name="places" />
+                <field name="places_min" />
                 <field name="is_overbooked" />
                 <field name="places_overbooked"
                   attrs="{'invisible': [('is_overbooked', '=', False)]}" />
@@ -76,12 +77,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">Session list</field>
       <field name="model">golem.activity.session</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree colors="darkgrey: places_used &lt; places_min;
+          red: places_remain == 0;
+          orange: places_remain &lt;= 4;">
           <field name="activity_id" />
           <field name="animator_id" />
-          <field name="weekday" />
-          <field name="hour_start" />
-          <field name="hour_end" />
+          <field name="weekday" string="Day" />
+          <field name="hour_start" string="Start" />
+          <field name="hour_end" string="End" />
+          <field name="places" />
+          <field name="places_min" string="Min." />
+          <field name="places_remain" string="Remain" />
+          <field name="places_used" invisible="True" />
         </tree>
       </field>
     </record>
