@@ -69,10 +69,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Actions -->
     <act_window id="family_action_list" name="GOLEM Family Relations List"
       res_model="golem.member.family" view_mode="tree" />
+    <act_window id="family_relation_type_action"
+      name="GOLEM Family Relation Types List"
+      res_model="golem.member.family.relation" view_mode="tree" />
     <!-- Menus -->
     <menuitem id="family_menu_list" name="Family relations"
       parent="membership.menu_membership" action="family_action_list"
       sequence="10" />
+    <menuitem id="family_relation_type_menu_list" name="Family Rel. Types"
+      parent="base.menu_marketing_config_association"
+      action="family_relation_type_action" sequence="3" />
 
   </data>
 </openerp>
