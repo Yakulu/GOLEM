@@ -34,7 +34,7 @@ class GolemActivity(models.Model):
 
     season_id = fields.Many2one('golem.season', string='Seasons',
                                 required=True)
-    animator_id = fields.Many2one('res.partner', string="Animator",
+    animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
     date_start = fields.Date('Start date')
     date_end = fields.Date('End date')
@@ -46,12 +46,6 @@ class GolemActivity(models.Model):
             if a.date_start > a.date_end:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
-
-    @api.onchange('type')
-    def onchange_type(self):
-        """ Force service as type """
-        for a in self:
-            self.type = 'service'
 
     @api.onchange('season_id')
     def onchange_season_dates(self):
