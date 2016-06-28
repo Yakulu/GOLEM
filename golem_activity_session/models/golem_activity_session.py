@@ -69,11 +69,11 @@ class GolemActivitySession(models.Model):
             s.places_used = len(s.member_ids)
 
     # TODO: recurrence etc... to link with calendar.event
-    activity_id = fields.Many2one('golem.activity', string='Activité',
+    activity_id = fields.Many2one('golem.activity', string='Activity',
                                   required=True)
     animator_id = fields.Many2one('res.partner', string='Animator')
     is_recurrent = fields.Boolean('Is recurrent ?', default=True,
-                                  help="Work in progress")
+                                  help='Work in progress')
     weekday = fields.Selection([('mon', _('Monday')),
                                 ('tue', _('Tuesday')),
                                 ('wed', _('Wednesday')),
@@ -94,7 +94,7 @@ class GolemActivitySession(models.Model):
 
     places = fields.Integer('Places', default=0)
     places_min = fields.Integer('Minimum places', default=0,
-                                help="Minimum places to maintain the session")
+                                help='Minimum places to maintain the session')
     is_overbooked = fields.Boolean('Allow overbook?', default=False)
     places_overbooked = fields.Integer('Places with overbook', default=0)
     places_remain = fields.Integer('Remaining places', store=True,
