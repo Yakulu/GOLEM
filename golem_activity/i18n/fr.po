@@ -461,8 +461,8 @@ msgstr "Prix de vente"
 
 #. module: golem_activity
 #: field:golem.activity,season_id:0
-msgid "Seasons"
-msgstr "Saisons"
+msgid "Season"
+msgstr "Saison"
 
 #. module: golem_activity
 #: help:golem.activity,categ_id:0

@@ -32,12 +32,16 @@ class GolemActivity(models.Model):
     _inherits = {'product.template': 'product_id'}
     _rec_name = 'activity_name'
 
-    season_id = fields.Many2one('golem.season', string='Seasons',
-                                required=True)
+    # Copy the default code
+    default_code = fields.Char(copy=True)
+
+    # Own fields
+    season_id = fields.Many2one('golem.season', string='Season',
+                                copy=False, required=True)
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
-    date_start = fields.Date('Start date')
-    date_end = fields.Date('End date')
+    date_start = fields.Date('Start date', copy=False)
+    date_end = fields.Date('End date', copy=False)
 
     @api.constrains('date_start', 'date_end')
     def _check_period(self):

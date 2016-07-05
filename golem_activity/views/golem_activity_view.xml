@@ -74,6 +74,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Trees -->
+    <record model="ir.ui.view" id="view_tree">
+      <field name="name">GOLEM Activity Tree/List</field>
+      <field name="model">golem.activity</field>
+      <field name="arch" type="xml">
+        <tree string="GOLEM Activities">
+          <field name="default_code" />
+          <field name="name" />
+          <field name="season_id" />
+          <field name="animator_id" />
+        </tree>
+      </field>
+    </record>
+
     <!-- Searches -->
     <record id="view_filter" model="ir.ui.view">
       <field name="name">GOLEM Activity Filters</field>
@@ -81,6 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <search>
           <field name="activity_name" />
+          <field name="categ_id" widget="many2one" />
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
@@ -91,7 +106,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </search>
       </field>
     </record>
-
 
     <!-- Actions -->
     <record id="action" model="ir.actions.act_window">
