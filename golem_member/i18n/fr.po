@@ -166,7 +166,7 @@ msgstr "Contact de référence"
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
 msgid "Contact details"
-msgstr "Détails"
+msgstr "Coordonnées"
 
 #. module: golem_member
 #: field:golem.member,child_ids:0
@@ -531,7 +531,7 @@ msgstr "Notes"
 #. module: golem_member
 #: field:golem.member,number:0
 msgid "Number"
-msgstr "Nombre"
+msgstr "Numero d'adhérent"
 
 #. module: golem_member
 #: field:golem.member,opt_out:0
