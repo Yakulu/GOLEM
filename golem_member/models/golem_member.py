@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, _
+from openerp import models, fields, api, _
 
 
 class ResPartner(models.Model):
@@ -39,3 +39,14 @@ class GolemMember(models.Model):
     number = fields.Char('Number', size=50, index=True)
     pictures_agreement = fields.Boolean('Pictures agreement?')
     opt_out_sms = fields.Boolean('Out of SMS campaigns')
+    season_ids = fields.Many2many('golem.season', string='Seasons')
+    is_current = fields.Boolean('Current user?', store=True, default=False,
+                                compute='_compute_is_current')
+
+    @api.depends('season_ids')
+    def _compute_is_current(self):
+        """ Checks if member is active for current season """
+        domain = [('is_default', '=', True)]
+        default_season = self.env['golem.season'].search(domain)
+        for member in self:
+            member.is_current = default_season in member.season_ids
