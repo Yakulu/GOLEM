@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-28 03:16+0000\n"
-"PO-Revision-Date: 2016-06-28 03:16+0000\n"
+"POT-Creation-Date: 2016-07-07 09:19+0000\n"
+"PO-Revision-Date: 2016-07-07 09:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -161,12 +161,12 @@ msgstr "Adresse complète"
 #. module: golem_member
 #: field:golem.member,ref:0
 msgid "Contact Reference"
-msgstr "Contact Reference"
+msgstr "Contact de référence"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
 msgid "Contact details"
-msgstr "Contact details"
+msgstr "Détails"
 
 #. module: golem_member
 #: field:golem.member,child_ids:0
@@ -285,6 +285,14 @@ msgstr "Employé"
 msgid "Fax"
 msgstr "Fax"
 
+#. module: partner_contact_gender
+#: selection:res.partner,gender:0
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:30
+#, python-format
+msgid "Female"
+msgstr "Féminin"
+
 #. module: golem_member
 #: field:golem.member,firstname:0
 msgid "First name"
@@ -323,6 +331,8 @@ msgstr "GOLEM : adhérents"
 msgid "GOLEM Members Tags"
 msgstr "GOLEM : catégories d'adhérents"
 
+#. module: partner_contact_gender
+#: field:res.partner,gender:0
 #. module: golem_member
 #: field:golem.member,gender:0
 msgid "Gender"
@@ -439,6 +449,14 @@ msgstr "Nom de famille"
 #: field:golem.member,last_reconciliation_date:0
 msgid "Latest Full Reconciliation Date"
 msgstr "Latest Full Reconciliation Date"
+
+#. module: partner_contact_gender
+#: selection:res.partner,gender:0
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:30
+#, python-format
+msgid "Male"
+msgstr "Masculin"
 
 #. module: golem_member
 #: field:golem.member,image_medium:0

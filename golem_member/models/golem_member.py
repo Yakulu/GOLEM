@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 
 
 class ResPartner(models.Model):
@@ -27,7 +27,7 @@ class ResPartner(models.Model):
     nationality_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female')])
+    gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
 
 
 class GolemMember(models.Model):
