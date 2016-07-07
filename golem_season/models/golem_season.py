@@ -52,17 +52,3 @@ class GolemSeason(models.Model):
                         msg = _('Period {} cannot be included into current '
                                 'period'.format(s.name))
                         raise models.ValidationError(msg)
-
-    @api.multi
-    def write(self, values):
-        """ Extends write to recomputes all current members in case of
-        is_default changes and ensures that only one is_default is active """
-        is_new_default = values.get('is_default')
-        old_default_season = self.search([('is_default', '=', True)])
-        res = super(GolemSeason, self).write(values)
-        if is_new_default:
-            if old_default_season:
-                old_default_season.is_default = False
-        self.env['golem.member'].search([])._compute_is_current()
-        self.env['golem.activity'].search([])._compute_is_current()
-        return res

@@ -15,27 +15,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, _
-
-
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
-
-    def _get_default_nationality_id(self):
-        return self.env.ref('base.main_company').country_id
-
-    nationality_id = fields.Many2one(default=_get_default_nationality_id)
-
-    # Gender overwriting : no need for 'other' choice
-    gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
-
-
-class GolemMember(models.Model):
-    _name = 'golem.member'
-    _description = 'GOLEM Member'
-    _inherit = 'mail.thread'
-    _inherits = {'res.partner': 'partner_id'}
-
-    number = fields.Char('Number', size=50, index=True)
-    pictures_agreement = fields.Boolean('Pictures agreement?')
-    opt_out_sms = fields.Boolean('Out of SMS campaigns')
+{
+    'name': 'GOLEM members seasons',
+    'summary': 'GOLEM non-profit members seasons glue code',
+    'description': ''' Link between GOLEM members and seasons, with
+    management of number code linked to season ''',
+    'version': '0.1',
+    'category': 'Non-profit management',
+    'author': 'Fabien Bourgeois',
+    'license': 'AGPL-3',
+    'application': False,
+    'installable': True,
+    'auto_install': True,
+    'depends': ['golem_member', 'golem_season'],
+    'data': ['views/golem_member_season_view.xml']
+}
