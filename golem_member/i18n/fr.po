@@ -213,7 +213,7 @@ msgstr "Pays"
 #. module: golem_member
 #: view:res.partner:golem_member.member_add
 msgid "Create a GOLEM member from this contact"
-msgstr "Créer un adhérent GOLEM depuis cette personne"
+msgstr "Faire de ce contact un adhérent GOLEM"
 
 #. module: golem_member
 #: field:golem.member,create_uid:0
