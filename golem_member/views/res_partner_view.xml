@@ -41,8 +41,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Trees -->
+    <record model="ir.ui.view" id="member_add">
+      <field name="name">Add member number to tree</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree" />
+      <field name="arch" type="xml">
+        <field name="display_name" position="before">
+          <field name="member_number" />
+        </field>
+      </field>
+    </record>
 
     <!-- Searches -->
+    <record model="ir.ui.view" id="member_number_search">
+      <field name="name">Partner GOLEM Member Number search</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_res_partner_filter" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="member_number" />
+        </field>
+      </field>
+    </record>
 
   </data>
 </openerp>

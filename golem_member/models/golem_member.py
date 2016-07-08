@@ -31,6 +31,7 @@ class ResPartner(models.Model):
 
     member_id = fields.One2many('golem.member', 'partner_id', 'GOLEM Member',
                                 readonly=True)
+    member_number = fields.Char('Member number', related='member_id.number')
 
     @api.multi
     def create_golem_member(self):
