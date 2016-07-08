@@ -19,12 +19,12 @@
     'name': 'GOLEM families',
     'summary': 'GOLEM Members Families',
     'description': ''' Non-profit french MJC members families management ''',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Non-profit management',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'depends': ['golem_member'],
-    'data': ['views/golem_member_view.xml']
+    'data': ['views/golem_family_view.xml']
 }

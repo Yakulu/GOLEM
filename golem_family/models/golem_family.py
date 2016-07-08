@@ -18,67 +18,64 @@
 from openerp import models, fields, api, _
 
 
-class GolemMember(models.Model):
-    _inherit = 'golem.member'
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+    _description = 'GOLEM Partner Family'
 
-    family_count = fields.Integer('Family', compute='_compute_family_count')
-
-    @api.one
-    def _compute_family_count(self):
-        pid = self.partner_id.id
-        dmn = ['|', ('partnerfrom_id', '=', pid), ('partnerto_id', '=', pid)]
-        self.family_count = self.env['golem.member.family'].search_count(dmn)
+    family_id = fields.Many2one('golem.family', string='Family', index=True)
+    family_role = fields.Many2one('golem.member.family.role',
+                                  string='Role', index=True)
+    family_count = fields.Integer('Family Count', related='family_id.count')
 
     @api.multi
     def button_family_members(self):
         self.ensure_one()
-        pid = self.partner_id.id
         return {'name': _('Family Members'),
                 'type': 'ir.actions.act_window',
-                'res_model': 'golem.member.family',
-                'view_mode': 'tree',
-                'context': {'default_partnerfrom_id': pid},
-                'domain': ['|',
-                           ('partnerfrom_id', '=', pid),
-                           ('partnerto_id', '=', pid)]}
+                'res_model': 'golem.family',
+                'view_mode': 'form',
+                'domain': [('id', '=', self.family_id.id)]}
 
 
 class GolemFamily(models.Model):
-    _name = 'golem.member.family'
-    _description = 'GOLEM Member Family'
+    _name = 'golem.family'
+    _description = 'GOLEM Family Entity'
+    _inherit = 'mail.thread'
 
-    partnerfrom_id = fields.Many2one('res.partner', 'Family member from',
-                                     required=True, index=True,
-                                     domain=[('is_company', '=', False)])
-    partnerto_id = fields.Many2one('res.partner', 'Family member to',
-                                   required=True, index=True,
-                                   domain=[('is_company', '=', False)])
-    relation_id = fields.Many2one('golem.member.family.relation',
-                                  required=True, index=True,
-                                  string='Family relation')
-    fullrelation = fields.Char('Full relation string',
-                               compute='_compute_fullrelation', store=True)
+    @api.model
+    def _get_default_nationality_id(self):
+        return self.env.ref('base.main_company').country_id
 
-    @api.depends('partnerfrom_id', 'partnerto_id', 'relation_id')
-    def _compute_fullrelation(self):
-        for r in self:
-            r.fullrelation = u'{} -> {} -> {}'.format(r.partnerfrom_id.name,
-                                                      r.relation_id.name,
-                                                      r.partnerto_id.name)
+    name = fields.Char('Name', index=True, required=True)
+    street = fields.Char('Street')
+    street2 = fields.Char('Street2')
+    zip = fields.Char('Zip')
+    city = fields.Char('City')
+    state_id = fields.Many2one('res.country.state', 'State',
+                               ondelete='restrict')
+    country_id = fields.Many2one('res.country', 'Country',
+                                 ondelete='restrict',
+                                 default=_get_default_nationality_id)
+    phone = fields.Char('Phone')
+    mobile = fields.Char('Mobile')
+    email = fields.Char('Email')
+    website = fields.Char('Website')
 
-    @api.onchange('partnerfrom_id')
-    def onchange_partnerfrom_id(self):
-        """ If tree from member, use ctx default partner to populate from """
-        default_pid = self.env.context.get('default_partnerfrom_id')
-        if default_pid:
-            self.partnerfrom_id = default_pid
+    member_ids = fields.One2many('res.partner', 'family_id', 'Members')
+    note = fields.Text('Note')
+    count = fields.Integer('Count', compute='_compute_count', store=True)
+
+    @api.one
+    @api.depends('member_ids')
+    def _compute_count(self):
+        self.count = len(self.member_ids)
 
 
-class GolemFamilyRelation(models.Model):
-    _name = 'golem.member.family.relation'
-    _description = 'GOLEM Member Family Relation'
-    _sql_constraints = [('golem_member_family_relation_name_uniq',
+class GolemFamilyRole(models.Model):
+    _name = 'golem.member.family.role'
+    _description = 'GOLEM Member Family Role'
+    _sql_constraints = [('golem_member_family_role_name_uniq',
                          'UNIQUE (name)',
-                         'Family relation must be unique.')]
+                         'Family role must be unique.')]
 
-    name = fields.Char('Relation')
+    name = fields.Char('Role')

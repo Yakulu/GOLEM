@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+    <!-- Forms -->
+    <record id="view_form" model="ir.ui.view">
+      <field name="name">GOLEM Family Form</field>
+      <field name="model">golem.family</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <div class="oe_title">
+                <h1>
+                  <field name="name" class="oe_inline" placeholder="Name" />
+                </h1>
+              </div>
+            </group>
+            <group string="Address">
+              <group>
+                <field name="street" placeholder="Street..." />
+                <field name="street2" />
+                <field name="zip" placeholder="ZIP" />
+                <field name="city" placeholder="City" />
+              </group>
+              <group>
+                <field name="state_id" class="oe_no_button"
+                  placeholder="State" />
+                <field name="country_id" placeholder="Country"
+                  class="oe_no_button" />
+              </group>
+            </group>
+            <group string="Communication">
+              <group>
+                <field name="phone" placeholder="0000000000"
+                  widget="phonefr" />
+                <field name="mobile" placeholder="0000000000"
+                  widget="phonefr" />
+              </group>
+              <group>
+                <field name="email" widget="email"
+                  placeholder="name@example.org" />
+                <field name="website" widget="url"
+                  placeholder="e.g. www.odoo.com"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Family members">
+                <field name="member_ids" widget="many2many">
+                  <tree>
+                    <field name="name" />
+                    <field name="family_role" />
+                    <field name="phone" />
+                    <field name="mobile" />
+                    <field name="email" widget="email" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Others">
+                <group>
+                  <field name="note" placeholder="Put an internal note..." />
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers" />
+              <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Trees -->
+    <record id="family_tree" model="ir.ui.view">
+      <field name="name">Family list</field>
+      <field name="model">golem.family</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="count" string="# Members" />
+          <field name="name" />
+          <field name="city" />
+          <field name="email" />
+          <field name="phone" />
+        </tree>
+      </field>
+    </record>
+    <record id="family_role_tree" model="ir.ui.view">
+      <field name="name">Family Role List</field>
+      <field name="model">golem.member.family.role</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Searches -->
+
+    <!-- Actions -->
+    <act_window id="family_action_list" name="GOLEM Family List"
+      res_model="golem.family" view_mode="tree,form" />
+    <act_window id="family_role_action" name="GOLEM Family Role List"
+      res_model="golem.member.family.role" view_mode="tree" />
+    <!-- Menus -->
+    <menuitem id="family_menu_list" name="Families"
+      parent="membership.menu_membership" action="family_action_list"
+      sequence="10" />
+    <menuitem id="family_role_menu_list" name="Family Roles"
+      parent="base.menu_marketing_config_association"
+      action="family_role_action" sequence="3" />
+
+  </data>
+</openerp>
