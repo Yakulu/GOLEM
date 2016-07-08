@@ -29,6 +29,16 @@ class ResPartner(models.Model):
     # Gender overwriting : no need for 'other' choice
     gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
 
+    member_id = fields.One2many('golem.member', 'partner_id', 'GOLEM Member',
+                                readonly=True)
+
+    @api.multi
+    def create_golem_member(self):
+        self.ensure_one()
+        gm = self.env['golem.member']
+        gm.create({'partner_id': self.id})
+        return True
+
 
 class GolemMember(models.Model):
     _name = 'golem.member'

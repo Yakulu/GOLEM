@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 13:59+0000\n"
-"PO-Revision-Date: 2016-07-08 13:59+0000\n"
+"POT-Creation-Date: 2016-07-08 15:02+0000\n"
+"PO-Revision-Date: 2016-07-08 15:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -211,6 +211,11 @@ msgid "Country"
 msgstr "Pays"
 
 #. module: golem_member
+#: view:res.partner:golem_member.member_add
+msgid "Create a GOLEM member from this contact"
+msgstr "Créer un adhérent GOLEM depuis cette personne"
+
+#. module: golem_member
 #: field:golem.member,create_uid:0
 #: field:golem.member.number,create_uid:0
 #: field:golem.member.numberconfig,create_uid:0
@@ -343,7 +348,9 @@ msgid "Free Member"
 msgstr "Free Member"
 
 #. module: golem_member
+#: field:golem.member,member_id:0
 #: model:ir.model,name:golem_member.model_golem_member
+#: field:res.partner,member_id:0
 msgid "GOLEM Member"
 msgstr "GOLEM : adhérent"
 
@@ -601,8 +608,8 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:166
-#: code:addons/golem_member/models/golem_member.py:169
+#: code:addons/golem_member/models/golem_member.py:176
+#: code:addons/golem_member/models/golem_member.py:179
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -890,7 +897,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr "This field holds the image used as avatar for this contact, limited to 1024x1024px"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:62
+#: code:addons/golem_member/models/golem_member.py:72
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -987,8 +994,8 @@ msgid "Website of Partner or Company"
 msgstr "Website of Partner or Company"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:166
-#: code:addons/golem_member/models/golem_member.py:169
+#: code:addons/golem_member/models/golem_member.py:176
+#: code:addons/golem_member/models/golem_member.py:179
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
