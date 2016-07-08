@@ -21,10 +21,12 @@ from openerp import models, fields, api, _
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    @api.model
     def _get_default_nationality_id(self):
         return self.env.ref('base.main_company').country_id
 
     nationality_id = fields.Many2one(default=_get_default_nationality_id)
+    country_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice
     gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
