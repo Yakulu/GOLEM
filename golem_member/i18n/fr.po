@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 09:19+0000\n"
-"PO-Revision-Date: 2016-07-07 09:19+0000\n"
+"POT-Creation-Date: 2016-07-08 13:59+0000\n"
+"PO-Revision-Date: 2016-07-08 13:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,9 +52,19 @@ msgid "Address Type"
 msgstr "Type d'addresse"
 
 #. module: golem_member
+#: view:golem.member.numberconfig:golem_member.numberconfig_form
+msgid "Apply and recompute all member numbers"
+msgstr "Appliquer et recalculer tous les numéros d'adhérents"
+
+#. module: golem_member
+#: view:golem.member.numberconfig:golem_member.numberconfig_form
+msgid "Apply for new members"
+msgstr "Appliquer pour les nouveaux adhérents"
+
+#. module: golem_member
 #: field:golem.member,associate_member:0
 msgid "Associate Member"
-msgstr "Associate Member"
+msgstr "Membre lié"
 
 #. module: golem_member
 #: field:golem.member,partner_id:0
@@ -86,6 +96,11 @@ msgstr "Par ville"
 #: view:golem.member:golem_member.view_filter
 msgid "By gender"
 msgstr "Par genre"
+
+#. module: golem_member
+#: view:golem.member.numberconfig:golem_member.numberconfig_form
+msgid "Cancel"
+msgstr "Annuler"
 
 #. module: golem_member
 #: field:golem.member,membership_cancel:0
@@ -159,6 +174,16 @@ msgid "Complete Address"
 msgstr "Adresse complète"
 
 #. module: golem_member
+#: field:golem.member.numberconfig,is_automatic:0
+msgid "Computed automatically?"
+msgstr "Calculé automatiquement?"
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_member_numberconfig
+msgid "Configuration for number computing"
+msgstr "Configuration pour les calculs des numéros adhérents"
+
+#. module: golem_member
 #: field:golem.member,ref:0
 msgid "Contact Reference"
 msgstr "Contact de référence"
@@ -187,11 +212,15 @@ msgstr "Pays"
 
 #. module: golem_member
 #: field:golem.member,create_uid:0
+#: field:golem.member.number,create_uid:0
+#: field:golem.member.numberconfig,create_uid:0
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: golem_member
 #: field:golem.member,create_date:0
+#: field:golem.member.number,create_date:0
+#: field:golem.member.numberconfig,create_date:0
 msgid "Created on"
 msgstr "Créé le"
 
@@ -262,6 +291,8 @@ msgstr "Département"
 
 #. module: golem_member
 #: field:golem.member,display_name:0
+#: field:golem.member.number,display_name:0
+#: field:golem.member.numberconfig,display_name:0
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -285,8 +316,6 @@ msgstr "Employé"
 msgid "Fax"
 msgstr "Fax"
 
-#. module: partner_contact_gender
-#: selection:res.partner,gender:0
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:30
 #, python-format
@@ -317,6 +346,22 @@ msgstr "Free Member"
 #: model:ir.model,name:golem_member.model_golem_member
 msgid "GOLEM Member"
 msgstr "GOLEM : adhérent"
+
+#. module: golem_member
+#: model:ir.actions.act_window,name:golem_member.numberconfig_action
+#: model:ir.ui.menu,name:golem_member.numberconfig_menu
+msgid "GOLEM Member Number Config"
+msgstr "GOLEM : configuration numéros adhérents"
+
+#. module: golem_member
+#: view:golem.member.numberconfig:golem_member.numberconfig_form
+msgid "GOLEM Member Number configuration"
+msgstr "GOLEM : configuration numéros adhérents"
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_member_number
+msgid "GOLEM Member Season Pivot Table"
+msgstr "GOLEM Member Season Pivot Table"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_graph_golem_member
@@ -350,6 +395,8 @@ msgstr "Holds the Chatter summary (number of messages, ...). This summary is dir
 
 #. module: golem_member
 #: field:golem.member,id:0
+#: field:golem.member.number,id:0
+#: field:golem.member.numberconfig,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -387,6 +434,11 @@ msgstr "Est une société"
 #: field:golem.member,message_is_follower:0
 msgid "Is a Follower"
 msgstr "Is a Follower"
+
+#. module: golem_member
+#: field:golem.member,is_number_manual:0
+msgid "Is number manual?"
+msgstr "Le numéro d'adhérent est-il saisi manuellement?"
 
 #. module: golem_member
 #: help:golem.member,membership_state:0
@@ -427,16 +479,22 @@ msgstr "Date du dernier message"
 
 #. module: golem_member
 #: field:golem.member,__last_update:0
+#: field:golem.member.number,__last_update:0
+#: field:golem.member.numberconfig,__last_update:0
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: golem_member
 #: field:golem.member,write_uid:0
+#: field:golem.member.number,write_uid:0
+#: field:golem.member.numberconfig,write_uid:0
 msgid "Last Updated by"
 msgstr "Dernière modification par"
 
 #. module: golem_member
 #: field:golem.member,write_date:0
+#: field:golem.member.number,write_date:0
+#: field:golem.member.numberconfig,write_date:0
 msgid "Last Updated on"
 msgstr "Dernière modification le"
 
@@ -450,13 +508,21 @@ msgstr "Nom de famille"
 msgid "Latest Full Reconciliation Date"
 msgstr "Latest Full Reconciliation Date"
 
-#. module: partner_contact_gender
-#: selection:res.partner,gender:0
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:30
 #, python-format
 msgid "Male"
 msgstr "Masculin"
+
+#. module: golem_member
+#: field:golem.member,number_manual:0
+msgid "Manual number"
+msgstr "Numéro d'adhérent (saisie manuelle)"
+
+#. module: golem_member
+#: help:golem.member,number_manual:0
+msgid "Manual number overwriting automatic numbering"
+msgstr "Saisie manuelle du numéro d'adhérent, défini par la configuration"
 
 #. module: golem_member
 #: field:golem.member,image_medium:0
@@ -469,9 +535,19 @@ msgid "Medium-sized image of this contact. It is automatically resized as a 128x
 msgstr "Medium-sized image of this contact. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
 
 #. module: golem_member
+#: field:golem.member.number,member_id:0
+msgid "Member"
+msgstr "Member"
+
+#. module: golem_member
 #: model:ir.ui.menu,name:golem_member.golem_members_menu_tags
 msgid "Member Tags"
 msgstr "Catégories de l'adhérent"
+
+#. module: golem_member
+#: field:golem.member,number:0
+msgid "Member number"
+msgstr "Member number"
 
 #. module: golem_member
 #: field:golem.member,member_lines:0
@@ -515,6 +591,7 @@ msgstr "NIC"
 
 #. module: golem_member
 #: field:golem.member,name:0
+#: field:golem.member.number,name:0
 msgid "Name"
 msgstr "Nom"
 
@@ -524,19 +601,33 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:166
+#: code:addons/golem_member/models/golem_member.py:169
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
+#, python-format
+msgid "No"
+msgstr "Non"
+
+#. module: golem_member
 #: field:golem.member,comment:0
 msgid "Notes"
 msgstr "Notes"
 
 #. module: golem_member
-#: field:golem.member,number:0
+#: field:golem.member.number,number:0
 msgid "Number"
-msgstr "Numero d'adhérent"
+msgstr "Numéro d'adhérent"
 
 #. module: golem_member
 #: field:golem.member,opt_out:0
 msgid "Opt-Out"
 msgstr "Hors mailings"
+
+#. module: golem_member
+#: field:golem.member.numberconfig,prefix:0
+msgid "Optional prefix"
+msgstr "Préfix éventuel"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
@@ -562,6 +653,11 @@ msgstr "Partenaire"
 #: field:golem.member,debit_limit:0
 msgid "Payable Limit"
 msgstr "Payable Limit"
+
+#. module: golem_member
+#: field:golem.member.numberconfig,is_per_season:0
+msgid "Per season number?"
+msgstr "Numéro unique par saison?"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
@@ -621,6 +717,11 @@ msgstr "Liste de prix de vente"
 #: field:golem.member,user_id:0
 msgid "Salesperson"
 msgstr "Commercial"
+
+#. module: golem_member
+#: field:golem.member.number,season_id:0
+msgid "Season"
+msgstr "Saison"
 
 #. module: golem_member
 #: field:golem.member,season_ids:0
@@ -779,9 +880,21 @@ msgid "This account will be used instead of the default one as the receivable ac
 msgstr "This account will be used instead of the default one as the receivable account for the current partner"
 
 #. module: golem_member
+#: view:golem.member.numberconfig:golem_member.numberconfig_form
+msgid "This action will end to recalculation of all member               numbers. Are you really sure you want to do this ?"
+msgstr "Cette action entrainera le recalcul de tous les numéros d'adhérents. Êtes-vous réellement sûr de vouloir faire cela ?"
+
+#. module: golem_member
 #: help:golem.member,image:0
 msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
 msgstr "This field holds the image used as avatar for this contact, limited to 1024x1024px"
+
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:62
+#: sql_constraint:golem.member:0
+#, python-format
+msgid "This member number has already been used."
+msgstr "Ce numéro d'adhérent a été déjà utilisé."
 
 #. module: golem_member
 #: help:golem.member,property_supplier_payment_term:0
@@ -872,6 +985,15 @@ msgstr "Site Web"
 #: help:golem.member,website:0
 msgid "Website of Partner or Company"
 msgstr "Website of Partner or Company"
+
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:166
+#: code:addons/golem_member/models/golem_member.py:169
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
+#, python-format
+msgid "Yes"
+msgstr "Oui"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_form

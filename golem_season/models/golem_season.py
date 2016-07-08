@@ -25,6 +25,8 @@ class GolemSeason(models.Model):
     _order = 'date_start desc'
 
     name = fields.Char('Season name')
+    member_counter = fields.Integer('Counter for member number generation',
+                                    readonly=True, default=0)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
     is_default = fields.Boolean('Default season for views?')
@@ -63,6 +65,7 @@ class GolemSeason(models.Model):
         if is_new_default:
             if old_default_season:
                 old_default_season.is_default = False
-        self.env['golem.member'].search([])._compute_is_current()
-        self.env['golem.activity'].search([])._compute_is_current()
+            self.env['golem.member'].search([])._compute_is_current()
+            self.env['golem.member'].search([])._compute_number()
+            self.env['golem.activity'].search([])._compute_is_current()
         return res

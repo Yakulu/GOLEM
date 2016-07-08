@@ -40,9 +40,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
             <group string="Personal details">
               <group>
+                <field name="is_number_manual" invisible="True" />
                 <field name="lastname" required="True" />
                 <field name="firstname" required="True" />
-                <field name="number" />
+                <field name="number" readonly="True"
+                  attrs="{'invisible': [('is_number_manual', '=', True)]}" />
+                <field name="number_manual"
+                  attrs="{'invisible': [('is_number_manual', '=', False)]}" />
               </group>
               <group>
                 <field name="gender" />

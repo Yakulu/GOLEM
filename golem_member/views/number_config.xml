@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+  <data>
+
+    <!-- Forms -->
+    <record id="numberconfig_form" model="ir.ui.view">
+      <field name="name">GOLEM Member number configuration</field>
+      <field name="model">golem.member.numberconfig</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="GOLEM Member Number configuration">
+              <field name="is_automatic" widget="radio" />
+              <field name="is_per_season" widget="radio"
+                attrs="{'invisible': [('is_automatic', '=', '0')]}"/>
+              <field name="prefix"
+                attrs="{'invisible': [('is_automatic', '=', '0')]}"/>
+            </group>
+          </sheet>
+          <footer>
+            <button type="object" name="apply_config"
+              string="Apply for new members" />
+            <button type="object" name="apply_recompute"
+              string="Apply and recompute all member numbers"
+              confirm="This action will end to recalculation of all member
+              numbers. Are you really sure you want to do this ?"
+              class="oe_highlight" />
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="numberconfig_action"
+      name="GOLEM Member Number Config" res_model="golem.member.numberconfig"
+      view_mode="form" target="new" />
+    <!-- Menus -->
+    <menuitem
+      id="numberconfig_menu" action="numberconfig_action"
+      parent="base.menu_marketing_config_association" sequence="3" />
+  </data>
+</openerp>
