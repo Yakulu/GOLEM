@@ -49,6 +49,9 @@ class GolemMember(models.Model):
     _inherit = 'mail.thread'
     _inherits = {'res.partner': 'partner_id'}
 
+    partner_id = fields.Many2one('res.partner', required=True,
+                                 ondelete='cascade')
+
     @api.model
     def _default_season(self):
         """ Get default season """

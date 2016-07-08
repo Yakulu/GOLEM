@@ -32,6 +32,9 @@ class GolemActivity(models.Model):
     _inherits = {'product.template': 'product_id'}
     _rec_name = 'activity_name'
 
+    product_id = fields.Many2one('product.template', required=True,
+                                 ondelete='cascade')
+
     # Copy the default code
     default_code = fields.Char(copy=True)
 
