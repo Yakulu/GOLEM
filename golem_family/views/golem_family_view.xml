@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <div class="oe_title">
                 <h1>
+                  <label for="name" string="Family" />
                   <field name="name" class="oe_inline" placeholder="Name" />
                 </h1>
               </div>
@@ -113,6 +114,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Searches -->
+    <record id="view_filter" model="ir.ui.view">
+      <field name="name">GOLEM Family Filters</field>
+      <field name="model">golem.family</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="zip" />
+          <field name="city" />
+          <field name="phone" />
+          <field name="mobile" />
+          <field name="email" />
+          <group string="Group By">
+            <filter name="group_city" string="By city"
+              context="{'group_by': 'city'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
 
     <!-- Actions -->
     <act_window id="family_action_list" name="GOLEM Family List"

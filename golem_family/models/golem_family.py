@@ -27,6 +27,10 @@ class ResPartner(models.Model):
                                   string='Role', index=True)
     family_count = fields.Integer('Family Count', related='family_id.count')
 
+
+class GolemMember(models.Model):
+    _inherit = 'golem.member'
+
     @api.multi
     def button_family_members(self):
         self.ensure_one()
@@ -34,7 +38,7 @@ class ResPartner(models.Model):
                 'type': 'ir.actions.act_window',
                 'res_model': 'golem.family',
                 'view_mode': 'form',
-                'domain': [('id', '=', self.family_id.id)]}
+                'res_id': self.family_id.id}
 
 
 class GolemFamily(models.Model):

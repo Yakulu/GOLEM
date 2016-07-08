@@ -20,65 +20,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
     <!-- Form -->
-    <record model="ir.ui.view" id="member_tab_add">
-      <field name="name">Add family management to new tab</field>
+    <record model="ir.ui.view" id="family_smartbtn_add">
+      <field name="name">Add family management smart button</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
         <div class="oe_title" position="after">
           <div class="oe_right oe_button_box">
-            <button
-              class="oe_inline oe_stat_button" type="object"
-              name="button_family_members" icon="fa-users">
-              <field string="Family Relations" name="family_count" widget="statinfo" />
+            <button class="oe_inline oe_stat_button" type="object"
+              name="button_family_members" icon="fa-users"
+              attrs="{'invisible': [('family_id', '=', False)]}">
+              <field string="family members" name="family_count"
+                widget="statinfo" />
             </button>
           </div>
         </div>
+        <field name="lastname" position="before">
+          <field name="family_id" />
+          <field name="family_role" />
+        </field>
       </field>
     </record>
-
-    <!-- Tree -->
-    <record id="family_tree" model="ir.ui.view">
-      <field name="name">Family list</field>
-      <field name="model">golem.member.family</field>
-      <field name="arch" type="xml">
-        <tree editable="top">
-          <field name="partnerfrom_id" string="Family Member From" />
-          <field name="relation_id" string="is the ... of" />
-          <field name="partnerto_id" string="Family Member To" />
-        </tree>
-      </field>
-    </record>
-
-    <!-- Searches -->
-    <record id="view_filter" model="ir.ui.view">
-      <field name="name">GOLEM Families Filters</field>
-      <field name="model">golem.member.family</field>
-      <field name="arch" type="xml">
-        <search>
-          <field name="fullrelation" />
-          <field name="relation_id" widget="many2one" />
-          <group string="Group By">
-            <filter name="group_relation" string="By relation"
-              context="{'group_by': 'relation_id'}"/>
-          </group>
-        </search>
-      </field>
-    </record>
-
-    <!-- Actions -->
-    <act_window id="family_action_list" name="GOLEM Family Relations List"
-      res_model="golem.member.family" view_mode="tree" />
-    <act_window id="family_relation_type_action"
-      name="GOLEM Family Relation Types List"
-      res_model="golem.member.family.relation" view_mode="tree" />
-    <!-- Menus -->
-    <menuitem id="family_menu_list" name="Family relations"
-      parent="membership.menu_membership" action="family_action_list"
-      sequence="10" />
-    <menuitem id="family_relation_type_menu_list" name="Family Rel. Types"
-      parent="base.menu_marketing_config_association"
-      action="family_relation_type_action" sequence="3" />
 
   </data>
 </openerp>
