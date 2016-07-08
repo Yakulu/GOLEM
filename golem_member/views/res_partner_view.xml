@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Trees -->
-    <record model="ir.ui.view" id="member_add">
+    <record model="ir.ui.view" id="member_tree">
       <field name="name">Add member number to tree</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="base.view_partner_tree" />
