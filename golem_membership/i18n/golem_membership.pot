@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_membership
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-09 06:40+0000\n"
+"PO-Revision-Date: 2016-07-09 06:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_membership
+#: view:golem.member:golem_membership.membership_add
+msgid "Buy Membership"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+msgid "Cancel"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_membership
+#: model:ir.model,name:golem_membership.model_golem_membership_invoice
+msgid "GOLEM MemberShip invoicing"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,id:0
+msgid "ID"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+msgid "Invoice Membership"
+msgstr ""
+
+#. module: golem_membership
+#: model:ir.actions.act_window,name:golem_membership.action_membership_invoice_view
+msgid "Join Membership"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,member_price:0
+msgid "Member Price"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.member:golem_membership.membership_add
+#: field:golem.membership.invoice,product_id:0
+msgid "Membership"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+msgid "Membership Invoice"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.member:golem_membership.membership_add
+msgid "Memberships"
+msgstr ""
+
+#. module: golem_membership
+#: field:golem.membership.invoice,partner_id:0
+msgid "Partner"
+msgstr ""
+
+#. module: golem_membership
+#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+msgid "or"
+msgstr ""
+
