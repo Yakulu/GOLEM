@@ -105,6 +105,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Calendars -->
+    <record id="calendar" model="ir.ui.view">
+      <field name="name">Activity sessions calendar view</field>
+      <field name="model">golem.activity.session</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date_start" date_end="date_end"
+          color="categ_id" display="[name]">
+          <field name="name" />
+        </calendar>
+      </field>
+    </record>
+
     <!-- Searches -->
     <record id="searches" model="ir.ui.view">
       <field name="name">GOLEM Activity Sessions Searches</field>
@@ -125,7 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="session_action_list" name="GOLEM Activities Sessions List"
-      res_model="golem.activity.session" view_mode="tree,form" />
+      res_model="golem.activity.session" view_mode="tree,form,calendar" />
     <!-- Menus -->
     <menuitem id="session_menu_list" name="Activities sessions"
       parent="golem_activity.activity_menu" action="session_action_list"

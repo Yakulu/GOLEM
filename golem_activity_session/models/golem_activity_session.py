@@ -71,6 +71,8 @@ class GolemActivitySession(models.Model):
     # TODO: to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activity',
                                   required=True)
+    categ_id = fields.Many2one(string='Category',
+                               related='activity_id.product_id.categ_id')
     animator_id = fields.Many2one('res.partner', string='Animator')
 
     @api.onchange('activity_id')
