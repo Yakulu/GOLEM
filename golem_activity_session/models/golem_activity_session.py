@@ -101,7 +101,7 @@ class GolemActivitySession(models.Model):
             if not s.is_recurrent:
                 if s.date_start > s.date_end:
                     emsg = _('Start of the session cannot be after end of the '
-                             'period.')
+                             'session.')
                     raise models.ValidationError(emsg)
                 if s.date_start < s.activity_id.date_start:
                     emsg = _('Start of the session cannot be before the start '
