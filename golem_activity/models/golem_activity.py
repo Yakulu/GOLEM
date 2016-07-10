@@ -39,8 +39,15 @@ class GolemActivity(models.Model):
     default_code = fields.Char(copy=True)
 
     # Own fields
-    season_id = fields.Many2one('golem.season', string='Season',
-                                copy=False, required=True)
+
+    @api.model
+    def _default_season(self):
+        """ Get default season """
+        domain = [('is_default', '=', True)]
+        return self.env['golem.season'].search(domain)
+
+    season_id = fields.Many2one('golem.season', string='Season', copy=False,
+                                required=True, default=_default_season)
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
     date_start = fields.Date('Start date', copy=False)
@@ -70,8 +77,7 @@ class GolemActivity(models.Model):
     @api.depends('season_id')
     def _compute_is_current(self):
         """ Checks if activity is active for current season """
-        domain = [('is_default', '=', True)]
-        default_season = self.env['golem.season'].search(domain)
+        default_season = self._default_season()
         for a in self:
             a.is_current = (default_season == a.season_id)
 
