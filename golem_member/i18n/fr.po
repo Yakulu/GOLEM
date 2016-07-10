@@ -352,18 +352,18 @@ msgstr "Free Member"
 #: model:ir.model,name:golem_member.model_golem_member
 #: field:res.partner,member_id:0
 msgid "GOLEM Member"
-msgstr "GOLEM : adhérent"
+msgstr "Adhérent"
 
 #. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.numberconfig_action
 #: model:ir.ui.menu,name:golem_member.numberconfig_menu
 msgid "GOLEM Member Number Config"
-msgstr "GOLEM : configuration numéros adhérents"
+msgstr "Numéros adhérents"
 
 #. module: golem_member
 #: view:golem.member.numberconfig:golem_member.numberconfig_form
 msgid "GOLEM Member Number configuration"
-msgstr "GOLEM : configuration numéros adhérents"
+msgstr "Configuration des numéros adhérents"
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_member_number
@@ -376,12 +376,12 @@ msgstr "GOLEM Member Season Pivot Table"
 #: model:ir.actions.act_window,name:golem_member.action
 #: model:ir.ui.menu,name:golem_member.golem_members_menu
 msgid "GOLEM Members"
-msgstr "GOLEM : adhérents"
+msgstr "Adhérents"
 
 #. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.tags_action_list
 msgid "GOLEM Members Tags"
-msgstr "GOLEM : catégories d'adhérents"
+msgstr "Catégories d'adhérents"
 
 #. module: partner_contact_gender
 #: field:res.partner,gender:0

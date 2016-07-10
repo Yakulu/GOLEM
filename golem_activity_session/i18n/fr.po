@@ -103,22 +103,22 @@ msgstr "Vendredi"
 #. module: golem_activity_session
 #: model:ir.model,name:golem_activity_session.model_golem_activity_session
 msgid "GOLEM Activities Sessions"
-msgstr "GOLEM : séances des activités"
+msgstr "Séances des activités"
 
 #. module: golem_activity_session
 #: model:ir.actions.act_window,name:golem_activity_session.session_action_list
 msgid "GOLEM Activities Sessions List"
-msgstr "GOLEM : liste des séances"
+msgstr "Liste des séances"
 
 #. module: golem_activity_session
 #: model:ir.model,name:golem_activity_session.model_golem_activity
 msgid "GOLEM Activity"
-msgstr "GOLEM : activité"
+msgstr "Activité"
 
 #. module: golem_activity_session
 #: model:ir.model,name:golem_activity_session.model_golem_member
 msgid "GOLEM Member"
-msgstr "GOLEM : adhérent"
+msgstr "Adhérent"
 
 #. module: golem_activity_session
 #: view:golem.activity.session:golem_activity_session.searches

@@ -226,12 +226,12 @@ msgstr "Abonnés"
 #. module: golem_activity
 #: model:ir.actions.act_window,name:golem_activity.action
 msgid "GOLEM Activities"
-msgstr "GOLEM : Activités"
+msgstr "Activités"
 
 #. module: golem_activity
 #: model:ir.model,name:golem_activity.model_golem_activity
 msgid "GOLEM Activity"
-msgstr "GOLEM Activité"
+msgstr "Activité"
 
 #. module: golem_activity
 #: help:golem.activity,packaging_ids:0
@@ -492,7 +492,7 @@ msgstr "Specify if the product can be selected in a sales order line."
 #. module: golem_activity
 #: model:product.category,name:golem_activity.golem_product_category_trainings
 msgid "Stages"
-msgstr "Étapes"
+msgstr "Stages"
 
 #. module: golem_activity
 #: field:golem.activity,date_start:0
