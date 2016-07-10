@@ -27,7 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div name="buttons" position="inside">
           <button class="oe_inline oe_stat_button" type="object"
             name="button_session" icon="fa-list">
-            <field string="Week sessions" name="session_count" widget="statinfo" />
+            <field string="Sessions" name="session_count"
+              widget="statinfo" />
           </button>
         </div>
       </field>
@@ -50,10 +51,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   attrs="{'invisible': [('is_overbooked', '=', False)]}" />
               </group>
               <group>
-                <field name="is_recurrent" readonly="True" />
-                <field name="weekday" />
-                <field name="hour_start" widget="float_time" />
-                <field name="hour_end" widget="float_time" />
+                <field name="is_recurrent" />
+                <field name="weekday"
+                  attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                <field name="hour_start" widget="float_time"
+                  attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                <field name="hour_end" widget="float_time"
+                  attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                <field name="date_start"
+                  attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                <field name="date_end"
+                  attrs="{'invisible': [('is_recurrent', '=', True)]}" />
               </group>
             </group>
             <notebook>
@@ -80,11 +88,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree colors="darkgrey: places_used &lt; places_min;
           red: places_remain == 0;
           orange: places_remain &lt;= 4;">
+          <field name="is_recurrent" invisible="True" />
           <field name="activity_id" />
           <field name="animator_id" />
-          <field name="weekday" string="Day" />
-          <field name="hour_start" string="Start" />
-          <field name="hour_end" string="End" />
+          <field name="weekday" string="Day"
+              attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+          <field name="hour_start" string="Hour"
+              attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+          <field name="date_start" string="Date"
+              attrs="{'invisible': [('is_recurrent', '=', True)]}" />
           <field name="places" />
           <field name="places_min" string="Min." />
           <field name="places_remain" string="Remain" />

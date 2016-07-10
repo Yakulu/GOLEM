@@ -55,7 +55,7 @@ class GolemActivitySession(models.Model):
 
     name = fields.Char('Name', compute='_compute_name')
 
-    @api.depends('activity_id', 'weekday')
+    @api.depends('activity_id')
     def _compute_name(self):
         for s in self:
             s.name = s.activity_id.activity_name
@@ -68,12 +68,48 @@ class GolemActivitySession(models.Model):
         for s in self:
             s.places_used = len(s.member_ids)
 
-    # TODO: recurrence etc... to link with calendar.event
+    # TODO: to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activity',
                                   required=True)
     animator_id = fields.Many2one('res.partner', string='Animator')
+
+    @api.onchange('activity_id')
+    def onchange_activity_id(self):
+        for s in self:
+            if not s.animator_id:
+                s.animator_id = s.activity_id.animator_id
+
     is_recurrent = fields.Boolean('Is recurrent ?', default=True,
                                   help='Work in progress')
+    date_start = fields.Datetime('Start date')
+    date_end = fields.Datetime('End date')
+
+    @api.onchange('date_start')
+    def onchange_date_start(self):
+        """ Sets end date to start date if no start date """
+        for s in self:
+            if not s.date_end:
+                s.date_end = s.date_start
+
+    @api.constrains('date_start', 'date_end')
+    def _check_date_period(self):
+        """ Check if end date if after start date and if dates are included
+        into main activity period"""
+        for s in self:
+            if not s.is_recurrent:
+                if s.date_start > s.date_end:
+                    emsg = _('Start of the session cannot be after end of the '
+                             'period.')
+                    raise models.ValidationError(emsg)
+                if s.date_start < s.activity_id.date_start:
+                    emsg = _('Start of the session cannot be before the start '
+                             'of activity date')
+                    raise models.ValidationError(emsg)
+                if s.date_end > s.activity_id.date_end:
+                    emsg = _('End of the session cannot be after the end of '
+                             'activity date')
+                    raise models.ValidationError(emsg)
+
     weekday = fields.Selection([('mon', _('Monday')),
                                 ('tue', _('Tuesday')),
                                 ('wed', _('Wednesday')),
@@ -84,8 +120,15 @@ class GolemActivitySession(models.Model):
     hour_start = fields.Float('Start time')
     hour_end = fields.Float('End time')
 
+    @api.onchange('hour_start')
+    def onchange_hour_start(self):
+        """ Sets end hour to start hour if no start hour """
+        for s in self:
+            if not s.hour_end:
+                s.hour_end = s.hour_start
+
     @api.constrains('hour_start', 'hour_end')
-    def _check_period(self):
+    def _check_hour_period(self):
         """ Check if end hour if after start hour """
         for s in self:
             if s.hour_start > s.hour_end:
