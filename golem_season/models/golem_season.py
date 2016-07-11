@@ -29,7 +29,6 @@ class GolemSeason(models.Model):
                                     readonly=True, default=0)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
-    is_default = fields.Boolean('Default season for views?')
 
     @api.constrains('date_start', 'date_end')
     def _check_period(self):
@@ -55,17 +54,30 @@ class GolemSeason(models.Model):
                                 'period'.format(s.name))
                         raise models.ValidationError(msg)
 
-    @api.multi
-    def write(self, values):
-        """ Extends write to recomputes all current members in case of
-        is_default changes and ensures that only one is_default is active """
-        is_new_default = values.get('is_default')
+    is_default = fields.Boolean('Default season for views?', readonly=True)
+
+    @api.one
+    def do_default_season(self):
+        """ is_default on and ensure that only one is_default is active """
         old_default_season = self.search([('is_default', '=', True)])
-        res = super(GolemSeason, self).write(values)
-        if is_new_default:
-            if old_default_season:
-                old_default_season.is_default = False
-            self.env['golem.member'].search([])._compute_is_current()
-            self.env['golem.member'].search([])._compute_number()
-            self.env['golem.activity'].search([])._compute_is_current()
-        return res
+        old_default_season.is_default = False
+        self.is_default = True
+        all_members = self.env['golem.member'].search([])
+        all_members._compute_is_current()
+        all_members._compute_number()
+        self.env['golem.activity'].search([])._compute_is_current()
+
+    # @api.multi
+    # def write(self, values):
+    #     """ Extends write to recomputes all current members in case of
+    #     is_default changes and ensures that only one is_default is active """
+    #     res = super(GolemSeason, self).write(values)
+    #     is_new_default = values.get('is_default')
+    #     old_default_season = self.search([('is_default', '=', True)])
+    #     if is_new_default:
+    #         if old_default_season:
+    #             old_default_season.is_default = False
+    #         self.env['golem.member'].search([])._compute_is_current()
+    #         self.env['golem.member'].search([])._compute_number()
+    #         self.env['golem.activity'].search([])._compute_is_current()
+    #     return res

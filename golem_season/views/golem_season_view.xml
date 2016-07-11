@@ -27,9 +27,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form>
           <sheet>
+            <div class="oe_right">
+              <button name="do_default_season" type="object"
+                string="Make this season as default" class="oe_highlight"
+                help="Default season for views ?"
+                attrs="{'invisible': [('is_default', '=', True)]}" />
+            </div>
             <group string="Season">
+              <field name="is_default" invisible="True" />
               <field name="name" />
-              <field name="is_default" />
               <field name="date_start" />
               <field name="date_end" />
             </group>
