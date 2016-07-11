@@ -67,17 +67,11 @@ class GolemSeason(models.Model):
         all_members._compute_number()
         self.env['golem.activity'].search([])._compute_is_current()
 
-    # @api.multi
-    # def write(self, values):
-    #     """ Extends write to recomputes all current members in case of
-    #     is_default changes and ensures that only one is_default is active """
-    #     res = super(GolemSeason, self).write(values)
-    #     is_new_default = values.get('is_default')
-    #     old_default_season = self.search([('is_default', '=', True)])
-    #     if is_new_default:
-    #         if old_default_season:
-    #             old_default_season.is_default = False
-    #         self.env['golem.member'].search([])._compute_is_current()
-    #         self.env['golem.member'].search([])._compute_number()
-    #         self.env['golem.activity'].search([])._compute_is_current()
-    #     return res
+    @api.multi
+    def unlink(self):
+        for s in self:
+            if s.is_default:
+                emsg = _('You can\'t delete the default season')
+                raise models.ValidationError(emsg)
+            else:
+                return super(GolemSeason, self).unlink()
