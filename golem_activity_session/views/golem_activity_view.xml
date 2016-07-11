@@ -89,6 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           red: places_remain == 0;
           orange: places_remain &lt;= 4;">
           <field name="is_recurrent" invisible="True" />
+          <field name="season_id" />
           <field name="activity_id" />
           <field name="animator_id" />
           <field name="weekday" string="Day"
@@ -125,6 +126,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <search>
           <field name="activity_id" widget="many2one" />
           <field name="animator_id" widget="many2one" />
+          <filter name="season_default" string="Default season"
+           domain="[('is_current', '=', True)]" />
           <group string="Group By">
             <filter name="group_weekday" string="By weekday"
               context="{'group_by': 'weekday'}" />
@@ -137,7 +140,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="session_action_list" name="GOLEM Activities Sessions List"
-      res_model="golem.activity.session" view_mode="tree,form,calendar" />
+      res_model="golem.activity.session" view_mode="tree,form,calendar"
+      context="{'search_default_season_default': True}" />
+      />
     <!-- Menus -->
     <menuitem id="session_menu_list" name="Activities sessions"
       parent="golem_activity.activity_menu" action="session_action_list"

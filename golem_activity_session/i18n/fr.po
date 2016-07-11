@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-10 06:15+0000\n"
-"PO-Revision-Date: 2016-07-10 06:15+0000\n"
+"POT-Creation-Date: 2016-07-11 05:29+0000\n"
+"PO-Revision-Date: 2016-07-11 05:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,11 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: golem_activity_session
+#: field:golem.activity.session,is_current:0
+msgid "Current season?"
+msgstr "Saison en cours?"
+
+#. module: golem_activity_session
 #: view:golem.activity.session:golem_activity_session.session_tree
 msgid "Date"
 msgstr "Date"
@@ -87,6 +92,11 @@ msgstr "Date"
 #: view:golem.activity.session:golem_activity_session.session_tree
 msgid "Day"
 msgstr "Jour"
+
+#. module: golem_activity_session
+#: view:golem.activity.session:golem_activity_session.searches
+msgid "Default season"
+msgstr "Saison par défaut"
 
 #. module: golem_activity_session
 #: field:golem.activity.session,display_name:0
@@ -99,7 +109,7 @@ msgid "End date"
 msgstr "Date de fin"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:111
+#: code:addons/golem_activity_session/models/golem_activity_session.py:115
 #, python-format
 msgid "End of the session cannot be after the end of activity date"
 msgstr "La fin de la séance ne peut être après la fin de l'activité"
@@ -110,7 +120,7 @@ msgid "End time"
 msgstr "Heure de fin"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:119
+#: code:addons/golem_activity_session/models/golem_activity_session.py:123
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Friday"
@@ -193,7 +203,7 @@ msgid "Minimum places to maintain the session"
 msgstr "Nombre de places minimum pour maintenir la session"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:115
+#: code:addons/golem_activity_session/models/golem_activity_session.py:119
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Monday"
@@ -211,13 +221,13 @@ msgid "Note"
 msgstr "Note"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:179
+#: code:addons/golem_activity_session/models/golem_activity_session.py:183
 #, python-format
 msgid "Number of places cannot be negative."
 msgstr "Le nombre de places ne peut pas être négatif"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:182
+#: code:addons/golem_activity_session/models/golem_activity_session.py:186
 #, python-format
 msgid "Overbooked places cannot be inferior than places"
 msgstr "Le nombre de places avec surcharge ne peut être inférieur aux places"
@@ -248,11 +258,16 @@ msgid "Remaining places"
 msgstr "Places restantes"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:120
+#: code:addons/golem_activity_session/models/golem_activity_session.py:124
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Saturday"
 msgstr "Samedi"
+
+#. module: golem_activity_session
+#: field:golem.activity.session,season_id:0
+msgid "Season"
+msgstr "Saison"
 
 #. module: golem_activity_session
 #: help:golem.activity.session,categ_id:0
@@ -266,7 +281,7 @@ msgid "Sessions"
 msgstr "Séances"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:162
+#: code:addons/golem_activity_session/models/golem_activity_session.py:166
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr "Désolé mais il n'y a plus de place disponible !"
@@ -277,19 +292,19 @@ msgid "Start date"
 msgstr "Date de début"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:137
+#: code:addons/golem_activity_session/models/golem_activity_session.py:141
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr "Le début de la période ne peut être postérieur à la fin."
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:103
+#: code:addons/golem_activity_session/models/golem_activity_session.py:107
 #, python-format
 msgid "Start of the session cannot be after end of the session."
 msgstr "Le début de la séance ne peut être après sa fin"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:107
+#: code:addons/golem_activity_session/models/golem_activity_session.py:111
 #, python-format
 msgid "Start of the session cannot be before the start of activity date"
 msgstr "Le début de la séance ne peut être fixé avant le début de l'activité"
@@ -300,28 +315,28 @@ msgid "Start time"
 msgstr "Heure de début"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:121
+#: code:addons/golem_activity_session/models/golem_activity_session.py:125
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Sunday"
 msgstr "Dimanche"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:118
+#: code:addons/golem_activity_session/models/golem_activity_session.py:122
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Thursday"
 msgstr "Jeudi"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:116
+#: code:addons/golem_activity_session/models/golem_activity_session.py:120
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Tuesday"
 msgstr "Mardi"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:117
+#: code:addons/golem_activity_session/models/golem_activity_session.py:121
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Wednesday"

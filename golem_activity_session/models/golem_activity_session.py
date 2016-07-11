@@ -74,6 +74,10 @@ class GolemActivitySession(models.Model):
     categ_id = fields.Many2one(string='Category',
                                related='activity_id.product_id.categ_id')
     animator_id = fields.Many2one('res.partner', string='Animator')
+    is_current = fields.Boolean('Current season?',
+                                related='activity_id.is_current')
+    season_id = fields.Many2one(string='Season',
+                                related='activity_id.season_id')
 
     @api.onchange('activity_id')
     def onchange_activity_id(self):
