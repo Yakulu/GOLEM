@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 15:02+0000\n"
-"PO-Revision-Date: 2016-07-08 15:02+0000\n"
+"POT-Creation-Date: 2016-07-11 06:43+0000\n"
+"PO-Revision-Date: 2016-07-11 06:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: golem_member
+#: field:golem.member,sale_order_count:0
+msgid "# of Sales Order"
+msgstr ""
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
@@ -63,11 +68,6 @@ msgstr ""
 #. module: golem_member
 #: field:golem.member,associate_member:0
 msgid "Associate Member"
-msgstr ""
-
-#. module: golem_member
-#: field:golem.member,partner_id:0
-msgid "Automatically created field to link to parent res.partner"
 msgstr ""
 
 #. module: golem_member
@@ -321,7 +321,7 @@ msgid "Fax"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:30
+#: code:addons/golem_member/models/golem_member.py:32
 #, python-format
 msgid "Female"
 msgstr ""
@@ -507,7 +507,7 @@ msgid "Latest Full Reconciliation Date"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:30
+#: code:addons/golem_member/models/golem_member.py:32
 #, python-format
 msgid "Male"
 msgstr ""
@@ -543,7 +543,9 @@ msgid "Member Tags"
 msgstr ""
 
 #. module: golem_member
+#: field:golem.member,member_number:0
 #: field:golem.member,number:0
+#: field:res.partner,member_number:0
 msgid "Member number"
 msgstr ""
 
@@ -599,8 +601,8 @@ msgid "Nationality"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:176
-#: code:addons/golem_member/models/golem_member.py:179
+#: code:addons/golem_member/models/golem_member.py:183
+#: code:addons/golem_member/models/golem_member.py:186
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -645,6 +647,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_res_partner
 msgid "Partner"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,partner_id:0
+msgid "Partner id"
 msgstr ""
 
 #. module: golem_member
@@ -707,6 +714,16 @@ msgstr ""
 #. module: golem_member
 #: field:golem.member,property_product_pricelist:0
 msgid "Sale Pricelist"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,sale_order_ids:0
+msgid "Sales Order"
+msgstr ""
+
+#. module: golem_member
+#: field:golem.member,section_id:0
+msgid "Sales Team"
 msgstr ""
 
 #. module: golem_member
@@ -886,7 +903,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:72
+#: code:addons/golem_member/models/golem_member.py:79
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -983,8 +1000,8 @@ msgid "Website of Partner or Company"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:176
-#: code:addons/golem_member/models/golem_member.py:179
+#: code:addons/golem_member/models/golem_member.py:183
+#: code:addons/golem_member/models/golem_member.py:186
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
