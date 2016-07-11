@@ -80,9 +80,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
         <tree string="GOLEM Activities">
+          <field name="season_id" />
           <field name="default_code" />
           <field name="name" />
-          <field name="season_id" />
           <field name="animator_id" />
         </tree>
       </field>

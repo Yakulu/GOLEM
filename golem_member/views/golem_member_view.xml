@@ -112,6 +112,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <tree string="GOLEM Members">
+          <field name="season_ids" />
           <field name="number" />
           <field name="name" />
           <field name="contact_address" />
