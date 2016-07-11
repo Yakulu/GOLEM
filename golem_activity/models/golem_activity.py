@@ -47,7 +47,8 @@ class GolemActivity(models.Model):
         return self.env['golem.season'].search(domain)
 
     season_id = fields.Many2one('golem.season', string='Season', copy=False,
-                                required=True, default=_default_season)
+                                required=True, default=_default_season,
+                                ondelete='restrict')
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
     date_start = fields.Date('Start date', copy=False)

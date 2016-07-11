@@ -67,7 +67,8 @@ class GolemMember(models.Model):
     opt_out_sms = fields.Boolean('Out of SMS campaigns')
     season_ids = fields.Many2many('golem.season', string='Seasons',
                                   required=True, auto_join=True,
-                                  default=_default_season)
+                                  default=_default_season,
+                                  ondelete='restrict')
     is_current = fields.Boolean('Current user?', default=False, readonly=True,
                                 store=True, compute='_compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
