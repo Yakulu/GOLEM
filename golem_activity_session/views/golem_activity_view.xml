@@ -40,7 +40,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form>
           <sheet>
-            <group string="Activity Session">
+            <div class="oe_title" style="width: 390px;">
+              <label class="oe_edit_only" for="name" string="Session Name"/>
+                <h1><field name="name" class="oe_inline"/></h1>
+            </div>
+            <group string="Session">
               <group>
                 <field name="activity_id" />
                 <field name="animator_id" />
@@ -71,11 +75,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="member_ids" />
                 </group>
               </page>
+              <page string="Service">
+                <group>
+                  <group>
+                    <field name="default_code" />
+                    <field name="list_price" />
+                    <field name="description"
+                      placeholder="describe the activity characteristics..."/>
+                  </group>
+                  <group>
+                    <field name="type" />
+                    <field name="categ_id" />
+                    <field name="active" />
+                  </group>
+                </group>
+              </page>
               <page string="Note">
                 <field name="note" />
               </page>
             </notebook>
           </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers" />
+              <field name="message_ids" widget="mail_thread" />
+          </div>
         </form>
       </field>
     </record>
@@ -90,18 +113,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           orange: places_remain &lt;= 4;">
           <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
-          <field name="activity_id" />
+          <field name="session_name" />
           <field name="animator_id" />
           <field name="weekday" string="Day"
               attrs="{'invisible': [('is_recurrent', '=', False)]}" />
-          <field name="hour_start" string="Hour"
-              attrs="{'invisible': [('is_recurrent', '=', False)]}" />
           <field name="date_start" string="Date"
               attrs="{'invisible': [('is_recurrent', '=', True)]}" />
-          <field name="places" />
-          <field name="places_min" string="Min." />
+          <field name="places" invisible="True" />
           <field name="places_remain" string="Remain" />
           <field name="places_used" invisible="True" />
+          <field name="places_min" invislbe="True" />
         </tree>
       </field>
     </record>
@@ -124,11 +145,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity.session</field>
       <field name="arch" type="xml">
         <search>
+          <field name="session_name" />
           <field name="activity_id" widget="many2one" />
           <field name="animator_id" widget="many2one" />
+          <field name="categ_id" widget="many2one" />
+          <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
           <group string="Group By">
+            <filter name="group_category" string="By category"
+              context="{'group_by': 'categ_id'}"/>
             <filter name="group_weekday" string="By weekday"
               context="{'group_by': 'weekday'}" />
             <filter name="group_animator" string="By animator"
@@ -139,14 +165,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="session_action_list" name="GOLEM Activities Sessions List"
-      res_model="golem.activity.session" view_mode="tree,form,calendar"
-      context="{'search_default_season_default': True}" />
-      />
+    <record id="session_action_list" model="ir.actions.act_window">
+      <field name="name">GOLEM Activities Sessions List</field>
+      <field name="res_model">golem.activity.session</field>
+      <field name="view_mode">kanban,tree,form,calendar</field>
+      <field name="view_id" ref="product.product_template_kanban_view"/>
+    </record>
+    <record id="category_action" model="ir.actions.act_window">
+      <field name="name">Activities Categories</field>
+      <field name="res_model">product.category</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="product.product_category_list_view" />
+    </record>
     <!-- Menus -->
     <menuitem id="session_menu_list" name="Activities sessions"
       parent="golem_activity.activity_menu" action="session_action_list"
       sequence="10" />
+    <menuitem  id="activity_categ" name="Categories"
+      parent="golem_activity.activity_menu" sequence="10"
+      action="category_action" />
 
 
   </data>

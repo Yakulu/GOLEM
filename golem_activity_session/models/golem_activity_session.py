@@ -49,16 +49,44 @@ class GolemActivity(models.Model):
                 'domain': [('activity_id', '=', self.id)]}
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    # Make default service for type
+    type = fields.Selection(default='service')
+
+
 class GolemActivitySession(models.Model):
     _name = 'golem.activity.session'
     _description = 'GOLEM Activities Sessions'
+    _inherit = 'mail.thread'
+    _inherits = {'product.template': 'product_id'}
 
-    name = fields.Char('Name', compute='_compute_name')
+    product_id = fields.Many2one('product.template', required=True,
+                                 ondelete='cascade')
+    default_code = fields.Char(copy=True)  # Copy the default code
 
-    @api.depends('activity_id')
-    def _compute_name(self):
+    @api.model
+    def _default_name(self):
+        """ Default name to activity name """
+        d_aid = self.env.context.get('default_activity_id')
+        aobj = self.env['golem.activity']
+        return aobj.browse([d_aid]).name if d_aid else None
+
+    image = fields.Binary(related='activity_id.image')
+    categ_id = fields.Many2one(related='activity_id.categ_id', readonly=True)
+
+    session_name = fields.Char('Name', compute='_compute_full_name',
+                               store=True, index=True)
+
+    @api.depends('name', 'default_code')
+    def _compute_full_name(self):
+        """ Provide a better displayed name """
         for s in self:
-            s.name = s.activity_id.activity_name
+            session_name = unicode(s.name)
+            if s.default_code:
+                session_name = u'[{}] {}'.format(s.default_code, session_name)
+            s.session_name = session_name
 
     member_ids = fields.Many2many('golem.member', string='Members')
     places_used = fields.Integer('Places used', compute='_compute_places_used')
@@ -71,8 +99,7 @@ class GolemActivitySession(models.Model):
     # TODO: to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activity',
                                   required=True)
-    categ_id = fields.Many2one(string='Category',
-                               related='activity_id.product_id.categ_id')
+
     animator_id = fields.Many2one('res.partner', string='Animator')
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current')
@@ -81,7 +108,10 @@ class GolemActivitySession(models.Model):
 
     @api.onchange('activity_id')
     def onchange_activity_id(self):
+        """ Sets session name and animator as activity's one if empty """
         for s in self:
+            if not s.name:
+                s.name = s.activity_id.name
             if not s.animator_id:
                 s.animator_id = s.activity_id.animator_id
 

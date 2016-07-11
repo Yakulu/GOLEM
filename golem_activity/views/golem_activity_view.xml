@@ -28,8 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <div class="oe_right oe_button_box" style="width: 300px;"
                 name="buttons"></div>
               <div class="oe_left" style="width: 500px;">
-                <field name="image_medium" widget="image"
-                  class="oe_avatar oe_left"/>
+                <field name="image" widget="image" class="oe_avatar oe_left"/>
                 <div class="oe_title" style="width: 390px;">
                   <label class="oe_edit_only" for="name" string="Activity Name"/>
                   <h1><field name="name" class="oe_inline"/></h1>
@@ -38,30 +37,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                 <field name="season_id" />
               </group>
-            <group string="Details" col="4">
-              <group colspan="2">
-                <field name="default_code" />
+            <group string="Details">
+              <group>
                 <field name="categ_id" />
-                <field name="list_price" />
-              </group>
-              <group colspan="2">
                 <field name="animator_id" />
+              </group>
+              <group>
                 <field name="date_start" />
                 <field name="date_end" />
               </group>
             </group>
             <notebook>
               <page name="activity_info" string="Information">
-                <group colspan="4">
-                <field name="description" placeholder="describe the activity characteristics..."/>
-                </group>
-              </page>
-              <page name="activity_details" string="Others">
                 <group>
-                  <group>
-                    <field name="type" />
-                    <field name="active" />
-                  </group>
+                  <field name="note"
+                    placeholder="describe the activity characteristics..."/>
                 </group>
               </page>
             </notebook>
@@ -81,12 +71,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <tree string="GOLEM Activities">
           <field name="season_id" />
-          <field name="default_code" />
           <field name="name" />
           <field name="animator_id" />
         </tree>
       </field>
-    </record>
+  </record>
 
     <!-- Searches -->
     <record id="view_filter" model="ir.ui.view">
@@ -94,34 +83,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
         <search>
-          <field name="activity_name" />
-          <field name="categ_id" widget="many2one" />
+          <field name="name" />
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
-          <group string="Group By">
-            <filter name="group_category" string="By category"
-              context="{'group_by': 'categ_id'}"/>
-          </group>
         </search>
       </field>
     </record>
 
     <!-- Actions -->
-    <record id="action" model="ir.actions.act_window">
-      <field name="name">GOLEM Activities</field>
-      <field name="res_model">golem.activity</field>
-      <field name="view_mode">kanban,tree,form</field>
-      <field name="view_id" ref="product.product_template_kanban_view"/>
-      <field name="context"
-        eval="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_all_activities')}" />
-    </record>
-    <record id="category_action" model="ir.actions.act_window">
-      <field name="name">Activities Categories</field>
-      <field name="res_model">product.category</field>
-      <field name="view_type">form</field>
-      <field name="view_id" ref="product.product_category_list_view" />
-    </record>
+    <act_window id="action" name="GOLEM Activities" res_model="golem.activity"
+      context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_all_activities')}" />
 
     <!-- Menus -->
     <menuitem id="activity_menu" name="Activities"
@@ -129,9 +101,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="activity_list" name="List"
       parent="activity_menu" sequence="0"
       action="action" />
-    <menuitem  id="activity_categ" name="Categories"
-      parent="activity_menu" sequence="10"
-      action="category_action" />
 
   </data>
 </openerp>

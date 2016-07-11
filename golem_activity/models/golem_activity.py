@@ -18,27 +18,15 @@
 from openerp import models, fields, api, _
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    # Make default service for type
-    type = fields.Selection(default='service')
-
-
 class GolemActivity(models.Model):
     _name = 'golem.activity'
     _description = 'GOLEM Activity'
     _inherit = 'mail.thread'
-    _inherits = {'product.template': 'product_id'}
-    _rec_name = 'activity_name'
 
-    product_id = fields.Many2one('product.template', required=True,
-                                 ondelete='cascade')
-
-    # Copy the default code
-    default_code = fields.Char(copy=True)
-
-    # Own fields
+    name = fields.Char('Name', index=True, required=True)
+    image = fields.Binary('Image', help='This field holds the image used as '
+                          'image for the activity.')
+    note = fields.Text('Note')
 
     @api.model
     def _default_season(self):
@@ -51,6 +39,9 @@ class GolemActivity(models.Model):
                                 ondelete='restrict')
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
+    categ_id = fields.Many2one('product.category', 'Internal Category',
+                               required=True,
+                               help='Select category for the current activity')
     date_start = fields.Date('Start date', copy=False)
     date_end = fields.Date('End date', copy=False)
 
@@ -81,16 +72,3 @@ class GolemActivity(models.Model):
         default_season = self._default_season()
         for a in self:
             a.is_current = (default_season == a.season_id)
-
-    activity_name = fields.Char('Name', compute='_compute_name', store=True,
-                                index=True)
-
-    @api.depends('name', 'default_code')
-    def _compute_name(self):
-        """ Provide a better displayed name """
-        for a in self:
-            activity_name = unicode(a.name)
-            if a.default_code:
-                activity_name = u'[{}] {}'.format(a.default_code,
-                                                  activity_name)
-            a.activity_name = activity_name
