@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 19:50+0000\n"
-"PO-Revision-Date: 2016-07-08 19:50+0000\n"
+"POT-Creation-Date: 2016-07-11 18:06+0000\n"
+"PO-Revision-Date: 2016-07-11 18:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,8 @@ msgid "Family Count"
 msgstr "Somme des membres de la famille"
 
 #. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:37
+#: code:addons/golem_family/models/golem_family.py:33
+#: code:addons/golem_family/models/golem_family.py:46
 #, python-format
 msgid "Family Members"
 msgstr "Membres de la famille"
@@ -314,7 +315,8 @@ msgid "e.g. www.odoo.com"
 msgstr "par exemple www.yaltik.com"
 
 #. module: golem_family
-#: view:golem.member:golem_family.family_smartbtn_add
+#: view:golem.member:golem_family.golem_member_family_smartbtn_add
+#: view:res.partner:golem_family.res_partner_family_smartbtn_add
 msgid "family members"
 msgstr "famille"
 
