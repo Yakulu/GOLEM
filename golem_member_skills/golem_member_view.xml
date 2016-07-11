@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
-        <field name="category_id" position="before">
+        <field name="comment" position="before">
           <field name="is_volunteer" />
           <field name="skill_ids" widget="many2many_tags"
             placeholder="Skills..." />
