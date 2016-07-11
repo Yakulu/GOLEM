@@ -167,8 +167,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record id="session_action_list" model="ir.actions.act_window">
       <field name="name">GOLEM Activities Sessions List</field>
       <field name="res_model">golem.activity.session</field>
-      <field name="view_mode">kanban,tree,form,calendar</field>
-      <field name="view_id" ref="product.product_template_kanban_view"/>
+      <field name="view_mode">tree,form,calendar</field>
+      <!--<field name="view_id" ref="product.product_template_kanban_view"/>-->
     </record>
     <record id="category_action" model="ir.actions.act_window">
       <field name="name">Activities Categories</field>
