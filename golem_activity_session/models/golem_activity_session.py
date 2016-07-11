@@ -61,6 +61,7 @@ class GolemActivitySession(models.Model):
     _description = 'GOLEM Activities Sessions'
     _inherit = 'mail.thread'
     _inherits = {'product.template': 'product_id'}
+    _rec_name = 'session_name'
 
     product_id = fields.Many2one('product.template', required=True,
                                  ondelete='cascade')
@@ -112,6 +113,8 @@ class GolemActivitySession(models.Model):
         for s in self:
             if not s.name:
                 s.name = s.activity_id.name
+            if not s.default_code:
+                s.default_code = s.activity_id.default_code
             if not s.animator_id:
                 s.animator_id = s.activity_id.animator_id
 
@@ -160,8 +163,8 @@ class GolemActivitySession(models.Model):
     def onchange_hour_start(self):
         """ Sets end hour to start hour if no start hour """
         for s in self:
-            if not s.hour_end:
-                s.hour_end = s.hour_start
+            if s.hour_start and not s.hour_end:
+                s.hour_end = s.hour_start + 1
 
     @api.constrains('hour_start', 'hour_end')
     def _check_hour_period(self):
@@ -215,5 +218,3 @@ class GolemActivitySession(models.Model):
             if v.is_overbooked and (v.places_overbooked <= v.places):
                 emsg = _('Overbooked places cannot be inferior than places')
                 raise models.ValidationError(emsg)
-
-    note = fields.Text('Note')

@@ -24,6 +24,7 @@ class GolemActivity(models.Model):
     _inherit = 'mail.thread'
 
     name = fields.Char('Name', index=True, required=True)
+    default_code = fields.Char('Internal Reference', index=True)
     image = fields.Binary('Image', help='This field holds the image used as '
                           'image for the activity.')
     note = fields.Text('Note')

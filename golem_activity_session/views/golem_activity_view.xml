@@ -72,7 +72,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <page string="Members">
                 <group>
                   <field name="places_remain" readonly="True" />
-                  <field name="member_ids" />
+                  <field name="member_ids"
+                    context="{'search_default_season_default': True}" />
                 </group>
               </page>
               <page string="Service">
@@ -89,9 +90,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="active" />
                   </group>
                 </group>
-              </page>
-              <page string="Note">
-                <field name="note" />
               </page>
             </notebook>
           </sheet>
@@ -123,6 +121,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="places_remain" string="Remain" />
           <field name="places_used" invisible="True" />
           <field name="places_min" invislbe="True" />
+          <field name="list_price" sum="True" />
         </tree>
       </field>
     </record>
