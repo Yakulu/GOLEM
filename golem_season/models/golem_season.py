@@ -42,16 +42,16 @@ class GolemSeason(models.Model):
                 seasons = self.env['golem.season'].search([])
                 for s in seasons:
                     if s.date_start < season.date_start < s.date_end:
-                        msg = _('Start of the period is in range of an '
-                                'existing period {}'.format(s.name))
+                        msg = _(u'Start of the period is in range of an '
+                                'existing period.')
                         raise models.ValidationError(msg)
                     if s.date_start < season.date_end < s.date_end:
-                        msg = _('End of the period is in range of an '
-                                'existing period {}'.format(s.name))
+                        msg = _(u'End of the period is in range of an '
+                                'existing period.')
                         raise models.ValidationError(msg)
                     if season.date_start < s.date_start < season.date_end:
-                        msg = _('Period {} cannot be included into current '
-                                'period'.format(s.name))
+                        msg = _(u'Current period cannot be included into '
+                                'another existing period.')
                         raise models.ValidationError(msg)
 
     is_default = fields.Boolean('Default season for views?', readonly=True)
@@ -60,7 +60,8 @@ class GolemSeason(models.Model):
     def do_default_season(self):
         """ is_default on and ensure that only one is_default is active """
         old_default_season = self.search([('is_default', '=', True)])
-        old_default_season.is_default = False
+        if old_default_season:
+            old_default_season.is_default = False
         self.is_default = True
         all_members = self.env['golem.member'].search([])
         all_members._compute_is_current()
