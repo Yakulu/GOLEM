@@ -34,8 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="name" class="oe_inline" readonly="True" />
                 </h1>
               </div>
+              <div class="oe_right oe_button_box" name="buttons" />
               <group>
                 <field name="season_ids" widget="many2many_tags" />
+                <field name="category_id" widget="many2many_tags"
+                  placeholder="Tags..."/>
               </group>
             </group>
             <group string="Personal details">
@@ -91,8 +94,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </page>
               <page name="other_page" string="Others">
                 <group>
-                  <field name="category_id" widget="many2many_tags"
-                    placeholder="Tags..."/>
                   <field name="comment" placeholder="Put an internal note..." />
                 </group>
               </page>

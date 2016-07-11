@@ -686,7 +686,7 @@ msgstr "Téléphone"
 #. module: golem_member
 #: field:golem.member,pictures_agreement:0
 msgid "Pictures agreement?"
-msgstr "Accord pour les images?"
+msgstr "Accord pour les photographies?"
 
 #. module: golem_member
 #: help:golem.member,notify_email:0
