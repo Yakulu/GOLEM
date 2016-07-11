@@ -27,6 +27,6 @@
     'application': False,
     'installable': True,
     'auto_install': True,
-    'depends': ['golem_member', 'golem_family'],
+    'depends': ['golem_family', 'golem_member_minor'],
     'data': ['golem_member_view.xml']
 }

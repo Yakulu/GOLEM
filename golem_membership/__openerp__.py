@@ -25,7 +25,7 @@
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['sale', 'golem_member', 'decimal_precision'],
-    'data': ['views/golem_member_view.xml',
-             'views/golem_membership_invoice.xml']
+    'depends': ['golem_member', 'account', 'decimal_precision'],
+    'data': ['views/golem_membership_invoice.xml',
+             'views/golem_member_view.xml']
 }

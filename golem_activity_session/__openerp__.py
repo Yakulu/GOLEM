@@ -25,7 +25,7 @@
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_activity', 'golem_member', 'product', 'mail',
-                'l10n_fr_tax_sale_ttc', 'l10n_fr_siret'],
+    'auto_install': True,
+    'depends': ['product', 'mail', 'golem_activity', 'golem_member'],
     'data': ['views/golem_activity_view.xml', 'views/golem_member_view.xml']
 }

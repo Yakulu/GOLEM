@@ -26,5 +26,7 @@
     'application': False,
     'installable': True,
     'depends': ['golem_member'],
-    'data': ['views/golem_family_view.xml', 'views/golem_member_view.xml']
+    'data': ['views/golem_family_view.xml',
+             'views/golem_member_view.xml',
+             'views/res_partner_view.xml']
 }
