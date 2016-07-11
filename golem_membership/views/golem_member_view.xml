@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
-        <notebook position="inside">
+        <page name="other_page" position="before">
           <page string="Membership">
             <group>
               <group>
@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </form>
             </field>
           </page>
-        </notebook>
+        </page>
       </field>
     </record>
 
