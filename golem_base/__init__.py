@@ -14,19 +14,3 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-{
-    'name': 'GOLEM seasons',
-    'summary': 'GOLEM non-profit seasons management',
-    'description': '''
-    Non-profit french MJC seasons management with dates ranges
-    ''',
-    'version': '0.1',
-    'category': 'Non-profit management',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_base'],
-    'data': ['views/golem_season_view.xml']
-}

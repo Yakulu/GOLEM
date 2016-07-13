@@ -16,17 +16,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM seasons',
-    'summary': 'GOLEM non-profit seasons management',
-    'description': '''
-    Non-profit french MJC seasons management with dates ranges
-    ''',
+    'name': 'GOLEM base module for global dependencies',
+    'summary': 'GOLEM base installs base and shared dependencies for GOLEM',
     'version': '0.1',
     'category': 'Non-profit management',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_base'],
-    'data': ['views/golem_season_view.xml']
+    'depends': ['membership', 'contacts', 'mail', 'account_voucher',
+                'partner_firstname', 'partner_contact_birthdate',
+                'partner_contact_gender', 'partner_contact_nationality',
+                'l10n_fr_state', 'l10n_fr_department', 'l10n_fr_tax_sale_ttc',
+                'l10n_fr_siret',
+                'web_widget_phone_check_fr', 'web_widget_email_check',
+                'web_widget_url_check']
 }
