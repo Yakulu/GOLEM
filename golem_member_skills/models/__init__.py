@@ -15,16 +15,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM members skills',
-    'summary': 'GOLEM non-profit members skills management',
-    'description': 'Non-profit french MJC members skills management',
-    'version': '0.1',
-    'category': 'Non-profit management',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['views/golem_member_view.xml', 'views/res_partner_view.xml']
-}
+from . import golem_member
