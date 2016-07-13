@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="partner_id" invisible="True" />
         </field>
         <field name="legal_guardian" position="attributes">
-          <attribute name="domain">['&amp;', ('is_company', '=', False), ('family_id', '=', family_id), ('id', '!=', partner_id)]</attribute>
+          <attribute name="domain">['&amp;', ('family_id', '=', family_id), ('id', '!=', partner_id)]</attribute>
           <attribute name="options">{'no_create': True}</attribute>
         </field>
       </field>

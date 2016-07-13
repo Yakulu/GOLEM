@@ -74,7 +74,8 @@ class GolemFamily(models.Model):
     email = fields.Char('Email')
     website = fields.Char('Website')
 
-    member_ids = fields.One2many('res.partner', 'family_id', 'Members')
+    member_ids = fields.One2many('res.partner', 'family_id', 'Members',
+                                 domain=[('is_company', '=', False)])
     note = fields.Text('Note')
     count = fields.Integer('Count', compute='_compute_count', store=True)
 
