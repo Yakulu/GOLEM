@@ -558,7 +558,7 @@ msgstr "Session"
 #. module: golem_activity_session
 #: view:golem.activity.session:golem_activity_session.view_form
 msgid "Session Name"
-msgstr "Session Name"
+msgstr "Nom de la séance"
 
 #. module: golem_activity_session
 #: view:golem.activity:golem_activity_session.session_smart
