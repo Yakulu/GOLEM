@@ -25,6 +25,6 @@
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['golem_base', 'product'],
+    'depends': ['product', 'golem_base', 'golem_season'],
     'data': ['data/golem_activity_data.xml', 'views/golem_activity_view.xml']
 }
