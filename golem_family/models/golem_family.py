@@ -40,6 +40,13 @@ class ResPartner(models.Model):
 class GolemMember(models.Model):
     _inherit = 'golem.member'
 
+    @api.onchange('family_id')
+    def onchange_family(self):
+        """ Sets lastname as family name if there was no precedence """
+        for p in self:
+            if not p.lastname:
+                p.lastname = self.family_id.name
+
     @api.multi
     def button_family_members(self):
         self.ensure_one()
