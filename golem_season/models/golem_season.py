@@ -72,8 +72,18 @@ class GolemSeason(models.Model):
         if 'golem.activity' in self.env.registry:
             self.env['golem.activity'].search([])._compute_is_current()
 
+    @api.model
+    @api.returns('self', lambda rec: rec.id)
+    def create(self, values):
+        """ If the season if the first one created, it must be by default """
+        print values
+        if self.search_count([]) == 0:
+            values['is_default'] = True
+        return super(GolemSeason, self).create(values)
+
     @api.multi
     def unlink(self):
+        """ Forbids default season removal """
         for s in self:
             if s.is_default:
                 emsg = _('You can\'t delete the default season')
