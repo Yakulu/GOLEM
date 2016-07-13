@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member_minor.minor_add_form" />
       <field name="arch" type="xml">
         <field name="legal_guardian" position="after">
-          <field name="partner_id" invisible="True" />
+          <field name="partner_id" invisible="True" required="False" />
         </field>
         <field name="legal_guardian" position="attributes">
           <attribute name="domain">['&amp;', ('family_id', '=', family_id), ('id', '!=', partner_id)]</attribute>
