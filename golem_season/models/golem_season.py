@@ -58,15 +58,19 @@ class GolemSeason(models.Model):
 
     @api.one
     def do_default_season(self):
-        """ is_default on and ensure that only one is_default is active """
+        """ is_default on and ensure that only one is_default is active. Also
+        recomputes is_current for members and activities. For simplicity use a
+        magic trick around registry rather than double inheritance """
         old_default_season = self.search([('is_default', '=', True)])
         if old_default_season:
             old_default_season.is_default = False
         self.is_default = True
-        all_members = self.env['golem.member'].search([])
-        all_members._compute_is_current()
-        all_members._compute_number()
-        self.env['golem.activity'].search([])._compute_is_current()
+        if 'golem.member' in self.env.registry:
+            all_members = self.env['golem.member'].search([])
+            all_members._compute_is_current()
+            all_members._compute_number()
+        if 'golem.activity' in self.env.registry:
+            self.env['golem.activity'].search([])._compute_is_current()
 
     @api.multi
     def unlink(self):
