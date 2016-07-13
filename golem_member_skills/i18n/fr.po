@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-28 03:18+0000\n"
-"PO-Revision-Date: 2016-06-28 03:18+0000\n"
+"POT-Creation-Date: 2016-07-13 17:33+0000\n"
+"PO-Revision-Date: 2016-07-13 17:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,8 @@ msgid "ID"
 msgstr "ID"
 
 #. module: golem_member_skills
-#: view:golem.member:golem_member_skills.skills_search
+#: view:golem.member:golem_member_skills.golem_member_skills_search
+#: view:res.partner:golem_member_skills.res_partner_skills_search
 msgid "Is volunteer"
 msgstr "Est bénévole"
 
@@ -82,22 +83,31 @@ msgid "Member skills"
 msgstr "Compétences de l'adhérent"
 
 #. module: golem_member_skills
+#: model:ir.model,name:golem_member_skills.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: golem_member_skills
 #: field:golem.member.skill,name:0
 msgid "Skill"
 msgstr "Compétence"
 
 #. module: golem_member_skills
 #: field:golem.member,skill_ids:0
+#: view:res.partner:golem_member_skills.res_partner_skills_form
+#: field:res.partner,skill_ids:0
 msgid "Skills"
 msgstr "Compétences"
 
 #. module: golem_member_skills
-#: view:golem.member:golem_member_skills.skills_form
+#: view:golem.member:golem_member_skills.golem_member_skills_form
+#: view:res.partner:golem_member_skills.res_partner_skills_form
 msgid "Skills..."
 msgstr "Compétences..."
 
 #. module: golem_member_skills
 #: field:golem.member,is_volunteer:0
+#: field:res.partner,is_volunteer:0
 msgid "Volunteer?"
 msgstr "Bénévole?"
 
