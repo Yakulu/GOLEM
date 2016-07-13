@@ -23,6 +23,8 @@ class GolemSeason(models.Model):
     _name = 'golem.season'
     _description = 'GOLEM Season'
     _order = 'date_start desc'
+    _sql_constraints = [('golem_season_name_uniq', 'UNIQUE (name)',
+                         _('This season name has already been used.'))]
 
     name = fields.Char('Season name')
     member_counter = fields.Integer('Counter for member number generation',
