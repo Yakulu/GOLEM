@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-11 06:43+0000\n"
-"PO-Revision-Date: 2016-07-11 06:43+0000\n"
+"POT-Creation-Date: 2016-07-14 06:14+0000\n"
+"PO-Revision-Date: 2016-07-14 06:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -367,8 +367,8 @@ msgstr "Configuration des numéros adhérents"
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_member_number
-msgid "GOLEM Member Season Pivot Table"
-msgstr "GOLEM Member Season Pivot Table"
+msgid "GOLEM Member Numbers"
+msgstr "Numéros d'adhérents"
 
 #. module: golem_member
 #: view:golem.member:golem_member.view_graph_golem_member
@@ -383,8 +383,6 @@ msgstr "Adhérents"
 msgid "GOLEM Members Tags"
 msgstr "Catégories d'adhérents"
 
-#. module: partner_contact_gender
-#: field:res.partner,gender:0
 #. module: golem_member
 #: field:golem.member,gender:0
 msgid "Gender"
@@ -612,10 +610,14 @@ msgstr "Nationalité"
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:183
 #: code:addons/golem_member/models/golem_member.py:186
-#: selection:golem.member.numberconfig,is_automatic:0
-#: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
 msgid "No"
+msgstr "Non"
+
+#. module: golem_member
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
+msgid "Non"
 msgstr "Non"
 
 #. module: golem_member
@@ -642,6 +644,12 @@ msgstr "Préfix éventuel"
 #: view:golem.member:golem_member.view_form
 msgid "Others"
 msgstr "Autres"
+
+#. module: golem_member
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
+msgid "Oui"
+msgstr "Oui"
 
 #. module: golem_member
 #: field:golem.member,opt_out_sms:0
@@ -726,16 +734,6 @@ msgstr "SIRET"
 #: field:golem.member,property_product_pricelist:0
 msgid "Sale Pricelist"
 msgstr "Liste de prix de vente"
-
-#. module: golem_member
-#: field:golem.member,sale_order_ids:0
-msgid "Sales Order"
-msgstr "Bon de commande"
-
-#. module: golem_member
-#: field:golem.member,section_id:0
-msgid "Sales Team"
-msgstr "Équipe de vente"
 
 #. module: golem_member
 #: field:golem.member,user_id:0
@@ -838,15 +836,25 @@ msgstr "Supplier Payment Term"
 msgid "TIN"
 msgstr "TIN"
 
+#. module: base
+#: view:res.partner:base.view_res_partner_filter
+msgid "Tag"
+msgstr "Catégorie"
+
+#. module: base
+#: field:res.partner,category_id:0
 #. module: golem_member
 #: field:golem.member,category_id:0
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Catégories"
 
+#. module: base
+#: view:res.partner:base.view_partner_form
+#: view:res.partner:base.view_partner_simple_form
 #. module: golem_member
 #: view:golem.member:golem_member.view_form
 msgid "Tags..."
-msgstr "Étiquettes..."
+msgstr "Catégories..."
 
 #. module: golem_member
 #: help:golem.member,vat:0
@@ -1013,8 +1021,6 @@ msgstr "Website of Partner or Company"
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:183
 #: code:addons/golem_member/models/golem_member.py:186
-#: selection:golem.member.numberconfig,is_automatic:0
-#: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
 msgid "Yes"
 msgstr "Oui"
