@@ -90,6 +90,19 @@ class GolemActivitySession(models.Model):
             s.session_name = session_name
 
     member_ids = fields.Many2many('golem.member', string='Members')
+    type_of = fields.Selection([('activity', _('Activity')),
+                                ('workshop', _('Workshop')),
+                                ('training', _('Training'))],
+                               default='activity', index=True, string='Type')
+
+    @api.onchange('type_of')
+    def onchange_type_of(self):
+        for s in self:
+            if s.type_of != 'activity':
+                s.is_recurrent = False
+            else:
+                s.is_recurrent = True
+
     places_used = fields.Integer('Places used', compute='_compute_places_used')
 
     @api.depends('member_ids')

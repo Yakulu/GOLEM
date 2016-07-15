@@ -20,23 +20,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data noupdate="1">
     <!-- Base data for activities -->
-    <record model="product.category" id="golem_product_category_all_activities">
-      <field name="name">Toutes les activités</field>
-    </record>
     <record model="product.category" id="golem_product_category_activities">
       <field name="name">Activités</field>
-      <field name="parent_id"
-        eval="ref('golem_activity.golem_product_category_all_activities')" />
     </record>
-    <record model="product.category" id="golem_product_category_workshops">
-      <field name="name">Ateliers</field>
+    <record model="product.category" id="golem_product_category_wellbeing">
+      <field name="name">Bien-Être</field>
       <field name="parent_id"
-        eval="ref('golem_activity.golem_product_category_all_activities')" />
+        eval="ref('golem_activity.golem_product_category_activities')" />
     </record>
-    <record model="product.category" id="golem_product_category_trainings">
-      <field name="name">Stages</field>
+    <record model="product.category" id="golem_product_category_martial">
+      <field name="name">Arts martiaux</field>
       <field name="parent_id"
-        eval="ref('golem_activity.golem_product_category_all_activities')" />
+        eval="ref('golem_activity.golem_product_category_activities')" />
+    </record>
+    <record model="product.category" id="golem_product_category_music">
+      <field name="name">Musique</field>
+      <field name="parent_id"
+        eval="ref('golem_activity.golem_product_category_activities')" />
     </record>
   </data>
 </openerp>

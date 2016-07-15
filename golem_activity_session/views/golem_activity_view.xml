@@ -48,6 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                 <field name="activity_id" />
                 <field name="animator_id" />
+                <field name="type_of" />
                 <field name="places" />
                 <field name="places_min" />
                 <field name="is_overbooked" />
@@ -111,8 +112,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           orange: places_remain &lt;= 4;">
           <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
+          <field name="type_of" />
           <field name="session_name" />
-          <field name="animator_id" />
           <field name="weekday" string="Day"
               attrs="{'invisible': [('is_recurrent', '=', False)]}" />
           <field name="date_start" string="Date"
@@ -120,7 +121,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="places" invisible="True" />
           <field name="places_remain" string="Remain" />
           <field name="places_used" invisible="True" />
-          <field name="places_min" invislbe="True" />
+          <field name="places_min" invisible="True" />
           <field name="list_price" sum="True" />
         </tree>
       </field>
@@ -151,7 +152,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
+          <filter name="type_of_activity" string="Activity"
+           domain="[('type_of', '=', 'activity')]" />
+          <filter name="type_of_workshop" string="Workshop"
+           domain="[('type_of', '=', 'workshop')]" />
+          <filter name="type_of_training" string="Training"
+           domain="[('type_of', '=', 'training')]" />
           <group string="Group By">
+            <filter name="group_type_of" string="By type"
+              context="{'group_by': 'type_of'}" />
             <filter name="group_category" string="By category"
               context="{'group_by': 'categ_id'}"/>
             <filter name="group_weekday" string="By weekday"
