@@ -22,6 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Base data for activities -->
     <record model="product.category" id="golem_product_category_activities">
       <field name="name">Activités</field>
+      <field name="property_account_income_categ"
+        search="['code', '=', '706000']" />
+      <field name="property_account_expense_categ"
+        search="['code', '=', '604000']" />
     </record>
     <record model="product.category" id="golem_product_category_wellbeing">
       <field name="name">Bien-Être</field>
@@ -33,8 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="parent_id"
         eval="ref('golem_activity.golem_product_category_activities')" />
     </record>
-    <record model="product.category" id="golem_product_category_music">
-      <field name="name">Musique</field>
+    <record model="product.category" id="golem_product_category_dance">
+      <field name="name">Danse</field>
       <field name="parent_id"
         eval="ref('golem_activity.golem_product_category_activities')" />
     </record>
