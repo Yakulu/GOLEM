@@ -15,18 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM members minor and family',
-    'summary': 'GOLEM non-profit members family + minor management',
-    'description': 'Non-profit french MJC members family update to minor '
-    'management',
-    'version': '0.1',
-    'category': 'Non-profit management',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'auto_install': True,
-    'depends': ['golem_family', 'golem_member_minor'],
-    'data': []
-}
+from openerp import models, fields
+
+LEGAL_DMN = "['&', ('family_id', '=', family_id), ('id', '!=', partner_id)]"
+
+
+class GolemMember(models.Model):
+    _inherit = 'golem.member'
+
+    legal_guardian_ids = fields.Many2many(domain=LEGAL_DMN)
