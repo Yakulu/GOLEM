@@ -94,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="action" name="GOLEM Activities" res_model="golem.activity"
-      context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_all_activities')}" />
+      context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_activities')}" />
 
     <!-- Menus -->
     <menuitem id="activity_menu" name="Activities"

@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record model="product.category" id="golem_product_category_activities">
       <field name="name">Activités</field>
       <field name="property_account_income_categ"
-        search="['code', '=', '706000']" />
+        search="[('code', '=', '706000')]" />
       <field name="property_account_expense_categ"
-        search="['code', '=', '604000']" />
+        search="[('code', '=', '604000')]" />
     </record>
     <record model="product.category" id="golem_product_category_wellbeing">
       <field name="name">Bien-Être</field>
