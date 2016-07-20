@@ -35,7 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group name="minor_group">
               <group>
                 <field name="is_minor" invisible="True" />
-                <field name="legal_guardian"/>
+                <field name="legal_guardian"
+                  domain="[('id', '!=', partner_id)]" />
               </group>
               <group>
                 <field name="activities_participation"/>
