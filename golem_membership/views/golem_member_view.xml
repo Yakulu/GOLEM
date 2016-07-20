@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="free_member"/>
                 <label for="membership_state"/>
                 <div>
+                  <field name="partner_id" invisible="True" required="False" />
                   <field name="membership_state"/>
                   <button name="%(action_membership_invoice_view)d"
                     type="action" string="Buy Membership"
