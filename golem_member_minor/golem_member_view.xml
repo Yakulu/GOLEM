@@ -33,14 +33,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <page name="minor_page" string="Minor"
             attrs="{'invisible': [('is_minor', '=', False)]}">
             <group name="minor_group">
-              <group>
-                <field name="is_minor" invisible="True" />
-                <field name="legal_guardian"
-                  domain="[('id', '!=', partner_id)]" />
-              </group>
-              <group>
                 <field name="activities_participation"/>
-              </group>
+                <field name="partner_id" invisible="True" required="False" />
+                <field name="is_minor" invisible="True" />
+                <field name="legal_guardian_ids">
+                <tree name="legal_guardian_ids_tree">
+                    <field name="name" />
+                    <field name="contact_address" />
+                    <field name="phone" />
+                    <field name="mobile" />
+                    <field name="email" widget="email" />
+                  </tree>
+                </field>
             </group>
           </page>
         </page>

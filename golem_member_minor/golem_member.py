@@ -23,8 +23,11 @@ class GolemMember(models.Model):
     _inherit = 'golem.member'
 
     ADULT_DURATION = timedelta(days=365*18)
-    legal_guardian = fields.Many2one('res.partner', 'Legal guardian',
-                                     domain=[('is_company', '=', False)])
+    legal_guardian_ids = fields.Many2many('res.partner',
+                                          string='Legal guardians',
+                                          domain="['&', "
+                                          "('is_company', '=', False), "
+                                          "('id', '!=', partner_id)]")
     activities_participation = fields.Boolean('Activities participation?')
     is_minor = fields.Boolean('Is minor?', compute='_compute_is_minor',
                               store=True, default=False)
