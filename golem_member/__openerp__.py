@@ -20,7 +20,7 @@
     'summary': 'Extends Odoo contacts for MJC',
     'description': 'Non-profit french MJC members management',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,

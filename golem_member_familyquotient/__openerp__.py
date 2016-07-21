@@ -20,7 +20,7 @@
     'summary': 'GOLEM Members Family Quotients',
     'description': ''' Non-profit french MJC members family quotient ''',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,

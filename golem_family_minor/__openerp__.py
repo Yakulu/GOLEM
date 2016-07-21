@@ -21,7 +21,7 @@
     'description': 'Non-profit french MJC members family update to minor '
     'management',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,

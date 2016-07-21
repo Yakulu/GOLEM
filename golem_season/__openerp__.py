@@ -22,7 +22,7 @@
     Non-profit french MJC seasons management with dates ranges
     ''',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,

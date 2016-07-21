@@ -20,7 +20,7 @@
     'summary': 'GOLEM non-profit members skills management',
     'description': 'Non-profit french MJC members skills management',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
