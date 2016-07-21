@@ -20,12 +20,13 @@
     'summary': 'GOLEM Activities Session management',
     'description': ''' Non-profit french MJC activies session management ''',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'auto_install': True,
     'depends': ['product', 'mail', 'golem_activity', 'golem_member'],
-    'data': ['views/golem_activity_view.xml', 'views/golem_member_view.xml']
+    'data': ['security/ir.model.access.csv',
+             'views/golem_activity_view.xml', 'views/golem_member_view.xml']
 }

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_activity_session_user,Access GOLEM Activity Session User,model_golem_activity_session,golem_base.group_golem_user,1,1,1,1
+access_golem_activity_session_manager,Access GOLEM Activity Session Manager,model_golem_activity_session,golem_base.group_golem_manager,1,1,1,1

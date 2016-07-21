@@ -188,9 +188,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Menus -->
     <menuitem id="session_menu_list" name="Activities sessions"
       parent="golem_activity.activity_menu" action="session_action_list"
+      groups="golem_base.group_golem_user"
       sequence="10" />
     <menuitem  id="activity_categ" name="Categories"
       parent="golem_activity.activity_menu" sequence="10"
+      groups="golem_base.group_golem_manager"
       action="category_action" />
 
 
