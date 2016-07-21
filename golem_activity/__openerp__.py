@@ -20,11 +20,13 @@
     'summary': 'Extends Odoo products for multi-activity',
     'description': 'Multi-activities management',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
     'depends': ['product', 'golem_base', 'golem_season'],
-    'data': ['data/golem_activity_data.xml', 'views/golem_activity_view.xml']
+    'data': ['security/ir.model.access.csv',
+             'data/golem_activity_data.xml',
+             'views/golem_activity_view.xml']
 }
