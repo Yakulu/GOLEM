@@ -26,5 +26,6 @@
     'application': False,
     'installable': True,
     'depends': ['golem_member'],
-    'data': ['views/golem_member_view.xml', 'views/res_partner_view.xml']
+    'data': ['views/golem_member_view.xml', 'views/res_partner_view.xml',
+             'security/ir.model.access.csv']
 }

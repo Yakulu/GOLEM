@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_season_user,Access GOLEM Season User,model_golem_season,golem_base.group_golem_user,1,0,0,0
+access_golem_season_manager,Access GOLEM Season Manager,model_golem_season,golem_base.group_golem_manager,1,1,1,1

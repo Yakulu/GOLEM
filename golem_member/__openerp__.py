@@ -28,5 +28,5 @@
     'depends': ['golem_base', 'golem_activity', 'golem_season'],
     'data': ['views/golem_member_view.xml', 'views/members_menu.xml',
              'views/res_partner_view.xml', 'views/number_config.xml',
-             'data/number_config.xml']
+             'data/number_config.xml', 'security/ir.model.access.csv']
 }

@@ -141,7 +141,7 @@ class GolemMember(models.Model):
         self.is_number_manual = is_num_man
 
 
-class GolemMemberSeason(models.Model):
+class GolemMemberNumber(models.Model):
     """ GOLEM Member Numbers """
     _name = 'golem.member.number'
     _description = 'GOLEM Member Numbers'

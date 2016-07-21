@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_golem_activity_session_user,Access GOLEM Activity Session User,model_golem_activity_session,golem_base.group_golem_user,1,1,1,1
-access_golem_activity_session_manager,Access GOLEM Activity Session Manager,model_golem_activity_session,golem_base.group_golem_manager,1,1,1,1
+access_golem_product_template_user,Access GOLEM Product Template User,model_product_template,golem_base.group_golem_user,1,1,1,1
+access_golem_product_product_user,Access GOLEM Product Product User,product.model_product_product,golem_base.group_golem_user,1,1,1,1
+access_golem_product_pricehist_user,Access GOLEM Product Price History User,product.model_product_price_history,golem_base.group_golem_user,1,1,1,1

@@ -23,8 +23,8 @@ class ResPartner(models.Model):
     _description = 'GOLEM Partner Family'
 
     family_id = fields.Many2one('golem.family', string='Family', index=True)
-    family_role = fields.Many2one('golem.member.family.role',
-                                  string='Role', index=True)
+    family_role = fields.Many2one('golem.family.role', string='Role',
+                                  index=True)
     family_count = fields.Integer('Family Count', related='family_id.count')
 
     @api.multi
@@ -93,9 +93,9 @@ class GolemFamily(models.Model):
 
 
 class GolemFamilyRole(models.Model):
-    _name = 'golem.member.family.role'
-    _description = 'GOLEM Member Family Role'
-    _sql_constraints = [('golem_member_family_role_name_uniq',
+    _name = 'golem.family.role'
+    _description = 'GOLEM Family Role'
+    _sql_constraints = [('golem_family_role_name_uniq',
                          'UNIQUE (name)',
                          'Family role must be unique.')]
 

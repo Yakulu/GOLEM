@@ -60,13 +60,13 @@ msgstr "Pays"
 
 #. module: golem_family
 #: field:golem.family,create_uid:0
-#: field:golem.member.family.role,create_uid:0
+#: field:golem.family.role,create_uid:0
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: golem_family
 #: field:golem.family,create_date:0
-#: field:golem.member.family.role,create_date:0
+#: field:golem.family.role,create_date:0
 msgid "Created on"
 msgstr "Créé le"
 
@@ -77,7 +77,7 @@ msgstr "Date du dernier message posté sur l'enregistrement."
 
 #. module: golem_family
 #: field:golem.family,display_name:0
-#: field:golem.member.family.role,display_name:0
+#: field:golem.family.role,display_name:0
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -122,7 +122,7 @@ msgid "Family members"
 msgstr "Membres de la famille"
 
 #. module: golem_family
-#: sql_constraint:golem.member.family.role:0
+#: sql_constraint:golem.family.role:0
 msgid "Family role must be unique."
 msgstr "Les rôles familiaux doivent être uniques."
 
@@ -152,7 +152,7 @@ msgid "GOLEM Member"
 msgstr "GOLEM : Adhérent"
 
 #. module: golem_family
-#: model:ir.model,name:golem_family.model_golem_member_family_role
+#: model:ir.model,name:golem_family.model_golem_family_role
 msgid "GOLEM Member Family Role"
 msgstr "GOLEM : rôle du membre de la famille"
 
@@ -168,7 +168,7 @@ msgstr "Contient le résumé des discussions (nombre de message...). Ce résumé
 
 #. module: golem_family
 #: field:golem.family,id:0
-#: field:golem.member.family.role,id:0
+#: field:golem.family.role,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -189,19 +189,19 @@ msgstr "Last Message Date"
 
 #. module: golem_family
 #: field:golem.family,__last_update:0
-#: field:golem.member.family.role,__last_update:0
+#: field:golem.family.role,__last_update:0
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: golem_family
 #: field:golem.family,write_uid:0
-#: field:golem.member.family.role,write_uid:0
+#: field:golem.family.role,write_uid:0
 msgid "Last Updated by"
 msgstr "Dernière modification par"
 
 #. module: golem_family
 #: field:golem.family,write_date:0
-#: field:golem.member.family.role,write_date:0
+#: field:golem.family.role,write_date:0
 msgid "Last Updated on"
 msgstr "Dernière modification le"
 
@@ -258,7 +258,7 @@ msgstr "Rédigez une note interne..."
 
 #. module: golem_family
 #: field:golem.member,family_role:0
-#: field:golem.member.family.role,name:0
+#: field:golem.family.role,name:0
 #: field:res.partner,family_role:0
 msgid "Role"
 msgstr "Rôle"

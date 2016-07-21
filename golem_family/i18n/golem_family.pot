@@ -59,13 +59,13 @@ msgstr ""
 
 #. module: golem_family
 #: field:golem.family,create_uid:0
-#: field:golem.member.family.role,create_uid:0
+#: field:golem.family.role,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: golem_family
 #: field:golem.family,create_date:0
-#: field:golem.member.family.role,create_date:0
+#: field:golem.family.role,create_date:0
 msgid "Created on"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 
 #. module: golem_family
 #: field:golem.family,display_name:0
-#: field:golem.member.family.role,display_name:0
+#: field:golem.family.role,display_name:0
 msgid "Display Name"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgid "Family members"
 msgstr ""
 
 #. module: golem_family
-#: sql_constraint:golem.member.family.role:0
+#: sql_constraint:golem.family.role:0
 msgid "Family role must be unique."
 msgstr ""
 
@@ -151,7 +151,7 @@ msgid "GOLEM Member"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.model,name:golem_family.model_golem_member_family_role
+#: model:ir.model,name:golem_family.model_golem_family_role
 msgid "GOLEM Member Family Role"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgstr ""
 
 #. module: golem_family
 #: field:golem.family,id:0
-#: field:golem.member.family.role,id:0
+#: field:golem.family.role,id:0
 msgid "ID"
 msgstr ""
 
@@ -188,19 +188,19 @@ msgstr ""
 
 #. module: golem_family
 #: field:golem.family,__last_update:0
-#: field:golem.member.family.role,__last_update:0
+#: field:golem.family.role,__last_update:0
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_family
 #: field:golem.family,write_uid:0
-#: field:golem.member.family.role,write_uid:0
+#: field:golem.family.role,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_family
 #: field:golem.family,write_date:0
-#: field:golem.member.family.role,write_date:0
+#: field:golem.family.role,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 
 #. module: golem_family
 #: field:golem.member,family_role:0
-#: field:golem.member.family.role,name:0
+#: field:golem.family.role,name:0
 #: field:res.partner,family_role:0
 msgid "Role"
 msgstr ""

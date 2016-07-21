@@ -105,7 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
     <record id="family_role_tree" model="ir.ui.view">
       <field name="name">Family Role List</field>
-      <field name="model">golem.member.family.role</field>
+      <field name="model">golem.family.role</field>
       <field name="arch" type="xml">
         <tree editable="top">
           <field name="name" />
@@ -137,14 +137,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <act_window id="family_action_list" name="GOLEM Family List"
       res_model="golem.family" view_mode="tree,form" />
     <act_window id="family_role_action" name="GOLEM Family Role List"
-      res_model="golem.member.family.role" view_mode="tree" />
+      res_model="golem.family.role" view_mode="tree" />
     <!-- Menus -->
     <menuitem id="family_menu_list" name="Families"
       parent="membership.menu_membership" action="family_action_list"
-      sequence="10" />
+      sequence="10" groups="golem_base.group_golem_user" />
     <menuitem id="family_role_menu_list" name="Family Roles"
       parent="base.menu_marketing_config_association"
-      action="family_role_action" sequence="3" />
+      action="family_role_action" sequence="3"
+      groups="golem_base.group_golem_manager" />
 
   </data>
 </openerp>

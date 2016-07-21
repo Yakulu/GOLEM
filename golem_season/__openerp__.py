@@ -28,5 +28,5 @@
     'application': False,
     'installable': True,
     'depends': ['golem_base'],
-    'data': ['views/golem_season_view.xml']
+    'data': ['security/ir.model.access.csv', 'views/golem_season_view.xml']
 }

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_family_user,Access GOLEM Family User,model_golem_family,golem_base.group_golem_user,1,1,1,1
+access_golem_family_role_user,Access GOLEM Family Role User,model_golem_family_role,golem_base.group_golem_user,1,0,0,0
+access_golem_family_role_manager,Access GOLEM Family Role Manager,model_golem_family_role,golem_base.group_golem_manager,1,1,1,1

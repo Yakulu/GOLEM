@@ -182,9 +182,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Menu items -->
     <menuitem id="golem_members_menu" name="GOLEM Members"
       parent="membership.menu_membership" sequence="5"
-      action="action" />
+      action="action" groups="golem_base.group_golem_user" />
+    <menuitem id="golem_members_contacts" name="Contacts"
+      parent="membership.menu_membership" sequence="20"
+      action="contacts.action_contacts" groups="golem_base.group_golem_user" />
     <menuitem id="golem_members_menu_tags" name="Member Tags"
       parent="base.menu_marketing_config_association" sequence="10"
-      action="tags_action_list" />
+      action="tags_action_list" groups="golem_base.group_golem_manager" />
   </data>
 </openerp>
