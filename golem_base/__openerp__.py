@@ -19,7 +19,7 @@
     'name': 'GOLEM base module for global dependencies',
     'summary': 'GOLEM base installs base and shared dependencies for GOLEM',
     'version': '0.1',
-    'category': 'Non-profit management',
+    'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
@@ -30,5 +30,6 @@
                 'l10n_fr_state', 'l10n_fr_department', 'l10n_fr_tax_sale_ttc',
                 'l10n_fr_siret',
                 'web_widget_phone_check_fr', 'web_widget_email_check',
-                'web_widget_url_check']
+                'web_widget_url_check'],
+    'data': ['security/golem_security.xml']
 }
