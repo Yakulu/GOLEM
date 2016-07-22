@@ -34,5 +34,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="implied_ids" eval="[(4, ref('group_golem_user'))]"/>
       <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
+    <!-- Hide Default Articles Menu for all except root -->
+    <record id="account.menu_finance_payables" model="ir.ui.menu">
+      <field name="groups_id"
+        eval="[(6, 0, [ref('base.group_erp_manager')])]" />
+    </record>
+    <!-- Membership products only for managers -->
+    <record id="membership.menu_membership_products" model="ir.ui.menu">
+      <field name="groups_id"
+        eval="[(4, ref('golem_base.group_golem_manager'))]" />
+    </record>
+    <!-- Members Analysis for managers only -->
+    <record id="membership.menu_report_membership" model="ir.ui.menu">
+      <field name="groups_id"
+        eval="[(6, 0, [ref('golem_base.group_golem_manager')])]" />
+    </record>
   </data>
 </openerp>

@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       name="Member skills"
       parent="base.menu_marketing_config_association"
       action="skills_action_list"
-      sequence="5" />
+      sequence="5" groups="golem_base.group_golem_manager" />
 
   </data>
 </openerp>
