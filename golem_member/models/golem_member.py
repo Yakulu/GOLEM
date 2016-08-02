@@ -64,7 +64,9 @@ class GolemMember(models.Model):
                                 help='Manual number overwriting automatic '
                                 'numbering')
     pictures_agreement = fields.Boolean('Pictures agreement?')
-    opt_out_sms = fields.Boolean('Out of SMS campaigns')
+    opt_out_sms = fields.Boolean('Out of SMS campaigns?',
+                                 help='If this field has been checked, it '
+                                 'tells that the user refuses to receive SMS')
     season_ids = fields.Many2many('golem.season', string='Seasons',
                                   required=True, default=_default_season,
                                   ondelete='restrict')
