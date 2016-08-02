@@ -70,7 +70,7 @@ class GolemSeason(models.Model):
         if 'golem.member' in self.env.registry:
             all_members = self.env['golem.member'].search([])
             all_members._compute_is_current()
-            all_members._compute_number()
+            all_members._generate_number()
         if 'golem.activity' in self.env.registry:
             self.env['golem.activity'].search([])._compute_is_current()
 
