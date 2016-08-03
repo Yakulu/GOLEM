@@ -78,7 +78,6 @@ class GolemSeason(models.Model):
     @api.returns('self', lambda rec: rec.id)
     def create(self, values):
         """ If the season if the first one created, it must be by default """
-        print values
         if self.search_count([]) == 0:
             values['is_default'] = True
         return super(GolemSeason, self).create(values)
