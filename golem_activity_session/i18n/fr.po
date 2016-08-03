@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 14:49+0000\n"
-"PO-Revision-Date: 2016-08-03 14:49+0000\n"
+"POT-Creation-Date: 2016-08-03 15:20+0000\n"
+"PO-Revision-Date: 2016-08-03 15:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -473,16 +473,10 @@ msgid "Net Weight"
 msgstr "Net Weight"
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:229
+#: code:addons/golem_activity_session/models/golem_activity_session.py:215
 #, python-format
 msgid "Number of places cannot be negative."
 msgstr "Le nombre de places ne peut pas être négatif"
-
-#. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:232
-#, python-format
-msgid "Overbooked places cannot be inferior than places"
-msgstr "Le nombre de places avec surcharge ne peut être inférieur aux places"
 
 #. module: golem_activity_session
 #: field:golem.activity.session,places:0
@@ -623,7 +617,7 @@ msgid "Small-sized image of the product. It is automatically resized as a 64x64p
 msgstr "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:212
+#: code:addons/golem_activity_session/models/golem_activity_session.py:205
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr "Désolé mais il n'y a plus de place disponible !"

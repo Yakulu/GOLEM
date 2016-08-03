@@ -188,21 +188,14 @@ class GolemActivitySession(models.Model):
                                                'after end of the period.'))
 
     places = fields.Integer('Places', default=0)
-    places_min = fields.Integer('Minimum places', default=0,
-                                help='Minimum places to maintain the session')
-    is_overbooked = fields.Boolean('Allow overbook?', default=False)
-    places_overbooked = fields.Integer('Places with overbook', default=0)
     places_remain = fields.Integer('Remaining places', store=True,
                                    compute='_compute_places_remain')
 
-    @api.depends('places', 'is_overbooked', 'places_overbooked', 'member_ids')
+    @api.depends('places', 'member_ids')
     def _compute_places_remain(self):
         for s in self:
             used = len(s.member_ids)
-            if not s.is_overbooked:
-                s.places_remain = s.places - used
-            else:
-                s.places_remain = s.places_overbooked - used
+            s.places_remain = s.places - used
 
     @api.constrains('places_remain')
     def _check_remaining_places(self):
@@ -212,22 +205,12 @@ class GolemActivitySession(models.Model):
                 emsg = _('Sorry, there is no more place !')
                 raise models.ValidationError(emsg)
 
-    @api.onchange('is_overbooked', 'places')
-    def onchange_is_overbooked(self):
-        for s in self:
-            if s.places and s.is_overbooked:
-                if not s.places_overbooked or (s.places_overbooked < s.places):
-                    s.places_overbooked = s.places + 1
-
-    @api.constrains('places', 'places_overbooked')
+    @api.constrains('places')
     def _check_places(self):
         """ Check integers are signed and overbooked to be superior than
         normal places """
         for v in self:
-            for f in ['places', 'places_overbooked']:
+            for f in ['places']:
                 if v[f] < 0:
                     emsg = _('Number of places cannot be negative.')
                     raise models.ValidationError(emsg)
-            if v.is_overbooked and (v.places_overbooked <= v.places):
-                emsg = _('Overbooked places cannot be inferior than places')
-                raise models.ValidationError(emsg)

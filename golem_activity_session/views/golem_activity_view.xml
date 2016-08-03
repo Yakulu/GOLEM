@@ -50,10 +50,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="animator_id" />
                 <field name="type_of" />
                 <field name="places" />
-                <field name="places_min" />
-                <field name="is_overbooked" />
-                <field name="places_overbooked"
-                  attrs="{'invisible': [('is_overbooked', '=', False)]}" />
               </group>
               <group>
                 <field name="is_recurrent" />
@@ -107,8 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">Session list</field>
       <field name="model">golem.activity.session</field>
       <field name="arch" type="xml">
-        <tree colors="darkgrey: places_used &lt; places_min;
-          red: places_remain == 0;
+        <tree colors="red: places_remain == 0;
           orange: places_remain &lt;= 4;">
           <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
@@ -120,8 +115,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               attrs="{'invisible': [('is_recurrent', '=', True)]}" />
           <field name="places" invisible="True" />
           <field name="places_remain" string="Remain" />
-          <field name="places_used" invisible="True" />
-          <field name="places_min" invisible="True" />
           <field name="list_price" sum="True" />
         </tree>
       </field>
