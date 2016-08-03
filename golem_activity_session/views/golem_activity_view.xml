@@ -152,6 +152,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
+          <filter name="full_session" string="Full"
+           domain="[('places_remain', '=', 0)]" />
           <filter name="type_of_activity" string="Activity"
            domain="[('type_of', '=', 'activity')]" />
           <filter name="type_of_workshop" string="Workshop"
