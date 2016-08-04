@@ -50,7 +50,7 @@ class GolemActivity(models.Model):
     def _check_period(self):
         """ Check if end date if after start date """
         for a in self:
-            if a.date_start > a.date_end:
+            if a.date_start and a.date_end and a.date_start > a.date_end:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
 
