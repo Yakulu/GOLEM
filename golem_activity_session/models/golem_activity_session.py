@@ -63,6 +63,10 @@ class GolemActivitySession(models.Model):
     _inherits = {'product.template': 'product_id'}
     _rec_name = 'session_name'
 
+    _sql_constraints = [('golem_activity_session_places_signed',
+                         'CHECK (places >= 0)',
+                         _('Number of places cannot be negative.'))]
+
     product_id = fields.Many2one('product.template', required=True,
                                  ondelete='cascade')
     default_code = fields.Char(copy=True)  # Copy the default code
@@ -204,13 +208,3 @@ class GolemActivitySession(models.Model):
             if s.places_remain < 0:
                 emsg = _('Sorry, there is no more place !')
                 raise models.ValidationError(emsg)
-
-    @api.constrains('places')
-    def _check_places(self):
-        """ Check integers are signed and overbooked to be superior than
-        normal places """
-        for v in self:
-            for f in ['places']:
-                if v[f] < 0:
-                    emsg = _('Number of places cannot be negative.')
-                    raise models.ValidationError(emsg)
