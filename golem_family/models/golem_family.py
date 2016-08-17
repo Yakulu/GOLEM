@@ -86,6 +86,7 @@ class GolemFamily(models.Model):
     note = fields.Text('Note')
     count = fields.Integer('Count', compute='_compute_count', store=True)
 
+    @api.one
     @api.depends('member_ids')
     def _compute_count(self):
         self.count = len(self.member_ids)
