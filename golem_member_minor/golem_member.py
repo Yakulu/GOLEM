@@ -32,7 +32,6 @@ class GolemMember(models.Model):
     is_minor = fields.Boolean('Is minor?', compute='_compute_is_minor',
                               store=True, default=False)
 
-    @api.one
     @api.depends('birthdate_date')
     def _compute_is_minor(self):
         if (self.birthdate_date):
