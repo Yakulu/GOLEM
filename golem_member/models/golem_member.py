@@ -78,13 +78,14 @@ class GolemMember(models.Model):
                          'UNIQUE (number_manual)',
                          _('This member number has already been used.'))]
 
+    @api.one
     @api.depends('season_ids')
     def _compute_is_current(self):
         """ Computes is current according to seasons """
         default_s = self._default_season()
-        for m in self:
-            m.is_current = default_s in m.season_ids
+        self.is_current = default_s in self.season_ids
 
+    @api.one
     @api.depends('number')
     def _compute_is_number_manual(self):
         conf = self.env['ir.config_parameter']
@@ -183,10 +184,10 @@ class GolemMemberNumber(models.Model):
                                 auto_join=True)
     number = fields.Char('Number', index=True, readonly=True)
 
+    @api.one
     @api.depends('season_id')
     def _compute_name(self):
-        for row in self:
-            row.name = row.season_id.name
+        self.name = self.season_id.name
 
 
 class GolemNumberConfig(models.TransientModel):

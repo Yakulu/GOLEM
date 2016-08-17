@@ -84,14 +84,14 @@ class GolemActivitySession(models.Model):
     session_name = fields.Char('Name', compute='_compute_full_name',
                                store=True, index=True)
 
+    @api.one
     @api.depends('name', 'default_code')
     def _compute_full_name(self):
         """ Provide a better displayed name """
-        for s in self:
-            session_name = unicode(s.name)
-            if s.default_code:
-                session_name = u'[{}] {}'.format(s.default_code, session_name)
-            s.session_name = session_name
+        session_name = unicode(self.name)
+        if self.default_code:
+            session_name = u'[{}] {}'.format(self.default_code, session_name)
+        self.session_name = session_name
 
     member_ids = fields.Many2many('golem.member', string='Members')
     type_of = fields.Selection([('activity', _('Activity')),
@@ -109,10 +109,10 @@ class GolemActivitySession(models.Model):
 
     places_used = fields.Integer('Places used', compute='_compute_places_used')
 
+    @api.one
     @api.depends('member_ids')
     def _compute_places_used(self):
-        for s in self:
-            s.places_used = len(s.member_ids)
+        self.places_used = len(self.member_ids)
 
     # TODO: to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activity',
@@ -195,11 +195,11 @@ class GolemActivitySession(models.Model):
     places_remain = fields.Integer('Remaining places', store=True,
                                    compute='_compute_places_remain')
 
+    @api.one
     @api.depends('places', 'member_ids')
     def _compute_places_remain(self):
-        for s in self:
-            used = len(s.member_ids)
-            s.places_remain = s.places - used
+        used = len(self.member_ids)
+        self.places_remain = self.places - used
 
     @api.constrains('places_remain')
     def _check_remaining_places(self):
