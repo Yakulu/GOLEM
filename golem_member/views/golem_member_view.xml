@@ -171,12 +171,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="golem.member"
       view_mode="kanban,tree,form,graph"
       context="{'search_default_season_default': True}" />
-    <record model="ir.actions.act_window.view"
-      id="view_kanban">
-      <field name="view_mode">kanban</field>
-      <field name="view_id" ref="base.res_partner_kanban_view"/>
-      <field name="act_window_id" ref="action"/>
-    </record>
     <act_window id="tags_action_list" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
 
