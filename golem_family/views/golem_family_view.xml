@@ -89,6 +89,65 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Kanban -->
+    <record model="ir.ui.view" id="family_kanban">
+      <field name="name">GOLEM Family Kanban view</field>
+      <field name="model">golem.family</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="count" />
+          <field name="name" />
+          <field name="email" />
+          <field name="phone" />
+          <field name="mobile" />
+          <field name="city" />
+          <field name="country_id" />
+          <field name="member_ids" />
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_vignette oe_semantic_html_override">
+                <div class="oe_kanban_details">
+                  <h4 class="oe_partner_heading">
+                    <a type="open"><field name="name" /></a>
+                  </h4>
+                  <div class="oe_kanban_partner_links" />
+                  <ul>
+                    <li t-if="record.city.raw_value and !record.country_id.raw_value">
+                      <field name="city" />
+                    </li>
+                    <li t-if="!record.city.raw_value and record.country_id.raw_value">
+                      <field name="country_id" />
+                    </li>
+                    <li t-if="record.city.raw_value and record.country_id.raw_value">
+                      <field name="city" />, <field name="country_id" />
+                    </li>
+                    <li t-if="record.phone.raw_value or record.mobile.raw_value">
+                      <a t-attf-href="tel:#{record.phone.raw_value}">
+                        <field name="phone" />
+                      </a>
+                      <a t-attf-href="tel:#{record.mobile.raw_value}">
+                        <field name="mobile" />
+                      </a>
+                    </li>
+                    <li t-if="record.email.raw_value">
+                      <a t-attf-href="mailto:#{record.email.raw_value}">
+                        <field name="email" />
+                      </a>
+                    </li>
+                  </ul>
+                  <field name="count" /> members <span t-if="record.count != 0"> :
+                    <t t-foreach="record.member_ids.raw_value" t-as="member">
+                      <t t-esc="member.name" />
+                    </t>
+                  </span>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
     <!-- Trees -->
     <record id="family_tree" model="ir.ui.view">
       <field name="name">Family list</field>
@@ -135,7 +194,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="family_action_list" name="GOLEM Family List"
-      res_model="golem.family" view_mode="tree,form" />
+      res_model="golem.family" view_mode="kanban,tree,form" />
     <act_window id="family_role_action" name="GOLEM Family Role List"
       res_model="golem.family.role" view_mode="tree" />
     <!-- Menus -->
