@@ -30,6 +30,6 @@
                 'l10n_fr_state', 'l10n_fr_department', 'l10n_fr_tax_sale_ttc',
                 'l10n_fr_siret',
                 'web_widget_phone_check_fr', 'web_widget_email_check',
-                'web_widget_url_check'],
+                'web_widget_url_check', 'web_one2many_kanban'],
     'data': ['security/golem_security.xml']
 }
