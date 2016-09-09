@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-11 18:06+0000\n"
-"PO-Revision-Date: 2016-07-11 18:06+0000\n"
+"POT-Creation-Date: 2016-09-09 09:06+0000\n"
+"PO-Revision-Date: 2016-09-09 09:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr ""
 
 #. module: golem_family
 #: code:addons/golem_family/models/golem_family.py:33
-#: code:addons/golem_family/models/golem_family.py:46
+#: code:addons/golem_family/models/golem_family.py:53
 #, python-format
 msgid "Family Members"
 msgstr ""
@@ -141,6 +141,11 @@ msgid "GOLEM Family List"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.model,name:golem_family.model_golem_family_role
+msgid "GOLEM Family Role"
+msgstr ""
+
+#. module: golem_family
 #: model:ir.actions.act_window,name:golem_family.family_role_action
 msgid "GOLEM Family Role List"
 msgstr ""
@@ -148,11 +153,6 @@ msgstr ""
 #. module: golem_family
 #: model:ir.model,name:golem_family.model_golem_member
 msgid "GOLEM Member"
-msgstr ""
-
-#. module: golem_family
-#: model:ir.model,name:golem_family.model_golem_family_role
-msgid "GOLEM Member Family Role"
 msgstr ""
 
 #. module: golem_family
@@ -256,8 +256,8 @@ msgid "Put an internal note..."
 msgstr ""
 
 #. module: golem_family
-#: field:golem.member,family_role:0
 #: field:golem.family.role,name:0
+#: field:golem.member,family_role:0
 #: field:res.partner,family_role:0
 msgid "Role"
 msgstr ""
@@ -317,6 +317,11 @@ msgstr ""
 #: view:golem.member:golem_family.golem_member_family_smartbtn_add
 #: view:res.partner:golem_family.res_partner_family_smartbtn_add
 msgid "family members"
+msgstr ""
+
+#. module: golem_family
+#: view:golem.family:golem_family.family_kanban
+msgid "members"
 msgstr ""
 
 #. module: golem_family
