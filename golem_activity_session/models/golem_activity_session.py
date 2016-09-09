@@ -54,6 +54,8 @@ class ProductTemplate(models.Model):
 
     # Make default service for type
     type = fields.Selection(default='service')
+    # Copy the default code
+    default_code = fields.Char(copy=True)
 
 
 class GolemActivitySession(models.Model):
@@ -69,7 +71,6 @@ class GolemActivitySession(models.Model):
 
     product_id = fields.Many2one('product.template', required=True,
                                  ondelete='cascade')
-    default_code = fields.Char(copy=True)  # Copy the default code
 
     @api.model
     def _default_name(self):
