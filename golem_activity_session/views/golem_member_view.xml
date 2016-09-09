@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <page name="other_page" position="before">
           <page name="sessions" string="Activities">
+            <p>Default season activities</p>
             <field name="activity_session_ids"
               context="{'search_default_season_default': True}" />
           </page>

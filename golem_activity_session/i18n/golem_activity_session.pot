@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 15:20+0000\n"
-"PO-Revision-Date: 2016-08-03 15:20+0000\n"
+"POT-Creation-Date: 2016-09-09 14:08+0000\n"
+"PO-Revision-Date: 2016-09-09 14:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "Activities sessions"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:93
+#: code:addons/golem_activity_session/models/golem_activity_session.py:98
 #: view:golem.activity.session:golem_activity_session.searches
 #: field:golem.activity.session,activity_id:0
 #: selection:golem.activity.session,type_of:0
@@ -69,11 +69,6 @@ msgstr ""
 #: code:addons/golem_activity_session/models/golem_activity_session.py:43
 #, python-format
 msgid "Activity Sessions"
-msgstr ""
-
-#. module: golem_activity_session
-#: field:golem.activity.session,is_overbooked:0
-msgid "Allow overbook?"
 msgstr ""
 
 #. module: golem_activity_session
@@ -213,13 +208,13 @@ msgid "Default Unit of Measure used for purchase orders. It must be in the same 
 msgstr ""
 
 #. module: golem_activity_session
-#: field:golem.activity.session,default_code:0
-msgid "Default code"
+#: view:golem.activity.session:golem_activity_session.searches
+msgid "Default season"
 msgstr ""
 
 #. module: golem_activity_session
-#: view:golem.activity.session:golem_activity_session.searches
-msgid "Default season"
+#: view:golem.member:golem_activity_session.sessions_inscription
+msgid "Default season activities"
 msgstr ""
 
 #. module: golem_activity_session
@@ -243,7 +238,7 @@ msgid "End date"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:161
+#: code:addons/golem_activity_session/models/golem_activity_session.py:166
 #, python-format
 msgid "End of the session cannot be after the end of activity date"
 msgstr ""
@@ -264,7 +259,7 @@ msgid "Followers"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:169
+#: code:addons/golem_activity_session/models/golem_activity_session.py:174
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Friday"
@@ -343,6 +338,11 @@ msgstr ""
 #. module: golem_activity_session
 #: field:golem.activity.session,categ_id:0
 msgid "Internal Category"
+msgstr ""
+
+#. module: golem_activity_session
+#: field:golem.activity.session,default_code:0
+msgid "Internal Reference"
 msgstr ""
 
 #. module: golem_activity_session
@@ -442,17 +442,7 @@ msgid "Messages and communication history"
 msgstr ""
 
 #. module: golem_activity_session
-#: field:golem.activity.session,places_min:0
-msgid "Minimum places"
-msgstr ""
-
-#. module: golem_activity_session
-#: help:golem.activity.session,places_min:0
-msgid "Minimum places to maintain the session"
-msgstr ""
-
-#. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:165
+#: code:addons/golem_activity_session/models/golem_activity_session.py:170
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Monday"
@@ -470,7 +460,8 @@ msgid "Net Weight"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:215
+#: code:addons/golem_activity_session/models/golem_activity_session.py:70
+#: sql_constraint:golem.activity.session:0
 #, python-format
 msgid "Number of places cannot be negative."
 msgstr ""
@@ -483,11 +474,6 @@ msgstr ""
 #. module: golem_activity_session
 #: field:golem.activity.session,places_used:0
 msgid "Places used"
-msgstr ""
-
-#. module: golem_activity_session
-#: field:golem.activity.session,places_overbooked:0
-msgid "Places with overbook"
 msgstr ""
 
 #. module: golem_activity_session
@@ -566,7 +552,7 @@ msgid "Sale Price"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:170
+#: code:addons/golem_activity_session/models/golem_activity_session.py:175
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Saturday"
@@ -614,7 +600,7 @@ msgid "Small-sized image of the product. It is automatically resized as a 64x64p
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:205
+#: code:addons/golem_activity_session/models/golem_activity_session.py:210
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr ""
@@ -635,19 +621,19 @@ msgid "Start date"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:187
+#: code:addons/golem_activity_session/models/golem_activity_session.py:192
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:153
+#: code:addons/golem_activity_session/models/golem_activity_session.py:158
 #, python-format
 msgid "Start of the session cannot be after end of the session."
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:157
+#: code:addons/golem_activity_session/models/golem_activity_session.py:162
 #, python-format
 msgid "Start of the session cannot be before the start of activity date"
 msgstr ""
@@ -668,7 +654,7 @@ msgid "Summary"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:171
+#: code:addons/golem_activity_session/models/golem_activity_session.py:176
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Sunday"
@@ -735,14 +721,14 @@ msgid "This is the average delay in days between the purchase order confirmation
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:168
+#: code:addons/golem_activity_session/models/golem_activity_session.py:173
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Thursday"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:95
+#: code:addons/golem_activity_session/models/golem_activity_session.py:100
 #: view:golem.activity.session:golem_activity_session.searches
 #: selection:golem.activity.session,type_of:0
 #, python-format
@@ -755,7 +741,7 @@ msgid "True"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:166
+#: code:addons/golem_activity_session/models/golem_activity_session.py:171
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Tuesday"
@@ -797,7 +783,7 @@ msgid "Warranty"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:167
+#: code:addons/golem_activity_session/models/golem_activity_session.py:172
 #: selection:golem.activity.session,weekday:0
 #, python-format
 msgid "Wednesday"
@@ -814,7 +800,7 @@ msgid "Work in progress"
 msgstr ""
 
 #. module: golem_activity_session
-#: code:addons/golem_activity_session/models/golem_activity_session.py:94
+#: code:addons/golem_activity_session/models/golem_activity_session.py:99
 #: view:golem.activity.session:golem_activity_session.searches
 #: selection:golem.activity.session,type_of:0
 #, python-format
