@@ -172,6 +172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Activities Sessions List</field>
       <field name="res_model">golem.activity.session</field>
       <field name="view_mode">tree,form,calendar</field>
+      <field name="context">{'search_default_season_default': True}</field>
       <!--<field name="view_id" ref="product.product_template_kanban_view"/>-->
     </record>
     <record id="category_action" model="ir.actions.act_window">
