@@ -16,16 +16,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM Activity Sessions',
-    'summary': 'GOLEM Activities Session management',
-    'description': ''' Non-profit french MJC activies session management ''',
+    'name': 'GOLEM Activity Session Member Registrations',
+    'summary': 'GOLEM Activities Session Member Registrations management',
+    'description': ''' Non-profit french MJC activities session member
+    registrations management ''',
     'version': '0.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'auto_install': True,
-    'depends': ['product', 'mail', 'golem_activity', 'golem_member'],
-    'data': ['security/ir.model.access.csv', 'views/golem_activity_view.xml']
+    'depends': ['golem_activity_session', 'golem_member'],
+    'data': ['views/golem_activity_session_registration_view.xml',
+             'views/golem_member_view.xml']
 }

@@ -18,13 +18,6 @@
 from openerp import models, fields, api, _
 
 
-class GolemMember(models.Model):
-    _inherit = 'golem.member'
-
-    activity_session_ids = fields.Many2many('golem.activity.session',
-                                            string='Activities')
-
-
 class GolemActivity(models.Model):
     _inherit = 'golem.activity'
 
