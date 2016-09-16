@@ -185,7 +185,7 @@ class GolemActivitySession(models.Model):
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
 
-    places = fields.Integer('Places', default=0)
+    places = fields.Integer('Places', default=20)
     places_remain = fields.Integer('Remaining places', store=True,
                                    compute='_compute_places_remain')
 
