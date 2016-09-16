@@ -53,6 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record id="searches" model="ir.ui.view">
       <field name="name">GOLEM Activity Sessions Searches</field>
       <field name="model">golem.activity.session</field>
+      <field name="inherit_id" ref="golem_activity_session.searches" />
       <field name="arch" type="xml">
         <search>
           <filter name="full_session" string="Full"
