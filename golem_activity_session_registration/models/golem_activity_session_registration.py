@@ -15,7 +15,7 @@
 #    you should have received a copy of the gnu affero general public license
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class GolemMember(models.Model):
@@ -40,3 +40,17 @@ class GolemActivitySessionRegistration(models.Model):
                                       ondelete='set null')
     season_id = fields.Many2one(string='Season',
                                 related='session_id.season_id')
+
+    season_default_id = fields.Many2one('golem.season', 'Default season',
+                                        compute='_compute_season_default')
+
+    @api.one
+    @api.depends('session_id')
+    def _compute_season_default(self):
+        """ Compute default season """
+        domain = [('is_default', '=', True)]
+        self.season_default_id = self.env['golem.season'].search(domain).id
+        # if 'default_season_id' not in self.env.context:
+        #     ctx = self.env.context.copy()
+        #     ctx.update({'default_season_id': self._default_season()})
+        #     self.with_context(ctx)

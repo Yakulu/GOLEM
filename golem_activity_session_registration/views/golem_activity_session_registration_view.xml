@@ -17,6 +17,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <openerp>
   <data>
+    <!-- Form -->
+    <record id="registration_form" model="ir.ui.view">
+      <field name="name">Session registration form</field>
+      <field name="model">golem.activity.session.registration</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Subscription">
+              <field name="member_id" invisible="1" />
+              <field name="session_id" />
+              <field name="season_id" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
     <!-- Tree -->
     <record id="registration_tree" model="ir.ui.view">
       <field name="name">Session registration list</field>
@@ -31,13 +49,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </tree>
       </field>
     </record>
+
     <!-- Search -->
+
     <!-- Action -->
     <record id="registration_action_list" model="ir.actions.act_window">
       <field name="name">GOLEM Activity Session Registration List</field>
       <field name="res_model">golem.activity.session.registration</field>
       <field name="view_mode">tree</field>
     </record>
+
     <!-- Menu -->
     <menuitem id="registration_menu_list" name="Session registrations"
       parent="golem_activity.activity_menu" action="registration_action_list"
