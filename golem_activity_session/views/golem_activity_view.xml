@@ -49,7 +49,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="activity_id" />
                 <field name="animator_id" />
                 <field name="type_of" />
-                <field name="places" />
               </group>
               <group>
                 <field name="is_recurrent" />
@@ -66,13 +65,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </group>
             </group>
             <notebook>
-              <page string="Members">
-                <group>
-                  <field name="places_remain" readonly="True" />
-                  <field name="member_ids"
-                    context="{'search_default_season_default': True}" />
-                </group>
-              </page>
               <page string="Service">
                 <group>
                   <group>
@@ -103,8 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">Session list</field>
       <field name="model">golem.activity.session</field>
       <field name="arch" type="xml">
-        <tree colors="red: places_remain == 0;
-          orange: places_remain &lt;= 4;">
+        <tree>
           <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
           <field name="type_of" />
@@ -113,8 +104,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               attrs="{'invisible': [('is_recurrent', '=', False)]}" />
           <field name="date_start" string="Date"
               attrs="{'invisible': [('is_recurrent', '=', True)]}" />
-          <field name="places" invisible="True" />
-          <field name="places_remain" string="Remain" />
           <field name="list_price" sum="True" />
         </tree>
       </field>
@@ -145,8 +134,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
-          <filter name="full_session" string="Full"
-           domain="[('places_remain', '=', 0)]" />
           <filter name="type_of_activity" string="Activity"
            domain="[('type_of', '=', 'activity')]" />
           <filter name="type_of_workshop" string="Workshop"

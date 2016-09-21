@@ -26,6 +26,6 @@
     'application': False,
     'installable': True,
     'auto_install': True,
-    'depends': ['product', 'mail', 'golem_activity', 'golem_member'],
+    'depends': ['product', 'mail', 'golem_activity'],
     'data': ['security/ir.model.access.csv', 'views/golem_activity_view.xml']
 }

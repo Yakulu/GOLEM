@@ -58,10 +58,6 @@ class GolemActivitySession(models.Model):
     _inherits = {'product.template': 'product_id'}
     _rec_name = 'session_name'
 
-    _sql_constraints = [('golem_activity_session_places_signed',
-                         'CHECK (places >= 0)',
-                         _('Number of places cannot be negative.'))]
-
     product_id = fields.Many2one('product.template', required=True,
                                  ondelete='cascade')
 
@@ -87,7 +83,6 @@ class GolemActivitySession(models.Model):
             session_name = u'[{}] {}'.format(self.default_code, session_name)
         self.session_name = session_name
 
-    member_ids = fields.Many2many('golem.member', string='Members')
     type_of = fields.Selection([('activity', _('Activity')),
                                 ('workshop', _('Workshop')),
                                 ('training', _('Training'))],
@@ -100,13 +95,6 @@ class GolemActivitySession(models.Model):
                 s.is_recurrent = False
             else:
                 s.is_recurrent = True
-
-    places_used = fields.Integer('Places used', compute='_compute_places_used')
-
-    @api.one
-    @api.depends('member_ids')
-    def _compute_places_used(self):
-        self.places_used = len(self.member_ids)
 
     # TODO: to link with calendar.event
     activity_id = fields.Many2one('golem.activity', string='Activity',
@@ -184,21 +172,3 @@ class GolemActivitySession(models.Model):
             if s.hour_start > s.hour_end:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
-
-    places = fields.Integer('Places', default=20)
-    places_remain = fields.Integer('Remaining places', store=True,
-                                   compute='_compute_places_remain')
-
-    @api.one
-    @api.depends('places', 'member_ids')
-    def _compute_places_remain(self):
-        used = len(self.member_ids)
-        self.places_remain = self.places - used
-
-    @api.constrains('places_remain')
-    def _check_remaining_places(self):
-        """ Forbid inscription when there is no more place """
-        for s in self:
-            if s.places_remain < 0:
-                emsg = _('Sorry, there is no more place !')
-                raise models.ValidationError(emsg)

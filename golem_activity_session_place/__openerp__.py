@@ -27,6 +27,6 @@
     'application': False,
     'installable': True,
     'auto_install': False,
-    'depends': ['golem_activity_session'],
+    'depends': ['golem_activity_session_registration'],
     'data': ['views/golem_activity_view.xml']
 }
