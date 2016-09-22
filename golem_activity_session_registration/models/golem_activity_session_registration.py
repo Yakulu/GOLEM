@@ -77,6 +77,8 @@ class GolemActivitySessionRegistration(models.Model):
 
     season_default_id = fields.Many2one('golem.season', 'Default season',
                                         compute='_compute_season_default')
+    is_current = fields.Boolean('Current season?',
+                                related='session_id.is_current')
 
     @api.one
     @api.depends('session_id')

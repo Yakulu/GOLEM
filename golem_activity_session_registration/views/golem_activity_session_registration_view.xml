@@ -51,12 +51,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
+    <record id="searches" model="ir.ui.view">
+      <field name="name">GOLEM Activity Sesion Registration searches</field>
+      <field name="model">golem.activity.session.registration</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="season_id" widget="many2one" />
+          <field name="member_id" widget="many2one" />
+          <field name="session_id" widget="many2one" />
+          <field name="invoice_id" widget="many2one" />
+          <filter name="season_default" string="Default season"
+           domain="[('is_current', '=', True)]" />
+        </search>
+      </field>
+    </record>
 
     <!-- Action -->
     <record id="registration_action_list" model="ir.actions.act_window">
       <field name="name">GOLEM Activity Session Registration List</field>
       <field name="res_model">golem.activity.session.registration</field>
       <field name="view_mode">tree</field>
+      <field name="context">{'search_default_season_default': True}</field>
     </record>
 
     <!-- Menu -->
