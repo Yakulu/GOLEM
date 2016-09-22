@@ -77,11 +77,9 @@ class GolemActivitySessionRegistration(models.Model):
     is_current = fields.Boolean('Current season?',
                                 related='session_id.is_current')
 
-    # TODO : translate / change error ??
-    _sql_constraints = [('golem_activity_session_registration_uniq',
-                         'UNIQUE (member_id, session_id)',
-                         'This memebr has already been registered for this '
-                         'session.')]
+    _sql_constraints = [
+        ('registration_uniq', 'UNIQUE (member_id, session_id)',
+         _('This member has already been registered for this session.'))]
 
     @api.constrains('member_id', 'session_id')
     def _check_season_reliability(self):
@@ -92,8 +90,3 @@ class GolemActivitySessionRegistration(models.Model):
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the session.')
                 raise models.ValidationError(emsg)
-            # domain = ['&', ('session_id', '=', r.session_id.id),
-            #           ('member_id', '=', r.member_id.id)]
-            # if len(self.search(domain)) > 1:
-            #     raise models.ValidationError(_('This member has already been '
-            #                                    'registered for this session.'))
