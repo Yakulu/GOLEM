@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <p>Default season activities</p>
             <field name="activity_session_registration_ids"
               context="{'default_member_id': active_id}">
-              <tree editable="top">
+              <tree editable="top"
+                colors="red: state == 'canceled';grey: state == 'draft';">
+                <field name="state" invisible="1" />
                 <field name="session_id"
                   domain="[('is_current', '=', True)]" />
                 <field name="season_id" readonly="1" />

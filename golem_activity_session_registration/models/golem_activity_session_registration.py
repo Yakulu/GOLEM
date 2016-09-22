@@ -63,6 +63,9 @@ class GolemActivitySessionRegistration(models.Model):
     _name = 'golem.activity.session.registration'
     _description = 'GOLEM Activity Session Registration'
 
+    state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
+                              ('canceled', 'Canceled')], required=True,
+                             default='draft')
     member_id = fields.Many2one('golem.member', string='Member', required=True,
                                 ondelete='cascade')
     session_id = fields.Many2one('golem.activity.session', required=True,
