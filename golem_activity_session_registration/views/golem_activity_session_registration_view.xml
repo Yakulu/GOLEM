@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity.session.registration</field>
       <field name="arch" type="xml">
         <tree create="true" edit="false" delete="false" editable="top"
-          colors="red: state == 'canceled';grey: state == 'draft';">
+          colors="red: state == 'canceled';darkgrey: state == 'draft';">
           <field name="state" invisible="1" />
           <field name="season_id" readonly="1" />
           <field name="member_id" domain="[('is_current', '=', True)]" />

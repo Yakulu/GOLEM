@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="activity_session_registration_ids"
                 context="{'default_session_id': active_id}">
                 <tree editable="top"
-                  colors="red: state == 'canceled';grey: state == 'draft';">
+                  colors="red: state == 'canceled';darkgrey: state == 'draft';">
                   <field name="state" invisible="1" />
                   <field name="member_id"
                     domain="[('season_ids', '=', season_id)]" />

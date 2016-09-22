@@ -23,6 +23,26 @@ class GolemMember(models.Model):
 
     activity_session_registration_ids = fields.One2many(
         'golem.activity.session.registration', 'member_id', 'Activities')
+    has_draft_registrations = fields.Boolean(
+        'Has draft registrations ?',
+        compute='_compute_has_draft_registrations')
+
+    @api.one
+    @api.depends('activity_session_registration_ids')
+    def _compute_has_draft_registrations(self):
+        """ Check if there are draft states in member activities """
+        for r in self.activity_session_registration_ids:
+            if r.state == 'draft':
+                self.has_draft_registrations = True
+                return
+        self.has_draft_registrations = False
+
+    @api.one
+    def do_validate_registrations(self):
+        """ Validate all draft registrations """
+        draft_registrations = self.activity_session_registration_ids.filtered(
+            lambda r: r.state == 'draft')
+        draft_registrations.write({'state': 'confirmed'})
 
 
 class GolemActivitySession(models.Model):

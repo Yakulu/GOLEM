@@ -27,10 +27,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <page name="other_page" position="before">
           <page name="sessions" string="Activities">
             <p>Default season activities</p>
+            <p>
+              <field name="has_draft_registrations" invisible="1" />
+              <button name="do_validate_registrations" type="object"
+                string="Validate all draft registrations"
+                class="oe_highlight"
+                help="If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
+                attrs="{'invisible': [('has_draft_registrations', '=', False)]}" />
+              <!-- TODO : one by one cancelation -->
+              <!-- TODO : do not allow removal if confirmed -->
+            </p>
             <field name="activity_session_registration_ids"
               context="{'default_member_id': active_id}">
               <tree editable="top"
-                colors="red: state == 'canceled';grey: state == 'draft';">
+                colors="red: state == 'canceled';darkgrey: state == 'draft';">
                 <field name="state" invisible="1" />
                 <field name="session_id"
                   domain="[('is_current', '=', True)]" />
