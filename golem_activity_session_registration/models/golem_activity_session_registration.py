@@ -74,15 +74,5 @@ class GolemActivitySessionRegistration(models.Model):
                                       ondelete='set null')
     season_id = fields.Many2one(string='Season',
                                 related='session_id.season_id')
-
-    season_default_id = fields.Many2one('golem.season', 'Default season',
-                                        compute='_compute_season_default')
     is_current = fields.Boolean('Current season?',
                                 related='session_id.is_current')
-
-    @api.one
-    @api.depends('session_id')
-    def _compute_season_default(self):
-        """ Compute default season """
-        domain = [('is_default', '=', True)]
-        self.season_default_id = self.env['golem.season'].search(domain).id
