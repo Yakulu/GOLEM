@@ -31,7 +31,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <page string="Members">
             <group>
               <field name="places_remain" readonly="True" />
-              <field name="activity_session_registration_ids" />
+              <field name="activity_session_registration_ids"
+                context="{'default_session_id': active_id}">
+                <tree editable="top">
+                <field name="season_default_id" invisible="1" />
+                  <field name="member_id"
+                    domain="[('season_ids', '=', season_default_id)]" />
+                  <field name="session_id" readonly="1" />
+                  <field name="season_id" readonly="1" />
+                  <field name="invoice_id" readonly="1" />
+                </tree>
+              </field>
             </group>
           </page>
         </page>

@@ -84,7 +84,3 @@ class GolemActivitySessionRegistration(models.Model):
         """ Compute default season """
         domain = [('is_default', '=', True)]
         self.season_default_id = self.env['golem.season'].search(domain).id
-        # if 'default_season_id' not in self.env.context:
-        #     ctx = self.env.context.copy()
-        #     ctx.update({'default_season_id': self._default_season()})
-        #     self.with_context(ctx)
