@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22 08:22+0000\n"
-"PO-Revision-Date: 2016-09-22 08:22+0000\n"
+"POT-Creation-Date: 2016-09-22 11:49+0000\n"
+"PO-Revision-Date: 2016-09-22 11:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,17 +70,17 @@ msgstr "Séances des activités"
 #. module: golem_activity_session_registration
 #: model:ir.model,name:golem_activity_session_registration.model_golem_activity_session_registration
 msgid "GOLEM Activity Session Registration"
-msgstr "GOLEM : inscription à la séance"
+msgstr "Inscription à la séance"
 
 #. module: golem_activity_session_registration
 #: model:ir.actions.act_window,name:golem_activity_session_registration.registration_action_list
 msgid "GOLEM Activity Session Registration List"
-msgstr "GOLEM : liste des inscriptions aux séances"
+msgstr "Liste des inscriptions aux séances"
 
 #. module: golem_activity_session_registration
 #: model:ir.model,name:golem_activity_session_registration.model_golem_member
 msgid "GOLEM Member"
-msgstr "GOLEM : Adhérent"
+msgstr "Adhérent"
 
 #. module: golem_activity_session_registration
 #: field:golem.activity.session.registration,id:0
@@ -175,6 +175,19 @@ msgstr "Désolé, il n'y a  plus de place disponible !"
 #: view:golem.activity.session.registration:golem_activity_session_registration.registration_form
 msgid "Subscription"
 msgstr "Inscription"
+
+#. module: golem_activity_session_registration
+#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:91
+#, python-format
+msgid "Subscription can not be executed : the targeted member is not on the same season as the session."
+msgstr "L'inscription n'a pas pu être enregistrée : le membre visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule la séance."
+
+#. module: golem_activity_session_registration
+#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:83
+#: sql_constraint:golem.activity.session.registration:0
+#, python-format
+msgid "This member has already been registered for this session."
+msgstr "Le membre a déjà été inscrit à cette séance."
 
 #. module: golem_activity_session_registration
 #: view:golem.activity.session:golem_activity_session_registration.activity_tree
