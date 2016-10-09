@@ -26,7 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <page name="other_page" position="before">
           <page name="sessions" string="Activities">
+            <field name="id" invisible="1" />
             <p>Default season activities</p>
+            <p attrs="{'invisible': [('id', '!=', False)]}" style="color:red;}">
+                Note that you can't register activities if the member is new and not yet saved into the database.
+            </p>
             <p>
               <field name="has_draft_registrations" invisible="1" />
               <button name="do_validate_registrations" type="object"
@@ -37,18 +41,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <!-- TODO : one by one cancelation -->
               <!-- TODO : do not allow removal if confirmed -->
             </p>
-            <field name="activity_session_registration_ids"
-              context="{'default_member_id': active_id}">
-              <tree editable="top"
-                colors="red: state == 'canceled';darkgrey: state == 'draft';">
-                <field name="state" invisible="1" />
-                <field name="session_id"
-                  domain="[('is_current', '=', True)]" />
-                <field name="season_id" readonly="1" />
-                <field name="member_id" readonly="1" />
-                <field name="invoice_id" readonly="1" />
-              </tree>
-            </field>
+            <group>
+              <field name="activity_session_registration_ids"
+                attrs="{'readonly': [('id', '=', False)]}"
+                context="{'default_member_id': active_id}">
+                <tree editable="top"
+                  colors="red: state == 'canceled';darkgrey: state == 'draft';">
+                  <field name="state" invisible="1" />
+                  <field name="session_id"
+                    domain="[('is_current', '=', True)]" />
+                  <field name="season_id" readonly="1" />
+                  <field name="member_id" readonly="1" />
+                  <field name="invoice_id" readonly="1" />
+                </tree>
+              </field>
+            </group>
           </page>
         </page>
       </field>
