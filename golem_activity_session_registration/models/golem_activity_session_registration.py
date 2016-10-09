@@ -44,6 +44,21 @@ class GolemMember(models.Model):
             lambda r: r.state == 'draft')
         draft_registrations.write({'state': 'confirmed'})
 
+    @api.multi
+    def write(self, values):
+        # Handle removed activities to be canceled
+        if 'activity_session_registration_ids' in values:
+            rids = values['activity_session_registration_ids']
+            r_keep, r_removed = [], []
+            for r in rids:  # == 2 is removal case
+                r_removed.append(r) if r[0] == 2 else r_keep.append(r)
+            rObj = self.env['golem.activity.session.registration']
+            for r in r_removed:
+                r = rObj.browse([r[1]])
+                r.state = 'canceled'
+            values['activity_session_registration_ids'] = r_keep
+        return super(GolemMember, self).write(values)
+
 
 class GolemActivitySession(models.Model):
     _inherit = 'golem.activity.session'
