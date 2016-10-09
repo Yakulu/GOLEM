@@ -27,14 +27,12 @@ class GolemActivitySession(models.Model):
     places_overbooked = fields.Integer('Places with overbook', default=0)
 
     @api.one
-    @api.depends('places', 'is_overbooked', 'places_overbooked',
-                 'activity_session_registration_ids')
+    @api.depends('places', 'is_overbooked', 'places_overbooked', 'places_used')
     def _compute_places_remain(self):
-        used = len(self.activity_session_registration_ids)
         if not self.is_overbooked:
-            self.places_remain = self.places - used
+            self.places_remain = self.places - self.places_used
         else:
-            self.places_remain = self.places_overbooked - used
+            self.places_remain = self.places_overbooked - self.places_used
 
     @api.onchange('is_overbooked', 'places')
     def onchange_is_overbooked(self):

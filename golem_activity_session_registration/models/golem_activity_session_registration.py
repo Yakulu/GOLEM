@@ -46,7 +46,7 @@ class GolemMember(models.Model):
 
     @api.multi
     def write(self, values):
-        # Handle removed activities to be canceled
+        """ Handle removed activities to be canceled """
         if 'activity_session_registration_ids' in values:
             rids = values['activity_session_registration_ids']
             r_keep, r_removed = [], []
@@ -55,7 +55,11 @@ class GolemMember(models.Model):
             rObj = self.env['golem.activity.session.registration']
             for r in r_removed:
                 r = rObj.browse([r[1]])
-                r.state = 'canceled'
+                # if already canceled, let it be removed, else cancel it
+                if r.state != 'canceled':
+                    r.state = 'canceled'
+                else:
+                    r_keep.append(r)
             values['activity_session_registration_ids'] = r_keep
         return super(GolemMember, self).write(values)
 
@@ -68,22 +72,23 @@ class GolemActivitySession(models.Model):
 
     activity_session_registration_ids = fields.One2many(
         'golem.activity.session.registration', 'session_id', 'Members')
-    places_used = fields.Integer('Places used', compute='_compute_places_used')
+    places_used = fields.Integer('Places used', compute='_compute_places_used',
+                                 store=True)
 
     @api.one
     @api.depends('activity_session_registration_ids')
     def _compute_places_used(self):
-        self.places_used = len(self.activity_session_registration_ids)
+        rids = self.activity_session_registration_ids
+        self.places_used = len(rids.filtered(lambda r: r.state == 'confirmed'))
 
     places = fields.Integer('Places', default=20)
     places_remain = fields.Integer('Remaining places', store=True,
                                    compute='_compute_places_remain')
 
     @api.one
-    @api.depends('places', 'activity_session_registration_ids')
+    @api.depends('places', 'places_used')
     def _compute_places_remain(self):
-        used = len(self.activity_session_registration_ids)
-        self.places_remain = self.places - used
+        self.places_remain = self.places - self.places_used
 
     @api.constrains('places_remain')
     def _check_remaining_places(self):
@@ -128,3 +133,12 @@ class GolemActivitySessionRegistration(models.Model):
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the session.')
                 raise models.ValidationError(emsg)
+
+    @api.multi
+    def write(self, values):
+        """ Recomputes values linked to registrations when state change """
+        res = super(GolemActivitySessionRegistration, self).write(values)
+        if values['state']:
+            for r in self:
+                r.session_id._compute_places_used()
+        return res
