@@ -53,13 +53,13 @@ class GolemMember(models.Model):
             for r in rids:  # == 2 is removal case
                 r_removed.append(r) if r[0] == 2 else r_keep.append(r)
             rObj = self.env['golem.activity.session.registration']
-            for r in r_removed:
-                r = rObj.browse([r[1]])
+            for rem in r_removed:
+                r = rObj.browse([rem[1]])
                 # if already canceled, let it be removed, else cancel it
                 if r.state != 'canceled':
                     r.state = 'canceled'
                 else:
-                    r_keep.append(r)
+                    r_keep.append(rem)
             values['activity_session_registration_ids'] = r_keep
         return super(GolemMember, self).write(values)
 
