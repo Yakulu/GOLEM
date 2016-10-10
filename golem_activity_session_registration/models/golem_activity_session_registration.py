@@ -67,11 +67,6 @@ class GolemActivitySessionRegistration(models.Model):
                                 ondelete='cascade')
     session_id = fields.Many2one('golem.activity.session', required=True,
                                  string='Activity session', ondelete='cascade')
-    invoice_id = fields.Many2one('account.invoice', string='Invoice',
-                                 ondelete='set null')
-    invoice_line_id = fields.Many2one('account.invoice.line',
-                                      string='Invoice line',
-                                      ondelete='set null')
     season_id = fields.Many2one(string='Season',
                                 related='session_id.season_id')
     is_current = fields.Boolean('Current season?',

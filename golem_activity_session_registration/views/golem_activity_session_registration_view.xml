@@ -44,22 +44,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="season_id" readonly="1" />
           <field name="member_id" domain="[('is_current', '=', True)]" />
           <field name="session_id" domain="[('is_current', '=', True)]" />
-          <field name="invoice_id" readonly="1" />
-          <field name="invoice_line_id" readonly="1" />
         </tree>
       </field>
     </record>
 
     <!-- Search -->
     <record id="searches" model="ir.ui.view">
-      <field name="name">GOLEM Activity Sesion Registration searches</field>
+      <field name="name">GOLEM Activity Session Registration searches</field>
       <field name="model">golem.activity.session.registration</field>
       <field name="arch" type="xml">
         <search>
           <field name="season_id" widget="many2one" />
           <field name="member_id" widget="many2one" />
           <field name="session_id" widget="many2one" />
-          <field name="invoice_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
         </search>

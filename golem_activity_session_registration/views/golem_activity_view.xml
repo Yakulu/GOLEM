@@ -38,7 +38,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     domain="[('season_ids', '=', season_id)]" />
                   <field name="session_id" readonly="1" />
                   <field name="season_id" readonly="1" />
-                  <field name="invoice_id" readonly="1" />
                 </tree>
               </field>
             </group>
