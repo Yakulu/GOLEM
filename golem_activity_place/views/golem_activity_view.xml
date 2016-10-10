@@ -20,10 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Form -->
     <record id="view_form" model="ir.ui.view">
-      <field name="name">GOLEM Activity Sessions Places Form additions</field>
-      <field name="model">golem.activity.session</field>
+      <field name="name">GOLEM Activity Places Form additions</field>
+      <field name="model">golem.activity</field>
       <field name="inherit_id"
-        ref="golem_activity_session_registration.activity_form" />
+        ref="golem_activity_registration.activity_form" />
       <field name="arch" type="xml">
         <field name="places" position="after">
           <field name="places_min" />
@@ -35,11 +35,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Tree -->
-    <record id="session_tree" model="ir.ui.view">
-      <field name="name">Session list places adaptations</field>
-      <field name="model">golem.activity.session</field>
+    <record id="tree" model="ir.ui.view">
+      <field name="name">Activity list places adaptations</field>
+      <field name="model">golem.activity</field>
       <field name="inherit_id"
-        ref="golem_activity_session_registration.activity_tree" />
+        ref="golem_activity_registration.activity_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">darkgrey: places_used &lt; places_min; red: places_remain == 0; orange: places_remain &lt;= 4;</attribute>

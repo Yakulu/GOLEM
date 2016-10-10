@@ -18,11 +18,11 @@
 from openerp import models, fields, api, _
 
 
-class GolemActivitySession(models.Model):
-    _inherit = 'golem.activity.session'
+class GolemActivity(models.Model):
+    _inherit = 'golem.activity'
 
     places_min = fields.Integer('Minimum places', default=0,
-                                help='Minimum places to maintain the session')
+                                help='Minimum places to maintain the activity')
     is_overbooked = fields.Boolean('Allow overbook?', default=False)
     places_overbooked = fields.Integer('Places with overbook', default=0)
 

@@ -16,8 +16,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM Activity Sessions Places',
-    'summary': 'GOLEM Activities Session avdanced places management',
+    'name': 'GOLEM Activity Places',
+    'summary': 'GOLEM Activity avdanced places management',
     'description': ''' Management of minimum places, overbook and max
     overbook... ''',
     'version': '0.1',
@@ -27,6 +27,6 @@
     'application': False,
     'installable': True,
     'auto_install': False,
-    'depends': ['golem_activity_session_registration'],
+    'depends': ['golem_activity_registration'],
     'data': ['views/golem_activity_view.xml']
 }
