@@ -66,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </group>
                 </group>
               </page>
-              <page name="activity_info" string="Information">
+              <page name="activity_others" string="Others">
                 <group>
                   <field name="description"
                     placeholder="describe the activity characteristics..." />
