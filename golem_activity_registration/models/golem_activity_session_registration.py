@@ -21,25 +21,25 @@ from openerp import models, fields, api, _
 class GolemMember(models.Model):
     _inherit = 'golem.member'
 
-    activity_session_registration_ids = fields.One2many(
-        'golem.activity.session.registration', 'member_id', 'Activities')
+    activity_registration_ids = fields.One2many('golem.activity.registration',
+                                                'member_id', 'Activities')
 
 
-class GolemActivitySession(models.Model):
-    _inherit = 'golem.activity.session'
-    _sql_constraints = [('golem_activity_session_places_signed',
+class GolemActivity(models.Model):
+    _inherit = 'golem.activity'
+    _sql_constraints = [('golem_activity_places_signed',
                          'CHECK (places >= 0)',
                          _('Number of places cannot be negative.'))]
 
-    activity_session_registration_ids = fields.One2many(
-        'golem.activity.session.registration', 'session_id', 'Members')
+    activity_registration_ids = fields.One2many('golem.activity.registration',
+                                                'activity_id', 'Members')
     places_used = fields.Integer('Places used', compute='_compute_places_used',
                                  store=True)
 
     @api.one
-    @api.depends('activity_session_registration_ids')
+    @api.depends('activity_registration_ids')
     def _compute_places_used(self):
-        self.places_used = len(self.activity_session_registration_ids)
+        self.places_used = len(self.activity_registration_ids)
 
     places = fields.Integer('Places', default=20)
     places_remain = fields.Integer('Remaining places', store=True,
@@ -59,29 +59,29 @@ class GolemActivitySession(models.Model):
                 raise models.ValidationError(emsg)
 
 
-class GolemActivitySessionRegistration(models.Model):
-    _name = 'golem.activity.session.registration'
-    _description = 'GOLEM Activity Session Registration'
+class GolemActivityRegistration(models.Model):
+    _name = 'golem.activity.registration'
+    _description = 'GOLEM Activity Registration'
 
     member_id = fields.Many2one('golem.member', string='Member', required=True,
                                 ondelete='cascade')
-    session_id = fields.Many2one('golem.activity.session', required=True,
-                                 string='Activity session', ondelete='cascade')
+    activity_id = fields.Many2one('golem.activity', required=True,
+                                  string='Activity', ondelete='cascade')
     season_id = fields.Many2one(string='Season',
-                                related='session_id.season_id')
+                                related='activity_id.season_id')
     is_current = fields.Boolean('Current season?',
-                                related='session_id.is_current')
+                                related='activity_id.is_current')
 
     _sql_constraints = [
-        ('registration_uniq', 'UNIQUE (member_id, session_id)',
-         _('This member has already been registered for this session.'))]
+        ('registration_uniq', 'UNIQUE (member_id, activity_id)',
+         _('This member has already been registered for this activity.'))]
 
-    @api.constrains('member_id', 'session_id')
+    @api.constrains('member_id', 'activity_id')
     def _check_season_reliability(self):
         """ Forbid registration when member season if not coherent with
-        session season or are duplicates """
+        activity season or are duplicates """
         for r in self:
-            if r.session_id.season_id not in r.member_id.season_ids:
+            if r.activity_id.season_id not in r.member_id.season_ids:
                 emsg = _('Subscription can not be executed : the targeted '
-                         'member is not on the same season as the session.')
+                         'member is not on the same season as the activity.')
                 raise models.ValidationError(emsg)

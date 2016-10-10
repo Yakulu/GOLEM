@@ -21,22 +21,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Form -->
     <record id="activity_form" model="ir.ui.view">
       <field name="name">Activity Registrations and Places</field>
-      <field name="model">golem.activity.session</field>
-      <field name="inherit_id" ref="golem_activity_session.view_form" />
+      <field name="model">golem.activity</field>
+      <field name="inherit_id" ref="golem_activity.view_form" />
       <field name="arch" type="xml">
-        <field name="type_of" position="after">
+        <group name="places" position="inside">
           <field name="places" />
-        </field>
-        <page string="Service" position="before">
+        </group>
+        <page string="Session" position="after">
           <page string="Members">
             <group>
               <field name="places_remain" readonly="True" />
-              <field name="activity_session_registration_ids"
-                context="{'default_session_id': active_id}">
+              <field name="activity_registration_ids"
+                context="{'default_activity_id': active_id}">
                 <tree editable="top">
                   <field name="member_id"
                     domain="[('season_ids', '=', season_id)]" />
-                  <field name="session_id" readonly="1" />
+                  <field name="activity_id" readonly="1" />
                   <field name="season_id" readonly="1" />
                 </tree>
               </field>
@@ -49,8 +49,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Tree -->
     <record id="activity_tree" model="ir.ui.view">
       <field name="name">Activity Tree registrations additions</field>
-      <field name="model">golem.activity.session</field>
-      <field name="inherit_id" ref="golem_activity_session.session_tree" />
+      <field name="model">golem.activity</field>
+      <field name="inherit_id" ref="golem_activity.view_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">red: places_remain == 0;orange: places_remain &lt;= 4;</attribute>
@@ -65,11 +65,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Search -->
     <record id="activity_search" model="ir.ui.view">
       <field name="name">Activity Search registrations additions</field>
-      <field name="model">golem.activity.session</field>
-      <field name="inherit_id" ref="golem_activity_session.searches" />
+      <field name="model">golem.activity</field>
+      <field name="inherit_id" ref="golem_activity.view_filter" />
       <field name="arch" type="xml">
         <filter name="season_default" position="after">
-          <filter name="full_session" string="Full"
+          <filter name="full_activity" string="Full"
            domain="[('places_remain', '=', 0)]" />
         </filter>
       </field>

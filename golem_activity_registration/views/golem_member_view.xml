@@ -19,21 +19,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record model="ir.ui.view" id="sessions_registration">
-      <field name="name">Add sessions registrations to member form</field>
+    <record model="ir.ui.view" id="activities_registration">
+      <field name="name">Add activities registrations to member form</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.view_form" />
       <field name="arch" type="xml">
         <page name="other_page" position="before">
-          <page name="sessions" string="Activities">
+          <page name="activities" string="Activities">
             <p name="default_season_label">Default season activities</p>
             <field name="id" invisible="1" />
             <group>
-              <field name="activity_session_registration_ids"
+              <field name="activity_registration_ids"
                 attrs="{'readonly': [('id', '=', False)]}"
                 context="{'default_member_id': active_id}">
                 <tree editable="top">
-                  <field name="session_id"
+                  <field name="activity_id"
                     domain="[('is_current', '=', True)]" />
                   <field name="season_id" readonly="1" />
                   <field name="member_id" readonly="1" />

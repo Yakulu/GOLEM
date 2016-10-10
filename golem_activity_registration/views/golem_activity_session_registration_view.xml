@@ -19,14 +19,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
     <!-- Form -->
     <record id="registration_form" model="ir.ui.view">
-      <field name="name">Session registration form</field>
-      <field name="model">golem.activity.session.registration</field>
+      <field name="name">Activity registration form</field>
+      <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
         <form>
           <sheet>
             <group string="Subscription">
               <field name="member_id" invisible="1" />
-              <field name="session_id" />
+              <field name="activity_id" />
               <field name="season_id" />
             </group>
           </sheet>
@@ -37,26 +37,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Tree -->
     <record id="registration_tree" model="ir.ui.view">
-      <field name="name">Session registration list</field>
-      <field name="model">golem.activity.session.registration</field>
+      <field name="name">Activity registration list</field>
+      <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
         <tree create="true" edit="false" delete="false" editable="top">
           <field name="season_id" readonly="1" />
           <field name="member_id" domain="[('is_current', '=', True)]" />
-          <field name="session_id" domain="[('is_current', '=', True)]" />
+          <field name="activity_id" domain="[('is_current', '=', True)]" />
         </tree>
       </field>
     </record>
 
     <!-- Search -->
     <record id="searches" model="ir.ui.view">
-      <field name="name">GOLEM Activity Session Registration searches</field>
-      <field name="model">golem.activity.session.registration</field>
+      <field name="name">GOLEM Activity Registration searches</field>
+      <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
         <search>
           <field name="season_id" widget="many2one" />
           <field name="member_id" widget="many2one" />
-          <field name="session_id" widget="many2one" />
+          <field name="activity_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
         </search>
@@ -65,14 +65,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Action -->
     <record id="registration_action_list" model="ir.actions.act_window">
-      <field name="name">GOLEM Activity Session Registration List</field>
-      <field name="res_model">golem.activity.session.registration</field>
+      <field name="name">GOLEM Activity Registration List</field>
+      <field name="res_model">golem.activity.registration</field>
       <field name="view_mode">tree</field>
       <field name="context">{'search_default_season_default': True}</field>
     </record>
 
     <!-- Menu -->
-    <menuitem id="registration_menu_list" name="Session registrations"
+    <menuitem id="registration_menu_list" name="Acitivity registrations"
       parent="golem_activity.activity_menu" action="registration_action_list"
       groups="golem_base.group_golem_user"
       sequence="20" />
