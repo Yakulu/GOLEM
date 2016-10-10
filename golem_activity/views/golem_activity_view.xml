@@ -25,41 +25,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form>
           <sheet>
-              <div class="oe_right oe_button_box" style="width: 300px;"
-                name="buttons"></div>
-              <div class="oe_left" style="width: 500px;">
-                <field name="image" widget="image" class="oe_avatar oe_left"/>
-                <div class="oe_title" style="width: 390px;">
-                  <label class="oe_edit_only" for="name" string="Activity Name"/>
-                  <h1><field name="name" class="oe_inline"/></h1>
-                </div>
+            <div class="oe_right oe_button_box" style="width: 300px;"
+              name="buttons"></div>
+            <div class="oe_left" style="width: 500px;">
+              <field name="image" widget="image" class="oe_avatar oe_left"/>
+              <div class="oe_title" style="width: 390px;">
+                <label class="oe_edit_only" for="name" string="Activity Name"/>
+                <h1><field name="name" required="True" class="oe_inline"/></h1>
               </div>
+            </div>
+            <group>
               <group>
-                <field name="season_id" />
-                <field name="default_code" />
-              </group>
-            <group string="Details">
-              <group>
-                <field name="categ_id" />
+                <field name="season_id" required="True" />
                 <field name="animator_id" />
+                <field name="type_of" required="True" />
               </group>
               <group>
-                <field name="date_start" />
-                <field name="date_end" />
+                <field name="categ_id" required="True" />
+                <field name="default_code" />
+                <field name="list_price" />
               </group>
             </group>
             <notebook>
+              <page string="Session">
+                <group>
+                  <field name="is_recurrent" />
+                  <field name="weekday"
+                    attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                  <field name="hour_start" widget="float_time"
+                    attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                  <field name="hour_end" widget="float_time"
+                    attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                  <field name="date_start"
+                    attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                  <field name="date_stop"
+                    attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                </group>
+              </page>
               <page name="activity_info" string="Information">
                 <group>
-                  <field name="note"
-                    placeholder="describe the activity characteristics..."/>
+                  <field name="description"
+                    placeholder="describe the activity characteristics..." />
+                  <field name="active" />
                 </group>
               </page>
             </notebook>
           </sheet>
           <div class="oe_chatter">
-              <field name="message_follower_ids" widget="mail_followers" />
-              <field name="message_ids" widget="mail_thread" />
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="message_ids" widget="mail_thread" />
           </div>
         </form>
       </field>
@@ -70,13 +84,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Activity Tree/List</field>
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
-        <tree string="GOLEM Activities">
+        <tree>
+          <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
-          <field name="name" />
+          <field name="type_of" />
+          <field name="full_name" />
           <field name="animator_id" />
+          <field name="weekday" string="Day"
+              attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+          <field name="date_start" string="Date"
+              attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+          <field name="list_price" sum="True" />
         </tree>
       </field>
   </record>
+
+    <!-- Calendars -->
+    <record id="calendar" model="ir.ui.view">
+      <field name="name">Activity calendar view</field>
+      <field name="model">golem.activity</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date_start" date_stop="date_stop"
+          color="categ_id" display="[name]">
+          <field name="name" />
+        </calendar>
+      </field>
+    </record>
 
     <!-- Searches -->
     <record id="view_filter" model="ir.ui.view">
@@ -84,17 +117,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
         <search>
-          <field name="name" />
+          <field name="full_name" />
+          <field name="animator_id" widget="many2one" />
+          <field name="categ_id" widget="many2one" />
           <field name="season_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
+          <filter name="type_of_activity" string="Activity"
+           domain="[('type_of', '=', 'activity')]" />
+          <filter name="type_of_workshop" string="Workshop"
+           domain="[('type_of', '=', 'workshop')]" />
+          <filter name="type_of_training" string="Training"
+           domain="[('type_of', '=', 'training')]" />
+          <group string="Group By">
+            <filter name="group_type_of" string="By type"
+              context="{'group_by': 'type_of'}" />
+            <filter name="group_category" string="By category"
+              context="{'group_by': 'categ_id'}"/>
+            <filter name="group_weekday" string="By weekday"
+              context="{'group_by': 'weekday'}" />
+            <filter name="group_animator" string="By animator"
+              context="{'group_by': 'animator_id'}" />
+          </group>
         </search>
       </field>
     </record>
 
     <!-- Actions -->
     <act_window id="action" name="GOLEM Activities" res_model="golem.activity"
+      view_mode="tree,form,calendar"
       context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_activities')}" />
+    <record id="category_action" model="ir.actions.act_window">
+      <field name="name">Activities Categories</field>
+      <field name="res_model">product.category</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="product.product_category_list_view" />
+    </record>
 
     <!-- Menus -->
     <menuitem id="activity_menu" name="Activities"
@@ -103,6 +161,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="activity_list" name="List"
       groups="golem_base.group_golem_user"
       parent="activity_menu" sequence="0" action="action" />
+    <menuitem  id="activity_categ" name="Categories"
+      parent="golem_activity.activity_menu" sequence="20"
+      groups="golem_base.group_golem_manager"
+      action="category_action" />
 
   </data>
 </openerp>

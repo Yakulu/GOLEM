@@ -22,12 +22,41 @@ class GolemActivity(models.Model):
     _name = 'golem.activity'
     _description = 'GOLEM Activity'
     _inherit = 'mail.thread'
+    _inherits = {'product.template': 'product_id'}
+    _rec_name = 'full_name'
 
-    name = fields.Char('Name', index=True, required=True)
-    default_code = fields.Char('Internal Reference', index=True)
-    image = fields.Binary('Image', help='This field holds the image used as '
-                          'image for the activity.')
-    note = fields.Text('Note')
+    product_id = fields.Many2one('product.template', required=True,
+                                 ondelete='cascade')
+
+    image = fields.Binary(help='This field holds the image used as image for '
+                          'the activity.')
+
+    full_name = fields.Char('Name', compute='_compute_full_name', store=True,
+                            index=True)
+
+    @api.one
+    @api.depends('name', 'default_code')
+    def _compute_full_name(self):
+        """ Provide a better displayed name """
+        full_name = unicode(self.name)
+        if self.default_code:
+            full_name = u'[{}] {}'.format(self.default_code, full_name)
+        self.full_name = full_name
+
+    type_of = fields.Selection([('activity', _('Activity')),
+                                ('workshop', _('Workshop')),
+                                ('training', _('Training'))],
+                               default='activity', index=True, string='Type')
+
+    @api.onchange('type_of')
+    def onchange_type_of(self):
+        for s in self:
+            if s.type_of != 'activity':
+                s.is_recurrent = False
+            else:
+                s.is_recurrent = True
+
+    # TODO: to link with calendar.event
 
     @api.model
     def _default_season(self):
@@ -38,31 +67,6 @@ class GolemActivity(models.Model):
     season_id = fields.Many2one('golem.season', string='Season', copy=False,
                                 required=True, default=_default_season,
                                 ondelete='restrict')
-    animator_id = fields.Many2one('res.partner', string='Animator',
-                                  domain=[('is_company', '=', False)])
-    categ_id = fields.Many2one('product.category', 'Internal Category',
-                               required=True,
-                               help='Select category for the current activity')
-    date_start = fields.Date('Start date', copy=False)
-    date_end = fields.Date('End date', copy=False)
-
-    @api.constrains('date_start', 'date_end')
-    def _check_period(self):
-        """ Check if end date if after start date """
-        for a in self:
-            if a.date_start and a.date_end and a.date_start > a.date_end:
-                raise models.ValidationError(_('Start of the period cannot be '
-                                               'after end of the period.'))
-
-    @api.onchange('season_id')
-    def onchange_season_dates(self):
-        """ Sets defaults dates according to season """
-        for a in self:
-            if a.season_id:
-                if not a.date_start:
-                    a.date_start = a.season_id.date_start
-                if not a.date_end:
-                    a.date_end = a.season_id.date_end
 
     is_current = fields.Boolean('Current season?', store=True, default=False,
                                 compute='_compute_is_current')
@@ -73,3 +77,71 @@ class GolemActivity(models.Model):
         """ Checks if activity is active for current season """
         default_season = self._default_season()
         self.is_current = (default_season == self.season_id)
+
+    animator_id = fields.Many2one('res.partner', string='Animator',
+                                  domain=[('is_company', '=', False)])
+    categ_id = fields.Many2one('product.category',
+                               help='Select category for the current activity')
+    is_recurrent = fields.Boolean('Is recurrent ?', default=True,
+                                  help='Work in progress')
+    date_start = fields.Date('Start date', copy=False)
+    date_stop = fields.Date('End date', copy=False)
+
+    @api.onchange('date_start')
+    def onchange_date_start(self):
+        """ Sets end date to start date if no start date """
+        for s in self:
+            if not s.date_stop:
+                s.date_stop = s.date_start
+
+    @api.constrains('date_start', 'date_stop')
+    def _check_period(self):
+        """ Check if end date if after start date """
+        for a in self:
+            if a.date_start and a.date_stop and a.date_start > a.date_stop:
+                raise models.ValidationError(_('Start of the period cannot be '
+                                               'after end of the period.'))
+
+    @api.onchange('season_id')
+    def onchange_season_dates(self):
+        """ Sets defaults dates according to season """
+        for a in self:
+            if a.season_id:
+                if not a.date_start:
+                    a.date_start = a.season_id.date_start
+                if not a.date_stop:
+                    a.date_stop = a.season_id.date_stop
+
+    weekday = fields.Selection([('mon', _('Monday')),
+                                ('tue', _('Tuesday')),
+                                ('wed', _('Wednesday')),
+                                ('thu', _('Thursday')),
+                                ('fri', _('Friday')),
+                                ('sat', _('Saturday')),
+                                ('sun', _('Sunday'))], copy=False)
+    hour_start = fields.Float('Start time', copy=False)
+    hour_end = fields.Float('End time', copy=False)
+
+    @api.onchange('hour_start')
+    def onchange_hour_start(self):
+        """ Sets end hour to start hour if no start hour """
+        for s in self:
+            if s.hour_start and not s.hour_end:
+                s.hour_end = s.hour_start + 1
+
+    @api.constrains('hour_start', 'hour_end')
+    def _check_hour_period(self):
+        """ Check if end hour if after start hour """
+        for s in self:
+            if s.hour_start > s.hour_end:
+                raise models.ValidationError(_('Start of the period cannot be '
+                                               'after end of the period.'))
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    # Make default service for type
+    type = fields.Selection(default='service')
+    # Copy the default code
+    default_code = fields.Char(copy=True)
