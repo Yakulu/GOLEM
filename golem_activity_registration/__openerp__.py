@@ -27,6 +27,6 @@
     'application': False,
     'installable': True,
     'depends': ['golem_activity', 'golem_member'],
-    'data': ['views/golem_activity_session_registration_view.xml',
+    'data': ['views/golem_activity_registration_view.xml',
              'views/golem_member_view.xml', 'views/golem_activity_view.xml']
 }
