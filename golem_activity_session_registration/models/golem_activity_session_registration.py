@@ -23,45 +23,6 @@ class GolemMember(models.Model):
 
     activity_session_registration_ids = fields.One2many(
         'golem.activity.session.registration', 'member_id', 'Activities')
-    has_draft_registrations = fields.Boolean(
-        'Has draft registrations ?',
-        compute='_compute_has_draft_registrations')
-
-    @api.one
-    @api.depends('activity_session_registration_ids')
-    def _compute_has_draft_registrations(self):
-        """ Check if there are draft states in member activities """
-        for r in self.activity_session_registration_ids:
-            if r.state == 'draft':
-                self.has_draft_registrations = True
-                return
-        self.has_draft_registrations = False
-
-    @api.one
-    def do_validate_registrations(self):
-        """ Validate all draft registrations """
-        draft_registrations = self.activity_session_registration_ids.filtered(
-            lambda r: r.state == 'draft')
-        draft_registrations.write({'state': 'confirmed'})
-
-    @api.multi
-    def write(self, values):
-        """ Handle removed activities to be canceled """
-        if 'activity_session_registration_ids' in values:
-            rids = values['activity_session_registration_ids']
-            r_keep, r_removed = [], []
-            for r in rids:  # == 2 is removal case
-                r_removed.append(r) if r[0] == 2 else r_keep.append(r)
-            rObj = self.env['golem.activity.session.registration']
-            for rem in r_removed:
-                r = rObj.browse([rem[1]])
-                # if already canceled, let it be removed, else cancel it
-                if r.state != 'canceled':
-                    r.state = 'canceled'
-                else:
-                    r_keep.append(rem)
-            values['activity_session_registration_ids'] = r_keep
-        return super(GolemMember, self).write(values)
 
 
 class GolemActivitySession(models.Model):
@@ -78,8 +39,7 @@ class GolemActivitySession(models.Model):
     @api.one
     @api.depends('activity_session_registration_ids')
     def _compute_places_used(self):
-        rids = self.activity_session_registration_ids
-        self.places_used = len(rids.filtered(lambda r: r.state == 'confirmed'))
+        self.places_used = len(self.activity_session_registration_ids)
 
     places = fields.Integer('Places', default=20)
     places_remain = fields.Integer('Remaining places', store=True,
@@ -103,9 +63,6 @@ class GolemActivitySessionRegistration(models.Model):
     _name = 'golem.activity.session.registration'
     _description = 'GOLEM Activity Session Registration'
 
-    state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
-                              ('canceled', 'Canceled')], required=True,
-                             default='draft')
     member_id = fields.Many2one('golem.member', string='Member', required=True,
                                 ondelete='cascade')
     session_id = fields.Many2one('golem.activity.session', required=True,
@@ -133,12 +90,3 @@ class GolemActivitySessionRegistration(models.Model):
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the session.')
                 raise models.ValidationError(emsg)
-
-    @api.multi
-    def write(self, values):
-        """ Recomputes values linked to registrations when state change """
-        res = super(GolemActivitySessionRegistration, self).write(values)
-        if values['state']:
-            for r in self:
-                r.session_id._compute_places_used()
-        return res

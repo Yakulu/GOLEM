@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22 11:49+0000\n"
-"PO-Revision-Date: 2016-09-22 11:49+0000\n"
+"POT-Creation-Date: 2016-10-10 09:08+0000\n"
+"PO-Revision-Date: 2016-10-10 09:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_activity_session_registration
-#: view:golem.member:golem_activity_session_registration.sessions_inscription
+#: view:golem.member:golem_activity_session_registration.sessions_registration
 #: field:golem.member,activity_session_registration_ids:0
 msgid "Activities"
 msgstr ""
@@ -47,7 +47,7 @@ msgid "Default season"
 msgstr ""
 
 #. module: golem_activity_session_registration
-#: view:golem.member:golem_activity_session_registration.sessions_inscription
+#: view:golem.member:golem_activity_session_registration.sessions_registration
 msgid "Default season activities"
 msgstr ""
 
@@ -112,6 +112,16 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_activity_session_registration
+#: sql_constraint:golem.activity.session.registration:0
+msgid "Le membre a déjà été inscrit à cette séance."
+msgstr ""
+
+#. module: golem_activity_session_registration
+#: sql_constraint:golem.activity.session:0
+msgid "Le nombre de places ne peut pas être négatif"
+msgstr ""
+
+#. module: golem_activity_session_registration
 #: field:golem.activity.session.registration,member_id:0
 msgid "Member"
 msgstr ""
@@ -124,7 +134,6 @@ msgstr ""
 
 #. module: golem_activity_session_registration
 #: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:32
-#: sql_constraint:golem.activity.session:0
 #, python-format
 msgid "Number of places cannot be negative."
 msgstr ""
@@ -176,14 +185,13 @@ msgid "Subscription"
 msgstr ""
 
 #. module: golem_activity_session_registration
-#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:91
+#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:90
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the session."
 msgstr ""
 
 #. module: golem_activity_session_registration
-#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:83
-#: sql_constraint:golem.activity.session.registration:0
+#: code:addons/golem_activity_session_registration/models/golem_activity_session_registration.py:82
 #, python-format
 msgid "This member has already been registered for this session."
 msgstr ""
