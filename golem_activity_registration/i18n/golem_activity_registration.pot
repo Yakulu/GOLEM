@@ -13,174 +13,177 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: golem_activity_registration
 #: model:ir.ui.menu,name:golem_activity_registration.registration_menu_list
 msgid "Acitivity registrations"
-msgstr "Inscriptions aux activités"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.member:golem_activity_registration.activities_registration
 #: field:golem.member,activity_registration_ids:0
 msgid "Activities"
-msgstr "Activités"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,activity_id:0
 msgid "Activity"
-msgstr "Activité"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,create_uid:0
 msgid "Created by"
-msgstr "Creé par"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,is_current:0
 msgid "Current season?"
-msgstr "Saison par défaut?"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity.registration:golem_activity_registration.searches
 msgid "Default season"
-msgstr "Saison par défaut"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.member:golem_activity_registration.activities_registration
 msgid "Default season activities"
-msgstr "Activités de la saison affichée par défaut"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,display_name:0
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity:golem_activity_registration.activity_search
 msgid "Full"
-msgstr "Plein"
+msgstr ""
 
 #. module: golem_activity_registration
 #: model:ir.model,name:golem_activity_registration.model_golem_activity
 msgid "GOLEM Activity"
-msgstr "Activité"
+msgstr ""
 
 #. module: golem_activity_registration
 #: model:ir.model,name:golem_activity_registration.model_golem_activity_registration
 msgid "GOLEM Activity Registration"
-msgstr "Inscription à l'activité"
+msgstr ""
 
 #. module: golem_activity_registration
 #: model:ir.actions.act_window,name:golem_activity_registration.registration_action_list
 msgid "GOLEM Activity Registration List"
-msgstr ""Liste des inscriptions aux activités"
+msgstr ""
 
 #. module: golem_activity_registration
 #: model:ir.model,name:golem_activity_registration.model_golem_member
 msgid "GOLEM Member"
-msgstr "Adhérent"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,__last_update:0
 msgid "Last Modified on"
-msgstr "Modifié pour la dernière fois le"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,write_date:0
 msgid "Last Updated on"
-msgstr "Mis à jour pour la dernière fois le"
+msgstr ""
+
+#. module: golem_activity_registration
+#: sql_constraint:golem.activity:0
+msgid "Le nombre de places ne peut pas être négatif"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,member_id:0
 msgid "Member"
-msgstr "Adhérent"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity:golem_activity_registration.activity_form
 #: field:golem.activity,activity_registration_ids:0
 msgid "Members"
-msgstr "Adhérents"
+msgstr ""
 
 #. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:32
-#: sql_constraint:golem.activity:0
 #, python-format
 msgid "Number of places cannot be negative."
-msgstr "Le nombre de places ne peut pas être négatif"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity,places:0
 msgid "Places"
-msgstr "Places"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity,places_used:0
 msgid "Places used"
-msgstr "Places prises"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity:golem_activity_registration.activity_tree
 msgid "Remain"
-msgstr "Reste"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity,places_remain:0
 msgid "Remaining places"
-msgstr "Places restantes"
+msgstr ""
 
 #. module: golem_activity_registration
 #: field:golem.activity.registration,season_id:0
 msgid "Season"
-msgstr "Saison"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity:golem_activity_registration.activity_form
 msgid "Session"
-msgstr "Séance"
+msgstr ""
 
 #. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:58
 #, python-format
 msgid "Sorry, there is no more place !"
-msgstr "Désolé, il n'y a  plus de place disponible !"
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity.registration:golem_activity_registration.registration_form
 msgid "Subscription"
-msgstr "Inscription"
+msgstr ""
 
 #. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:85
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
-msgstr "L'inscription n'a pas pu être enregistrée : le membre visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule l'activité."
+msgstr ""
 
 #. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:77
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."
-msgstr "Le membre a déjà été inscrit à cette activité."
+msgstr ""
 
 #. module: golem_activity_registration
 #: view:golem.activity:golem_activity_registration.activity_tree
 msgid "red: places_remain == 0;orange: places_remain <= 4;"
-msgstr "red: places_remain == 0;orange: places_remain <= 4;"
+msgstr ""
 
