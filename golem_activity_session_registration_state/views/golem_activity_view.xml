@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<openerp>
+  <data>
+
+    <!-- Form -->
+    <record id="state_activity_form" model="ir.ui.view">
+      <field name="name">Activity Registrations States</field>
+      <field name="model">golem.activity.session</field>
+      <field name="inherit_id"
+        ref="golem_activity_session_registration.activity_form" />
+      <field name="arch" type="xml">
+        <tree position="attributes">
+          <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
+        </tree>
+        <tree position="inside">
+          <field name="state" invisible="1" />
+        </tree>
+        <field name="season_id" position="after">
+          <field name="invoice_id" readonly="1" />
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
