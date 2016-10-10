@@ -110,7 +110,7 @@ class GolemActivity(models.Model):
                 if not a.date_start:
                     a.date_start = a.season_id.date_start
                 if not a.date_stop:
-                    a.date_stop = a.season_id.date_stop
+                    a.date_stop = a.season_id.date_end
 
     weekday = fields.Selection([('mon', _('Monday')),
                                 ('tue', _('Tuesday')),
