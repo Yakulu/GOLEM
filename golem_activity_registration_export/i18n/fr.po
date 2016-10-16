@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_registration_export
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-16 16:20+0000\n"
+"PO-Revision-Date: 2016-10-16 16:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: golem_activity_registration_export
+#: view:golem.activity:golem_activity_registration_export.export_activity_form
+msgid "Export members to CSV file"
+msgstr "Exporter les adhérents vers un fichier tableur"
+
+#. module: golem_activity_registration_export
+#: model:ir.model,name:golem_activity_registration_export.model_golem_activity
+msgid "GOLEM Activity"
+msgstr "Activité"
+
