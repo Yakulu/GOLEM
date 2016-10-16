@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_registration_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-16 09:40+0000\n"
+"PO-Revision-Date: 2016-10-16 09:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: golem_activity_registration_state
+#: selection:golem.activity.registration,state:0
+msgid "Canceled"
+msgstr "Annulé"
+
+#. module: golem_activity_registration_state
+#: selection:golem.activity.registration,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: golem_activity_registration_state
+#: selection:golem.activity.registration,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: golem_activity_registration_state
+#: model:ir.model,name:golem_activity_registration_state.model_golem_activity
+msgid "GOLEM Activity"
+msgstr "Activité"
+
+#. module: golem_activity_registration_state
+#: model:ir.model,name:golem_activity_registration_state.model_golem_activity_registration
+msgid "GOLEM Activity Registration"
+msgstr "Inscription à l'activité"
+
+#. module: golem_activity_registration_state
+#: model:ir.model,name:golem_activity_registration_state.model_golem_member
+msgid "GOLEM Member"
+msgstr "Adhérent"
+
+#. module: golem_activity_registration_state
+#: field:golem.member,has_draft_registrations:0
+msgid "Has draft registrations ?"
+msgstr "A des inscriptions non validées ?"
+
+#. module: golem_activity_registration_state
+#: view:golem.member:golem_activity_registration_state.registration_state
+msgid "If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
+msgstr "Si vous validez les inscriptions, elles seront vues comme confirmées. Ensuite, une facture sera créée pour l'adhérent."
+
+#. module: golem_activity_registration_state
+#: field:golem.activity.registration,invoice_id:0
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: golem_activity_registration_state
+#: field:golem.activity.registration,invoice_line_id:0
+msgid "Invoice line"
+msgstr "Ligne de facturation"
+
+#. module: golem_activity_registration_state
+#: view:golem.member:golem_activity_registration_state.registration_state
+msgid "Note that you can't register activities if the member is new and not yet saved into the database."
+msgstr "Notez que vous ne devez d'abord enregistrer la fiche d'un nouvel adhérent avant de pouvoir saisie ses activités."
+
+#. module: golem_activity_registration_state
+#: field:golem.activity.registration,state:0
+msgid "State"
+msgstr "État"
+
+#. module: golem_activity_registration_state
+#: view:golem.member:golem_activity_registration_state.registration_state
+msgid "Validate all draft registrations"
+msgstr "Valider toutes les inscriptions"
+
+#. module: golem_activity_registration_state
+#: view:golem.activity.registration:golem_activity_registration_state.state_tree
+#: view:golem.member:golem_activity_registration_state.registration_state
+msgid "red: state == 'canceled';darkgrey: state == 'draft';"
+msgstr "red: state == 'canceled';darkgrey: state == 'draft';"
+
