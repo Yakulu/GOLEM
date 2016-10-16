@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-10 14:29+0000\n"
-"PO-Revision-Date: 2016-10-10 14:29+0000\n"
+"POT-Creation-Date: 2016-10-16 08:51+0000\n"
+"PO-Revision-Date: 2016-10-16 08:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -82,11 +82,6 @@ msgstr "Intervenant"
 #: model:product.category,name:golem_activity.golem_product_category_martial
 msgid "Arts martiaux"
 msgstr "Arts martiaux"
-
-#. module: golem_activity
-#: selection:golem.activity,type_of:0
-msgid "Atelier"
-msgstr "Atelier"
 
 #. module: golem_activity
 #: help:golem.activity,list_price:0
@@ -246,11 +241,6 @@ msgid "Description"
 msgstr "Description"
 
 #. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Dimanche"
-msgstr "Dimanche"
-
-#. module: golem_activity
 #: field:golem.activity,display_name:0
 msgid "Display Name"
 msgstr "Nom affiché"
@@ -282,6 +272,7 @@ msgstr "Abonnés"
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:119
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Friday"
 msgstr "Vendredi"
@@ -342,11 +333,6 @@ msgid "Income Account"
 msgstr "Income Account"
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_form
-msgid "Information"
-msgstr "Information"
-
-#. module: golem_activity
 #: field:golem.activity,default_code:0
 msgid "Internal Reference"
 msgstr "Référence"
@@ -365,11 +351,6 @@ msgstr "Is product variant"
 #: field:golem.activity,is_recurrent:0
 msgid "Is recurrent ?"
 msgstr "Est récurrent ?"
-
-#. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Jeudi"
-msgstr "Jeudi"
 
 #. module: golem_activity
 #: field:golem.activity,message_last_post:0
@@ -402,11 +383,6 @@ msgid "Logistical Units"
 msgstr "Logistical Units"
 
 #. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Lundi"
-msgstr "Lundi"
-
-#. module: golem_activity
 #: field:golem.activity,seller_id:0
 msgid "Main Supplier"
 msgstr "Main Supplier"
@@ -415,11 +391,6 @@ msgstr "Main Supplier"
 #: help:golem.activity,seller_id:0
 msgid "Main Supplier who has highest priority in Supplier List."
 msgstr "Main Supplier who has highest priority in Supplier List."
-
-#. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Mardi"
-msgstr "Mardi"
 
 #. module: golem_activity
 #: field:golem.activity,mes_type:0
@@ -452,11 +423,6 @@ msgid "Membership Start Date"
 msgstr "Début de l'adhésion"
 
 #. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Mercredi"
-msgstr "Mercredi"
-
-#. module: golem_activity
 #: field:golem.activity,message_ids:0
 msgid "Messages"
 msgstr "Messages"
@@ -467,7 +433,14 @@ msgid "Messages and communication history"
 msgstr "Messages and communication history"
 
 #. module: golem_activity
-#: field:golem.activity,activity_name:0
+#: code:addons/golem_activity/models/golem_activity.py:115
+#: selection:golem.activity,weekday:0
+#, python-format
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: golem_activity
+#: field:golem.activity,full_name:0
 #: field:golem.activity,name:0
 msgid "Name"
 msgstr "Nom"
@@ -476,6 +449,11 @@ msgstr "Nom"
 #: field:golem.activity,weight_net:0
 msgid "Net Weight"
 msgstr "Net Weight"
+
+#. module: golem_activity
+#: view:golem.activity:golem_activity.view_form
+msgid "Others"
+msgstr "Autres"
 
 #. module: golem_activity
 #: field:golem.activity,price:0
@@ -543,12 +521,8 @@ msgid "Sale Price"
 msgstr "Prix de vente"
 
 #. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Samedi"
-msgstr "Samedi"
-
-#. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:120
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Saturday"
 msgstr "Samedi"
@@ -589,16 +563,13 @@ msgid "Specify if the product can be selected in a sales order line."
 msgstr "Specify if the product can be selected in a sales order line."
 
 #. module: golem_activity
-#: selection:golem.activity,type_of:0
-msgid "Stage"
-msgstr "Stage"
-
-#. module: golem_activity
 #: field:golem.activity,date_start:0
 msgid "Start date"
 msgstr "Date de début"
 
 #. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:102
+#: code:addons/golem_activity/models/golem_activity.py:137
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr "Le début de la période ne peut être antérieure à sa fin"
@@ -620,6 +591,7 @@ msgstr "Résumé"
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:121
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Sunday"
 msgstr "Dimanche"
@@ -686,6 +658,7 @@ msgstr "This is the average delay in days between the purchase order confirmatio
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:118
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Thursday"
 msgstr "Jeudi"
@@ -693,6 +666,7 @@ msgstr "Jeudi"
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:48
 #: view:golem.activity:golem_activity.view_filter
+#: selection:golem.activity,type_of:0
 #, python-format
 msgid "Training"
 msgstr "Stage"
@@ -704,9 +678,10 @@ msgstr "True"
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:116
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Tuesday"
-msgstr "Tuesday"
+msgstr "Mardi"
 
 #. module: golem_activity
 #: field:golem.activity,type_of:0
@@ -734,11 +709,6 @@ msgid "Unread Messages"
 msgstr "Messages non lus"
 
 #. module: golem_activity
-#: selection:golem.activity,weekday:0
-msgid "Vendredi"
-msgstr "Vendredi"
-
-#. module: golem_activity
 #: field:golem.activity,volume:0
 msgid "Volume"
 msgstr "Volume"
@@ -750,6 +720,7 @@ msgstr "Garantie"
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:117
+#: selection:golem.activity,weekday:0
 #, python-format
 msgid "Wednesday"
 msgstr "Mercredi"
@@ -767,9 +738,10 @@ msgstr "Work in progress"
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:47
 #: view:golem.activity:golem_activity.view_filter
+#: selection:golem.activity,type_of:0
 #, python-format
 msgid "Workshop"
-msgstr "Workshop"
+msgstr "Atelier"
 
 #. module: golem_activity
 #: view:golem.activity:golem_activity.view_form
