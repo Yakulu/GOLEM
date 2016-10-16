@@ -26,8 +26,8 @@ class ExportGolemActivityMembers(CSVExport):
     @http.route('/web/export/golem/activity_members', type='http', auth='user')
     def export_csv_view(self, data):
         data = json.loads(data)
-        FIELDS = ['number', 'lastname', 'firstname', 'contact_address', 'zip',
-                  'city', 'birthdate_date', 'email', 'phone', 'mobile']
+        FIELDS = ['number', 'lastname', 'firstname', 'street', 'zip', 'city',
+                  'birthdate_date', 'email', 'phone', 'mobile']
         aid = data.get('activity_id')
         a_model = request.env['golem.activity']
         activity = a_model.browse([aid])

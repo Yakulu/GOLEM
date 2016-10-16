@@ -24,8 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
         <form>
+          <header />
           <sheet>
-            <div class="oe_right oe_button_box" style="width: 300px;"
+            <div class="oe_clear oe_right oe_button_box"
+              style="width: 300px;"
               name="buttons"></div>
             <div class="oe_left" style="width: 500px;">
               <field name="image" widget="image" class="oe_avatar oe_left"/>

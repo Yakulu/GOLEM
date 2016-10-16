@@ -23,13 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">Activity Registrations CSV Export</field>
       <field name="model">golem.activity</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.activity_form" />
+        ref="golem_activity.view_form" />
       <field name="arch" type="xml">
-        <field name="activity_registration_ids" position="before">
-          <button name="do_export_csv" type="object"
-            string="Export members to CSV file"
-            attrs="{'invisible': [('activity_registration_ids', '=', False)]}" />
-        </field>
+        <header position="inside">
+          <div style="min-height: 30px;">
+            <button name="do_export_csv" type="object" class="oe_button"
+              string="Export members to CSV file" />
+          </div>
+        </header>
       </field>
     </record>
 
