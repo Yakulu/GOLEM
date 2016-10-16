@@ -25,15 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id"
         ref="golem_activity_registration.activity_form" />
       <field name="arch" type="xml">
-        <tree position="attributes">
-          <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
+        <tree position="replace">
+          <tree editable="top"
+            colors="red: state == 'canceled';darkgrey: state == 'draft';">
+            <field name="state" invisible="1" />
+            <field name="member_id"
+              domain="[('season_ids', '=', season_id)]" />
+            <field name="activity_id" readonly="1" />
+            <field name="season_id" readonly="1" />
+            <field name="invoice_id" readonly="1" />
+          </tree>
         </tree>
-        <tree position="inside">
-          <field name="state" invisible="1" />
-        </tree>
-        <field name="season_id" position="after">
-          <field name="invoice_id" readonly="1" />
-        </field>
       </field>
     </record>
 
