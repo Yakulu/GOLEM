@@ -18,8 +18,8 @@
 {
     'name': 'GOLEM Activity Session Member Registrations States',
     'summary': 'GOLEM Activities Session Member Registration states',
-    'description': ''' Non-profit french MJC activities session member
-    registration states management ''',
+    'description': ''' Non-profit french MJC activities member registration
+    states management ''',
     'version': '0.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
@@ -27,6 +27,6 @@
     'application': False,
     'installable': True,
     'depends': ['golem_activity_registration'],
-    'data': ['views/golem_activity_session_registration_view.xml',
+    'data': ['views/golem_activity_registration_view.xml',
              'views/golem_member_view.xml', 'views/golem_activity_view.xml']
 }
