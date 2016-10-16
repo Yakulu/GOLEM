@@ -80,7 +80,7 @@ msgstr "Inscription à l'activité"
 #. module: golem_activity_registration
 #: model:ir.actions.act_window,name:golem_activity_registration.registration_action_list
 msgid "GOLEM Activity Registration List"
-msgstr ""Liste des inscriptions aux activités"
+msgstr "Liste des inscriptions aux activités"
 
 #. module: golem_activity_registration
 #: model:ir.model,name:golem_activity_registration.model_golem_member
