@@ -26,7 +26,7 @@
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_activity_session_registration'],
+    'depends': ['golem_activity_registration'],
     'data': ['views/golem_activity_session_registration_view.xml',
              'views/golem_member_view.xml', 'views/golem_activity_view.xml']
 }

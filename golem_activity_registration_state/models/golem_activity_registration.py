@@ -26,10 +26,10 @@ class GolemMember(models.Model):
         compute='_compute_has_draft_registrations')
 
     @api.one
-    @api.depends('activity_session_registration_ids')
+    @api.depends('activity_registration_ids')
     def _compute_has_draft_registrations(self):
         """ Check if there are draft states in member activities """
-        for r in self.activity_session_registration_ids:
+        for r in self.activity_registration_ids:
             if r.state == 'draft':
                 self.has_draft_registrations = True
                 return
@@ -38,19 +38,19 @@ class GolemMember(models.Model):
     @api.one
     def do_validate_registrations(self):
         """ Validate all draft registrations """
-        draft_registrations = self.activity_session_registration_ids.filtered(
+        draft_registrations = self.activity_registration_ids.filtered(
             lambda r: r.state == 'draft')
         draft_registrations.write({'state': 'confirmed'})
 
     @api.multi
     def write(self, values):
         """ Handle removed activities to be canceled """
-        if 'activity_session_registration_ids' in values:
-            rids = values['activity_session_registration_ids']
+        if 'activity_registration_ids' in values:
+            rids = values['activity_registration_ids']
             r_keep, r_removed = [], []
             for r in rids:  # == 2 is removal case
                 r_removed.append(r) if r[0] == 2 else r_keep.append(r)
-            rObj = self.env['golem.activity.session.registration']
+            rObj = self.env['golem.activity.registration']
             for rem in r_removed:
                 r = rObj.browse([rem[1]])
                 # if already canceled, let it be removed, else cancel it
@@ -58,22 +58,22 @@ class GolemMember(models.Model):
                     r.state = 'canceled'
                 else:
                     r_keep.append(rem)
-            values['activity_session_registration_ids'] = r_keep
+            values['activity_registration_ids'] = r_keep
         return super(GolemMember, self).write(values)
 
 
-class GolemActivitySession(models.Model):
-    _inherit = 'golem.activity.session'
+class GolemActivity(models.Model):
+    _inherit = 'golem.activity'
 
     @api.one
-    @api.depends('activity_session_registration_ids')
+    @api.depends('activity_registration_ids')
     def _compute_places_used(self):
-        rids = self.activity_session_registration_ids
+        rids = self.activity_registration_ids
         self.places_used = len(rids.filtered(lambda r: r.state == 'confirmed'))
 
 
-class GolemActivitySessionRegistration(models.Model):
-    _inherit = 'golem.activity.session.registration'
+class GolemActivityRegistration(models.Model):
+    _inherit = 'golem.activity.registration'
 
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
                               ('canceled', 'Canceled')], required=True,
@@ -87,8 +87,8 @@ class GolemActivitySessionRegistration(models.Model):
     @api.multi
     def write(self, values):
         """ Recomputes values linked to registrations when state change """
-        res = super(GolemActivitySessionRegistration, self).write(values)
+        res = super(GolemActivityRegistration, self).write(values)
         if values['state']:
             for r in self:
-                r.session_id._compute_places_used()
+                r.activity_id._compute_places_used()
         return res

@@ -18,12 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
 
-    <!-- Form -->
-    <record id="state_activity_form" model="ir.ui.view">
-      <field name="name">Activity Registrations States</field>
-      <field name="model">golem.activity.session</field>
+    <!-- Tree -->
+    <record id="state_tree" model="ir.ui.view">
+      <field name="name">Session registration list</field>
+      <field name="model">golem.activity.registration</field>
       <field name="inherit_id"
-        ref="golem_activity_session_registration.activity_form" />
+        ref="golem_activity_registration.registration_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
@@ -31,8 +31,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree position="inside">
           <field name="state" invisible="1" />
         </tree>
-        <field name="season_id" position="after">
+        <field name="activity_id" position="after">
           <field name="invoice_id" readonly="1" />
+          <field name="invoice_line_id" readonly="1" />
+        </field>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record id="state_searches" model="ir.ui.view">
+      <field name="name">Registration state specific searches</field>
+      <field name="model">golem.activity.registration</field>
+      <field name="inherit_id"
+        ref="golem_activity_registration.searches" />
+      <field name="arch" type="xml">
+        <field name="activity_id" position="after">
+          <field name="invoice_id" widget="many2one" />
         </field>
       </field>
     </record>

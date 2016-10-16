@@ -18,35 +18,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <openerp>
   <data>
 
-    <!-- Tree -->
-    <record id="state_tree" model="ir.ui.view">
-      <field name="name">Session registration list</field>
-      <field name="model">golem.activity.session.registration</field>
+    <!-- Form -->
+    <record model="ir.ui.view" id="registration_state">
+      <field name="name">Add state for registrations</field>
+      <field name="model">golem.member</field>
       <field name="inherit_id"
-        ref="golem_activity_session_registration.registration_tree" />
+        ref="golem_activity_registration.activities_registration" />
       <field name="arch" type="xml">
+        <p name="default_season_label" position="after">
+            <p attrs="{'invisible': [('id', '!=', False)]}" style="color:red;}">
+                Note that you can't register activities if the member is new and not yet saved into the database.
+            </p>
+            <p>
+              <field name="has_draft_registrations" invisible="1" />
+              <button name="do_validate_registrations" type="object"
+                string="Validate all draft registrations"
+                class="oe_highlight"
+                help="If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
+                attrs="{'invisible': [('has_draft_registrations', '=', False)]}" />
+            </p>
+        </p>
+        <!-- TODO : one by one cancelation -->
+        <!-- TODO : do not allow removal if confirmed -->
         <tree position="attributes">
           <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
         </tree>
         <tree position="inside">
           <field name="state" invisible="1" />
         </tree>
-        <field name="session_id" position="after">
+        <field name="member_id" position="after">
           <field name="invoice_id" readonly="1" />
-          <field name="invoice_line_id" readonly="1" />
-        </field>
-      </field>
-    </record>
-
-    <!-- Search -->
-    <record id="state_searches" model="ir.ui.view">
-      <field name="name">Registration state specific searches</field>
-      <field name="model">golem.activity.session.registration</field>
-      <field name="inherit_id"
-        ref="golem_activity_session_registration.searches" />
-      <field name="arch" type="xml">
-        <field name="session_id" position="after">
-          <field name="invoice_id" widget="many2one" />
         </field>
       </field>
     </record>
