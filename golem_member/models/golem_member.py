@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#
 #    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -172,6 +172,7 @@ class GolemMember(models.Model):
 
 
 class GolemMemberNumber(models.Model):
+
     """ GOLEM Member Numbers """
     _name = 'golem.member.number'
     _description = 'GOLEM Member Numbers'
@@ -191,6 +192,7 @@ class GolemMemberNumber(models.Model):
 
 
 class GolemNumberConfig(models.TransientModel):
+
     """ Configuration for number computing """
     _name = 'golem.member.numberconfig'
     _description = 'Configuration for number computing'
