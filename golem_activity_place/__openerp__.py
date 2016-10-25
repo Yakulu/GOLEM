@@ -15,12 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" Manifest file """
+
 {
     'name': 'GOLEM Activity Places',
     'summary': 'GOLEM Activity avdanced places management',
-    'description': ''' Management of minimum places, overbook and max
-    overbook... ''',
-    'version': '0.1',
+    'version': '8.0.2.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

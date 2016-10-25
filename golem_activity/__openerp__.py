@@ -15,11 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" Manifest file """
+
 {
     'name': 'GOLEM activities',
     'summary': 'Extends Odoo products for multi-activity',
-    'description': 'Multi-activities management',
-    'version': '0.1',
+    'version': '8.0.2.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
