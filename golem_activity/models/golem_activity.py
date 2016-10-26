@@ -120,20 +120,20 @@ class GolemActivity(models.Model):
                                 ('sat', _('Saturday')),
                                 ('sun', _('Sunday'))], copy=False)
     hour_start = fields.Float('Start time', copy=False)
-    hour_end = fields.Float('End time', copy=False)
+    hour_stop = fields.Float('Stop time', copy=False)
 
     @api.onchange('hour_start')
     def onchange_hour_start(self):
         """ Sets end hour to start hour if no start hour """
         for s in self:
-            if s.hour_start and not s.hour_end:
-                s.hour_end = s.hour_start + 1
+            if s.hour_start and not s.hour_stop:
+                s.hour_stop = s.hour_start + 1
 
-    @api.constrains('hour_start', 'hour_end')
+    @api.constrains('hour_start', 'hour_stop')
     def _check_hour_period(self):
         """ Check if end hour if after start hour """
         for s in self:
-            if s.hour_start > s.hour_end:
+            if s.hour_start > s.hour_stop:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
 

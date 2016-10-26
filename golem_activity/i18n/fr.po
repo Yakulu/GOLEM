@@ -256,8 +256,8 @@ msgid "End date"
 msgstr "Date de fin"
 
 #. module: golem_activity
-#: field:golem.activity,hour_end:0
-msgid "End time"
+#: field:golem.activity,hour_stop:0
+msgid "Stop time"
 msgstr "Heure de fin"
 
 #. module: golem_activity
