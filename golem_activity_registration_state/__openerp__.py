@@ -15,8 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" Manifest file """
-
 {
     'name': 'GOLEM Activity Session Member Registrations States',
     'summary': 'GOLEM Activities Session Member Registration states',

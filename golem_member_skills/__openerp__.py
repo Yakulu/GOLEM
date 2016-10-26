@@ -15,8 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" Manifest file """
-
 {
     'name': 'GOLEM members skills',
     'summary': 'GOLEM non-profit members skills management',
