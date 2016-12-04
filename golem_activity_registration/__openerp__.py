@@ -26,5 +26,6 @@
     'installable': True,
     'depends': ['golem_activity', 'golem_member'],
     'data': ['views/golem_activity_registration_view.xml',
-             'views/golem_member_view.xml', 'views/golem_activity_view.xml']
+             'views/golem_member_view.xml', 'views/golem_activity_view.xml',
+             'security/ir.model.access.csv']
 }
