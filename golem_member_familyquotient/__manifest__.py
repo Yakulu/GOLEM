@@ -16,16 +16,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM activities',
-    'summary': 'Extends Odoo products for multi-activity',
-    'version': '8.0.2.0.0',
+    'name': 'GOLEM Member Family Quotient',
+    'summary': 'GOLEM Members Family Quotients',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['product', 'golem_base', 'golem_season'],
-    'data': ['security/ir.model.access.csv',
-             'data/golem_activity_data.xml',
-             'views/golem_activity_view.xml']
+    'application': False,
+    'installable': False,
+    'depends': ['golem_member'],
+    'data': ['golem_member_view.xml']
 }

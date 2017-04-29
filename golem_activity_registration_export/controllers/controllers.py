@@ -16,9 +16,9 @@
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
 import json
-import openerp.http as http
-from openerp.http import request
-from openerp.addons.web.controllers.main import CSVExport
+import odoo.http as http
+from odoo.http import request
+from odoo.addons.web.controllers.main import CSVExport
 
 
 class ExportGolemActivityMembers(CSVExport):

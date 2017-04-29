@@ -16,15 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM members minor and family',
-    'summary': 'GOLEM non-profit members family + minor management',
-    'version': '8.0.1.0.0',
+    'name': 'GOLEM non-profit membership handling',
+    'summary': 'Extends Odoo membership',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
-    'auto_install': True,
-    'depends': ['golem_family', 'golem_member_minor'],
-    'data': []
+    'installable': False,
+    'depends': ['golem_member', 'account', 'decimal_precision'],
+    'data': ['views/golem_membership_invoice.xml',
+             'views/golem_member_view.xml']
 }

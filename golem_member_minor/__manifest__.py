@@ -16,14 +16,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM seasons',
-    'summary': 'GOLEM non-profit seasons management',
-    'version': '8.0.1.0.0',
+    'name': 'GOLEM members minor',
+    'summary': 'GOLEM non-profit members minor management',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
-    'depends': ['golem_base'],
-    'data': ['security/ir.model.access.csv', 'views/golem_season_view.xml']
+    'installable': False,
+    'depends': ['golem_member'],
+    'data': ['golem_member_view.xml']
 }

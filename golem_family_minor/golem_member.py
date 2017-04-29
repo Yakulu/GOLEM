@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields
+from odoo import models, fields
 
 LEGAL_DMN = "['&', ('family_id', '=', family_id), ('id', '!=', partner_id)]"
 

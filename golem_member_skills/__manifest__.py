@@ -16,16 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM non-profit members',
-    'summary': 'Extends Odoo contacts for MJC',
-    'version': '8.0.1.0.0',
+    'name': 'GOLEM members skills',
+    'summary': 'GOLEM non-profit members skills management',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season'],
-    'data': ['views/golem_member_view.xml', 'views/members_menu.xml',
-             'views/res_partner_view.xml', 'views/number_config.xml',
-             'data/number_config.xml', 'security/ir.model.access.csv']
+    'application': False,
+    'installable': False,
+    'depends': ['golem_member'],
+    'data': ['views/golem_member_view.xml', 'views/res_partner_view.xml',
+             'security/ir.model.access.csv']
 }

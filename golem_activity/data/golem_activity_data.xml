@@ -17,7 +17,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<openerp>
+<odoo>
   <data noupdate="1">
     <!-- Good default for product categories -->
     <record id="property_account_expense_categ" model="ir.property">
@@ -69,4 +69,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         search="[('code', '=', '604000')]" />
     </record>
   </data>
-</openerp>
+</odoo>

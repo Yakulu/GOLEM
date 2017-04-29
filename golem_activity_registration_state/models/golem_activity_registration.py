@@ -15,7 +15,7 @@
 #    you should have received a copy of the gnu affero general public license
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class GolemMember(models.Model):

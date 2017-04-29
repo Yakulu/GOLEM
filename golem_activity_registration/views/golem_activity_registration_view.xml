@@ -15,7 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<openerp>
+<odoo>
   <data>
     <!-- Form -->
     <record id="registration_form" model="ir.ui.view">
@@ -77,4 +77,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       groups="golem_base.group_golem_user"
       sequence="20" />
   </data>
-</openerp>
+</odoo>

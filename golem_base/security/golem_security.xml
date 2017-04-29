@@ -17,7 +17,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<openerp>
+<odoo>
   <data noupdate="0">
     <!-- Groups -->
     <record id="group_golem_user" model="res.groups">
@@ -50,4 +50,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         eval="[(6, 0, [ref('golem_base.group_golem_manager')])]" />
     </record>
   </data>
-</openerp>
+</odoo>

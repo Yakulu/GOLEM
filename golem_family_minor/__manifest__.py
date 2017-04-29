@@ -16,15 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM Activity Places',
-    'summary': 'GOLEM Activity avdanced places management',
-    'version': '8.0.2.0.0',
+    'name': 'GOLEM members minor and family',
+    'summary': 'GOLEM non-profit members family + minor management',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
-    'auto_install': False,
-    'depends': ['golem_activity_registration'],
-    'data': ['views/golem_activity_view.xml']
+    'installable': False,
+    'auto_install': True,
+    'depends': ['golem_family', 'golem_member_minor'],
+    'data': []
 }

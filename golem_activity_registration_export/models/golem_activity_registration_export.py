@@ -16,7 +16,7 @@
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
 from json import dumps
-from openerp import models, api
+from odoo import models, api
 
 
 class GolemActivity(models.Model):

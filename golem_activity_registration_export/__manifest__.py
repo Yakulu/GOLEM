@@ -16,15 +16,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM families',
-    'summary': 'GOLEM Members Families',
-    'version': '8.0.2.0.0',
+    'name': 'GOLEM Activity Member Registrations CSV exports',
+    'summary': 'GOLEM Activities Member Registration CSV exports',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['security/ir.model.access.csv', 'views/golem_family_view.xml',
-             'views/golem_member_view.xml', 'views/res_partner_view.xml']
+    'installable': False,
+    'depends': ['golem_activity_registration'],
+    'data': ['views/golem_activity_view.xml']
 }

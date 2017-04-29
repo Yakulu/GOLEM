@@ -17,7 +17,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<openerp>
+<odoo>
   <data>
     <!-- Forms -->
     <record id="view_form" model="ir.ui.view">
@@ -185,4 +185,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       parent="base.menu_marketing_config_association" sequence="10"
       action="tags_action_list" groups="golem_base.group_golem_manager" />
   </data>
-</openerp>
+</odoo>

@@ -16,14 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM members minor',
-    'summary': 'GOLEM non-profit members minor management',
-    'version': '8.0.1.0.0',
+    'name': 'GOLEM Activity Session Member Registrations States',
+    'summary': 'GOLEM Activities Session Member Registration states',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['golem_member_view.xml']
+    'installable': False,
+    'depends': ['golem_activity_registration'],
+    'data': ['views/golem_activity_registration_view.xml',
+             'views/golem_member_view.xml', 'views/golem_activity_view.xml']
 }

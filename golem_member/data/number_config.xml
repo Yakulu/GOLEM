@@ -17,7 +17,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<openerp>
+<odoo>
   <data noupdate="1">
     <function model="ir.config_parameter" name="set_param"
       eval="('golem_numberconfig_isautomatic', '1')" />
@@ -28,4 +28,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <function model="ir.config_parameter" name="set_param"
       eval="('golem_number_counter', '0')" />
   </data>
-</openerp>
+</odoo>
