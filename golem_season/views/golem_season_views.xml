@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record id="filter" model="ir.ui.view">
+    <record id="golem_season_search" model="ir.ui.view">
       <field name="name">GOLEM Seasons Filters</field>
       <field name="model">golem.season</field>
       <field name="arch" type="xml">
