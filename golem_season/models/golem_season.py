@@ -71,10 +71,10 @@ class GolemSeason(models.Model):
         self.is_default = True
         if 'golem.member' in self.env.registry:
             all_members = self.env['golem.member'].search([])
-            all_members._compute_is_current()
-            all_members._generate_number()
+            all_members.compute_is_current()
+            all_members.generate_number()
         if 'golem.activity' in self.env.registry:
-            self.env['golem.activity'].search([])._compute_is_current()
+            self.env['golem.activity'].search([]).compute_is_current()
 
     @api.model
     @api.returns('self', lambda rec: rec.id)

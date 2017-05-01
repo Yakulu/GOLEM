@@ -75,7 +75,7 @@ class GolemMember(models.Model):
                                   required=True, default=_default_season,
                                   ondelete='restrict')
     is_current = fields.Boolean('Current user?', default=False, readonly=True,
-                                store=True, compute='_compute_is_current')
+                                store=True, compute='compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
 
@@ -85,7 +85,7 @@ class GolemMember(models.Model):
 
     @api.multi
     @api.depends('season_ids')
-    def _compute_is_current(self):
+    def compute_is_current(self):
         """ Computes is current according to seasons """
         default_s = self._default_season()
         for member in self:

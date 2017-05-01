@@ -69,10 +69,10 @@ class GolemActivity(models.Model):
                                 ondelete='restrict')
 
     is_current = fields.Boolean('Current season?', store=True, default=False,
-                                compute='_compute_is_current')
+                                compute='compute_is_current')
 
     @api.depends('season_id')
-    def _compute_is_current(self):
+    def compute_is_current(self):
         """ Checks if activity is active for current season """
         default_season = self._default_season()
         for activity in self:
