@@ -114,6 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <kanban>
+          <field name="image_small" />
           <field name="color" />
           <field name="display_name" />
           <field name="title" />
