@@ -15,8 +15,9 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from odoo import models, fields, api, _
+""" GOLEM Season management """
 
+from odoo import models, fields, api, _
 
 class GolemSeason(models.Model):
     """ GOLEM Season """
@@ -26,7 +27,7 @@ class GolemSeason(models.Model):
     _sql_constraints = [('golem_season_name_uniq', 'UNIQUE (name)',
                          _('This season name has already been used.'))]
 
-    name = fields.Char('Season name')
+    name = fields.Char('Season name', copy=False)
     member_counter = fields.Integer('Counter for member number generation',
                                     readonly=True, default=0)
     date_start = fields.Date('Period start')
@@ -42,27 +43,28 @@ class GolemSeason(models.Model):
                                                'after end of the period.'))
             else:
                 seasons = self.env['golem.season'].search([])
-                for s in seasons:
-                    if s.date_start < season.date_start < s.date_end:
+                for eachs in seasons:
+                    if eachs.date_start < season.date_start < eachs.date_end:
                         msg = _(u'Start of the period is in range of an '
                                 'existing period.')
                         raise models.ValidationError(msg)
-                    if s.date_start < season.date_end < s.date_end:
+                    if eachs.date_start < season.date_end < eachs.date_end:
                         msg = _(u'End of the period is in range of an '
                                 'existing period.')
                         raise models.ValidationError(msg)
-                    if season.date_start < s.date_start < season.date_end:
+                    if season.date_start < eachs.date_start < season.date_end:
                         msg = _(u'Current period cannot be included into '
                                 'another existing period.')
                         raise models.ValidationError(msg)
 
     is_default = fields.Boolean('Default season for views?', readonly=True)
 
-    @api.one
+    @api.multi
     def do_default_season(self):
         """ is_default on and ensure that only one is_default is active. Also
         recomputes is_current for members and activities. For simplicity use a
         magic trick around registry rather than double inheritance """
+        self.ensure_one()
         old_default_season = self.search([('is_default', '=', True)])
         if old_default_season:
             old_default_season.is_default = False
@@ -85,8 +87,8 @@ class GolemSeason(models.Model):
     @api.multi
     def unlink(self):
         """ Forbids default season removal """
-        for s in self:
-            if s.is_default:
+        for season in self:
+            if season.is_default:
                 emsg = _('You can\'t delete the default season')
                 raise models.ValidationError(emsg)
             else:

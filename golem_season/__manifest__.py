@@ -23,7 +23,7 @@
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'depends': ['golem_base'],
-    'data': ['security/ir.model.access.csv', 'views/golem_season_view.xml']
+    'data': ['security/ir.model.access.csv', 'views/golem_season_views.xml']
 }

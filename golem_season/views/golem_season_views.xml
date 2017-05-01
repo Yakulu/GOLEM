@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Forms -->
-    <record id="form" model="ir.ui.view">
+    <record id="golem_season_view_form" model="ir.ui.view">
       <field name="name">GOLEM Season Form</field>
       <field name="model">golem.season</field>
       <field name="arch" type="xml">
@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Trees -->
-    <record id="tree" model="ir.ui.view">
+    <record id="golem_season_view_tree" model="ir.ui.view">
       <field name="name">GOLEM Seasons</field>
       <field name="model">golem.season</field>
       <field name="arch" type="xml">
@@ -72,12 +72,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="action_list" name="GOLEM Seasons"
+    <act_window id="golem_season_action" name="GOLEM Seasons"
       res_model="golem.season" view_mode="tree,form" />
+
     <!-- Menus -->
-    <menuitem id="menu_seasons" name="GOLEM Seasons"
-      parent="base.menu_marketing_config_association" sequence="2"
-      action="action_list" groups="golem_base.group_golem_manager" />
+    <menuitem id="golem_season_menu" name="GOLEM Seasons"
+      parent="membership.menu_marketing_config_association" sequence="5"
+      action="golem_season_action" groups="golem_base.group_golem_manager" />
 
   </data>
 </odoo>
