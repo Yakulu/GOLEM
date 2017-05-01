@@ -38,12 +38,12 @@ class GolemActivity(models.Model):
     activity_registration_ids = fields.One2many('golem.activity.registration',
                                                 'activity_id', 'Members',
                                                 index=True)
-    places_used = fields.Integer('Places used', compute='_compute_places_used',
+    places_used = fields.Integer('Places used', compute='compute_places_used',
                                  store=True)
 
     @api.multi
     @api.depends('activity_registration_ids')
-    def _compute_places_used(self):
+    def compute_places_used(self):
         """ Computes used places """
         for activity in self:
             activity.places_used = len(activity.activity_registration_ids)
