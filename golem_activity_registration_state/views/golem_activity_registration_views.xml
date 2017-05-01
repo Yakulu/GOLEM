@@ -19,11 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Tree -->
-    <record id="state_tree" model="ir.ui.view">
+    <record id="golem_activity_registration_tree_inherit_state"
+      model="ir.ui.view">
       <field name="name">Session registration list</field>
       <field name="model">golem.activity.registration</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.registration_tree" />
+        ref="golem_activity_registration.golem_activity_registration_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
@@ -39,11 +40,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record id="state_searches" model="ir.ui.view">
+    <record id="golem_activity_registration_search_inherit_state"
+      model="ir.ui.view">
       <field name="name">Registration state specific searches</field>
       <field name="model">golem.activity.registration</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.searches" />
+        ref="golem_activity_registration.golem_activity_registration_search" />
       <field name="arch" type="xml">
         <field name="activity_id" position="after">
           <field name="invoice_id" widget="many2one" />

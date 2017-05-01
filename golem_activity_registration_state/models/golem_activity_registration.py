@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    copyright 2016 fabien bourgeois <fabien@yaltik.com>
+#    copyright 2017 fabien bourgeois <fabien@yaltik.com>
 #
 #    this program is free software: you can redistribute it and/or modify
 #    it under the terms of the gnu affero general public license as
@@ -15,32 +15,35 @@
 #    you should have received a copy of the gnu affero general public license
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Activity Registration State """
+
 from odoo import models, fields, api
 
-
 class GolemMember(models.Model):
+    """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
     has_draft_registrations = fields.Boolean(
         'Has draft registrations ?',
-        compute='_compute_has_draft_registrations')
+        compute='_compute_has_draft_reg')
 
-    @api.one
     @api.depends('activity_registration_ids')
-    def _compute_has_draft_registrations(self):
+    def _compute_has_draft_reg(self):
         """ Check if there are draft states in member activities """
-        for r in self.activity_registration_ids:
-            if r.state == 'draft':
-                self.has_draft_registrations = True
-                return
-        self.has_draft_registrations = False
+        for member in self:
+            for reg in member.activity_registration_ids:
+                if reg.state == 'draft':
+                    member.has_draft_registrations = True
+                    return
+            member.has_draft_registrations = False
 
-    @api.one
+    @api.multi
     def do_validate_registrations(self):
         """ Validate all draft registrations """
-        draft_registrations = self.activity_registration_ids.filtered(
-            lambda r: r.state == 'draft')
-        draft_registrations.write({'state': 'confirmed'})
+        for member in self:
+            draft_registrations = member.activity_registration_ids.filtered(
+                lambda r: r.state == 'draft')
+            draft_registrations.write({'state': 'confirmed'})
 
     @api.multi
     def write(self, values):
@@ -48,14 +51,17 @@ class GolemMember(models.Model):
         if 'activity_registration_ids' in values:
             rids = values['activity_registration_ids']
             r_keep, r_removed = [], []
-            for r in rids:  # == 2 is removal case
-                r_removed.append(r) if r[0] == 2 else r_keep.append(r)
-            rObj = self.env['golem.activity.registration']
+            for rid in rids:  # == 2 is removal case
+                if rid[0] == 2:
+                    r_removed.append(rid)
+                else:
+                    r_keep.append(rid)
+            reg_obj = self.env['golem.activity.registration']
             for rem in r_removed:
-                r = rObj.browse([rem[1]])
+                reg = reg_obj.browse([rem[1]])
                 # if already canceled, let it be removed, else cancel it
-                if r.state != 'canceled':
-                    r.state = 'canceled'
+                if reg.state != 'canceled':
+                    reg.state = 'canceled'
                 else:
                     r_keep.append(rem)
             values['activity_registration_ids'] = r_keep
@@ -63,16 +69,20 @@ class GolemMember(models.Model):
 
 
 class GolemActivity(models.Model):
+    """ GOLEM Activity adaptations """
     _inherit = 'golem.activity'
 
-    @api.one
+    @api.multi
     @api.depends('activity_registration_ids')
-    def _compute_places_used(self):
-        rids = self.activity_registration_ids
-        self.places_used = len(rids.filtered(lambda r: r.state == 'confirmed'))
+    def compute_places_used(self):
+        """ Computes used places """
+        for activity in self:
+            rids = activity.activity_registration_ids
+            activity.places_used = len(rids.filtered(lambda r: r.state == 'confirmed'))
 
 
 class GolemActivityRegistration(models.Model):
+    """ GOLEM Activity Registration adaptations """
     _inherit = 'golem.activity.registration'
 
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
@@ -89,6 +99,6 @@ class GolemActivityRegistration(models.Model):
         """ Recomputes values linked to registrations when state change """
         res = super(GolemActivityRegistration, self).write(values)
         if values['state']:
-            for r in self:
-                r.activity_id._compute_places_used()
+            for registration in self:
+                registration.activity_id.compute_places_used()
         return res
