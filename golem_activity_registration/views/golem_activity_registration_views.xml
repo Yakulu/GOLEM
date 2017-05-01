@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -15,10 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <odoo>
   <data>
+
     <!-- Form -->
-    <record id="registration_form" model="ir.ui.view">
+    <record id="golem_activity_registration_form" model="ir.ui.view">
       <field name="name">Activity registration form</field>
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
@@ -36,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
     <!-- Tree -->
-    <record id="registration_tree" model="ir.ui.view">
+    <record id="golem_activity_registration_tree" model="ir.ui.view">
       <field name="name">Activity registration list</field>
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
@@ -49,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record id="searches" model="ir.ui.view">
+    <record id="golem_activity_registration_search" model="ir.ui.view">
       <field name="name">GOLEM Activity Registration searches</field>
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
@@ -64,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Action -->
-    <record id="registration_action_list" model="ir.actions.act_window">
+    <record id="golem_activity_registration_action" model="ir.actions.act_window">
       <field name="name">GOLEM Activity Registration List</field>
       <field name="res_model">golem.activity.registration</field>
       <field name="view_mode">tree</field>
@@ -72,9 +74,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Menu -->
-    <menuitem id="registration_menu_list" name="Acitivity registrations"
-      parent="golem_activity.activity_menu" action="registration_action_list"
+    <menuitem id="golem_activity_registration_menu" name="Activity registrations"
+      parent="golem_activity.golem_activity_menu"
+      action="golem_activity_registration_action"
       groups="golem_base.group_golem_user"
       sequence="20" />
+
   </data>
 </odoo>

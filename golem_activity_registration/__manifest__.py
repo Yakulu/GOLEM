@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,9 @@
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'depends': ['golem_activity', 'golem_member'],
-    'data': ['views/golem_activity_registration_view.xml',
-             'views/golem_member_view.xml', 'views/golem_activity_view.xml',
+    'data': ['views/golem_activity_registration_views.xml',
+             'views/golem_member_views.xml', 'views/golem_activity_views.xml',
              'security/ir.model.access.csv']
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -15,19 +15,21 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <odoo>
   <data>
 
     <!-- Form -->
-    <record id="activity_form" model="ir.ui.view">
+    <record id="golem_activity_form_inherit_registration"
+      model="ir.ui.view">
       <field name="name">Activity Registrations and Places</field>
       <field name="model">golem.activity</field>
-      <field name="inherit_id" ref="golem_activity.view_form" />
+      <field name="inherit_id" ref="golem_activity.golem_activity_form" />
       <field name="arch" type="xml">
         <group name="places" position="inside">
           <field name="places" />
         </group>
-        <page string="Session" position="after">
+        <page name="session" position="after">
           <page string="Members">
             <group>
               <field name="places_remain" readonly="True" />
@@ -47,10 +49,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Tree -->
-    <record id="activity_tree" model="ir.ui.view">
+    <record id="golem_activity_tree_inherit_registration" model="ir.ui.view">
       <field name="name">Activity Tree registrations additions</field>
       <field name="model">golem.activity</field>
-      <field name="inherit_id" ref="golem_activity.view_tree" />
+      <field name="inherit_id" ref="golem_activity.golem_activity_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">red: places_remain == 0;orange: places_remain &lt;= 4;</attribute>
@@ -63,10 +65,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record id="activity_search" model="ir.ui.view">
+    <record id="golem_activity_search_inherit_registration" model="ir.ui.view">
       <field name="name">Activity Search registrations additions</field>
       <field name="model">golem.activity</field>
-      <field name="inherit_id" ref="golem_activity.view_filter" />
+      <field name="inherit_id" ref="golem_activity.golem_activity_search" />
       <field name="arch" type="xml">
         <filter name="season_default" position="after">
           <filter name="full_activity" string="Full"

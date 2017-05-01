@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    copyright 2016 fabien bourgeois <fabien@yaltik.com>
+#    copyright 2017 fabien bourgeois <fabien@yaltik.com>
 #
 #    this program is free software: you can redistribute it and/or modify
 #    it under the terms of the gnu affero general public license as
@@ -15,57 +15,67 @@
 #    you should have received a copy of the gnu affero general public license
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Activity Registration """
+
 from odoo import models, fields, api, _
 
-
 class GolemMember(models.Model):
+    """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
     activity_registration_ids = fields.One2many('golem.activity.registration',
-                                                'member_id', 'Activities')
+                                                'member_id', 'Activities',
+                                                index=True)
 
 
 class GolemActivity(models.Model):
+    """ GOLEM Activity adaptations """
     _inherit = 'golem.activity'
     _sql_constraints = [('golem_activity_places_signed',
                          'CHECK (places >= 0)',
                          _('Number of places cannot be negative.'))]
 
     activity_registration_ids = fields.One2many('golem.activity.registration',
-                                                'activity_id', 'Members')
+                                                'activity_id', 'Members',
+                                                index=True)
     places_used = fields.Integer('Places used', compute='_compute_places_used',
                                  store=True)
 
-    @api.one
+    @api.multi
     @api.depends('activity_registration_ids')
     def _compute_places_used(self):
-        self.places_used = len(self.activity_registration_ids)
+        """ Computes used places """
+        for activity in self:
+            activity.places_used = len(activity.activity_registration_ids)
 
     places = fields.Integer('Places', default=20)
     places_remain = fields.Integer('Remaining places', store=True,
                                    compute='_compute_places_remain')
 
-    @api.one
+    @api.multi
     @api.depends('places', 'places_used')
     def _compute_places_remain(self):
-        self.places_remain = self.places - self.places_used
+        """ Computes remaining places """
+        for activity in self:
+            activity.places_remain = activity.places - activity.places_used
 
     @api.constrains('places_remain')
     def _check_remaining_places(self):
         """ Forbid inscription when there is no more place """
-        for s in self:
-            if s.places_remain < 0:
+        for activity in self:
+            if activity.places_remain < 0:
                 emsg = _('Sorry, there is no more place !')
                 raise models.ValidationError(emsg)
 
 
 class GolemActivityRegistration(models.Model):
+    """ GOLEM Activity Registration """
     _name = 'golem.activity.registration'
     _description = 'GOLEM Activity Registration'
 
     member_id = fields.Many2one('golem.member', string='Member', required=True,
-                                ondelete='cascade')
-    activity_id = fields.Many2one('golem.activity', required=True,
+                                ondelete='cascade', index=True)
+    activity_id = fields.Many2one('golem.activity', required=True, index=True,
                                   string='Activity', ondelete='cascade')
     season_id = fields.Many2one(string='Season',
                                 related='activity_id.season_id')
@@ -80,8 +90,8 @@ class GolemActivityRegistration(models.Model):
     def _check_season_reliability(self):
         """ Forbid registration when member season if not coherent with
         activity season or are duplicates """
-        for r in self:
-            if r.activity_id.season_id not in r.member_id.season_ids:
+        for reg in self:
+            if reg.activity_id.season_id not in reg.member_id.season_ids:
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the activity.')
                 raise models.ValidationError(emsg)
