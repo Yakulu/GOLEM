@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -19,11 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
     <!-- Form -->
-    <record model="ir.ui.view" id="golem_member_skills_form">
+    <record model="ir.ui.view" id="golem_member_form_inherit_skills">
       <field name="name">Add skills to Others tab</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.view_form" />
+      <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="comment" position="before">
           <field name="is_volunteer" />
@@ -32,11 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </field>
       </field>
     </record>
+
     <!-- Searches -->
-    <record model="ir.ui.view" id="golem_member_skills_search">
+    <record model="ir.ui.view" id="golem_member_search_inherit_skills">
       <field name="name">Add Skills Search and Filter</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.view_filter" />
+      <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
         <field name="email" position="after">
           <field name="skill_ids" widget="many2one" />
@@ -45,23 +47,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </field>
       </field>
     </record>
+
     <!-- Tree -->
-    <record id="skill_tree" model="ir.ui.view">
+    <record id="golem_member_skill_tree" model="ir.ui.view">
       <field name="name">Member skills</field>
       <field name="model">golem.member.skill</field>
       <field name="arch" type="xml">
         <tree editable="top"><field name="name"/></tree>
       </field>
     </record>
+
     <!-- Actions -->
-    <act_window id="skills_action_list" name="GOLEM Member Skills"
+    <act_window id="golem_member_skill_action" name="GOLEM Member Skills"
       res_model="golem.member.skill" />
+
     <!-- Menus -->
-    <menuitem id="skill_menu_list"
+    <menuitem id="golem_member_skill_menu"
       name="Member skills"
-      parent="base.menu_marketing_config_association"
-      action="skills_action_list"
-      sequence="5" groups="golem_base.group_golem_manager" />
+      parent="membership.menu_marketing_config_association"
+      action="golem_member_skill_action"
+      sequence="15" groups="golem_base.group_golem_manager" />
 
   </data>
 </odoo>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,21 +15,26 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Member Skills """
+
 from odoo import models, fields
 
 
 class ResPartner(models.Model):
+    """ Partner adaptations """
     _inherit = 'res.partner'
 
     is_volunteer = fields.Boolean('Volunteer?')
-    skill_ids = fields.Many2many('golem.member.skill', string='Skills')
+    skill_ids = fields.Many2many('golem.member.skill', string='Skills',
+                                 index=True)
 
 
 class GolemMemberSkill(models.Model):
+    """ Member adaptations """
     _name = 'golem.member.skill'
     _description = 'GOLEM Member Skill'
 
     _sql_constraints = [('golem_member_skill_name_uniq', 'UNIQUE (name)',
                          'Member skill must be unique.')]
 
-    name = fields.Char('Skill')
+    name = fields.Char('Skill', required=True, index=True)
