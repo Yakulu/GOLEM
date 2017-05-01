@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 10:35+0000\n"
-"PO-Revision-Date: 2016-07-07 10:35+0000\n"
+"POT-Creation-Date: 2017-05-01 20:55+0000\n"
+"PO-Revision-Date: 2017-05-01 20:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: golem_member_familyquotient
-#: field:golem.member,caf_number:0
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_caf_number
 msgid "CAF Number"
 msgstr "Numéro CAF"
 
 #. module: golem_member_familyquotient
-#: field:golem.member,qf:0
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_qf
 msgid "Family Quotient"
 msgstr "Quotient familial"
 
 #. module: golem_member_familyquotient
 #: model:ir.model,name:golem_member_familyquotient.model_golem_member
 msgid "GOLEM Member"
-msgstr "GOLEM : adhérent"
+msgstr "Adhérent"
 

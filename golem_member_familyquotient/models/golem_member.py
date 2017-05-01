@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,10 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Member Family Quotient """
+
 from odoo import models, fields
 
-
 class GolemMember(models.Model):
+    """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
     caf_number = fields.Char('CAF Number')
