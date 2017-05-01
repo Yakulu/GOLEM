@@ -49,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </group>
             </group>
             <notebook>
-              <page string="Session">
+              <page name="session" string="Session">
                 <group>
                   <group name="dates">
                     <field name="is_recurrent" />
