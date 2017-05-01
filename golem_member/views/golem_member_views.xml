@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
     <!-- Forms -->
-    <record id="view_form" model="ir.ui.view">
+    <record id="golem_member_form" model="ir.ui.view">
       <field name="name">GOLEM Member Form</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -108,8 +108,78 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Kanban -->
+    <record model="ir.ui.view" id="golem_member_kanban">
+      <field name="name">GOLEM Member Kanban view</field>
+      <field name="model">golem.member</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="color" />
+          <field name="display_name" />
+          <field name="title" />
+          <field name="email" />
+          <field name="phone" />
+          <field name="mobile" />
+          <field name="city" />
+          <field name="country_id" />
+          <field name="number" />
+          <field name="season_ids" />
+          <field name="category_id"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_vignette oe_semantic_html_override">
+                <a type="open">
+
+                  <t t-if="record.image_small.raw_value">
+                    <img t-att-src="kanban_image('res.partner', 'image_small', record.id.value)" class="oe_kanban_image"/>
+                  </t>
+                  <t t-if="record.image_small.raw_value === false">
+                    <img t-att-src='_s + "/base/static/src/img/avatar.png"'
+                      class="oe_kanban_image"/>
+                  </t>
+                </a>
+                <div class="oe_kanban_details">
+                  <h4 class="oe_partner_heading">
+                    <a type="open"><field name="display_name" /></a>
+                    (N° <field name="number" />)
+                  </h4>
+                  <div class="oe_kanban_partner_categories" />
+                  <div class="oe_kanban_partner_links" />
+                  <field name="season_ids" />
+                  <ul>
+                    <li t-if="record.city.raw_value and !record.country_id.raw_value">
+                      <field name="city" />
+                    </li>
+                    <li t-if="!record.city.raw_value and record.country_id.raw_value">
+                      <field name="country_id" />
+                    </li>
+                    <li t-if="record.city.raw_value and record.country_id.raw_value">
+                      <field name="city" />, <field name="country_id" />
+                    </li>
+                    <li t-if="record.phone.raw_value or record.mobile.raw_value">
+                      <a t-attf-href="tel:#{record.phone.raw_value}">
+                        <field name="phone" />
+                      </a>
+                      <a t-attf-href="tel:#{record.mobile.raw_value}">
+                        <field name="mobile" />
+                      </a>
+                    </li>
+                    <li t-if="record.email.raw_value">
+                      <a t-attf-href="mailto:#{record.email.raw_value}">
+                        <field name="email" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
     <!-- Trees -->
-    <record model="ir.ui.view" id="view_tree">
+    <record model="ir.ui.view" id="golem_member_tree">
       <field name="name">GOLEM Member Tree/List</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -126,7 +196,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Searches -->
-    <record id="view_filter" model="ir.ui.view">
+    <record id="golem_member_search" model="ir.ui.view">
       <field name="name">GOLEM Member Filters</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -155,7 +225,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Graphs -->
-    <record model="ir.ui.view" id="view_graph_golem_member">
+    <record model="ir.ui.view" id="golem_member_graph">
       <field name="name">GOLEM Member Graph</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
@@ -166,23 +236,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="action"
+    <act_window id="golem_member_action"
       name="GOLEM Members"
       res_model="golem.member"
       view_mode="kanban,tree,form,graph"
       context="{'search_default_season_default': True}" />
-    <act_window id="tags_action_list" name="GOLEM Members Tags"
+    <act_window id="res_partner_category_action" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
 
     <!-- Menu items -->
+    <menuitem id="membership.menu_membership" name="Members" sequence="5"
+      parent="membership.menu_association" />
     <menuitem id="golem_members_menu" name="GOLEM Members"
       parent="membership.menu_membership" sequence="5"
-      action="action" groups="golem_base.group_golem_user" />
-    <menuitem id="golem_members_contacts" name="Contacts"
+      action="golem_member_action" groups="golem_base.group_golem_user" />
+    <menuitem id="golem_members_menu_contacts" name="Contacts"
       parent="membership.menu_membership" sequence="20"
       action="contacts.action_contacts" groups="golem_base.group_golem_user" />
-    <menuitem id="golem_members_menu_tags" name="Member Tags"
-      parent="base.menu_marketing_config_association" sequence="10"
-      action="tags_action_list" groups="golem_base.group_golem_manager" />
+    <menuitem id="res_partner_category_menu" name="Member Tags"
+      parent="membership.menu_marketing_config_association" sequence="10"
+      action="res_partner_category_action"
+      groups="golem_base.group_golem_manager" />
   </data>
 </odoo>

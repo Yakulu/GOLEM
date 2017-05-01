@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Forms -->
+    <record model="ir.ui.view" id="res_partner_form_inherit_golem_member">
+      <field name="name">Add information on linked member or member creation into main form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <h1 position="after">
+          <label for="member_id"
+            attrs="{'invisible': ['|', ('is_company', '=', True),
+            ('member_id', '=', False)]}" />
+          <field name="member_id" widget="many2one" readonly="True"
+            attrs="{'invisible': ['|', ('is_company', '=', True),
+            ('member_id', '=', False)]}" />
+          <button type="object" name="create_golem_member"
+            string="Create a GOLEM member from this contact"
+            attrs="{'invisible': ['|', ('is_company', '=', True),
+            ('member_id', '!=', False)]}" />
+        </h1>
+      </field>
+    </record>
+
+    <!-- Trees -->
+    <record model="ir.ui.view" id="res_partner_tree_inherit_golem_member">
+      <field name="name">Add member number to tree</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree" />
+      <field name="arch" type="xml">
+        <field name="display_name" position="before">
+          <field name="member_number" />
+        </field>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <record model="ir.ui.view" id="res_partner_search_inherit_golem_member">
+      <field name="name">Partner GOLEM Member Number search</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_res_partner_filter" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="member_number" />
+        </field>
+      </field>
+    </record>
+
+  </data>
+</odoo>

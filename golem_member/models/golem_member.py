@@ -15,17 +15,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Members """
+
 from odoo import models, fields, api, _
 
 
 class ResPartner(models.Model):
+    """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
 
     @api.model
     def _get_default_nationality_id(self):
         return self.env.ref('base.main_company').country_id
 
-    nationality_id = fields.Many2one(default=_get_default_nationality_id)
+    nationality_id = fields.Many2one('res.country', 'Nationality',
+                                     default=_get_default_nationality_id)
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice
@@ -37,26 +41,27 @@ class ResPartner(models.Model):
 
     @api.multi
     def create_golem_member(self):
+        """ Member creation from partner form """
         self.ensure_one()
-        gm = self.env['golem.member']
-        gm.create({'partner_id': self.id})
-        return True
+        gm_obj = self.env['golem.member']
+        gm_obj.create({'partner_id': self[0].id})
 
 
 class GolemMember(models.Model):
+    """ GOLEM Member model """
     _name = 'golem.member'
     _description = 'GOLEM Member'
     _inherit = 'mail.thread'
     _inherits = {'res.partner': 'partner_id'}
 
-    partner_id = fields.Many2one('res.partner', required=True,
+    partner_id = fields.Many2one('res.partner', required=True, index=True,
                                  ondelete='cascade')
 
     @api.model
     def _default_season(self):
         """ Get default season """
         domain = [('is_default', '=', True)]
-        return self.env['golem.season'].search(domain)
+        return self.env['golem.season'].search(domain, limit=1)
 
     number = fields.Char('Member number', store=True, readonly=True)
     number_manual = fields.Char('Manual number', size=50, index=True,
@@ -78,101 +83,102 @@ class GolemMember(models.Model):
                          'UNIQUE (number_manual)',
                          _('This member number has already been used.'))]
 
-    @api.one
+    @api.multi
     @api.depends('season_ids')
     def _compute_is_current(self):
         """ Computes is current according to seasons """
         default_s = self._default_season()
-        self.is_current = default_s in self.season_ids
+        for member in self:
+            member.is_current = default_s in member.season_ids
 
-    @api.one
+    @api.multi
     @api.depends('number')
     def _compute_is_number_manual(self):
         conf = self.env['ir.config_parameter']
         is_num_man = (conf.get_param('golem_numberconfig_isautomatic') == '0')
         self.is_number_manual = is_num_man
 
-    @api.one
-    def _generate_number_perseason(self):
+    @api.multi
+    def generate_number_perseason(self):
         """ Number generation in case of per season configuration """
         res = None
         conf = self.env['ir.config_parameter']
+        member_number_obj = self.env['golem.member.number']
         for member in self:
-            for s in member.season_ids:
+            for season in member.season_ids:
                 domain = ['&',
                           ('member_id', '=', member.id),
-                          ('season_id', '=', s.id)]
-                member_num = self.env['golem.member.number']
-                mn = member_num.search(domain)
-                if not mn:
-                    s.member_counter += 1
-                    s.write({'member_counter': s.member_counter})
+                          ('season_id', '=', season.id)]
+                member_num = member_number_obj.search(domain)
+                if not member_num:
+                    season.member_counter += 1
+                    season.write({'member_counter': season.member_counter})
                     pkey = 'golem_numberconfig_prefix'
                     pfx = conf.get_param(pkey)
-                    number = pfx + str(s.member_counter)
+                    number = pfx + str(season.member_counter)
                     data = {'member_id': member.id,
-                            'season_id': s.id,
+                            'season_id': season.id,
                             'number': number}
-                    mn = member_num.create(data)
-                if s.is_default:
-                    res = mn.number
+                    member_num = member_number_obj.create(data)
+                if season.is_default:
+                    res = member_num.number
         return res
 
-    @api.one
-    def _generate_number_global(self):
+    @api.multi
+    def generate_number_global(self):
         """ Number generation in case of global configuration """
         self.ensure_one()
         conf = self.env['ir.config_parameter']
         domain = ['&',
-                  ('member_id', '=', self.id),
+                  ('member_id', '=', self[0].id),
                   ('season_id', '=', None)]
-        member_num = self.env['golem.member.number']
-        mn = member_num.search(domain)
-        if not mn:
+        member_number_obj = self.env['golem.member.number']
+        member_num = member_number_obj.search(domain)
+        if not member_num:
             last = int(conf.get_param('golem_number_counter', 0))
             last += 1
             conf.set_param('golem_number_counter', str(last))
             pfx = conf.get_param('golem_numberconfig_prefix')
             number = pfx + str(last)
-            data = {'member_id': self.id,
+            data = {'member_id': self[0].id,
                     'season_id': None,
                     'number': number}
-            mn = member_num.create(data)
-        return mn.number
+            member_num = member_number_obj.create(data)
+        return member_num.number
 
-    @api.one
-    def _generate_number(self):
+    @api.multi
+    def generate_number(self):
         """ Computes number according to pre-existing number and chosen
         seasons """
-        self.ensure_one()
         conf = self.env['ir.config_parameter']
-        if conf.get_param('golem_numberconfig_isautomatic') == '0':
-            self.number = self.number_manual
-        else:
-            if conf.get_param('golem_numberconfig_isperseason') == '1':
-                mn = self._generate_number_perseason()
+        for member in self:
+            if conf.get_param('golem_numberconfig_isautomatic') == '0':
+                member.number = member.number_manual
             else:
-                mn = self._generate_number_global()
-            if mn:
-                self.number = mn[0]
+                if conf.get_param('golem_numberconfig_isperseason') == '1':
+                    member_num = member.generate_number_perseason()
+                else:
+                    member_num = member.generate_number_global()
+                if member_num:
+                    member.number = member_num[0]
 
     @api.model
-    @api.returns('self', lambda rec: rec.id)
     def create(self, values):
+        """ Number generation after creation """
         new_member = super(GolemMember, self).create(values)
-        new_member._generate_number()
+        new_member.generate_number()
         return new_member
 
     @api.multi
     def write(self, values):
+        """ Number generation after updates """
         res = super(GolemMember, self).write(values)
         if 'season_ids' in values or 'number_manual' in values:
-            self._generate_number()
+            self.generate_number()
         return res
 
 
 class GolemMemberNumber(models.Model):
-
     """ GOLEM Member Numbers """
     _name = 'golem.member.number'
     _description = 'GOLEM Member Numbers'
@@ -185,14 +191,14 @@ class GolemMemberNumber(models.Model):
                                 auto_join=True)
     number = fields.Char('Number', index=True, readonly=True)
 
-    @api.one
+    @api.multi
     @api.depends('season_id')
     def _compute_name(self):
-        self.name = self.season_id.name
+        for number in self:
+            number.name = number.season_id.name
 
 
 class GolemNumberConfig(models.TransientModel):
-
     """ Configuration for number computing """
     _name = 'golem.member.numberconfig'
     _description = 'Configuration for number computing'
@@ -222,6 +228,7 @@ class GolemNumberConfig(models.TransientModel):
 
     @api.multi
     def apply_config(self):
+        """ Apply new configuration """
         self.ensure_one()
         conf = self.env['ir.config_parameter']
         conf.set_param('golem_numberconfig_isautomatic', self.is_automatic)
@@ -230,10 +237,11 @@ class GolemNumberConfig(models.TransientModel):
 
     @api.multi
     def apply_recompute(self):
+        """ Recomputes all member numbers according to new configuration """
         self.ensure_one()
         self.apply_config()
         conf = self.env['ir.config_parameter']
         conf.set_param('golem_number_counter', '0')
         self.env['golem.member.number'].search([]).unlink()
         self.env['golem.season'].search([]).write({'member_counter': 0})
-        self.env['golem.member'].search([])._generate_number()
+        self.env['golem.member'].search([]).generate_number()

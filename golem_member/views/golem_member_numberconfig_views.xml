@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Forms -->
-    <record id="numberconfig_form" model="ir.ui.view">
+    <record id="golem_member_numberconfig_form" model="ir.ui.view">
       <field name="name">GOLEM Member number configuration</field>
       <field name="model">golem.member.numberconfig</field>
       <field name="arch" type="xml">
@@ -50,13 +50,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="numberconfig_action"
+    <act_window id="golem_member_numberconfig_action"
       name="GOLEM Member Number Config" res_model="golem.member.numberconfig"
       view_mode="form" target="new" />
     <!-- Menus -->
     <menuitem
-      id="numberconfig_menu" action="numberconfig_action"
-      parent="base.menu_marketing_config_association" sequence="3"
+      id="golem_member_numberconfig_menu"
+      action="golem_member_numberconfig_action"
+      parent="membership.menu_marketing_config_association" sequence="10"
       groups="golem_base.group_golem_manager" />
   </data>
 </odoo>
