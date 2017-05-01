@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-10 16:25+0000\n"
-"PO-Revision-Date: 2016-10-10 16:25+0000\n"
+"POT-Creation-Date: 2017-05-01 22:34+0000\n"
+"PO-Revision-Date: 2017-05-01 22:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_activity_place
-#: field:golem.activity,is_overbooked:0
+#: model:ir.model.fields,field_description:golem_activity_place.field_golem_activity_is_overbooked
 msgid "Allow overbook?"
 msgstr ""
 
@@ -26,34 +26,29 @@ msgid "GOLEM Activity"
 msgstr ""
 
 #. module: golem_activity_place
-#: field:golem.activity,places_min:0
+#: model:ir.model.fields,field_description:golem_activity_place.field_golem_activity_places_min
 msgid "Minimum places"
 msgstr ""
 
 #. module: golem_activity_place
-#: help:golem.activity,places_min:0
+#: model:ir.model.fields,help:golem_activity_place.field_golem_activity_places_min
 msgid "Minimum places to maintain the activity"
 msgstr ""
 
 #. module: golem_activity_place
-#: code:addons/golem_activity_place/models/golem_activity.py:51
+#: code:addons/golem_activity_place/models/golem_activity.py:57
 #, python-format
 msgid "Number of places cannot be negative."
 msgstr ""
 
 #. module: golem_activity_place
-#: code:addons/golem_activity_place/models/golem_activity.py:54
+#: code:addons/golem_activity_place/models/golem_activity.py:61
 #, python-format
 msgid "Overbooked places cannot be inferior than places"
 msgstr ""
 
 #. module: golem_activity_place
-#: field:golem.activity,places_overbooked:0
+#: model:ir.model.fields,field_description:golem_activity_place.field_golem_activity_places_overbooked
 msgid "Places with overbook"
-msgstr ""
-
-#. module: golem_activity_place
-#: view:golem.activity:golem_activity_place.tree
-msgid "darkgrey: places_used < places_min; red: places_remain == 0; orange: places_remain <= 4;"
 msgstr ""
 

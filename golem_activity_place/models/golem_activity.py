@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    copyright 2016 fabien bourgeois <fabien@yaltik.com>
+#    copyright 2017 fabien bourgeois <fabien@yaltik.com>
 #
 #    this program is free software: you can redistribute it and/or modify
 #    it under the terms of the gnu affero general public license as
@@ -15,10 +15,12 @@
 #    you should have received a copy of the gnu affero general public license
 #    along with this program.  if not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Activity Advanced Places management """
+
 from odoo import models, fields, api, _
 
-
 class GolemActivity(models.Model):
+    """ GOLEM Activity Advanced Places management """
     _inherit = 'golem.activity'
 
     places_min = fields.Integer('Minimum places', default=0,
@@ -26,30 +28,35 @@ class GolemActivity(models.Model):
     is_overbooked = fields.Boolean('Allow overbook?', default=False)
     places_overbooked = fields.Integer('Places with overbook', default=0)
 
-    @api.one
+    @api.multi
     @api.depends('places', 'is_overbooked', 'places_overbooked', 'places_used')
     def _compute_places_remain(self):
-        if not self.is_overbooked:
-            self.places_remain = self.places - self.places_used
-        else:
-            self.places_remain = self.places_overbooked - self.places_used
+        """ Overwrite : computes remaining places """
+        for activity in self:
+            if not activity.is_overbooked:
+                activity.places_remain = activity.places - activity.places_used
+            else:
+                activity.places_remain = activity.places_overbooked - activity.places_used
 
     @api.onchange('is_overbooked', 'places')
     def onchange_is_overbooked(self):
-        for s in self:
-            if s.places and s.is_overbooked:
-                if not s.places_overbooked or (s.places_overbooked < s.places):
-                    s.places_overbooked = s.places + 1
+        """ Realtime display for places and overbooked """
+        for activity in self:
+            if activity.places and activity.is_overbooked:
+                if not activity.places_overbooked or \
+                        (activity.places_overbooked < activity.places):
+                    activity.places_overbooked = activity.places + 1
 
     @api.constrains('places', 'places_overbooked')
     def _check_places(self):
         """ Check integers are signed and overbooked to be superior than
         normal places """
-        for v in self:
-            for f in ['places', 'places_overbooked']:
-                if v[f] < 0:
+        for activity in self:
+            for field in ['places', 'places_overbooked']:
+                if activity[field] < 0:
                     emsg = _('Number of places cannot be negative.')
                     raise models.ValidationError(emsg)
-            if v.is_overbooked and (v.places_overbooked <= v.places):
+            if activity.is_overbooked and \
+                    (activity.places_overbooked <= activity.places):
                 emsg = _('Overbooked places cannot be inferior than places')
                 raise models.ValidationError(emsg)

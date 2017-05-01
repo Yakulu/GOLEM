@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -19,11 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record id="view_form" model="ir.ui.view">
+    <record id="golem_activity_registration_form_inherit_place" model="ir.ui.view">
       <field name="name">GOLEM Activity Places Form additions</field>
       <field name="model">golem.activity</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.activity_form" />
+        ref="golem_activity_registration.golem_activity_form_inherit_registration" />
       <field name="arch" type="xml">
         <field name="places" position="after">
           <field name="places_min" />
@@ -35,11 +35,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Tree -->
-    <record id="tree" model="ir.ui.view">
+    <record id="golem_activity_registration_tree_inherit_place" model="ir.ui.view">
       <field name="name">Activity list places adaptations</field>
       <field name="model">golem.activity</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.activity_tree" />
+        ref="golem_activity_registration.golem_activity_tree_inherit_registration" />
       <field name="arch" type="xml">
         <tree position="attributes">
           <attribute name="colors">darkgrey: places_used &lt; places_min; red: places_remain == 0; orange: places_remain &lt;= 4;</attribute>
