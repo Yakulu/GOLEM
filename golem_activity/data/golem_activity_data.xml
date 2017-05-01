@@ -20,52 +20,53 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data noupdate="1">
     <!-- Good default for product categories -->
-    <record id="property_account_expense_categ" model="ir.property">
-      <field name="name">property_account_expense_categ</field>
-      <field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_expense_categ')]"/>
+    <record id="property_account_expense_categ_id" model="ir.property">
+      <field name="name">property_account_expense_categ_id</field>
+      <field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_expense_categ_id')]"/>
       <field name="value">account.account,610</field>
       <field name="company_id" ref="base.main_company"/>
     </record>
-    <record id="property_account_income_categ" model="ir.property">
-      <field name="name">property_account_income_categ</field>
-      <field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_income_categ')]"/>
+    <record id="property_account_income_categ_id" model="ir.property">
+      <field name="name">property_account_income_categ_id</field>
+      <field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_income_categ_id')]"/>
       <field name="value">account.account,854</field>
       <field name="company_id" ref="base.main_company"/>
     </record>
 
+
     <!-- Base data for activities -->
     <record model="product.category" id="golem_product_category_activities">
       <field name="name">Activités</field>
-      <field name="property_account_income_categ"
+      <field name="property_account_income_categ_id"
         search="[('code', '=', '706000')]" />
-      <field name="property_account_expense_categ"
+      <field name="property_account_expense_categ_id"
         search="[('code', '=', '604000')]" />
     </record>
     <record model="product.category" id="golem_product_category_wellbeing">
       <field name="name">Bien-Être</field>
       <field name="parent_id"
         eval="ref('golem_activity.golem_product_category_activities')" />
-      <field name="property_account_income_categ"
+      <field name="property_account_income_categ_id"
         search="[('code', '=', '706000')]" />
-      <field name="property_account_expense_categ"
+      <field name="property_account_expense_categ_id"
         search="[('code', '=', '604000')]" />
     </record>
     <record model="product.category" id="golem_product_category_martial">
       <field name="name">Arts martiaux</field>
       <field name="parent_id"
         eval="ref('golem_activity.golem_product_category_activities')" />
-      <field name="property_account_income_categ"
+      <field name="property_account_income_categ_id"
         search="[('code', '=', '706000')]" />
-      <field name="property_account_expense_categ"
+      <field name="property_account_expense_categ_id"
         search="[('code', '=', '604000')]" />
     </record>
     <record model="product.category" id="golem_product_category_dance">
       <field name="name">Danse</field>
       <field name="parent_id"
         eval="ref('golem_activity.golem_product_category_activities')" />
-      <field name="property_account_income_categ"
+      <field name="property_account_income_categ_id"
         search="[('code', '=', '706000')]" />
-      <field name="property_account_expense_categ"
+      <field name="property_account_expense_categ_id"
         search="[('code', '=', '604000')]" />
     </record>
   </data>

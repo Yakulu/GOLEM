@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,10 +15,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM activities related models """
+
 from odoo import models, fields, api, _
 
 
 class GolemActivity(models.Model):
+    """ GOLEM Activity """
     _name = 'golem.activity'
     _description = 'GOLEM Activity'
     _inherit = 'mail.thread'
@@ -34,14 +37,15 @@ class GolemActivity(models.Model):
     full_name = fields.Char('Name', compute='_compute_full_name', store=True,
                             index=True)
 
-    @api.one
+    @api.multi
     @api.depends('name', 'default_code')
     def _compute_full_name(self):
         """ Provide a better displayed name """
-        full_name = unicode(self.name)
-        if self.default_code:
-            full_name = u'[{}] {}'.format(self.default_code, full_name)
-        self.full_name = full_name
+        for activity in self:
+            full_name = unicode(activity.name)
+            if activity.default_code:
+                full_name = u'[{}] {}'.format(activity.default_code, full_name)
+            activity.full_name = full_name
 
     type_of = fields.Selection([('activity', _('Activity')),
                                 ('workshop', _('Workshop')),
@@ -50,13 +54,9 @@ class GolemActivity(models.Model):
 
     @api.onchange('type_of')
     def onchange_type_of(self):
-        for s in self:
-            if s.type_of != 'activity':
-                s.is_recurrent = False
-            else:
-                s.is_recurrent = True
-
-    # TODO: to link with calendar.event
+        """ Sets is_recurrent default according to activity type of """
+        for activity in self:
+            activity.is_recurrent = (activity.type_of == 'activity')
 
     @api.model
     def _default_season(self):
@@ -71,12 +71,12 @@ class GolemActivity(models.Model):
     is_current = fields.Boolean('Current season?', store=True, default=False,
                                 compute='_compute_is_current')
 
-    @api.one
     @api.depends('season_id')
     def _compute_is_current(self):
         """ Checks if activity is active for current season """
         default_season = self._default_season()
-        self.is_current = (default_season == self.season_id)
+        for activity in self:
+            activity.is_current = (default_season == activity.season_id)
 
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
@@ -88,29 +88,30 @@ class GolemActivity(models.Model):
     date_stop = fields.Date('End date', copy=False)
 
     @api.onchange('date_start')
-    def onchange_date_start(self):
+    def _onchange_date_start(self):
         """ Sets end date to start date if no start date """
-        for s in self:
-            if not s.date_stop:
-                s.date_stop = s.date_start
+        for activity in self:
+            if not activity.date_stop:
+                activity.date_stop = activity.date_start
 
     @api.constrains('date_start', 'date_stop')
     def _check_period(self):
-        """ Check if end date if after start date """
-        for a in self:
-            if a.date_start and a.date_stop and a.date_start > a.date_stop:
+        """ Checks if end date if after start date """
+        for activity in self:
+            if activity.date_start and activity.date_stop and \
+                    activity.date_start > activity.date_stop:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
 
     @api.onchange('season_id')
-    def onchange_season_dates(self):
+    def _onchange_season_dates(self):
         """ Sets defaults dates according to season """
-        for a in self:
-            if a.season_id:
-                if not a.date_start:
-                    a.date_start = a.season_id.date_start
-                if not a.date_stop:
-                    a.date_stop = a.season_id.date_end
+        for activity in self:
+            if activity.season_id:
+                if not activity.date_start:
+                    activity.date_start = activity.season_id.date_start
+                if not activity.date_stop:
+                    activity.date_stop = activity.season_id.date_end
 
     weekday = fields.Selection([('mon', _('Monday')),
                                 ('tue', _('Tuesday')),
@@ -123,25 +124,24 @@ class GolemActivity(models.Model):
     hour_stop = fields.Float('Stop time', copy=False)
 
     @api.onchange('hour_start')
-    def onchange_hour_start(self):
+    def _onchange_hour_start(self):
         """ Sets end hour to start hour if no start hour """
-        for s in self:
-            if s.hour_start and not s.hour_stop:
-                s.hour_stop = s.hour_start + 1
+        for activity in self:
+            if activity.hour_start and not activity.hour_stop:
+                activity.hour_stop = activity.hour_start + 1
 
     @api.constrains('hour_start', 'hour_stop')
     def _check_hour_period(self):
         """ Check if end hour if after start hour """
-        for s in self:
-            if s.hour_start > s.hour_stop:
+        for activity in self:
+            if activity.hour_start > activity.hour_stop:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
 
 
 class ProductTemplate(models.Model):
+    """ GOLEM Activity Product adaptations """
     _inherit = 'product.template'
 
-    # Make default service for type
     type = fields.Selection(default='service')
-    # Copy the default code
     default_code = fields.Char(copy=True)

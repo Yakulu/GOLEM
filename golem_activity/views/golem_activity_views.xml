@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -15,11 +15,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<openerp>
+<odoo>
   <data>
 
     <!-- Forms -->
-    <record id="view_form" model="ir.ui.view">
+    <record id="golem_activity_form" model="ir.ui.view">
       <field name="name">GOLEM Activity Form</field>
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
@@ -86,7 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Trees -->
-    <record model="ir.ui.view" id="view_tree">
+    <record model="ir.ui.view" id="golem_activity_tree">
       <field name="name">GOLEM Activity Tree/List</field>
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
@@ -106,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </record>
 
     <!-- Calendars -->
-    <record id="calendar" model="ir.ui.view">
+    <record id="golem_activity_calendar" model="ir.ui.view">
       <field name="name">Activity calendar view</field>
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
@@ -118,7 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Searches -->
-    <record id="view_filter" model="ir.ui.view">
+    <record id="golem_activity_search" model="ir.ui.view">
       <field name="name">GOLEM Activity Filters</field>
       <field name="model">golem.activity</field>
       <field name="arch" type="xml">
@@ -150,10 +150,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <act_window id="action" name="GOLEM Activities" res_model="golem.activity"
-      view_mode="tree,form,calendar"
+    <act_window id="golem_activity_action" name="GOLEM Activities"
+      res_model="golem.activity" view_mode="tree,form,calendar"
       context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_activities')}" />
-    <record id="category_action" model="ir.actions.act_window">
+    <record id="product_category_action" model="ir.actions.act_window">
       <field name="name">Activities Categories</field>
       <field name="res_model">product.category</field>
       <field name="view_type">form</field>
@@ -161,16 +161,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Menus -->
-    <menuitem id="activity_menu" name="Activities"
-      parent="base.menu_association" sequence="5"
+    <menuitem id="golem_activity_menu" name="Activities"
+      parent="membership.menu_association" sequence="5"
       groups="golem_base.group_golem_user" />
-    <menuitem id="activity_list" name="List"
+    <menuitem id="golem_activity_menu_list" name="List"
       groups="golem_base.group_golem_user"
-      parent="activity_menu" sequence="0" action="action" />
-    <menuitem  id="activity_categ" name="Categories"
-      parent="golem_activity.activity_menu" sequence="20"
+      parent="golem_activity_menu" sequence="0" action="golem_activity_action" />
+    <menuitem  id="product_category_menu" name="Categories"
+      parent="golem_activity.golem_activity_menu" sequence="20"
       groups="golem_base.group_golem_manager"
-      action="category_action" />
+      action="product_category_action" />
 
   </data>
-</openerp>
+</odoo>

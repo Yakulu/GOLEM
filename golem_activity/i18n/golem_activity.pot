@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-16 08:51+0000\n"
-"PO-Revision-Date: 2016-10-16 08:51+0000\n"
+"POT-Creation-Date: 2017-05-01 15:36+0000\n"
+"PO-Revision-Date: 2017-05-01 15:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,49 +16,57 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_activity
-#: field:golem.activity,product_variant_count:0
-msgid "# of Product Variants"
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_product_variant_count
+msgid "# Product Variants"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,description_sale:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_description_sale
 msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,description_purchase:0
-msgid "A description of the Product that you want to communicate to your suppliers. This description will be copied to every Purchase Order, Receipt and Supplier Invoice/Refund."
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_description_purchase
+msgid "A description of the Product that you want to communicate to your vendors. This description will be copied to every Purchase Order, Receipt and Vendor Bill/Refund."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,description:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_description
 msgid "A precise description of the Product, used only for internal information purposes."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,active:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_type
+msgid "A stockable product is a product for which you manage stock. The \"Inventory\" app has to be installed.\n"
+"A consumable product, on the other hand, is a product for which stock is not managed.\n"
+"A service is a non-material product you provide.\n"
+"A digital content is a non-material product you sell online. The files attached to the products are the one that are sold on the e-commerce such as e-books, music, pictures,... The \"Digital Product\" module has to be installed."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_active
 msgid "Active"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.ui.menu,name:golem_activity.activity_menu
+#: model:ir.ui.menu,name:golem_activity.golem_activity_menu
 msgid "Activities"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.actions.act_window,name:golem_activity.category_action
+#: model:ir.actions.act_window,name:golem_activity.product_category_action
 msgid "Activities Categories"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:46
-#: view:golem.activity:golem_activity.view_filter
+#: code:addons/golem_activity/models/golem_activity.py:50
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 #, python-format
 msgid "Activity"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_form
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
 msgid "Activity Name"
 msgstr ""
 
@@ -73,7 +81,7 @@ msgid "Activités"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,animator_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_animator_id
 msgid "Animator"
 msgstr ""
 
@@ -83,7 +91,13 @@ msgid "Arts martiaux"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,list_price:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_barcode
+msgid "Barcode"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_list_price
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_lst_price
 msgid "Base price to compute the customer price. Sometimes called the catalog price."
 msgstr ""
 
@@ -93,98 +107,97 @@ msgid "Bien-Être"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "By animator"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "By category"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "By type"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "By weekday"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,rental:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_purchase_ok
+msgid "Can be Purchased"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_rental
 msgid "Can be Rent"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,sale_ok:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_sale_ok
 msgid "Can be Sold"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,categ_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_categ_id
 msgid "Categ id"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.ui.menu,name:golem_activity.activity_categ
+#: model:ir.ui.menu,name:golem_activity.product_category_menu
 msgid "Categories"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,membership:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_membership
 msgid "Check if the product is eligible for membership."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,uos_coeff:0
-msgid "Coefficient to convert default Unit of Measure to Unit of Sale\n"
-" uos = uom * coeff"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,color:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_color
 msgid "Color Index"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,company_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_company_id
 msgid "Company"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,type:0
-msgid "Consumable are product where you don't manage stock, a service is a non-material product provided by a company or an individual."
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_standard_price
+msgid "Cost"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,standard_price:0
-msgid "Cost Price"
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_standard_price
+msgid "Cost of the product, in the default unit of measure of the product."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,standard_price:0
-msgid "Cost price of the product template used for standard stock valuation in accounting and used as a base price on purchase orders. Expressed in the default unit of measure of the product."
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,create_uid:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,create_date:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,is_current:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_is_current
 msgid "Current season?"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,taxes_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_taxes_id
 msgid "Customer Taxes"
 msgstr ""
 
@@ -194,89 +207,69 @@ msgid "Danse"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_tree
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_tree
 msgid "Date"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,membership_date_from:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_membership_date_from
 msgid "Date from which membership becomes active."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,message_last_post:0
-msgid "Date of the last message posted on the record."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,membership_date_to:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_membership_date_to
 msgid "Date until which membership remains active."
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_tree
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_tree
 msgid "Day"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,uom_id:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_uom_id
 msgid "Default Unit of Measure used for all stock operation."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,uom_po_id:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_uom_po_id
 msgid "Default Unit of Measure used for purchase orders. It must be in the same category than the default unit of measure."
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "Default season"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,description:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_description
 msgid "Description"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,display_name:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,ean13:0
-msgid "EAN13 Barcode"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,date_stop:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_date_stop
 msgid "End date"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,hour_stop:0
-msgid "Stop time"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,property_account_expense:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_property_account_expense_id
 msgid "Expense Account"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,message_follower_ids:0
-msgid "Followers"
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:119
+#: code:addons/golem_activity/models/golem_activity.py:120
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Friday"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.actions.act_window,name:golem_activity.action
+#: model:ir.actions.act_window,name:golem_activity.golem_activity_action
 msgid "GOLEM Activities"
 msgstr ""
 
@@ -286,191 +279,146 @@ msgid "GOLEM Activity"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,packaging_ids:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_packaging_ids
 msgid "Gives the different ways to package the same product. This has no impact on the picking order and is mainly used if you use the EDI module."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,weight:0
-msgid "Gross Weight"
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_sequence
+msgid "Gives the sequence order when displaying a product list"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_filter
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 msgid "Group By"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_id
 msgid "ID"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,message_unread:0
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,active:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_active
 msgid "If unchecked, it will allow you to hide the product without removing it."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,image:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_image
 msgid "Image"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,property_account_income:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_property_account_income_id
 msgid "Income Account"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,default_code:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_default_code
 msgid "Internal Reference"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,message_is_follower:0
-msgid "Is a Follower"
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_barcode
+msgid "International Article Number used for product identification."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,is_product_variant:0
-msgid "Is product variant"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,is_recurrent:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_is_recurrent
 msgid "Is recurrent ?"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,message_last_post:0
-msgid "Last Message Date"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,__last_update:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,write_uid:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,write_date:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.ui.menu,name:golem_activity.activity_list
+#: model:ir.ui.menu,name:golem_activity.golem_activity_menu_list
 msgid "List"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,packaging_ids:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_packaging_ids
 msgid "Logistical Units"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,seller_id:0
-msgid "Main Supplier"
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,seller_id:0
-msgid "Main Supplier who has highest priority in Supplier List."
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,mes_type:0
-msgid "Measure Type"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,image_medium:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_image_medium
 msgid "Medium-sized image"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,image_medium:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_image_medium
 msgid "Medium-sized image of the product. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,membership:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_membership
 msgid "Membership"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,membership_date_to:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_membership_date_to
 msgid "Membership End Date"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,membership_date_from:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_membership_date_from
 msgid "Membership Start Date"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,message_ids:0
-msgid "Messages"
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,message_ids:0
-msgid "Messages and communication history"
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:115
+#: code:addons/golem_activity/models/golem_activity.py:116
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Monday"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,full_name:0
-#: field:golem.activity,name:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_full_name
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_name
 msgid "Name"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,weight_net:0
-msgid "Net Weight"
-msgstr ""
-
-#. module: golem_activity
-#: view:golem.activity:golem_activity.view_form
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
 msgid "Others"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,price:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_price
 msgid "Price"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,pricelist_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_pricelist_id
 msgid "Pricelist"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,attribute_line_ids:0
-msgid "Product Attributes"
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_item_ids
+msgid "Pricelist Items"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,product_manager:0
-msgid "Product Manager"
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_product_variant_id
+msgid "Product"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_attribute_line_ids
+msgid "Product Attributes"
 msgstr ""
 
 #. module: golem_activity
@@ -479,270 +427,235 @@ msgid "Product Template"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,type:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type
 msgid "Product Type"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,product_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_product_id
 msgid "Product id"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,product_variant_ids:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_product_variant_ids
 msgid "Products"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,lst_price:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_lst_price
 msgid "Public Price"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,description_purchase:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_description_purchase
 msgid "Purchase Description"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,uom_po_id:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_uom_po_id
 msgid "Purchase Unit of Measure"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,description_sale:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_description_sale
 msgid "Sale Description"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,list_price:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_list_price
 msgid "Sale Price"
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:120
-#: selection:golem.activity,weekday:0
-#, python-format
-msgid "Saturday"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,season_id:0
-msgid "Season"
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,categ_id:0
-msgid "Select category for the current activity"
-msgstr ""
-
-#. module: golem_activity
-#: view:golem.activity:golem_activity.view_form
-msgid "Session"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,image_small:0
-msgid "Small-sized image"
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,image_small:0
-msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,uos_id:0
-msgid "Specify a unit of measure here if invoicing is made in another unit of measure than inventory. Keep empty to use the default unit of measure."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,sale_ok:0
-msgid "Specify if the product can be selected in a sales order line."
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,date_start:0
-msgid "Start date"
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:102
-#: code:addons/golem_activity/models/golem_activity.py:137
-#, python-format
-msgid "Start of the period cannot be after end of the period."
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,hour_start:0
-msgid "Start time"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,state:0
-msgid "Status"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,message_summary:0
-msgid "Summary"
 msgstr ""
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:121
 #: selection:golem.activity,weekday:0
 #, python-format
+msgid "Saturday"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_season_id
+msgid "Season"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_categ_id
+msgid "Select category for the current activity"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
+msgid "Session"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_image_small
+msgid "Small-sized image"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_image_small
+msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_sale_ok
+msgid "Specify if the product can be selected in a sales order line."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_date_start
+msgid "Start date"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:103
+#: code:addons/golem_activity/models/golem_activity.py:138
+#, python-format
+msgid "Start of the period cannot be after end of the period."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_hour_start
+msgid "Start time"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_hour_stop
+msgid "Stop time"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:122
+#: selection:golem.activity,weekday:0
+#, python-format
 msgid "Sunday"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,seller_ids:0
-msgid "Supplier"
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_pricelist_id
+msgid "Technical field. Used for searching on pricelists, not stored in database."
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,seller_delay:0
-msgid "Supplier Lead Time"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,seller_qty:0
-msgid "Supplier Quantity"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,supplier_taxes_id:0
-msgid "Supplier Taxes"
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,weight:0
-msgid "The gross weight in Kg."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,weight_net:0
-msgid "The net weight in Kg."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,volume:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_volume
 msgid "The volume in m3."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,property_account_expense:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_weight
+msgid "The weight of the contents in Kg, not including any packaging, etc."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_property_account_expense_id
 msgid "This account will be used for invoices instead of the default one to value expenses for the current product."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,property_account_income:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_property_account_income_id
 msgid "This account will be used for invoices instead of the default one to value sales for the current product."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,image:0
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_image
 msgid "This field holds the image used as image for the activity."
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,seller_qty:0
-msgid "This is minimum quantity to purchase from Main Supplier."
-msgstr ""
-
-#. module: golem_activity
-#: help:golem.activity,seller_delay:0
-msgid "This is the average delay in days between the purchase order confirmation and the receipts for this product and for the default supplier. It is used by the scheduler to order requests based on reordering delays."
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:118
+#: code:addons/golem_activity/models/golem_activity.py:119
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Thursday"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:48
-#: view:golem.activity:golem_activity.view_filter
+#: code:addons/golem_activity/models/golem_activity.py:52
 #: selection:golem.activity,type_of:0
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 #, python-format
 msgid "Training"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_tree
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_tree
 msgid "True"
-msgstr ""
-
-#. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:116
-#: selection:golem.activity,weekday:0
-#, python-format
-msgid "Tuesday"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,type_of:0
-msgid "Type"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,uom_id:0
-msgid "Unit of Measure"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,uos_coeff:0
-msgid "Unit of Measure -> UOS Coeff"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,uos_id:0
-msgid "Unit of Sale"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,message_unread:0
-msgid "Unread Messages"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,volume:0
-msgid "Volume"
-msgstr ""
-
-#. module: golem_activity
-#: field:golem.activity,warranty:0
-msgid "Warranty"
 msgstr ""
 
 #. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:117
 #: selection:golem.activity,weekday:0
 #, python-format
+msgid "Tuesday"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_of
+msgid "Type"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_supplier_taxes_id
+msgid "Vendor Taxes"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_seller_ids
+msgid "Vendors"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_volume
+msgid "Volume"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_warranty
+msgid "Warranty"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:118
+#: selection:golem.activity,weekday:0
+#, python-format
 msgid "Wednesday"
 msgstr ""
 
 #. module: golem_activity
-#: field:golem.activity,weekday:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_weekday
 msgid "Weekday"
 msgstr ""
 
 #. module: golem_activity
-#: help:golem.activity,is_recurrent:0
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_weight
+msgid "Weight"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,help:golem_activity.field_golem_activity_is_recurrent
 msgid "Work in progress"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:47
-#: view:golem.activity:golem_activity.view_filter
+#: code:addons/golem_activity/models/golem_activity.py:51
 #: selection:golem.activity,type_of:0
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_search
 #, python-format
 msgid "Workshop"
 msgstr ""
 
 #. module: golem_activity
-#: view:golem.activity:golem_activity.view_form
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
 msgid "describe the activity characteristics..."
 msgstr ""
 
