@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -21,14 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record model="ir.ui.view" id="minor_add_form">
+    <record model="ir.ui.view" id="golem_member_form_inherit_minor">
       <field name="name">Add Minor Page/Tab</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.view_form" />
+      <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="pictures_agreement" position="replace" />
-      </field>
-      <field name="arch" type="xml">
         <page name="contact_details" position="after">
           <page name="minor_page" string="Minor"
             attrs="{'invisible': [('is_minor', '=', False)]}">
@@ -52,17 +50,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Search -->
-    <record model="ir.ui.view" id="minor_add_search">
+    <record model="ir.ui.view" id="golem_member_search_inherit_minor">
       <field name="name">Add Minor/Adult filters</field>
       <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.view_filter" />
+      <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
-        <group string="Group By" position="before">
+        <filter name="season_default" position="after">
           <filter name="filter_is_minor" string="Is minor"
             domain="[('is_minor', '=', True)]"/>
           <filter name="filter_is_adult" string="Is adult"
             domain="[('is_minor', '!=', True)]"/>
-        </group>
+        </filter>
       </field>
     </record>
 

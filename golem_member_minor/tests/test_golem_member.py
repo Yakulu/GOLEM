@@ -15,10 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Member Minor tests """
+
 from odoo.tests.common import TransactionCase
 
-
 class GolemMemberMinorTestCase(TransactionCase):
+    """ GOLEM Member Minor tests """
 
     def setUp(self):
         super(GolemMemberMinorTestCase, self).setUp()
@@ -28,10 +30,10 @@ class GolemMemberMinorTestCase(TransactionCase):
 
     def test_member_minor(self):
         """ Test minor computing """
-        m = self.member_model.create({'lastname': u'Doe', 'firstname': u'Joe'})
-        self.assertFalse(m.is_minor)
-        m = self.member_model.create({'lastname': u'Doe', 'firstname': u'Bob',
-                                      'birthdate_date': '1990-01-01'})
-        self.assertFalse(m.is_minor)
-        m.write({'birthdate_date': '2015-01-01'})
-        self.assertTrue(m.is_minor)
+        new_m = self.member_model.create({'lastname': u'Doe', 'firstname': u'Joe'})
+        self.assertFalse(new_m.is_minor)
+        new_m = self.member_model.create({'lastname': u'Doe', 'firstname': u'Bob',
+                                          'birthdate_date': '1990-01-01'})
+        self.assertFalse(new_m.is_minor)
+        new_m.write({'birthdate_date': '2015-01-01'})
+        self.assertTrue(new_m.is_minor)
