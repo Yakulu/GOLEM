@@ -114,7 +114,7 @@ class GolemMember(models.Model):
                     season.member_counter += 1
                     season.write({'member_counter': season.member_counter})
                     pkey = 'golem_numberconfig_prefix'
-                    pfx = conf.get_param(pkey)
+                    pfx = conf.get_param(pkey, '')
                     number = pfx + str(season.member_counter)
                     data = {'member_id': member.id,
                             'season_id': season.id,
@@ -138,7 +138,7 @@ class GolemMember(models.Model):
             last = int(conf.get_param('golem_number_counter', 0))
             last += 1
             conf.set_param('golem_number_counter', str(last))
-            pfx = conf.get_param('golem_numberconfig_prefix')
+            pfx = conf.get_param('golem_numberconfig_prefix', '')
             number = pfx + str(last)
             data = {'member_id': self[0].id,
                     'season_id': None,
