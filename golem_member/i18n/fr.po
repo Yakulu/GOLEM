@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 17:06+0000\n"
-"PO-Revision-Date: 2017-05-01 17:06+0000\n"
+"POT-Creation-Date: 2017-06-04 16:02+0000\n"
+"PO-Revision-Date: 2017-06-04 16:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgstr "Ville"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_color
 msgid "Color Index"
-msgstr "Color Index"
+msgstr "Couleur"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_commercial_partner_id
@@ -212,6 +212,11 @@ msgstr "Configuration pour les calculs des numéros adhérents"
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Contact details"
 msgstr "Coordonnées"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.res_partner_form_inherit_golem_member
+msgid "Contact form"
+msgstr "Fiche contact"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_child_ids
@@ -288,7 +293,7 @@ msgstr "Conditions de Paiement Client"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_date
 msgid "Date"
-msgstr "Date"
+msgstr "Date "
 
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_start
@@ -600,12 +605,17 @@ msgstr "Image de taille moyenne de ce contact. Elle est automatiquement redimens
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_member_id
 msgid "Member"
-msgstr "Member"
+msgstr "Adhérent"
 
 #. module: golem_member
 #: model:ir.ui.menu,name:golem_member.res_partner_category_menu
 msgid "Member Tags"
 msgstr "Catégories de l'adhérent"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_form
+msgid "Member form"
+msgstr "Fiche adhérent"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_member_number
@@ -666,14 +676,10 @@ msgstr "Nationalité"
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:221
 #: code:addons/golem_member/models/golem_member.py:224
-#, python-format
-msgid "No"
-msgstr "Non"
-
-#. module: golem_member
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
-msgid "Non"
+#, python-format
+msgid "No"
 msgstr "Non"
 
 #. module: golem_member
@@ -700,12 +706,6 @@ msgstr "Préfixe éventuel"
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Others"
 msgstr "Autres"
-
-#. module: golem_member
-#: selection:golem.member.numberconfig,is_automatic:0
-#: selection:golem.member.numberconfig,is_per_season:0
-msgid "Oui"
-msgstr "Oui"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_opt_out_sms
@@ -1067,6 +1067,8 @@ msgstr "Site Web pour les Partenaires ou les Sociétés"
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:221
 #: code:addons/golem_member/models/golem_member.py:224
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
 msgid "Yes"
 msgstr "Oui"

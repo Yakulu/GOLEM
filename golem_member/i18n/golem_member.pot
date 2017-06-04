@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 17:06+0000\n"
-"PO-Revision-Date: 2017-05-01 17:06+0000\n"
+"POT-Creation-Date: 2017-06-04 16:01+0000\n"
+"PO-Revision-Date: 2017-06-04 16:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -210,6 +210,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Contact details"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.res_partner_form_inherit_golem_member
+msgid "Contact form"
 msgstr ""
 
 #. module: golem_member
@@ -601,6 +606,11 @@ msgid "Member Tags"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_form
+msgid "Member form"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_member_number
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number
 #: model:ir.model.fields,field_description:golem_member.field_res_partner_member_number
@@ -659,14 +669,10 @@ msgstr ""
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:221
 #: code:addons/golem_member/models/golem_member.py:224
-#, python-format
-msgid "No"
-msgstr ""
-
-#. module: golem_member
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
-msgid "Non"
+#, python-format
+msgid "No"
 msgstr ""
 
 #. module: golem_member
@@ -692,12 +698,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Others"
-msgstr ""
-
-#. module: golem_member
-#: selection:golem.member.numberconfig,is_automatic:0
-#: selection:golem.member.numberconfig,is_per_season:0
-msgid "Oui"
 msgstr ""
 
 #. module: golem_member
@@ -1058,6 +1058,8 @@ msgstr ""
 #. module: golem_member
 #: code:addons/golem_member/models/golem_member.py:221
 #: code:addons/golem_member/models/golem_member.py:224
+#: selection:golem.member.numberconfig,is_automatic:0
+#: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
 msgid "Yes"
 msgstr ""
