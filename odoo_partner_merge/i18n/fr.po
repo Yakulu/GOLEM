@@ -1,0 +1,328 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* odoo_partner_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-04 15:11+0000\n"
+"PO-Revision-Date: 2017-06-04 15:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_exclude_contact
+msgid "A user associated to the contact"
+msgstr "Utilisateur associé au contact"
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:310
+#, python-format
+msgid "All contacts must have the same email. Only the Administrator can merge contacts with different emails."
+msgstr "Tous les contacts doivent avoir la même adresse courriel. Seul l'administrateur peut fusionner des contacts avec des adresses courriel différentes."
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Are you sure to execute the automatic merge of your contacts ?"
+msgstr "Voulez-vous vraiment réaliser la fusion automatique des contacts ?"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Are you sure to execute the list of automatic merges of your contacts ?"
+msgstr "Voulez-vous vraiment réaliser la fusion automatique de ces contacts ?"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Automatic Merge Wizard"
+msgstr "Assistant de fusion automatique"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_partner_ids
+msgid "Contacts"
+msgstr "Contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_create_uid
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_create_date
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_current_line_id
+msgid "Current Line"
+msgstr "Ligne actuelle"
+
+#. module: odoo_partner_merge
+#: model:ir.actions.act_window,name:odoo_partner_merge.action_partner_deduplicate
+msgid "Deduplicate Contacts"
+msgstr "Fusionner les contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Deduplicate the other Contacts"
+msgstr "Fusionner d'autres contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_dst_partner_id
+msgid "Destination Contact"
+msgstr "Destination Contact"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_display_name
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_group_by_email
+msgid "Email"
+msgstr "Courriel"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Exclude contacts having"
+msgstr "Exclure les contacts avec"
+
+#. module: odoo_partner_merge
+#: selection:base.partner.merge.automatic.wizard,state:0
+msgid "Finished"
+msgstr "Terminé"
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:299
+#, python-format
+msgid "For safety reasons, you cannot merge more than 3 contacts together. You can re-open the wizard several times if needed."
+msgstr "Pour des raisons de sécurité, vous ne pouvez pas fusionner plus de 3 contacts. Si besoin, vous pouvez ré-ouvrir l'assistant autant de fois que nécessaire."
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_number_group
+msgid "Group of Contacts"
+msgstr "Groupe de contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_id
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_aggr_ids
+msgid "Ids"
+msgstr "IDS"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_group_by_is_company
+msgid "Is Company"
+msgstr "Est une société"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_exclude_journal_item
+msgid "Journal Items associated to the contact"
+msgstr "Écritures comptables associées au contact"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard___last_update
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_write_uid
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_write_date
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_line_ids
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_maximum_group
+msgid "Maximum of Group of Contacts"
+msgstr "Limite Maximum du Groupe de Contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Merge Automatically"
+msgstr "Fusionner automatiquement"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Merge Automatically all process"
+msgstr "Fusionne automatiquement tous les processus"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Merge Contacts"
+msgstr "Fusionner les contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.actions.act_window,name:odoo_partner_merge.action_partner_merge
+msgid "Merge Selected Contacts"
+msgstr "Fusionner les contacts sélectionnés"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Merge the following contacts"
+msgstr "Fusionner les contacts suivants"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Merge with Manual Check"
+msgstr "Fusionner avec vérification manuelle"
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:331
+#, python-format
+msgid "Merged with the following partners:"
+msgstr "Fusionnés avec les partenaires suivants"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_min_id
+msgid "MinID"
+msgstr "MinID"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_group_by_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:323
+#, python-format
+msgid "Only the destination contact may be linked to existing Journal Items. Please ask the Administrator if you need to merge several contacts linked to existing Journal Items."
+msgstr "Seul le contact de destination peut être lié à des écritures comptables existantes. Si vous avez besoin de fusionner plusieurs contacts liés à des écritures comptables existantes, veuillez contacter l'administrateur ."
+
+#. module: odoo_partner_merge
+#: selection:base.partner.merge.automatic.wizard,state:0
+msgid "Option"
+msgstr "Option"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Options"
+msgstr "Options"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_group_by_parent_id
+msgid "Parent Company"
+msgstr "Société mère"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Partners"
+msgstr "Partenaires"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Search duplicates based on duplicated data in"
+msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Select the list of fields used to search for\n"
+"                            duplicated records. If you select several fields,\n"
+"                            Odoo will propose you to merge only those having\n"
+"                            all these fields in common. (not one of the fields)."
+msgstr "Sélectionnez la liste des champs utilisés pour chercher\n"
+"les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+"Odoo vous proposera de fusionner seulement ceux qui ont\n"
+"tous ces champs en commun (pas uniquement l'un des champs)."
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Selected contacts will be merged together.\n"
+"                                All documents linked to one of these contacts\n"
+"                                will be redirected to the destination contact.\n"
+"                                You can remove contacts from this list to avoid merging them."
+msgstr ""
+"Sélectionnez les contacts qui seront fusionnés.\n"
+"Tous les documents liés à un de ces contacts\n"
+"sera redirigé au contact de destination.\n"
+"Vous pouvez enlever les contacts de cette liste pour éviter de les fusionner."
+
+#. module: odoo_partner_merge
+#: selection:base.partner.merge.automatic.wizard,state:0
+msgid "Selection"
+msgstr "Sélection"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "Skip these contacts"
+msgstr "Ignorez ces contacts"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_state
+msgid "State"
+msgstr "État"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "There is no more contacts to merge for this request..."
+msgstr "Il n'y a plus de contacts a fusionner pour cette requête"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_automatic_wizard_group_by_vat
+msgid "VAT"
+msgstr "TVA"
+
+#. module: odoo_partner_merge
+#: model:ir.model.fields,field_description:odoo_partner_merge.field_base_partner_merge_line_wizard_id
+msgid "Wizard"
+msgstr "Assistant"
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:306
+#, python-format
+msgid "You cannot merge a contact with one of his parent."
+msgstr "Vous ne pouvez pas fusionner un contact avec l'un de ses parents."
+
+#. module: odoo_partner_merge
+#: code:addons/odoo_partner_merge/wizard/base_partner_merge.py:398
+#, python-format
+msgid "You have to specify a filter for your selection"
+msgstr "Vous devez spécifier un filtre a cette sélection"
+
+#. module: odoo_partner_merge
+#: model:ir.model,name:odoo_partner_merge.model_base_partner_merge_automatic_wizard
+msgid "base.partner.merge.automatic.wizard"
+msgstr "base.partner.merge.automatic.wizard"
+
+#. module: odoo_partner_merge
+#: model:ir.model,name:odoo_partner_merge.model_base_partner_merge_line
+msgid "base.partner.merge.line"
+msgstr "base.partner.merge.line"
+
+#. module: odoo_partner_merge
+#: model:ir.ui.view,arch_db:odoo_partner_merge.base_partner_merge_automatic_wizard_form
+msgid "or"
+msgstr "ou"
+
