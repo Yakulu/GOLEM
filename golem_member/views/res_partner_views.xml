@@ -45,6 +45,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Kanban -->
+    <record model="ir.ui.view" id="res_partner_kanban_inherit_golem_member">
+      <field name="name">Partner Kanban adaptations</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.res_partner_kanban_view" />
+      <field name="arch" type="xml">
+        <field name="type" position="after">
+          <field name="is_member" />
+        </field>
+        <xpath expr="//div[@class='oe_kanban_global_click o_res_partner_kanban']"
+          position="inside">
+          <hr style="clear: both; background-color: #ecffe2; height: 10%; margin: 2% 0 0 0;"
+            title="Is member" t-if="!!record.is_member.raw_value" />
+        </xpath>
+      </field>
+    </record>
+
     <!-- Trees -->
     <record model="ir.ui.view" id="res_partner_tree_inherit_golem_member">
       <field name="name">Add member number to tree</field>

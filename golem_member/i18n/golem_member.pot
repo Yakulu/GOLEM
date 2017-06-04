@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 16:01+0000\n"
-"PO-Revision-Date: 2017-06-04 16:01+0000\n"
+"POT-Creation-Date: 2017-06-04 17:02+0000\n"
+"PO-Revision-Date: 2017-06-04 17:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -502,6 +502,14 @@ msgid "Is a Vendor"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_member
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_is_member
+#: model:ir.model.fields,field_description:golem_member.field_res_users_is_member
+#: model:ir.ui.view,arch_db:golem_member.res_partner_kanban_inherit_golem_member
+msgid "Is member"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_is_number_manual
 msgid "Is number manual?"
 msgstr ""
@@ -667,8 +675,8 @@ msgid "Nationality"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:221
-#: code:addons/golem_member/models/golem_member.py:224
+#: code:addons/golem_member/models/golem_member.py:229
+#: code:addons/golem_member/models/golem_member.py:232
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -964,7 +972,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:84
+#: code:addons/golem_member/models/golem_member.py:92
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -1056,8 +1064,8 @@ msgid "Website of Partner or Company"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:221
-#: code:addons/golem_member/models/golem_member.py:224
+#: code:addons/golem_member/models/golem_member.py:229
+#: code:addons/golem_member/models/golem_member.py:232
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format

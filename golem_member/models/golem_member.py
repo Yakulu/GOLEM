@@ -37,7 +37,15 @@ class ResPartner(models.Model):
 
     member_id = fields.One2many('golem.member', 'partner_id', 'GOLEM Member',
                                 readonly=True)
+    is_member = fields.Boolean('Is member', compute='_compute_is_member')
     member_number = fields.Char('Member number', related='member_id.number')
+
+    @api.depends('member_id')
+    def _compute_is_member(self):
+        """ Computes is member """
+        for partner in self:
+            partner.is_member = len(partner.member_id) > 0
+
 
     @api.multi
     def create_golem_member(self):
