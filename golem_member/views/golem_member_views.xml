@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <div class="oe_title">
                 <h1>
-                  <field name="image" widget="image" class="oe_left oe_avatar"
+                  <field name="image" widget="image" class="oe_avatar"
                     options="{'preview_image': 'image_medium', 'size': [90, 90]}" />
                   <field name="name" class="oe_inline" readonly="True" />
                 </h1>
@@ -116,7 +116,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <kanban>
-          <field name="image_small" />
+          <field name="is_company" />
+          <field name="image" />
           <field name="color" />
           <field name="display_name" />
           <field name="title" />
@@ -131,16 +132,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <templates>
             <t t-name="kanban-box">
               <div class="oe_kanban_vignette oe_semantic_html_override">
-                <a type="open">
-
-                  <t t-if="record.image_small.raw_value">
-                    <img t-att-src="kanban_image('res.partner', 'image_small', record.id.value)" class="oe_kanban_image"/>
-                  </t>
-                  <t t-if="record.image_small.raw_value === false">
-                    <img t-att-src='_s + "/base/static/src/img/avatar.png"'
-                      class="oe_kanban_image"/>
-                  </t>
-                </a>
+                <div class="o_kanban_image">
+                  <img t-if="record.image.raw_value"
+                    t-att-src="'data:image/png;base64,'+ record.image.raw_value"/>
+                  <t t-if="!record.image.raw_value">
+                    <img t-if="record.is_company.raw_value === true"
+                      t-att-src='_s + "/base/static/src/img/company_image.png"'/>
+                    <img t-if="record.is_company.raw_value === false"
+                      t-att-src='_s + "/base/static/src/img/avatar.png"'/>
+                    </t>
+                </div>
                 <div class="oe_kanban_details">
                   <h4 class="oe_partner_heading">
                     <a type="open"><field name="display_name" /></a>
