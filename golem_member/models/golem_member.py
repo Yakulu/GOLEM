@@ -127,7 +127,7 @@ class GolemMember(models.Model):
     def _compute_is_number_manual(self):
         conf = self.env['ir.config_parameter']
         is_num_man = (conf.get_param('golem_numberconfig_isautomatic') == '0')
-        self.is_number_manual = is_num_man
+        self.write({'is_number_manual': is_num_man})
 
     @api.multi
     def generate_number_perseason(self):
@@ -142,15 +142,15 @@ class GolemMember(models.Model):
                           ('season_id', '=', season.id)]
                 member_num = member_number_obj.search(domain)
                 if not member_num:
-                    season.member_counter += 1
                     season.write({'member_counter': season.member_counter})
                     pkey = 'golem_numberconfig_prefix'
                     pfx = conf.get_param(pkey, '')
-                    number = pfx + str(season.member_counter)
+                    number = u'{}{}'.format(pfx, unicode(season.member_counter))
                     data = {'member_id': member.id,
                             'season_id': season.id,
                             'number': number}
                     member_num = member_number_obj.create(data)
+                    season.member_counter += 1
                 if season.is_default:
                     res = member_num.number
         return res
@@ -166,15 +166,17 @@ class GolemMember(models.Model):
         member_number_obj = self.env['golem.member.number']
         member_num = member_number_obj.search(domain)
         if not member_num:
-            last = int(conf.get_param('golem_number_counter', 0))
-            last += 1
-            conf.set_param('golem_number_counter', str(last))
+            last = int(conf.get_param('golem_number_counter', 1))
             pfx = conf.get_param('golem_numberconfig_prefix', '')
             number = pfx + str(last)
             data = {'member_id': self[0].id,
                     'season_id': None,
                     'number': number}
             member_num = member_number_obj.create(data)
+            last += 1
+            conf.set_param('golem_number_counter', str(last))
+        else:
+            member_num = member_num[0]
         return member_num.number
 
     @api.multi
@@ -191,7 +193,7 @@ class GolemMember(models.Model):
                 else:
                     member_num = member.generate_number_global()
                 if member_num:
-                    member.number = member_num[0]
+                    member.number = member_num
 
     @api.model
     def create(self, values):
@@ -256,6 +258,8 @@ class GolemNumberConfig(models.TransientModel):
                                      string='Per season number?',
                                      default=_default_is_per_season)
     prefix = fields.Char('Optional prefix', default=_default_prefix)
+    number_from = fields.Integer('First number', default=1,
+                                 help='Number starting from, default to 1')
 
     @api.multi
     def apply_config(self):
@@ -272,9 +276,11 @@ class GolemNumberConfig(models.TransientModel):
         self.ensure_one()
         self.apply_config()
         conf = self.env['ir.config_parameter']
-        conf.set_param('golem_number_counter', '0')
+        conf.set_param('golem_number_counter', self.number_from)
         self.env['golem.member.number'].search([]).unlink()
-        self.env['golem.season'].search([]).write({'member_counter': 0})
+        self.env['golem.season'].search([]).write({
+            'member_counter': int(self.number_from)
+        })
         self.env['golem.member'].search([]).generate_number()
 
 class MergePartnerAutomatic(models.TransientModel):
@@ -284,12 +290,11 @@ class MergePartnerAutomatic(models.TransientModel):
     @api.multi
     def action_merge(self):
         """ Merge adaptations : warn if there is a member """
-        _LOGGER.warning(self.partner_ids)
-        for partner in self.partner_ids:
-            _LOGGER.warning(partner.member_id)
-            if partner.member_id:
-                emsg = _('GOLEM Members merge has not been implemented yet. '
-                         'Please only merge partners, not members, or delete '
-                         'GOLEM Members manually before merging.')
-                raise UserError(emsg)
+        for merge in self:
+            for partner in merge.partner_ids:
+                if partner.member_id:
+                    emsg = _('GOLEM Members merge has not been implemented yet. '
+                             'Please only merge partners, not members, or delete '
+                             'GOLEM Members manually before merging.')
+                    raise UserError(emsg)
         return super(MergePartnerAutomatic, self).action_merge()

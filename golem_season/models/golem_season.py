@@ -29,7 +29,7 @@ class GolemSeason(models.Model):
 
     name = fields.Char('Season name', copy=False)
     member_counter = fields.Integer('Counter for member number generation',
-                                    readonly=True, default=0)
+                                    readonly=True, default=1)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
 

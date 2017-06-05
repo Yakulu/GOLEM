@@ -33,6 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 attrs="{'invisible': [('is_automatic', '=', '0')]}"/>
               <field name="prefix"
                 attrs="{'invisible': [('is_automatic', '=', '0')]}"/>
+              <field name="number_from"
+                attrs="{'invisible': [('is_automatic', '=', '0')]}"/>
             </group>
           </sheet>
           <footer>
