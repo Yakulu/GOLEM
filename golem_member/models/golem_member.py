@@ -61,6 +61,9 @@ class GolemMember(models.Model):
     _description = 'GOLEM Member'
     _inherit = 'mail.thread'
     _inherits = {'res.partner': 'partner_id'}
+    _sql_constraints = [('golem_member_number_manual_uniq',
+                         'UNIQUE (number_manual)',
+                         _('This member number has already been used.'))]
 
     partner_id = fields.Many2one('res.partner', required=True, index=True,
                                  ondelete='cascade')
@@ -86,10 +89,6 @@ class GolemMember(models.Model):
                                 store=True, compute='compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
-
-    _sql_constraints = [('golem_member_number_manual_uniq',
-                         'UNIQUE (number_manual)',
-                         _('This member number has already been used.'))]
 
     @api.multi
     @api.depends('season_ids')
