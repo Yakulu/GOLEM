@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,12 +15,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Families """
+
 from odoo import models, fields, api, _
 
 
 class ResPartner(models.Model):
+    """ Partner adaptations """
     _inherit = 'res.partner'
-    _description = 'GOLEM Partner Family'
 
     family_id = fields.Many2one('golem.family', string='Family', index=True)
     family_role = fields.Many2one('golem.family.role', string='Role',
@@ -29,6 +31,7 @@ class ResPartner(models.Model):
 
     @api.multi
     def button_family_members(self):
+        """ Go to family view, from partner """
         self.ensure_one()
         return {'name': _('Family Members'),
                 'type': 'ir.actions.act_window',
@@ -38,26 +41,30 @@ class ResPartner(models.Model):
 
 
 class GolemMember(models.Model):
+    """ Member adaptations """
     _inherit = 'golem.member'
 
     @api.onchange('family_id')
     def onchange_family(self):
         """ Sets lastname as family name if there was no precedence """
-        for p in self:
-            if not p.lastname:
-                p.lastname = self.family_id.name
+        for member in self:
+            if not member.lastname:
+                member.lastname = member.family_id.name
 
     @api.multi
     def button_family_members(self):
+        """ Go to family view, from member """
         self.ensure_one()
+        member = self[0]
         return {'name': _('Family Members'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'golem.family',
                 'view_mode': 'form',
-                'res_id': self.family_id.id}
+                'res_id': member.family_id.id}
 
 
 class GolemFamily(models.Model):
+    """ GOLEM Family Entity """
     _name = 'golem.family'
     _description = 'GOLEM Family Entity'
     _inherit = 'mail.thread'
@@ -86,13 +93,14 @@ class GolemFamily(models.Model):
     note = fields.Text('Note')
     count = fields.Integer('Count', compute='_compute_count', store=True)
 
-    @api.one
     @api.depends('member_ids')
     def _compute_count(self):
-        self.count = len(self.member_ids)
+        for family in self:
+            family.count = len(family.member_ids)
 
 
 class GolemFamilyRole(models.Model):
+    """ GOLEM Family Role """
     _name = 'golem.family.role'
     _description = 'GOLEM Family Role'
     _sql_constraints = [('golem_family_role_name_uniq',

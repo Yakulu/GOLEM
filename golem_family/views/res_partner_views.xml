@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -20,12 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
     <!-- Form -->
-    <record model="ir.ui.view" id="res_partner_family_smartbtn_add">
-      <field name="name">Add family management smart button</field>
+    <record model="ir.ui.view" id="res_partner_form_inherit_golem_family">
+      <field name="name">Partner form adaptations</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
-        <div name="buttons" position="inside">
+        <div name="button_box" position="inside">
           <button class="oe_inline oe_stat_button" type="object"
             name="button_family_members" icon="fa-users"
             attrs="{'invisible': [('family_id', '=', False)]}">
@@ -36,8 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
-    <record model="ir.ui.view" id="res_partner_family_role_add">
-      <field name="name">Add family role into res.partner form</field>
+    <record model="ir.ui.view" id="partner_firstname_inherit_golem_family_role">
+      <field name="name">Partner form adaptations</field>
       <field name="model">res.partner</field>
       <field name="inherit_id"
         ref="partner_firstname.view_partner_form_firstname" />

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-09 09:06+0000\n"
-"PO-Revision-Date: 2016-09-09 09:06+0000\n"
+"POT-Creation-Date: 2017-06-05 10:02+0000\n"
+"PO-Revision-Date: 2017-06-05 10:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,107 +16,109 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_family
-#: view:golem.family:golem_family.family_tree
+#: model:ir.ui.view,arch_db:golem_family.golem_family_tree
 msgid "# Members"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "0000000000"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Address"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_filter
+#: model:ir.ui.view,arch_db:golem_family.golem_family_search
 msgid "By city"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
-#: field:golem.family,city:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_city
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "City"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Communication"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,count:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_count
 msgid "Count"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
-#: field:golem.family,country_id:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_country_id
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Country"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,create_uid:0
-#: field:golem.family.role,create_uid:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_create_uid
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,create_date:0
-#: field:golem.family.role,create_date:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_create_date
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: golem_family
-#: help:golem.family,message_last_post:0
-msgid "Date of the last message posted on the record."
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,display_name:0
-#: field:golem.family.role,display_name:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_display_name
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,email:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_email
 msgid "Email"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.ui.menu,name:golem_family.family_menu_list
+#: model:ir.ui.menu,name:golem_family.golem_family_menu
 msgid "Families"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
-#: field:golem.member,family_id:0
-#: field:res.partner,family_id:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_id
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_id
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_id
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Family"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.member,family_count:0
-#: field:res.partner,family_count:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_count
 msgid "Family Count"
 msgstr ""
 
 #. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:33
-#: code:addons/golem_family/models/golem_family.py:53
+#: code:addons/golem_family/models/golem_family.py:36
+#: code:addons/golem_family/models/golem_family.py:59
 #, python-format
 msgid "Family Members"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.ui.menu,name:golem_family.family_role_menu_list
+#: model:ir.ui.menu,name:golem_family.golem_family_role_menu
 msgid "Family Roles"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
+msgid "Family form"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Family members"
 msgstr ""
 
@@ -126,17 +128,12 @@ msgid "Family role must be unique."
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,message_follower_ids:0
-msgid "Followers"
-msgstr ""
-
-#. module: golem_family
 #: model:ir.model,name:golem_family.model_golem_family
 msgid "GOLEM Family Entity"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.actions.act_window,name:golem_family.family_action_list
+#: model:ir.actions.act_window,name:golem_family.golem_family_action_list
 msgid "GOLEM Family List"
 msgstr ""
 
@@ -146,7 +143,7 @@ msgid "GOLEM Family Role"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.actions.act_window,name:golem_family.family_role_action
+#: model:ir.actions.act_window,name:golem_family.golem_family_role_action
 msgid "GOLEM Family Role List"
 msgstr ""
 
@@ -156,87 +153,57 @@ msgid "GOLEM Member"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_filter
+#: model:ir.ui.view,arch_db:golem_family.golem_family_search
 msgid "Group By"
 msgstr ""
 
 #. module: golem_family
-#: help:golem.family,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,id:0
-#: field:golem.family.role,id:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_id
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_id
 msgid "ID"
 msgstr ""
 
 #. module: golem_family
-#: help:golem.family,message_unread:0
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,message_is_follower:0
-msgid "Is a Follower"
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,message_last_post:0
-msgid "Last Message Date"
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,__last_update:0
-#: field:golem.family.role,__last_update:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family___last_update
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,write_uid:0
-#: field:golem.family.role,write_uid:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_write_uid
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,write_date:0
-#: field:golem.family.role,write_date:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_write_date
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,member_ids:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_member_ids
 msgid "Members"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,message_ids:0
-msgid "Messages"
-msgstr ""
-
-#. module: golem_family
-#: help:golem.family,message_ids:0
-msgid "Messages and communication history"
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,mobile:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_mobile
 msgid "Mobile"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
-#: field:golem.family,name:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_name
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Name"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,note:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_note
 msgid "Note"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Others"
 msgstr ""
 
@@ -246,86 +213,77 @@ msgid "Partner"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,phone:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_phone
 msgid "Phone"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Put an internal note..."
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family.role,name:0
-#: field:golem.member,family_role:0
-#: field:res.partner,family_role:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_role_name
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_role
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_role
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_role
 msgid "Role"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
-#: field:golem.family,state_id:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_state_id
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "State"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,street:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_street
 msgid "Street"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Street..."
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,street2:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_street2
 msgid "Street2"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,message_summary:0
-msgid "Summary"
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,message_unread:0
-msgid "Unread Messages"
-msgstr ""
-
-#. module: golem_family
-#: field:golem.family,website:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_website
 msgid "Website"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "ZIP"
 msgstr ""
 
 #. module: golem_family
-#: field:golem.family,zip:0
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_zip
 msgid "Zip"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "e.g. www.odoo.com"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.member:golem_family.golem_member_family_smartbtn_add
-#: view:res.partner:golem_family.res_partner_family_smartbtn_add
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
+#: model:ir.ui.view,arch_db:golem_family.res_partner_form_inherit_golem_family
 msgid "family members"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.family_kanban
+#: model:ir.ui.view,arch_db:golem_family.golem_family_kanban
 msgid "members"
 msgstr ""
 
 #. module: golem_family
-#: view:golem.family:golem_family.view_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "name@example.org"
 msgstr ""
 
