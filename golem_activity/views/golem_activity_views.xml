@@ -157,7 +157,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Actions -->
     <act_window id="golem_activity_action" name="GOLEM Activities"
       res_model="golem.activity" view_mode="tree,form,calendar"
-      context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_activities')}" />
+      context="{'search_default_season_default': True}" />
     <act_window id="golem_activity_type_action" name="GOLEM Activity Types"
       res_model="golem.activity.type" view_mode="tree" />
     <record id="product_category_action" model="ir.actions.act_window">
