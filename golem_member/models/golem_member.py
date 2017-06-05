@@ -94,11 +94,24 @@ class GolemMember(models.Model):
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
 
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        member = self[0]
+        if member.country_id:
+            return {
+                'domain': {'state_id': [('country_id', '=', member.country_id.id)]}
+            }
+        else:
+            return {'domain': {'state_id': []}}
+
     @api.depends('number', 'name')
     def _compute_number_name(self):
         """ Computes a name composed with number and name """
         for member in self:
-            member.number_name = u'{} - {}'.format(member.number, member.name)
+            if member.name:
+                member.number_name = u'{} - {}'.format(member.number, member.name)
+            else:
+                member.number_name = u''
 
     @api.multi
     @api.depends('season_ids')
