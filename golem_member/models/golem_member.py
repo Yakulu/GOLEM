@@ -17,7 +17,10 @@
 
 """ GOLEM Members """
 
+import logging
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+_LOGGER = logging.getLogger(__name__)
 
 
 class ResPartner(models.Model):
@@ -259,3 +262,20 @@ class GolemNumberConfig(models.TransientModel):
         self.env['golem.member.number'].search([]).unlink()
         self.env['golem.season'].search([]).write({'member_counter': 0})
         self.env['golem.member'].search([]).generate_number()
+
+class MergePartnerAutomatic(models.TransientModel):
+    """ Merge Partner Automatic adaptations """
+    _inherit = 'base.partner.merge.automatic.wizard'
+
+    @api.multi
+    def action_merge(self):
+        """ Merge adaptations : warn if there is a member """
+        _LOGGER.warning(self.partner_ids)
+        for partner in self.partner_ids:
+            _LOGGER.warning(partner.member_id)
+            if partner.member_id:
+                emsg = _('GOLEM Members merge has not been implemented yet. '
+                         'Please only merge partners, not members, or delete '
+                         'GOLEM Members manually before merging.')
+                raise UserError(emsg)
+        return super(MergePartnerAutomatic, self).action_merge()
