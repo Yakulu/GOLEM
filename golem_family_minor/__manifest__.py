@@ -23,7 +23,7 @@
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'depends': ['golem_family', 'golem_member_minor'],
     'data': []
