@@ -93,6 +93,7 @@ class GolemMember(models.Model):
                                 store=True, compute='compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
+    image_permission = fields.Boolean('Image permission?', default=True)
 
     @api.onchange('country_id')
     def _onchange_country_id(self):

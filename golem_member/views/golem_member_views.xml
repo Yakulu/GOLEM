@@ -84,15 +84,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="mobile" placeholder="0000000000"
                       widget="phonefr" />
                     <field name="pictures_agreement"/>
-                  </group>
-                  <group>
+                    <field name="opt_out_sms" />
                     <field name="email" widget="email"
                       placeholder="name@example.org" />
                     <label for="opt_out" string="Out of mailings?" />
                     <field name="opt_out" nolabel="1" />
-                    <field name="opt_out_sms" />
+                  </group>
+                  <group>
                     <field name="website" widget="url"
                       placeholder="e.g. www.odoo.com"/>
+                    <field name="image_permission" />
                   </group>
                 </group>
               </page>
