@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 17:02+0000\n"
-"PO-Revision-Date: 2017-06-04 17:02+0000\n"
+"POT-Creation-Date: 2017-06-05 06:43+0000\n"
+"PO-Revision-Date: 2017-06-05 06:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -621,6 +621,11 @@ msgid "Member Tags"
 msgstr "Catégories de l'adhérent"
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4212
+msgid "Member computed name"
+msgstr "Numéro et nom du membre"
+
+#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Member form"
 msgstr "Fiche adhérent"
@@ -682,8 +687,8 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:229
-#: code:addons/golem_member/models/golem_member.py:232
+#: code:addons/golem_member/models/golem_member.py:235
+#: code:addons/golem_member/models/golem_member.py:238
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -981,7 +986,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px."
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:92
+#: code:addons/golem_member/models/golem_member.py:66
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -1073,8 +1078,8 @@ msgid "Website of Partner or Company"
 msgstr "Site Web pour les Partenaires ou les Sociétés"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:229
-#: code:addons/golem_member/models/golem_member.py:232
+#: code:addons/golem_member/models/golem_member.py:235
+#: code:addons/golem_member/models/golem_member.py:238
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format

@@ -74,6 +74,7 @@ class GolemMember(models.Model):
         domain = [('is_default', '=', True)]
         return self.env['golem.season'].search(domain, limit=1)
 
+    number_name = fields.Char('Member computed name', compute='_compute_number_name')
     number = fields.Char('Member number', store=True, readonly=True)
     number_manual = fields.Char('Manual number', size=50, index=True,
                                 help='Manual number overwriting automatic '
@@ -89,6 +90,12 @@ class GolemMember(models.Model):
                                 store=True, compute='compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
+
+    @api.depends('number', 'name')
+    def _compute_number_name(self):
+        """ Computes a name composed with number and name """
+        for member in self:
+            member.number_name = u'{} - {}'.format(member.number, member.name)
 
     @api.multi
     @api.depends('season_ids')

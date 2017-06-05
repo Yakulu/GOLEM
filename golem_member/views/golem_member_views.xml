@@ -33,7 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <h1>
                   <field name="image" widget="image" class="oe_left oe_avatar"
                     options="{'preview_image': 'image_medium', 'size': [90, 90]}" />
-                  <field name="name" class="oe_inline" readonly="True" />
+                  <field name="number_name" class="oe_inline" readonly="True"
+                   style="margin-left: 2%" />
                 </h1>
               </div>
               <div class="oe_right oe_button_box" name="buttons" />
