@@ -6,19 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 14:18+0000\n"
-"PO-Revision-Date: 2017-05-01 14:18+0000\n"
+"POT-Creation-Date: 2017-06-05 15:26+0000\n"
+"PO-Revision-Date: 2017-06-05 15:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: golem_season
-#: sql_constraint:golem.season:0
-msgid "Ce nom pour la saison a déjà été utilisé. Merci d'en choisir un autre."
-msgstr ""
 
 #. module: golem_season
 #: model:ir.model.fields,field_description:golem_season.field_golem_season_member_counter
@@ -42,7 +37,7 @@ msgid "Current period cannot be included into another existing period."
 msgstr ""
 
 #. module: golem_season
-#: model:ir.ui.view,arch_db:golem_season.filter
+#: model:ir.ui.view,arch_db:golem_season.golem_season_search
 msgid "Default season"
 msgstr ""
 
@@ -124,6 +119,11 @@ msgid "Season name"
 msgstr ""
 
 #. module: golem_season
+#: model:ir.ui.menu,name:golem_season.golem_season_menu_list
+msgid "Seasons"
+msgstr ""
+
+#. module: golem_season
 #: code:addons/golem_season/models/golem_season.py:42
 #, python-format
 msgid "Start of the period cannot be after end of the period."
@@ -137,6 +137,7 @@ msgstr ""
 
 #. module: golem_season
 #: code:addons/golem_season/models/golem_season.py:28
+#: sql_constraint:golem.season:0
 #, python-format
 msgid "This season name has already been used."
 msgstr ""

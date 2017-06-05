@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 09:21+0000\n"
-"PO-Revision-Date: 2017-06-05 09:21+0000\n"
+"POT-Creation-Date: 2017-06-05 15:25+0000\n"
+"PO-Revision-Date: 2017-06-05 15:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,7 @@ msgstr "Actif"
 
 #. module: golem_activity
 #: model:ir.ui.menu,name:golem_activity.golem_activity_menu
+#: model:ir.ui.menu,name:golem_activity.golem_activity_menu_list
 msgid "Activities"
 msgstr "Activités"
 
@@ -172,6 +173,11 @@ msgstr "Couleur"
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_company_id
 msgid "Company"
 msgstr "Société"
+
+#. module: golem_activity
+#: model:ir.ui.menu,name:golem_activity.golem_activity_menu_configuration
+msgid "Configuration"
+msgstr "Configuration"
 
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_standard_price

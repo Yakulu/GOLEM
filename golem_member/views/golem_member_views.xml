@@ -251,13 +251,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="res.partner.category" view_mode="tree,form" />
 
     <!-- Menu items -->
-    <menuitem id="membership.menu_membership" name="Members" sequence="5"
-      parent="membership.menu_association" />
-    <menuitem id="golem_members_menu" name="GOLEM Members"
-      parent="membership.menu_membership" sequence="5"
+    <!-- Deactivate classic membership list -->
+    <record id="membership.menu_membership" model="ir.ui.menu">
+      <field name="active">0</field>
+    </record>
+    <!-- Add new menu items -->
+    <menuitem id="golem_members_menu" name="Members"
+      parent="membership.menu_association" sequence="5"
       action="golem_member_action" groups="golem_base.group_golem_user" />
     <menuitem id="golem_members_menu_contacts" name="Contacts"
-      parent="membership.menu_membership" sequence="20"
+      parent="membership.menu_association" sequence="10"
       action="contacts.action_contacts" groups="golem_base.group_golem_user" />
     <menuitem id="res_partner_category_menu" name="Member Tags"
       parent="membership.menu_marketing_config_association" sequence="10"

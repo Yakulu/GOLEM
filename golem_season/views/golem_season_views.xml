@@ -76,9 +76,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="golem.season" view_mode="tree,form" />
 
     <!-- Menus -->
-    <menuitem id="golem_season_menu" name="GOLEM Seasons"
-      parent="membership.menu_marketing_config_association" sequence="5"
-      action="golem_season_action" groups="golem_base.group_golem_manager" />
+    <menuitem id="golem_season_menu" name="GOLEM Seasons" sequence="100"
+      groups="golem_base.group_golem_manager"
+      web_icon="golem_season,static/description/icon.png" />
+    <menuitem id="golem_season_menu_list" name="Seasons" sequence="1"
+      parent="golem_season_menu" action="golem_season_action"
+      groups="golem_base.group_golem_manager" />
 
   </data>
 </odoo>

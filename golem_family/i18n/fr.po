@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 10:02+0000\n"
-"PO-Revision-Date: 2017-06-05 10:02+0000\n"
+"POT-Creation-Date: 2017-06-05 15:26+0000\n"
+"PO-Revision-Date: 2017-06-05 15:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,6 +83,7 @@ msgstr "Courriel"
 
 #. module: golem_family
 #: model:ir.ui.menu,name:golem_family.golem_family_menu
+#: model:ir.ui.menu,name:golem_family.golem_family_menu_list
 msgid "Families"
 msgstr "Familles"
 
@@ -109,11 +110,6 @@ msgid "Family Members"
 msgstr "Membres de la famille"
 
 #. module: golem_family
-#: model:ir.ui.menu,name:golem_family.golem_family_role_menu
-msgid "Family Roles"
-msgstr "Rôles familiaux"
-
-#. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Family form"
 msgstr "Family form"
@@ -131,12 +127,12 @@ msgstr "Les rôles familiaux doivent être uniques."
 #. module: golem_family
 #: model:ir.model,name:golem_family.model_golem_family
 msgid "GOLEM Family Entity"
-msgstr "GOLEM : famille"
+msgstr "Famille"
 
 #. module: golem_family
 #: model:ir.actions.act_window,name:golem_family.golem_family_action_list
 msgid "GOLEM Family List"
-msgstr "GOLEM : liste des familles"
+msgstr "Liste des familles"
 
 #. module: golem_family
 #: model:ir.model,name:golem_family.model_golem_family_role
@@ -146,12 +142,12 @@ msgstr "Rôle dans la famille"
 #. module: golem_family
 #: model:ir.actions.act_window,name:golem_family.golem_family_role_action
 msgid "GOLEM Family Role List"
-msgstr "GOLEM : liste des rôles familiaux"
+msgstr "Liste des rôles familiaux"
 
 #. module: golem_family
 #: model:ir.model,name:golem_family.model_golem_member
 msgid "GOLEM Member"
-msgstr "GOLEM : Adhérent"
+msgstr "Adhérent"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_search
@@ -230,6 +226,11 @@ msgstr "Écrivez une note interne..."
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_role
 msgid "Role"
 msgstr "Role"
+
+#. module: golem_family
+#: model:ir.ui.menu,name:golem_family.golem_family_role_menu
+msgid "Roles"
+msgstr "Roles"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_state_id

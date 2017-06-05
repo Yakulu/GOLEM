@@ -199,13 +199,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="golem.family" view_mode="kanban,tree,form" />
     <act_window id="golem_family_role_action" name="GOLEM Family Role List"
       res_model="golem.family.role" view_mode="tree" />
+
     <!-- Menus -->
     <menuitem id="golem_family_menu" name="Families"
-      parent="membership.menu_membership" action="golem_family_action_list"
-      sequence="10" groups="golem_base.group_golem_user" />
-    <menuitem id="golem_family_role_menu" name="Family Roles"
-      parent="membership.menu_marketing_config_association"
-      action="golem_family_role_action" sequence="3"
+      sequence="17" groups="golem_base.group_golem_user"
+      web_icon="golem_family,static/description/icon.png" />
+    <menuitem id="golem_family_menu_list" name="Families"
+      parent="golem_family_menu" action="golem_family_action_list" sequence="1"
+      groups="golem_base.group_golem_user" />
+    <menuitem id="golem_family_role_menu" name="Roles"
+      parent="golem_family_menu" action="golem_family_role_action" sequence="5"
       groups="golem_base.group_golem_manager" />
 
   </data>

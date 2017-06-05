@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem
       id="golem_member_numberconfig_menu"
       action="golem_member_numberconfig_action"
-      parent="membership.menu_marketing_config_association" sequence="10"
+      parent="membership.menu_marketing_config_association" sequence="1"
       groups="golem_base.group_golem_manager" />
   </data>
 </odoo>

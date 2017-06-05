@@ -168,17 +168,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Menus -->
-    <menuitem id="golem_activity_menu" name="Activities"
-      parent="membership.menu_association" sequence="5"
-      groups="golem_base.group_golem_user" />
-    <menuitem id="golem_activity_menu_list" name="List"
+    <menuitem id="golem_activity_menu" name="Activities" sequence="30"
       groups="golem_base.group_golem_user"
-      parent="golem_activity_menu" sequence="0" action="golem_activity_action" />
+      web_icon="golem_activity,static/description/icon.png" />
+    <menuitem id="golem_activity_menu_list" name="Activities"
+      groups="golem_base.group_golem_user"
+      parent="golem_activity_menu" sequence="1" action="golem_activity_action" />
+    <menuitem id="golem_activity_menu_configuration" name="Configuration"
+      parent="golem_activity_menu" sequence="90"
+      groups="golem_base.group_golem_manager" />
     <menuitem id="golem_activity_type_menu_list" name="Activity Types"
-      groups="golem_base.group_golem_user"
-      parent="golem_activity_menu" sequence="5" action="golem_activity_type_action" />
+      groups="golem_base.group_golem_manager"
+      parent="golem_activity_menu_configuration" sequence="5"
+      action="golem_activity_type_action" />
     <menuitem  id="product_category_menu" name="Categories"
-      parent="golem_activity.golem_activity_menu" sequence="20"
+      parent="golem_activity_menu_configuration" sequence="10"
       groups="golem_base.group_golem_manager"
       action="product_category_action" />
 
