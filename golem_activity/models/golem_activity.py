@@ -19,6 +19,16 @@
 
 from odoo import models, fields, api, _
 
+class GolemActivityType(models.Model):
+    """ GOLEM Activity Type """
+    _name = 'golem.activity.type'
+    _description = 'GOLEM Activity Type'
+
+    _sql_constraints = [('golem_activity_type_name_uniq', 'UNIQUE (name)',
+                         _('This activity type name has already been used.'))]
+
+    name = fields.Char('Activity type', required=True, translate=True)
+    is_recurrent = fields.Boolean('Is recurrent?')
 
 class GolemActivity(models.Model):
     """ GOLEM Activity """
@@ -47,17 +57,6 @@ class GolemActivity(models.Model):
                 full_name = u'[{}] {}'.format(activity.default_code, full_name)
             activity.full_name = full_name
 
-    type_of = fields.Selection([('activity', _('Activity')),
-                                ('workshop', _('Workshop')),
-                                ('training', _('Training'))],
-                               default='activity', index=True, string='Type')
-
-    @api.onchange('type_of')
-    def onchange_type_of(self):
-        """ Sets is_recurrent default according to activity type of """
-        for activity in self:
-            activity.is_recurrent = (activity.type_of == 'activity')
-
     @api.model
     def _default_season(self):
         """ Get default season """
@@ -82,8 +81,9 @@ class GolemActivity(models.Model):
                                   domain=[('is_company', '=', False)])
     categ_id = fields.Many2one('product.category',
                                help='Select category for the current activity')
-    is_recurrent = fields.Boolean('Is recurrent ?', default=True,
-                                  help='Work in progress')
+    type_id = fields.Many2one('golem.activity.type', required=True, index=True,
+                              string='Type')
+    is_recurrent = fields.Boolean(related='type_id.is_recurrent')
     date_start = fields.Date('Start date', copy=False)
     date_stop = fields.Date('End date', copy=False)
 

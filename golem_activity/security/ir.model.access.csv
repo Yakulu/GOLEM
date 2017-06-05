@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_golem_activity_user,Access GOLEM Activity User,model_golem_activity,golem_base.group_golem_user,1,1,1,0
 access_golem_activity_manager,Access GOLEM Activity Manager,model_golem_activity,golem_base.group_golem_manager,1,1,1,1
+access_golem_activity_type_user,Access GOLEM Activity Type User,model_golem_activity_type,golem_base.group_golem_user,1,1,1,0
+access_golem_activity_type_manager,Access GOLEM Activity Type Manager,model_golem_activity_type,golem_base.group_golem_manager,1,1,1,1

@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                 <field name="season_id" required="True" />
                 <field name="animator_id" />
-                <field name="type_of" required="True" />
+                <field name="type_id" required="True" />
               </group>
               <group>
                 <field name="categ_id" required="True" />
@@ -93,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree>
           <field name="is_recurrent" invisible="True" />
           <field name="season_id" />
-          <field name="type_of" />
+          <field name="type_id" />
           <field name="full_name" />
           <field name="animator_id" />
           <field name="weekday" string="Day"
@@ -103,6 +103,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="list_price" sum="True" />
         </tree>
       </field>
+  </record>
+  <record model="ir.ui.view" id="golem_activity_type_tree">
+    <field name="name">GOLEM Activity Type Tree/List</field>
+    <field name="model">golem.activity.type</field>
+    <field name="arch" type="xml">
+      <tree editable="top">
+        <field name="name" />
+        <field name="is_recurrent" />
+      </tree>
+    </field>
   </record>
 
     <!-- Calendars -->
@@ -124,20 +134,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <search>
           <field name="full_name" />
-          <field name="animator_id" widget="many2one" />
-          <field name="categ_id" widget="many2one" />
-          <field name="season_id" widget="many2one" />
+          <field name="animator_id" />
+          <field name="type_id" />
+          <field name="categ_id" />
+          <field name="season_id" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
-          <filter name="type_of_activity" string="Activity"
-           domain="[('type_of', '=', 'activity')]" />
-          <filter name="type_of_workshop" string="Workshop"
-           domain="[('type_of', '=', 'workshop')]" />
-          <filter name="type_of_training" string="Training"
-           domain="[('type_of', '=', 'training')]" />
           <group string="Group By">
-            <filter name="group_type_of" string="By type"
-              context="{'group_by': 'type_of'}" />
+            <filter name="group_type_id" string="By type"
+              context="{'group_by': 'type_id'}" />
             <filter name="group_category" string="By category"
               context="{'group_by': 'categ_id'}"/>
             <filter name="group_weekday" string="By weekday"
@@ -153,6 +158,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <act_window id="golem_activity_action" name="GOLEM Activities"
       res_model="golem.activity" view_mode="tree,form,calendar"
       context="{'search_default_season_default': True, 'default_categ_id': ref('golem_activity.golem_product_category_activities')}" />
+    <act_window id="golem_activity_type_action" name="GOLEM Activity Types"
+      res_model="golem.activity.type" view_mode="tree" />
     <record id="product_category_action" model="ir.actions.act_window">
       <field name="name">Activities Categories</field>
       <field name="res_model">product.category</field>
@@ -167,6 +174,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="golem_activity_menu_list" name="List"
       groups="golem_base.group_golem_user"
       parent="golem_activity_menu" sequence="0" action="golem_activity_action" />
+    <menuitem id="golem_activity_type_menu_list" name="Activity Types"
+      groups="golem_base.group_golem_user"
+      parent="golem_activity_menu" sequence="5" action="golem_activity_type_action" />
     <menuitem  id="product_category_menu" name="Categories"
       parent="golem_activity.golem_activity_menu" sequence="20"
       groups="golem_base.group_golem_manager"
