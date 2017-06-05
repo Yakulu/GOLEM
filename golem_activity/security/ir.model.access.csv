@@ -1,4 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_template_user,Access Product Template User,product.model_product_template,golem_base.group_golem_user,1,1,1,0
+access_product_template_manager,Access Product Template Manager,product.model_product_template,golem_base.group_golem_manager,1,1,1,1
+access_product_product_user,Access Product Product User,product.model_product_product,golem_base.group_golem_user,1,1,1,0
+access_product_product_manager,Access Product Product Manager,product.model_product_product,golem_base.group_golem_manager,1,1,1,1
+access_product_price_history_user,Access Product Price History User,product.model_product_price_history,golem_base.group_golem_user,1,1,1,0
+access_product_price_history_manager,Access Product Price History Manager,product.model_product_price_history,golem_base.group_golem_manager,1,1,1,1
 access_golem_activity_user,Access GOLEM Activity User,model_golem_activity,golem_base.group_golem_user,1,1,1,0
 access_golem_activity_manager,Access GOLEM Activity Manager,model_golem_activity,golem_base.group_golem_manager,1,1,1,1
 access_golem_activity_type_user,Access GOLEM Activity Type User,model_golem_activity_type,golem_base.group_golem_user,1,1,1,0
