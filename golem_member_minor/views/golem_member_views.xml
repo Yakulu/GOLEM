@@ -56,6 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
         <filter name="season_default" position="after">
+          <separator />
           <filter name="filter_is_minor" string="Is minor"
             domain="[('is_minor', '=', True)]"/>
           <filter name="filter_is_adult" string="Is adult"
