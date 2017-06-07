@@ -61,6 +61,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="activity_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
+         <filter name="group_season" string="By season"
+           context="{'group_by': 'season_id'}"/>
         </search>
       </field>
     </record>

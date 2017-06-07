@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 21:16+0000\n"
-"PO-Revision-Date: 2017-05-01 21:16+0000\n"
+"POT-Creation-Date: 2017-06-07 14:41+0000\n"
+"PO-Revision-Date: 2017-06-07 14:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_activity_registration
-#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_ids
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
 msgid "Activities"
 msgstr ""
@@ -32,6 +31,16 @@ msgid "Activity registrations"
 msgstr ""
 
 #. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_all_ids
+msgid "All activities"
+msgstr ""
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_search
+msgid "By season"
+msgstr ""
+
+#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_create_uid
 msgid "Created by"
 msgstr ""
@@ -42,6 +51,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_ids
+msgid "Current activities"
+msgstr ""
+
+#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_is_current
 msgid "Current season?"
 msgstr ""
@@ -49,11 +63,6 @@ msgstr ""
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_search
 msgid "Default season"
-msgstr ""
-
-#. module: golem_activity_registration
-#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
-msgid "Default season activities"
 msgstr ""
 
 #. module: golem_activity_registration
@@ -118,7 +127,7 @@ msgid "Members"
 msgstr ""
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:36
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:38
 #: sql_constraint:golem.activity:0
 #, python-format
 msgid "Number of places cannot be negative."
@@ -150,7 +159,7 @@ msgid "Season"
 msgstr ""
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:67
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:69
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr ""
@@ -161,13 +170,13 @@ msgid "Subscription"
 msgstr ""
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:95
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:97
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
 msgstr ""
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:87
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:89
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."

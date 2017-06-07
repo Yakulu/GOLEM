@@ -24,8 +24,10 @@ class GolemMember(models.Model):
     _inherit = 'golem.member'
 
     activity_registration_ids = fields.One2many('golem.activity.registration',
-                                                'member_id', 'Activities',
-                                                index=True)
+                                                'member_id', 'Current activities',
+                                                domain=[('is_current', '=', True)])
+    activity_registration_all_ids = fields.One2many('golem.activity.registration',
+                                                    'member_id', 'All activities')
 
 
 class GolemActivity(models.Model):
@@ -78,9 +80,9 @@ class GolemActivityRegistration(models.Model):
     activity_id = fields.Many2one('golem.activity', required=True, index=True,
                                   string='Activity', ondelete='cascade')
     season_id = fields.Many2one(string='Season',
-                                related='activity_id.season_id')
+                                related='activity_id.season_id', store=True)
     is_current = fields.Boolean('Current season?',
-                                related='activity_id.is_current')
+                                related='activity_id.is_current', store=True)
 
     _sql_constraints = [
         ('registration_uniq', 'UNIQUE (member_id, activity_id)',
