@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 14:42+0000\n"
-"PO-Revision-Date: 2017-06-07 14:42+0000\n"
+"POT-Creation-Date: 2017-06-14 23:16+0000\n"
+"PO-Revision-Date: 2017-06-14 23:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,16 @@ msgstr "Inscriptions"
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_all_ids
 msgid "All activities"
 msgstr "Toutes les activités"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
+msgid "Base price"
+msgstr "Prix de base"
+
+#. module: golem_activity_registration
+#: model:ir.model.fields,help:golem_activity_registration.field_golem_activity_registration_activity_price
+msgid "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr "Prix de base pour calculer le prix usager. Parfois appelé prix catalogue."
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_search
@@ -155,6 +165,11 @@ msgid "Remaining places"
 msgstr "Places restantes"
 
 #. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_activity_price
+msgid "Sale Price"
+msgstr "Prix de vente"
+
+#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_season_id
 msgid "Season"
 msgstr "Saison"
@@ -171,15 +186,20 @@ msgid "Subscription"
 msgstr "Inscription"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:97
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:98
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
 msgstr "L'inscription n'a pas pu être enregistrée : le membre visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule l'activité."
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:89
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:90
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."
 msgstr "Le membre a déjà été inscrit à cette activité."
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
+msgid "Total"
+msgstr "Total"
 
