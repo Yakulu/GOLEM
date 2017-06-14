@@ -79,6 +79,7 @@ class GolemActivityRegistration(models.Model):
                                 ondelete='cascade', index=True)
     activity_id = fields.Many2one('golem.activity', required=True, index=True,
                                   string='Activity', ondelete='cascade')
+    activity_price = fields.Float(related='activity_id.list_price')
     season_id = fields.Many2one(string='Season',
                                 related='activity_id.season_id', store=True)
     is_current = fields.Boolean('Current season?',
