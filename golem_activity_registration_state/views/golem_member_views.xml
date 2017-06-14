@@ -25,19 +25,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id"
         ref="golem_activity_registration.golem_member_form_inherit_golem_activity_registration" />
       <field name="arch" type="xml">
-        <p name="default_season_label" position="after">
-            <p attrs="{'invisible': [('id', '!=', False)]}" style="color:red;}">
-                Note that you can't register activities if the member is new and not yet saved into the database.
-            </p>
-            <p>
-              <field name="has_draft_registrations" invisible="1" />
-              <button name="do_validate_registrations" type="object"
-                string="Validate all draft registrations"
-                class="oe_highlight"
-                help="If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
-                attrs="{'invisible': [('has_draft_registrations', '=', False)]}" />
-            </p>
-        </p>
+        <field name="id" position="after">
+          <p attrs="{'invisible': [('id', '!=', False)]}" style="color:red;}"
+            colspan="2">
+            Note that you can't register activities if the member is new and not yet saved into the database.
+          </p>
+          <p colspan="2">
+            <field name="has_draft_registrations" invisible="1" />
+            <button name="do_validate_registrations" type="object"
+              string="Validate all draft registrations"
+              class="oe_highlight"
+              help="If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
+              attrs="{'invisible': [('has_draft_registrations', '=', False)]}" />
+          </p>
+        </field>
         <!-- TODO : one by one cancelation -->
         <!-- TODO : do not allow removal if confirmed -->
         <tree position="attributes">
@@ -46,9 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree position="inside">
           <field name="state" invisible="1" />
         </tree>
-        <field name="member_id" position="after">
-          <field name="invoice_id" readonly="1" />
-        </field>
       </field>
     </record>
 

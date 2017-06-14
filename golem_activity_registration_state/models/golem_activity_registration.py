@@ -17,7 +17,7 @@
 
 """ GOLEM Activity Registration State """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class GolemMember(models.Model):
     """ GOLEM Member adaptations """
@@ -40,10 +40,26 @@ class GolemMember(models.Model):
     @api.multi
     def do_validate_registrations(self):
         """ Validate all draft registrations """
-        for member in self:
-            draft_registrations = member.activity_registration_ids.filtered(
-                lambda r: r.state == 'draft')
-            draft_registrations.write({'state': 'confirmed'})
+        self.ensure_one()
+        member = self[0]
+        draft_registrations = member.activity_registration_ids.filtered(
+            lambda r: r.state == 'draft')
+        if draft_registrations:
+            invoicing = self.env['golem.activity.registration.invoicing'].create({
+                'member_id' : member.id,
+                'season_id': draft_registrations[0].activity_id.season_id.id
+            })
+            line_obj = self.env['golem.activity.registration.invoicing.line']
+            for reg in draft_registrations:
+                line_obj.create({'invoicing_id': invoicing.id,
+                                 'activity_id': reg.activity_id.id,
+                                 'price': reg.activity_id.list_price})
+            return {'name': _('Registration invoicing'),
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'golem.activity.registration.invoicing',
+                    'view_mode': 'form',
+                    'res_id': invoicing.id,
+                    'target': 'new'}
 
     @api.multi
     def write(self, values):
