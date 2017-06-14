@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Trees -->
+    <record id="golem_payment_schedule_tree" model="ir.ui.view">
+      <field name="name">GOLEM Payment Schedule Tree</field>
+      <field name="model">golem.payment.schedule</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="name" />
+          <field name="season_id" />
+          <field name="day_ids" widget="many2many_tags" />
+          <field name="occurences" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record id="golem_payment_schedule_search" model="ir.ui.view">
+      <field name="name">GOLEM Payment Schedule Filters</field>
+      <field name="model">golem.payment.schedule</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="season_id" />
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_payment_schedule_action" name="Payment Schedules"
+      res_model="golem.payment.schedule" view_mode="tree" />
+
+    <!-- Menus -->
+    <menuitem id="golem_payment_schedule_menu_list" sequence="5"
+      parent="payment.root_payment_menu" action="golem_payment_schedule_action"
+      groups="golem_base.group_golem_manager" />
+
+
+  </data>
+</odoo>
+
