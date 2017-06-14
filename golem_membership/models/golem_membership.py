@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,11 +15,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Membership """
+
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
 
 class GolemMembershipInvoice(models.TransientModel):
+    """ Membership invoicing """
     _name = 'golem.membership.invoice'
     _description = 'GOLEM MemberShip invoicing'
 
@@ -30,17 +33,19 @@ class GolemMembershipInvoice(models.TransientModel):
                                 dp.get_precision('Product Price'),
                                 required=True)
 
-    @api.one
     @api.onchange('product_id')
     def onchange_product(self):
-        if not self.product_id:
-            self.member_price = False
-        else:
-            price = self.product_id.price_get()[self.product_id.id]
-            self.member_price = price
+        """ Sets price according to product """
+        for minvoice in self:
+            if not minvoice.product_id:
+                minvoice.member_price = False
+            else:
+                price = minvoice.product_id.price_get()[minvoice.product_id.id]
+                minvoice.member_price = price
 
     @api.multi
     def membership_invoice(self):
+        """ Create invoice and redirect to partner invoice list """
         self.ensure_one()
         datas = {'membership_product_id': self.product_id.id,
                  'amount': self.member_price}

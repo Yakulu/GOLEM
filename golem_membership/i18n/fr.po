@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 06:41+0000\n"
-"PO-Revision-Date: 2016-07-09 06:41+0000\n"
+"POT-Creation-Date: 2017-06-14 07:05+0000\n"
+"PO-Revision-Date: 2017-06-14 07:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: golem_membership
-#: view:golem.member:golem_membership.membership_add
+#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
 msgid "Buy Membership"
-msgstr "Payer une adhésion"
+msgstr "Payer une cotisation"
 
 #. module: golem_membership
-#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+#: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,create_uid:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,create_date:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,display_name:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -47,63 +47,63 @@ msgid "GOLEM MemberShip invoicing"
 msgstr "GOLEM : facturation de l'adhésion"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,id:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_id
 msgid "ID"
 msgstr "ID"
 
 #. module: golem_membership
-#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+#: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
 msgid "Invoice Membership"
 msgstr "Facture d'adhésion"
 
 #. module: golem_membership
-#: model:ir.actions.act_window,name:golem_membership.action_membership_invoice_view
+#: model:ir.actions.act_window,name:golem_membership.golem_membership_invoice_action
 msgid "Join Membership"
 msgstr "Adhésion"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,__last_update:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Dernière Modification le"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,write_uid:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Dernière mise à jour par"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,write_date:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_write_date
 msgid "Last Updated on"
-msgstr "Dernière modification le"
+msgstr "Dernière mise à jour le"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,member_price:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_member_price
 msgid "Member Price"
-msgstr "Prix Membre"
+msgstr "Tarif d'adhésion"
 
 #. module: golem_membership
-#: view:golem.member:golem_membership.membership_add
-#: field:golem.membership.invoice,product_id:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_product_id
+#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
 msgid "Membership"
 msgstr "Adhésion"
 
 #. module: golem_membership
-#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+#: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
 msgid "Membership Invoice"
 msgstr "Facture de l'adhésion"
 
 #. module: golem_membership
-#: view:golem.member:golem_membership.membership_add
+#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
 msgid "Memberships"
 msgstr "Adhésions"
 
 #. module: golem_membership
-#: field:golem.membership.invoice,partner_id:0
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_partner_id
 msgid "Partner"
 msgstr "Contact"
 
 #. module: golem_membership
-#: view:golem.membership.invoice:golem_membership.membership_invoice_view
+#: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
 msgid "or"
 msgstr "ou"
 

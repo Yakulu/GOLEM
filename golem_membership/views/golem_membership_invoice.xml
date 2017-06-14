@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
     <!-- Forms -->
-    <record id="membership_invoice_view" model="ir.ui.view">
+    <record id="golem_membership_invoice_form" model="ir.ui.view">
       <field name="name">membership.invoice.view.form</field>
       <field name="model">golem.membership.invoice</field>
       <field name="arch" type="xml">
@@ -41,14 +41,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Actions -->
-    <record id="action_membership_invoice_view"
-      model="ir.actions.act_window">
+    <record id="golem_membership_invoice_action" model="ir.actions.act_window">
         <field name="name">Join Membership</field>
         <field name="res_model">golem.membership.invoice</field>
         <field name="src_model">golem.member</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="membership_invoice_view"/>
+        <field name="view_id" ref="golem_membership_invoice_form"/>
         <field name="target">new</field>
     </record>
 

@@ -23,7 +23,7 @@
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'depends': ['golem_member', 'account', 'decimal_precision'],
     'data': ['views/golem_membership_invoice.xml',
              'views/golem_member_view.xml']
