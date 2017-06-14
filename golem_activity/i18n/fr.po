@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 15:25+0000\n"
-"PO-Revision-Date: 2017-06-05 15:25+0000\n"
+"POT-Creation-Date: 2017-06-14 06:14+0000\n"
+"PO-Revision-Date: 2017-06-14 06:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -82,11 +82,6 @@ msgstr "Types d'activité"
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_name
 msgid "Activity type"
 msgstr "Type d'activité"
-
-#. module: golem_activity
-#: model:product.category,name:golem_activity.golem_product_category_activities
-msgid "Activités"
-msgstr "Activités"
 
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_animator_id
@@ -351,6 +346,11 @@ msgid "International Article Number used for product identification."
 msgstr "Numéro d'article international (IAN) utilisé pour identifier cet article."
 
 #. module: golem_activity
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
+msgid "Invoicing"
+msgstr "Facturation"
+
+#. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_is_recurrent
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_is_recurrent
 msgid "Is recurrent?"
@@ -373,11 +373,6 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
-
-#. module: golem_activity
-#: model:ir.ui.menu,name:golem_activity.golem_activity_menu_list
-msgid "List"
-msgstr "Liste"
 
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_packaging_ids
@@ -630,7 +625,7 @@ msgid "Tuesday"
 msgstr "Mardi"
 
 #. module: golem_activity
-#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_4222
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_3959
 msgid "Type"
 msgstr "Type"
 

@@ -68,6 +68,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </group>
                 </group>
               </page>
+              <page string="Invoicing" name="invoicing"
+                groups="account.group_account_invoice">
+                <group name="properties">
+                  <field name="property_account_income_id"
+                    domain="[('internal_type','=','other'),('deprecated','=',False)]"
+                    groups="account.group_account_user"/>
+                  <field name="taxes_id" widget="many2many_tags"/>
+                  <field name="property_account_expense_id"
+                    domain="[('internal_type','=','other'),('deprecated','=',False)]"
+                    groups="account.group_account_user"/>
+                  <field name="supplier_taxes_id" widget="many2many_tags"/>
+                </group>
+              </page>
               <page name="activity_others" string="Others">
                 <group>
                   <field name="description"

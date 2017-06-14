@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 15:25+0000\n"
-"PO-Revision-Date: 2017-06-05 15:25+0000\n"
+"POT-Creation-Date: 2017-06-14 06:14+0000\n"
+"PO-Revision-Date: 2017-06-14 06:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -77,11 +77,6 @@ msgstr ""
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_name
 msgid "Activity type"
-msgstr ""
-
-#. module: golem_activity
-#: model:product.category,name:golem_activity.golem_product_category_activities
-msgid "Activités"
 msgstr ""
 
 #. module: golem_activity
@@ -344,6 +339,11 @@ msgstr ""
 #. module: golem_activity
 #: model:ir.model.fields,help:golem_activity.field_golem_activity_barcode
 msgid "International Article Number used for product identification."
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
+msgid "Invoicing"
 msgstr ""
 
 #. module: golem_activity
@@ -621,7 +621,7 @@ msgid "Tuesday"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_4222
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_3959
 msgid "Type"
 msgstr ""
 
