@@ -52,6 +52,7 @@ class GolemMember(models.Model):
             line_obj = self.env['golem.activity.registration.invoicing.line']
             for reg in draft_registrations:
                 line_obj.create({'invoicing_id': invoicing.id,
+                                 'registration_id': reg.id,
                                  'activity_id': reg.activity_id.id,
                                  'price': reg.activity_id.list_price})
             return {'name': _('Registration invoicing'),
@@ -104,17 +105,16 @@ class GolemActivityRegistration(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
                               ('canceled', 'Canceled')], required=True,
                              default='draft')
-    invoice_id = fields.Many2one('account.invoice', string='Invoice',
-                                 ondelete='set null')
     invoice_line_id = fields.Many2one('account.invoice.line',
                                       string='Invoice line',
                                       ondelete='set null')
+    invoice_id = fields.Many2one(related='invoice_line_id.invoice_id')
 
     @api.multi
     def write(self, values):
         """ Recomputes values linked to registrations when state change """
         res = super(GolemActivityRegistration, self).write(values)
-        if values['state']:
+        if values.get('state'):
             for registration in self:
                 registration.activity_id.compute_places_used()
         return res

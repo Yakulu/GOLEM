@@ -37,6 +37,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </tree>
             </field>
             <field name="schedule_id" />
+            <field name="journal_id"
+              attrs="{'invisible': [('schedule_id', '=', False)],
+              'required': [('schedule_id', '!=', False)]}" />
           </group>
           <footer>
             <button name="validate" string="Validate" type="object"
