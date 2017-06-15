@@ -27,5 +27,5 @@
     'application': True,
     'installable': True,
     'depends': ['account', 'golem_season'],
-    'data': ['views/golem_payment_views.xml']
+    'data': ['views/golem_payment_views.xml', 'security/ir.model.access.csv']
 }

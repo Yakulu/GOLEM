@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_payment_schedule_user,Access GOLEM Payment Schedule User,model_golem_payment_schedule,golem_base.group_golem_user,1,0,0,0
+access_golem_payment_schedule_manager,Access GOLEM Payment Schedule Manager,model_golem_payment_schedule,golem_base.group_golem_manager,1,1,1,1
+access_golem_payment_schedule_day_user,Access GOLEM Payment Schedule Day User,model_golem_payment_schedule_day,golem_base.group_golem_user,1,0,0,0
+access_golem_payment_schedule_day_manager,Access GOLEM Payment Schedule Day Manager,model_golem_payment_schedule_day,golem_base.group_golem_manager,1,1,1,1
