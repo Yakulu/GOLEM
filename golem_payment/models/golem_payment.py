@@ -44,4 +44,4 @@ class GolemPaymentSchedule(models.Model):
     def _compute_occurences(self):
         """ Computes number of occurences """
         for schedule in self:
-            schedule.occurences = len(self.day_ids)
+            schedule.occurences = len(schedule.day_ids)
