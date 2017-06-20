@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,15 +15,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM member testing """
+
 from odoo import exceptions
 from odoo.tests.common import TransactionCase
 # from psycopg2 import IntegrityError
 
 
 class GolemMemberTestCase(TransactionCase):
+    """ GOLEM member testing """
 
-    def setUp(self):
-        super(GolemMemberTestCase, self).setUp()
+    def setUp(self, *args, **kwargs):
+        """ Bootstrap season and memebers """
+        super(GolemMemberTestCase, self).setUp(*args, **kwargs)
         self.member_numberconfig_model = self.env['golem.member.numberconfig']
         season_mdl = self.env['golem.season'].sudo()
         self.season_current = season_mdl.create({'name': u'Current'})
@@ -37,10 +41,10 @@ class GolemMemberTestCase(TransactionCase):
 
     def test_member_creation_noname(self):
         """ Test creation of member without needed parameters """
-        with self.assertRaises(exceptions.ValidationError) as cm:
+        with self.assertRaises(exceptions.ValidationError) as exc_cm:
             self.member_model.create({})
-        self.assertIn('Error(s) with partner', cm.exception.args[0])
-        self.assertEqual('No name is set.', cm.exception.args[1])
+        self.assertIn('Error(s) with partner', exc_cm.exception.args[0])
+        self.assertEqual('No name is set.', exc_cm.exception.args[1])
 
     def test_current_season(self):
         """ Test if default season if fixed according to setUp and if users
@@ -66,7 +70,7 @@ class GolemMemberTestCase(TransactionCase):
         # self.assertIn('duplicate key value violates unique constraint',
         #               cm.exception.args[0])
 
-    def test_member_numbers_auto_perseason(self):
+    def test_member_numbers_auto_season(self):
         """ Tests per season automatic member number generation + prefix """
         conf = self.member_numberconfig_model.create({'is_automatic': '1',
                                                       'is_per_season': '1',
@@ -74,10 +78,13 @@ class GolemMemberTestCase(TransactionCase):
         conf.apply_recompute()
         self.assertEqual(self.member1.number, u'M1')
         self.assertEqual(self.member2.number, u'M2')
+
         self.member2.season_ids += self.season_next
         self.assertEqual(self.member2.number, u'M2')
         self.season_next.do_default_season()
+        self.assertTrue(self.member2.is_current)
         self.assertEqual(self.member2.number, u'M1')
+        self.assertFalse(self.member1.is_current)
         self.assertFalse(self.member1.number)
 
     def test_member_numbers_auto_global(self):

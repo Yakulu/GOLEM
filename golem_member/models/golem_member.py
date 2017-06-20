@@ -192,8 +192,7 @@ class GolemMember(models.Model):
                     member_num = member.generate_number_perseason()
                 else:
                     member_num = member.generate_number_global()
-                if member_num:
-                    member.number = member_num
+                member.number = member_num
 
     @api.model
     def create(self, values):
