@@ -49,6 +49,15 @@ class ResPartner(models.Model):
         for partner in self:
             partner.is_member = len(partner.member_id) > 0
 
+    @api.multi
+    def view_member(self):
+        """ Go to member form """
+        self.ensure_one()
+        if self[0].member_id:
+            return {'type': 'ir.actions.act_window',
+                    'res_model': 'golem.member',
+                    'view_mode': 'form',
+                    'res_id': self[0].member_id.id}
 
     @api.multi
     def create_golem_member(self):
