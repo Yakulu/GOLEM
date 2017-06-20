@@ -145,3 +145,4 @@ class ProductTemplate(models.Model):
 
     type = fields.Selection(default='service')
     default_code = fields.Char(copy=True)
+    categ_id = fields.Many2one(copy=True)
