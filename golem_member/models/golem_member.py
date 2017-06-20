@@ -268,6 +268,11 @@ class GolemNumberConfig(models.TransientModel):
         conf.set_param('golem_numberconfig_isautomatic', self.is_automatic)
         conf.set_param('golem_numberconfig_isperseason', self.is_per_season)
         conf.set_param('golem_numberconfig_prefix', self.prefix or '')
+        if self.number_from:
+            conf.set_param('golem_number_counter', self.number_from)
+            self.env['golem.season'].search([]).write({
+                'member_counter': int(self.number_from)
+            })
 
     @api.multi
     def apply_recompute(self):

@@ -87,6 +87,24 @@ class GolemMemberTestCase(TransactionCase):
         self.assertFalse(self.member1.is_current)
         self.assertFalse(self.member1.number)
 
+    def test_mnumbers_auto_season_from(self):
+        """ Tests per season automatic member number + number_from """
+        conf = self.member_numberconfig_model.create({'is_automatic': '1',
+                                                      'is_per_season': '1',
+                                                      'prefix': False,
+                                                      'number_from': 100})
+        conf.apply_recompute()
+        self.assertEqual(self.member1.number, u'100')
+        self.assertEqual(self.member2.number, u'101')
+
+        self.member2.season_ids += self.season_next
+        self.assertEqual(self.member2.number, u'101')
+        self.season_next.do_default_season()
+        self.assertTrue(self.member2.is_current)
+        self.assertEqual(self.member2.number, u'100')
+        self.assertFalse(self.member1.is_current)
+        self.assertFalse(self.member1.number)
+
     def test_member_numbers_auto_global(self):
         """ Tests global automatic member number generation """
         conf = self.member_numberconfig_model.create({'is_automatic': '1',
@@ -98,3 +116,55 @@ class GolemMemberTestCase(TransactionCase):
                                           'firstname': 'Buddy',
                                           'season_ids': [self.season_next]})
         self.assertEqual(new_m.number, u'3')
+
+    def test_mnumbers_auto_global_from(self):
+        """ Tests global automatic member number generation + number_from """
+        conf = self.member_numberconfig_model.create({'is_automatic': '1',
+                                                      'is_per_season': '0',
+                                                      'number_from': 50})
+        conf.apply_recompute()
+        self.assertEqual(self.member1.number, u'50')
+        self.assertEqual(self.member2.number, u'51')
+        new_m = self.member_model.create({'lastname': 'NEW',
+                                          'firstname': 'Buddy',
+                                          'season_ids': [self.season_next]})
+        self.assertEqual(new_m.number, u'52')
+
+    def test_mnumbers_manual_to_auto(self):
+        """ Tests generation change withtout whole recompute """
+        conf = self.member_numberconfig_model.create({'is_automatic': '0'})
+        conf.apply_recompute()
+        self.assertFalse(self.member1.number)
+        self.member1.number_manual = u'M01'
+        self.assertEqual(self.member1.number_manual, self.member1.number)
+
+        # Without number_from
+        conf = self.member_numberconfig_model.create({'is_automatic': '1',
+                                                      'is_per_season': '0',
+                                                      'prefix': False})
+        conf.apply_config()
+        self.assertEqual(self.member1.number, u'M01')
+        new_m = self.member_model.create({'lastname': 'NEW',
+                                          'firstname': 'Buddy',
+                                          'season_ids': [self.season_current]})
+        new_m2 = self.member_model.create({'lastname': 'NEW',
+                                           'firstname': 'Buddy',
+                                           'season_ids': [self.season_current]})
+        self.assertEqual(new_m.number, u'1')
+        self.assertEqual(new_m2.number, u'2')
+
+        # With number_from
+        conf = self.member_numberconfig_model.create({'is_automatic': '1',
+                                                      'is_per_season': '0',
+                                                      'prefix': False,
+                                                      'number_from': 50})
+        conf.apply_config()
+        self.assertEqual(self.member1.number, u'M01')
+        new_m = self.member_model.create({'lastname': 'NEW',
+                                          'firstname': 'Buddy',
+                                          'season_ids': [self.season_current]})
+        new_m2 = self.member_model.create({'lastname': 'NEW',
+                                           'firstname': 'Buddy',
+                                           'season_ids': [self.season_current]})
+        self.assertEqual(new_m.number, u'50')
+        self.assertEqual(new_m2.number, u'51')
