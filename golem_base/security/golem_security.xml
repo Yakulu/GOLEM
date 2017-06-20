@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -37,4 +37,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
   </data>
+  <!-- Adapt base security access -->
+  <record id="ir_filters_golem_manager_all_rights_rule" model="ir.rule">
+    <field name="name">ir.filters.golem.manager.all.rights</field>
+    <field name="model_id" ref="base.model_ir_filters"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+    <field name="groups" eval="[(4, ref('golem_base.group_golem_manager'))]"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
 </odoo>
