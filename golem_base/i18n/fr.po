@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 14:19+0000\n"
-"PO-Revision-Date: 2017-05-01 14:19+0000\n"
+"PO-Revision-Date: 2017-06-28 17:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -137,3 +137,77 @@ msgstr "Personne morale liée"
 #: model:ir.model.fields,help:base.field_res_users_company_id
 msgid "The company this user is currently working for."
 msgstr "La personne morale pour laquelle l'utilisateur travaille actuellement."
+
+#. module: base
+#: model:ir.model.fields,help:base.field_ir_act_client_tag
+msgid ""
+"An arbitrary string, interpreted by the client according to its own needs "
+"and wishes. There is no central tag repository across clients."
+msgstr ""
+"Une chaîne de caractères arbitraire, interprétée par le contact en fonction "
+"de ses besoins et de ses souhaits. Il n'y a pas de centralisation des "
+"catégories attribuées aux contacts."
+
+#. module: base
+#: model:ir.model.fields,field_description:base.field_res_partner_category_child_ids
+msgid "Child Tags"
+msgstr "Catégories filles"
+
+#. module: base
+#: model:ir.actions.act_window,help:base.action_partner_category_form
+msgid "Click to create a new partner tag."
+msgstr "Cliquer pour créer une nouvelle catégorie de partenaire."
+
+#. module: base
+#: model:ir.ui.view,arch_db:base.view_partner_category_form
+msgid "Contact Tag"
+msgstr "Catégorie de contact"
+
+#. module: base
+#: model:ir.actions.act_window,name:base.action_partner_category_form
+#: model:ir.ui.view,arch_db:base.view_partner_category_list
+msgid "Contact Tags"
+msgstr "Catégories de contact"
+
+#. module: base
+#: code:addons/base/res/res_partner.py:87
+#, python-format
+msgid "Error ! You can not create recursive tags."
+msgstr "Erreur ! On ne peut pas créer de catégories récursives."
+
+#. module: base
+#: model:ir.actions.act_window,help:base.action_partner_category_form
+msgid ""
+"Manage partner tags to better classify them for tracking and analysis purposes.\n"
+"                    A partner may have several categories and categories have a hierarchical structure: a partner with a category has also the parent category."
+msgstr ""
+"Gère les catégories de tiers afin de mieux les classer à des fins de suivi et d'analyse.\n"
+"Un partenaire peut avoir plusieurs catégories et les catégories ont une structure hiérarchique : un partenaire avec une catégories a également les catégories parentes."
+
+#. module: base
+#: model:ir.model,name:base.model_res_partner_category
+msgid "Partner Tags"
+msgstr "Catégories du contact"
+
+#. module: base
+#: model:ir.ui.view,arch_db:base.view_res_partner_filter
+msgid "Tag"
+msgstr "Catégorie"
+
+#. module: base
+#: model:ir.model.fields,field_description:base.field_res_partner_category_name
+msgid "Tag Name"
+msgstr "Nom de la catégorie"
+
+#. module: base
+#: model:ir.model.fields,field_description:base.field_res_partner_category_id_970
+#: model:ir.model.fields,field_description:base.field_res_users_category_id
+msgid "Tags"
+msgstr "Catégories"
+
+#. module: base
+#: model:ir.ui.view,arch_db:base.view_partner_form
+msgid "Tags..."
+msgstr "Catégories..."
+
+
