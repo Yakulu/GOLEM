@@ -26,7 +26,7 @@ class GolemMemberTestCase(TransactionCase):
     """ GOLEM member testing """
 
     def setUp(self, *args, **kwargs):
-        """ Bootstrap season and memebers """
+        """ Bootstrap season and members """
         super(GolemMemberTestCase, self).setUp(*args, **kwargs)
         self.member_numberconfig_model = self.env['golem.member.numberconfig']
         season_mdl = self.env['golem.season'].sudo()
@@ -145,10 +145,10 @@ class GolemMemberTestCase(TransactionCase):
         conf.apply_nocompute()
         self.assertEqual(self.member1.number, u'M01')
         new_m = self.member_model.create({'lastname': 'NEW',
-                                          'firstname': 'Buddy',
+                                          'firstname': 'Dewie',
                                           'season_ids': [self.season_current]})
         new_m2 = self.member_model.create({'lastname': 'NEW',
-                                           'firstname': 'Buddy',
+                                           'firstname': 'Dowa',
                                            'season_ids': [self.season_current]})
         self.assertEqual(new_m.number, u'1')
         self.assertEqual(new_m2.number, u'2')
@@ -164,7 +164,7 @@ class GolemMemberTestCase(TransactionCase):
                                           'firstname': 'Buddy',
                                           'season_ids': [self.season_current]})
         new_m2 = self.member_model.create({'lastname': 'NEW',
-                                           'firstname': 'Buddy',
+                                           'firstname': 'Bobby',
                                            'season_ids': [self.season_current]})
         self.assertEqual(new_m.number, u'50')
         self.assertEqual(new_m2.number, u'51')
@@ -174,3 +174,7 @@ class GolemMemberTestCase(TransactionCase):
         self.assertEqual(new_m.number, u'50')
         self.member1.season_ids += self.season_next
         self.assertEqual(self.member1.number, u'M01')
+        new_m3 = self.member_model.create({'lastname': 'NEW',
+                                           'firstname': 'Barny',
+                                           'season_ids': [self.season_current]})
+        self.assertEqual(new_m3.number, u'52')

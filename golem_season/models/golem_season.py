@@ -72,7 +72,10 @@ class GolemSeason(models.Model):
         if 'golem.member' in self.env.registry:
             all_members = self.env['golem.member'].search([])
             all_members.compute_is_current()
-            all_members.generate_number()
+            conf = self.env['ir.config_parameter']
+            if conf.get_param('golem_numberconfig_isautomatic') == '1' and \
+                    conf.get_param('golem_numberconfig_isperseason') == '1':
+                all_members.generate_number()
         if 'golem.activity' in self.env.registry:
             self.env['golem.activity'].search([]).compute_is_current()
 

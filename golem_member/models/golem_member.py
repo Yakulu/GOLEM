@@ -201,10 +201,9 @@ class GolemMember(models.Model):
                 member.number = member.number_manual
             else:
                 if isperseason:
-                    member_num = member.generate_number_perseason()
+                    member.number = member.generate_number_perseason()
                 else:
-                    member_num = member.generate_number_global()
-                member.number = member_num
+                    member.number = member.generate_number_global()
 
     @api.model
     def create(self, values):
@@ -281,9 +280,10 @@ class GolemNumberConfig(models.TransientModel):
         conf.set_param('golem_numberconfig_isperseason', self.is_per_season)
         conf.set_param('golem_numberconfig_prefix', self.prefix or '')
         if self.number_from:
-            conf.set_param('golem_number_counter', self.number_from)
+            _LOGGER.warning('New number_from %s', self.number_from)
+            conf.set_param('golem_number_counter', unicode(self.number_from))
             self.env['golem.season'].search([]).write({
-                'member_counter': int(self.number_from)
+                'member_counter': self.number_from
             })
     @api.multi
     def apply_nocompute(self):
@@ -300,7 +300,6 @@ class GolemNumberConfig(models.TransientModel):
         self.apply_config()
         conf = self.env['ir.config_parameter']
         conf.set_param('golem_numberconfig_isfornewmembersonly', '0')
-        conf.set_param('golem_number_counter', self.number_from)
         self.env['golem.member.number'].search([]).unlink()
         self.env['golem.season'].search([]).write({
             'member_counter': int(self.number_from)
