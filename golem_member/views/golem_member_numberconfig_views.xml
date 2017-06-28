@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
           </sheet>
           <footer>
-            <button type="object" name="apply_config"
+            <button type="object" name="apply_nocompute"
               string="Apply for new members" />
             <button type="object" name="apply_recompute"
               string="Apply and recompute all member numbers"

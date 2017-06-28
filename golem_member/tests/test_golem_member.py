@@ -142,7 +142,7 @@ class GolemMemberTestCase(TransactionCase):
         conf = self.member_numberconfig_model.create({'is_automatic': '1',
                                                       'is_per_season': '0',
                                                       'prefix': False})
-        conf.apply_config()
+        conf.apply_nocompute()
         self.assertEqual(self.member1.number, u'M01')
         new_m = self.member_model.create({'lastname': 'NEW',
                                           'firstname': 'Buddy',
@@ -158,7 +158,7 @@ class GolemMemberTestCase(TransactionCase):
                                                       'is_per_season': '0',
                                                       'prefix': False,
                                                       'number_from': 50})
-        conf.apply_config()
+        conf.apply_nocompute()
         self.assertEqual(self.member1.number, u'M01')
         new_m = self.member_model.create({'lastname': 'NEW',
                                           'firstname': 'Buddy',
@@ -168,3 +168,9 @@ class GolemMemberTestCase(TransactionCase):
                                            'season_ids': [self.season_current]})
         self.assertEqual(new_m.number, u'50')
         self.assertEqual(new_m2.number, u'51')
+        # After season changing
+        self.season_next.do_default_season()
+        self.assertEqual(self.member1.number, u'M01')
+        self.assertEqual(new_m.number, u'50')
+        self.member1.season_ids += self.season_next
+        self.assertEqual(self.member1.number, u'M01')

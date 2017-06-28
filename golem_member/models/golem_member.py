@@ -193,11 +193,14 @@ class GolemMember(models.Model):
         """ Computes number according to pre-existing number and chosen
         seasons """
         conf = self.env['ir.config_parameter']
+        isauto = conf.get_param('golem_numberconfig_isautomatic') == '1'
+        isperseason = conf.get_param('golem_numberconfig_isperseason') == '1'
+        isfornew = conf.get_param('golem_numberconfig_isfornewmembersonly') == '1'
         for member in self:
-            if conf.get_param('golem_numberconfig_isautomatic') == '0':
+            if not isauto or (isfornew and member.number_manual):
                 member.number = member.number_manual
             else:
-                if conf.get_param('golem_numberconfig_isperseason') == '1':
+                if isperseason:
                     member_num = member.generate_number_perseason()
                 else:
                     member_num = member.generate_number_global()
@@ -282,6 +285,13 @@ class GolemNumberConfig(models.TransientModel):
             self.env['golem.season'].search([]).write({
                 'member_counter': int(self.number_from)
             })
+    @api.multi
+    def apply_nocompute(self):
+        """ Apply new configuration only for new members (keep old numbers) """
+        self.ensure_one()
+        self.apply_config()
+        conf = self.env['ir.config_parameter']
+        conf.set_param('golem_numberconfig_isfornewmembersonly', '1')
 
     @api.multi
     def apply_recompute(self):
@@ -289,6 +299,7 @@ class GolemNumberConfig(models.TransientModel):
         self.ensure_one()
         self.apply_config()
         conf = self.env['ir.config_parameter']
+        conf.set_param('golem_numberconfig_isfornewmembersonly', '0')
         conf.set_param('golem_number_counter', self.number_from)
         self.env['golem.member.number'].search([]).unlink()
         self.env['golem.season'].search([]).write({

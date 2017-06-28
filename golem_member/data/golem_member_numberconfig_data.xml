@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <function model="ir.config_parameter" name="set_param"
       eval="('golem_numberconfig_isperseason', '1')" />
     <function model="ir.config_parameter" name="set_param"
+      eval="('golem_numberconfig_isfornewmembersonly', '0')" />
+    <function model="ir.config_parameter" name="set_param"
       eval="('golem_numberconfig_prefix', '')" />
     <function model="ir.config_parameter" name="set_param"
       eval="('golem_number_counter', '0')" />
