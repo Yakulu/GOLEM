@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-20 06:54+0000\n"
-"PO-Revision-Date: 2017-06-20 06:54+0000\n"
+"PO-Revision-Date: 2017-06-28 17:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "0000000000"
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_associate_member
 msgid "A member with whom you want to associate your membership. It will consider the membership state of the associated member."
-msgstr "Un membre auquel vous voulez associer votre adhésion. Cela prendra en compte l'état de l'adhésion du membre associé."
+msgstr "Un usager auquel vous voulez associer votre adhésion. Cela prendra en compte l'état de l'adhésion de l'usager associé."
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_property_account_payable_id
@@ -64,7 +64,7 @@ msgstr "Appliquer pour les nouveaux adhérents"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_associate_member
 msgid "Associate Member"
-msgstr "Membre associé"
+msgstr "Adhérent associé"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_bank_account_count
@@ -391,7 +391,7 @@ msgstr "Courriel mis en forme"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_free_member
 msgid "Free Member"
-msgstr "Membre libre"
+msgstr "Adhérent libre"
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_member
@@ -480,7 +480,7 @@ msgstr "Si la langue sélectionnée est chargée dans le système, tous les docu
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_opt_out_sms
 msgid "If this field has been checked, it tells that the user refuses to receive SMS"
-msgstr "Si cette boîte est cochée, cela indique que le membre refuse de recevoir des SMS."
+msgstr "Si cette boîte est cochée, cela indique que l'usager refuse de recevoir des SMS."
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_image
@@ -545,12 +545,12 @@ msgid "It indicates the membership state.\n"
 "-Invoiced Member: A member whose invoice has been created.\n"
 "-Paying member: A member who has paid the membership fee."
 msgstr "Indique l'état de l'adhésion.\n"
-"-Non membre : Un partenaire qui n'a jamais adhéré.\n"
-"-Adhésion annulée : Un membre qui a annulé son adhésion.\n"
-"-Ancien membre : Un membre dont l'adhésion a expiré.\n"
-"-Membre en attente : Un membre qui a demandé son adhésion et dont la facture va être créée.\n"
-"-Membre facturé : Un membre dont la facture a été créée.\n"
-"-Membre payé : Un membre qui a payé son adhésion."
+"-Non adhérent : Un partenaire qui n'a jamais adhéré.\n"
+"-Adhésion annulée : Un adhérent qui a annulé son adhésion.\n"
+"-Ancien adhérent : Un adhérent dont l'adhésion a expiré.\n"
+"-Adhérent en attente : Un adhérent qui a demandé son adhésion et dont la facture va être créée.\n"
+"-Adhérent facturé : Un adhérent dont la facture a été créée.\n"
+"-Adéhrent payé : Un adhérent qui a payé son adhésion."
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_function
@@ -643,7 +643,7 @@ msgstr "Catégories de l'adhérent"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name
 msgid "Member computed name"
-msgstr "Numéro et nom du membre"
+msgstr "Numéro et nom de l'usager"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
