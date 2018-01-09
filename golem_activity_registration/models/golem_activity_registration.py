@@ -74,6 +74,7 @@ class GolemActivityRegistration(models.Model):
     """ GOLEM Activity Registration """
     _name = 'golem.activity.registration'
     _description = 'GOLEM Activity Registration'
+    _rec_name ='activity_id'
 
     member_id = fields.Many2one('golem.member', string='Member', required=True,
                                 ondelete='cascade', index=True)

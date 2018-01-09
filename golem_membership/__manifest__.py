@@ -18,9 +18,9 @@
 {
     'name': 'GOLEM non-profit membership handling',
     'summary': 'Extends Odoo membership',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
+    'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,

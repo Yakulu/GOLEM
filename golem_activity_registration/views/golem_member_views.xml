@@ -52,5 +52,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Searches -->
+    <record id="golem_member_searches_inherit_golem_activity_registration"
+      model="ir.ui.view">
+      <field name="name">Add activities registrations to member searches</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_search" />
+      <field name="arch" type="xml">
+          <field name="number" position="before">
+            <field name="activity_registration_all_ids" widget="many2one"/>
+          </field>
+      </field>
+    </record>
   </data>
 </odoo>

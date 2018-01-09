@@ -73,6 +73,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </page>
       </field>
     </record>
+<!-- Searches -->
+    <record model="ir.ui.view" id="golem_member_search_inherit_golem_membership">
+      <field name="name">GOLEM Member form adaptations</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_search" />
+      <field name="arch" type="xml">
+        <filter name="season_default" position="after">
+          <separator />
+          <filter name="is_paid" string="Is paid"
+            domain="[('membership_state','in',['invoiced', 'paid'])]" />
+          <filter name="is_free" string="Is free"
+            domain="[('free_member', '=', True)]" />
+          </filter>
+      </field>
+    </record>
 
   </data>
 </odoo>
