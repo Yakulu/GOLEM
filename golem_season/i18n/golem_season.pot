@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 15:26+0000\n"
-"PO-Revision-Date: 2017-06-05 15:26+0000\n"
+"POT-Creation-Date: 2018-01-10 16:50+0000\n"
+"PO-Revision-Date: 2018-01-10 16:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:56
+#: code:addons/golem_season/models/golem_season.py:58
 #, python-format
 msgid "Current period cannot be included into another existing period."
 msgstr ""
@@ -57,7 +57,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:52
+#: code:addons/golem_season/models/golem_season.py:54
 #, python-format
 msgid "End of the period is in range of an existing period."
 msgstr ""
@@ -99,6 +99,11 @@ msgid "Make this season as default"
 msgstr ""
 
 #. module: golem_season
+#: model:ir.model.fields,field_description:golem_season.field_golem_season_membership_id
+msgid "Membership type"
+msgstr ""
+
+#. module: golem_season
 #: model:ir.model.fields,field_description:golem_season.field_golem_season_date_end
 msgid "Period end"
 msgstr ""
@@ -124,13 +129,13 @@ msgid "Seasons"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:42
+#: code:addons/golem_season/models/golem_season.py:44
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:48
+#: code:addons/golem_season/models/golem_season.py:50
 #, python-format
 msgid "Start of the period is in range of an existing period."
 msgstr ""
@@ -143,7 +148,7 @@ msgid "This season name has already been used."
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:92
+#: code:addons/golem_season/models/golem_season.py:97
 #, python-format
 msgid "You can't delete the default season"
 msgstr ""
