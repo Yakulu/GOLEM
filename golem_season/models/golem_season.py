@@ -29,7 +29,10 @@ class GolemSeason(models.Model):
 
     name = fields.Char('Season name', copy=False)
 
-    membership_id = fields.Many2one('product.product', 'Membership type')
+    membership_id = fields.Many2one('product.template', 'Membership type',
+                                    domain="[('membership', '=', True)]" )
+
+
     member_counter = fields.Integer('Counter for member number generation',
                                     readonly=True, default=1)
     date_start = fields.Date('Period start')
