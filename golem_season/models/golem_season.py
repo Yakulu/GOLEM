@@ -30,13 +30,23 @@ class GolemSeason(models.Model):
     name = fields.Char('Season name', copy=False)
 
     membership_id = fields.Many2one('product.template', 'Membership type',
-                                    domain="[('membership', '=', True)]" )
+                                    domain="[('membership', '=', True)]")
 
 
     member_counter = fields.Integer('Counter for member number generation',
                                     readonly=True, default=1)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
+
+    @api.onchange('membership_id')
+    def _onchange_season_dates(self):
+        """ Sets defaults dates according to membership type """
+        for activity in self:
+            if activity.membership_id:
+                if not activity.date_start:
+                    activity.date_start = activity.membership_id.membership_date_from
+                if not activity.date_end:
+                    activity.date_end = activity.membership_id.membership_date_to
 
     @api.constrains('date_start', 'date_end')
     def _check_period(self):
