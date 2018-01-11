@@ -40,5 +40,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+<!-- searches -->
+    <record model="ir.ui.view" id="golem_family_search_inherit_golem_membership">
+      <field name="name">GOLEM family search adaptations</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_search" />
+      <field name="arch" type="xml">
+        <filter name="group_city" position="after">
+          <separator />
+          <filter name="family_id" string="Family"
+            domain="[('family_id', 'ilike', self)]" />
+          </filter>
+      </field>
+    </record>
+
   </data>
 </odoo>
