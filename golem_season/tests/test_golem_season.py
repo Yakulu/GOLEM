@@ -57,17 +57,15 @@ class TestGolemSeason(TransactionCase):
 
     def test__onchange_season_dates(self):
         """ Test if membership date """
+        # je cree un article adhésion
         self.env['golem.season'].create({'name': 'Name',
-                                         'membership_id': 'test_membership_type',
-                                         'membership_date_from': '2017-11-01',
-                                         'membership_date_to': '2018-12-31'})
+                                         'membership_id': 'Type adhesion',
+                                         'date_start': '2017-11-01',
+                                         'date_end': '2018-12-31'})
 
-        new_season = self.env['golem.season'].create({'name': name,
-                                         'membership_id': membership_id,
-                                         'date_start': membership_date_from,
-                                         'date_end': membership_date_to})
-
-        self.assertEqual(new_season._onchange_season_dates,
-                         'membership_id': 'test_membership_type',
-                         'date_start': '2017-11-01',
-                         'date_end': '2018-12-31')
+# je cree une saison attachée a l'article adhésion
+        new_season = self.env['golem.season'].create({'name': 'Name',
+                                                      'membership_id': 'Type adhesion'})
+# Je teste avec les dates
+        self.assertEqual(new_season._onchange_season_dates.date_start,'2017-11-01')
+        self.assertEqual(new_season._onchange_season_dates.date_end,'2018-12-31')
