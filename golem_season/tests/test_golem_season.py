@@ -65,7 +65,7 @@ class TestGolemSeason(TransactionCase):
 
 # je cree une saison attachée a l'article adhésion
         new_season = self.env['golem.season'].create({'name': 'Name',
-                                                      'membership_id': membership_id})
+                                                      'membership_id': membership.membership_id})
 
         new_season._onchange_season_dates()
 # Je teste avec les dates
