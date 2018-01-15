@@ -58,9 +58,9 @@ class TestGolemSeason(TransactionCase):
     def test__onchange_season_dates(self):
         """ Test if membership date """
         # je cree un article adhésion
-        membership_id = self.env['product.template'].create({'display_name': 'Name',
+        membership_id = self.env['product.template'].create({'name': 'Name',
                                                              'membership_date_from': '2009-11-01',
-                                                             'membership_date_to': '2009-11-01'})
+                                                             'membership_date_to': '2010-11-01'})
 
 # je cree une saison attachée a l'article adhésion
         new_season = self.env['golem.season'].create({'name': 'Name',
