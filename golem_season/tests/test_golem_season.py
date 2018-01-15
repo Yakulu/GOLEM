@@ -54,3 +54,20 @@ class TestGolemSeason(TransactionCase):
             self.season_model.create({'name': 'Conflict : include existing',
                                       'date_start': '2009-11-01',
                                       'date_end': '2011-12-31'})
+
+    def test__onchange_season_dates(self):
+        """ Test if membership date """
+        self.env['golem.season'].create({'name': 'Name',
+                                         'membership_id': 'test_membership_type',
+                                         'membership_date_from': '2017-11-01',
+                                         'membership_date_to': '2018-12-31'})
+
+        new_season = self.env['golem.season'].create({'name': 'Name',
+                                         'membership_id': 'test_membership_type',
+                                         'date_start': membership_date_from,
+                                         'date_end': membership_date_to})
+        
+        self.assertEqual(new_season._onchange_season_dates,
+                         'membership_id': 'test_membership_type',
+                         'date_start': '2017-11-01',
+                         'date_end': '2018-12-31')
