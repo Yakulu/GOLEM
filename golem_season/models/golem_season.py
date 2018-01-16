@@ -54,6 +54,13 @@ class GolemSeason(models.Model):
         """ Check if end date if after start date and if there is no conflict
         with existing periods """
         for season in self:
+            if season.date_start:
+                if not season.date_end:
+                    raise models.ValidationError(_('The date end is required'))
+            if season.date_end:
+                if not season.date_start:
+                    raise models.ValidationError(_('The date start is required'))
+
             if season.date_start > season.date_end:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))

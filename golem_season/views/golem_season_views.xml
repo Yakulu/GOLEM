@@ -37,8 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="is_default" invisible="True" />
               <field name="membership_id" options="{'no_create': true}"/>
               <field name="name" />
-              <field name="date_start" />
-              <field name="date_end" />
+              <field name="date_start"
+                attrs="{'required': [('date_end', '!=', False)]}" />
+              <field name="date_end"
+                attrs="{'required': [('date_start', '!=', False)]}" />
             </group>
           </sheet>
         </form>
