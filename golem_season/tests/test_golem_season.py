@@ -55,6 +55,17 @@ class TestGolemSeason(TransactionCase):
                                       'date_start': '2009-11-01',
                                       'date_end': '2011-12-31'})
 
+        with self.assertRaises(ValidationError):
+            self.season_model.create({'name': 'date_end is nul',
+                                      'date_start': '2009-11-01',
+                                      'date_end': False})
+
+        with self.assertRaises(ValidationError):
+            self.season_model.create({'name': 'date_start is nul',
+                                      'date_start' : False,
+                                      'date_end': '2009-11-01'})
+
+
     def test__onchange_season_dates(self):
         """ Test if membership date """
         membership = self.env['product.template'].create({'name': 'Name',
