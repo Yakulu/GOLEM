@@ -27,7 +27,7 @@ class GolemSeason(models.Model):
     _sql_constraints = [('golem_season_name_uniq', 'UNIQUE (name)',
                          _('This season name has already been used.'))]
 
-    name = fields.Char('Season name', copy=False)
+    name = fields.Char('Season name', copy=False, required=True)
 
     membership_id = fields.Many2one('product.template', 'Membership type',
                                     domain="[('membership', '=', True)]")
