@@ -44,8 +44,10 @@ class GolemSeason(models.Model):
         for season in self:
             if season.membership_id:
                 if not season.date_start:
-                    season.date_start = season.membership_id.membership_date_from
-                    season.date_end = season.membership_id.membership_date_to
+                    season.update({
+                        'date_start': season.membership_id.membership_date_from,
+                        'date_end': season.membership_id.membership_date_to
+                    })
 
     @api.constrains('date_start', 'date_end')
     def _check_period(self):

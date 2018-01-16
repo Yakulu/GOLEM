@@ -58,7 +58,7 @@ class TestGolemSeason(TransactionCase):
     def test__onchange_season_dates(self):
         """ Test if membership date """
         membership = self.env['product.template'].create({'name': 'Name',
-                                                          'membership_id': 'truc',
+                                                          'membership': True,
                                                           'membership_date_from': '2017-11-01',
                                                           'membership_date_to': '2018-11-01'})
 
