@@ -55,11 +55,6 @@ class TestGolemSeason(TransactionCase):
                                       'date_start': '2009-11-01',
                                       'date_end': '2011-12-31'})
 
-
-        self.assertTrue({'name': 'date_end and date_start is empty',
-                         'date_start': False,
-                         'date_end': False})
-
         with self.assertRaises(ValidationError):
             self.season_model.create({'name': 'date_end is empty',
                                       'date_start': '2009-11-01',
