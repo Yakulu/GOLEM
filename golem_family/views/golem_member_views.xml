@@ -25,14 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
-        <div name="buttons" position="inside">
-          <button class="oe_inline oe_stat_button" type="object"
-            name="button_family_members" icon="fa-users"
-            attrs="{'invisible': [('family_id', '=', False)]}">
-            <field string="family members" name="family_count"
-              widget="statinfo" />
-          </button>
-        </div>
         <field name="lastname" position="before">
           <field name="family_id" />
           <field name="family_role" />
