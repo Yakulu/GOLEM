@@ -29,6 +29,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="family_id" />
           <field name="family_role" />
         </field>
+        <notebook>
+          <page string="Family members">
+            <field name="family_lines" nolabel="1" colspan="4" readonly="1">
+              <tree string="Family">
+                <field name="name" />
+                <field name="family_role" />
+                <field name="street" placeholder="Street..." />
+                <field name="street2" />
+                <field name="zip" placeholder="ZIP" />
+                <field name="city" placeholder="City" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="email" widget="email" />
+              </tree>
+            </field>
+          </page>
+        </notebook>
       </field>
     </record>
 
