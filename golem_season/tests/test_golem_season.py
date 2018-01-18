@@ -67,7 +67,7 @@ class TestGolemSeason(TransactionCase):
 
 
     def test__onchange_season_dates(self):
-        """ Test if membership date """
+        """ Test if membership """
         membership = self.env['product.template'].create({'name': 'Name',
                                                           'membership': True,
                                                           'membership_date_from': '2017-11-01',
@@ -77,5 +77,4 @@ class TestGolemSeason(TransactionCase):
                                                       'membership_id': membership.id,
                                                       'membership_date_from': '2017-11-01',
                                                       'membership_date_to': '2018-11-01'})
-        self.assertEqual(new_season.date_start, membership.membership_date_from)
-        self.assertEqual(new_season.date_end, membership.membership_date_to)
+        self.assertEqual(new_season.membership_id, membership)

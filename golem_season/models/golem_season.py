@@ -61,21 +61,20 @@ class GolemSeason(models.Model):
                 if season.date_start > season.date_end:
                     raise models.ValidationError(_('Start of the period cannot be '
                                                    'after end of the period.'))
-                else:
-                    seasons = self.env['golem.season'].search([])
-                    for eachs in seasons:
-                        if eachs.date_start < season.date_start < eachs.date_end:
-                            msg = _(u'Start of the period is in range of an '
-                                    'existing period.')
-                            raise models.ValidationError(msg)
-                        if eachs.date_start < season.date_end < eachs.date_end:
-                            msg = _(u'End of the period is in range of an '
-                                    'existing period.')
-                            raise models.ValidationError(msg)
-                        if season.date_start < eachs.date_start < season.date_end:
-                            msg = _(u'Current period cannot be included into '
-                                    'another existing period.')
-                            raise models.ValidationError(msg)
+                seasons = self.env['golem.season'].search([])
+                for eachs in seasons:
+                    if eachs.date_start < season.date_start < eachs.date_end:
+                        msg = _(u'Start of the period is in range of an '
+                                'existing period.')
+                        raise models.ValidationError(msg)
+                    if eachs.date_start < season.date_end < eachs.date_end:
+                        msg = _(u'End of the period is in range of an '
+                                'existing period.')
+                        raise models.ValidationError(msg)
+                    if season.date_start < eachs.date_start < season.date_end:
+                        msg = _(u'Current period cannot be included into '
+                                'another existing period.')
+                        raise models.ValidationError(msg)
 
     is_default = fields.Boolean('Default season for views?', readonly=True)
 
