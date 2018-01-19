@@ -74,7 +74,5 @@ class TestGolemSeason(TransactionCase):
                                                           'membership_date_to': '2018-11-01'})
 
         new_season = self.env['golem.season'].create({'name': 'Name',
-                                                      'membership_id': membership.id,
-                                                      'membership_date_from': '2017-11-01',
-                                                      'membership_date_to': '2018-11-01'})
+                                                      'membership_id': membership.id})
         self.assertEqual(new_season.membership_id, membership)
