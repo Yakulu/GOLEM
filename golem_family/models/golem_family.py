@@ -98,20 +98,12 @@ class GolemFamily(models.Model):
         for family in self:
             family.count = len(family.member_ids)
 
-    @api.onchange('member_ids')
-    def onchange_member(self):
-        """ Sets as member address if there was no precedence """
-        for family in self:
-            if family.id:
-                if not any({'family.street': False, 'family.street2': False, \
-                            'family.zip': False, 'family.city': False, \
-                            'family.state_id': False, 'family.country_id': False}):
-                    family.street = family.member_ids.street
-                    family.street2 = family.member_ids.street2
-                    family.zip = family.member_ids.zip
-                    family.city = family.member_ids.city
-                    family.state_id = family.member_ids.state_id
-                    family.country_id = family.member_ids.country_id
+    # @api.onchange('member_ids')
+    # def onchange_member(self):
+    #     """ Sets as member address if there was no precedence """
+    #     for family in self:
+    #         if not any({'family.street': False}):
+    #             self.update({'family.street': family.member_ids.street})
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """
