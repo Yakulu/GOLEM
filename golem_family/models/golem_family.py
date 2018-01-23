@@ -101,14 +101,13 @@ class GolemFamily(models.Model):
     @api.onchange('member_ids')
     def onchange_member(self):
         """ Sets as member address if there was no precedence """
-        for family in self:
-            if family.member_ids:
-                if not any((family.street, family.street2)):
-                    family.update({'street': family.member_ids[0].street,
-                                   'street2': family.member_ids[0].street2,
-                                   'zip': family.member_ids[0].zip,
-                                   'city': family.member_ids[0].city
-                                  })
+        for family in self:            
+            if family.member_ids and not any((family.street, family.street2)):
+                family.update({'street': family.member_ids[0].street,
+                               'street2': family.member_ids[0].street2,
+                               'zip': family.member_ids[0].zip,
+                               'city': family.member_ids[0].city
+                              })
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """
