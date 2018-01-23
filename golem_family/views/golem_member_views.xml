@@ -26,17 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="lastname" position="before">
-          <field name="family_id" />
+          <field name="family_id"
+            context="{'default_member_ids': [(4, partner_id, False)]}"/>
           <field name="family_role" />
         </field>
-        <notebook>
-          <page string="Family members">
-              <tree string="Family">
-                <field name="name" />
-                <field name="family_role" />
-              </tree>
-          </page>
-        </notebook>
       </field>
     </record>
 
