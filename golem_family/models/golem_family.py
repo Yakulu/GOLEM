@@ -39,7 +39,19 @@ class ResPartner(models.Model):
                 'view_mode': 'form',
                 'res_id': self.family_id.id}
 
-# code ici
+    @api.onchange('family_id')
+    def onchange_member(self):
+        """ Sets as family address if there was no precedence """
+        for member in self:
+            if not any((member.lastname, member.street, member.street2, \
+                        member.zip, member.city)):
+                member.update({'lastname': member.family_id[0].name,
+                               'street': member.family_id[0].street,
+                               'street2': member.family_id[0].street2,
+                               'zip': member.family_id[0].zip,
+                               'city': member.family_id[0].city
+                              })
+
 class GolemMember(models.Model):
     """ Member adaptations """
     _inherit = 'golem.member'
