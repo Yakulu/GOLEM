@@ -40,12 +40,12 @@ class ResPartner(models.Model):
                 'res_id': self.family_id.id}
 
     @api.onchange('family_id')
-    def onchange_member(self):
+    def onchange_family(self):
         """ Sets as family address if there was no precedence """
         for member in self:
-            if not any((member.lastname, member.street, member.street2, \
-                        member.zip, member.city)):
-                member.update({'lastname': member.family_id[0].name,
+            if member.family_id and not any((member.lastname, member.street, \
+                                             member.street2, member.zip, member.city)):
+                member.update({'lastname': member.family_id.name,
                                'street': member.family_id[0].street,
                                'street2': member.family_id[0].street2,
                                'zip': member.family_id[0].zip,
