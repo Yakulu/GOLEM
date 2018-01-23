@@ -66,8 +66,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
             <notebook>
               <page string="Family members">
-                <field name="member_ids" widget="many2many">
-                  <tree>
+                <field name="member_ids">
+                  <tree delete="false">
                     <field name="name" />
                     <field name="family_role" />
                     <field name="phone" />
