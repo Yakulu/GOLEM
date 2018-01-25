@@ -24,6 +24,8 @@ class ResPartner(models.Model):
     """ Partner adaptations """
     _inherit = 'res.partner'
 
+    family_member_ids = fields.One2many(related='family_id.member_ids')
+
     family_id = fields.Many2one('golem.family', string='Family', index=True)
     family_role = fields.Many2one('golem.family.role', string='Role',
                                   index=True)
