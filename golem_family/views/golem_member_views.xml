@@ -30,6 +30,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             context="{'default_member_ids': [(4, partner_id, False)]}"/>
           <field name="family_role" />
         </field>
+          <notebook>
+
+            <page string="Family members">
+              <group>
+                <field name="family_id" />
+              </group>
+              <field name="member_ids" context="{'default_family_id': active_id}">
+                <tree delete="false">
+                  <field name="name" />
+                  <field name="family_role" />
+                  <field name="phone" />
+                  <field name="mobile" />
+                  <field name="email" widget="email" />
+                </tree>
+              </field>
+            </page>
+          </notebook>
       </field>
     </record>
 

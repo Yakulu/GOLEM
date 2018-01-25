@@ -79,6 +79,9 @@ class GolemMember(models.Model):
 
     partner_id = fields.Many2one('res.partner', required=True, index=True,
                                  ondelete='cascade')
+    
+    member_ids = fields.One2many('res.partner', 'family_id', 'Members',
+                                 domain=[('is_company', '=', False)])
 
     @api.model
     def _default_season(self):
