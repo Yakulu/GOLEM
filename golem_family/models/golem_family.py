@@ -24,7 +24,18 @@ class ResPartner(models.Model):
     """ Partner adaptations """
     _inherit = 'res.partner'
 
+    family_member = fields.Many2one(related='family_id')
     family_member_ids = fields.One2many(related='family_id.member_ids')
+    family_street = fields.Char(related='family_id.street')
+    family_street2 = fields.Char(related='family_id.street2')
+    family_zip = fields.Char(related='family_id.zip')
+    family_city = fields.Char(related='family_id.city')
+    family_state_id = fields.Many2one(related='family_id.state_id')
+    family_country_id = fields.Many2one(related='family_id.country_id')
+    family_phone = fields.Char(related='family_id.phone')
+    family_mobile = fields.Char(related='family_id.mobile')
+    family_email = fields.Char(related='family_id.email')
+    family_website = fields.Char(related='family_id.website')
 
     family_id = fields.Many2one('golem.family', string='Family', index=True)
     family_role = fields.Many2one('golem.family.role', string='Role',
