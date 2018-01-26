@@ -31,12 +31,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="family_role" />
         </field>
           <notebook>
-            <xpath expr="//notebook/page[@name='other_page']" position="before" >
-              <page string="Family members" attrs="{'invisible': [('family_id', '=', False)]}">
+              <page string="Family members"
+                attrs="{'invisible': [('family_id', '=', False)]}">
                 <group>
                   <group string="Address">
                     <group>
-                      <field name="family_member" />
                       <field name="family_street" placeholder="Street..." />
                       <field name="family_street2" />
                       <field name="family_zip" placeholder="ZIP" />
@@ -76,7 +75,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </tree>
                 </field>
               </page>
-             </xpath>
 
             </notebook>
 
