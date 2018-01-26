@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 15:26+0000\n"
-"PO-Revision-Date: 2017-06-28 17:30+0000\n"
+"POT-Creation-Date: 2018-01-26 17:48+0000\n"
+"PO-Revision-Date: 2018-01-26 17:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_tree
@@ -23,11 +22,13 @@ msgstr "# de membres"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "0000000000"
 msgstr "0000000000"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Address"
 msgstr "Adresse"
 
@@ -38,12 +39,17 @@ msgstr "Par ville"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_city
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_city
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_city
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_city
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "City"
 msgstr "Ville"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Communication"
 msgstr "Communication"
 
@@ -54,7 +60,11 @@ msgstr "Nombre"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_country_id
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_country_id
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_country_id
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_country_id
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Country"
 msgstr "Pays"
 
@@ -78,6 +88,9 @@ msgstr "Nom affiché"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_email
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_email
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_email
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_email
 msgid "Email"
 msgstr "Courriel"
 
@@ -89,9 +102,13 @@ msgstr "Familles"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_member_family_id
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_id
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_id
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_member
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_family_search_inherit_golem_membership
 msgid "Family"
 msgstr "Famille"
 
@@ -103,8 +120,8 @@ msgid "Family Count"
 msgstr "Somme des membres de la famille"
 
 #. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:36
-#: code:addons/golem_family/models/golem_family.py:59
+#: code:addons/golem_family/models/golem_family.py:49
+#: code:addons/golem_family/models/golem_family.py:84
 #, python-format
 msgid "Family Members"
 msgstr "Membres de la famille"
@@ -116,6 +133,7 @@ msgstr "Family form"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Family members"
 msgstr "Membres de la famille"
 
@@ -180,11 +198,16 @@ msgstr "Dernière mise à jour le"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_member_ids
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member_ids
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_member_ids
 msgid "Members"
 msgstr "Adhérents"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_mobile
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_mobile
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_mobile
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_mobile
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -211,6 +234,9 @@ msgstr "Partenaire"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_phone
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_phone
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_phone
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_phone
 msgid "Phone"
 msgstr "Téléphone"
 
@@ -234,50 +260,68 @@ msgstr "Roles"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_state_id
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_state_id
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_state_id
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_state_id
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "State"
 msgstr "Région"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_street
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_street
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_street
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_street
 msgid "Street"
 msgstr "Rue"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Street..."
 msgstr "Rue..."
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_street2
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_street2
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_street2
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_street2
 msgid "Street2"
 msgstr "Complément de rue"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_website
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_website
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_website
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_website
 msgid "Website"
 msgstr "Site Web"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "ZIP"
 msgstr "Code postal"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_zip
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_zip
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_zip
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_zip
 msgid "Zip"
 msgstr "Code postal"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "e.g. www.odoo.com"
 msgstr "e.g. www.yaltik.com"
 
 #. module: golem_family
-#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 #: model:ir.ui.view,arch_db:golem_family.res_partner_form_inherit_golem_family
 msgid "family members"
-msgstr "famille"
+msgstr "Famille"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_kanban
@@ -286,6 +330,6 @@ msgstr "membres"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "name@example.org"
 msgstr "name@example.org"
-

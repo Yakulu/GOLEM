@@ -26,11 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="lastname" position="before">
-          <field name="family_id"
-            context="{'default_member_ids': [(4, partner_id, False)]}"/>
+          <field name="family_id" invisible="1" />
           <field name="family_role" />
         </field>
-          <notebook>
+            <page name="other_page" position="before">
               <page string="Family members"
                 attrs="{'invisible': [('family_id', '=', False)]}">
                 <group>
@@ -42,9 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       <field name="family_city" placeholder="City" />
                     </group>
                     <group>
-                      <field name="state_id" class="oe_no_button"
+                      <field name="family_state_id" class="oe_no_button"
                         placeholder="State" />
-                      <field name="country_id" placeholder="Country"
+                      <field name="family_country_id" placeholder="Country"
                         class="oe_no_button" />
                     </group>
                   </group>
@@ -52,15 +51,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <group>
                   <group string="Communication">
                     <group>
-                      <field name="phone" placeholder="0000000000"
+                      <field name="family_phone" placeholder="0000000000"
                         widget="phonefr" />
-                      <field name="mobile" placeholder="0000000000"
+                      <field name="family_mobile" placeholder="0000000000"
                         widget="phonefr" />
                     </group>
                     <group>
-                      <field name="email" widget="email"
+                      <field name="family_email" widget="email"
                         placeholder="name@example.org" />
-                      <field name="website" widget="url"
+                      <field name="family_website" widget="url"
                         placeholder="e.g. www.odoo.com"/>
                     </group>
                   </group>
@@ -75,9 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </tree>
                 </field>
               </page>
-
-            </notebook>
-
+            </page>
       </field>
     </record>
 
