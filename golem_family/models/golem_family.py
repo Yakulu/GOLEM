@@ -24,7 +24,6 @@ class ResPartner(models.Model):
     """ Partner adaptations """
     _inherit = 'res.partner'
 
-    family_member = fields.Many2one(related='family_id')
     family_member_ids = fields.One2many(related='family_id.member_ids')
     family_street = fields.Char(related='family_id.street')
     family_street2 = fields.Char(related='family_id.street2')
@@ -40,7 +39,7 @@ class ResPartner(models.Model):
     family_id = fields.Many2one('golem.family', string='Family', index=True)
     family_role = fields.Many2one('golem.family.role', string='Role',
                                   index=True)
-    family_count = fields.Integer('Family Count', related='family_id.count')
+    family_count = fields.Integer(related='family_id.count')
 
     @api.multi
     def button_family_members(self):
@@ -59,11 +58,10 @@ class ResPartner(models.Model):
             if member.family_id and not any((member.lastname, member.street, \
                                              member.street2, member.zip, member.city)):
                 member.update({'lastname': member.family_id.name,
-                               'street': member.family_id[0].street,
-                               'street2': member.family_id[0].street2,
-                               'zip': member.family_id[0].zip,
-                               'city': member.family_id[0].city
-                              })
+                               'street': member.family_id.street,
+                               'street2': member.family_id.street2,
+                               'zip': member.family_id.zip,
+                               'city': member.family_id.city})
 
 class GolemMember(models.Model):
     """ Member adaptations """
@@ -98,25 +96,25 @@ class GolemFamily(models.Model):
     def _get_default_nationality_id(self):
         return self.env.ref('base.main_company').country_id
 
-    name = fields.Char('Name', index=True, required=True)
-    street = fields.Char('Street')
-    street2 = fields.Char('Street2')
-    zip = fields.Char('Zip')
-    city = fields.Char('City')
+    name = fields.Char(index=True, required=True)
+    street = fields.Char()
+    street2 = fields.Char()
+    zip = fields.Char()
+    city = fields.Char()
     state_id = fields.Many2one('res.country.state', 'State',
                                ondelete='restrict')
     country_id = fields.Many2one('res.country', 'Country',
                                  ondelete='restrict',
                                  default=_get_default_nationality_id)
-    phone = fields.Char('Phone')
-    mobile = fields.Char('Mobile')
-    email = fields.Char('Email')
-    website = fields.Char('Website')
+    phone = fields.Char()
+    mobile = fields.Char()
+    email = fields.Char()
+    website = fields.Char()
 
     member_ids = fields.One2many('res.partner', 'family_id', 'Members',
                                  domain=[('is_company', '=', False)])
-    note = fields.Text('Note')
-    count = fields.Integer('Count', compute='_compute_count', store=True)
+    note = fields.Text()
+    count = fields.Integer(compute='_compute_count', store=True)
 
     @api.depends('member_ids')
     def _compute_count(self):
@@ -124,7 +122,7 @@ class GolemFamily(models.Model):
             family.count = len(family.member_ids)
 
     @api.onchange('member_ids')
-    def onchange_member(self):
+    def onchange_members(self):
         """ Sets as member address if there was no precedence """
         for family in self:
             if family.member_ids and not any((family.street, family.street2,\
@@ -132,8 +130,7 @@ class GolemFamily(models.Model):
                 family.update({'street': family.member_ids[0].street,
                                'street2': family.member_ids[0].street2,
                                'zip': family.member_ids[0].zip,
-                               'city': family.member_ids[0].city
-                              })
+                               'city': family.member_ids[0].city})
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """

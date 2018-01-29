@@ -26,66 +26,67 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="lastname" position="before">
-          <field name="family_id" invisible="1" />
+          <field name="family_id" />
           <field name="family_role" />
         </field>
-            <page name="other_page" position="before">
-              <page string="Family"
-                attrs="{'invisible': [('family_id', '=', False)]}">
+        <page name="other_page" position="before">
+          <page string="Family"
+            attrs="{'invisible': [('family_id', '=', False)]}">
+            <group>
+              <group string="Address">
                 <group>
-                  <group string="Address">
-                    <group>
-                      <field name="family_street" placeholder="Street..." />
-                      <field name="family_street2" />
-                      <field name="family_zip" placeholder="ZIP" />
-                      <field name="family_city" placeholder="City" />
-                    </group>
-                    <group>
-                      <field name="family_state_id" class="oe_no_button"
-                        placeholder="State" />
-                      <field name="family_country_id" placeholder="Country"
-                        class="oe_no_button" />
-                    </group>
-                  </group>
+                  <field name="family_street" placeholder="Street..." />
+                  <field name="family_street2" />
+                  <field name="family_zip" placeholder="ZIP" />
+                  <field name="family_city" placeholder="City" />
                 </group>
                 <group>
-                  <group string="Communication">
-                    <group>
-                      <field name="family_phone" placeholder="0000000000"
-                        widget="phonefr" />
-                      <field name="family_mobile" placeholder="0000000000"
-                        widget="phonefr" />
-                    </group>
-                    <group>
-                      <field name="family_email" widget="email"
-                        placeholder="name@example.org" />
-                      <field name="family_website" widget="url"
-                        placeholder="e.g. www.odoo.com"/>
-                    </group>
-                  </group>
+                  <field name="family_state_id" class="oe_no_button"
+                    placeholder="State" />
+                  <field name="family_country_id" placeholder="Country"
+                    class="oe_no_button" />
                 </group>
-                <field name="family_member_ids" context="{'default_family_id': active_id}">
-                  <tree delete="false">
-                    <field name="name" />
-                    <field name="family_role" />
-                    <field name="phone" />
-                    <field name="mobile" />
-                    <field name="email" widget="email" />
-                  </tree>
-                </field>
-              </page>
-            </page>
+              </group>
+            </group>
+            <group>
+              <group string="Communication">
+                <group>
+                  <field name="family_phone" placeholder="0000000000"
+                    widget="phonefr" />
+                  <field name="family_mobile" placeholder="0000000000"
+                    widget="phonefr" />
+                </group>
+                <group>
+                  <field name="family_email" widget="email"
+                    placeholder="name@example.org" />
+                  <field name="family_website" widget="url"
+                    placeholder="e.g. www.odoo.com"/>
+                </group>
+              </group>
+            </group>
+            <field name="family_member_ids"
+              context="{'default_family_id': active_id}">
+              <tree delete="false">
+                <field name="name" />
+                <field name="family_role" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="email" widget="email" />
+              </tree>
+            </field>
+          </page>
+        </page>
       </field>
     </record>
 
-<!-- searches -->
-    <record model="ir.ui.view" id="golem_family_search_inherit_golem_membership">
-      <field name="name">GOLEM family search adaptations</field>
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_member_search_inherit_golem_family">
+      <field name="name">GOLEM Member search adaptations</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
         <field name="name" position="after">
-          <field name="family_id" string="Family" />
+          <field name="family_id" />
         </field>
       </field>
     </record>
