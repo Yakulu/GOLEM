@@ -110,7 +110,7 @@ class GolemActivity(models.Model):
                 msg = _(u'End of the period is in range of an '
                         'existing period.')
                 raise models.ValidationError(msg)
-
+git
     @api.onchange('season_id')
     def _onchange_season_dates(self):
         """ Sets defaults dates according to season """
