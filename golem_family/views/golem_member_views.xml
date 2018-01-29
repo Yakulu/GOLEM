@@ -26,8 +26,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name="lastname" position="before">
-          <field name="family_id" />
-          <field name="family_role" />
+          <field name="id" invisible="1" />
+          <field name="partner_id" invisible="1" />
+          <p class="oe_grey" colspan="2"
+            attrs="{'invisible': [('id', '!=', False)]}">
+            Please save new member before assigning a family.
+          </p>
+          <field name="family_id"
+            attrs="{'readonly': [('id', '=', False)]}"
+            context="{'default_member_ids': [(4, partner_id, False)]}" />
+          <field name="family_role"
+            attrs="{'readonly': [('id', '=', False)]}" />
         </field>
         <page name="other_page" position="before">
           <page string="Family"

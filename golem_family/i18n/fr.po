@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-29 09:04+0000\n"
-"PO-Revision-Date: 2018-01-29 09:04+0000\n"
+"POT-Creation-Date: 2018-01-29 14:59+0000\n"
+"PO-Revision-Date: 2018-01-29 14:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,9 @@ msgstr "Communication"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_count
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_count
 msgid "Count"
 msgstr "Nombre"
 
@@ -102,26 +105,16 @@ msgstr "Familles"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_member_family_id
-#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_id
-#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_id
-#: model:ir.model.fields,field_description:golem_family.field_res_users_family_member
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
-#: model:ir.ui.view,arch_db:golem_family.golem_family_search_inherit_golem_membership
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Family"
 msgstr "Famille"
 
 #. module: golem_family
-#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_count
-#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_count
-#: model:ir.model.fields,field_description:golem_family.field_res_users_family_count
-msgid "Family Count"
-msgstr "Somme des membres de la famille"
-
-#. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:49
-#: code:addons/golem_family/models/golem_family.py:84
+#: code:addons/golem_family/models/golem_family.py:48
+#: code:addons/golem_family/models/golem_family.py:82
 #, python-format
 msgid "Family Members"
 msgstr "Membres de la famille"
@@ -133,7 +126,6 @@ msgstr "Family form"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
-#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Family members"
 msgstr "Famille"
 
@@ -198,6 +190,7 @@ msgstr "Dernière mise à jour le"
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_member_ids
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_member_ids
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member_ids
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_member_ids
 msgid "Members"
@@ -239,6 +232,11 @@ msgstr "Partenaire"
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_phone
 msgid "Phone"
 msgstr "Téléphone"
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
+msgid "Please save new member before assigning a family."
+msgstr "Merci de sauvegarder la fiche du nouveau membre avant de pouvoir lui assigner une famille."
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
