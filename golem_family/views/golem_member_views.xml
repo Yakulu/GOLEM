@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="family_role" />
         </field>
             <page name="other_page" position="before">
-              <page string="Family members"
+              <page string="Family"
                 attrs="{'invisible': [('family_id', '=', False)]}">
                 <group>
                   <group string="Address">
