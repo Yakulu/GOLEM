@@ -24,6 +24,19 @@ class ResPartner(models.Model):
     """ Partner adaptations """
     _inherit = 'res.partner'
 
+    family_member = fields.Many2one(related='family_id')
+    family_member_ids = fields.One2many(related='family_id.member_ids')
+    family_street = fields.Char(related='family_id.street')
+    family_street2 = fields.Char(related='family_id.street2')
+    family_zip = fields.Char(related='family_id.zip')
+    family_city = fields.Char(related='family_id.city')
+    family_state_id = fields.Many2one(related='family_id.state_id')
+    family_country_id = fields.Many2one(related='family_id.country_id')
+    family_phone = fields.Char(related='family_id.phone')
+    family_mobile = fields.Char(related='family_id.mobile')
+    family_email = fields.Char(related='family_id.email')
+    family_website = fields.Char(related='family_id.website')
+
     family_id = fields.Many2one('golem.family', string='Family', index=True)
     family_role = fields.Many2one('golem.family.role', string='Role',
                                   index=True)
@@ -39,6 +52,18 @@ class ResPartner(models.Model):
                 'view_mode': 'form',
                 'res_id': self.family_id.id}
 
+    @api.onchange('family_id')
+    def onchange_family(self):
+        """ Sets as family address if there was no precedence """
+        for member in self:
+            if member.family_id and not any((member.lastname, member.street, \
+                                             member.street2, member.zip, member.city)):
+                member.update({'lastname': member.family_id.name,
+                               'street': member.family_id[0].street,
+                               'street2': member.family_id[0].street2,
+                               'zip': member.family_id[0].zip,
+                               'city': member.family_id[0].city
+                              })
 
 class GolemMember(models.Model):
     """ Member adaptations """
@@ -98,6 +123,17 @@ class GolemFamily(models.Model):
         for family in self:
             family.count = len(family.member_ids)
 
+    @api.onchange('member_ids')
+    def onchange_member(self):
+        """ Sets as member address if there was no precedence """
+        for family in self:
+            if family.member_ids and not any((family.street, family.street2,\
+                                              family.zip, family.city)):
+                family.update({'street': family.member_ids[0].street,
+                               'street2': family.member_ids[0].street2,
+                               'zip': family.member_ids[0].zip,
+                               'city': family.member_ids[0].city
+                              })
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """

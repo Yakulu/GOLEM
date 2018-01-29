@@ -43,6 +43,7 @@ class ResPartner(models.Model):
     is_member = fields.Boolean('Is member', compute='_compute_is_member')
     member_number = fields.Char('Member number', related='member_id.number')
 
+
     @api.depends('member_id')
     def _compute_is_member(self):
         """ Computes is member """
@@ -79,6 +80,7 @@ class GolemMember(models.Model):
 
     partner_id = fields.Many2one('res.partner', required=True, index=True,
                                  ondelete='cascade')
+
 
     @api.model
     def _default_season(self):
