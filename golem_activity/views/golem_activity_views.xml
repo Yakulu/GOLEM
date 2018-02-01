@@ -59,10 +59,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       attrs="{'invisible': [('is_recurrent', '=', False)]}" />
                     <field name="hour_stop" widget="float_time"
                       attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+
+                    <field name="is_fullseason"
+                      attrs="{'invisible':[('is_recurrent', '=', False)]}" />
                     <field name="date_start"
-                      attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                      attrs="{'invisible':[('is_recurrent', '=', True),
+                             ('is_fullseason', '=', False)]}" />
                     <field name="date_stop"
-                      attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                      attrs="{'invisible':[('is_recurrent', '=', True),
+                             ('is_fullseason', '=', False)]}" />
                   </group>
                   <group name="places">
                   </group>
@@ -111,8 +116,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="animator_id" />
           <field name="weekday" string="Day"
               attrs="{'invisible': [('is_recurrent', '=', False)]}" />
-          <field name="date_start" string="Date"
-              attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+          <field name="date_start" string="Date" />
           <field name="list_price" sum="True" />
         </tree>
       </field>

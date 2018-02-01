@@ -30,6 +30,7 @@ class GolemActivityType(models.Model):
     name = fields.Char('Activity type', required=True, translate=True)
     is_recurrent = fields.Boolean('Is recurrent?')
 
+
 class GolemActivity(models.Model):
     """ GOLEM Activity """
     _name = 'golem.activity'
@@ -46,6 +47,7 @@ class GolemActivity(models.Model):
 
     full_name = fields.Char('Name', compute='_compute_full_name', store=True,
                             index=True)
+    is_fullseason = fields.Boolean('Not full season?', default=False)
 
     @api.multi
     @api.depends('name', 'default_code')
