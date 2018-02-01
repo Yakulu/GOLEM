@@ -113,12 +113,12 @@ class GolemActivity(models.Model):
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
             if activity.season_id.date_start > activity.date_start:
-                msg = _(u'The start date of the activity is not in range of an '
-                        'existing period.')
+                msg = _(u'Activity start date can not be set before '
+                        'linked season start.')
                 raise models.ValidationError(msg)
             if activity.season_id.date_end < activity.date_stop:
-                msg = _(u'The end date of the activity is not in range of an '
-                        'existing period.')
+                msg = _(u'Activity end date can not be set after '
+                        'linked season start.')
                 raise models.ValidationError(msg)
 
     @api.onchange('season_id')
