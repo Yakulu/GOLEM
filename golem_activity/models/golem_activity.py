@@ -118,7 +118,7 @@ class GolemActivity(models.Model):
                 raise models.ValidationError(msg)
             if activity.season_id.date_end < activity.date_stop:
                 msg = _(u'Activity end date can not be set after '
-                        'linked season start.')
+                        'linked season end.')
                 raise models.ValidationError(msg)
 
     @api.onchange('season_id')

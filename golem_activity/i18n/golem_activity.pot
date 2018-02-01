@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-14 06:14+0000\n"
-"PO-Revision-Date: 2017-06-14 06:14+0000\n"
+"POT-Creation-Date: 2018-02-01 16:28+0000\n"
+"PO-Revision-Date: 2018-02-01 16:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,18 @@ msgstr ""
 #. module: golem_activity
 #: model:ir.ui.menu,name:golem_activity.golem_activity_type_menu_list
 msgid "Activity Types"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:120
+#, python-format
+msgid "Activity end date can not be set after linked season start."
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:116
+#, python-format
+msgid "Activity start date can not be set before linked season start."
 msgstr ""
 
 #. module: golem_activity
@@ -269,7 +281,7 @@ msgid "Expense Account"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:120
+#: code:addons/golem_activity/models/golem_activity.py:138
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Friday"
@@ -347,6 +359,11 @@ msgid "Invoicing"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_is_fullseason
+msgid "Is full season?"
+msgstr ""
+
+#. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_is_recurrent
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_is_recurrent
 msgid "Is recurrent?"
@@ -401,7 +418,7 @@ msgid "Membership Start Date"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:116
+#: code:addons/golem_activity/models/golem_activity.py:134
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Monday"
@@ -489,7 +506,7 @@ msgid "Sale Price"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:121
+#: code:addons/golem_activity/models/golem_activity.py:139
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Saturday"
@@ -536,8 +553,8 @@ msgid "Start date"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:103
-#: code:addons/golem_activity/models/golem_activity.py:138
+#: code:addons/golem_activity/models/golem_activity.py:113
+#: code:addons/golem_activity/models/golem_activity.py:156
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr ""
@@ -553,7 +570,7 @@ msgid "Stop time"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:122
+#: code:addons/golem_activity/models/golem_activity.py:140
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Sunday"
@@ -597,7 +614,7 @@ msgid "This field holds the image used as image for the activity."
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:119
+#: code:addons/golem_activity/models/golem_activity.py:137
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Thursday"
@@ -614,14 +631,14 @@ msgid "True"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:117
+#: code:addons/golem_activity/models/golem_activity.py:135
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Tuesday"
 msgstr ""
 
 #. module: golem_activity
-#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_3959
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id_3891
 msgid "Type"
 msgstr ""
 
@@ -651,7 +668,7 @@ msgid "Warranty"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:118
+#: code:addons/golem_activity/models/golem_activity.py:136
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Wednesday"
