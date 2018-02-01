@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="hour_stop" widget="float_time"
                       attrs="{'invisible': [('is_recurrent', '=', False)]}" />
 
-                    <field name="is_fullseason" readeonly="False"
+                    <field name="is_fullseason" readonly="False"
                       attrs="{'invisible':[('is_recurrent', '=', False)]}" />
                     <field name="date_start"
                       attrs="{'invisible':[('is_recurrent', '=', True),
