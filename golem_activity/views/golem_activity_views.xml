@@ -59,10 +59,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       attrs="{'invisible': [('is_recurrent', '=', False)]}" />
                     <field name="hour_stop" widget="float_time"
                       attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+                    <field name="display_date"
+                      attrs="{'invisible':[('is_recurrent', '=', False)]}" />
                     <field name="date_start"
-                      attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                      attrs="{'invisible':[('is_recurrent', '=', True),
+                             ('display_date', '=', False)]}" />
                     <field name="date_stop"
-                      attrs="{'invisible': [('is_recurrent', '=', True)]}" />
+                      attrs="{'invisible':[('is_recurrent', '=', True),
+                             ('display_date', '=', False)]}" />
                   </group>
                   <group name="places">
                   </group>
