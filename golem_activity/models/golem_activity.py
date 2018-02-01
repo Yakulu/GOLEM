@@ -48,18 +48,16 @@ class GolemActivity(models.Model):
     full_name = fields.Char('Name', compute='_compute_full_name', store=True,
                             index=True)
     is_fullseason = fields.Boolean('Is full season?',
-                                   compute='_compute_is_full_season', default=True)
+                                   compute='_compute_is_full_season')
 
-    @api.multi
     @api.depends('date_start', 'date_stop')
     def _compute_is_full_season(self):
         """ Display date for is full season """
         for activity in self:
             if activity.date_start == activity.season_id.date_start and \
                activity.date_stop == activity.season_id.date_end:
-                activity.is_fullseason = False
+                activity.is_fullseason = True
 
-    @api.multi
     @api.depends('name', 'default_code')
     def _compute_full_name(self):
         """ Provide a better displayed name """
