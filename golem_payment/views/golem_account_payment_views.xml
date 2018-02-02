@@ -42,5 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Search -->
+    <record id="account_payment_search" model="ir.ui.view">
+      <field name="name">Account Payment Filters</field>
+      <field name="model">account.payment</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="payment_date" />
+          <group string="Group By">
+            <filter name="group_date" string="By date"
+              context="{'group_by': 'payment_date'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
   </data>
 </odoo>
