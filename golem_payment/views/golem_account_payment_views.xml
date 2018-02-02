@@ -42,6 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Trees -->
+    <record id="golem_payment_tree_inherit_account_payment" model="ir.ui.view">
+      <field name="name">Account payment list</field>
+      <field name="model">account.payment</field>
+      <field name="inherit_id" ref="account.view_account_payment_tree" />
+      <field name="arch" type="xml">
+          <field name="state" position="before">
+            <field name="reference" />
+          </field>
+      </field>
+    </record>
+
+
+
     <!-- Search -->
     <record id="account_payment_search" model="ir.ui.view">
       <field name="name">Account Payment Filters</field>
@@ -49,6 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <search>
           <field name="payment_date" />
+          <field name="reference" />
           <group string="Group By">
             <filter name="group_date" string="By date"
               context="{'group_by': 'payment_date'}"/>

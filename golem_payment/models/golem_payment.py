@@ -22,7 +22,7 @@ from odoo import models, fields, api, _
 class AccountPayment(models.Model):
     """ Add number bank check"""
     _inherit = 'account.payment'
-    reference = fields.Char(string='Payment Reference')
+    reference = fields.Char(string='Payment reference')
 
 class GolemPaymentScheduleDay(models.Model):
     """ Schedule day simple model """
