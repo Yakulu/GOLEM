@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
-
     <!-- Trees -->
     <record id="golem_payment_schedule_tree" model="ir.ui.view">
       <field name="name">GOLEM Payment Schedule Tree</field>
@@ -42,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <search>
           <field name="name" />
           <field name="season_id" />
+          <field name="day_ids" />
         </search>
       </field>
     </record>
@@ -58,4 +58,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   </data>
 </odoo>
-
