@@ -26,7 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="account.view_account_payment_form" />
       <field name="arch" type="xml">
         <field name="communication" position="before">
-          <field name="bankcheck" />
+          <field name="reference" />
+        </field>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_form_inherit_golem_payment">
+      <field name="name">Add number of bank check into main form</field>
+      <field name="model">account.payment</field>
+      <field name="inherit_id" ref="account.view_account_payment_invoice_form" />
+      <field name="arch" type="xml">
+        <field name="communication" position="before">
+          <field name="reference" />
         </field>
       </field>
     </record>
