@@ -19,12 +19,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
+    <!-- Forms -->
+    <record id="golem_payment_schedule_form" model="ir.ui.view">
+      <field name="name">GOLEM Payment Schedule Form</field>
+      <field name="model">golem.payment.schedule</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+            <field name="name" />
+            <field name="season_id" />
+            <field name="day_ids" widget="many2many_tags" />
+            <field name="occurences" />
+          </group>
+        </sheet>
+        </form>
+      </field>
+    </record>
+
     <!-- Trees -->
     <record id="golem_payment_schedule_tree" model="ir.ui.view">
       <field name="name">GOLEM Payment Schedule Tree</field>
       <field name="model">golem.payment.schedule</field>
       <field name="arch" type="xml">
-        <tree editable="top">
+        <tree>
           <field name="name" />
           <field name="season_id" />
           <field name="day_ids" widget="many2many_tags" />
@@ -48,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="golem_payment_schedule_action" name="Payment Schedules"
-      res_model="golem.payment.schedule" view_mode="tree" />
+      res_model="golem.payment.schedule" view_mode="tree,form" />
 
     <!-- Menus -->
     <menuitem id="golem_payment_schedule_menu_list" sequence="5"
