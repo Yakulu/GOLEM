@@ -65,15 +65,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="payment_date" />
           <field name="reference" />
           <group string="Group By">
+            <filter name="group_week" string="By week"
+              context="{'group_by': 'payment_date:week'}"/>
             <filter name="group_month" string="By month"
               context="{'group_by': 'payment_date:month'}"/>
-              <filter name="payment_7_days" string="payment in 7 days"
-              domain="[('payment_date','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=7), datetime.time(23,59,59))),
-              ('payment_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" />
-              <filter name="payment_30_days" string="payment in 30 days"
-              domain="[('payment_date','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=30), datetime.time(23,59,59))),
-              ('payment_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" />
           </group>
+          <filter name="payment_7_days" string="payment in 7 days"
+            domain="[('state','=', 'draft'), ('payment_date','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=7), datetime.time(23,59,59))),
+            ('payment_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" />
+          <separator />
+          <filter name="payment_30_days" string="payment in 30 days"
+            domain="[('state','=', 'draft'), ('payment_date','&lt;=', datetime.datetime.combine(context_today() + datetime.timedelta(days=30), datetime.time(23,59,59))),
+            ('payment_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" />
+          <separator />
+          <filter name="payment_delayed" string="Payment delayed"
+            domain="[('state','=', 'draft'), ('payment_date','&gt;=', context_today())]" />
         </search>
       </field>
     </record>
