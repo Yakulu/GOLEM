@@ -48,13 +48,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">account.payment</field>
       <field name="inherit_id" ref="account.view_account_payment_tree" />
       <field name="arch" type="xml">
-          <field name="state" position="before">
-            <field name="reference" />
-          </field>
+        <tree position="attributes">
+          <attribute name="decoration-warning">state=='draft' and payment_date &lt;= current_date</attribute>
+        </tree>
+        <field name="state" position="before" >
+          <field name="reference" />
+        </field>
       </field>
     </record>
-
-
 
     <!-- Search -->
     <record id="account_payment_search" model="ir.ui.view">
@@ -62,6 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">account.payment</field>
       <field name="arch" type="xml">
         <search>
+          <field name="state" />
           <field name="payment_date" />
           <field name="reference" />
           <group string="Group By">
@@ -78,9 +80,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               domain="[('state','=', 'draft'),
                 ('payment_date','&lt;=', (context_today() + datetime.timedelta(days=30)).strftime('%Y-%m-%d')),
                 ('payment_date','&gt;=', context_today().strftime('%Y-%m-%d'))]" />
-          <separator />
-          <filter name="payment_delayed" string="Payment delayed"
-            domain="[('state','=', 'draft'), ('payment_date','&gt;=', context_today().strftime('%Y-%m-%d'))]" />
+            <separator />
+            <filter name="payment_delayed" string="Payment delayed"
+              domain="[('state','=', 'draft'), ('payment_date','&lt;=', context_today().strftime('%Y-%m-%d'))]" />
         </search>
       </field>
     </record>
