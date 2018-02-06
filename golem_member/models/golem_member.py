@@ -221,13 +221,13 @@ class GolemMember(models.Model):
 
     @api.multi
     def open_partner_invoices(self):
-        """ Go to member form """
+        """ Open invoices member """
         self.ensure_one()
-        if self[0].member_id:
-            return {'type': 'ir.actions.act_window',
-                    'res_model': 'account.invoice',
-                    'view_mode': 'tree',
-                    'res_id': self[0].member_id.id}
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'account.invoice',
+                'view_mode': 'tree',
+                'context': 'default_partner_id',
+                'res_id': self.partner_id}
 
 
 class GolemMemberNumber(models.Model):
