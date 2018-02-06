@@ -66,7 +66,6 @@ class ResPartner(models.Model):
         gm_obj = self.env['golem.member']
         gm_obj.create({'partner_id': self[0].id})
 
-
 class GolemMember(models.Model):
     """ GOLEM Member model """
     _name = 'golem.member'
@@ -219,6 +218,16 @@ class GolemMember(models.Model):
         if 'season_ids' in values or 'number_manual' in values:
             self.generate_number()
         return res
+
+    @api.multi
+    def open_partner_invoices(self):
+        """ Go to member form """
+        self.ensure_one()
+        if self[0].member_id:
+            return {'type': 'ir.actions.act_window',
+                    'res_model': 'account.invoice',
+                    'view_mode': 'tree',
+                    'res_id': self[0].member_id.id}
 
 
 class GolemMemberNumber(models.Model):

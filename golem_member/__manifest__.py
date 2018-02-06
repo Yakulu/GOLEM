@@ -24,7 +24,7 @@
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season',
+    'depends': ['account', 'golem_base', 'golem_activity', 'golem_season',
                 'odoo_partner_merge'],
     'data': ['views/golem_member_views.xml',
              'views/res_partner_views.xml',
