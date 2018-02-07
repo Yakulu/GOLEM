@@ -70,6 +70,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resources</field>
       <field name="arch" type="xml">
         <form string="Resource Form">
+          <header>
+            <button  class="oe_right oe_stat_button" name="active_change" type="object"
+             icon="fa-pencil-square-o"  align="right">
+             <field name="active" widget="statinfo"/>
+            </button>
+          </header>
           <sheet>
             <group colspan="2">
               <group colspan="4" col="4">
@@ -83,6 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="start_of_availability_date"/>
                 <field name="end_of_availability_date"/>
                 <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
+                <field name="horaire"/>
               </group>
             </group>
           </sheet>

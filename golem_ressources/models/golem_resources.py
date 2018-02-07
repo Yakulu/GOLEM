@@ -25,6 +25,7 @@ class GolemResources(models.Model):
     _description = 'GOLEM Resources'
 
     name = fields.Char()
+    active = fields.Boolean(default=False)
     resource_type = fields.Many2one("golem.resourcetype", string="Resource type")
     resource_responsible = fields.Many2one("res.partner", string="Resource Responsible")
     article_link = fields.Many2one("product.template", string="Article Link")
@@ -33,6 +34,13 @@ class GolemResources(models.Model):
     start_of_availability_date = fields.Date(string="Start of availibility date ")
     end_of_availability_date = fields.Date(string="End of availibility date ")
     weekdays_of_availibility = fields.Many2many('golem.weekday', string="Weekdays of availibility")
+    #horaire = fields.Many2many("golem.hour", string="horaire ")
+
+    @api.multi
+    def active_change(self):
+        self.active = not self.active
+
+
 
 #modèle gestion des reservation
 class GolemReservation(models.Model):
@@ -78,3 +86,14 @@ class GolemWeekDay(models.Model):
     _description = 'GOLEM Week Day'
 
     name = fields.Char(string='Week Day')
+
+#modèle de gestion horaire
+class GolemHour(models.Model):
+    """ Golem Hour """
+    _name = "golem.hour"
+    _description = "Golem Hour"
+
+    resource_id = fields.Many2one("golem.resources", required=True)
+    name = fields.Many2one("golem.weekday", required=True)
+    start_time = fields.Float(required=True)
+    end_time = fields.Float(required=True)
