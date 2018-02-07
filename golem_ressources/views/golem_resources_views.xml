@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+    <!-- Remplissage du modele golem.weekday par les jours de la semaine -->
     <record model="golem.weekday" id="1">
             <field name="name">Sunday</field>
     </record>
@@ -38,6 +39,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record model="golem.weekday" id="7">
             <field name="name">Saturday</field>
     </record>
+
+    <!--formulaire de recherche et filtrage du modèle golem.resources-->
+
     <record model="ir.ui.view" id="resource_search_view">
       <field name="name">resource.search</field>
       <field name="model">golem.resources</field>
@@ -50,6 +54,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </search>
       </field>
     </record>
+
+    <!--liste d'affichage du modèle golem.resources-->
     <record model="ir.ui.view" id="resource_tree_view">
       <field name="name">resource.tree</field>
       <field name="model">golem.resources</field>
@@ -65,6 +71,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </tree>
       </field>
     </record>
+
+    <!--formulaire du modèle golem.resources-->
     <record model="ir.ui.view" id="resource_form_view">
       <field name="name">resource.form</field>
       <field name="model">golem.resources</field>
@@ -79,17 +87,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <sheet>
             <group colspan="2">
               <group colspan="4" col="4">
-                <field name="name"/>
-                <field name="resource_type"/>
-                <field name="resource_responsible"/>
-                <field name="article_link"/>
+                  <field name="name"/>
+                  <field name="resource_type"/>
+                  <field name="resource_responsible"/>
+                  <field name="article_link"/>
               </group>
               <group colspan="3">
-                <separator string="Availibility configuration" colspan="3"/>
-                <field name="start_of_availability_date"/>
-                <field name="end_of_availability_date"/>
-                <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
-                <field name="horaire"/>
+                  <separator string="Availibility configuration" colspan="3"/>
+                  <field name="start_of_availability_date"/>
+                  <field name="end_of_availability_date"/>
+                  <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
+                  <field name="timetable">
+                    <tree editable="bottom" context="{'default_resource_id': active_id}">
+                       <field name="resource_id" invisible="1" />
+                       <field name="name" />
+                       <field name="start_time" />
+                       <field name="end_time" />
+                    </tree>
+                  </field>
               </group>
             </group>
           </sheet>
@@ -97,11 +112,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!--action du sous menu Resources-->
     <record model="ir.actions.act_window" id="action_resources">
       <field name="name">Resources</field>
       <field name="res_model">golem.resources</field>
       <field name="view_mode">tree,form,search</field>
     </record>
+
+    <!--menu principale et sous menu-->
     <menuitem id="resources_menu" name="Resources" sequence="10"/>
     <menuitem id="resources_sub_menu" name="Resources" parent="resources_menu"
               action="action_resources"/>

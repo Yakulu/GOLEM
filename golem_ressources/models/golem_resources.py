@@ -34,7 +34,7 @@ class GolemResources(models.Model):
     start_of_availability_date = fields.Date(string="Start of availibility date ")
     end_of_availability_date = fields.Date(string="End of availibility date ")
     weekdays_of_availibility = fields.Many2many('golem.weekday', string="Weekdays of availibility")
-    #horaire = fields.Many2many("golem.hour", string="horaire ")
+    timetable = fields.One2many("golem.timetable", "resource_id", string="Availibility timetable")
 
     @api.multi
     def active_change(self):
@@ -88,10 +88,10 @@ class GolemWeekDay(models.Model):
     name = fields.Char(string='Week Day')
 
 #modèle de gestion horaire
-class GolemHour(models.Model):
-    """ Golem Hour """
-    _name = "golem.hour"
-    _description = "Golem Hour"
+class GolemTimetable(models.Model):
+    """ Golem Timetable """
+    _name = "golem.timetable"
+    _description = "Golem Timetable"
 
     resource_id = fields.Many2one("golem.resources", required=True)
     name = fields.Many2one("golem.weekday", required=True)
