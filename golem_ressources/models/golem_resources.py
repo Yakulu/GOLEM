@@ -18,7 +18,7 @@
 
 
 from odoo import models, fields, api
-
+#modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
     _name = 'golem.resources'
@@ -28,12 +28,13 @@ class GolemResources(models.Model):
     resource_type = fields.Many2one("golem.resourcetype", string="Resource type")
     resource_responsible = fields.Many2one("res.partner", string="Resource Responsible")
     article_link = fields.Many2one("product.template", string="Article Link")
-    #Configuration de disponibilité
+
+    #Configuration de disponibilité(période, jours et horaire)
     start_of_availability_date = fields.Date(string="Start of availibility date ")
     end_of_availability_date = fields.Date(string="End of availibility date ")
     weekdays_of_availibility = fields.Many2many('golem.weekday', string="Weekdays of availibility")
 
-
+#modèle gestion des reservation
 class GolemReservation(models.Model):
     """ GOLEM Reservation """
     _name = 'golem.reservation'
@@ -62,6 +63,7 @@ class GolemReservation(models.Model):
     def status_canceled(self):
         self.status = 'canceled'
 
+#modèle de base pour identifier le type de la ressource
 class GolemResourceType(models.Model):
     """ GOLEM Resource Type """
     _name = 'golem.resourcetype'
@@ -69,8 +71,9 @@ class GolemResourceType(models.Model):
 
     name = fields.Char(string='Resource Type')
 
-class GolemWeekDays(models.Model):
-    """ GOLEM Week Days """
+#modèle de base pour stocker les jours de la semaine
+class GolemWeekDay(models.Model):
+    """ GOLEM Week Day """
     _name = 'golem.weekday'
     _description = 'GOLEM Week Day'
 
