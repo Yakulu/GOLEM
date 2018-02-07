@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+    <record model="golem.weekday" id="1">
+            <field name="name">Sunday</field>
+    </record>
+    <record model="golem.weekday" id="2">
+            <field name="name">Monday</field>
+    </record>
+    <record model="golem.weekday" id="3">
+            <field name="name">Tuesday</field>
+    </record>
+    <record model="golem.weekday" id="4">
+            <field name="name">wednesday</field>
+    </record>
+    <record model="golem.weekday" id="5">
+            <field name="name">Thursday</field>
+    </record>
+    <record model="golem.weekday" id="6">
+            <field name="name">Friday</field>
+    </record>
+    <record model="golem.weekday" id="7">
+            <field name="name">Saturday</field>
+    </record>
+    <record model="ir.ui.view" id="resource_search_view">
+      <field name="name">resource.search</field>
+      <field name="model">golem.resources</field>
+      <field name="arch" type="xml">
+        <search string="Resource Search">
+          <field name="name"/>
+          <field name="resource_type"/>
+          <field name="resource_responsible"/>
+          <field name="article_link"/>
+        </search>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="resource_tree_view">
+      <field name="name">resource.tree</field>
+      <field name="model">golem.resources</field>
+      <field name="arch" type="xml">
+        <tree string="Resource Form">
+          <field name="name"/>
+          <field name="resource_type"/>
+          <field name="resource_responsible"/>
+          <field name="article_link"/>
+          <field name="start_of_availability_date"/>
+          <field name="end_of_availability_date"/>
+          <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="resource_form_view">
+      <field name="name">resource.form</field>
+      <field name="model">golem.resources</field>
+      <field name="arch" type="xml">
+        <form string="Resource Form">
+          <sheet>
+            <group colspan="2">
+              <group colspan="4" col="4">
+                <field name="name"/>
+                <field name="resource_type"/>
+                <field name="resource_responsible"/>
+                <field name="article_link"/>
+              </group>
+              <group colspan="3">
+                <separator string="Availibility configuration" colspan="3"/>
+                <field name="start_of_availability_date"/>
+                <field name="end_of_availability_date"/>
+                <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_resources">
+      <field name="name">Resources</field>
+      <field name="res_model">golem.resources</field>
+      <field name="view_mode">tree,form,search</field>
+    </record>
+    <menuitem id="resources_menu" name="Resources" sequence="10"/>
+    <menuitem id="resources_sub_menu" name="Resources" parent="resources_menu"
+              action="action_resources"/>
+  </data>
+</odoo>
