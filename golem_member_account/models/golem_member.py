@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#
 #    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -15,20 +15,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM non-profit members',
-    'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.0.0',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season',
-                'odoo_partner_merge'],
-    'data': ['views/golem_member_views.xml',
-             'views/res_partner_views.xml',
-             'views/golem_member_numberconfig_views.xml',
-             'data/golem_member_numberconfig_data.xml',
-             'security/ir.model.access.csv']
-}
+""" GOLEM Members """
+
+import logging
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+_LOGGER = logging.getLogger(__name__)
+
+
+
+class GolemMember(models.Model):
+    """ GOLEM Member adaptations """
+    _inherit = 'golem.member'
+
+    @api.multi
+    def open_partner_invoices(self):
+        """ Open invoices member """
+        self.ensure_one()
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'account.invoice',
+                'view_mode': 'tree',
+                'context': {'search_default_partner_id': self.partner_id.id,
+                            'default_partner_id': self.partner_id.id}}

@@ -28,19 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <sheet>
             <div colspan="2"
               style="background-color: #ccc; color: #fff; font-size: 150%; font-weight: bold; padding: 0.5%; text-align: center; margin-bottom: 1%;">Member form</div>
-              <div class="oe_button_box" name="button_box">
-                <button type="object" class="oe_stat_button" id="invoice_button"
-                  icon="fa-pencil-square-o" name="open_partner_invoices"
-                  attrs="{'invisible': [('free_member', '=', True)]}"
-                  context="{'default_partner_id': active_id}">
-                  <div class="o_form_field o_stat_info">
-                    <span class="o_stat_value">
-                      <field name="total_invoiced" widget='monetary' options="{'currency_field': 'currency_id'}"/></span>
-                    <span class="o_stat_text">Invoiced</span>
-                  </div>
-                </button>
-            </div>
-
             <group>
               <div class="oe_title">
                 <h1>

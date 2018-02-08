@@ -22,7 +22,6 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
-
 class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
@@ -42,6 +41,7 @@ class ResPartner(models.Model):
                                 readonly=True)
     is_member = fields.Boolean('Is member', compute='_compute_is_member')
     member_number = fields.Char('Member number', related='member_id.number')
+
 
     @api.depends('member_id')
     def _compute_is_member(self):
@@ -105,7 +105,7 @@ class GolemMember(models.Model):
     image_permission = fields.Boolean('Image permission?', default=True)
     currency_id = fields.Many2one('res.currency', compute='_get_company_currency',
                                   string="Currency")
-
+    
     @api.one
     def _get_company_currency(self):
         if self.company_id:
@@ -228,17 +228,6 @@ class GolemMember(models.Model):
         if 'season_ids' in values or 'number_manual' in values:
             self.generate_number()
         return res
-
-    @api.multi
-    def open_partner_invoices(self):
-        """ Open invoices member """
-        self.ensure_one()
-        return {'type': 'ir.actions.act_window',
-                'res_model': 'account.invoice',
-                'view_mode': 'tree',
-                'context': {'search_default_partner_id': self.partner_id.id},
-                'res_id': self.partner_id.id}
-
 
 class GolemMemberNumber(models.Model):
     """ GOLEM Member Numbers """

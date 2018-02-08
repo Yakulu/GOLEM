@@ -20,15 +20,10 @@
     'summary': 'Extends Odoo contacts for MJC',
     'version': '10.0.1.0.0',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
+    'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season',
-                'odoo_partner_merge'],
-    'data': ['views/golem_member_views.xml',
-             'views/res_partner_views.xml',
-             'views/golem_member_numberconfig_views.xml',
-             'data/golem_member_numberconfig_data.xml',
-             'security/ir.model.access.csv']
+    'depends': ['account', 'golem_base', 'golem_member'],
+    'data': ['views/golem_member_views.xml']
 }
