@@ -226,8 +226,8 @@ class GolemMember(models.Model):
         return {'type': 'ir.actions.act_window',
                 'res_model': 'account.invoice',
                 'view_mode': 'tree',
-                'context': 'default_partner_id',
-                'res_id': self.partner_id}
+                'context': {'search_default_partner_id': self.partner_id.id},
+                'res_id': self.partner_id.id}
 
 
 class GolemMemberNumber(models.Model):
