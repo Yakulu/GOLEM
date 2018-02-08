@@ -67,7 +67,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="article_link"/>
           <field name="start_of_availability_date"/>
           <field name="end_of_availability_date"/>
-          <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
         </tree>
       </field>
     </record>
@@ -92,14 +91,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="resource_responsible"/>
                   <field name="article_link"/>
               </group>
+              <field name="id" invisible="1"/>
               <group colspan="3">
                   <separator string="Availibility configuration" colspan="3"/>
                   <field name="start_of_availability_date"/>
                   <field name="end_of_availability_date"/>
-                  <field name="weekdays_of_availibility" widget="many2many_tags" options="{'no_create_edit':'1'}"/>
-                  <field name="timetable">
-                    <tree editable="bottom" context="{'default_resource_id': active_id}">
-                       <field name="resource_id" invisible="1" />
+              </group>
+              <label string="Please save the resource before fixing the timetable availibility" attrs="{'invisible': [('id', '!=', False)]}"/>
+              <group colspan="3">
+                  <field name="timetable" context="{'default_resource_id': active_id}" attrs="{'readonly': [('id', '=', False)]}">
+                    <tree editable="bottom" >
+                       <field name="resource_id" invisible="1"/>
                        <field name="name" />
                        <field name="start_time" />
                        <field name="end_time" />
@@ -119,9 +121,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="view_mode">tree,form,search</field>
     </record>
 
+
+    <!--liste d'affichage du modèle golem.resources-->
+    <record model="ir.ui.view" id="resourcetype_tree_view">
+      <field name="name">resourcetype.tree</field>
+      <field name="model">golem.resourcetype</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" string="Resource Type Form">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--action du sous menu configuration-->
+    <record model="ir.actions.act_window" id="action_configuration">
+      <field name="name">Resources Type</field>
+      <field name="res_model">golem.resourcetype</field>
+      <field name="view_mode">tree</field>
+    </record>
     <!--menu principale et sous menu-->
-    <menuitem id="resources_menu" name="Resources" sequence="10"/>
+    <menuitem id="resources_menu" name="Resources" />
     <menuitem id="resources_sub_menu" name="Resources" parent="resources_menu"
               action="action_resources"/>
+    <menuitem id="configuration_sub_menu" name="Configuration" parent="resources_menu"
+              action="action_configuration"/>
   </data>
 </odoo>

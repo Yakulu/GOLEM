@@ -17,23 +17,22 @@
 
 
 
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, _, exceptions
 #modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
     _name = 'golem.resources'
     _description = 'GOLEM Resources'
 
-    name = fields.Char()
-    active = fields.Boolean(default=False)
-    resource_type = fields.Many2one("golem.resourcetype", string="Resource type")
-    resource_responsible = fields.Many2one("res.partner", string="Resource Responsible")
-    article_link = fields.Many2one("product.template", string="Article Link")
+    name = fields.Char(required=True)
+    active = fields.Boolean(default=True)
+    resource_type = fields.Many2one("golem.resourcetype")
+    resource_responsible = fields.Many2one("res.partner")
+    article_link = fields.Many2one("product.template")
 
     #Configuration de disponibilité(période, jours et horaire)
-    start_of_availability_date = fields.Date(string="Start of availibility date ")
-    end_of_availability_date = fields.Date(string="End of availibility date ")
-    weekdays_of_availibility = fields.Many2many('golem.weekday', string="Weekdays of availibility")
+    start_of_availability_date = fields.Date(required=True)
+    end_of_availability_date = fields.Date(required=True)
     timetable = fields.One2many("golem.timetable", "resource_id", string="Availibility timetable")
 
     @api.multi
@@ -48,9 +47,9 @@ class GolemReservation(models.Model):
     _name = 'golem.reservation'
     _description = 'GOLEM Reservation'
 
-    start_date = fields.Datetime(string='Start date')
-    end_date = fields.Datetime(string='End date')
-    linked_resource = fields.Many2one('golem.resources', string="Linked resource")
+    start_date = fields.Datetime()
+    end_date = fields.Datetime()
+    linked_resource = fields.Many2one('golem.resources', required=True)
     user = fields.Many2one('res.users', required=True)
     on_behalf_of = fields.Many2one('res.partner', required=True)
     status = fields.Selection([
@@ -65,11 +64,19 @@ class GolemReservation(models.Model):
 
     @api.multi
     def status_confirm(self):
-        self.status = 'confirmed'
+        #self.status = 'confirmed'
+        exceptions.ValidationError('not allowed')
 
     @api.multi
     def status_canceled(self):
         self.status = 'canceled'
+
+    @api.constrains('status')
+    def _onConfirmReservation(self):
+        if(self.status == 'confrimed'):
+            exceptions.UserError('not allowed')
+            #exceptions.ValidationError('not allowed')
+
 
 #modèle de base pour identifier le type de la ressource
 class GolemResourceType(models.Model):
@@ -77,7 +84,7 @@ class GolemResourceType(models.Model):
     _name = 'golem.resourcetype'
     _description = 'GOLEM Resource Type'
 
-    name = fields.Char(string='Resource Type')
+    name = fields.Char(string='Resource Type',required=True)
 
 #modèle de base pour stocker les jours de la semaine
 class GolemWeekDay(models.Model):
@@ -100,6 +107,5 @@ class GolemTimetable(models.Model):
 
     @api.constrains('start_time', 'end_time')
     def _check_time_consistency(self):
-        for r in self:
-            if r.end_time < r.start_time:
-                raise exceptions.ValidationError('End time should be higher than start time')
+        if self.end_time < self.start_time:
+            raise exceptions.ValidationError(_('End time should be higher than start time'))
