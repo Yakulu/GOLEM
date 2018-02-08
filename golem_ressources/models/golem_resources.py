@@ -97,3 +97,9 @@ class GolemTimetable(models.Model):
     name = fields.Many2one("golem.weekday", required=True)
     start_time = fields.Float(required=True)
     end_time = fields.Float(required=True)
+
+    @api.constraint('start_time','end_time')
+    def _check_time_consistency(self):
+        for r in self:
+            if r.end_time < r.start_time:
+            raise ValidationError("End time should be higher than start time")

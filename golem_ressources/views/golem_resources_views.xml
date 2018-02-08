@@ -78,13 +78,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resources</field>
       <field name="arch" type="xml">
         <form string="Resource Form">
-          <header>
-            <button  class="oe_right oe_stat_button" name="active_change" type="object"
-             icon="fa-pencil-square-o"  align="right">
-             <field name="active" widget="statinfo"/>
-            </button>
-          </header>
           <sheet>
+            <div class="oe_button_box" name="button_box" groups="base.group_user">
+              <button class="oe_stat_button" icon="fa-archive" name="active_change" type="object"
+                 align="right">
+               <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+              </button>
+            </div>
             <group colspan="2">
               <group colspan="4" col="4">
                   <field name="name"/>
