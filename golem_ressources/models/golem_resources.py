@@ -17,7 +17,7 @@
 
 
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 #modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
@@ -98,8 +98,8 @@ class GolemTimetable(models.Model):
     start_time = fields.Float(required=True)
     end_time = fields.Float(required=True)
 
-    @api.constraint('start_time','end_time')
+    @api.constrains('start_time', 'end_time')
     def _check_time_consistency(self):
         for r in self:
             if r.end_time < r.start_time:
-            raise ValidationError("End time should be higher than start time")
+                raise exceptions.ValidationError('End time should be higher than start time')
