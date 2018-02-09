@@ -35,10 +35,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <span class="o_stat_value">
                   <field name="total_invoiced" widget='monetary' options="{'currency_field': 'currency_id'}"/></span>
                 <span class="o_stat_text">Invoiced</span>
+
               </div>
             </button>
           </div>
         </div>
+        <field name="season_ids" position="before">
+          <field name="state_last_invoice" />
+        </field>
+
       </field>
     </record>
 

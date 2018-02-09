@@ -103,15 +103,6 @@ class GolemMember(models.Model):
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
     image_permission = fields.Boolean('Image permission?', default=True)
-    currency_id = fields.Many2one('res.currency', compute='_get_company_currency',
-                                  string="Currency")
-    
-    @api.one
-    def _get_company_currency(self):
-        if self.company_id:
-            self.currency_id = self.sudo().company_id.currency_id
-        else:
-            self.currency_id = self.env.user.company_id.currency_id
 
     @api.onchange('country_id')
     def _onchange_country_id(self):

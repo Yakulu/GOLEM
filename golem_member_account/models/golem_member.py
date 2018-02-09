@@ -33,7 +33,17 @@ class GolemMember(models.Model):
         """ Open invoices member """
         self.ensure_one()
         return {'type': 'ir.actions.act_window',
+                'name': 'Invoices',
                 'res_model': 'account.invoice',
-                'view_mode': 'tree',
+                'view_mode': 'tree,form',
                 'context': {'search_default_partner_id': self.partner_id.id,
                             'default_partner_id': self.partner_id.id}}
+
+
+    # state_invoice = fields.One2many(related='member_id.invoice_ids')
+    state_last_invoice = fields.Char(compute='_compute_state_of_last_invoice')
+
+    @api.depends('invoice_ids')
+    def _compute_state_of_last_invoice(self):
+        for member in self:
+            if mem.invoice_ids.state == 'open':
