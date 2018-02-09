@@ -46,4 +46,4 @@ class GolemMember(models.Model):
     @api.depends('invoice_ids')
     def _compute_state_of_last_invoice(self):
         for member in self:
-            if mem.invoice_ids.state == 'open':
+            if self.invoice_ids.state == 'open':
