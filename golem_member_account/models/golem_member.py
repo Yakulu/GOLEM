@@ -46,4 +46,6 @@ class GolemMember(models.Model):
     @api.depends('invoice_ids')
     def _compute_state_of_last_invoice(self):
         for member in self:
-            if self.invoice_ids.state == 'open':
+            state = member.invoice_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
+            sorted_date = state.sorted(key=lambda r: r.date_invoice)
+            member.state_last_invoice = sorted_date[-1]
