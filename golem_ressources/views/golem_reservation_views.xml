@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+    <!--Calendrier des reservations-->
     <record model="ir.ui.view" id="reservation_calendar_view">
       <field name="name">reservation.calendar</field>
       <field name="model">golem.reservation</field>
@@ -29,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </calendar>
       </field>
     </record>
+
+    <!--liste des réservations -->
     <record model="ir.ui.view" id="reservation_tree_view">
       <field name="name">reservation.tree</field>
       <field name="model">golem.reservation</field>
@@ -39,10 +42,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="linked_resource"/>
           <field name="user"/>
           <field name="on_behalf_of"/>
-          <field name="status" widget="statusbar"/>
+          <field name="status"/>
         </tree>
       </field>
     </record>
+
+    <!--Formulaire de réservation de ressource-->
     <record model="ir.ui.view" id="reservation_form_view">
       <field name="name">reservation.form</field>
       <field name="model">golem.reservation</field>

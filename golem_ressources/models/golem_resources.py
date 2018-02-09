@@ -18,6 +18,9 @@
 
 
 from odoo import models, fields, api, _, exceptions
+import logging
+
+_logger = logging.getLogger(__name__)
 #modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
@@ -34,6 +37,7 @@ class GolemResources(models.Model):
     start_of_availability_date = fields.Date(required=True)
     end_of_availability_date = fields.Date(required=True)
     timetable = fields.One2many("golem.timetable", "resource_id", string="Availibility timetable")
+    reservation = fields.One2many("golem.reservation", "linked_resource")
 
     @api.multi
     def active_change(self):
@@ -52,6 +56,7 @@ class GolemReservation(models.Model):
     linked_resource = fields.Many2one('golem.resources', required=True)
     user = fields.Many2one('res.users', required=True)
     on_behalf_of = fields.Many2one('res.partner', required=True)
+    #statut=fields.Char()
     status = fields.Selection([
         ('draft', "Draft"),
         ('confirmed', "Confirmed"),
@@ -64,8 +69,8 @@ class GolemReservation(models.Model):
 
     @api.multi
     def status_confirm(self):
-        #self.status = 'confirmed'
-        exceptions.ValidationError('not allowed')
+        self.status = 'confirmed'
+
 
     @api.multi
     def status_canceled(self):
@@ -73,9 +78,14 @@ class GolemReservation(models.Model):
 
     @api.constrains('status')
     def _onConfirmReservation(self):
-        if(self.status == 'confrimed'):
-            exceptions.UserError('not allowed')
-            #exceptions.ValidationError('not allowed')
+        if self.status == 'confirmed':
+            if(self.start_date < self.linked_resource.start_of_availability_date or self.end_date > self.linked_resource.end_of_availability_date ):
+                raise exceptions.UserError('Not allowed, the resource is not available in this period, please choose another périod before confirming %s' % self.linked_resource.start_of_availability_date)
+            else :
+                for reservation in self.linked_resource.reservation :
+                    if(self.id != reservation.id and reservation.status == 'confirmed' and not (self.end_date < reservation.start_date or self.start_date > reservation.end_date)):
+                        raise exceptions.UserError("Not allowed, the resource is taken during this period, please choose another période before confirming ")
+
 
 
 #modèle de base pour identifier le type de la ressource

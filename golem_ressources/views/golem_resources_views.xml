@@ -108,6 +108,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </tree>
                   </field>
               </group>
+              <group colspan="3">
+                  <field name="reservation" >
+                    <tree >
+                      <field name="linked_resource" invisible="1"/>
+                       <field name="start_date"/>
+                       <field name="end_date" />
+                       <field name="user" />
+                       <field name="on_behalf_of" />
+                       <field name="status" widget="statusbar" />
+                    </tree>
+                  </field>
+              </group>
             </group>
           </sheet>
         </form>
