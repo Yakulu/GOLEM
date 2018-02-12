@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,38 +16,34 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Members """
+""" GOLEM Member adaptations """
 
-import logging
-from odoo import models, fields, api, _
-from odoo.exceptions import UserError
-_LOGGER = logging.getLogger(__name__)
-
+from odoo import models, fields, api
 
 
 class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
+    last_payment_state = fields.Selection([('draft', 'Draft'),
+                                           ('posted', 'Posted'),
+                                           ('checked', 'Checked'),
+                                           ('reconciled', 'Reconciled')],
+                                          compute='_compute_last_payment_state')
+
     @api.multi
     def open_partner_invoices(self):
-        """ Open invoices member """
+        """ Open member invoices """
         self.ensure_one()
         return {'type': 'ir.actions.act_window',
                 'name': 'Invoices',
                 'res_model': 'account.invoice',
                 'view_mode': 'tree,form',
-                'context': {'search_default_partner_id': self.partner_id.id,
-                            'default_partner_id': self.partner_id.id}}
-
-    state_last_invoice = fields.Selection([('draft', 'Draft'),
-                                           ('posted', 'Posted'),
-                                           ('checked', 'Checked'),
-                                           ('reconciled', 'Reconciled')],
-                                          compute='_compute_state_of_last_invoice')
+                'context': {'search_default_partner_id': self[0].partner_id.id,
+                            'default_partner_id': self[0].partner_id.id}}
 
     @api.depends('invoice_ids')
-    def _compute_state_of_last_invoice(self):
+    def _compute_last_payment_state(self):
         """ Computes last invoice payment state : check last invoice, then more
         recent payment and retrieve its state """
         for member in self:
@@ -63,6 +60,6 @@ class GolemMember(models.Model):
                             last_payment_id = payment
                             break
                     if last_payment_id:
-                        member.state_last_invoice = last_payment_id.state
+                        member.last_payment_state = last_payment_id.state
                         return
             member.state_last_invoice = False

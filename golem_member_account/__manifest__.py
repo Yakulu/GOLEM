@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,13 +18,13 @@
 
 {
     'name': 'GOLEM members account',
-    'summary': 'GOLEM non-profit members account management',
-    'version': '10.0.1.0.0',
+    'summary': 'GOLEM non-profit members account',
+    'version': '10.0.1.0.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
-    'depends': ['account', 'golem_base', 'golem_member'],
+    'depends': ['account', 'golem_member'],
     'data': ['views/golem_member_views.xml']
 }
