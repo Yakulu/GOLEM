@@ -18,26 +18,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
     <!-- Remplissage du modele golem.weekday par les jours de la semaine -->
-    <record model="golem.weekday" id="1">
+    <record model="golem.weekday" id="6">
+
             <field name="name">Sunday</field>
+            <field name="id_day">6</field>
+    </record>
+    <record model="golem.weekday" id="0">
+            <field name="name">Monday</field>
+            <field name="id_day">0</field>
+    </record>
+    <record model="golem.weekday" id="1">
+            <field name="name">Tuesday</field>
+            <field name="id_day">1</field>
     </record>
     <record model="golem.weekday" id="2">
-            <field name="name">Monday</field>
+            <field name="name">wednesday</field>
+            <field name="id_day">2</field>
     </record>
     <record model="golem.weekday" id="3">
-            <field name="name">Tuesday</field>
+            <field name="name">Thursday</field>
+            <field name="id_day">3</field>
     </record>
     <record model="golem.weekday" id="4">
-            <field name="name">wednesday</field>
+            <field name="name">Friday</field>
+            <field name="id_day">4</field>
     </record>
     <record model="golem.weekday" id="5">
-            <field name="name">Thursday</field>
-    </record>
-    <record model="golem.weekday" id="6">
-            <field name="name">Friday</field>
-    </record>
-    <record model="golem.weekday" id="7">
             <field name="name">Saturday</field>
+            <field name="id_day">5</field>
     </record>
 
     <!--formulaire de recherche et filtrage du modèle golem.resources-->
@@ -105,18 +113,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                        <field name="name" />
                        <field name="start_time" />
                        <field name="end_time" />
-                    </tree>
-                  </field>
-              </group>
-              <group colspan="3">
-                  <field name="reservation" >
-                    <tree >
-                      <field name="linked_resource" invisible="1"/>
-                       <field name="start_date"/>
-                       <field name="end_date" />
-                       <field name="user" />
-                       <field name="on_behalf_of" />
-                       <field name="status" widget="statusbar" />
                     </tree>
                   </field>
               </group>

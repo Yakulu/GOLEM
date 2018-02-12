@@ -54,8 +54,8 @@ class GolemReservation(models.Model):
     start_date = fields.Datetime()
     end_date = fields.Datetime()
     linked_resource = fields.Many2one('golem.resources', required=True)
-    user = fields.Many2one('res.users', required=True)
-    on_behalf_of = fields.Many2one('res.partner', required=True)
+    user = fields.Many2one('res.users', required=True,  default=lambda self: self.env.user)
+    on_behalf_of = fields.Many2one('res.partner', required=True, default=lambda self: self.env['res.partner'])
     #statut=fields.Char()
     status = fields.Selection([
         ('draft', "Draft"),
@@ -79,9 +79,29 @@ class GolemReservation(models.Model):
     @api.constrains('status')
     def _onConfirmReservation(self):
         if self.status == 'confirmed':
+            #verifyin is the reservation is taking place out of the resource availibility period
             if(self.start_date < self.linked_resource.start_of_availability_date or self.end_date > self.linked_resource.end_of_availability_date ):
                 raise exceptions.UserError('Not allowed, the resource is not available in this period, please choose another périod before confirming %s' % self.linked_resource.start_of_availability_date)
             else :
+                #verifying if the reservation is taking place out the availibility timetable
+                #defining a boolean flag, which will determine if the day of the reservation is available
+                r_allowed = False
+                for day in self.linked_resource.timetable :
+                    #if the day is available, look for the time if it's inside the resource timetable availibility
+                    if day.name.id_day == fields.Datetime.from_string(self.start_date).weekday():
+                        start_hour = fields.Datetime.from_string(self.start_date).hour
+                        start_min = float(fields.Datetime.from_string(self.start_date).minute) #+(int(fields.Datetime.from_string(self.start_date).min))/100
+                        start_time_r = start_hour + start_min/100
+                        start_hour = fields.Datetime.from_string(self.end_date).hour
+                        start_min = float(fields.Datetime.from_string(self.end_date).minute) #+(int(fields.Datetime.from_string(self.start_date).min))/100
+                        end_time_r = start_hour + start_min/100
+                        #if the time is suitable, the flag state is changed
+                        if(start_time_r > day.start_time and end_time_r < day.end_time):
+                            r_allowed = True
+                #if the flag is changed no erreur is raised.
+                if(not r_allowed):
+                            raise exceptions.UserError("Not allowed, the resource is not available during this timetable, please choose another time before confirming ")
+                #verifying if the resource is already taken during this period
                 for reservation in self.linked_resource.reservation :
                     if(self.id != reservation.id and reservation.status == 'confirmed' and not (self.end_date < reservation.start_date or self.start_date > reservation.end_date)):
                         raise exceptions.UserError("Not allowed, the resource is taken during this period, please choose another période before confirming ")
@@ -103,6 +123,7 @@ class GolemWeekDay(models.Model):
     _description = 'GOLEM Week Day'
 
     name = fields.Char(string='Week Day')
+    id_day = fields.Integer()
 
 #modèle de gestion horaire
 class GolemTimetable(models.Model):
