@@ -16,8 +16,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM non-profit members',
-    'summary': 'Extends Odoo contacts for MJC',
+    'name': 'GOLEM members account',
+    'summary': 'GOLEM non-profit members account management',
     'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
