@@ -48,8 +48,8 @@ class GolemMember(models.Model):
         for member in self:
             state_invoice = member.invoice_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
             date_state_invoice = state_invoice.sorted(key=lambda r: r.date_invoice, reverse=True)
-            payment = self.env['account.invoice']
-            state_payment = payment.payment_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
-            date_state_payment = state_payment.sorted(key=lambda r: r.date, reverse=True)
 
-            member.state_last_invoice = date_state_payment[0]
+            # state_payment = payment.payment_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
+            # date_state_payment = state_payment.sorted(key=lambda r: r.date, reverse=True)
+
+            member.state_last_invoice = date_state_invoice[0]
