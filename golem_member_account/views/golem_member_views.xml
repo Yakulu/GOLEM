@@ -35,7 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <span class="o_stat_value">
                   <field name="total_invoiced" widget='monetary' options="{'currency_field': 'currency_id'}"/></span>
                 <span class="o_stat_text">Invoiced</span>
-
               </div>
             </button>
           </div>
@@ -43,9 +42,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <field name="season_ids" position="before">
           <field name="state_last_invoice" />
         </field>
-
       </field>
     </record>
+
+<!-- Trees -->
+    <record model="ir.ui.view" id="golem_member_account_tree_inherit_golem_member">
+      <field name="name">GOLEM Member account tree</field>
+      <field name="model">golem.member</field>
+      <field name="inherit_id" ref="golem_member.golem_member_tree" />
+      <field name="arch" type="xml">
+          <field name="contact_address" position="after">
+            <field name="state_last_invoice" />
+          </field>
+      </field>
+    </record>
+
 
   </data>
 </odoo>

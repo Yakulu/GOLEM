@@ -39,17 +39,30 @@ class GolemMember(models.Model):
                 'context': {'search_default_partner_id': self.partner_id.id,
                             'default_partner_id': self.partner_id.id}}
 
-
-    state_last_invoice = fields.Integer(compute='_compute_state_of_last_invoice')
-    # account_payment_ids = fields.One2many('account.payment', 'partner_id')
+    state_last_invoice = fields.Selection([('draft', 'Draft'),
+                                           ('posted', 'Posted'),
+                                           ('checked', 'Checked'),
+                                           ('reconciled', 'Reconciled')],
+                                          compute='_compute_state_of_last_invoice')
 
     @api.depends('invoice_ids')
     def _compute_state_of_last_invoice(self):
+        """ Computes last invoice payment state : check last invoice, then more
+        recent payment and retrieve its state """
         for member in self:
-            state_invoice = member.invoice_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
-            date_state_invoice = state_invoice.sorted(key=lambda r: r.date_invoice, reverse=True)
-
-            # state_payment = payment.payment_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
-            # date_state_payment = state_payment.sorted(key=lambda r: r.date, reverse=True)
-
-            member.state_last_invoice = date_state_invoice[0]
+            if member.invoice_ids:
+                invoice_ids = member.invoice_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
+                invoice_ids = invoice_ids.sorted(key=lambda r: r.date_invoice, reverse=True)
+                payment_ids = invoice_ids[0].payment_ids if invoice_ids else False
+                if payment_ids:
+                    payment_ids = payment_ids.sorted(lambda r: r.payment_date, reverse=True)
+                    today = fields.Date.today()
+                    for payment in payment_ids:
+                        if payment.payment_date < today:
+                            last_payment_id = None
+                            last_payment_id = payment
+                            break
+                    if last_payment_id:
+                        member.state_last_invoice = last_payment_id.state
+                        return
+            member.state_last_invoice = False
