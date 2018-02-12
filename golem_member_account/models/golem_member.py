@@ -57,9 +57,9 @@ class GolemMember(models.Model):
                 if payment_ids:
                     payment_ids = payment_ids.sorted(lambda r: r.payment_date, reverse=True)
                     today = fields.Date.today()
+                    last_payment_id = None
                     for payment in payment_ids:
                         if payment.payment_date < today:
-                            last_payment_id = None
                             last_payment_id = payment
                             break
                     if last_payment_id:
