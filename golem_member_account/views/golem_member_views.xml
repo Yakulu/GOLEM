@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         <field name="season_ids" position="before">
           <field name="state_last_invoice" />
+          <field name="currency_id" invisible="1"/>
         </field>
       </field>
     </record>

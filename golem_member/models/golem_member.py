@@ -22,6 +22,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
+
 class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
@@ -41,7 +42,6 @@ class ResPartner(models.Model):
                                 readonly=True)
     is_member = fields.Boolean('Is member', compute='_compute_is_member')
     member_number = fields.Char('Member number', related='member_id.number')
-
 
     @api.depends('member_id')
     def _compute_is_member(self):
@@ -219,6 +219,7 @@ class GolemMember(models.Model):
         if 'season_ids' in values or 'number_manual' in values:
             self.generate_number()
         return res
+
 
 class GolemMemberNumber(models.Model):
     """ GOLEM Member Numbers """

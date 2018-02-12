@@ -42,7 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="season_ids" widget="many2many_tags" />
                 <field name="category_id" widget="many2many_tags"
                   placeholder="Tags..."/>
-                <field name="currency_id" invisible="1"/>
               </group>
             </group>
             <group string="Personal details">
