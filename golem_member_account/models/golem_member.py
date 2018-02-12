@@ -40,16 +40,16 @@ class GolemMember(models.Model):
                             'default_partner_id': self.partner_id.id}}
 
 
-    # payment_ids = fields.One2many("account.payment","payment_ids")
     state_last_invoice = fields.Integer(compute='_compute_state_of_last_invoice')
-    account_payment_ids = fields.One2many('account.payment', 'partner_id')
+    # account_payment_ids = fields.One2many('account.payment', 'partner_id')
 
     @api.depends('invoice_ids')
     def _compute_state_of_last_invoice(self):
         for member in self:
             state_invoice = member.invoice_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
             date_state_invoice = state_invoice.sorted(key=lambda r: r.date_invoice, reverse=True)
-            state_payment = member.account_payment_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
-            date_state_payment = state_payment.sorted(key=lambda r: r.write_date, reverse=True)
+            payment = self.env['account.invoice']
+            state_payment = payment.payment_ids.filtered(lambda inv: inv.state in ('open', 'paid'))
+            date_state_payment = state_payment.sorted(key=lambda r: r.date, reverse=True)
 
-            member.state_last_invoice = date_state_invoice[0]
+            member.state_last_invoice = date_state_payment[0]
