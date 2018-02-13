@@ -49,19 +49,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <t t-call="report.external_layout">
           <div class="page">
           <!-- Report page content -->
+          <div class="col-xs-3">
+            <div t-field="res_company.partner_id"
+            t-field-options='{
+                              "widget": "contact",
+                              "fields": ["address", "name", "phone", "fax"],
+                              "no_marker": true}' />
+            </div>
             <table class="table table-striped">
                 <tr>
-                  <th>Title</th>
-                  <th>Owner</th>
-                  <th>Deadline</th>
+                  <th>Member</th>
+                  <th>Season</th>
                 </tr>
                 <t t-foreach="docs" t-as="o">
                   <tr>
                     <td class="col-xs-6">
-                      <span t-field="o.name" />
+                      <strong><span t-field="o.name" /></strong><br></br>
+                      <span t-field="o.street" /><br></br>
+                      <t t-if="o.street2">
+                        <span t-field="o.street2" /><br></br>
+                      </t>
+                      <span t-field="o.zip" /><br></br>
+                      <span t-field="o.city" /><br></br>
+                      <t t-if="o.state">
+                        <span t-field="o.state" /><br></br>
+                      </t>
+                      <span t-field="o.country_id" /><br></br>
                     </td>
-                    <td class="col-xs-3">
-                      <span t-field="o.user_id" />
+                  
+                    <td class="col-xs-6">
+                      <span class="" t-field="o.name" /><br></br>
+                      <span t-field="o.street" /><br></br>
+                      <span t-field="o.street2" /><br></br>
+                      <span t-field="o.zip" /><br></br>
+                      <span t-field="o.city" /><br></br>
+                      <span t-field="o.state_id" /><br></br>
+                      <span t-field="o.country_id" /><br></br>
                     </td>
                   </tr>
                 </t>
