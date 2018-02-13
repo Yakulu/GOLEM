@@ -18,9 +18,7 @@
 
 
 from odoo import models, fields, api, _, exceptions
-import logging
 
-_logger = logging.getLogger(__name__)
 #modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
@@ -29,6 +27,7 @@ class GolemResources(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
+    validation_required = fields.Boolean(default=True)
     resource_type = fields.Many2one("golem.resourcetype")
     resource_responsible = fields.Many2one("res.partner")
     article_link = fields.Many2one("product.template")
@@ -61,6 +60,8 @@ class GolemReservation(models.Model):
         ('draft', "Draft"),
         ('confirmed', "Confirmed"),
         ('canceled', "Canceled"),
+        ('validated', "Validated"),
+        ('rejected', "Rejected"),
     ], default='draft')
 
     @api.multi
