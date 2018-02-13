@@ -14,22 +14,3 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-{
-    'name': 'GOLEM non-profit members',
-    'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.1.0',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Michel Dessenne',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season',
-                'odoo_partner_merge'],
-    'data': ['views/golem_member_views.xml',
-             'views/res_partner_views.xml',
-             'views/golem_member_numberconfig_views.xml',
-             'data/golem_member_numberconfig_data.xml',
-             'report/golem_member_report.xml',
-             'security/ir.model.access.csv']
-}
