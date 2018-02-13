@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
-#
+#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -14,3 +15,5 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from . import golem_member
