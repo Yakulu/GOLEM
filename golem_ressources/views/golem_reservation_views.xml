@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+    <!--Calendrier des reservations-->
+    <record model="ir.ui.view" id="reservation_calendar_view">
+      <field name="name">reservation.calendar</field>
+      <field name="model">golem.reservation</field>
+      <field name="arch" type="xml">
+        <calendar string="Reservation Calendar" date_start="start_date" date_stop="end_date"
+                      color="linked_resource">
+                      <field name="linked_resource"/>
+                      <field name="user"/>
+                      <field name="on_behalf_of"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!--liste des réservations -->
+    <record model="ir.ui.view" id="reservation_tree_view">
+      <field name="name">reservation.tree</field>
+      <field name="model">golem.reservation</field>
+      <field name="arch" type="xml">
+        <tree string="Reservation tree">
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="linked_resource"/>
+          <field name="user"/>
+          <field name="on_behalf_of"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--Formulaire de réservation de ressource-->
+    <record model="ir.ui.view" id="reservation_form_view">
+      <field name="name">reservation.form</field>
+      <field name="model">golem.reservation</field>
+      <field name="arch" type="xml">
+        <form string="Reservation Form">
+          <header>
+            <button name="status_confirm" type="object"
+                            string="Confirm" statuss="draft"
+                            class="oe_highlight"/>
+            <button name="status_canceled" type="object"
+                            string="Cancel" statuss="confirmed"
+                            class="oe_highlight"/>
+            <field name="status" widget="statusbar"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="start_date"/>
+              <field name="end_date"/>
+              <field name="linked_resource"/>
+              <field name="user"/>
+              <field name="on_behalf_of"/>
+            </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_reservation">
+      <field name="name">Reservation</field>
+      <field name="res_model">golem.reservation</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="reservation_sub_menu" name="Reservation" parent="resources_menu"
+                    action="action_reservation"/>
+  </data>
+</odoo>

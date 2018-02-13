@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_resources_user,Access GOLEM Resources User,model_golem_resources,golem_base.group_golem_user,1,0,0,0
+access_golem_resources_manager,Access GOLEM Resources Manager,model_golem_resources,golem_base.group_golem_manager,1,1,1,1
