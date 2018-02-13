@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <sheet>
             <group>
             <field name="name" />
-            <field name="season_id" readonly='1'/>
+            <field name="season_id" />
             <field name="day_ids" widget="many2many_tags" />
             <field name="occurences" />
             </group>
