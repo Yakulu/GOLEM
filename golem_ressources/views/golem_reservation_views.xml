@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="user"/>
           <field name="on_behalf_of"/>
           <field name="status"/>
+
         </tree>
       </field>
     </record>
@@ -55,11 +56,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <form string="Reservation Form">
           <header>
             <button name="status_confirm" type="object"
-                            string="Confirm" statuss="draft"
-                            class="oe_highlight"/>
+                    string="Confirm" statuss="draft"
+                    class="oe_highlight"/>
             <button name="status_canceled" type="object"
-                            string="Cancel" statuss="confirmed"
-                            class="oe_highlight"/>
+                    string="Cancel" statuss="confirmed"
+                    class="oe_highlight"/>
+            <button name="status_validated" type="object"
+                    string="Validate" statuss="confirmed"
+                    class="oe_highlight"/>
+            <button name="status_rejected" type="object"
+                    string="Reject" statuss="confirmed"
+                    class="oe_highlight"/>
             <field name="status" widget="statusbar"/>
           </header>
           <sheet>
@@ -74,10 +81,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </form>
       </field>
     </record>
+
+    <!-- recherche relative au menu reservation-->
+    <record model="ir.ui.view" id="reservation_search_view">
+      <field name="name">reservation.search</field>
+      <field name="model">golem.reservation</field>
+      <field name="arch" type="xml">
+        <search string="Reservation tree">
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="linked_resource"/>
+          <field name="user"/>
+          <field name="on_behalf_of"/>
+          <field name="status"/>
+          <filter name="Reservations_to_validate" string="Reservation to Validate"
+            domain="[('status', '=', 'confirmed')]"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- action relative au menu réservation-->
     <record model="ir.actions.act_window" id="action_reservation">
       <field name="name">Reservation</field>
       <field name="res_model">golem.reservation</field>
-      <field name="view_mode">tree,form,calendar</field>
+      <field name="view_mode">tree,search,form,calendar</field>
     </record>
     <menuitem id="reservation_sub_menu" name="Reservation" parent="resources_menu"
                     action="action_reservation"/>

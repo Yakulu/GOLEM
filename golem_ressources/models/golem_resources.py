@@ -77,6 +77,14 @@ class GolemReservation(models.Model):
     def status_canceled(self):
         self.status = 'canceled'
 
+    @api.multi
+    def status_validated(self):
+        self.status = 'validated'
+
+    @api.multi
+    def status_rejected(self):
+        self.status = 'rejected'
+
     @api.constrains('status')
     def _onConfirmReservation(self):
         if self.status == 'confirmed':
@@ -106,6 +114,8 @@ class GolemReservation(models.Model):
                 for reservation in self.linked_resource.reservation :
                     if(self.id != reservation.id and reservation.status == 'confirmed' and not (self.end_date < reservation.start_date or self.start_date > reservation.end_date)):
                         raise exceptions.UserError("Not allowed, the resource is taken during this period, please choose another période before confirming ")
+                    elif (not self.linked_resource.validation_required):
+                        self.status = 'validated'
 
 
 

@@ -70,6 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <tree string="Resource Form">
           <field name="name"/>
+          <field name="validation_required"/>
           <field name="resource_type"/>
           <field name="resource_responsible"/>
           <field name="article_link"/>
@@ -95,6 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group colspan="2">
               <group colspan="4" col="4">
                   <field name="name"/>
+                  <field name="validation_required"/>
                   <field name="resource_type"/>
                   <field name="resource_responsible"/>
                   <field name="article_link"/>
