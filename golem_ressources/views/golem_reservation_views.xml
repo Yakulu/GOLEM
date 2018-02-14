@@ -68,6 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     string="Reject" statuss="confirmed"
                     class="oe_highlight"/>
             <field name="status" widget="statusbar"/>
+
           </header>
           <sheet>
             <group>
@@ -76,6 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="linked_resource"/>
               <field name="user"/>
               <field name="on_behalf_of"/>
+                <field name="rejection_reason"/>
             </group>
             </sheet>
         </form>
@@ -108,5 +110,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
     <menuitem id="reservation_sub_menu" name="Reservation" parent="resources_menu"
                     action="action_reservation"/>
+
+    <!--formulaire relatif au wizard du motif de refus-->
+    <record model="ir.ui.view" id="wizard_form_view">
+      <field name="name">wizard.form</field>
+      <field name="model">golem.reourceswizard</field>
+      <field name="arch" type="xml">
+        <form string="Add motif">
+          <group>
+            <field name="rejection_reason"/>
+          </group>
+        </form>
+      </field>
+  </record>
+
   </data>
 </odoo>

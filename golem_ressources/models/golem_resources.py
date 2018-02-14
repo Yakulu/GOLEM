@@ -19,6 +19,27 @@
 
 from odoo import models, fields, api, _, exceptions
 
+#Wizard pour recuperer le motif du refus d'une réservation et le stocker sur la reservation
+class myWizard(models.TransientModel):
+    """GOLEM Resource wizard"""
+    _name = "golem.reourceswizard"
+
+    # recuperer la reservation courant
+    def _default_reservation(self):
+        return self.env['golem.reservation'].browse(self._context.get('active_id'))
+
+    rejection_reason = fields.Text()
+
+    #override la methode d'ecriture de wizard pour stocker le motif du refus sur la reservation
+    @api.model
+    def create(self, vals):
+        #récuperation de la reservation actuelle
+        record = self.env['golem.reservation'].browse(self._context.get('active_id'))
+        #stockage du motif sur la reservation
+        record.rejection_reason = vals['rejection_reason']
+        new_record = super(myWizard, self).create(vals)
+        return new_record
+
 #modèle de base : ressources
 class GolemResources(models.Model):
     """ GOLEM Resources """
@@ -55,7 +76,7 @@ class GolemReservation(models.Model):
     linked_resource = fields.Many2one('golem.resources', required=True)
     user = fields.Many2one('res.users', required=True,  default=lambda self: self.env.user)
     on_behalf_of = fields.Many2one('res.partner', required=True, default=lambda self: self.env['res.partner'])
-    #statut=fields.Char()
+    rejection_reason = fields.Text()
     status = fields.Selection([
         ('draft', "Draft"),
         ('confirmed', "Confirmed"),
@@ -71,6 +92,8 @@ class GolemReservation(models.Model):
     @api.multi
     def status_confirm(self):
         self.status = 'confirmed'
+        if( not self.linked_resource.validation_required) :
+            self.status='validated'
 
 
     @api.multi
@@ -81,9 +104,20 @@ class GolemReservation(models.Model):
     def status_validated(self):
         self.status = 'validated'
 
+
     @api.multi
     def status_rejected(self):
         self.status = 'rejected'
+        #lancement du wizard une fois l'administrateur rejet une reservation
+        return {
+                'name'      : _('Please enter the reseaon of rejection'),
+                'type'      : 'ir.actions.act_window',
+                'res_model' : 'golem.reourceswizard',
+                'view_mode': 'form',
+                'view_type': 'form',
+                'target': 'new',
+            }
+
 
     @api.constrains('status')
     def _onConfirmReservation(self):
