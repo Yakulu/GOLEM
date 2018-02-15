@@ -19,14 +19,69 @@
 
 from odoo import models, fields, api, _
 
+class YesNoQueuePopUp(models.TransientModel):
+    """GOLEM Resource wizard"""
+    _name = "golem.queuepopup"
+
+
+    yes_no = fields.Char(default='Do you want to proceed?')
+
+    @api.multi
+    def yes(self):
+        pass
+       # sure continue!
+
+    @api.multi
+    def no(self):
+        pass # don't do anything stupid
+
+
 class GolemActivity(models.Model):
-    """ GOLEM Activity """
-    _name = 'golem.activity'
+    """ GOLEM Activity adaptations """
+    _inherit = 'golem.activity'
+
 
     #ajout d'un champs O2M vers activity_id
     activity_queue_id = fields.One2many('golem.activity.queue', 'activity_id')
     # un boolen pour determiner si une fille d'attente est autorisé
-    allows_queue = fields.Boolean(required=False)
+    queue_allowed = fields.Boolean(default=True)
+
+    @api.multi
+    @api.constrains('places_remain')
+    def _check_remaining_places(self):
+        """ Forbid inscription when there is no more place """
+        for activity in self:
+            if activity.places_remain < 5:
+
+                if self.queue_allowed:
+                    print "__________________________ test ______________________"
+                    return {
+                        'name'      : _('Please enter the reseaon of rejection'),
+                        'type'      : 'ir.actions.act_window',
+                        'res_model' : 'golem.queuepopup',
+                        'view_mode': 'form',
+                        'view_type': 'form',
+                        'target': 'new',
+                        }
+
+                    return {
+                        'name'      : _('Do you want to add your registration to the queue?'),
+                        'type'      : 'ir.actions.act_window',
+                        'res_model' : 'golem.queuepopup',
+                        'view_mode': 'form',
+                        'view_type': 'form',
+                        'target': 'new',
+                        }
+                    print "________________________________test 2 __________________"
+
+
+                else:
+                    emsg = _('Sorry, there is no more place man !')
+                    raise models.ValidationError(emsg)
+
+
+
+
 
 class GolemActivityQueue(models.Model):
     """ GOLEM Activity Queue """
@@ -34,5 +89,5 @@ class GolemActivityQueue(models.Model):
     _description = 'GOLEM Activity Queue'
 
     activity_id = fields.Many2one('golem.activity', required=True)
-    season_id = fields.Many2one('golem.season', related='golem.activity.season_id')
+    season_id = fields.Many2one(related='activity_id.season_id')
     member_id = fields.Many2one('golem.member', required=True)
