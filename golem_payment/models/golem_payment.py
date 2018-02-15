@@ -44,14 +44,7 @@ class GolemPaymentSchedule(models.Model):
     day_ids = fields.Many2many('golem.payment.schedule.day', string='Days')
     occurences = fields.Integer(compute='_compute_occurences')
 
-    @api.model
-    def _default_season(self):
-        """ Get default season """
-        domain = [('is_default', '=', True)]
-        return self.env['golem.season'].search(domain, limit=1)
-
-    season_id = fields.Many2one('golem.season', string='Seasons',
-                                readonly=True, default=_default_season)
+    season_id = fields.Many2one('golem.season', 'Season', required=True)
 
 
     @api.depends('day_ids')
