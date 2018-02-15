@@ -78,8 +78,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </td>
 
                     <td class="col-xs-6">
-                      <div t-field="res_company.partner_id"
-                            t-field-option='{"fields": ["o.name"]}' />
+                      <!-- <div t-field="golem_season.season_id"
+                            t-field-option='{"fields": ["name"]}' /> -->
+                        <span t-field="o.season_ids" /><br></br>
+
                     </td>
                   </tr>
                 </t>
