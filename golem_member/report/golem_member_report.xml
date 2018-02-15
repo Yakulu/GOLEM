@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="dpi">90</field>
     </record>
 
-    <report id="action_todo_task_report"
+    <report id="golem_member_report"
       string="Golem member report"
       model="golem.member"
       report_type="qweb-html"
@@ -48,14 +48,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
           <div class="page">
-          <!-- Report page content -->
-          <div class="col-xs-3">
-            <div t-field="res_company.partner_id"
-            t-field-options='{
-                              "widget": "contact",
-                              "fields": ["address", "name", "phone", "fax"],
-                              "no_marker": true}' />
-            </div>
             <table class="table table-striped">
                 <tr>
                   <th>Member</th>
@@ -76,19 +68,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       </t>
                       <span t-field="o.country_id" /><br></br>
                     </td>
+                    <td class="col-xs-6">
+                        <span t-field="o.season_ids[0].name" /><br></br>
+                        <span t-field="o.season_ids[0].date_start" /><br></br>
+                        <span t-field="o.season_ids[0].date_end" /><br></br>
+                    </td>
+                  </tr>
+                </t>
+            </table>
+            <table class="table table-striped">
+                <t t-foreach="docs" t-as="o">
+                  <tr>
+                    <td class="col-xs-6">
+                      <span t-field="o.activity_registration_ids.activity_id" /><br></br>
+                    </td>
 
                     <td class="col-xs-6">
-                      <!-- <div t-field="golem_season.season_id"
-                            t-field-option='{"fields": ["name"]}' /> -->
-                        <span t-field="o.season_ids" /><br></br>
+                      <span t-field="o.activity_registration_ids.activity_id.animator_id" /><br></br>
+                    </td>
+                    <td class="col-xs-6">
+                      <span t-field="o.activity_registration_ids.activity_id.weekday" /><br></br>
+                    </td>
+
+                    <td class="col-xs-6">
+                      <span t-field="o.activity_registration_ids.activity_id.hour_start" /><br></br>
+                    </td>
+
+                    <td class="col-xs-6">
+                        <span t-field="o.activity_registration_ids.activity_id.hour_stop" /><br></br>
+                      </td>
+                  
+                    <td class="col-xs-6">
+                      <t t-if="o.activity_registration_ids.activity_id.is_recurrent">
+                        <span t-field="o.activity_registration_ids.activity_id.date_start" /><br></br>
+                        <span t-field="o.activity_registration_ids.activity_id.date_stop" /><br></br>
+                      </t>
 
                     </td>
                   </tr>
                 </t>
             </table>
-
           </div>
         </t>
       </t>
     </template>
+
+
 </odoo>
