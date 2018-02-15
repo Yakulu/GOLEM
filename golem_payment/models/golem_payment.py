@@ -43,9 +43,7 @@ class GolemPaymentSchedule(models.Model):
     name = fields.Char(required=True)
     day_ids = fields.Many2many('golem.payment.schedule.day', string='Days')
     occurences = fields.Integer(compute='_compute_occurences')
-
     season_id = fields.Many2one('golem.season', 'Season', required=True)
-
 
     @api.depends('day_ids')
     def _compute_occurences(self):
