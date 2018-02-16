@@ -52,6 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <tr>
                   <th>Member</th>
                   <th>Season</th>
+                  <th>Date of season</th>
                 </tr>
                 <t t-foreach="docs" t-as="o">
                   <tr>
@@ -70,6 +71,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </td>
                     <td class="col-xs-6">
                         <span t-field="o.season_ids[0].name" /><br></br>
+                    </td>
+                    <td class="col-xs-6">
                         <span t-field="o.season_ids[0].date_start" /><br></br>
                         <span t-field="o.season_ids[0].date_end" /><br></br>
                     </td>
@@ -77,12 +80,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </t>
             </table>
             <table class="table table-striped">
+                <tr>
+                  <th>Activity</th>
+                  <th>Animator</th>
+                  <th>Day</th>
+                  <th>Hour start</th>
+                  <th>Hour stop</th>
+                  <th>Date start</th>
+                  <th>Date stop</th>
+                </tr>
                 <t t-foreach="docs" t-as="o">
                   <tr t-foreach="o.activity_registration_ids" t-as="t">
-                    <td class="col-xs-6">
-                      <span t-esc="t['activity_id']" /><br></br>
-                    </td>
-
+                      <td class="col-xs-6">
+                      <span t-esc="t.activity_id.name" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.animator_id" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.weekday" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.hour_start" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.hour_stop" /><br></br>
+                        </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.date_start" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.date_stop" /><br></br>
+                      </td>
                   </tr>
                 </t>
             </table>
