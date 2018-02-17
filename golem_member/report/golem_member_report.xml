@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+
+    <record id="paperformat_euro_landscape"
+      model="report.paperformat">
+      <field name="name">European A4 Landscape</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">40</field>
+      <field name="margin_bottom">23</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">35</field>
+      <field name="dpi">90</field>
+    </record>
+
+    <report id="golem_member_report"
+      string="Golem member report"
+      model="golem.member"
+      report_type="qweb-html"
+      name="golem_member.report_golem_member_template" />
+      <!-- A la Fin remplacer qweb-html par report_type="qweb-pdf" -->
+
+    <template id="report_golem_member_template">
+      <t t-call="report.html_container">
+        <t t-call="report.external_layout">
+          <div class="page">
+            <table class="table table-striped">
+                <tr>
+                  <th>Member</th>
+                  <th>Season</th>
+                  <th>Date of season</th>
+                </tr>
+                <t t-foreach="docs" t-as="o">
+                  <tr>
+                    <td class="col-xs-6">
+                      <strong><span t-field="o.name" /></strong><br></br>
+                      <span t-field="o.street" /><br></br>
+                      <t t-if="o.street2">
+                        <span t-field="o.street2" /><br></br>
+                      </t>
+                      <span t-field="o.zip" /><br></br>
+                      <span t-field="o.city" /><br></br>
+                      <t t-if="o.state_id">
+                        <span t-field="o.state_id" /><br></br>
+                      </t>
+                      <span t-field="o.country_id" /><br></br>
+                    </td>
+                    <td class="col-xs-6">
+                        <span t-field="o.season_ids[0].name" /><br></br>
+                    </td>
+                    <td class="col-xs-6">
+                        <span t-field="o.season_ids[0].date_start" /><br></br>
+                        <span t-field="o.season_ids[0].date_end" /><br></br>
+                    </td>
+                  </tr>
+                </t>
+            </table>
+            <table class="table table-striped">
+                <tr>
+                  <th>Activity</th>
+                  <th>Animator</th>
+                  <th>Day</th>
+                  <th>Hour start</th>
+                  <th>Hour stop</th>
+                  <th>Date start</th>
+                  <th>Date stop</th>
+                </tr>
+                <t t-foreach="docs" t-as="o">
+                  <tr t-foreach="o.activity_registration_ids" t-as="t">
+                      <td class="col-xs-6">
+                      <span t-esc="t.activity_id.name" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.animator_id" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.weekday" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                        <span t-field="t.activity_id.hour_start" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.hour_stop" /><br></br>
+                        </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.date_start" /><br></br>
+                      </td>
+                      <td class="col-xs-6">
+                          <span t-field="t.activity_id.date_stop" /><br></br>
+                      </td>
+                  </tr>
+                </t>
+            </table>
+          </div>
+        </t>
+      </t>
+    </template>
+
+
+</odoo>

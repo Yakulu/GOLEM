@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
-#
+#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -18,9 +19,9 @@
 {
     'name': 'GOLEM non-profit members',
     'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
+    'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
@@ -30,5 +31,6 @@
              'views/res_partner_views.xml',
              'views/golem_member_numberconfig_views.xml',
              'data/golem_member_numberconfig_data.xml',
+             'report/golem_member_report.xml',
              'security/ir.model.access.csv']
 }
