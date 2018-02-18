@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                   <field name="name" />
                   <field name="type_id" />
-                  <field name="product_tmpl_id" options="{'no_create': true}" />
+                  <field name="product_tmpl_id" options="{'no_create': True}" />
               </group>
               <group>
                   <field name="validation_required" />

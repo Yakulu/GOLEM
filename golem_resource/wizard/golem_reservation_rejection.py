@@ -28,9 +28,9 @@ class GolemReservationRejectionWizard(models.TransientModel):
     reason = fields.Text(required=True)
 
     @api.multi
-    def validate(self):
+    def reject(self):
         """ Sets reservation status to rejected and add reason """
         self.ensure_one()
         rejection = self[0]
-        rejection.reservation_id.write({'status': 'rejected',
+        rejection.reservation_id.write({'state': 'rejected',
                                         'rejection_reason': rejection.reason})
