@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Forms -->
-    <record model="ir.ui.view" id="golem_reservation_rejection_wizard_form_view">
+    <record model="ir.ui.view" id="golem_reservation_rejection_wizard_view_form">
       <field name="name">GOLEM Reservation Rejection Wizard Form</field>
       <field name="model">golem.reservation.rejection.wizard</field>
       <field name="arch" type="xml">

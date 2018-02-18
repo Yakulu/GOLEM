@@ -18,73 +18,120 @@
 
 """ GOLEM Resources management """
 
-from odoo import models, fields, api, _, exceptions
+from math import modf
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, ValidationError
 
 
 #modèle de base : ressources
-class GolemResources(models.Model):
-    """ GOLEM Resources """
-    _name = 'golem.resources'
-    _description = 'GOLEM Resources'
+class GolemResource(models.Model):
+    """ GOLEM Resource Model """
+    _name = 'golem.resource'
+    _description = 'GOLEM Resource Model'
 
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, index=True)
     active = fields.Boolean(default=True)
-    validation_required = fields.Boolean(default=True)
-    resource_type = fields.Many2one("golem.resourcetype")
-    resource_responsible = fields.Many2one("res.partner")
-    article_link = fields.Many2one("product.template")
+    validation_required = fields.Boolean(default=True,
+                                         string='Is validation required ?')
+    type_id = fields.Many2one('golem.resource.type',
+                              index=True, string='Resource Type')
+    supervisor_id = fields.Many2one('res.partner', index=True, string='Supervisor')
+    product_tmpl_id = fields.Many2one('product.template', index=True,
+                                      string='Linked product')
 
-    #Configuration de disponibilité(période, jours et horaire)
-    start_of_availability_date = fields.Date(required=True)
-    end_of_availability_date = fields.Date(required=True)
-    timetable = fields.One2many("golem.timetable", "resource_id", string="Availibility timetable")
-    reservation = fields.One2many("golem.reservation", "linked_resource")
+    avaibility_start = fields.Date(required=True, string='Availibility start date')
+    avaibility_stop = fields.Date(required=True, string='Availibility stop date')
+    timetable_ids = fields.One2many('golem.resource.timetable', 'resource_id',
+                                    string='Availibility timetable')
+    reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
+                                      string='Reservations')
 
     @api.multi
-    def active_change(self):
-        self.active = not self.active
+    def active_toggle(self):
+        """ Toggles active boolean """
+        for resource in self:
+            resource.active = not resource.active
 
 
+class GolemResourceReservation(models.Model):
+    """ GOLEM Resource Reservation Model """
+    _name = 'golem.resource.reservation'
+    _description = 'GOLEM Reservation Model'
 
-#modèle gestion des reservation
-class GolemReservation(models.Model):
-    """ GOLEM Reservation """
-    _name = 'golem.reservation'
-    _description = 'GOLEM Reservation'
+    name = fields.Char(compute='_compute_name', store=True)
+    # TODO: handle multiple days reservation
+    date = fields.Date(required=True, index=True)
+    hour_start = fields.Float('Start hour', required=True)
+    hour_stop = fields.Float('Stop hour', required=True)
+    date_start = fields.Datetime(compute='_compute_date_start', store=True, index=True)
+    date_stop = fields.Datetime(compute='_compute_date_stop', store=True, index=True)
 
-    start_date = fields.Datetime()
-    end_date = fields.Datetime()
-    linked_resource = fields.Many2one('golem.resources', required=True)
-    user = fields.Many2one('res.users', required=True,  default=lambda self: self.env.user)
-    on_behalf_of = fields.Many2one('res.partner', required=True, default=lambda self: self.env['res.partner'])
-    rejection_reason = fields.Text()
+    resource_id = fields.Many2one('golem.resource', required=True, index=True,
+                                  string='Resource')
+    user_id = fields.Many2one('res.users', required=True, index=True,
+                              string='User',
+                              default=lambda self: self.env.user)
+    partner_id = fields.Many2one('res.partner', string='On behalf of',
+                                 required=True, index=True)
     status = fields.Selection([
-        ('draft', "Draft"),
-        ('confirmed', "Confirmed"),
-        ('canceled', "Canceled"),
-        ('validated', "Validated"),
-        ('rejected', "Rejected"),
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
+        ('canceled', 'Canceled'),
+        ('validated', 'Validated'),
+        ('rejected', 'Rejected'),
     ], default='draft')
+
+    rejection_reason = fields.Text()
+
+    @api.depends('resource_id', 'date')
+    def _compute_name(self):
+        """ Computes reservation name """
+        for reservation in self:
+            reservation.name = u'{}/{}'.format(reservation.resource_id.name,
+                                               reservation.date)
+
+    @api.depends('date', 'hour_start')
+    def _compute_date_start(self):
+        """ Computes Date start """
+        for reservation in self:
+            hour_start, minute_start = modf(reservation.hour_start)
+            minute_start = int(round(minute_start * 60))
+            reservation.date_start = u'{} {}:{}'.format(reservation.date,
+                                                        hour_start, minute_start)
+
+    @api.depends('date', 'hour_stop')
+    def _compute_date_stop(self):
+        """ Computes Date stop """
+        for reservation in self:
+            hour_stop, minute_stop = modf(reservation.hour_stop)
+            minute_stop = int(round(minute_stop * 60))
+            reservation.date_stop = u'{} {}:{}'.format(reservation.date,
+                                                       hour_stop, minute_stop)
 
     @api.multi
     def status_draft(self):
-        self.status = 'draft'
+        """ Status to draft """
+        self.write({'status': 'draft'})
 
     @api.multi
     def status_confirm(self):
-        self.status = 'confirmed'
-        if( not self.linked_resource.validation_required) :
-            self.status='validated'
+        """ Confirms reservation, or validates it if not workflow is involved """
+        for reservation in self:
+            if reservation.resource_id.validation_required:
+                reservation.status = 'confirmed'
+            else:
+                reservation.status_validated()
 
 
     @api.multi
     def status_canceled(self):
-        self.status = 'canceled'
+        """ Status to cancel """
+        self.write({'status': 'canceled'})
 
     @api.multi
     def status_validated(self):
-        self.status = 'validated'
-
+        """ Status to validated """
+        self.write({'status': 'validated'})
 
     @api.multi
     def status_rejected(self):
@@ -100,68 +147,84 @@ class GolemReservation(models.Model):
 
 
     @api.constrains('status')
-    def _onConfirmReservation(self):
-        if self.status == 'confirmed':
-            #verifyin is the reservation is taking place out of the resource availibility period
-            if(self.start_date < self.linked_resource.start_of_availability_date or self.end_date > self.linked_resource.end_of_availability_date ):
-                raise exceptions.UserError('Not allowed, the resource is not available in this period, please choose another périod before confirming %s' % self.linked_resource.start_of_availability_date)
-            else :
-                #verifying if the reservation is taking place out the availibility timetable
-                #defining a boolean flag, which will determine if the day of the reservation is available
-                r_allowed = False
-                for day in self.linked_resource.timetable :
-                    #if the day is available, look for the time if it's inside the resource timetable availibility
-                    if day.name.id_day == fields.Datetime.from_string(self.start_date).weekday():
-                        start_hour = fields.Datetime.from_string(self.start_date).hour
-                        start_min = float(fields.Datetime.from_string(self.start_date).minute) #+(int(fields.Datetime.from_string(self.start_date).min))/100
-                        start_time_r = start_hour + start_min/100
-                        start_hour = fields.Datetime.from_string(self.end_date).hour
-                        start_min = float(fields.Datetime.from_string(self.end_date).minute) #+(int(fields.Datetime.from_string(self.start_date).min))/100
-                        end_time_r = start_hour + start_min/100
-                        #if the time is suitable, the flag state is changed
-                        if(start_time_r > day.start_time and end_time_r < day.end_time):
-                            r_allowed = True
-                #if the flag is changed no erreur is raised.
-                if(not r_allowed):
-                            raise exceptions.UserError("Not allowed, the resource is not available during this timetable, please choose another time before confirming ")
-                #verifying if the resource is already taken during this period
-                for reservation in self.linked_resource.reservation :
-                    if(self.id != reservation.id and reservation.status == 'confirmed' and not (self.end_date < reservation.start_date or self.start_date > reservation.end_date)):
-                        raise exceptions.UserError("Not allowed, the resource is taken during this period, please choose another période before confirming ")
-                    elif (not self.linked_resource.validation_required):
-                        self.status = 'validated'
+    def check_confirmed(self):
+        """ Check date coherence on reservation confirmation """
+        for reservation in self:
+            if reservation.status == 'confirmed':
+                # Check is reservation is not taking place out of the resource avaibility period
+                if reservation.date < reservation.resource_id.avaibility_start or \
+                   reservation.date > reservation.resource_id.avaibility_stop:
+                    uerr = _('Not allowed, the resource is not available in '
+                             'this period, please choose another périod before '
+                             'confirming')
+                    raise UserError(uerr)
+                # Check if reservation is not taking place out the avaibility timetables
+                is_day_allowed = False
+                for timetable in reservation.resource_id.timetable_ids:
+                    # Check for the time according to resource timetable avaibility
+                    date = fields.Datetime.from_string(reservation.date)
+                    if int(timetable.weekday) == date.weekday():
+                        is_day_allowed = True
+                        if reservation.hour_start < timetable.date_start or \
+                            reservation.hour_stop > timetable.date_stop:
+                            uerr = _('Not allowed, the resource is not available '
+                                     'during this period, please choose another '
+                                     'time before confirming.')
+                            raise UserError(uerr)
+                if not is_day_allowed:
+                    uerr = _('Not allowed, the resource is not available '
+                             'this day. Please choose another date.')
+                    raise UserError(uerr)
+                # Check if the resource is already taken during this period
+                # PERF : check the date, not iterate over all reservations
+                domain = [('resource_id', '=', reservation.resource_id.id),
+                          ('date', '=', reservation.date),
+                          ('status', '=', 'confirmed'),
+                          ('id', '!=', reservation.id)]
+                reservations = self.env['golem.resource.reservation'].search(domain)
+                for other_res in reservations:
+                    if (other_res.hour_start < reservation.hour_start < other_res.hour_stop) or \
+                        (other_res.hour_start < reservation.hour_stop < other_res.hour_stop):
+                        uerr = _('Not allowed, the resource is already taken '
+                                 'during this period : from {} to {} this day, '
+                                 'please choose another périod before confirming.')
+                        raise UserError(uerr.format(reservation.date_start,
+                                                    reservation.date_stop))
+                # Finally, validate the reservation if all checks have passed
+                if reservation.resource_id.validation_required:
+                    reservation.status = 'validated'
 
 
-
-#modèle de base pour identifier le type de la ressource
 class GolemResourceType(models.Model):
     """ GOLEM Resource Type """
-    _name = 'golem.resourcetype'
+    _name = 'golem.resource.type'
     _description = 'GOLEM Resource Type'
+    _sql_constraints = [('golem_resource_type_name_uniq',
+                         'UNIQUE (name)',
+                         'Resource type must be unique.')]
 
-    name = fields.Char(string='Resource Type',required=True)
+    name = fields.Char(string='Resource Type', required=True, index=True)
 
-#modèle de base pour stocker les jours de la semaine
-class GolemWeekDay(models.Model):
-    """ GOLEM Week Day """
-    _name = 'golem.weekday'
-    _description = 'GOLEM Week Day'
-
-    name = fields.Char(string='Week Day')
-    id_day = fields.Integer()
-
-#modèle de gestion horaire
 class GolemTimetable(models.Model):
     """ Golem Timetable """
-    _name = "golem.timetable"
+    _name = "golem.resource.timetable"
     _description = "Golem Timetable"
+    _rec_name = 'weekday'
 
-    resource_id = fields.Many2one("golem.resources", required=True)
-    name = fields.Many2one("golem.weekday", required=True)
-    start_time = fields.Float(required=True)
-    end_time = fields.Float(required=True)
+    resource_id = fields.Many2one('golem.resource', required=True,
+                                  string='Linked resource')
+    weekday = fields.Selection([('0', _('Monday')),
+                                ('1', _('Tuesday')),
+                                ('2', _('Wednesday')),
+                                ('3', _('Thursday')),
+                                ('4', _('Friday')),
+                                ('5', _('Saturday')),
+                                ('6', _('Sunday'))], copy=False)
+    time_start = fields.Float(required=True, string='Start')
+    time_stop = fields.Float(required=True, string='Stop')
 
-    @api.constrains('start_time', 'end_time')
+    @api.constrains('time_start', 'time_stop')
     def _check_time_consistency(self):
-        if self.end_time < self.start_time:
-            raise exceptions.ValidationError(_('End time should be higher than start time'))
+        for timetable in self:
+            if timetable.time_stop < timetable.time_start:
+                raise ValidationError(_('End time should be after than start time'))

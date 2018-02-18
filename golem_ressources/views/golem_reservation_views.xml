@@ -18,99 +18,96 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!--Calendrier des reservations-->
-    <record model="ir.ui.view" id="reservation_calendar_view">
-      <field name="name">reservation.calendar</field>
-      <field name="model">golem.reservation</field>
+
+    <!-- Calendars -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_calendar">
+      <field name="name">GOLEM Resource Reservation Calendar</field>
+      <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <calendar string="Reservation Calendar" date_start="start_date" date_stop="end_date"
-                      color="linked_resource">
-                      <field name="linked_resource"/>
-                      <field name="user"/>
-                      <field name="on_behalf_of"/>
+        <calendar date_start="date_start" date_stop="date_stop" color="resource_id">
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
         </calendar>
       </field>
     </record>
 
-    <!--liste des réservations -->
-    <record model="ir.ui.view" id="reservation_tree_view">
-      <field name="name">reservation.tree</field>
-      <field name="model">golem.reservation</field>
+    <!-- Trees -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_tree">
+      <field name="name">GOLEM Resource Reservation Tree</field>
+      <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <tree string="Reservation tree">
-          <field name="start_date"/>
-          <field name="end_date"/>
-          <field name="linked_resource"/>
-          <field name="user"/>
-          <field name="on_behalf_of"/>
-          <field name="status"/>
-
+        <tree>
+          <field name="date_start" />
+          <field name="date_stop" />
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
+          <field name="status" />
         </tree>
       </field>
     </record>
 
-    <!--Formulaire de réservation de ressource-->
-    <record model="ir.ui.view" id="reservation_form_view">
-      <field name="name">reservation.form</field>
-      <field name="model">golem.reservation</field>
+    <!-- Forms -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_form">
+      <field name="name">GOLEM Resource Reservation Form</field>
+      <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <form string="Reservation Form">
+        <form>
           <header>
             <button name="status_confirm" type="object"
-                    string="Confirm" statuss="draft"
-                    class="oe_highlight"/>
+                    string="Confirm" status="draft"
+                    class="oe_highlight" />
             <button name="status_canceled" type="object"
-                    string="Cancel" statuss="confirmed"
-                    class="oe_highlight"/>
+                    string="Cancel" status="confirmed" />
             <button name="status_validated" type="object"
-                    string="Validate" statuss="confirmed"
-                    class="oe_highlight"/>
+                    string="Validate" status="confirmed"
+                    class="oe_highlight" />
             <button name="status_rejected" type="object"
-                    string="Reject" statuss="confirmed"
-                    class="oe_highlight"/>
-            <field name="status" widget="statusbar"/>
-
+                    string="Reject" status="confirmed"
+                    class="oe_highlight" />
+            <field name="status" widget="statusbar" />
           </header>
           <sheet>
             <group>
-              <field name="start_date"/>
-              <field name="end_date"/>
-              <field name="linked_resource"/>
-              <field name="user"/>
-              <field name="on_behalf_of"/>
-                <field name="rejection_reason"/>
+              <field name="date_start" />
+              <field name="date_stop" />
+              <field name="resource_id" />
+              <field name="user_id" />
+              <field name="partner_id" />
+              <field name="rejection_reason" />
             </group>
-            </sheet>
+          </sheet>
         </form>
       </field>
     </record>
 
-    <!-- recherche relative au menu reservation-->
-    <record model="ir.ui.view" id="reservation_search_view">
-      <field name="name">reservation.search</field>
-      <field name="model">golem.reservation</field>
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_search">
+      <field name="name">GOLEM Resource Reservation Search</field>
+      <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <search string="Reservation tree">
-          <field name="start_date"/>
-          <field name="end_date"/>
-          <field name="linked_resource"/>
-          <field name="user"/>
-          <field name="on_behalf_of"/>
-          <field name="status"/>
-          <filter name="Reservations_to_validate" string="Reservation to Validate"
-            domain="[('status', '=', 'confirmed')]"/>
+        <search>
+          <field name="date_start" />
+          <field name="date_stop" />
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
+          <field name="status" />
+          <filter name="to_validate" string="Reservation to Validate"
+            domain="[('status', '=', 'confirmed')]" />
         </search>
       </field>
     </record>
 
-    <!-- action relative au menu réservation-->
-    <record model="ir.actions.act_window" id="action_reservation">
-      <field name="name">Reservation</field>
-      <field name="res_model">golem.reservation</field>
-      <field name="view_mode">tree,search,form,calendar</field>
-    </record>
-    <menuitem id="resource_reservation_menu" name="Reservations"
-      parent="resources_menu" action="action_reservation" sequence="20" />
+    <!-- Actions -->
+    <act_window id="golem_resource_reservation_action" name="Reservations"
+      res_model="golem.resource.reservation" view_mode="tree,form,calendar" />
+
+    <!-- Menus -->
+    <menuitem id="golem_resource_reservation_menu" name="Reservations"
+      parent="golem_resource_menu" action="golem_resource_reservation_action"
+      sequence="20" />
 
   </data>
 </odoo>

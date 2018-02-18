@@ -24,7 +24,7 @@ class GolemReservationRejectionWizard(models.TransientModel):
     """GOLEM Resource wizard : refusal reason for a reservation """
     _name = "golem.reservation.rejection.wizard"
 
-    reservation_id = fields.Many2one('golem.reservation', required=True)
+    reservation_id = fields.Many2one('golem.resource.reservation', required=True)
     reason = fields.Text(required=True)
 
     @api.multi
