@@ -112,23 +112,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="resource_reservation_menu" name="Reservations"
       parent="resources_menu" action="action_reservation" sequence="20" />
 
-    <record model="ir.ui.view" id="golem_resource_rejection_wizard_form_view">
-      <field name="name">GOLEM Resource Rejection Wizard Form</field>
-      <field name="model">golem.resource.rejection.wizard</field>
-      <field name="arch" type="xml">
-        <form string="Rejection reason">
-          <group>
-            <field name="reservation_id" readonly="1" />
-            <field name="reason" />
-          </group>
-          <footer>
-            <button name="validate" string="Validate" type="object"
-              class="oe_highlight" />
-            <button string="Cancel" class="oe_link" special="cancel" />
-          </footer>
-        </form>
-      </field>
-  </record>
-
   </data>
 </odoo>

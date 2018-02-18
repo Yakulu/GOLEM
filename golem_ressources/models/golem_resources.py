@@ -20,21 +20,6 @@
 
 from odoo import models, fields, api, _, exceptions
 
-class GolemResourceRejectionWizard(models.TransientModel):
-    """GOLEM Resource wizard : refusal reason for a reservation """
-    _name = "golem.resource.rejection.wizard"
-
-    reservation_id = fields.Many2one('golem.reservation', required=True)
-    reason = fields.Text(required=True)
-
-    @api.multi
-    def validate(self, vals):
-        """ Sets reservation status to rejected and add reason """
-        self.ensure_one()
-        rejection = self[0]
-        rejection.reservation_id.write({'status': 'rejected',
-                                        'rejection_reason': rejection.reason})
-
 
 #modèle de base : ressources
 class GolemResources(models.Model):
@@ -108,7 +93,7 @@ class GolemReservation(models.Model):
         reservation_id = self[0]
         return {'name' : _('Please enter the rejection reason'),
                 'type' : 'ir.actions.act_window',
-                'res_model' : 'golem.resource.rejection.wizard',
+                'res_model' : 'golem.reservation.rejection.wizard',
                 'context': {'default_reservation_id': reservation_id.id},
                 'view_mode': 'form',
                 'target': 'new'}

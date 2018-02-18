@@ -16,19 +16,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM non-profit resources',
-    'summary': 'GOLEM resources management',
-    'description': ''' GOLEM resources management ''',
-    'version': '10.0.1.0.4',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['product'],
-    'data': ['views/golem_resources_views.xml',
-             'views/golem_reservation_views.xml',
-             'wizard/golem_reservation_rejection_views.xml',
-             'security/ir.model.access.csv']
-}
+""" GOLEM Resources management """
+
+from odoo import models, fields, api
+
+class GolemReservationRejectionWizard(models.TransientModel):
+    """GOLEM Resource wizard : refusal reason for a reservation """
+    _name = "golem.reservation.rejection.wizard"
+
+    reservation_id = fields.Many2one('golem.reservation', required=True)
+    reason = fields.Text(required=True)
+
+    @api.multi
+    def validate(self):
+        """ Sets reservation status to rejected and add reason """
+        self.ensure_one()
+        rejection = self[0]
+        rejection.reservation_id.write({'status': 'rejected',
+                                        'rejection_reason': rejection.reason})
