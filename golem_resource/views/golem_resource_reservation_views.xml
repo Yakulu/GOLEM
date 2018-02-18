@@ -70,24 +70,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <field name="state" widget="statusbar" />
           </header>
           <sheet>
-            <group colspan="2">
+            <group>
+              <group string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
-            </group>
-            <group>
-              <group>
-                <field name="date" />
-                <field name="hour_start" widget="float_time" />
-                <field name="hour_stop" widget="float_time" />
+                <field name="resource_avaibility_start" />
+                <field name="resource_avaibility_stop" />
+                <field name="resource_timetable_ids" readonly="1" />
               </group>
-              <group>
-                <field name="user_id" options="{'no_create': True}" />
-                <field name="partner_id" />
+              <group string="Reservation">
+                <group>
+                  <field name="date" />
+                  <field name="hour_start" widget="float_time" />
+                  <field name="hour_stop" widget="float_time" />
+                  <field name="user_id" options="{'no_create': True}" />
+                  <field name="partner_id" />
+                  <field name="rejection_reason"
+                    attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                </group>
               </group>
-            </group>
-            <group colspan="2">
-              <field name="rejection_reason"
-                attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
             </group>
           </sheet>
         </form>

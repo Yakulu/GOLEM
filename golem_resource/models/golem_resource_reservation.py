@@ -42,6 +42,10 @@ class GolemResourceReservation(models.Model):
     resource_id = fields.Many2one('golem.resource', required=True, index=True,
                                   string='Resource', readonly=True,
                                   states={'draft': [('readonly', False)]})
+    resource_avaibility_start = fields.Date(related='resource_id.avaibility_start')
+    resource_avaibility_stop = fields.Date(related='resource_id.avaibility_stop')
+    resource_timetable_ids = fields.One2many(related='resource_id.timetable_ids')
+
     user_id = fields.Many2one('res.users', required=True, index=True, readonly=True,
                               string='User', default=lambda self: self.env.user,
                               states={'draft': [('readonly', False)]})
