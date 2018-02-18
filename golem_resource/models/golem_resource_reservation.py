@@ -28,6 +28,7 @@ class GolemResourceReservation(models.Model):
     _name = 'golem.resource.reservation'
     _description = 'GOLEM Reservation Model'
     _inherit = 'mail.thread'
+    _order = 'date desc,hour_start asc'
 
     name = fields.Char(compute='_compute_name', store=True)
     # TODO: handle multiple days reservation

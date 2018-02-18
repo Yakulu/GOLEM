@@ -26,6 +26,7 @@ class GolemResource(models.Model):
     _name = 'golem.resource'
     _description = 'GOLEM Resource Model'
     _inherit = 'mail.thread'
+    _order = 'name asc'
 
     name = fields.Char(required=True, index=True)
     active = fields.Boolean(default=True)

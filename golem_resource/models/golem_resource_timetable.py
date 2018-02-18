@@ -26,6 +26,7 @@ class GolemTimetable(models.Model):
     _name = "golem.resource.timetable"
     _description = "Golem Timetable"
     _rec_name = 'weekday'
+    _order = 'weekday asc,time_start asc'
 
     resource_id = fields.Many2one('golem.resource', required=True,
                                   string='Linked resource')

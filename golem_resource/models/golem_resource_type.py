@@ -24,6 +24,7 @@ class GolemResourceType(models.Model):
     """ GOLEM Resource Type """
     _name = 'golem.resource.type'
     _description = 'GOLEM Resource Type'
+    _order = 'name asc'
     _sql_constraints = [('golem_resource_type_name_uniq',
                          'UNIQUE (name)',
                          'Resource type must be unique.')]
