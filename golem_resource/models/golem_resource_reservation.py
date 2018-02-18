@@ -190,8 +190,8 @@ class GolemResourceReservation(models.Model):
                           ('id', '!=', reservation.id)]
                 reservations = self.env['golem.resource.reservation'].search(domain)
                 for other_res in reservations:
-                    if (other_res.hour_start <= reservation.hour_start <= other_res.hour_stop) or \
-                        (other_res.hour_start <= reservation.hour_stop <= other_res.hour_stop):
+                    if (other_res.hour_start < reservation.hour_start < other_res.hour_stop) or \
+                        (other_res.hour_start < reservation.hour_stop < other_res.hour_stop):
                         uerr = _('Not allowed, the resource is already taken '
                                  'during this period : from {} to {} this day, '
                                  'please choose another périod before confirming.')
