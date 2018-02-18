@@ -34,7 +34,10 @@ class GolemResource(models.Model):
                               index=True, string='Resource Type')
     supervisor_id = fields.Many2one('res.partner', index=True, string='Supervisor')
     product_tmpl_id = fields.Many2one('product.template', index=True,
-                                      string='Linked product')
+                                      string='Linked product',
+                                      help='A generic product can be linked, in '
+                                      'order to sell reservations (work in '
+                                      'progress)')
 
     avaibility_start = fields.Date(required=True, string='Availibility start date')
     avaibility_stop = fields.Date(required=True, string='Availibility stop date')

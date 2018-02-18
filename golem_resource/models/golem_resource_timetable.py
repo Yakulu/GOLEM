@@ -35,12 +35,20 @@ class GolemTimetable(models.Model):
                                 ('3', _('Thursday')),
                                 ('4', _('Friday')),
                                 ('5', _('Saturday')),
-                                ('6', _('Sunday'))], copy=False)
+                                ('6', _('Sunday'))], required=True)
     time_start = fields.Float(required=True, string='Start')
     time_stop = fields.Float(required=True, string='Stop')
 
+    @api.onchange('time_start')
+    def onchange_time_start(self):
+        """ Propose automatically stop hour after start hour had been filled """
+        for line in self:
+            if line.time_start and not line.time_stop:
+                line.time_stop = line.time_start + 1
+
     @api.constrains('time_start', 'time_stop')
     def _check_time_consistency(self):
+        """ Checks time consistency """
         for timetable in self:
             if timetable.time_stop < timetable.time_start:
                 raise ValidationError(_('End time should be after than start time'))
