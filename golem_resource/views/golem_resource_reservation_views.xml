@@ -38,12 +38,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="date_start" />
-          <field name="date_stop" />
+          <field name="hour_start" />
+          <field name="hour_stop" />
           <field name="resource_id" />
           <field name="user_id" />
           <field name="partner_id" />
-          <field name="status" />
+          <field name="state" />
         </tree>
       </field>
     </record>
@@ -55,27 +55,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form>
           <header>
-            <button name="status_confirm" type="object"
-                    string="Confirm" status="draft"
-                    class="oe_highlight" />
-            <button name="status_canceled" type="object"
-                    string="Cancel" status="confirmed" />
-            <button name="status_validated" type="object"
-                    string="Validate" status="confirmed"
-                    class="oe_highlight" />
-            <button name="status_rejected" type="object"
-                    string="Reject" status="confirmed"
-                    class="oe_highlight" />
-            <field name="status" widget="statusbar" />
+            <button name="state_confirm" type="object" string="Confirm" class="oe_highlight"
+              attrs="{'invisible': ['|', ('state', 'not in', 'draft'), ('id', '=', False)]}" />
+            <button name="state_canceled" type="object"
+              string="Cancel" states="confirmed,validated" />
+            <button name="state_draft" type="object" string="Set to draft"
+              states="canceled,confirmed,validated,rejected" />
+            <button name="state_validated" type="object" string="Validate"
+              states="confirmed" class="oe_highlight"
+              groups="golem_base.group_golem_manager" />
+            <button name="state_rejected" type="object" string="Reject"
+              states="confirmed" class="oe_highlight"
+              groups="golem_base.group_golem_manager" />
+            <field name="state" widget="statusbar" />
           </header>
           <sheet>
+            <group colspan="2">
+                <field name="id" invisible="1" />
+                <field name="resource_id" options="{'no_create': True}" />
+            </group>
             <group>
-              <field name="date_start" />
-              <field name="date_stop" />
-              <field name="resource_id" />
-              <field name="user_id" />
-              <field name="partner_id" />
-              <field name="rejection_reason" />
+              <group>
+                <field name="date" />
+                <field name="hour_start" widget="float_time" />
+                <field name="hour_stop" widget="float_time" />
+              </group>
+              <group>
+                <field name="user_id" options="{'no_create': True}" />
+                <field name="partner_id" />
+              </group>
+            </group>
+            <group colspan="2">
+              <field name="rejection_reason"
+                attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
             </group>
           </sheet>
         </form>
@@ -93,9 +105,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="resource_id" />
           <field name="user_id" />
           <field name="partner_id" />
-          <field name="status" />
+          <field name="state" />
           <filter name="to_validate" string="Reservation to Validate"
-            domain="[('status', '=', 'confirmed')]" />
+            domain="[('state', '=', 'confirmed')]" />
         </search>
       </field>
     </record>
