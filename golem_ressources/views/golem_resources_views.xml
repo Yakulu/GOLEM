@@ -19,20 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <!-- Searches -->
-    <record model="ir.ui.view" id="golem_resource_view_search">
-      <field name="name">GOLEM Resource search</field>
-      <field name="model">golem.resource</field>
-      <field name="arch" type="xml">
-        <search>
-          <field name="name" />
-          <field name="type_id" />
-          <field name="supervisor_id" />
-          <field name="product_tmpl_id" />
-        </search>
-      </field>
-    </record>
-
     <!-- Trees -->
     <record model="ir.ui.view" id="golem_resource_view_tree">
       <field name="name">GOLEM Resource Tree</field>
@@ -46,6 +32,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="avaibility_start" />
           <field name="avaibility_stop" />
           <field name="validation_required" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="golem_resource_type_view_tree">
+      <field name="name">GOLEM Resource Type Tree</field>
+      <field name="model">golem.resource.type</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name" />
         </tree>
       </field>
     </record>
@@ -97,22 +93,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
-    <!-- Actions -->
-    <act_window id="golem_resource_action" name="Resources"
-      res_model="golem.resource" view_mode="tree,form" />
-
-    <!-- Trees -->
-    <record model="ir.ui.view" id="golem_resource_type_view_tree">
-      <field name="name">GOLEM Resource Type Tree</field>
-      <field name="model">golem.resource.type</field>
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_resource_view_search">
+      <field name="name">GOLEM Resource search</field>
+      <field name="model">golem.resource</field>
       <field name="arch" type="xml">
-        <tree editable="bottom">
+        <search>
           <field name="name" />
-        </tree>
+          <field name="type_id" />
+          <field name="supervisor_id" />
+          <field name="product_tmpl_id" />
+        </search>
       </field>
     </record>
 
     <!-- Actions -->
+    <act_window id="golem_resource_action" name="Resources"
+      res_model="golem.resource" view_mode="tree,form" />
     <act_window id="golem_resource_type_action" name="Resource Types"
       res_model="golem.resource.type" view_mode="tree" />
 
