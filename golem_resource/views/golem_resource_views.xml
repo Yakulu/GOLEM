@@ -73,16 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <group colspan="2">
                   <field name="timetable_ids"
                     context="{'default_resource_id': active_id}"
-                    attrs="{'readonly': [('id', '=', False)]}">
-                    <tree editable="bottom">
-                      <field name="resource_id" invisible="1" />
-                      <field name="weekday" />
-                      <field name="time_start" string="Start hour"
-                        widget="float_time" />
-                      <field name="time_stop" string="Stop hour"
-                        widget="float_time" />
-                    </tree>
-                  </field>
+                    attrs="{'readonly': [('id', '=', False)]}" />
                 </group>
             </group>
           </sheet>
