@@ -151,10 +151,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="view_mode">tree</field>
     </record>
     <!--menu principale et sous menu-->
-    <menuitem id="resources_menu" name="Resources" />
-    <menuitem id="resources_sub_menu" name="Resources" parent="resources_menu"
-              action="action_resources"/>
-    <menuitem id="configuration_sub_menu" name="Configuration" parent="resources_menu"
-              action="action_configuration"/>
+    <menuitem id="resources_menu" name="Resources"
+      sequence="55" groups="golem_base.group_golem_user"
+      web_icon="golem_ressources,static/description/icon.png" />
+    <menuitem id="resources_list_menu" name="Resources" parent="resources_menu"
+      action="action_resources" sequence="10" />
+    <menuitem id="resource_configuration_menu" name="Configuration"
+      parent="resources_menu" groups="golem_base.group_golem_manager"
+      action="action_configuration" sequence="90" />
+    <menuitem id="resource_cofiguration_type_menu" name="Resource Types"
+      parent="resource_configuration_menu"
+      action="action_configuration" sequence="10" />
   </data>
 </odoo>

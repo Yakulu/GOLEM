@@ -109,8 +109,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="res_model">golem.reservation</field>
       <field name="view_mode">tree,search,form,calendar</field>
     </record>
-    <menuitem id="reservation_sub_menu" name="Reservation" parent="resources_menu"
-                    action="action_reservation"/>
+    <menuitem id="resource_reservation_menu" name="Reservations"
+      parent="resources_menu" action="action_resources" sequence="20" />
 
     <!--formulaire relatif au wizard du motif de refus-->
     <record model="ir.ui.view" id="wizard_form_view">

@@ -18,17 +18,16 @@
 
 {
     'name': 'GOLEM non-profit resources',
-    'summary': 'Extends Odoo resources for MJC',
-    'version': '10.0.1.0.1',
+    'summary': 'GOLEM resources management',
+    'description': ''' GOLEM resources management ''',
+    'version': '10.0.1.0.2',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['product',
-                ],
+    'depends': ['product'],
     'data': ['views/golem_resources_views.xml',
              'views/golem_reservation_views.xml',
-             'security/ir.model.access.csv',
-            ]
+             'security/ir.model.access.csv']
 }
