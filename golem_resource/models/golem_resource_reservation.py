@@ -27,6 +27,7 @@ class GolemResourceReservation(models.Model):
     """ GOLEM Resource Reservation Model """
     _name = 'golem.resource.reservation'
     _description = 'GOLEM Reservation Model'
+    _inherit = 'mail.thread'
 
     name = fields.Char(compute='_compute_name', store=True)
     # TODO: handle multiple days reservation
@@ -41,6 +42,7 @@ class GolemResourceReservation(models.Model):
 
     resource_id = fields.Many2one('golem.resource', required=True, index=True,
                                   string='Resource', readonly=True,
+                                  track_visibility='onchange',
                                   states={'draft': [('readonly', False)]})
     resource_avaibility_start = fields.Date(related='resource_id.avaibility_start')
     resource_avaibility_stop = fields.Date(related='resource_id.avaibility_stop')
@@ -51,16 +53,16 @@ class GolemResourceReservation(models.Model):
                               states={'draft': [('readonly', False)]})
     partner_id = fields.Many2one('res.partner', string='On behalf of',
                                  required=True, index=True, readonly=True,
+                                 track_visibility='onchange',
                                  states={'draft': [('readonly', False)]})
-    state = fields.Selection([
-        ('canceled', 'Canceled'),
-        ('draft', 'Draft'),
-        ('confirmed', 'Confirmed'),
-        ('validated', 'Validated'),
-        ('rejected', 'Rejected')
-    ], default='draft')
+    state = fields.Selection([('canceled', 'Canceled'),
+                              ('draft', 'Draft'),
+                              ('confirmed', 'Confirmed'),
+                              ('validated', 'Validated'),
+                              ('rejected', 'Rejected')],
+                             default='draft', track_visibility='onchange')
 
-    rejection_reason = fields.Text(readonly=True)
+    rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
 
     @api.depends('resource_id', 'date')
     def _compute_name(self):
