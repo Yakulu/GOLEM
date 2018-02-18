@@ -74,8 +74,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
-                <field name="resource_avaibility_start" />
-                <field name="resource_avaibility_stop" />
+                <field name="resource_avaibility_start" readonly="1" />
+                <field name="resource_avaibility_stop" readonly="1" />
                 <field name="resource_timetable_ids" readonly="1" />
               </group>
               <group string="Reservation">
