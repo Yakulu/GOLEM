@@ -16,30 +16,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+""" GOLEM Resources management """
 
 from odoo import models, fields, api, _, exceptions
 
-#Wizard pour recuperer le motif du refus d'une réservation et le stocker sur la reservation
-class myWizard(models.TransientModel):
-    """GOLEM Resource wizard"""
-    _name = "golem.reourceswizard"
+class GolemResourceRejectionWizard(models.TransientModel):
+    """GOLEM Resource wizard : refusal reason for a reservation """
+    _name = "golem.resource.rejection.wizard"
 
-    # recuperer la reservation courant
-    def _default_reservation(self):
-        return self.env['golem.reservation'].browse(self._context.get('active_id'))
+    reservation_id = fields.Many2one('golem.reservation', required=True)
+    reason = fields.Text(required=True)
 
-    rejection_reason = fields.Text()
+    @api.multi
+    def validate(self, vals):
+        """ Sets reservation status to rejected and add reason """
+        self.ensure_one()
+        rejection = self[0]
+        rejection.reservation_id.write({'status': 'rejected',
+                                        'rejection_reason': rejection.reason})
 
-    #override la methode d'ecriture de wizard pour stocker le motif du refus sur la reservation
-    @api.model
-    def create(self, vals):
-        #récuperation de la reservation actuelle
-        record = self.env['golem.reservation'].browse(self._context.get('active_id'))
-        #stockage du motif sur la reservation
-        record.rejection_reason = vals['rejection_reason']
-        new_record = super(myWizard, self).create(vals)
-        return new_record
 
 #modèle de base : ressources
 class GolemResources(models.Model):
@@ -108,16 +103,15 @@ class GolemReservation(models.Model):
 
     @api.multi
     def status_rejected(self):
-        self.status = 'rejected'
-        #lancement du wizard une fois l'administrateur rejet une reservation
-        return {
-                'name'      : _('Please enter the reseaon of rejection'),
-                'type'      : 'ir.actions.act_window',
-                'res_model' : 'golem.reourceswizard',
+        """ Wizard call for reservation reject """
+        self.ensure_one()
+        reservation_id = self[0]
+        return {'name' : _('Please enter the rejection reason'),
+                'type' : 'ir.actions.act_window',
+                'res_model' : 'golem.resource.rejection.wizard',
+                'context': {'default_reservation_id': reservation_id.id},
                 'view_mode': 'form',
-                'view_type': 'form',
-                'target': 'new',
-            }
+                'target': 'new'}
 
 
     @api.constrains('status')
