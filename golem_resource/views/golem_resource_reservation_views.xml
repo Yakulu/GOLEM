@@ -38,10 +38,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="hour_start" />
-          <field name="hour_stop" />
           <field name="resource_id" />
-          <field name="user_id" />
+          <field name="date" />
+          <field name="hour_start" widget="float_time" />
+          <field name="hour_stop" widget="float_time" />
           <field name="partner_id" />
           <field name="state" />
         </tree>
@@ -108,6 +108,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="state" />
           <filter name="to_validate" string="Reservation to Validate"
             domain="[('state', '=', 'confirmed')]" />
+          <filter name="group_state" string="State"
+            context="{'group_by': 'state'}" />
+          <filter name="group_resource" string="Resource"
+            context="{'group_by': 'resource_id'}" />
+          <filter name="group_partner_id" string="Partner"
+            context="{'group_by': 'partner_id'}" />
+          <filter name="group_user" string="User"
+            context="{'group_by': 'user_id'}" />
+          <filter name="group_date_month" string="Month"
+            context="{'group_by': 'date:month'}" />
+          <filter name="group_date_week" string="Week"
+            context="{'group_by': 'date:week'}" />
+          <filter name="group_date_day" string="Day"
+            context="{'group_by': 'date:day'}" />
         </search>
       </field>
     </record>
