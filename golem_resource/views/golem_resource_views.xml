@@ -116,8 +116,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Menus -->
     <menuitem id="golem_resource_menu" name="Resources"
       sequence="55" groups="golem_base.group_golem_user"
-      web_icon="golem_ressources,static/description/icon.png" />
-    <menuitem id="resources_list_menu" name="Resources" parent="golem_resource_menu"
+      web_icon="golem_resource,static/description/icon.png" />
+    <menuitem id="resource_list_menu" name="Resources" parent="golem_resource_menu"
       action="golem_resource_action" sequence="10" />
     <menuitem id="resource_configuration_menu" name="Configuration"
       parent="golem_resource_menu" groups="golem_base.group_golem_manager"

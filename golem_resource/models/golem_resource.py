@@ -23,7 +23,6 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 
 
-#modèle de base : ressources
 class GolemResource(models.Model):
     """ GOLEM Resource Model """
     _name = 'golem.resource'
