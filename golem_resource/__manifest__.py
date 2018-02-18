@@ -20,7 +20,7 @@
     'name': 'GOLEM non-profit resources',
     'summary': 'GOLEM resources management',
     'description': ''' GOLEM resources management ''',
-    'version': '10.0.1.1.1',
+    'version': '10.0.1.2.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -28,7 +28,8 @@
     'installable': True,
     'depends': ['product'],
     'data': ['views/golem_resource_views.xml',
-             'views/golem_reservation_views.xml',
+             'views/golem_resource_type_views.xml',
+             'views/golem_resource_reservation_views.xml',
              'wizard/golem_reservation_rejection_views.xml',
              'security/ir.model.access.csv']
 }

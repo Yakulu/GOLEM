@@ -16,7 +16,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import golem_resource_type, \
-    golem_resource_timetable, \
-    golem_resource, \
-    golem_resource_reservation
+""" GOLEM Resource Type """
+
+from odoo import models, fields
+
+class GolemResourceType(models.Model):
+    """ GOLEM Resource Type """
+    _name = 'golem.resource.type'
+    _description = 'GOLEM Resource Type'
+    _sql_constraints = [('golem_resource_type_name_uniq',
+                         'UNIQUE (name)',
+                         'Resource type must be unique.')]
+
+    name = fields.Char(string='Resource Type', required=True, index=True)
