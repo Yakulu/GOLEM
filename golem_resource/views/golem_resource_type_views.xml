@@ -30,6 +30,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_resource_type_view_search">
+      <field name="name">GOLEM Resource Type Search</field>
+      <field name="model">golem.resource.type</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+        </search>
+      </field>
+    </record>
+
     <!-- Actions -->
     <act_window id="golem_resource_type_action" name="Resource Types"
       res_model="golem.resource.type" view_mode="tree" />
