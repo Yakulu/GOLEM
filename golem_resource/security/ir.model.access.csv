@@ -3,7 +3,7 @@ access_golem_resource_user,Access GOLEM Resource User,model_golem_resource,golem
 access_golem_resource_manager,Access GOLEM Resource Manager,model_golem_resource,golem_base.group_golem_manager,1,1,1,1
 access_golem_resource_type_user,Access GOLEM Resource Type User,model_golem_resource_type,golem_base.group_golem_user,1,0,0,0
 access_golem_resource_type_manager,Access GOLEM Resource Type Manager,model_golem_resource_type,golem_base.group_golem_manager,1,1,1,1
-access_golem_resource_reservation_user,Access GOLEM Resource Reservation User,model_golem_resource_reservation,golem_base.group_golem_user,1,0,0,0
+access_golem_resource_reservation_user,Access GOLEM Resource Reservation User,model_golem_resource_reservation,golem_base.group_golem_user,1,1,1,0
 access_golem_resource_reservation_manager,Access GOLEM Resource Reservation Manager,model_golem_resource_reservation,golem_base.group_golem_manager,1,1,1,1
 access_golem_resource_timetable_user,Access GOLEM Resource Timetable User,model_golem_resource_timetable,golem_base.group_golem_user,1,0,0,0
 access_golem_resource_timetable_manager,Access GOLEM Resource Timetable Manager,model_golem_resource_timetable,golem_base.group_golem_manager,1,1,1,1
