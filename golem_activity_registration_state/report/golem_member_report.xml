@@ -37,14 +37,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <xpath expr="//t[@id='activity_inherit_price_sum']" position="before">
                   <t t-set="price_sum" t-value="0"/>
                 </xpath>
-                <xpath expr="//tr[@id='activity_inherit_price_sum2']" position="after">
+                <xpath expr="//tr[@id='activity_inherit_price_sum']" position="after">
                   <t t-set="activity_price" t-value="t.activity_price" />
                 </xpath>
                 <xpath expr="//tr[@id='activity_inherit_total']" position="inside">
                   <td>
-                    <strong>Total</strong>
                     <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
-                    <h1>RESULT=<t t-esc="price_sum"  /></h1>
+                    <h1>TOTAL=<t t-esc="price_sum"  /></h1>
                   </td>
               </xpath>
 
