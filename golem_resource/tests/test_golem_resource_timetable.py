@@ -34,7 +34,7 @@ class TestGolemResourceTimetable(TransactionCase):
             'avaibility_start': '2018-01-01',
             'avaibility_stop': '2020-01-01'
         })
-        self.timetable = self.env['golem.resource.timetable']
+        self.timetable_obj = self.env['golem.resource.timetable']
         self.data = {'resource_id': self.resource.id,
                      'weekday': '0',
                      'time_start': 8.0,
@@ -42,7 +42,7 @@ class TestGolemResourceTimetable(TransactionCase):
 
     def test_timetable_basic(self):
         """ Test Timetable bases """
-        timetable = self.timetable.create(self.data)
+        timetable = self.timetable_obj.create(self.data)
         self.assertEqual(timetable.resource_id, self.resource)
         self.assertEqual(timetable.time_start, 8.0)
         self.assertEqual(timetable.time_stop, 10.0)
@@ -52,7 +52,7 @@ class TestGolemResourceTimetable(TransactionCase):
         """ Test timetable times : stop can not be equal or after start """
         self.data.update({'time_stop': 7.0})
         with self.assertRaises(ValidationError):
-            self.timetable.create(self.data)
+            self.timetable_obj.create(self.data)
         self.data.update({'time_stop': self.data['time_start']})
         with self.assertRaises(ValidationError):
-            self.timetable.create(self.data)
+            self.timetable_obj.create(self.data)

@@ -33,11 +33,11 @@ class TestGolemResource(TransactionCase):
             'avaibility_start': '2018-01-01',
             'avaibility_stop': '2020-01-01'
         }
-        self.resource = self.env['golem.resource']
+        self.resource_obj = self.env['golem.resource']
 
     def test_resource_basic(self):
         """ Test resource bases """
-        resource = self.resource.create(self.data)
+        resource = self.resource_obj.create(self.data)
         self.assertTrue(resource.active)
         self.assertFalse(resource.validation_required)
         self.assertEqual(resource.avaibility_start, '2018-01-01')
@@ -49,7 +49,7 @@ class TestGolemResource(TransactionCase):
 
     def test_resource_active(self):
         """ Test resource active """
-        resource = self.resource.create(self.data)
+        resource = self.resource_obj.create(self.data)
         self.assertTrue(resource.active)
         resource.active_toggle()
         self.assertFalse(resource.active)
@@ -60,10 +60,10 @@ class TestGolemResource(TransactionCase):
         """ Test resource dates : stop can not be after start """
         self.data.update({'avaibility_stop': '2017-01-01'})
         with self.assertRaises(ValidationError):
-            self.resource.create(self.data)
+            self.resource_obj.create(self.data)
 
     def test_resource_dates_equal(self):
         """ Test resource dates : stop can not be equal to start """
         self.data.update({'avaibility_stop': self.data['avaibility_start']})
         with self.assertRaises(ValidationError):
-            self.resource.create(self.data)
+            self.resource_obj.create(self.data)
