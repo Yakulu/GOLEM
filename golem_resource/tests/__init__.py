@@ -16,4 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import test_golem_resource, test_golem_resource_timetable
+from . import test_golem_resource, test_golem_resource_timetable, test_golem_resource_reservation
