@@ -51,5 +51,5 @@ class GolemTimetable(models.Model):
     def _check_time_consistency(self):
         """ Checks time consistency """
         for timetable in self:
-            if timetable.time_stop < timetable.time_start:
+            if timetable.time_stop <= timetable.time_start:
                 raise ValidationError(_('End time should be after than start time'))
