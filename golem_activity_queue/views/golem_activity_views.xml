@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
-    <record id="golem_activity_form_inherit_queue"
-    model="ir.ui.view">
-    <field name="name">Activity Registrations and Places</field>
+    <record id="golem_activity_form_inherit_golem_activity_queue"
+            model="ir.ui.view">
+    <field name="name">Add the queue registration button to activity form</field>
     <field name="model">golem.activity</field>
     <field name="inherit_id" ref="golem_activity.golem_activity_form" />
     <field name="arch" type="xml">
