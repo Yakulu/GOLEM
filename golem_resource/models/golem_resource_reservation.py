@@ -20,7 +20,7 @@
 
 from math import modf
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 class GolemResourceReservation(models.Model):
@@ -103,7 +103,7 @@ class GolemResourceReservation(models.Model):
     def _check_hour_consistency(self):
         """ Checks hour consistency """
         for reservation in self:
-            if reservation.hour_stop < reservation.hour_start:
+            if reservation.hour_stop <= reservation.hour_start:
                 raise ValidationError(_('End time should be after than start time'))
 
     @api.multi
@@ -150,8 +150,8 @@ class GolemResourceReservation(models.Model):
         reservation = self[0]
         if reservation.state in ('rejected', 'validated'):
             if not self.env.user.has_group('golem_base.group_golem_manager'):
-                uerr = _('You do not have permissions to validate or reject a reservation.')
-                raise UserError(uerr)
+                verr = _('You do not have permissions to validate or reject a reservation.')
+                raise ValidationError(verr)
 
     @api.constrains('state')
     def check_confirmed(self):
@@ -161,10 +161,10 @@ class GolemResourceReservation(models.Model):
                 # Check is reservation is not taking place out of the resource avaibility period
                 if reservation.date < reservation.resource_id.avaibility_start or \
                    reservation.date > reservation.resource_id.avaibility_stop:
-                    uerr = _('Not allowed, the resource is not available in '
+                    verr = _('Not allowed, the resource is not available in '
                              'this period, please choose another périod before '
                              'confirming')
-                    raise UserError(uerr)
+                    raise ValidationError(verr)
                 # Check if reservation is not taking place out the avaibility timetables
                 is_day_allowed = False
                 for timetable in reservation.resource_id.timetable_ids:
@@ -174,14 +174,14 @@ class GolemResourceReservation(models.Model):
                         is_day_allowed = True
                         if reservation.hour_start < timetable.time_start or \
                             reservation.hour_stop > timetable.time_stop:
-                            uerr = _('Not allowed, the resource is not available '
+                            verr = _('Not allowed, the resource is not available '
                                      'during this period, please choose another '
                                      'time before confirming.')
-                            raise UserError(uerr)
+                            raise ValidationError(verr)
                 if not is_day_allowed:
-                    uerr = _('Not allowed, the resource is not available '
+                    verr = _('Not allowed, the resource is not available '
                              'this day. Please choose another date.')
-                    raise UserError(uerr)
+                    raise ValidationError(verr)
                 # Check if the resource is already taken during this period
                 # PERF : check the date, not iterate over all reservations
                 domain = [('resource_id', '=', reservation.resource_id.id),
@@ -192,8 +192,8 @@ class GolemResourceReservation(models.Model):
                 for other_res in reservations:
                     if (other_res.hour_start < reservation.hour_start < other_res.hour_stop) or \
                         (other_res.hour_start < reservation.hour_stop < other_res.hour_stop):
-                        uerr = _('Not allowed, the resource is already taken '
+                        verr = _('Not allowed, the resource is already taken '
                                  'during this period : from {} to {} this day, '
                                  'please choose another périod before confirming.')
-                        raise UserError(uerr.format(other_res.date_start,
-                                                    other_res.date_stop))
+                        raise ValidationError(verr.format(other_res.date_start,
+                                                          other_res.date_stop))
