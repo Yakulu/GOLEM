@@ -87,7 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <th>Hour start</th>
                   <th>Hour stop</th>
                   <th>Date start</th>
-                  <th>Date stop</th>
+                  <th id="activity_inherit_th">Date stop</th>
                 </tr>
                 <t t-foreach="docs" t-as="o">
                   <tr t-foreach="o.activity_registration_ids" t-as="t">
@@ -109,9 +109,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       <td class="col-xs-6">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
-                      <td id="place" class="col-xs-6">
+                      <td id="activity_inherit_td" class="col-xs-6">
                           <span t-field="t.activity_id.date_stop" /><br></br>
                       </td>
+                      <tr id="activity_inherit_total"></tr>
                   </tr>
                 </t>
             </table>

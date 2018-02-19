@@ -20,19 +20,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
 
-    <report id="golem_activity_registration_report"
-      string="golem_activity_registration report"
-      model="golem.activity_registration_state"
-      report_type="qweb-html"
-      name="golem_activity.report_golem_member_template" />
-
-      <template id="report_golem_member_template" inherit_id="golem_member.report_golem_member_template">
-                <xpath expr="//td[@id='place']" position="after">
-                  <!-- <span t-set="name" t-value="activity_id.name"/> -->
+      <template id="activity" inherit_id="golem_member.report_golem_member_template">
+                <xpath expr="//th[@id='activity_inherit_th']" position="after">
+                  <th>State</th>
+                  <th>Price</th>
+                </xpath>
+                <xpath expr="//td[@id='activity_inherit_td']" position="after">
                   <td>
-                    <h1> tttttttt<span t-esc="activity_id" /></h1>
+                      <span t-field="t.state" />
+                  </td>
+                  <td>
+                      <span t-field="t.activity_price" />
+                  </td>
+                </xpath>
+                <xpath expr="//tr[@id='activity_inherit_total']" position="inside">
+                  <td>
+                    <strong>Total</strong>
+                    <!-- <t t-set="test_variable" t-value="100"/>
+                    <p t-foreach="t.activity_price" t-as="i">
+                      <t t-set="test_variable" t-value="test_variable+i"/>
+                    </p>
+                    <h1>RESULT=<t t-esc="test_variable"/></h1> -->
 
-                    <!-- <h1> tttttttt<span t-set="state" t-value="activity_registration_ids.state" /></h1> -->
+                    <p t-foreach="t.activity_price" t-as="i">
+                      <t t-set="i" t-value="0"/>
+                      <t t-set="price_count" t-value="price_base + i"/>
+                    </p>
+                    <h1>RESULT=<t t-esc="price_count"  /></h1>
                   </td>
                 </xpath>
 
