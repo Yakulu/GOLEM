@@ -89,8 +89,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <th>Date start</th>
                   <th id="activity_inherit_th">Date stop</th>
                 </tr>
-                <t t-foreach="docs" t-as="o">
-                  <tr t-foreach="o.activity_registration_ids" t-as="t">
+                <t id="activity_inherit_price_sum" t-foreach="docs" t-as="o">
+                  <tr id="activity_inherit_price_sum2" t-foreach="o.activity_registration_ids" t-as="t">
                       <td class="col-xs-6">
                       <span t-esc="t.activity_id.name" /><br></br>
                       </td>
