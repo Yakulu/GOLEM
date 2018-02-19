@@ -50,14 +50,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </field>
 </record>
 
-    <record model="ir.actions.act_window" id="action_queue">
-      <field name="name">Resources Type</field>
-      <field name="res_model">golem.activity.queue</field>
-      <field name="view_mode">form</field>
-    </record>
-  <!--menu principale et sous menu-->
-    <menuitem id="queue_menu" name="Queue"  action="action_queue"/>
-
-
   </data>
 </odoo>
