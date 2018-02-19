@@ -15,3 +15,19 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from odoo import models, fields, api, _
+
+class GolemMember(models.Model):
+    """ GOLEM Member adaptations """
+    _inherit = 'golem.member'
+
+    @api.onchange('activity_registration_ids')
+    def _checkRemain(self):
+        if len(self.activity_registration_ids) > self.places and self.queue_allowed:
+            return {
+                'warning' : {
+                    'title' : _('Warning'),
+                    'message': _('No remaining place, please register in the queue'),
+                }
+            }
