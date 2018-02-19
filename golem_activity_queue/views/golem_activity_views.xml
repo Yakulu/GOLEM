@@ -27,6 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <xpath expr="//field[@name='is_overbooked']" position="after">
         <field name="queue_allowed"/>
       </xpath>
+      <xpath expr="//field[@name='activity_registration_ids']" position="after">
+        <button class="oe_highlight" name="queue_register" string="Register in the queue"  type="object"/>
+      </xpath>
     </field>
   </record>
 
@@ -36,11 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="type">form</field>
     <field name="arch" type="xml">
       <form string="Add motif">
-        <field name="yes_no" readonly="1" />
-        <!--<footer>
-          <button class="oe_highlight" name="yes" string="Yes" />
-          <button class="oe_highlight" name="no" string="No" />
-        </footer>-->
+        <footer>
+          <button class="oe_highlight" name="queueYes" string="Yes"  type="object"/>
+          <button class="oe_highlight" name="queueNo" string="No"  type="object"/>
+        </footer>
       </form>
     </field>
   </record>

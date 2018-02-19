@@ -20,7 +20,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
 
-  
+    <!--formulaire du modèle golem.resources-->
+<record model="ir.ui.view" id="queue_form_view">
+  <field name="name">queue.form</field>
+  <field name="model">golem.activity.queue</field>
+  <field name="arch" type="xml">
+    <form string="Queue Form">
+      <sheet>
+        <group>
+          <field name="activity_id"/>
+          <field name="season_id"/>
+          <field name="member_id"/>
+        </group>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+<!--liste editable du modèle golem.activity.queue-->
+<record model="ir.ui.view" id="queue_tree_view">
+<field name="name">queue.tree</field>
+<field name="model">golem.activity.queue</field>
+<field name="arch" type="xml">
+<tree string="Queue Tree" editable="top">
+  <field name="activity_id"/>
+  <field name="season_id"/>
+  <field name="member_id"/>
+</tree>
+</field>
+</record>
+
+    <record model="ir.actions.act_window" id="action_queue">
+      <field name="name">Resources Type</field>
+      <field name="res_model">golem.activity.queue</field>
+      <field name="view_mode">form</field>
+    </record>
+  <!--menu principale et sous menu-->
+    <menuitem id="queue_menu" name="Queue"  action="action_queue"/>
+
 
   </data>
 </odoo>
