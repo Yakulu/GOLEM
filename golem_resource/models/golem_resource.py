@@ -19,6 +19,7 @@
 """ GOLEM Resources management """
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class GolemResource(models.Model):
@@ -30,7 +31,7 @@ class GolemResource(models.Model):
 
     name = fields.Char(required=True, index=True)
     active = fields.Boolean(default=True)
-    validation_required = fields.Boolean(default=True,
+    validation_required = fields.Boolean(default=False,
                                          string='Is validation required ?')
     type_id = fields.Many2one('golem.resource.type',
                               index=True, string='Resource Type')
@@ -53,3 +54,11 @@ class GolemResource(models.Model):
         """ Toggles active boolean """
         for resource in self:
             resource.active = not resource.active
+
+    @api.constrains('avaibility_start', 'avaibility_stop')
+    def _check_date_consistency(self):
+        """ Checks date consistency """
+        for resource in self:
+            if resource.avaibility_stop <= resource.avaibility_start:
+                raise ValidationError(_('End availibility should be after than '
+                                        'start availibility'))
