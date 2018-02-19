@@ -109,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       <td class="col-xs-6">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td id="place" class="col-xs-6">
                           <span t-field="t.activity_id.date_stop" /><br></br>
                       </td>
                   </tr>

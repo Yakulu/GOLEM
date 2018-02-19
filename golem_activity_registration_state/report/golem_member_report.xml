@@ -22,20 +22,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <report id="golem_activity_registration_report"
       string="golem_activity_registration report"
-      model="golem.activity_registration"
+      model="golem.activity_registration_state"
       report_type="qweb-html"
       name="golem_activity.report_golem_member_template" />
 
-      <template id="activity" inherit_id="golem_member.report_golem_member_template">
-            <t t-foreach="docs" t-as="o">
-              <table>
-              <tr t-foreach="o.member_id" t-as="t">
-                <xpath expr="//strong" position="replace">
-                  <span t-field="t.name" />
+      <template id="report_golem_member_template" inherit_id="golem_member.report_golem_member_template">
+                <xpath expr="//td[@id='place']" position="after">
+                  <!-- <span t-set="name" t-value="activity_id.name"/> -->
+                  <td>
+                    <h1> tttttttt<span t-esc="activity_id" /></h1>
+
+                    <!-- <h1> tttttttt<span t-set="state" t-value="activity_registration_ids.state" /></h1> -->
+                  </td>
                 </xpath>
-              </tr>
-              </table>
-            </t>
+
       </template>
 
 </odoo>
