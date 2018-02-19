@@ -28,7 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <field name="queue_allowed"/>
       </xpath>
       <xpath expr="//field[@name='activity_registration_ids']" position="after">
-        <button class="oe_highlight" name="queue_register" string="Register in the queue"  type="object"/>
+        <button class="oe_highlight" name="queue_register"
+                string="Register in the queue"  type="object"
+                attrs="{'invisible':[('places_remain','>', 0)]}"/>
       </xpath>
     </field>
   </record>
