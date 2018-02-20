@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </tr>
                 </t>
             </table>
-            <table class="table table-striped">
+            <table id="table_activity_ref" class="table table-striped">
                 <tr>
                   <th>Activity</th>
                   <th>Animator</th>
@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       </td>
                       <tr id="activity_inherit_sum"></tr>
                   </tr>
-                  <tfoot style="text-align:right" id="activity_inherit_total"></tfoot>
+                  <tfoot id="activity_inherit_total"></tfoot>
 
                 </t>
             </table>

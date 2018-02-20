@@ -21,38 +21,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
 
       <template id="activity" inherit_id="golem_member.report_golem_member_template">
-                <xpath expr="//th[@id='activity_inherit_th']" position="after">
-                  <th>State</th>
-                  <th>Price</th>
-                </xpath>
-                <xpath expr="//td[@id='activity_inherit_td']" position="after">
+          <xpath expr="//th[@id='activity_inherit_th']" position="after">
+            <th>State</th>
+            <th>Price</th>
+          </xpath>
+          <xpath expr="//td[@id='activity_inherit_td']" position="after">
+            <td>
+              <span t-field="t.state" />
+            </td>
+            <td>
+              <span t-field="t.activity_price" t-field-options="{'widget': 'monetary',
+                              'display_currency': o.currency_id}"/>
+            </td>
+          </xpath>
+          <xpath expr="//tr[@id='activity_inherit_price_sum']" position="before">
+            <t t-set="price_sum" t-value="0"/>
+          </xpath>
+          <xpath expr="//tr[@id='activity_inherit_sum']" position="inside">
+            <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
+          </xpath>
+          <xpath expr="//tfoot[@id='activity_inherit_total']" position="inside">
+            <tr>
+              <td>
+                <strong>TOTAL=<t t-esc="price_sum"
+                  t-esc-options="{'widget': 'monetary',
+                                  'display_currency': o.currency_id}" /></strong>
+              </td>
+            </tr>
+          </xpath>
+
+          <xpath expr="//table[@id='table_activity_ref']" position="after">
+            <table class="table table-striped">
+              <t t-foreach="docs" t-as="o">
+                <tr t-foreach="o.activity_registration_ids" t-as="l">
                   <td>
-                    <span t-field="t.state" />
+                    <spam t-field="l.invoice_id.number" />
                   </td>
-                  <td>
-                    <span t-field="t.activity_price" t-field-options="{'widget': 'monetary',
-                                    'display_currency': o.currency_id}"/>
-                  </td>
-                </xpath>
-
-                <xpath expr="//tr[@id='activity_inherit_price_sum']" position="before">
-                  <t t-set="price_sum" t-value="0"/>
-                </xpath>
-                <xpath expr="//tr[@id='activity_inherit_sum']" position="inside">
-
-                    <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
-
-              </xpath>
-              <xpath expr="//tfoot[@id='activity_inherit_total']" position="inside">
-                  <tr>
-                    <td>
-                      <strong>TOTAL=<t t-esc="price_sum"
-                        t-esc-options="{'widget': 'monetary',
-                                        'display_currency': o.currency_id}" /></strong>
-                    </td>
-                  </tr>
-            </xpath>
-
+                </tr>
+              </t>
+            </table>
+          </xpath>
       </template>
 
 </odoo>
