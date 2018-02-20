@@ -47,7 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="member_id"/>
     <field name="activity_id"  readonly='1'/>
     <field name="season_id" readonly='1'/>
-    <field name='test'/>
   </tree>
 </field>
 </record>
