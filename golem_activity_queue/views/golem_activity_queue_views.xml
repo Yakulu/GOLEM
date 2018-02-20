@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <field name="name">queue.tree</field>
 <field name="model">golem.activity.queue</field>
 <field name="arch" type="xml">
-  <tree string="Queue Tree" editable="top">
+  <tree string="Queue Tree" editable="bottom">
     <field name="activity_id"/>
     <field name="season_id"/>
     <field name="member_id"/>

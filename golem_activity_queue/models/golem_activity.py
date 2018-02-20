@@ -33,13 +33,13 @@ class GolemActivity(models.Model):
             'name'      : _('Register in the queue'),
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue',
-            'view_mode': 'form',
-            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'flags': {'action_buttons': True},
             'target': 'new',
         }
 
     @api.onchange('activity_registration_ids')
-    def _checkRemain(self):    
+    def _checkRemain(self):
         if len(self.activity_registration_ids) > self.places and self.queue_allowed:
             return {
                 'warning' : {

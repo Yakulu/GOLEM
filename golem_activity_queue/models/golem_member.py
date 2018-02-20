@@ -31,3 +31,13 @@ class GolemMember(models.Model):
                     'message': _('No remaining place, please register in the queue'),
                 }
             }
+
+    def queue_register(self):
+        return {
+            'name'      : _('Register in the queue'),
+            'type'      : 'ir.actions.act_window',
+            'res_model' : 'golem.activity.queue',
+            'view_mode': 'tree',
+            'flags': {'action_buttons': True},
+            'target': 'new',
+        }
