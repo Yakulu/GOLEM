@@ -52,10 +52,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
           <xpath expr="//table[@id='table_activity_ref']" position="after">
             <table class="table table-striped">
+              <thead><h1>Invoices</h1></thead>
+              <tr>
+                <th>Date</th>
+                <th>Number</th>
+                <th>Activity</th>
+                <th>Amount</th>
+                <th>State</th>
+              </tr>
               <t t-foreach="docs" t-as="o">
                 <tr t-foreach="o.activity_registration_ids" t-as="l">
                   <td>
+                    <spam t-field="l.invoice_id.date_invoice" />
+                  </td>
+                  <td>
                     <spam t-field="l.invoice_id.number" />
+                  </td>
+                  <td>
+                    <spam t-field="l.invoice_line_id.product_id" />
+                  </td>
+                  <td>
+                    <spam t-field="l.invoice_id.amount_total" />
+                  </td>
+                  <td>
+                    <spam t-field="l.invoice_id.state" />
                   </td>
                 </tr>
               </t>
