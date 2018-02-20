@@ -24,19 +24,26 @@ class GolemActivity(models.Model):
 
 
     #ajout d'un champs O2M vers activity_id
-    activity_queue_id = fields.One2many('golem.activity.queue', 'activity_id')
+    activity_queue_ids = fields.One2many('golem.activity.queue', 'activity_id')
     # un boolen pour determiner si une fille d'attente est autorisé
     queue_allowed = fields.Boolean(default=True)
 
+    @api.multi
     def queue_register(self):
+        self.ensure_one()
+        activity_id = self[0]
         return {
             'name'      : _('Register in the queue'),
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue',
-            'view_mode': 'tree,form',
+            'context' :{'default_activity_id' : activity_id.id},
+            'domain' : [('activity_id', '=', activity_id.id)],# activity_id.name)],#"('activity_id', '=', True)"
+            'view_mode': 'tree',
             'flags': {'action_buttons': True},
             'target': 'new',
         }
+
+
 
     @api.onchange('activity_registration_ids')
     def _checkRemain(self):

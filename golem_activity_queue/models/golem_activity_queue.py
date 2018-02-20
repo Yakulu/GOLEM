@@ -54,6 +54,8 @@ class GolemActivityQueue(models.Model):
     activity_id = fields.Many2one('golem.activity', required=True)
     season_id = fields.Many2one(related='activity_id.season_id')
     member_id = fields.Many2one('golem.member', required=True)
+    is_current = fields.Boolean('Current season?',
+                                related='activity_id.is_current', store=True)
 
     def call_up_wizard(self):
         return {
