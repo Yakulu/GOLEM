@@ -30,22 +30,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <span t-field="t.state" />
                   </td>
                   <td>
-                    <span t-field="t.activity_price" />
+                    <span t-field="t.activity_price" t-field-options="{'widget': 'monetary',
+                                    'display_currency': o.currency_id}"/>
                   </td>
                 </xpath>
 
-                <xpath expr="//t[@id='activity_inherit_price_sum']" position="before">
+                <xpath expr="//tr[@id='activity_inherit_price_sum']" position="before">
                   <t t-set="price_sum" t-value="0"/>
                 </xpath>
-                <xpath expr="//tr[@id='activity_inherit_price_sum']" position="after">
-                  <t t-set="activity_price" t-value="t.activity_price" />
-                </xpath>
-                <xpath expr="//tr[@id='activity_inherit_total']" position="inside">
-                  <td>
+                <xpath expr="//tr[@id='activity_inherit_sum']" position="inside">
+
                     <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
-                    <h1>TOTAL=<t t-esc="price_sum"  /></h1>
-                  </td>
+
               </xpath>
+              <xpath expr="//tfoot[@id='activity_inherit_total']" position="inside">
+                  <tr>
+                    <td>
+                      <strong>TOTAL=<t t-esc="price_sum"
+                        t-esc-options="{'widget': 'monetary',
+                                        'display_currency': o.currency_id}" /></strong>
+                    </td>
+                  </tr>
+            </xpath>
 
       </template>
 
