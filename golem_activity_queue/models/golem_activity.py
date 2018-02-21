@@ -24,9 +24,19 @@ class GolemActivity(models.Model):
 
 
     #ajout d'un champs O2M vers activity_id
-    activity_queue_ids = fields.One2many('golem.activity.queue', 'activity_id')
+    activity_queue_ids = fields.One2many('golem.activity.queue',
+                        'activity_id','Pending registration')
     # un boolen pour determiner si une fille d'attente est autorisé
     queue_allowed = fields.Boolean(default=True)
+    #ajout d'un champs pour calculer le nombre d'inscription en file d'attente
+    queue_activity_number = fields.Integer(compute="_queue_activity_number",
+                            store=True , string='Pending registration number')
+
+
+    @api.multi
+    def _queue_activity_number(self):
+        for activity in self:
+            activity.queue_activity_number = len(activity.activity_queue_ids)
 
     @api.multi
     def queue_register(self):

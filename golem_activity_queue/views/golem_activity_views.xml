@@ -33,6 +33,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 string="Register in the queue"  type="object"
                 attrs="{'invisible':[('places_remain','>', 0)]}"/>
       </xpath>
+      <!--onglet queue sur activity-->
+      <page name="invoicing" position="before">
+        <page name="queue" string="Queue">
+          <group>
+            <field name="queue_activity_number" readonly='1'/>
+            <field name="activity_queue_ids"
+              context="{'default_activity_id': active_id}">
+              <tree editable="top">
+                <field name="member_id"/>
+              <!--    domain="[('season_ids', '=', season_id)]" />  -->
+                <field name="activity_id" readonly="1" />
+                <field name="season_id" readonly="1" />
+              </tree>
+            </field>
+          </group>
+        </page>
+      </page>
     </field>
   </record>
 
