@@ -61,7 +61,6 @@ class GolemMember(models.Model):
             }"""
 
     def queue_register(self):
-
         return {
             'name'      : _('Choose the activity to register in'),
             'type'      : 'ir.actions.act_window',
