@@ -42,32 +42,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       model="golem.member"
       report_type="qweb-html"
       name="golem_member.report_golem_member_template" />
-      <!-- A la Fin remplacer qweb-html par report_type="qweb-pdf" -->
 
     <template id="report_golem_member_template">
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
           <div class="page">
             <table class="table table-striped">
+              <thead>
                 <tr>
                   <th>Member</th>
                   <th>Season</th>
                   <th>Date of season</th>
                 </tr>
+              </thead>
+              <tbody>
                 <t t-foreach="docs" t-as="o">
                   <tr>
                     <td class="col-xs-6">
-                      <strong><span t-field="o.name" /></strong><br></br>
-                      <span t-field="o.street" /><br></br>
+                        <strong><span t-field="o.name" /></strong><br></br>
+                        <span t-field="o.street" /><br></br>
                       <t t-if="o.street2">
                         <span t-field="o.street2" /><br></br>
                       </t>
-                      <span t-field="o.zip" /><br></br>
-                      <span t-field="o.city" /><br></br>
+                        <span t-field="o.zip" /><br></br>
+                        <span t-field="o.city" /><br></br>
                       <t t-if="o.state_id">
                         <span t-field="o.state_id" /><br></br>
                       </t>
-                      <span t-field="o.country_id" /><br></br>
+                        <span t-field="o.country_id" /><br></br>
                     </td>
                     <td class="col-xs-6">
                         <span t-field="o.season_ids[0].name" /><br></br>
@@ -78,10 +80,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </td>
                   </tr>
                 </t>
+              </tbody>
             </table>
             <table id="table_activity_ref" class="table table-striped">
+              <thead>
+                <strong>Activity</strong>
                 <tr>
-                  <th>Activity</th>
+                  <th>Name</th>
                   <th>Animator</th>
                   <th>Day</th>
                   <th>Hour start</th>
@@ -89,10 +94,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <th>Date start</th>
                   <th id="activity_inherit_th">Date stop</th>
                 </tr>
+              </thead>
+              <tbody>
                 <t t-foreach="docs" t-as="o">
                   <tr id="activity_inherit_price_sum" t-foreach="o.activity_registration_ids" t-as="t">
                       <td class="col-xs-6">
-                      <span t-esc="t.activity_id.name" /><br></br>
+                        <span t-esc="t.activity_id.name" /><br></br>
                       </td>
                       <td class="col-xs-6">
                         <span t-field="t.activity_id.animator_id" /><br></br>
@@ -109,14 +116,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       <td class="col-xs-6">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
-                      <td id="activity_inherit_td" class="col-xs-6">
+                      <td id="activity_inherit_td">
                           <span t-field="t.activity_id.date_stop" /><br></br>
                       </td>
                       <tr id="activity_inherit_sum"></tr>
                   </tr>
-                  <tfoot id="activity_inherit_total"></tfoot>
-
+                  <tr id="activity_inherit_total"></tr>
                 </t>
+              </tbody>
             </table>
           </div>
         </t>

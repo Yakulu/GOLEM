@@ -26,10 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <th>Price</th>
           </xpath>
           <xpath expr="//td[@id='activity_inherit_td']" position="after">
-            <td>
+            <td class="col-xs-6">
               <span t-field="t.state" />
             </td>
-            <td>
+            <td class="col-xs-6">
               <span t-field="t.activity_price" t-field-options="{'widget': 'monetary',
                               'display_currency': o.currency_id}"/>
             </td>
@@ -40,45 +40,85 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <xpath expr="//tr[@id='activity_inherit_sum']" position="inside">
             <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
           </xpath>
-          <xpath expr="//tfoot[@id='activity_inherit_total']" position="inside">
-            <tr>
-              <td>
-                <strong>TOTAL=<t t-esc="price_sum"
-                  t-esc-options="{'widget': 'monetary',
-                                  'display_currency': o.currency_id}" /></strong>
-              </td>
+          <xpath expr="//tr[@id='activity_inherit_total']" position="replace">
+              <tfoot>
+                <tr>
+                  <td><td><td><td><td><td><td>
+                      <td class="col-xs-6">
+                        <strong>
+                          TOTAL
+                        </strong>
+                      </td>
+                      <td class="col-xs-6">
+                        <t t-esc="price_sum"
+                         t-esc-options="{'widget': 'monetary',
+                                         'display_currency': o.currency_id}"/>
+                      </td>
+            </td></td></td></td></td></td></td>
             </tr>
+          </tfoot>
           </xpath>
 
           <xpath expr="//table[@id='table_activity_ref']" position="after">
             <table class="table table-striped">
-              <thead><h1>Invoices</h1></thead>
-              <tr>
-                <th>Date</th>
-                <th>Number</th>
-                <th>Activity</th>
-                <th>Amount</th>
-                <th>State</th>
-              </tr>
-              <t t-foreach="docs" t-as="o">
-                <tr t-foreach="o.activity_registration_ids" t-as="l">
-                  <td>
-                    <spam t-field="l.invoice_id.date_invoice" />
-                  </td>
-                  <td>
-                    <spam t-field="l.invoice_id.number" />
-                  </td>
-                  <td>
-                    <spam t-field="l.invoice_line_id.product_id" />
-                  </td>
-                  <td>
-                    <spam t-field="l.invoice_id.amount_total" />
-                  </td>
-                  <td>
-                    <spam t-field="l.invoice_id.state" />
-                  </td>
+              <thead>
+                <strong>Invoices</strong>
+                <tr>
+                  <th>Date</th>
+                  <th>Number</th>
+                  <th>Activity</th>
+                  <th>Amount</th>
+                  <th>State</th>
+                  <th>Residual</th>
                 </tr>
-              </t>
+              </thead>
+              <tbody>
+                <t t-foreach="docs" t-as="o">
+                  <tr t-foreach="o.activity_registration_ids" t-as="l">
+                    <td class="col-xs-6">
+                      <spam t-field="l.invoice_id.date_invoice" />
+                    </td>
+                    <td class="col-xs-6">
+                      <spam t-field="l.invoice_id[0].number" />
+                    </td>
+                    <td class="col-xs-6">
+                      <spam t-field="l.invoice_line_id.product_id" />
+                    </td>
+                    <td class="col-xs-6">
+                      <spam t-field="l.invoice_id.amount_total"
+                            t-field-options="{'widget': 'monetary',
+                                              'display_currency': o.currency_id}"/>
+                    </td>
+                    <td class="col-xs-6">
+                      <spam t-field="l.invoice_id.state" />
+                    </td>
+                    <td class="col-xs-6">
+                      <span t-field="l.invoice_id.residual"
+                            t-field-options="{'widget': 'monetary',
+                                              'display_currency': o.currency_id}"/>
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>payment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="docs" t-as="o">
+                  <tr t-foreach="o.payment_ids" t-as="l">
+                    <tr>
+                      <td>
+                        <spam t-field="l.name" />
+                      </td>
+                    </tr>
+                  </tr>
+                </t>
+              </tbody>
+
             </table>
           </xpath>
       </template>
