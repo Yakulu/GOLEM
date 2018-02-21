@@ -38,6 +38,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </field>
 </record>
 
+<!--Recherche du modèle golem.activity.queue-->
+<record model="ir.ui.view" id="queue_search_view">
+<field name="name">queue.search</field>
+<field name="model">golem.activity.queue</field>
+<field name="arch" type="xml">
+  <search >
+    <field name="member_id"/>
+    <field name="activity_id"  readonly='1'/>
+    <group string="Group By">
+        <filter name="group_by_member" string="Member"
+                context="{'group_by': 'member_id'}"/>
+        <filter name="group_by_activity" string="Activity"
+                context="{'group_by': 'activity_id'}"/>
+    </group>
+  </search>
+</field>
+</record>
 <!--liste editable du modèle golem.activity.queue-->
 <record model="ir.ui.view" id="queue_tree_view">
 <field name="name">queue.tree</field>
@@ -47,9 +64,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="member_id"/>
     <field name="activity_id"  readonly='1'/>
     <field name="season_id" readonly='1'/>
+    <field name="create_date" readonly="1"/>
   </tree>
 </field>
 </record>
 
+
+
+  <!-- Action -->
+  <record id="golem_activity_queue_action" model="ir.actions.act_window">
+    <field name="name">GOLEM Activity Queue List</field>
+    <field name="res_model">golem.activity.queue</field>
+    <field name="view_mode">tree,search</field>
+    <field name="context">{'search_default_season_default': True}</field>
+  </record>
+  <!-- Menu -->
+  <menuitem id="golem_activity_queue_menu" name="Activity queue"
+    parent="golem_activity.golem_activity_menu"
+    action="golem_activity_queue_action"
+    sequence="20" />
   </data>
 </odoo>
