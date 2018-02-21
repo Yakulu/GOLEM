@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form string="Rejection reason">
           <group>
+            <field name="member_id" invisible="1" />
             <field name="activity_id" options="{'no_create': True}" />
           </group>
           <footer>

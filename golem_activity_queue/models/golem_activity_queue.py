@@ -20,32 +20,6 @@
 
 from odoo import models, fields, api, _
 
-class YesNoQueuePopUp(models.TransientModel):
-    """GOLEM Resource wizard"""
-    _name = "golem.queuepopup"
-
-
-    #yes_no = fields.Char(default='Do you want to proceed?')
-
-    @api.multi
-    def queueYes(self):
-        print "########################################################"
-        return {
-            'name'      : _('Do you want to add your registration to the queue?'),
-            'type'      : 'ir.actions.act_window',
-            'res_model' : 'golem.activity.queue',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'target': 'new',
-            }
-
-    @api.multi
-    def queueNo(self):
-        pass # don't do anything
-
-
-
-
 class GolemActivityQueue(models.Model):
     """ GOLEM Activity Queue """
     _name = 'golem.activity.queue'

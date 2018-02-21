@@ -25,6 +25,8 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
     _name = "golem.activity.queue.choose.wizard"
 
     activity_id = fields.Many2one("golem.activity")
+    member_id = fields.Many2one("golem.member")
+
 
 
     def ChooseActivity(self):
@@ -35,7 +37,9 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue',
             'view_mode': 'tree',#
-            'context' :{'default_activity_id' : activityQueue.activity_id.id},
+            'context' :{'default_activity_id' : activityQueue.activity_id.id,
+                        'default_member_id' : activityQueue.member_id.id
+                        },
             'domain' : [('activity_id', '=',activityQueue.activity_id.id )],# activity_id.name)],#"('activity_id', '=', True)"
             'flags': {'action_buttons': True},
             'target': 'new',

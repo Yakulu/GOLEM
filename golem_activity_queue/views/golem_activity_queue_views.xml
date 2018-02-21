@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
 
-    <!--formulaire du modèle golem.resources-->
+    <!--formulaire du modèle golem.activity.queue-->
 <record model="ir.ui.view" id="queue_form_view">
   <field name="name">queue.form</field>
   <field name="model">golem.activity.queue</field>
@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <field name="model">golem.activity.queue</field>
 <field name="arch" type="xml">
   <tree string="Queue Tree" editable="bottom">
-    <field name="member_id"/>
+    <field name="member_id" readonly="1"/>
     <field name="activity_id"  readonly='1'/>
     <field name="season_id" readonly='1'/>
     <field name="create_date" readonly="1"/>

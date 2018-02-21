@@ -41,11 +41,15 @@ class GolemMember(models.Model):
                     }
                 }
 
+    @api.multi
     def queue_register(self):
+        self.ensure_one()
+        member_id = self[0]
         return {
             'name'      : _('Choose the activity to register in'),
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue.choose.wizard',
             'view_mode': 'form',
+            'context' : {'default_member_id' : member_id.id},
             'target': 'new',
         }
