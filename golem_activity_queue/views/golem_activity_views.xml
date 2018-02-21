@@ -25,15 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="model">golem.activity</field>
     <field name="inherit_id" ref="golem_activity.golem_activity_form" />
     <field name="arch" type="xml">
+      <!--Ajout du case file  sur activity form-->
       <xpath expr="//field[@name='is_overbooked']" position="after">
         <field name="queue_allowed"/>
       </xpath>
+      <!--Ajout du bouton inscription en file d'attente sur activity form-->
       <xpath expr="//field[@name='activity_registration_ids']" position="after">
         <button class="oe_highlight" name="queue_register"
                 string="Register in the queue"  type="object"
                 attrs="{'invisible':[('places_remain','>', 0)]}"/>
       </xpath>
-      <!--onglet queue sur activity-->
+      <!--Ajout onglet queue sur activity form-->
       <page name="invoicing" position="before">
         <page name="queue" string="Queue">
           <group>

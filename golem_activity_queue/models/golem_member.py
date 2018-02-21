@@ -22,20 +22,15 @@ class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
+    #ajout d'un champs O2M vers member_id de golem.activity.queue
+    activity_queue_ids = fields.One2many('golem.activity.queue',
+                        'member_id','Pending registration')
+
     @api.onchange('activity_registration_ids')
     def _checkRemain(self):
-        """print "#####################################"
-        print len(self.activity_registration_ids)
-        for reservation in self.activity_registration_ids:
-            print reservation.activity_id.name"""
-
         for reservation in self.activity_registration_ids:
             activity = reservation.activity_id
-            """print activity.name
-            print activity.places
-            print len(activity.activity_registration_ids)"""
             if len(activity.activity_registration_ids) > activity.places and activity.queue_allowed:
-                #print("##vert##################")
                 warning_message = _('This activity : {} is already full, please'
                                     ' remove your registration and register in'
                                     ' the queue using the bellow button')
@@ -45,27 +40,12 @@ class GolemMember(models.Model):
                         'message': warning_message.format(activity.name),
                     }
                 }
-                """
-
-            print "######################################"
-            print reservation.activity_id.places
-            print "######################################"
-            print reservation.activity_id.places_remain
-
-        if len(self.activity_registration_ids) > self.places and self.queue_allowed:
-            return {
-                'warning' : {
-                    'title' : _('Warning'),
-                    'message': _('No remaining place, please register in the queue'),
-                }
-            }"""
 
     def queue_register(self):
         return {
             'name'      : _('Choose the activity to register in'),
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue.choose.wizard',
-            'view_mode': 'form',#'context' :{'default_activity_id' : activity_id.id},
-            'domain' : [('activity_id.places_remain', '=', 0)],# activity_id.name)],#"('activity_id', '=', True)"'flags': {'action_buttons': True},
+            'view_mode': 'form',
             'target': 'new',
         }

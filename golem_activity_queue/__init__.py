@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify

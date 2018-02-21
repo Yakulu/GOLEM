@@ -23,7 +23,7 @@ class GolemActivity(models.Model):
     _inherit = 'golem.activity'
 
 
-    #ajout d'un champs O2M vers activity_id
+    #ajout d'un champs O2M vers activity_id de golem.activity.queue
     activity_queue_ids = fields.One2many('golem.activity.queue',
                         'activity_id','Pending registration')
     # un boolen pour determiner si une fille d'attente est autorisé

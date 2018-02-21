@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,7 +21,7 @@
     'summary': 'GOLEM activities queue',
     'version': '10.0.2.1.0',
     'category': 'GOLEM',
-    'author': 'Youssef Elouahby',
+    'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,

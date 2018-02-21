@@ -22,15 +22,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- add  the queue registration button to member form-->
     <record id="golem_member_form_inherit_golem_activity_queue"
             model="ir.ui.view">
-      <field name="name">Add the queue registration button to member form</field>
+      <field name="name">Add the queue onglet and registration button to member form</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
+        <!--Ajout bouton d'inscription en file d'attente sur member form-->
         <xpath expr="//field[@name='activity_registration_ids']" position="after">
           <group>
             <button class="oe_highlight" name="queue_register" string="Register in the queue"  type="object"/>
           </group>
         </xpath>
+        <!--Ajout onglet queue sur member form-->
+        <page name="activities" position="after">
+          <page name="queue" string="List of queues">
+            <group>
+
+              <field name="activity_queue_ids"
+                context="{'default_member_id': active_id}">
+                <tree>
+                  <field name="activity_id" readonly="1" />
+                  <field name="season_id" readonly="1" />
+                </tree>
+              </field>
+            </group>
+          </page>
+        </page>
       </field>
     </record>
   </data>

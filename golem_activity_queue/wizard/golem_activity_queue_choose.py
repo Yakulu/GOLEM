@@ -26,6 +26,7 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
 
     activity_id = fields.Many2one("golem.activity")
 
+
     def ChooseActivity(self):
         self.ensure_one()
         activityQueue = self[0]
@@ -33,7 +34,8 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
             'name'      : _('Register in the queue'),
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue',
-            'view_mode': 'tree',#'context' :{'default_activity_id' : activity_id.id},
+            'view_mode': 'tree',#
+            'context' :{'default_activity_id' : activityQueue.activity_id.id},
             'domain' : [('activity_id', '=',activityQueue.activity_id.id )],# activity_id.name)],#"('activity_id', '=', True)"
             'flags': {'action_buttons': True},
             'target': 'new',
