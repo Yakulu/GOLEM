@@ -101,6 +101,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </t>
               </tbody>
             </table>
+
+    <!-- En cours -->
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -109,10 +111,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </thead>
               <tbody>
                 <t t-foreach="docs" t-as="o">
-                  <tr t-foreach="o.payment_ids" t-as="l">
+                  <tr t-foreach="o.activity_registration_ids" t-as="l">
                     <tr>
                       <td>
-                        <spam t-field="l.name" />
+                        <spam t-field="o.last_payment_state" />
                       </td>
                     </tr>
                   </tr>
