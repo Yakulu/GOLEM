@@ -30,7 +30,20 @@ class GolemActivityQueue(models.Model):
     member_id = fields.Many2one('golem.member', required=True, ondelete='cascade')
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
+    #nombre de place disponible sur activité liée
+    places_remain = fields.Integer(related='activity_id.places_remain')
+    #activité liée est plein ou non
+    is_activity_full = fields.Char(compute="_isActivityFull",store=True)
 
+    # decider si l'activity liée est pleine ou non
+    @api.multi
+    @api.depends('places_remain')
+    def _isActivityFull(self):
+        for record in self:
+            if record.places_remain <=0:
+                record.is_activity_full = "Full activity"
+            else:
+                record.is_activity_full = "Not full activity"
     def call_up_wizard(self):
         return {
             'name': 'Are you sure?',
