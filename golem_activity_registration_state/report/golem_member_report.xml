@@ -26,10 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <th>Price</th>
           </xpath>
           <xpath expr="//td[@id='activity_inherit_td']" position="after">
-            <td class="col-xs-6">
+            <td class="col-xs-4">
               <span t-field="t.state" />
             </td>
-            <td class="col-xs-6">
+            <td class="col-xs-4">
               <span t-field="t.activity_price" t-field-options="{'widget': 'monetary',
                               'display_currency': o.currency_id}"/>
             </td>
@@ -37,19 +37,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <xpath expr="//tr[@id='activity_inherit_price_sum']" position="before">
             <t t-set="price_sum" t-value="0"/>
           </xpath>
-          <xpath expr="//tr[@id='activity_inherit_sum']" position="inside">
+          <xpath expr="//tr[@id='activity_inherit_price_sum']" position="inside">
             <t t-set="price_sum" t-value="price_sum + t.activity_price"/>
           </xpath>
           <xpath expr="//tr[@id='activity_inherit_total']" position="replace">
               <tfoot>
                 <tr>
                   <td><td><td><td><td><td><td>
-                      <td class="col-xs-6">
+                      <td>
                         <strong>
                           TOTAL
                         </strong>
                       </td>
-                      <td class="col-xs-6">
+                      <td>
                         <t t-esc="price_sum"
                          t-esc-options="{'widget': 'monetary',
                                          'display_currency': o.currency_id}"/>
@@ -64,8 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <thead>
                 <strong>Invoices</strong>
                 <tr>
-                  <th>Date</th>
                   <th>Number</th>
+                  <th>Date</th>
                   <th>Activity</th>
                   <th>Amount</th>
                   <th>State</th>
@@ -76,10 +76,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <t t-foreach="docs" t-as="o">
                   <tr t-foreach="o.activity_registration_ids" t-as="l">
                     <td class="col-xs-6">
-                      <spam t-field="l.invoice_id.date_invoice" />
+                      <spam t-field="l.invoice_id.number" />
                     </td>
                     <td class="col-xs-6">
-                      <spam t-field="l.invoice_id[0].number" />
+                      <spam t-field="l.invoice_id.date_invoice" />
                     </td>
                     <td class="col-xs-6">
                       <spam t-field="l.invoice_line_id.product_id" />
@@ -101,12 +101,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </t>
               </tbody>
             </table>
-
-    <!-- En cours -->
             <table class="table table-striped">
               <thead>
+                <strong>Payments</strong>
                 <tr>
-                  <th>payment</th>
+                  <th>Invoice number</th>
+                  <th>Ref payment</th>
+                  <th>State</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,8 +115,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <tr t-foreach="o.activity_registration_ids" t-as="l">
                     <tr>
                       <td>
-                        <spam t-field="o.last_payment_state" />
+                        <spam t-field="l.invoice_id.number" />
                       </td>
+                      <td>
+                        <spam t-field="l.invoice_id.payment_ids.name" />
+                      </td>
+                      <td>
+                        <spam t-field="l.invoice_id.payment_ids.state" />
+                      </td>
+
                     </tr>
                   </tr>
                 </t>

@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tbody>
                 <t t-foreach="docs" t-as="o">
                   <tr>
-                    <td class="col-xs-6">
+                    <td class="col-xs-4">
                         <strong><span t-field="o.name" /></strong><br></br>
                         <span t-field="o.street" /><br></br>
                       <t t-if="o.street2">
@@ -71,10 +71,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       </t>
                         <span t-field="o.country_id" /><br></br>
                     </td>
-                    <td class="col-xs-6">
+                    <td class="col-xs-4">
                         <span t-field="o.season_ids[0].name" /><br></br>
                     </td>
-                    <td class="col-xs-6">
+                    <td class="col-xs-4">
                         <span t-field="o.season_ids[0].date_start" /><br></br>
                         <span t-field="o.season_ids[0].date_end" /><br></br>
                     </td>
@@ -98,28 +98,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tbody>
                 <t t-foreach="docs" t-as="o">
                   <tr id="activity_inherit_price_sum" t-foreach="o.activity_registration_ids" t-as="t">
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                         <span t-esc="t.activity_id.name" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                         <span t-field="t.activity_id.animator_id" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                         <span t-field="t.activity_id.weekday" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                         <span t-field="t.activity_id.hour_start" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                           <span t-field="t.activity_id.hour_stop" /><br></br>
                         </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-4">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
                       <td id="activity_inherit_td">
                           <span t-field="t.activity_id.date_stop" /><br></br>
                       </td>
-                      <tr id="activity_inherit_sum"></tr>
                   </tr>
                   <tr id="activity_inherit_total"></tr>
                 </t>
