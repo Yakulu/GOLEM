@@ -47,41 +47,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
           <div class="page">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Member</th>
-                  <th>Season</th>
-                  <th>Date of season</th>
-                </tr>
-              </thead>
-              <tbody>
-                <t t-foreach="docs" t-as="o">
-                  <tr>
-                    <td class="col-xs-4">
-                        <strong><span t-field="o.name" /></strong><br></br>
-                        <span t-field="o.street" /><br></br>
-                      <t t-if="o.street2">
-                        <span t-field="o.street2" /><br></br>
-                      </t>
-                        <span t-field="o.zip" /><br></br>
-                        <span t-field="o.city" /><br></br>
-                      <t t-if="o.state_id">
-                        <span t-field="o.state_id" /><br></br>
-                      </t>
-                        <span t-field="o.country_id" /><br></br>
-                    </td>
-                    <td class="col-xs-4">
-                        <span t-field="o.season_ids[0].name" /><br></br>
-                    </td>
-                    <td class="col-xs-4">
-                        <span t-field="o.season_ids[0].date_start" /><br></br>
-                        <span t-field="o.season_ids[0].date_end" /><br></br>
-                    </td>
-                  </tr>
+            <t t-foreach="docs" t-as="o">
+              <div class="oe_structure"/>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <strong>Member</strong>
+                      <div t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields":
+                        ["address", "name", "street", "street2", "phone", "fax"],
+                         "no_marker": True, "phone_icons": True}'/>
+                         <br></br>
+                      </div>
+                <div class="oe_structure"/>
+                  <div class="col-xs-4">
+                    <strong>Season :</strong>
+                      <span t-field="o.season_ids[0].name" />
+                    </div>
+                    <div class="col-xs-4">
+                      <strong>Date :</strong>
+                      <span t-field="o.season_ids[0].date_start" />
+                      -
+                      <span t-field="o.season_ids[0].date_end" />
+                    </div>
+                </div>
                 </t>
-              </tbody>
-            </table>
+
             <table id="table_activity_ref" class="table table-striped">
               <thead>
                 <strong>Activity</strong>
@@ -98,22 +88,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tbody>
                 <t t-foreach="docs" t-as="o">
                   <tr id="activity_inherit_price_sum" t-foreach="o.activity_registration_ids" t-as="t">
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                         <span t-esc="t.activity_id.name" /><br></br>
                       </td>
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.animator_id" /><br></br>
                       </td>
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.weekday" /><br></br>
                       </td>
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.hour_start" /><br></br>
                       </td>
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                           <span t-field="t.activity_id.hour_stop" /><br></br>
                         </td>
-                      <td class="col-xs-4">
+                      <td class="col-xs-2">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
                       <td id="activity_inherit_td">
