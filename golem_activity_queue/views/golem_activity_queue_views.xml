@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <field name="model">golem.activity.queue</field>
 <field name="arch" type="xml">
   <tree string="Queue Tree" editable="bottom">
-    <field name="member_id" readonly="1"/>
+    <field name="member_id"/>
     <field name="activity_id"  readonly='1'/>
     <field name="season_id" readonly='1'/>
     <field name="create_date" readonly="1"/>

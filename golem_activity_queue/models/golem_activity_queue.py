@@ -25,9 +25,9 @@ class GolemActivityQueue(models.Model):
     _name = 'golem.activity.queue'
     _description = 'GOLEM Activity Queue'
 
-    activity_id = fields.Many2one('golem.activity', required=True)
+    activity_id = fields.Many2one('golem.activity', required=True, ondelete='cascade')
     season_id = fields.Many2one(related='activity_id.season_id')
-    member_id = fields.Many2one('golem.member', required=True)
+    member_id = fields.Many2one('golem.member', required=True, ondelete='cascade')
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
 

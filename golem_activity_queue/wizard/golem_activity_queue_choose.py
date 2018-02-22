@@ -24,7 +24,8 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
     """GOLEM Resource wizard : rchoose activity queue to register in """
     _name = "golem.activity.queue.choose.wizard"
 
-    activity_id = fields.Many2one("golem.activity")
+    activity_id = fields.Many2one("golem.activity",
+                                  domain=[('places_remain','<',1)])
     member_id = fields.Many2one("golem.member")
 
 

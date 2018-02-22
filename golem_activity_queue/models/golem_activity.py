@@ -26,18 +26,23 @@ class GolemActivity(models.Model):
     #ajout d'un champs O2M vers activity_id de golem.activity.queue
     activity_queue_ids = fields.One2many('golem.activity.queue',
                         'activity_id','Pending registration')
-    # un boolen pour determiner si une fille d'attente est autorisé
+    # un booleen pour determiner si une fille d'attente est autorisé
     queue_allowed = fields.Boolean(default=True)
+    # un booleen pour automatisé l'inscription sur une activité depuis la file d'attente
+    automated_registration_from_queue = fields.Boolean(default=True)
     #ajout d'un champs pour calculer le nombre d'inscription en file d'attente
     queue_activity_number = fields.Integer(compute="_queue_activity_number",
                             store=True , string='Pending registration number')
 
 
+    #calculer le nombre d'inscription sur la file d'attente
     @api.multi
+    @api.depends('activity_queue_ids')
     def _queue_activity_number(self):
         for activity in self:
             activity.queue_activity_number = len(activity.activity_queue_ids)
 
+    #lancer une fenetre pour inscritpion en file d'attente
     @api.multi
     def queue_register(self):
         self.ensure_one()
@@ -55,39 +60,77 @@ class GolemActivity(models.Model):
 
 
 
+    @api.multi
+    def register_from_queue(self):
+        for record in self:
+            #recupérer la liste en file d'attente
+            queues = record.activity_queue_ids
+            #trier la liste selon l'id : récupérer l'ancien element
+            queues_sorted = sorted(queues, key=lambda k: k['id'])
+            #valeures pour creer une inscritpion apartir de la file
+            values = {
+                'activity_id' : queues_sorted[0].activity_id,
+                'member_id' : queues_sorted[0].member_id
+                }
+            # creation d'inscription
+            record.activity_registration_ids = [(0, 0,values)]
+            #suppression de l'element de la file d'attente
+            record.activity_queue_ids = [(2, queues_sorted[0].id, 0)]
+
+
+    @api.multi
     @api.onchange('activity_registration_ids')
     def _checkRemain(self):
-        if len(self.activity_registration_ids) > self.places and self.queue_allowed:
-            return {
-                'warning' : {
-                    'title' : _('Warning'),
-                    'message': _('No remaining place, please register in the queue'),
+        for record in self:
+            if len(record.activity_registration_ids) > record.places and record.queue_allowed:
+                message = _('No remaining place for the activity : {}, please'
+                            ' discard changes and register in the queue using'
+                            ' the button bellow')
+                return {
+                    'warning' : {
+                        'title' : _('Warning'),
+                        'message': message.format(record.name),
+                    }
                 }
-            }
+            elif len(record.activity_registration_ids) < record.places and record.queue_allowed and record.queue_activity_number > 0:
 
-    """
-    @api.multi
-    @api.constrains('places_remain')
-    def _check_remaining_places(self):
-        #Forbid inscription when there is no more place
-        for activity in self:
-            if activity.places_remain < 5:
-
-                if self.queue_allowed:
-                    print "__________________________ test ______________________"
-                    return {
-                        'name'      : _('Do you want to add your registration to the queue?'),
-                        'type'      : 'ir.actions.act_window',
-                        'res_model' : 'golem.activity.queue',
-                        'view_mode': 'form',
-                        'view_type': 'form',
-                        'target': 'new',
+                # passage de l'element depuis la file d'attente automatiquement
+                if record.automated_registration_from_queue:
+                    #traitement qui bloque avec message d'erreur can't adapt activitiy_id to newId
+                    """
+                    #recupérer la liste en file d'attente
+                    queues = record.activity_queue_ids
+                    #trier la liste selon l'id : récupérer l'ancien element
+                    queues_sorted = sorted(queues, key=lambda k: k['id'])
+                    #valeures pour creer une inscritpion apartir de la file
+                    values = {
+                        'activity_id' : queues_sorted[0].activity_id,
+                        'member_id' : queues_sorted[0].member_id
                         }
-                    print "________________________________test 2 __________________"
-                    raise models.ValidationError("erreur")
+                    # creation d'inscription
+                    record.activity_registration_ids = [(0, 0,values)]
+                    #suppression de l'element de la file d'attente
+                    record.activity_queue_ids = [(2, queues_sorted[0].id, 0)]
+                    """
 
+                    warningMessage = _('There is a free place for the activity'
+                                       ' : {}, you can fill it from the queue'
+                                       ' using the button bellow')
+                    return {
+                        'warning' : {
+                            'title' : _('Warning'),
+                            'message': warningMessage.format(record.name)
+                            }
+                        }
 
-                else:
-                    emsg = _('Sorry, there is no more place man !')
-                    raise models.ValidationError(emsg)
-"""
+                #traitement manuel pour le passage de la file d'attente en inscription : button sur queue
+                else :
+                    warningMessage = _('There is a free place for the activity'
+                                       ' : {}, you can fill it from the queue'
+                                       ' using the button on queue tab')
+                    return {
+                        'warning' : {
+                            'title' : _('Warning'),
+                            'message': warningMessage.format(record.name)
+                            }
+                        }
