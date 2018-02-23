@@ -36,6 +36,52 @@ class GolemActivity(models.Model):
                             store=True , string='Pending registration number')
 
 
+    #contraint sur nombre d'inscription : une desincription declanche une inscription depuis attente
+    @api.multi
+    @api.constrains('activity_registration_ids')
+    def _automatedRegistrationFromQueue(self):
+        for record in self:
+            print "________________________stitot_________________"
+            if (len(record.activity_registration_ids) < record.places and
+                record.queue_activity_number > 0):
+                print("________________________testuiiautomated____________________________________")
+                #recupérer la liste en file d'attente
+                queues = record.activity_queue_ids
+                #trier la liste selon l'id : récupérer l'ancien element
+                queues_sorted = sorted(queues, key=lambda k: k['id'])
+                #suppose que le membre est enrigistré
+                membre_registred = True
+                #parcourir les element sur l'attente
+                for queue in queues_sorted:
+                    print "_______queueu frome queues"
+                    #inverse l'etat du memebre
+                    membre_registred = False
+                    #recuperer la liste des registration
+                    registrations = record.activity_registration_ids
+                    #parcourir les registration afin de vérifier si le memebre sur l'attente déja inscrit
+                    for registration in registrations:
+                        #compare le membre sur l'attente au membre sur l'inscription
+                        if queue.member_id == registration.member_id:
+                            #si membre trouvé on mentionne enregistré, on passe au registration suivante
+                            membre_registred = True
+                            break
+                    #à la sortie de la boucle si le membre nest pas sur inscription faire une
+                    if not membre_registred:
+                        #valeures pour creer une inscritpion apartir de la file
+                        print "____________________passage en cours"
+                        values = {
+                            'activity_id' : queue.activity_id,
+                            'member_id' : queue.member_id
+                            }
+                        # creation d'inscription
+                        record.activity_registration_ids = [(0, 0,values)]
+                        #suppression de l'element de la file d'attente
+                        record.activity_queue_ids = [(2, queue.id, 0)]
+                        #sortir de la boucle parcourissante la queue puisque inscription faite
+                        break
+
+
+
     #calculer le nombre d'inscription sur la file d'attente
     @api.multi
     @api.depends('activity_queue_ids')
@@ -69,21 +115,28 @@ class GolemActivity(models.Model):
     #fonction enregistrement du premier element de la liste d'ttente en inscription
     @api.multi
     def register_from_queue(self):
-
         for record in self:
             print("________________________testuii____________________________________")
             #recupérer la liste en file d'attente
             queues = record.activity_queue_ids
             #trier la liste selon l'id : récupérer l'ancien element
             queues_sorted = sorted(queues, key=lambda k: k['id'])
+            #suppose que le membre est enrigistré
             membre_registred = True
+            #parcourir les element sur l'attente
             for queue in queues_sorted:
+                #inverse l'etat du memebre
                 membre_registred = False
+                #recuperer la liste des registration
                 registrations = record.activity_registration_ids
+                #parcourir les registration afin de vérifier si le memebre sur l'attente déja inscrit
                 for registration in registrations:
+                    #compare le membre sur l'attente au membre sur l'inscription
                     if queue.member_id == registration.member_id:
+                        #si membre trouvé on mentionne enregistré, on passe au registration suivante
                         membre_registred = True
                         break
+                #à la sortie de la boucle si le membre nest pas sur inscription faire une
                 if not membre_registred:
                     #valeures pour creer une inscritpion apartir de la file
                     values = {
@@ -94,12 +147,15 @@ class GolemActivity(models.Model):
                     record.activity_registration_ids = [(0, 0,values)]
                     #suppression de l'element de la file d'attente
                     record.activity_queue_ids = [(2, queue.id, 0)]
+                    #sortir de la boucle parcourissante la queue puisque inscription faite
                     break
+
             if membre_registred:
                 print "diknokemekrklekrlekr"
                 message = _('there is no member to register for this activity'
                             ' from queue.')
                 raise ValidationError(message)
+
 
 
 
@@ -129,6 +185,16 @@ class GolemActivity(models.Model):
                 if record.automated_registration_from_queue:
                     #inscription automatique du 1er element de la file d'attente
                     print("________________________testuii____________________________________")
+                    warningMessage = _('There is a free place for the activity'
+                                       ' : {}, you can fill it from the queue'
+                                       ' using the button bellow')
+                    return {
+                        'warning' : {
+                            'title' : _('Warning'),
+                            'message': warningMessage.format(record.name)
+                            }
+                        }
+                    """
                     #recupérer la liste en file d'attente
                     queues = current_activity.activity_queue_ids
                     print "______________________test1"
@@ -149,20 +215,25 @@ class GolemActivity(models.Model):
                             #valeures pour creer une inscritpion apartir de la file
                             print '_____________________creation'
                             values = {
-                                'activity_id' : queue.activity_id,
-                                'member_id' : queue.member_id
+                                'activity_id' : queue.activity_id.id,
+                                'member_id' : queue.member_id.id
                                 }
                             # creation d'inscription
-                            record.places =55
-                            record.activity_registration_ids = [(0, 0,values)]
+                            record.places =100
+                            #current_activity.places_remain = 2
+                            ##current_activity.places_remain+
+                            #reservation = self.env['golem.activity.registration'].create(values)
+                            #record.activity_registration_ids = [(4, reservation.id,0)]
                             #suppression de l'element de la file d'attente
-                            record.activity_queue_ids = [(2, queue.id, 0)]
+                            #record.activity_queue_ids = [(2, queue.id, 0)]
                             break
+
                     if membre_registred:
-                        
+
                         message = _('there is no member to register for this activity'
                                     ' from queue.')
                         raise ValidationError(message)
+                    """
                     """
                     warningMessage = _('There is a free place for the activity'
                                        ' : {}, you can fill it from the queue'

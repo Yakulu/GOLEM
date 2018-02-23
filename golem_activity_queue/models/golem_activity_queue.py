@@ -25,9 +25,11 @@ class GolemActivityQueue(models.Model):
     _name = 'golem.activity.queue'
     _description = 'GOLEM Activity Queue'
 
-    activity_id = fields.Many2one('golem.activity', required=True, ondelete='cascade')
+    activity_id = fields.Many2one('golem.activity', required=True,
+                                  string='Activity', ondelete='cascade')
     season_id = fields.Many2one(related='activity_id.season_id')
-    member_id = fields.Many2one('golem.member', required=True, ondelete='cascade')
+    member_id = fields.Many2one('golem.member', required=True,
+                                string='Member', ondelete='cascade')
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
     #nombre de place disponible sur activité liée
@@ -44,4 +46,3 @@ class GolemActivityQueue(models.Model):
                 record.is_activity_full = "Full activity"
             else:
                 record.is_activity_full = "Not full activity"
-    
