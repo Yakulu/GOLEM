@@ -70,6 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="season_id" readonly='1'/>
     <field name="create_date" readonly="1"/>
     <field name='places_remain' />
+    <field name="is_activity_full" />
   </tree>
 </field>
 </record>

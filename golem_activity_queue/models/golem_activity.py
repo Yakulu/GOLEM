@@ -44,8 +44,13 @@ class GolemActivity(models.Model):
             activity.queue_activity_number = len(activity.activity_queue_ids)
 
     #lancer une fenetre pour inscritpion en file d'attente
-    @api.multi
+    #@api.multi
     def queue_register(self):
+        print "______________________________________chmat-----------------"
+
+
+
+
         self.ensure_one()
         activity_id = self[0]
         return {
@@ -105,7 +110,9 @@ class GolemActivity(models.Model):
     @api.multi
     @api.onchange('activity_registration_ids')
     def _checkRemain(self):
+        current_activity = self._origin
         for record in self:
+            #warning au cas ou le nombre d'inscription depasse le nombre de place
             if len(record.activity_registration_ids) > record.places and record.queue_allowed:
                 message = _('No remaining place for the activity : {}, please'
                             ' discard changes and register in the queue using'
@@ -116,27 +123,47 @@ class GolemActivity(models.Model):
                         'message': message.format(record.name),
                     }
                 }
-            elif len(record.activity_registration_ids) < record.places and record.queue_allowed and record.queue_activity_number > 0:
-
-                # passage de l'element depuis la file d'attente automatiquement
+            elif (len(record.activity_registration_ids) < len(current_activity.activity_registration_ids) and
+                  len(current_activity.activity_registration_ids) == record.places and
+                  record.queue_activity_number > 0 ):
                 if record.automated_registration_from_queue:
-                    #traitement qui bloque avec message d'erreur can't adapt activitiy_id to newId
-                    """
+                    #inscription automatique du 1er element de la file d'attente
+                    print("________________________testuii____________________________________")
                     #recupérer la liste en file d'attente
-                    queues = record.activity_queue_ids
+                    queues = current_activity.activity_queue_ids
+                    print "______________________test1"
                     #trier la liste selon l'id : récupérer l'ancien element
                     queues_sorted = sorted(queues, key=lambda k: k['id'])
-                    #valeures pour creer une inscritpion apartir de la file
-                    values = {
-                        'activity_id' : queues_sorted[0].activity_id,
-                        'member_id' : queues_sorted[0].member_id
-                        }
-                    # creation d'inscription
-                    record.activity_registration_ids = [(0, 0,values)]
-                    #suppression de l'element de la file d'attente
-                    record.activity_queue_ids = [(2, queues_sorted[0].id, 0)]
+                    print "______________________test1"
+                    membre_registred = True
+                    for queue in queues_sorted:
+                        print "______________________1"
+                        membre_registred = False
+                        registrations = record.activity_registration_ids
+                        for registration in registrations:
+                            print "______________________2"
+                            if queue.member_id == registration.member_id:
+                                membre_registred = True
+                                break
+                        if not membre_registred:
+                            #valeures pour creer une inscritpion apartir de la file
+                            print '_____________________creation'
+                            values = {
+                                'activity_id' : queue.activity_id,
+                                'member_id' : queue.member_id
+                                }
+                            # creation d'inscription
+                            record.places =55
+                            record.activity_registration_ids = [(0, 0,values)]
+                            #suppression de l'element de la file d'attente
+                            record.activity_queue_ids = [(2, queue.id, 0)]
+                            break
+                    if membre_registred:
+                        
+                        message = _('there is no member to register for this activity'
+                                    ' from queue.')
+                        raise ValidationError(message)
                     """
-
                     warningMessage = _('There is a free place for the activity'
                                        ' : {}, you can fill it from the queue'
                                        ' using the button bellow')
@@ -146,7 +173,7 @@ class GolemActivity(models.Model):
                             'message': warningMessage.format(record.name)
                             }
                         }
-
+                    """
                 #traitement manuel pour le passage de la file d'attente en inscription : button sur queue
                 else :
                     warningMessage = _('There is a free place for the activity'
