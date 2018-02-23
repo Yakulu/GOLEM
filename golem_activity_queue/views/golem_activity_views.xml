@@ -45,8 +45,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <group>
             <field name="queue_activity_number" readonly='1'/>
             <field name="activity_queue_ids"
-              context="{'default_activity_id': active_id}">
+              context="{'default_activity_id': active_id}" >
               <tree editable="top">
+                <field name="sequence" widget="handle"/>
                 <field name="member_id"/>
               <!--    domain="[('season_ids', '=', season_id)]" />  -->
                 <field name="activity_id" readonly="1" />

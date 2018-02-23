@@ -64,7 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <field name="arch" type="xml">
 
 
-  <tree string="Queue Tree" editable="bottom" colors="grey: places_remain == 0; blue : places_remain &gt;= 1">
+  <tree string="Queue Tree" editable="top" colors="grey: places_remain == 0; blue : places_remain &gt;= 1">
+    <field name="sequence" widget="handle"/>
     <field name="member_id"/>
     <field name="activity_id"  readonly='1'/>
     <field name="season_id" readonly='1'/>

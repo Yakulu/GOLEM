@@ -39,7 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
               <field name="activity_queue_ids"
                 context="{'default_member_id': active_id}">
-                <tree>
+                <tree editable="top">
+                  <field name="sequence" widget="handle"/>
                   <field name="activity_id" readonly="1" />
                   <field name="season_id" readonly="1" />
                 </tree>
