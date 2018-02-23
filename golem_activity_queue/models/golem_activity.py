@@ -17,6 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class GolemActivity(models.Model):
     """ GOLEM Activity adaptations """
@@ -60,22 +61,45 @@ class GolemActivity(models.Model):
 
 
 
+    #fonction enregistrement du premier element de la liste d'ttente en inscription
     @api.multi
     def register_from_queue(self):
+
         for record in self:
+            print("________________________testuii____________________________________")
             #recupérer la liste en file d'attente
             queues = record.activity_queue_ids
             #trier la liste selon l'id : récupérer l'ancien element
             queues_sorted = sorted(queues, key=lambda k: k['id'])
-            #valeures pour creer une inscritpion apartir de la file
-            values = {
-                'activity_id' : queues_sorted[0].activity_id,
-                'member_id' : queues_sorted[0].member_id
-                }
-            # creation d'inscription
-            record.activity_registration_ids = [(0, 0,values)]
-            #suppression de l'element de la file d'attente
-            record.activity_queue_ids = [(2, queues_sorted[0].id, 0)]
+            membre_registred = True
+            for queue in queues_sorted:
+                membre_registred = False
+                registrations = record.activity_registration_ids
+                for registration in registrations:
+                    if queue.member_id == registration.member_id:
+                        membre_registred = True
+                        break
+                if not membre_registred:
+                    #valeures pour creer une inscritpion apartir de la file
+                    values = {
+                        'activity_id' : queue.activity_id,
+                        'member_id' : queue.member_id
+                        }
+                    # creation d'inscription
+                    record.activity_registration_ids = [(0, 0,values)]
+                    #suppression de l'element de la file d'attente
+                    record.activity_queue_ids = [(2, queue.id, 0)]
+                    break
+            if membre_registred:
+                print "diknokemekrklekrlekr"
+                message = _('there is no member to register for this activity'
+                            ' from queue.')
+                raise ValidationError(message)
+
+
+
+
+
 
 
     @api.multi
