@@ -26,17 +26,18 @@ class GolemMember(models.Model):
     activity_queue_ids = fields.One2many('golem.activity.queue',
                         'member_id','Pending registration')
 
+    #verifier si nombre d'inscription sur activité est supérieur au place disponible
     @api.multi
     @api.onchange('activity_registration_ids')
-    def _checkRemain(self):
+    def _checkRegistrationNumber(self):
         self.ensure_one()
         member_id = self[0]
 
-        for reservation in member_id.activity_registration_ids:
+        for registration in member_id.activity_registration_ids:
             activity = reservation.activity_id
             if len(activity.activity_registration_ids) > activity.places and activity.queue_allowed:
                 warning_message = _('This activity : {} is already full, please'
-                                    ' remove your registration and register in'
+                                    ' discard changes and register in'
                                     ' the queue using the bellow button')
                 return {
                     'warning' : {
@@ -45,8 +46,9 @@ class GolemMember(models.Model):
                     }
                 }
 
+    #lancer popup pour choisir activité à s'inscrire
     @api.multi
-    def queue_register(self):
+    def choose_queue_to_register(self):
         print "_________________________________________________"
         print self
         self.ensure_one()

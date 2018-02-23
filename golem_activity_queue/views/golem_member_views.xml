@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <!--Ajout bouton d'inscription en file d'attente sur member form-->
         <xpath expr="//field[@name='activity_registration_ids']" position="after">
           <group>
-            <button class="oe_highlight" name="queue_register" string="Register in the queue"  type="object"/>
+            <button class="oe_highlight" name="choose_queue_to_register" string="Register in the queue"  type="object"/>
           </group>
         </xpath>
         <!--Ajout onglet queue sur member form-->

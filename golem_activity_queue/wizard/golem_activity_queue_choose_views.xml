@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <field name="activity_id" options="{'no_create': True}" />
           </group>
           <footer>
-            <button name="ChooseActivity" string="Validate" type="object"
+            <button name="register_in_queue" string="Validate" type="object"
               class="oe_highlight" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>

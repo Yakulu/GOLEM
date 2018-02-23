@@ -30,7 +30,8 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
 
 
 
-    def ChooseActivity(self):
+    # lancer liste editable d'inscription sur attente
+    def register_in_queue(self):
         self.ensure_one()
         activityQueue = self[0]
         return {
@@ -41,7 +42,7 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
             'context' :{'default_activity_id' : activityQueue.activity_id.id,
                         'default_member_id' : activityQueue.member_id.id
                         },
-            'domain' : [('activity_id', '=',activityQueue.activity_id.id )],# activity_id.name)],#"('activity_id', '=', True)"
+            'domain' : [('activity_id', '=',activityQueue.activity_id.id )],
             'flags': {'action_buttons': True},
             'target': 'new',
         }

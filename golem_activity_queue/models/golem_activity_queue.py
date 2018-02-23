@@ -37,7 +37,7 @@ class GolemActivityQueue(models.Model):
     #activité liée est plein ou non
     is_activity_full = fields.Char(compute="_isActivityFull")
 
-    # decider si l'activity liée est pleine ou non
+    # decider si l'activity liée est pleine ou non : pour group by sur la liste
     @api.multi
     @api.depends('places_remain')
     def _isActivityFull(self):
