@@ -35,7 +35,16 @@ class GolemActivity(models.Model):
     queue_activity_number = fields.Integer(compute="_queue_activity_number",
                                            store=True, string='Pending registration number')
 
-
+    #mettre à jour le status d'activité remplis sur chaque attente
+    @api.constrains('places_remain')
+    def updateActivityState(self):
+        """updates queue.is_activity_full based on places_remain"""
+        for activity in self:
+            for queue in self.activity_queue_ids:
+                if activity.places_remain == 0:
+                    queue.is_activity_full = "Full activity"
+                else:
+                    queue.is_activity_full = "Not full activity"
     #Ajouter/supprimer une file à l'activité et afficher popup pour traitement automatisé
     @api.multi
     def queue_allowed_toggle(self):
