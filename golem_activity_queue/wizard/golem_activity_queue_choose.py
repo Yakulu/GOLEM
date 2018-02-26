@@ -34,3 +34,12 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
         activityQueue = self[0]
         self.env['golem.activity.queue'].create({'member_id': activityQueue.member_id.id,
                                                  'activity_id': activityQueue.activity_id.id})
+        message = _('the member {} is registred in queue for the activity {} with success')
+        return {
+            'warning' : {
+                'title' : _('Warning'),
+                'message': (message.format(activityQueue.member_id.name,
+                                           activityQueue.activity_id.name))
+            }
+        }
+    

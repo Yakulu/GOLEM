@@ -38,13 +38,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
 
               <field name="activity_queue_ids"
-                context="{'default_member_id': active_id}">
+                context="{'default_member_id': active_id}" readonly="1">
                 <tree editable="top">
                   <field name="sequence" widget="handle"/>
                   <field name="activity_id" readonly="1" />
                   <field name="season_id" readonly="1" />
                 </tree>
               </field>
+            </group>
+            <group>
+              <button class="oe_highlight" name="choose_queue_to_register" string="Register in the queue"  type="object"/>
             </group>
           </page>
         </page>
