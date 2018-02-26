@@ -33,8 +33,14 @@ class GolemActivity(models.Model):
     automated_registration_from_queue = fields.Boolean(default=True)
     #ajout d'un champs pour calculer le nombre d'inscription en file d'attente
     queue_activity_number = fields.Integer(compute="_queue_activity_number",
-                            store=True , string='Pending registration number')
+                                           store=True, string='Pending registration number')
 
+
+    #Ajouter/supprimer une file à l'activité et afficher popup pour traitement automatisé
+    @api.multi
+    def queue_allowed_toggle(self):
+        for activity in self:
+            activity.queue_allowed = not activity.queue_allowed
 
     #contraint sur nombre d'inscription : une desincription declanche une inscription depuis attente
     @api.multi

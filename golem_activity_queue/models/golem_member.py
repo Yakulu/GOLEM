@@ -24,7 +24,7 @@ class GolemMember(models.Model):
 
     #ajout d'un champs O2M vers member_id de golem.activity.queue
     activity_queue_ids = fields.One2many('golem.activity.queue',
-                        'member_id','Pending registration')
+                                         'member_id', 'Pending registration')
 
     #verifier si nombre d'inscription sur activité est supérieur au place disponible
     @api.multi
@@ -34,7 +34,7 @@ class GolemMember(models.Model):
         member_id = self[0]
 
         for registration in member_id.activity_registration_ids:
-            activity = reservation.activity_id
+            activity = registration.activity_id
             if len(activity.activity_registration_ids) > activity.places and activity.queue_allowed:
                 warning_message = _('This activity : {} is already full, please'
                                     ' discard changes and register in'

@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
       </xpath>
       <!--Ajout onglet queue sur activity form-->
-      <page name="invoicing" position="before">
+    <xpath expr="//page[@name='invoicing']" position="before">
         <page name="queue" string="Queue">
           <group>
             <field name="queue_activity_number" readonly='1'/>
@@ -61,7 +61,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     string="Register from Queue"  type="object"/>
           </group>
         </page>
-      </page>
+      </xpath>
+      <!--Ajout du bouton "ajouter une file"-->
+      <xpath expr="//header" position="inside">
+        <button class="oe_highlight" name="queue_allowed_toggle"
+                string="Add Queue"  type="object"
+                attrs="{'invisible': [('queue_allowed', '=', True)]}"/>
+        <button class="oe_highlight" name="queue_allowed_toggle"
+                string="Remove Queue"  type="object"
+                attrs="{'invisible': [('queue_allowed', '=', False)]}"/>
+      </xpath>
     </field>
   </record>
 
