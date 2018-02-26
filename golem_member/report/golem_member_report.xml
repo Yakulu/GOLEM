@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <template id="report_golem_member_template">
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
-          <div class="page">
+          <div id='page_report_member' class="page">
             <t t-foreach="docs" t-as="o">
               <div class="oe_structure"/>
                 <div class="row">

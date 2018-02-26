@@ -92,29 +92,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </tbody>
             </table>
             <table class="table table-striped">
-              <thead>
-                <strong>Payments</strong>
-                <tr>
-                  <th>Invoice number</th>
-                  <th>State</th>
-                </tr>
-              </thead>
-              <tbody>
-                <t t-foreach="docs" t-as="o">
-                  <tr t-foreach="o.activity_registration_ids" t-as="l">
-                    <tr>
-                      <td class="col-xs-6">
-                        <spam t-field="l.invoice_id.number" />
-                      </td>
-                      <td class="col-xs-6">
-                        <!-- <p t-if="l.invoice_id.payment_ids.state not in ['draft']" > -->
-                        <span t-field="l.invoice_id.payment_ids.state" />
-                      </td>
-                    </tr>
+                <thead>
+                  <strong>Payments</strong>
+                  <tr>
+                    <th>Invoice number</th>
+                    <th>State</th>
                   </tr>
-                </t>
-              </tbody>
-
+                </thead>
+                <tbody>
+                  <t t-foreach="docs" t-as="o">
+                    <tr t-foreach="o.activity_registration_ids" t-as="l">
+                      <tr>
+                        <td class="col-xs-6">
+                          <spam t-field="l.invoice_id.number" />
+                        </td>
+                        <td class="col-xs-6">
+                          <p t-foreach = "l.invoice_id.payment_ids" t-as = "i" >
+                            <t t-if = "i.state not in ['draft']">
+                            <span  t-esc = "i.state" />
+                          </t>
+                          </p>
+                        </td>
+                      </tr>
+                    </tr>
+                  </t>
+                </tbody>
             </table>
           </xpath>
       </template>
