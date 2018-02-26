@@ -54,9 +54,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                          t-esc-options="{'widget': 'monetary',
                                          'display_currency': o.currency_id}"/>
                       </td>
-            </td></td></td></td></td></td></td>
-            </tr>
-          </tfoot>
+                  </td></td></td></td></td></td></td>
+                </tr>
+              </tfoot>
           </xpath>
 
           <xpath expr="//table[@id='table_activity_ref']" position="after">
@@ -107,9 +107,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <spam t-field="l.invoice_id.number" />
                       </td>
                       <td class="col-xs-6">
+                        <!-- <p t-if="l.invoice_id.payment_ids.state not in ['draft']" > -->
                         <span t-field="l.invoice_id.payment_ids.state" />
                       </td>
-
                     </tr>
                   </tr>
                 </t>
