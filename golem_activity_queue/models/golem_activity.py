@@ -40,7 +40,13 @@ class GolemActivity(models.Model):
     @api.multi
     def queue_allowed_toggle(self):
         for activity in self:
-            activity.queue_allowed = not activity.queue_allowed
+            if activity.queue_allowed:
+                activity.queue_allowed = not activity.queue_allowed
+                activity.automated_registration_from_queue = False
+            else:
+                activity.queue_allowed = not activity.queue_allowed
+
+
 
     #contraint sur nombre d'inscription : une desincription declanche une inscription depuis attente
     @api.multi

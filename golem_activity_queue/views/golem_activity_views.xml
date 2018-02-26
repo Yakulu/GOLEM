@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <!--Ajout du case file d'attente et inscription automatisé sur activity form-->
       <xpath expr="//field[@name='is_overbooked']" position="after">
         <field name="queue_allowed"/>
-        <field name="automated_registration_from_queue"/>
+        <field name="automated_registration_from_queue" attrs="{'readonly': [('queue_allowed','=', False )]}"/>
       </xpath>
       <!--Ajout du bouton inscription en file d'attente sur activity form-->
       <xpath expr="//field[@name='activity_registration_ids']" position="after">
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </xpath>
       <!--Ajout onglet queue sur activity form-->
     <xpath expr="//page[@name='invoicing']" position="before">
-        <page name="queue" string="Queue">
+        <page name="queue" string="Queue" attrs="{'invisible': [('queue_allowed', '=', False)]}">
           <group>
             <field name="queue_activity_number" readonly='1'/>
             <field name="activity_queue_ids"
