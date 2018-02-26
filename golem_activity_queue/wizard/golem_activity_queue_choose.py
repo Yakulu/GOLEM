@@ -24,25 +24,13 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
     """GOLEM Resource wizard : rchoose activity queue to register in """
     _name = "golem.activity.queue.choose.wizard"
 
-    activity_id = fields.Many2one("golem.activity",
-                                  domain=[('places_remain','<',1)])
+    activity_id = fields.Many2one("golem.activity")
     member_id = fields.Many2one("golem.member")
-
-
 
     # lancer liste editable d'inscription sur attente
     def register_in_queue(self):
+        """ Choisir l'activité pour s'inscrire sur sa liste d'attente"""
         self.ensure_one()
         activityQueue = self[0]
-        return {
-            'name'      : _('Register in the queue'),
-            'type'      : 'ir.actions.act_window',
-            'res_model' : 'golem.activity.queue',
-            'view_mode': 'tree',#
-            'context' :{'default_activity_id' : activityQueue.activity_id.id,
-                        'default_member_id' : activityQueue.member_id.id
-                        },
-            'domain' : [('activity_id', '=',activityQueue.activity_id.id )],
-            'flags': {'action_buttons': True},
-            'target': 'new',
-        }
+        self.env['golem.activity.queue'].create({'member_id': activityQueue.member_id.id,
+                                                 'activity_id': activityQueue.activity_id.id})

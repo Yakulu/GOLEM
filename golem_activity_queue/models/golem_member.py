@@ -53,6 +53,7 @@ class GolemMember(models.Model):
         print self
         self.ensure_one()
         member_id = self[0]
+
         return {
             'name'      : _('Choose the activity to register in'),
             'type'      : 'ir.actions.act_window',
