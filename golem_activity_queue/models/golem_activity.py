@@ -111,6 +111,8 @@ class GolemActivity(models.Model):
                     for registration in registrations:
                         #compare le membre sur l'attente au membre sur l'inscription
                         if queue.member_id == registration.member_id:
+                            #si membre trouvé inscrit sur l'activité on le supprime de la queue
+                            record.activity_queue_ids = [(2, queue.id, 0)]
                             #si membre trouvé on mentionne enregistré, on passe au registration suivante
                             membre_registred = True
                             break

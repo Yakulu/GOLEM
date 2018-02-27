@@ -28,9 +28,7 @@ class GolemMember(models.Model):
 
     @api.multi
     def write(self, values):
-        #for registration in self.activity_registration_ids:
-        #    print '_____________________trktrk_________________________'
-        #    print registration.activity_id.name
+
         #comparer old with new
         oldRegistrations = self.activity_registration_ids
         oldActivities = [oldRegistration.activity_id.id for oldRegistration in oldRegistrations]
@@ -60,6 +58,8 @@ class GolemMember(models.Model):
                     for registration in registrations:
                         #compare le membre sur l'attente au membre sur l'inscription
                         if queue.member_id == registration.member_id:
+                            #si membre trouvé inscrit sur l'activité on le supprime de la queue
+                            record.activity_queue_ids = [(2, queue.id, 0)]
                             #si membre trouvé on mentionne enregistré, on passe au registration suivante
                             membre_registred = True
                             break
@@ -91,25 +91,6 @@ class GolemMember(models.Model):
                                    ' : {}, you can fill it from the queue'
                                    ' using the button on queue tab')
                 print warningMessage.format(activityRemoved.name)
-
-
-
-            #reservations = self.env['golem.resource.reservation'].search(domain)
-            print "changes detected ______________________________________"
-            print oldActivities
-            print newActivities
-            print changed[0]
-            print activityRemoved.name
-            """for registration in oldRegistrations:
-                print "_________________this is removed"
-                print registration.activity_price
-                if registration not in newRegistrations:
-                    print "_________________this is removed"
-                    print registration.activity_id
-                    break"""
-        #print self.activity_registration_ids
-        #print "2_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
-        #print self.name
         return True
 
     @api.constrains('activity_registration_ids')
