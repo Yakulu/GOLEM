@@ -72,10 +72,19 @@ class GolemActivity(models.Model):
     #Ajouter/supprimer une file à l'activité et afficher popup pour traitement automatisé
     @api.multi
     def queue_allowed_toggle(self):
+        """ Toggle queue_alowed boolean """
         for activity in self:
+            #si l'activité contient une file
             if activity.queue_allowed:
-                activity.queue_allowed = not activity.queue_allowed
+                # si la queue déja contient des elements à supprimer
+                if len(activity.activity_queue_ids) > 0:
+                    #parcourir et supprimer les element de la queue
+                    for queue in activity.activity_queue_ids:
+                        activity.activity_queue_ids = [(2, queue.id, 0)]
+                #changer l'état de queue allowed et automated_registration en false
+                activity.queue_allowed = False
                 activity.automated_registration_from_queue = False
+
             else:
                 activity.queue_allowed = not activity.queue_allowed
 
