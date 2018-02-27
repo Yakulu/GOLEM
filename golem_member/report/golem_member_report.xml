@@ -56,24 +56,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         t-options='{"widget": "contact", "fields":
                         ["address", "name", "street", "street2", "phone", "fax"],
                          "no_marker": True, "phone_icons": True}'/>
-                         <br></br>
                       </div>
-                <div class="oe_structure"/>
-                  <div class="col-xs-4">
-                    <strong>Season :</strong>
-                      <span t-field="o.season_ids[0].name" />
-                    </div>
+                  <div class="oe_structure"/>
                     <div class="col-xs-4">
-                      <strong>Date :</strong>
-                      <span t-field="o.season_ids[0].date_start" />
-                      -
-                      <span t-field="o.season_ids[0].date_end" />
-                      <br></br>
-                      <br></br>
-                    </div>
+                      <strong>Season :</strong>
+                        <span t-field="o.season_ids[0].name" />
+                      </div>
+                      <div class="col-xs-4">
+                        <strong>Date :</strong>
+                        <span t-field="o.season_ids[0].date_start" />
+                        -
+                        <span t-field="o.season_ids[0].date_end" />
+                        <br></br>
+                        <br></br>
+                      </div>
                 </div>
-                </t>
-
+            </t>
             <table id="table_activity_ref" class="table table-striped">
               <thead>
                 <strong>Activity</strong>
@@ -121,6 +119,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </t>
       </t>
     </template>
-
 
 </odoo>

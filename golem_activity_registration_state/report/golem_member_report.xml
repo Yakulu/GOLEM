@@ -44,15 +44,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tfoot>
                 <tr>
                   <td><td><td><td><td><td><td>
-                      <td>
-                        <strong>
-                          TOTAL
-                        </strong>
-                      </td>
-                      <td>
-                        <t t-esc="price_sum"
-                         t-esc-options="{'widget': 'monetary',
-                                         'display_currency': o.currency_id}"/>
+                    <td>
+                      <strong>
+                        TOTAL
+                      </strong>
+                    </td>
+                    <td>
+                      <t t-esc="price_sum"
+                       t-esc-options="{'widget': 'monetary',
+                                       'display_currency': o.currency_id}"/>
                       </td>
                   </td></td></td></td></td></td></td>
                 </tr>
@@ -63,7 +63,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <table class="table table-striped">
               <thead>
                 <strong>Invoices</strong>
-                <br></br>
                 <tr>
                   <th>Activity</th>
                   <th>Date</th>
@@ -93,32 +92,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </tbody>
             </table>
               <table class="table table-striped" >
-                  <thead>
-                    <strong>Payments</strong>
-                    <br></br>
+                <thead>
+                  <strong>Payments</strong>
                     <tr>
-                      <th>Invoice number</th>
-                      <th>State</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <t t-foreach="docs" t-as="o">
-                      <tr t-foreach="o.activity_registration_ids" t-as="l">
-                        <tr>
-                          <td class="col-xs-6">
-                            <spam t-field="l.invoice_id.number" />
-                          </td>
-                          <td class="col-xs-6">
-                            <p t-foreach="l.invoice_id.payment_ids" t-as = "i" >
-                              <t t-if="i.state not in ['draft']">
+                    <th>Invoice number</th>
+                    <th>State</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="docs" t-as="o">
+                    <tr t-foreach="o.activity_registration_ids" t-as="l">
+                        <td class="col-xs-6">
+                          <spam t-field="l.invoice_id.number" />
+                        </td>
+                        <td class="col-xs-6">
+                          <p t-foreach="l.invoice_id.payment_ids" t-as = "i" >
+                            <t t-if="i.state not in ['draft']">
                               <span t-esc="i.state" />
                             </t>
-                            </p>
-                          </td>
-                        </tr>
-                      </tr>
-                    </t>
-                  </tbody>
+                          </p>
+                        </td>
+                    </tr>
+                  </t>
+                </tbody>
               </table>
           </xpath>
       </template>
