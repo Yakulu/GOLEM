@@ -61,6 +61,7 @@ class GolemActivity(models.Model):
     @api.multi
     @api.constrains('activity_registration_ids')
     def _automatedRegistrationFromQueue(self):
+        """automated registration from queue"""
         for record in self:
             # 1 verifier si une place est disponible sur activité
             #2 verifier si la file contient des element

@@ -26,6 +26,101 @@ class GolemMember(models.Model):
     activity_queue_ids = fields.One2many('golem.activity.queue',
                                          'member_id', 'Pending registration')
 
+    @api.multi
+    def write(self, values):
+        #for registration in self.activity_registration_ids:
+        #    print '_____________________trktrk_________________________'
+        #    print registration.activity_id.name
+        #comparer old with new
+        oldRegistrations = self.activity_registration_ids
+        oldActivities = [oldRegistration.activity_id.id for oldRegistration in oldRegistrations]
+
+        super(GolemMember, self).write(values)
+        newRegistrations = self.activity_registration_ids
+        if  len(oldRegistrations) > len(newRegistrations):
+            newActivities = [newRegistration.activity_id.id for newRegistration in newRegistrations]
+            changed = list(set(oldActivities) - set(newActivities))
+            activityRemoved = self.env['golem.activity'].browse(changed[0])
+
+            if (activityRemoved.queue_allowed and
+                    activityRemoved.automated_registration_from_queue and
+                    activityRemoved.queue_activity_number > 0):
+                queues = activityRemoved.activity_queue_ids
+                #trier la liste selon l'id : récupérer l'ancien element
+                queues_sorted = sorted(queues, key=lambda k: k['id'])
+                #suppose que le membre est enrigistré
+                membre_registred = True
+                #parcourir les element sur l'attente
+                for queue in queues_sorted:
+                    #inverse l'etat du memebre
+                    membre_registred = False
+                    #recuperer la liste des registration
+                    registrations = activityRemoved.activity_registration_ids
+                    #parcourir les registration afin de vérifier si le memebre sur l'attente déja inscrit
+                    for registration in registrations:
+                        #compare le membre sur l'attente au membre sur l'inscription
+                        if queue.member_id == registration.member_id:
+                            #si membre trouvé on mentionne enregistré, on passe au registration suivante
+                            membre_registred = True
+                            break
+                    #à la sortie de la boucle si le membre nest pas sur inscription faire une
+                    if not membre_registred:
+                        #valeures pour creer une inscritpion apartir de la file
+                        values = {
+                            'activity_id' : queue.activity_id,
+                            'member_id' : queue.member_id
+                            }
+                        # creation d'inscription
+                        activityRemoved.activity_registration_ids = [(0, 0,values)]
+                        #suppression de l'element de la file d'attente
+                        activityRemoved.activity_queue_ids = [(2, queue.id, 0)]
+                        #sortir de la boucle parcourissante la queue puisque inscription faite
+                        break
+
+                warningMessage = _('There is a free place for the activity'
+                                   ' : {}, once you save it will be filled'
+                                   ' by the first membre from queue')
+                print warningMessage.format(activityRemoved.name)
+
+
+
+
+            elif (activityRemoved.queue_allowed and
+                  activityRemoved.queue_activity_number > 0) :
+                warningMessage = _('There is a free place for the activity'
+                                   ' : {}, you can fill it from the queue'
+                                   ' using the button on queue tab')
+                print warningMessage.format(activityRemoved.name)
+
+
+
+            #reservations = self.env['golem.resource.reservation'].search(domain)
+            print "changes detected ______________________________________"
+            print oldActivities
+            print newActivities
+            print changed[0]
+            print activityRemoved.name
+            """for registration in oldRegistrations:
+                print "_________________this is removed"
+                print registration.activity_price
+                if registration not in newRegistrations:
+                    print "_________________this is removed"
+                    print registration.activity_id
+                    break"""
+        #print self.activity_registration_ids
+        #print "2_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
+        #print self.name
+        return True
+
+    @api.constrains('activity_registration_ids')
+    def _automatedRegistrationFromQueue(self):
+        """ Automated Registration From Queue"""
+        #verifier le nombre d'enregistr
+        """for member in self:
+            for registration in member.activity_registration_ids:
+                print '______________________________________________'
+                print registration.activity_id.name"""
+
     #verifier si nombre d'inscription sur activité est supérieur au place disponible
     @api.multi
     @api.onchange('activity_registration_ids')
