@@ -22,17 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <record id="paperformat_euro_landscape"
       model="report.paperformat">
-      <field name="name">European A4 Landscape</field>
+      <field name="name">European A4 Portrait</field>
       <field name="default" eval="True" />
       <field name="format">A4</field>
       <field name="page_height">0</field>
       <field name="page_width">0</field>
-      <field name="orientation">Landscape</field>
+      <field name="orientation">Portrait</field>
       <field name="margin_top">40</field>
       <field name="margin_bottom">23</field>
       <field name="margin_left">7</field>
       <field name="margin_right">7</field>
-      <field name="header_line" eval="False" />
+      <field name="header_line" eval="True" />
       <field name="header_spacing">35</field>
       <field name="dpi">90</field>
     </record>
@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <report id="golem_member_report"
       string="Golem member report"
       model="golem.member"
-      report_type="qweb-html"
+      report_type="qweb-pdf"
       name="golem_member.report_golem_member_template" />
 
     <template id="report_golem_member_template">
@@ -68,6 +68,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       <span t-field="o.season_ids[0].date_start" />
                       -
                       <span t-field="o.season_ids[0].date_end" />
+                      <br></br>
+                      <br></br>
                     </div>
                 </div>
                 </t>
@@ -75,6 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <table id="table_activity_ref" class="table table-striped">
               <thead>
                 <strong>Activity</strong>
+                <br></br>
                 <tr>
                   <th>Name</th>
                   <th>Animator</th>

@@ -22,35 +22,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
       <template id="membership" inherit_id="golem_member.report_golem_member_template">
               <xpath expr="//div[@id='page_report_member']" position="after">
-                <div class="page">
-                  <table class="table">
-                    <thead>
-                      <strong>Membership</strong>
-                      <tr>
-                        <th>Season</th>
-                        <th>Date</th>
-                        <th>State</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <t t-foreach="docs" t-as="o">
+                <t t-call="report.external_layout">
+                  <div class="page">
+                    <table class="table table-striped">
+                      <thead>
+                        <strong>Membership</strong>
                         <tr>
-                          <td class="col-xs-4">
-                            <spam t-field="o.member_lines.date" />
-                          </td>
-                          <td class="col-xs-4">
-                            <spam t-field="o.member_lines.membership_id" />
-                          </td>
-                          <td class="col-xs-4">
-                            <spam t-field="o.member_lines.state" />
-                          </td>
+                          <th>Season date</th>
+                          <th>Registration</th>
+                          <th>Registration type</th>
+                          <th>State</th>
                         </tr>
-                      </t>
-                    </tbody>
-                  </table>
-
-
-                </div>
+                      </thead>
+                      <tbody>
+                        <t t-foreach="docs" t-as="o">
+                          <tr>
+                            <td class="col-xs-3">
+                              <spam t-field="o.membership_start" />
+                              <spam t-field="o.membership_stop" />
+                            </td>
+                            <td class="col-xs-3">
+                              <spam t-field="o.member_lines.date" />
+                            </td>
+                            <td class="col-xs-3">
+                              <spam t-field="o.member_lines.membership_id" />
+                            </td>
+                            <td class="col-xs-3">
+                              <spam t-field="o.membership_state" />
+                            </td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </t>
               </xpath>
 
       </template>
