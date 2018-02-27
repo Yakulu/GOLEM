@@ -27,11 +27,14 @@ class GolemActivityQueue(models.Model):
     _order = "sequence"
     _description = 'GOLEM Activity Queue'
 
-    activity_id = fields.Many2one('golem.activity', required=True,
-                                  string='Activity', ondelete='cascade')
-    season_id = fields.Many2one(related='activity_id.season_id')
     member_id = fields.Many2one('golem.member', required=True,
-                                string='Member', ondelete='cascade')
+                                string='Member', ondelete='cascade',
+                                index=True)
+    activity_id = fields.Many2one('golem.activity', required=True,
+                                  string='Activity', ondelete='cascade',
+                                  index=True)
+    season_id = fields.Many2one(related='activity_id.season_id')
+
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
     #nombre de place disponible sur activité liée
@@ -40,6 +43,10 @@ class GolemActivityQueue(models.Model):
     is_activity_full = fields.Char(compute="_isActivityFull", store=True)
 
     sequence = fields.Integer()
+
+    _sql_constraints = [
+        ('queue_uniq', 'UNIQUE (member_id, activity_id)',
+         _('This member has already been registered for the queue.'))]
 
 
     # decider si l'activity liée est pleine ou non : pour group by sur la liste

@@ -35,6 +35,30 @@ class GolemActivity(models.Model):
     queue_activity_number = fields.Integer(compute="_queue_activity_number",
                                            store=True, string='Pending registration number')
 
+    @api.multi
+    def write(self, vals):
+        """ Override method write to delete record from queue if they register in activity"""
+        super(GolemActivity, self).write(vals)
+        #recupérer les modification au niveau des registrations
+        registrations = vals.get('activity_registration_ids')
+        if registrations:
+            #parcourir les registrations
+            for registration in registrations:
+                #s'il une nouvelle registration est trouvé
+                if registration[0] == 0:
+                    #recupérer les données de la registration
+                    act_id = registration[2].get('activity_id')
+                    mem_id = registration[2].get('member_id')
+                    domain = [('activity_id', '=', act_id),
+                              ('member_id', '=', mem_id)]
+                    #chercher si le meme nomre est inscrit sur lattente du meme activité
+                    queue = self.env['golem.activity.queue'].search(domain)
+                    if queue:
+                        #supprimer l'inscription sur la queue
+                        self.activity_queue_ids = [(2, queue.id, 0)]
+        return True
+
+
     #mettre à jour le status d'activité remplis sur chaque attente
     @api.constrains('places_remain')
     def updateActivityState(self):
@@ -149,8 +173,11 @@ class GolemActivity(models.Model):
                 for registration in registrations:
                     #compare le membre sur l'attente au membre sur l'inscription
                     if queue.member_id == registration.member_id:
-                        #si membre trouvé on mentionne enregistré, on passe au registration suivante
+                        #si membre trouvé inscrit sur l'activité on le supprime de la queue
+                        record.activity_queue_ids = [(2, queue.id, 0)]
+                        # on mentionne enregistré, on passe au registration suivante
                         membre_registred = True
+                        #on sort de la boucle de registration et on passe à l'element suivant de l'attente
                         break
                 #à la sortie de la boucle si le membre nest pas sur inscription faire une
                 if not membre_registred:
