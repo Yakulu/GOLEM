@@ -49,6 +49,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <field name="season_id" />
     <filter name="season_default" string="Default season"
      domain="[('is_current', '=', True)]" />
+    <filter name="full_activity" string="Full Activity"
+      domain="[('is_activity_full', '=', 'Full activity')]" />
+    <filter name="not_full_activity" string="Not Full Activity"
+      domain="[('is_activity_full', '=', 'Not full activity')]" />
     <group string="Group By">
         <filter name="group_by_member" string="Member"
                 context="{'group_by': 'member_id'}"/>
