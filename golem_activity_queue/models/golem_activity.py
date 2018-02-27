@@ -86,7 +86,18 @@ class GolemActivity(models.Model):
                 activity.automated_registration_from_queue = False
 
             else:
-                activity.queue_allowed = not activity.queue_allowed
+                #lancer popup pour choisir activité à s'inscrire
+                self.ensure_one()
+                activity_id = self[0]
+
+                return {
+                    'name'      : _('Choose the activity to register in'),
+                    'type'      : 'ir.actions.act_window',
+                    'res_model' : 'golem.activity.automated.queue.activate.wizard',
+                    'view_mode': 'form',
+                    'context' : {'default_activity_id' : activity_id.id},
+                    'target': 'new',
+                }
 
 
 

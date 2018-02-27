@@ -125,8 +125,6 @@ class GolemMember(models.Model):
     #lancer popup pour choisir activité à s'inscrire
     @api.multi
     def choose_queue_to_register(self):
-        print "_________________________________________________"
-        print self
         self.ensure_one()
         member_id = self[0]
 

@@ -30,6 +30,7 @@
         'views/golem_activity_queue_views.xml',
         'views/golem_activity_views.xml',
         'views/golem_member_views.xml',
-        'wizard/golem_activity_queue_choose_views.xml'
+        'wizard/golem_activity_queue_choose_views.xml',
+        'wizard/golem_activity_automated_queue_activate_views.xml'
         ]
 }

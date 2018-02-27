@@ -66,8 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <xpath expr="//header" position="inside">
         <button class="oe_highlight" name="queue_allowed_toggle"
                 string="Add Queue"  type="object"
-                attrs="{'invisible': [('queue_allowed', '=', True)]}"
-                confirm="Are you sure you want to do this?"/>
+                attrs="{'invisible': [('queue_allowed', '=', True)]}"/>
         <button class="oe_highlight" name="queue_allowed_toggle"
                 string="Remove Queue"  type="object"
                 attrs="{'invisible': [('queue_allowed', '=', False)]}"
