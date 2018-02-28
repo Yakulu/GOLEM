@@ -36,7 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group string="Season">
               <field name="is_default" invisible="True" />
               <field name="name" attrs="{'required': True}" />
-              <field name="membership_id" options="{'no_create': true}"/>
+              <field name="membership_ids" widget="many2many_tags"
+                options="{'no_create': True}" />
               <field name="date_start"
                 attrs="{'required': [('date_end', '!=', False)]}" />
               <field name="date_end"
