@@ -32,8 +32,10 @@ class GolemMember(models.Model):
         if registrations_edited:
             for registration_edited in registrations_edited:
                 if registration_edited[0] == 2:
-                    registration_removed = self.env['golem.activity.registration'].browse(registration_edited[1])
-                    activity_removed = self.env['golem.activity'].browse(registration_removed.activity_id.id)
+                    registration_removed = self.env['golem.activity.registration'].browse(
+                        registration_edited[1])
+                    activity_removed = self.env['golem.activity'].browse(
+                        registration_removed.activity_id.id)
                     if (activity_removed.queue_allowed and
                             activity_removed.auto_registration_from_queue and
                             activity_removed.queue_activity_number > 0):
@@ -83,14 +85,8 @@ class GolemMember(models.Model):
                                 #sortir de la boucle parcourissante la queue puisque
                                 # inscription faite
                                 break
-                    elif (activity_removed.queue_allowed and
-                          activity_removed.queue_activity_number > 0):
-                        warning_message = _('There is a free place for the activity'
-                                            ' : {}, you can fill it from the queue'
-                                            ' using the button on queue tab')
-                        print warning_message.format(activity_removed.name)
         return True
-        
+
     #verifier si nombre d'inscription sur activité est supérieur au place disponible
     #inviter l'utilisateur à s'inscrire sur l'attente
     @api.multi
@@ -114,7 +110,6 @@ class GolemMember(models.Model):
                         'message': warning_message.format(activity.name),
                     }
                 }
-
     #lancer popup pour choisir activité à s'inscrire
     @api.multi
     def choose_queue_to_register(self):

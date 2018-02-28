@@ -23,7 +23,6 @@ class GolemActivity(models.Model):
     """ GOLEM Activity adaptations """
     _inherit = 'golem.activity'
 
-
     #ajout d'un champs O2M vers activity_id de golem.activity.queue
     activity_queue_ids = fields.One2many('golem.activity.queue',
                                          'activity_id', 'Pending registration')
@@ -34,12 +33,14 @@ class GolemActivity(models.Model):
     #ajout d'un champs pour calculer le nombre d'inscription en file d'attente
     queue_activity_number = fields.Integer(compute="_compute_queue_activity_number",
                                            store=True, string='Pending registration number')
+    #changer le mode de basculement en cas de desinctiption
     @api.multi
-    def auto_registration_from_queue_toggle(self):
+    def auto_registration_toggle(self):
         """ switch registration from queueu mode """
         for activity in self:
             activity.auto_registration_from_queue = not activity.auto_registration_from_queue
 
+    #supprimer les personnes en attente si une inscription directement est faite
     @api.multi
     def write(self, vals):
         """ Override method write to delete record from queue if they register in activity"""
@@ -110,7 +111,7 @@ class GolemActivity(models.Model):
     #depuis attente mode automatique
     @api.multi
     @api.constrains('activity_registration_ids')
-    def _automatedRegistrationFromQueue(self):
+    def _auto_registration_from_queue(self):
         """automated registration from queue"""
         for record in self:
             # 1 verifier si une place est disponible sur activité

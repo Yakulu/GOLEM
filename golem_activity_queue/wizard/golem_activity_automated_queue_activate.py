@@ -27,7 +27,6 @@ class GolemActivityAutomatedQueueActivateWizard(models.TransientModel):
     activity_id = fields.Many2one("golem.activity")
     auto_registration_from_queue = fields.Boolean(default=True)
 
-
     # lancer liste editable d'inscription sur attente
     def activate_queue(self):
         """ Activate Queue for the activity"""

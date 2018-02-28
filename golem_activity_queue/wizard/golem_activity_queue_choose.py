@@ -27,6 +27,7 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
     activity_id = fields.Many2one("golem.activity")
     member_id = fields.Many2one("golem.member")
 
+
     # lancer liste editable d'inscription sur attente
     def register_in_queue(self):
         """ Choisir l'activité pour s'inscrire sur sa liste d'attente"""

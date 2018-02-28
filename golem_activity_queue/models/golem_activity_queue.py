@@ -48,7 +48,6 @@ class GolemActivityQueue(models.Model):
         ('queue_uniq', 'UNIQUE (member_id, activity_id)',
          _('This member has already been registered for the queue.'))]
 
-
     # decider si l'activity liée est pleine ou non : pour group by sur la liste
     @api.depends('places_remain')
     def _compute_is_activity_full(self):
