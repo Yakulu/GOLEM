@@ -77,11 +77,6 @@ class GolemMember(models.Model):
                                 activity_removed.activity_registration_ids = [(0, 0, values)]
                                 #suppression de l'element de la file d'attente
                                 activity_removed.activity_queue_ids = [(2, queue.id, 0)]
-                                #afficher un message informatif
-                                warning_message = _('There is a free place for the activity'
-                                                    ' : {}, once you save it will be filled'
-                                                    ' by the first membre from queue')
-                                print warning_message.format(activity_removed.name)
                                 #sortir de la boucle parcourissante la queue puisque
                                 # inscription faite
                                 break
