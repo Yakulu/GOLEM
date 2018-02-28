@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <report id="golem_family_report"
       string="Golem family report"
       model="golem.family"
-      report_type="qweb-html"
+      report_type="qweb-pdf"
       name="golem_family.report_golem_family_template" />
 
     <template id="report_golem_family_template">
@@ -68,15 +68,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </div>
             </t>
           </div>
-          <div>
-              <t t-call="golem_member.report_golem_member_template" >
-                <t t-set="docs" t-value="o"/>
-                <t t-set="family_id" t-value="partner_id"/>
-
-              </t>
-          </div>
+          <t t-foreach="docs" t-as="o">
+            <t t-foreach="o.member_ids" t-as="i" >
+              <!-- <div class="page"> -->
+                <t t-call="golem_member.report_golem_member_template" >
+                <t t-set="docs" t-value="i.member_id" />
+                </t>
+              <!-- </div> -->
+            </t>
+          </t>
         </t>
       </t>
     </template>
+
+
+
 
 </odoo>
