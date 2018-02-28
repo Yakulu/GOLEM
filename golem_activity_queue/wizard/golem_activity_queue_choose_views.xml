@@ -16,10 +16,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-
 <odoo>
   <data>
-
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_activity_queue_choose_wizard_view_form">
       <field name="name">GOLEM Activity Queue Choose Wizard Form</field>
@@ -39,8 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </footer>
         </form>
       </field>
-  </record>
-
-
+    </record>
   </data>
 </odoo>

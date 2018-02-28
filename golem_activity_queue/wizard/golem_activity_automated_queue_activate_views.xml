@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </group>
           <group>
             <field name="activity_id" invisible="1" />
-            <field name="automated_registration_from_queue"/>
+            <field name="auto_registration_from_queue"/>
           </group>
           <footer>
             <button name="activate_queue" string="Confirm" type="object"

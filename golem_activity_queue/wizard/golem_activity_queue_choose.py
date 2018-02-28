@@ -18,7 +18,7 @@
 
 """ GOLEM Resources management """
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 
 class GolemActivityQueueChooseWizard(models.TransientModel):
     """GOLEM Resource wizard : rchoose activity queue to register in """
@@ -31,15 +31,14 @@ class GolemActivityQueueChooseWizard(models.TransientModel):
     def register_in_queue(self):
         """ Choisir l'activité pour s'inscrire sur sa liste d'attente"""
         self.ensure_one()
-        activityQueue = self[0]
-        self.env['golem.activity.queue'].create({'member_id': activityQueue.member_id.id,
-                                                 'activity_id': activityQueue.activity_id.id})
+        activity_queue = self[0]
+        self.env['golem.activity.queue'].create({'member_id': activity_queue.member_id.id,
+                                                 'activity_id': activity_queue.activity_id.id})
         message = _('the member {} is registred in queue for the activity {} with success')
         return {
             'warning' : {
                 'title' : _('Warning'),
-                'message': (message.format(activityQueue.member_id.name,
-                                           activityQueue.activity_id.name))
+                'message': (message.format(activity_queue.member_id.name,
+                                           activity_queue.activity_id.name))
             }
         }
-    

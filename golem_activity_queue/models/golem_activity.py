@@ -26,18 +26,19 @@ class GolemActivity(models.Model):
 
     #ajout d'un champs O2M vers activity_id de golem.activity.queue
     activity_queue_ids = fields.One2many('golem.activity.queue',
-                        'activity_id','Pending registration')
+                                         'activity_id', 'Pending registration')
     # un booleen pour determiner si une fille d'attente est autorisé
     queue_allowed = fields.Boolean(default=True, readonly=True)
     # un booleen pour automatisé l'inscription sur une activité depuis la file d'attente
-    automated_registration_from_queue = fields.Boolean(default=True, readonly=True)
+    auto_registration_from_queue = fields.Boolean(default=True, readonly=True)
     #ajout d'un champs pour calculer le nombre d'inscription en file d'attente
-    queue_activity_number = fields.Integer(compute="_queue_activity_number",
+    queue_activity_number = fields.Integer(compute="_compute_queue_activity_number",
                                            store=True, string='Pending registration number')
     @api.multi
-    def automated_registration_from_queue_toggle(self):
+    def auto_registration_from_queue_toggle(self):
+        """ switch registration from queueu mode """
         for activity in self:
-            activity.automated_registration_from_queue = not activity.automated_registration_from_queue
+            activity.auto_registration_from_queue = not activity.auto_registration_from_queue
 
     @api.multi
     def write(self, vals):
@@ -65,7 +66,7 @@ class GolemActivity(models.Model):
 
     #mettre à jour le status d'activité remplis sur chaque attente
     @api.constrains('places_remain')
-    def updateActivityState(self):
+    def update_activity_fullness(self):
         """updates queue.is_activity_full based on places_remain"""
         for activity in self:
             for queue in self.activity_queue_ids:
@@ -87,7 +88,7 @@ class GolemActivity(models.Model):
                         activity.activity_queue_ids = [(2, queue.id, 0)]
                 #changer l'état de queue allowed et automated_registration en false
                 activity.queue_allowed = False
-                activity.automated_registration_from_queue = False
+                activity.auto_registration_from_queue = False
 
             else:
                 #lancer popup pour choisir activité à s'inscrire
@@ -105,7 +106,8 @@ class GolemActivity(models.Model):
 
 
 
-    #contraint sur nombre d'inscription : une desincription declanche une inscription depuis attente
+    #contraint sur nombre d'inscription : une desincription declanche une inscription
+    #depuis attente mode automatique
     @api.multi
     @api.constrains('activity_registration_ids')
     def _automatedRegistrationFromQueue(self):
@@ -116,9 +118,9 @@ class GolemActivity(models.Model):
             #3 verifier si la file est activé
             #4 verifier si linscription automatique depuis la file est activé
             if (len(record.activity_registration_ids) < record.places and
-                record.queue_activity_number > 0 and
-                record.queue_allowed and
-                record.automated_registration_from_queue):
+                    record.queue_activity_number > 0 and
+                    record.queue_allowed and
+                    record.auto_registration_from_queue):
                 #recupérer la liste en file d'attente
                 queues = record.activity_queue_ids
                 #trier la liste selon l'id : récupérer l'ancien element
@@ -131,13 +133,15 @@ class GolemActivity(models.Model):
                     membre_registred = False
                     #recuperer la liste des registration
                     registrations = record.activity_registration_ids
-                    #parcourir les registration afin de vérifier si le memebre sur l'attente déja inscrit
+                    #parcourir les registration afin de vérifier si le memebre sur l'attente
+                    #déja inscrit
                     for registration in registrations:
                         #compare le membre sur l'attente au membre sur l'inscription
                         if queue.member_id == registration.member_id:
                             #si membre trouvé inscrit sur l'activité on le supprime de la queue
                             record.activity_queue_ids = [(2, queue.id, 0)]
-                            #si membre trouvé on mentionne enregistré, on passe au registration suivante
+                            #si membre trouvé on mentionne enregistré, on passe au
+                            #registration suivante
                             membre_registred = True
                             break
                     #à la sortie de la boucle si le membre nest pas sur inscription faire une
@@ -148,7 +152,7 @@ class GolemActivity(models.Model):
                             'member_id' : queue.member_id
                             }
                         # creation d'inscription
-                        record.activity_registration_ids = [(0, 0,values)]
+                        record.activity_registration_ids = [(0, 0, values)]
                         #suppression de l'element de la file d'attente
                         record.activity_queue_ids = [(2, queue.id, 0)]
                         #sortir de la boucle parcourissante la queue puisque inscription faite
@@ -159,13 +163,15 @@ class GolemActivity(models.Model):
     #calculer le nombre d'inscription sur la file d'attente
     @api.multi
     @api.depends('activity_queue_ids')
-    def _queue_activity_number(self):
+    def _compute_queue_activity_number(self):
+        """ compute number of queue registration for activity"""
         for activity in self:
             activity.queue_activity_number = len(activity.activity_queue_ids)
 
     #lancer une fenetre pour inscritpion en file d'attente à partir du boutton
     @api.multi
     def queue_register(self):
+        """ launch a wizard to register in queue """
         self.ensure_one()
         activity_id = self[0]
         return {
@@ -173,7 +179,7 @@ class GolemActivity(models.Model):
             'type'      : 'ir.actions.act_window',
             'res_model' : 'golem.activity.queue',
             'context' :{'default_activity_id' : activity_id.id},
-            'domain' : [('activity_id', '=', activity_id.id)],# activity_id.name)],#"('activity_id', '=', True)"
+            'domain' : [('activity_id', '=', activity_id.id)],
             'view_mode': 'tree',
             'flags': {'action_buttons': True},
             'target': 'new',
@@ -182,6 +188,7 @@ class GolemActivity(models.Model):
     #fonction enregistrement du premier element de la liste d'ttente en inscription : mode manuel
     @api.multi
     def register_from_queue(self):
+        """ register member from queue"""
         for record in self:
             #recupérer la liste en file d'attente
             queues = record.activity_queue_ids
@@ -195,7 +202,8 @@ class GolemActivity(models.Model):
                 membre_registred = False
                 #recuperer la liste des registration
                 registrations = record.activity_registration_ids
-                #parcourir les registration afin de vérifier si le memebre sur l'attente déja inscrit
+                #parcourir les registration afin de vérifier si le memebre sur
+                #l'attente déja inscrit
                 for registration in registrations:
                     #compare le membre sur l'attente au membre sur l'inscription
                     if queue.member_id == registration.member_id:
@@ -203,7 +211,8 @@ class GolemActivity(models.Model):
                         record.activity_queue_ids = [(2, queue.id, 0)]
                         # on mentionne enregistré, on passe au registration suivante
                         membre_registred = True
-                        #on sort de la boucle de registration et on passe à l'element suivant de l'attente
+                        #on sort de la boucle de registration et on passe à
+                        #l'element suivant de l'attente
                         break
                 #à la sortie de la boucle si le membre nest pas sur inscription faire une
                 if not membre_registred:
@@ -213,7 +222,7 @@ class GolemActivity(models.Model):
                         'member_id' : queue.member_id
                         }
                     # creation d'inscription
-                    record.activity_registration_ids = [(0, 0,values)]
+                    record.activity_registration_ids = [(0, 0, values)]
                     #suppression de l'element de la file d'attente
                     record.activity_queue_ids = [(2, queue.id, 0)]
                     #sortir de la boucle parcourissante la queue puisque inscription faite
@@ -227,12 +236,12 @@ class GolemActivity(models.Model):
     #2 verifier si desincription donc place disponible pour queue(automatique ou manuel)
     @api.multi
     @api.onchange('activity_registration_ids')
-    def _checkRegistrationNumber(self):
+    def _check_registration_number(self):
         current_activity = self._origin
         for record in self:
             #warning au cas ou le nombre d'inscription depasse le nombre de place
             if (len(record.activity_registration_ids) > record.places and
-                record.queue_allowed):
+                    record.queue_allowed):
                 message = _('No remaining place for the activity : {}, please'
                             ' discard changes and register in the queue using'
                             ' the button bellow')
@@ -244,29 +253,30 @@ class GolemActivity(models.Model):
                 }
             elif (len(record.activity_registration_ids) < len(current_activity.activity_registration_ids) and
                   len(current_activity.activity_registration_ids) == record.places and
-                  record.queue_activity_number > 0 ):
+                  record.queue_activity_number > 0):
                 #si le mode d'inscription depuis attente est activé
-                if record.automated_registration_from_queue:
-                    #lancer un warning informant que l'inscription automatique aura lieu apres sauvegarde
-                    print("________________________testuii____________________________________")
-                    warningMessage = _('There is a free place for the activity'
-                                       ' : {}, once you save it will be filled'
-                                       ' by the first membre from queue')
+                if record.auto_registration_from_queue:
+                    #lancer un warning informant que l'inscription automatique aura
+                    #lieu apres sauvegarde
+                    warning_message = _('There is a free place for the activity'
+                                        ' : {}, once you save it will be filled'
+                                        ' by the first membre from queue')
                     return {
                         'warning' : {
                             'title' : _('Warning'),
-                            'message': warningMessage.format(record.name)
+                            'message': warning_message.format(record.name)
                             }
                         }
 
-                #traitement manuel pour le passage de la file d'attente en inscription : button sur queue
-                else :
-                    warningMessage = _('There is a free place for the activity'
-                                       ' : {}, you can fill it from the queue'
-                                       ' using the button on queue tab')
+                #traitement manuel pour le passage de la file d'attente en inscription
+                # : button sur queue
+                else:
+                    warning_message = _('There is a free place for the activity'
+                                        ' : {}, you can fill it from the queue'
+                                        ' using the button on queue tab')
                     return {
                         'warning' : {
                             'title' : _('Warning'),
-                            'message': warningMessage.format(record.name)
+                            'message': warning_message.format(record.name)
                             }
                         }

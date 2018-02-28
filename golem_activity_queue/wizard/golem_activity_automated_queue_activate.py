@@ -18,14 +18,14 @@
 
 """ GOLEM Resources management """
 
-from odoo import models, fields, api, _
+from odoo import models, fields
 
 class GolemActivityAutomatedQueueActivateWizard(models.TransientModel):
     """GOLEM Activity Automated Queue wizard : Activatate automated Queue """
     _name = "golem.activity.automated.queue.activate.wizard"
 
     activity_id = fields.Many2one("golem.activity")
-    automated_registration_from_queue = fields.Boolean(default=True)
+    auto_registration_from_queue = fields.Boolean(default=True)
 
 
     # lancer liste editable d'inscription sur attente
@@ -36,7 +36,7 @@ class GolemActivityAutomatedQueueActivateWizard(models.TransientModel):
         activation = self[0]
         activation.activity_id.write({
             'queue_allowed': True,
-            'automated_registration_from_queue': activation.automated_registration_from_queue
+            'auto_registration_from_queue': activation.auto_registration_from_queue
             })
 
 

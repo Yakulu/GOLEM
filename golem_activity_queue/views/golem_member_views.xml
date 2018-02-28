@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-
-    <!-- add  the queue registration button to member form-->
+    <!-- add  the queue registration items to member form-->
     <record id="golem_member_form_inherit_golem_activity_queue"
             model="ir.ui.view">
       <field name="name">Add the queue onglet and registration button to member form</field>
@@ -36,7 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <page name="activities" position="after">
           <page name="queue" string="List of queues">
             <group>
-
               <field name="activity_queue_ids"
                 context="{'default_member_id': active_id}">
                 <tree editable="top">
