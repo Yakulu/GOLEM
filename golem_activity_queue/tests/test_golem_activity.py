@@ -23,23 +23,82 @@ from odoo.models import ValidationError
 class TestGolemActivity(TransactionCase):
 
     def setUp(self):
+        """ Bootstrap activity """
         super(TestGolemActivity, self).setUp()
+        #création du saison
         self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
+        self.season.do_default_season()
+        #préparation des données pour la création des membres
+        self.data_member_1 = {'lastname': u'LAST1',
+                              'firstname': u'First1',
+                              'season_ids':[(4, self.season.id, False)]
+                             }
+        self.data_member_2 = {'lastname': u'LAST2',
+                              'firstname': u'First2',
+                              'season_ids':[(4, self.season.id, False)]
+                             }
+        self.member1 = self.env['golem.member']
+        self.member2 = self.env['golem.member']
+        #préparation des donnée pour la création de l'activité
         type_id = self.ref("golem_activity.golem_activity_type_activity")
-        #self.activity = self.env['golem.activity'].create({'name': u'Activity 1',
-        #                                                   'season_id': self.season,
-        #                                                   'categ_id': categ})
-        self.data = {
+        self.data_activity = {
             'name': u'Activity 1',
             'season_id': self.season.id,
-            'type_id': type_id
-        }
-        self.activity_obj = self.env['golem.activity']
+            'type_id': type_id}
+        self.activity = self.env['golem.activity']
+
+    # test de creation d'activity et inistialisation des champs
     def test_activity_creation(self):
         """ Test creation of activity """
-        activity = self.activity_obj.create(self.data)
+        activity = self.activity.create(self.data_activity)
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
         self.assertEqual(activity.queue_activity_number, 0)
         self.assertFalse(activity.activity_registration_ids)
         self.assertFalse(activity.activity_queue_ids)
+        print "_____ activity creation "
+
+    #test toggle auto_registration
+    def test_auto_registration_toggle(self):
+        """ Test Toggle Autoregistration from queue """
+        activity = self.activity.create(self.data_activity)
+        self.assertTrue(activity.auto_registration_from_queue)
+        activity.auto_registration_toggle()
+        self.assertFalse(activity.auto_registration_from_queue)
+        activity.auto_registration_toggle()
+        self.assertTrue(activity.auto_registration_from_queue)
+    #test du queue_allowed toggle: en cas de désactivation queue doit etre vidé
+    def test_queue_allowed_toggle(self):
+        """ Test Toggle queue_allowed """
+        #création de 2 membre est une activité
+        member1 = self.member1.create(self.data_member_1)
+        member2 = self.member2.create(self.data_member_2)
+        activity = self.activity.create(self.data_activity)
+        #membre 1 inscrit sur activity
+        registration = {
+            'activity_id' : activity.id,
+            'member_id' : member1.id
+            }
+        #memebre 2 inscrit sur attente
+        queue = {
+            'activity_id' : activity.id,
+            'member_id' : member2.id
+            }
+        #Verification que l'atente est aactivé
+        self.assertTrue(activity.queue_allowed)
+        #réduire le nombre de place sur activity  à 1
+        activity.write({'places': 1})
+        #enregistrement du membre 1 sur activity et memebre 2 sur attente
+        activity.write({'activity_registration_ids': [(0, False, registration)]})
+        activity.write({'activity_queue_ids': [(0, False, queue)]})
+        #desactivation de l'attente
+        activity.queue_allowed_toggle()
+        #verification que l'attente est désactivé et vidé
+        self.assertFalse(activity.queue_allowed)
+        self.assertFalse(activity.activity_queue_ids)
+        #appel wizard pour activation de l'attente
+        queue_activate_wizard = self.env['golem.activity.automated.queue.activate.wizard'].create({'activity_id': activity.id})
+        queue_activate_wizard.activate_queue()
+        #verification de l'attente activité
+        self.assertTrue(activity.queue_allowed)
+        self.assertTrue(activity.auto_registration_from_queue)
