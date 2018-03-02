@@ -26,7 +26,7 @@ class TestGolemActivityQueue(TransactionCase):
     """ GOLEM Activity Queue testing """
 
     def setUp(self, *args, **kwargs):
-        """ Bootstrap Resource """
+        """ Bootstrap ActivityQueue """
         super(TestGolemActivityQueue, self).setUp(*args, **kwargs)
 
         self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})

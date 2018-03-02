@@ -41,3 +41,5 @@ class TestGolemActivity(TransactionCase):
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
         self.assertEqual(activity.queue_activity_number, 0)
+        self.assertFalse(activity.activity_registration_ids)
+        self.assertFalse(activity.activity_queue_ids)
