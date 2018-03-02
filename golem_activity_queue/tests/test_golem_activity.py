@@ -24,25 +24,20 @@ class TestGolemActivity(TransactionCase):
 
     def setUp(self):
         super(TestGolemActivity, self).setUp()
-
-        self.season_model = self.env['golem.season'].sudo()
-        season_data = {'name': u'Current', 'date_start': '2010-01-01',
-                       'date_end': '2010-12-31'}
-        self.season_current = self.season_model.create(season_data)
-        self.activity_model = self.env['golem.activity'].sudo()
-
+        self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
+        type_id = self.ref("golem_activity.golem_activity_type_activity")
+        #self.activity = self.env['golem.activity'].create({'name': u'Activity 1',
+        #                                                   'season_id': self.season,
+        #                                                   'categ_id': categ})
+        self.data = {
+            'name': u'Activity 1',
+            'season_id': self.season.id,
+            'type_id': type_id
+        }
+        self.activity_obj = self.env['golem.activity']
     def test_activity_creation(self):
-        """ Test creation of activity and periods """
-        categ = self.ref('golem_activity.golem_product_category_activities')
-        adata = {'name': 'a1', 'season_id': self.season_current.id,
-                 'categ_id': categ}
-        a1 = self.activity_model.create(adata)
-        a1.onchange_season_dates()
-        self.assertEqual(a1.name, 'a1')
-        self.assertEqual(a1.date_start, self.season_current.date_start)
-        self.assertEqual(a1.date_end, self.season_current.date_end)
-        self.assertTrue(a1.is_current)
-        adata.update({'name': 'a2', 'date_start': '2010-01-01',
-                      'date_end': '2009-12-01'})
-        with self.assertRaises(ValidationError):
-            self.activity_model.create(adata)
+        """ Test creation of activity """
+        activity = self.activity_obj.create(self.data)
+        self.assertTrue(activity.queue_allowed)
+        self.assertTrue(activity.auto_registration_from_queue)
+        self.assertEqual(activity.queue_activity_number, 0)

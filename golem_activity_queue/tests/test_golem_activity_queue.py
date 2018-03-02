@@ -30,10 +30,13 @@ class TestGolemActivityQueue(TransactionCase):
         super(TestGolemActivityQueue, self).setUp(*args, **kwargs)
 
         self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
-        categ = self.ref('golem_activity.golem_product_category_activities')
+        type_id = self.ref("golem_activity.golem_activity_type_activity")
+        print "_______________________"
+        print self.season
+        print type_id
         self.activity = self.env['golem.activity'].create({'name': u'Activity 1',
-                                                           'season_id': self.season,
-                                                           'categ_id': categ})
+                                                           'season_id': self.season.id,
+                                                           'type_id': type_id})
         self.member = self.env['golem.member'].create({
             'lastname': u'LAST',
             'firstname': u'First'

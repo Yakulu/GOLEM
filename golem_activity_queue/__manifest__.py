@@ -19,6 +19,7 @@
 {
     'name': 'GOLEM activities queue',
     'summary': 'GOLEM activities queue',
+    'description': ''' GOLEM resources management ''',
     'version': '10.0.2.1.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
@@ -27,6 +28,7 @@
     'installable': True,
     'depends': ['golem_activity', 'golem_activity_registration'],
     'data': [
+        'security/ir.model.access.csv',
         'views/golem_activity_queue_views.xml',
         'views/golem_activity_views.xml',
         'views/golem_member_views.xml',
