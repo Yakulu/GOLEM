@@ -87,9 +87,10 @@ class TestGolemMember(TransactionCase):
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
         #suppression du membre 1 de l'activity
-        member1.write({'activity_registration_ids': [(2, member1.activity_registration_ids[0].id, False)]})
+        member1.write({'activity_registration_ids': [(2,
+                                                      member1.activity_registration_ids[0].id,
+                                                      False)]})
         #verifcation de la presence du membre 2 sur activity : basculement depuis attente
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
         #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
-        print "test membre fini __________________________tn "

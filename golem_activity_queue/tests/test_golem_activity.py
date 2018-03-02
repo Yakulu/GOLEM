@@ -21,6 +21,7 @@ from odoo.models import ValidationError
 
 
 class TestGolemActivity(TransactionCase):
+    """ GOLEM Activity Queue testing """
 
     def setUp(self):
         """ Bootstrap activity """
@@ -56,7 +57,7 @@ class TestGolemActivity(TransactionCase):
         self.assertEqual(activity.queue_activity_number, 0)
         self.assertFalse(activity.activity_registration_ids)
         self.assertFalse(activity.activity_queue_ids)
-        print "_____ activity creation "
+
 
     #test toggle auto_registration
     def test_auto_registration_toggle(self):
@@ -97,14 +98,15 @@ class TestGolemActivity(TransactionCase):
         self.assertFalse(activity.queue_allowed)
         self.assertFalse(activity.activity_queue_ids)
         #appel wizard pour activation de l'attente
-        queue_activate_wizard = self.env['golem.activity.automated.queue.activate.wizard'].create({'activity_id': activity.id})
+        queue_activate_wizard_model = self.env['golem.activity.automated.queue.activate.wizard']
+        queue_activate_wizard = queue_activate_wizard_model.create({'activity_id': activity.id})
         queue_activate_wizard.activate_queue()
         #verification de l'attente activité
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
 
     #test de basculement automatique depuis queue
-    def test_auto_registration_from_queue(self):
+    def test_auto_registration(self):
         """ Test auto registration from queue """
         #création de 2 membre est une activité
         member1 = self.member1.create(self.data_member_1)
@@ -131,7 +133,9 @@ class TestGolemActivity(TransactionCase):
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
         #suppression du membre 1 de l'activity
-        activity.write({'activity_registration_ids': [(2, activity.activity_registration_ids[0].id, False)]})
+        activity.write({'activity_registration_ids': [(2,
+                                                       activity.activity_registration_ids[0].id,
+                                                       False)]})
         #verifcation de la presence du membre 2 sur activity : basculement depuis attente
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
         #verification de l'attente est vide

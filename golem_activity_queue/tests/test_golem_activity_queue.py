@@ -30,29 +30,48 @@ class TestGolemActivityQueue(TransactionCase):
         super(TestGolemActivityQueue, self).setUp(*args, **kwargs)
 
         self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
+        self.season.do_default_season()
+        #préparation des données pour la création des membres
+        self.data_member_1 = {'lastname': u'LAST1',
+                              'firstname': u'First1',
+                              'season_ids':[(4, self.season.id, False)]
+                             }
+        self.data_member_2 = {'lastname': u'LAST2',
+                              'firstname': u'First2',
+                              'season_ids':[(4, self.season.id, False)]
+                             }
+        self.member1 = self.env['golem.member']
+        self.member2 = self.env['golem.member']
+        #préparation des donnée pour la création de l'activité
         type_id = self.ref("golem_activity.golem_activity_type_activity")
-        print "_______________________"
-        print self.season
-        print type_id
-        self.activity = self.env['golem.activity'].create({'name': u'Activity 1',
-                                                           'season_id': self.season.id,
-                                                           'type_id': type_id})
-        self.member = self.env['golem.member'].create({
-            'lastname': u'LAST',
-            'firstname': u'First'
-        })
-        self.data = {
-            'activity_id': self.activity.id,
-            'member_id': self.member.id,
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01'
-        }
-        self.activity_queue_obj = self.env['golem.activity.queue']
+        self.data_activity = {
+            'name': u'Activity 1',
+            'season_id': self.season.id,
+            'type_id': type_id}
+        self.activity = self.env['golem.activity']
+        self.activity_queue = self.env['golem.activity.queue']
 
     def test_activity_queue_basic(self):
         """ Test activity queue bases """
-        activity_queue = self.activity_queue_obj.create(self.data)
-        self.assertEqual(activity_queue.member_id, self.member)
-        self.assertEqual(activity_queue.activity_id, self.activity)
-        self.assertEqual(activity_queue.activity_id.activity_queue_ids[0], activity_queue)
-        self.assertEqual(activity_queue.places_remain, self.activity.places_remain)
+        member1 = self.member1.create(self.data_member_1)
+        activity = self.activity.create(self.data_activity)
+        activity_queue = self.activity_queue.create({'activity_id': activity.id,
+                                                     'member_id': member1.id})
+        self.assertEqual(activity.activity_queue_ids[0], activity_queue)
+        self.assertEqual(member1.activity_queue_ids[0], activity_queue)
+
+    #test interdiction d'inscrire sur attente si inscrit sur activité
+    def test_check_member_registration(self):
+        """ Test activity queue bases """
+        #creation du membre et de l'activité
+        member1 = self.member1.create(self.data_member_1)
+        activity = self.activity.create(self.data_activity)
+        #enregistrement du membre 1 sur activity
+        activity.write({'activity_registration_ids': [(0, False, {'activity_id': activity.id,
+                                                                  'member_id': member1.id})]})
+        #vérification que le membre 1 est inscrit sur activité
+        self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
+        #inscription du meme membre sur l'attente du meme activié: interdit
+        with self.assertRaises(ValidationError):
+            activity_queue = self.activity_queue.create({'activity_id': activity.id,
+                                                         'member_id': member1.id})
