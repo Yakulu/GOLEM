@@ -22,17 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <record id="paperformat_euro_landscape"
       model="report.paperformat">
-      <field name="name">European A4 Landscape</field>
+      <field name="name">European A4 Portrait</field>
       <field name="default" eval="True" />
       <field name="format">A4</field>
       <field name="page_height">0</field>
       <field name="page_width">0</field>
-      <field name="orientation">Landscape</field>
+      <field name="orientation">Portrait</field>
       <field name="margin_top">40</field>
       <field name="margin_bottom">23</field>
       <field name="margin_left">7</field>
       <field name="margin_right">7</field>
-      <field name="header_line" eval="False" />
+      <field name="header_line" eval="True" />
       <field name="header_spacing">35</field>
       <field name="dpi">90</field>
     </record>
@@ -40,85 +40,84 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <report id="golem_member_report"
       string="Golem member report"
       model="golem.member"
-      report_type="qweb-html"
+      report_type="qweb-pdf"
       name="golem_member.report_golem_member_template" />
-      <!-- A la Fin remplacer qweb-html par report_type="qweb-pdf" -->
 
     <template id="report_golem_member_template">
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
-          <div class="page">
-            <table class="table table-striped">
+          <div id='page_report_member' class="page">
+            <t t-foreach="docs" t-as="o">
+              <div class="oe_structure"/>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <strong>Member</strong>
+                      <div t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields":
+                        ["address", "name", "street", "street2", "phone", "fax"],
+                         "no_marker": True, "phone_icons": True}'/>
+                      </div>
+                  <div class="oe_structure"/>
+                    <div class="col-xs-4">
+                      <strong>Season :</strong>
+                        <span t-field="o.season_ids[0].name" />
+                      </div>
+                      <div class="col-xs-4">
+                        <strong>Date :</strong>
+                        <span t-field="o.season_ids[0].date_start" />
+                        -
+                        <span t-field="o.season_ids[0].date_end" />
+                        <br></br>
+                        <br></br>
+                      </div>
+                </div>
+            </t>
+            <table id="table_activity_ref" class="table table-striped">
+              <thead>
+                <strong>Activity</strong>
+                <br></br>
                 <tr>
-                  <th>Member</th>
-                  <th>Season</th>
-                  <th>Date of season</th>
-                </tr>
-                <t t-foreach="docs" t-as="o">
-                  <tr>
-                    <td class="col-xs-6">
-                      <strong><span t-field="o.name" /></strong><br></br>
-                      <span t-field="o.street" /><br></br>
-                      <t t-if="o.street2">
-                        <span t-field="o.street2" /><br></br>
-                      </t>
-                      <span t-field="o.zip" /><br></br>
-                      <span t-field="o.city" /><br></br>
-                      <t t-if="o.state_id">
-                        <span t-field="o.state_id" /><br></br>
-                      </t>
-                      <span t-field="o.country_id" /><br></br>
-                    </td>
-                    <td class="col-xs-6">
-                        <span t-field="o.season_ids[0].name" /><br></br>
-                    </td>
-                    <td class="col-xs-6">
-                        <span t-field="o.season_ids[0].date_start" /><br></br>
-                        <span t-field="o.season_ids[0].date_end" /><br></br>
-                    </td>
-                  </tr>
-                </t>
-            </table>
-            <table class="table table-striped">
-                <tr>
-                  <th>Activity</th>
+                  <th>Name</th>
                   <th>Animator</th>
                   <th>Day</th>
                   <th>Hour start</th>
                   <th>Hour stop</th>
                   <th>Date start</th>
-                  <th>Date stop</th>
+                  <th id="activity_inherit_th">Date stop</th>
                 </tr>
+              </thead>
+              <tbody>
                 <t t-foreach="docs" t-as="o">
-                  <tr t-foreach="o.activity_registration_ids" t-as="t">
-                      <td class="col-xs-6">
-                      <span t-esc="t.activity_id.name" /><br></br>
+                  <tr id="activity_inherit_price_sum" t-foreach="o.activity_registration_ids" t-as="t">
+                      <td class="col-xs-2">
+                        <span t-esc="t.activity_id.name" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.animator_id" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.weekday" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-2">
                         <span t-field="t.activity_id.hour_start" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-2">
                           <span t-field="t.activity_id.hour_stop" /><br></br>
                         </td>
-                      <td class="col-xs-6">
+                      <td class="col-xs-2">
                           <span t-field="t.activity_id.date_start" /><br></br>
                       </td>
-                      <td class="col-xs-6">
+                      <td id="activity_inherit_td">
                           <span t-field="t.activity_id.date_stop" /><br></br>
                       </td>
                   </tr>
+                  <tr id="activity_inherit_total"></tr>
                 </t>
+              </tbody>
             </table>
           </div>
         </t>
       </t>
     </template>
-
 
 </odoo>
