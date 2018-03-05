@@ -94,3 +94,30 @@ class TestGolemMember(TransactionCase):
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
         #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
+
+    def test_choose_queue_to_register(self):
+        """ Queue register through wizard """
+
+        #création de 2 membre est une activité
+        member1 = self.member1.create(self.data_member_1)
+        member2 = self.member2.create(self.data_member_2)
+        activity = self.activity.create(self.data_activity)
+        #membre 1 inscrit sur activity
+        registration = {
+            'activity_id' : activity.id,
+            'member_id' : member1.id
+            }
+        #réduire le nombre de place sur activity  à 1
+        activity.write({'places': 1})
+        #enregistrement du membre 1 sur activity et memebre 2 sur attente
+        activity.write({'activity_registration_ids': [(0, False, registration)]})
+        #enregistrement du membre 2 a travers l'assistant
+        queue_register_wizard = self.env['golem.activity.queue.choose.wizard'].create({
+            'activity_id': activity.id,
+            'member_id': member2.id
+        })
+        queue_register_wizard.register_in_queue()
+
+        #verifcation de l'inscription en queue
+        self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
+        self.assertEqual(member2.activity_queue_ids[0].activity_id, activity)
