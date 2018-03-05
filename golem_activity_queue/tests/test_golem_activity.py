@@ -140,3 +140,40 @@ class TestGolemActivity(TransactionCase):
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
         #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
+    # suppression du membre sur l'attente s'il sinscrit directement sur l'activity
+    def test_delete_queue_member(self):
+        """ Test Delete Queue member if they directly register """
+        #création de 2 membre est une activité
+        member1 = self.member1.create(self.data_member_1)
+        member2 = self.member2.create(self.data_member_2)
+        activity = self.activity.create(self.data_activity)
+        #réduire le nombre de place sur activity  à 1 et activation de queue et autoregistrement
+        activity.write({'places': 1,
+                        'queue_allowed': True,
+                        'auto_registration_from_queue': False})
+        #membre 1 inscrit sur activity
+        registration = {
+            'activity_id' : activity.id,
+            'member_id' : member1.id
+            }
+        #memebre 2 inscrit sur attente
+        queue = {
+            'activity_id' : activity.id,
+            'member_id' : member2.id
+            }
+        #enregistrement du membre 1 sur activity et memebre 2 sur attente
+        activity.write({'activity_registration_ids': [(0, False, registration)]})
+        activity.write({'activity_queue_ids': [(0, False, queue)]})
+        # vérification des inscriptions
+        self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
+        self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
+        #suppression du membre 1 de l'activity
+        activity.write({'activity_registration_ids': [(2,
+                                                       activity.activity_registration_ids[0].id,
+                                                       False)]})
+        #inscription sur activity avec le membre sur queue
+        activity.write({'activity_registration_ids': [(0, False, queue)]})
+        #vérification queue vide
+        self.assertFalse(activity.activity_queue_ids)
+        #verification du membre 2 sur inscriptions
+        self.assertEqual(activity.activity_registration_ids[0].member_id, member2)

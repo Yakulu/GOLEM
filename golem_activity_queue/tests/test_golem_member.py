@@ -95,6 +95,7 @@ class TestGolemMember(TransactionCase):
         #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
 
+    #test de l'inscription d'un membre à travers l'assistan lancé par le bouton
     def test_choose_queue_to_register(self):
         """ Queue register through wizard """
 
