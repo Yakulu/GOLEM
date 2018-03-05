@@ -41,7 +41,6 @@ class GolemActivity(models.Model):
             activity.auto_registration_from_queue = not activity.auto_registration_from_queue
 
     #supprimer les personnes en attente si une inscription directement est faite
-
     @api.multi
     def write(self, vals):
         """ Override method write to delete record from queue if they register in activity"""
