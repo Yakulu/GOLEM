@@ -44,15 +44,11 @@ class GolemActivityQueue(models.Model):
     sequence = fields.Integer()
 
     @api.constrains('member_id', 'activity_id')
-    def _check_member_registration(self):
+    def check_member_registration(self):
         """ Forbid registration in queue when member is already registred in the
         activity """
         for queue in self:
-            domain = [('member_id', '=', queue.member_id.id),
-                      ('activity_id', '=', queue.activity_id.id)]
-            #verifier si un enrigistrement avec le meme membre et activité est déja fait
-            registrations = self.env['golem.activity.registration'].search(domain)
-            #si oui lancer un erreur
-            if len(registrations):
+            if queue.activity_id in \
+                queue.member_id.activity_registration_all_ids.mapped('activity_id'):
                 raise ValidationError(_('The member your trying to add to the queue'
                                         ' is already registred for this activity'))
