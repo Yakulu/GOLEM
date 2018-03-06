@@ -160,23 +160,6 @@ class GolemActivity(models.Model):
         for activity in self:
             activity.queue_activity_number = len(activity.activity_queue_ids)
 
-    #lancer une fenetre pour inscritpion en file d'attente à partir du boutton
-    @api.multi
-    def queue_register(self):
-        """ launch a wizard to register in queue """
-        self.ensure_one()
-        activity_id = self[0]
-        return {
-            'name'      : _('Register in the queue'),
-            'type'      : 'ir.actions.act_window',
-            'res_model' : 'golem.activity.queue',
-            'context' :{'default_activity_id' : activity_id.id},
-            'domain' : [('activity_id', '=', activity_id.id)],
-            'view_mode': 'tree',
-            'flags': {'action_buttons': True},
-            'target': 'new',
-        }
-
     #fonction enregistrement du premier element de la liste d'ttente en inscription : mode manuel
     @api.multi
     def register_from_queue(self):

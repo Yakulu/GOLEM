@@ -27,24 +27,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
      <field name="model">golem.activity</field>
      <field name="inherit_id" ref="golem_activity.golem_activity_form" />
      <field name="arch" type="xml">
-      <!--Ajout du case file d'attente et inscription automatisé sur activity form-->
-      <field name="places" position="after">
-        <field name="queue_allowed" readonly='1'/>
-        <field name="auto_registration_from_queue" readonly='1'/>
+      <field name="activity_registration_ids" position="after">
+        <button name="register_from_queue" colspan="2"
+          string="Add from queue"  type="object"
+          attrs="{'invisible':['|', ('queue_allowed', '=', False), '|',
+          ('places_remain','=', 0), ('queue_activity_number', '=', 0)]}"/>
       </field>
-      <!--Ajout du bouton inscription en file d'attente sur activity form-->
-      <xpath expr="//field[@name='activity_registration_ids']" position="after">
-        <button class="oe_highlight" name="queue_register"
-                string="Register in the queue"  type="object"
-                attrs="{'invisible':[('places_remain','>', 0)]}"/>
-        <button class="oe_highlight" name="register_from_queue"
-                string="Register from Queue"  type="object"
-                attrs="{'invisible':[('places_remain','&lt;', 1)]}"/>
-      </xpath>
-      <!--Ajout onglet queue sur activity form-->
-      <xpath expr="//page[@name='invoicing']" position="before">
-        <page name="queue" string="Queue" attrs="{'invisible': [('queue_allowed', '=', False)]}">
+      <page name="invoicing" position="before">
+        <page name="queue" string="Queue">
           <group>
+            <field name="queue_allowed" readonly='1'/>
+            <field name="auto_registration_from_queue" readonly='1'/>
+          </group>
+          <group attrs="{'invisible': [('queue_allowed', '=', False)]}">>
             <field name="queue_activity_number" readonly='1'/>
             <field name="activity_queue_ids"
                    context="{'default_activity_id': active_id}" >
@@ -55,15 +50,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="season_id" readonly="1" />
               </tree>
             </field>
-          </group>
-          <group>
-            <button class="oe_highlight" name="register_from_queue"
-                    string="Register from Queue"  type="object"/>
+            <button name="register_from_queue" colspan="2"
+              string="Register from Queue"  type="object"
+              attrs="{'invisible':['|', ('queue_allowed', '=', False), '|',
+              ('places_remain','=', 0), ('queue_activity_number', '=', 0)]}"/>
           </group>
         </page>
-      </xpath>
-      <!--Ajout du bouton "ajouter une file,supprimer file, automated et manual registration-->
-      <xpath expr="//header" position="inside">
+      </page>
+      <header position="inside">
         <button class="oe_highlight" name="queue_allowed_toggle"
                 string="Add Queue"  type="object"
                 attrs="{'invisible': [('queue_allowed', '=', True)]}"/>
@@ -71,15 +65,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 string="Remove Queue"  type="object"
                 attrs="{'invisible': [('queue_allowed', '=', False)]}"
                 confirm="Are you sure you want to remove queue from this activity ? This will delete all elements currently registred in"/>
-        <button class="oe_highlight" name="auto_registration_toggle"
+        <button name="auto_registration_toggle"
                 string="Automated registration from queue"  type="object"
                 attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', True)]}"
                 confirm="Are you sure you want to switch to automated registration from queue mode ?"/>
-        <button class="oe_highlight" name="auto_registration_toggle"
+        <button name="auto_registration_toggle"
                 string="Manual registration from queue"  type="object"
                 attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', False)]}"
                 confirm="Are you sure you want to switch to manual registration from queue mode ?"/>
-       </xpath>
+       </header>
      </field>
    </record>
 
