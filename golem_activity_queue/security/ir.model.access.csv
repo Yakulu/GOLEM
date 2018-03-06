@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+golem_activity_queue_user_rule,GOLEM Activity Queue User Rule,model_golem_activity_queue,golem_base.group_golem_user,1,1,1,1
+golem_activity_queue_manager_rule,GOLEM Activity Queue Manager Rule,model_golem_activity_queue,golem_base.group_golem_manager,1,1,1,1
