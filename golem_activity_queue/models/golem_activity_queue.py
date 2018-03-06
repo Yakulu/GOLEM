@@ -24,7 +24,7 @@ from odoo.exceptions import ValidationError
 class GolemActivityQueue(models.Model):
     """ GOLEM Activity Queue """
     _name = 'golem.activity.queue'
-    _order = "sequence"
+    _order = 'sequence asc, id desc'
     _description = 'GOLEM Activity Queue'
     _sql_constraints = [('golem_activity_queue_uniq', 'UNIQUE (member_id, activity_id)',
                          _('This member has already been registered for the queue.'))]
