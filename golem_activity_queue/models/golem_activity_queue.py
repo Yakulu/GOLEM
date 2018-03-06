@@ -18,14 +18,16 @@
 
 """ GOLEM Activity Queue """
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields, _
 
 class GolemActivityQueue(models.Model):
     """ GOLEM Activity Queue """
     _name = 'golem.activity.queue'
     _order = "sequence"
     _description = 'GOLEM Activity Queue'
+    _sql_constraints = [('golem_activity_queue_uniq', 'UNIQUE (member_id, activity_id)',
+                         _('This member has already been registered for the queue.'))]
+
 
     member_id = fields.Many2one('golem.member', required=True,
                                 string='Member', ondelete='cascade',
@@ -34,27 +36,8 @@ class GolemActivityQueue(models.Model):
                                   string='Activity', ondelete='cascade',
                                   index=True)
     season_id = fields.Many2one(related='activity_id.season_id')
-
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
+
     places_remain = fields.Integer(related='activity_id.places_remain')
-
     sequence = fields.Integer()
-
-    _sql_constraints = [
-        ('queue_uniq', 'UNIQUE (member_id, activity_id)',
-         _('This member has already been registered for the queue.'))]
-
-    @api.constrains('member_id', 'activity_id')
-    def _check_member_registration(self):
-        """ Forbid registration in queue when member is already registred in the
-        activity """
-        for queue in self:
-            domain = [('member_id', '=', queue.member_id.id),
-                      ('activity_id', '=', queue.activity_id.id)]
-            #verifier si un enrigistrement avec le meme membre et activité est déja fait
-            registrations = self.env['golem.activity.registration'].search(domain)
-            #si oui lancer un erreur
-            if len(registrations):
-                raise ValidationError(_('The member your trying to add to the queue'
-                                        ' is already registred for this activity'))
