@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_activity_queue_choose_wizard_view_form">
       <field name="name">GOLEM Activity Queue Choose Wizard Form</field>
@@ -38,5 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </form>
       </field>
     </record>
+    
   </data>
 </odoo>

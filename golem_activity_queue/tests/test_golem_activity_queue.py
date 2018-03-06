@@ -73,5 +73,5 @@ class TestGolemActivityQueue(TransactionCase):
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         #inscription du meme membre sur l'attente du meme activié: interdit
         with self.assertRaises(ValidationError):
-            activity_queue = self.activity_queue.create({'activity_id': activity.id,
-                                                         'member_id': member1.id})
+            self.activity_queue.create({'activity_id': activity.id,
+                                        'member_id': member1.id})

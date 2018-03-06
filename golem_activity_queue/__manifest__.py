@@ -17,10 +17,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM activities queue',
-    'summary': 'GOLEM activities queue',
-    'description': ''' GOLEM resources management ''',
-    'version': '10.0.2.1.0',
+    'name': 'GOLEM activity queues',
+    'summary': 'GOLEM activity queues',
+    'description': ''' GOLEM activity queue management ''',
+    'version': '10.0.1.0.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -34,5 +34,5 @@
         'views/golem_member_views.xml',
         'wizard/golem_activity_queue_choose_views.xml',
         'wizard/golem_activity_automated_queue_activate_views.xml'
-        ]
+    ]
 }

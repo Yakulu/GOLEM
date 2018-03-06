@@ -16,6 +16,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Member adaptations """
+
 from odoo import models, fields, api, _
 
 class GolemMember(models.Model):

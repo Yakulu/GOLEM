@@ -16,12 +16,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Resources management """
+""" GOLEM Activity Queue Choice """
 
 from odoo import models, fields
 
 class GolemActivityQueueChooseWizard(models.TransientModel):
-    """GOLEM Resource wizard : rchoose activity queue to register in """
+    """ GOLEM Activity Queue Choice """
     _name = "golem.activity.queue.choose.wizard"
 
     activity_id = fields.Many2one("golem.activity")

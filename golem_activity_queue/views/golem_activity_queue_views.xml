@@ -16,8 +16,10 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <odoo>
   <data>
+
     <!--formulaire du modèle golem.activity.queue-->
     <record model="ir.ui.view" id="queue_form_view">
       <field name="name">queue.form</field>
@@ -34,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </form>
       </field>
     </record>
+
     <!--Recherche du modèle golem.activity.queue-->
     <record model="ir.ui.view" id="queue_search_view">
       <field name="name">queue.search</field>
@@ -60,6 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </search>
       </field>
     </record>
+
     <!--liste editable du modèle golem.activity.queue-->
     <record model="ir.ui.view" id="queue_tree_view">
       <field name="name">queue.tree</field>
@@ -80,6 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </tree>
       </field>
     </record>
+
     <!-- Action -->
     <record id="golem_activity_queue_action" model="ir.actions.act_window">
       <field name="name">GOLEM Activity Queue List</field>
@@ -87,10 +92,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="view_mode">tree,search</field>
       <field name="context">{'search_default_season_default': True}</field>
     </record>
+
     <!-- Menu -->
     <menuitem id="golem_activity_queue_menu" name="Activity queue"
               parent="golem_activity.golem_activity_menu"
               action="golem_activity_queue_action"
               sequence="20" />
+
   </data>
 </odoo>
