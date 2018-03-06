@@ -28,7 +28,7 @@ class GolemSeason(models.Model):
                          _('This season name has already been used.'))]
 
     name = fields.Char('Season name', copy=False, required=True)
-    membership_ids = fields.One2many('product.template', 'season_id',
+    membership_ids = fields.One2many('product.template', 'membership_season_id',
                                      string='Membership types',
                                      domain=[('membership', '=', True)])
     member_counter = fields.Integer('Counter for member number generation',

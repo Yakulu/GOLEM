@@ -23,15 +23,15 @@ class ProductTemplate(models.Model):
     """ Product Template adaptations """
     _inherit = 'product.template'
 
-    season_id = fields.Many2one('golem.season', 'Linked season', index=True)
+    membership_season_id = fields.Many2one('golem.season', 'Linked season', index=True)
 
-    @api.onchange('season_id')
+    @api.onchange('membership_season_id')
     def onchange_season(self):
         """ Adapts period to selected season if needed """
         for product in self:
-            if product.membership and product.season_id \
+            if product.membership and product.membership_season_id \
                 and not product.membership_date_from:
                 product.update({
-                    'membership_date_from': product.season_id.date_start,
-                    'membership_date_to': product.season_id.date_end
+                    'membership_date_from': product.membership_season_id.date_start,
+                    'membership_date_to': product.membership_season_id.date_end
                 })

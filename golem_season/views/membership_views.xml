@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="membership.membership_products_form" />
       <field name="arch" type="xml">
         <field name="default_code" position="before">
-          <field name="season_id" options="{'no_create': True}" />
+          <field name="membership_season_id" options="{'no_create': True}" />
         </field>
       </field>
     </record>
@@ -41,11 +41,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="membership.membership_product_search_form_view" />
       <field name="arch" type="xml">
         <field name="name" position="after">
-          <field name="season_id" />
+          <field name="membership_season_id" />
         </field>
         <xpath expr="//group/filter[1]" position="after">
           <filter name="group_season" string="Season"
-            context="{'group_by': 'season_id'}" />
+            context="{'group_by': 'membership_season_id'}" />
         </xpath>
       </field>
     </record>
