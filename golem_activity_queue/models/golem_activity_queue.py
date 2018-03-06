@@ -37,26 +37,13 @@ class GolemActivityQueue(models.Model):
 
     is_current = fields.Boolean('Current season?',
                                 related='activity_id.is_current', store=True)
-    #nombre de place disponible sur activité liée
     places_remain = fields.Integer(related='activity_id.places_remain')
-    #activité liée est plein ou non
-    is_activity_full = fields.Char(compute="_compute_is_activity_full", store=True)
 
     sequence = fields.Integer()
 
     _sql_constraints = [
         ('queue_uniq', 'UNIQUE (member_id, activity_id)',
          _('This member has already been registered for the queue.'))]
-
-    # decider si l'activity liée est pleine ou non : pour group by sur la liste
-    @api.depends('places_remain')
-    def _compute_is_activity_full(self):
-        """ Decide if activity is full or not """
-        for record in self:
-            if record.places_remain == 0:
-                record.is_activity_full = "Full activity"
-            else:
-                record.is_activity_full = "Not full activity"
 
     @api.constrains('member_id', 'activity_id')
     def _check_member_registration(self):

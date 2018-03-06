@@ -20,12 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <!--formulaire du modèle golem.activity.queue-->
-    <record model="ir.ui.view" id="queue_form_view">
-      <field name="name">queue.form</field>
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_activity_queue_view_form">
+      <field name="name">GOLEM Activity Queue Form</field>
       <field name="model">golem.activity.queue</field>
       <field name="arch" type="xml">
-        <form string="Queue Form">
+        <form>
           <sheet>
             <group>
               <field name="activity_id"/>
@@ -37,67 +37,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
-    <!--Recherche du modèle golem.activity.queue-->
-    <record model="ir.ui.view" id="queue_search_view">
-      <field name="name">queue.search</field>
+    <!-- Search -->
+    <record model="ir.ui.view" id="golem_activity_queue_view_search">
+      <field name="name">GOLEM Activity Queue Search</field>
       <field name="model">golem.activity.queue</field>
       <field name="arch" type="xml">
-        <search >
+        <search>
           <field name="member_id"/>
           <field name="activity_id"/>
           <field name="season_id" />
           <filter name="season_default" string="Default season"
            domain="[('is_current', '=', True)]" />
-          <filter name="full_activity" string="Full Activity"
-            domain="[('is_activity_full', '=', 'Full activity')]" />
-          <filter name="not_full_activity" string="Not Full Activity"
-            domain="[('is_activity_full', '=', 'Not full activity')]" />
+          <separator />
+          <filter name="activity_full" string="Full Activity"
+            domain="[('places_remain', '=', 0)]" />
+          <filter name="activity_nfull" string="Not Full Activity"
+            domain="[('places_remain', '&gt;', 0)]" />
           <group string="Group By">
               <filter name="group_by_member" string="Member"
-                      context="{'group_by': 'member_id'}"/>
+                context="{'group_by': 'member_id'}"/>
               <filter name="group_by_activity" string="Activity"
-                      context="{'group_by': 'activity_id'}"/>
-              <filter name="group_by_is_full_activity" string="Activity full"
-                      context="{'group_by': 'is_activity_full'}"/>
+                context="{'group_by': 'activity_id'}"/>
           </group>
         </search>
       </field>
     </record>
 
-    <!--liste editable du modèle golem.activity.queue-->
-    <record model="ir.ui.view" id="queue_tree_view">
-      <field name="name">queue.tree</field>
+    <!-- Tree -->
+    <record model="ir.ui.view" id="golem_activity_queue_view_tree">
+      <field name="name">GOLEM Activity Queue Tree</field>
       <field name="model">golem.activity.queue</field>
       <field name="arch" type="xml">
-        <tree string="Queue Tree"
-              editable="top"
-              colors="grey: places_remain == 0; blue : places_remain &gt;= 1">
+        <tree editable="top"
+          colors="grey: places_remain == 0; blue : places_remain &gt;= 1">
           <field name="sequence" widget="handle"/>
           <field name="member_id"/>
           <field name="activity_id"
-                 domain="[('places_remain','&lt;' , 1), ('queue_allowed', '=', True), ('is_current', '=', True)]"
-                 options="{'no_create': True}"/>
+            domain="[('places_remain','&lt;' , 1), ('queue_allowed', '=', True), ('is_current', '=', True)]"
+            options="{'no_create': True}"/>
           <field name="season_id" readonly='1'/>
           <field name="create_date" readonly="1"/>
           <field name='places_remain' />
-          <field name="is_activity_full" />
         </tree>
       </field>
     </record>
 
     <!-- Action -->
-    <record id="golem_activity_queue_action" model="ir.actions.act_window">
-      <field name="name">GOLEM Activity Queue List</field>
-      <field name="res_model">golem.activity.queue</field>
-      <field name="view_mode">tree,search</field>
-      <field name="context">{'search_default_season_default': True}</field>
-    </record>
+    <act_window id="golem_activity_queue_action" name="Activity queue"
+      res_model="golem.activity.queue" view_mode="tree"
+      context="{'search_default_season_default': True}" />
 
     <!-- Menu -->
     <menuitem id="golem_activity_queue_menu" name="Activity queue"
-              parent="golem_activity.golem_activity_menu"
-              action="golem_activity_queue_action"
-              sequence="20" />
+      parent="golem_activity.golem_activity_menu"
+      action="golem_activity_queue_action"
+      sequence="20" />
 
   </data>
 </odoo>

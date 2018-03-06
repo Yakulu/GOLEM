@@ -66,17 +66,6 @@ class GolemActivity(models.Model):
                         self.activity_queue_ids = [(2, queue.id, 0)]
         return True
 
-
-    #mettre à jour le status d'activité remplis sur chaque attente
-    @api.constrains('places_remain')
-    def update_activity_fullness(self):
-        """updates queue.is_activity_full based on places_remain"""
-        for activity in self:
-            for queue in self.activity_queue_ids:
-                if activity.places_remain == 0:
-                    queue.is_activity_full = "Full activity"
-                else:
-                    queue.is_activity_full = "Not full activity"
     #Ajouter/supprimer une file à l'activité et afficher popup pour traitement automatisé
     @api.multi
     def queue_allowed_toggle(self):
