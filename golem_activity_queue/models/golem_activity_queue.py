@@ -18,7 +18,8 @@
 
 """ GOLEM Activity Queue """
 
-from odoo import models, fields, _
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class GolemActivityQueue(models.Model):
     """ GOLEM Activity Queue """
@@ -41,3 +42,17 @@ class GolemActivityQueue(models.Model):
 
     places_remain = fields.Integer(related='activity_id.places_remain')
     sequence = fields.Integer()
+
+    @api.constrains('member_id', 'activity_id')
+    def _check_member_registration(self):
+        """ Forbid registration in queue when member is already registred in the
+        activity """
+        for queue in self:
+            domain = [('member_id', '=', queue.member_id.id),
+                      ('activity_id', '=', queue.activity_id.id)]
+            #verifier si un enrigistrement avec le meme membre et activité est déja fait
+            registrations = self.env['golem.activity.registration'].search(domain)
+            #si oui lancer un erreur
+            if len(registrations):
+                raise ValidationError(_('The member your trying to add to the queue'
+                                        ' is already registred for this activity'))
