@@ -39,7 +39,8 @@ class GolemActivity(models.Model):
 
     @api.multi
     def write(self, vals):
-        """ Override method write to delete record from queue if they register in activity"""
+        """ Override method write to delete record from queue if they register
+        in activity (only for manual queue processing) """
         res = super(GolemActivity, self).write(vals)
         registration_vals = vals.get('activity_registration_ids')
         if registration_vals:
@@ -52,10 +53,7 @@ class GolemActivity(models.Model):
                                   ('member_id', '=', mem_id)]
                         queue = self.env['golem.activity.queue'].search(domain)
                         if queue:
-                            # remove registration
                             queue.unlink()
-                            # self.activity_queue_ids = [(2, queue.id, False)]
-        self.automated_register_from_queue()
         return res
 
     @api.multi
@@ -93,14 +91,16 @@ class GolemActivity(models.Model):
                 self.env['golem.activity.registration'].create(values)
                 queue.unlink()
 
-    @api.multi
+    @api.constrains('activity_queue_ids', 'activity_registration_ids',
+                    'places_remain', 'queue_allowed', 'queue_activity_number',
+                    'auto_registration_from_queue')
     def automated_register_from_queue(self):
         """automated registration from queue"""
-        for record in self:
-            if (record.places_remain and record.queue_allowed and
-                    record.queue_activity_number > 0 and
-                    record.auto_registration_from_queue):
-                record.register_from_queue()
+        for activity in self:
+            if (activity.places_remain and activity.queue_allowed and
+                    activity.queue_activity_number > 0 and
+                    activity.auto_registration_from_queue):
+                activity.register_from_queue()
 
     @api.depends('activity_queue_ids')
     def _compute_queue_activity_number(self):
@@ -108,12 +108,12 @@ class GolemActivity(models.Model):
         for activity in self:
             activity.queue_activity_number = len(activity.activity_queue_ids)
 
-    @api.multi
     @api.onchange('activity_registration_ids')
     def _check_registration_number(self):
         for activity in self:
-            places_remain = activity.places - activity.places_used
-            if places_remain == 0 and activity.queue_allowed:
+            # Needed to ensure that we are negative in places
+            activity._compute_places_remain()
+            if activity.places_remain < 0 and activity.queue_allowed:
                 message = _('No remaining place for the activity : {}, please'
                             ' discard changes and register in the queue.')
                 return {
@@ -122,7 +122,7 @@ class GolemActivity(models.Model):
                         'message': message.format(activity.name),
                     }
                 }
-            elif places_remain > 0 and  activity.queue_activity_number > 0:
+            elif activity.places_remain > 0 and  activity.queue_activity_number > 0:
                 if activity.auto_registration_from_queue:
                     warning_message = _('There is a free place for the activity'
                                         ' : {}, once you save it will be filled'

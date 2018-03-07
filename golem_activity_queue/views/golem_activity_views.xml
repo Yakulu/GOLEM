@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Forms -->
     <record id="golem_activity_form_inherit_golem_activity_queue"
-            model="ir.ui.view">
+      model="ir.ui.view">
      <field name="name">Add the queue registration items to activity form</field>
      <field name="model">golem.activity</field>
      <field name="inherit_id" ref="golem_activity.golem_activity_form" />
@@ -66,11 +66,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 attrs="{'invisible': [('queue_allowed', '=', False)]}"
                 confirm="Are you sure you want to remove queue from this activity ? This will delete all elements currently registred in"/>
         <button name="auto_registration_toggle"
-                string="Automated registration from queue"  type="object"
+                string="Switch to automated registration from queue"  type="object"
                 attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', True)]}"
                 confirm="Are you sure you want to switch to automated registration from queue mode ?"/>
         <button name="auto_registration_toggle"
-                string="Manual registration from queue"  type="object"
+                string="Switch to manual registration from queue"  type="object"
                 attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', False)]}"
                 confirm="Are you sure you want to switch to manual registration from queue mode ?"/>
        </header>

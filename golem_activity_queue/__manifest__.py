@@ -20,7 +20,7 @@
     'name': 'GOLEM activity queues',
     'summary': 'GOLEM activity queues',
     'description': ''' GOLEM activity queue management ''',
-    'version': '10.0.1.1.4',
+    'version': '10.0.1.1.5',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',

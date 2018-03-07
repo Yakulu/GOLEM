@@ -55,6 +55,7 @@ class TestGolemActivityQueue(TransactionCase):
         """ Test activity queue bases """
         member1 = self.member1.create(self.data_member_1)
         activity = self.activity.create(self.data_activity)
+        activity.auto_registration_from_queue = False
         activity_queue = self.activity_queue.create({'activity_id': activity.id,
                                                      'member_id': member1.id})
         self.assertEqual(activity.activity_queue_ids[0], activity_queue)
