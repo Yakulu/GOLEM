@@ -1,0 +1,291 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_queue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-07 18:55+0000\n"
+"PO-Revision-Date: 2018-03-07 18:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_activity_id
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Activity"
+msgstr "Activité"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_activity_id
+msgid "Activity id"
+msgstr "Activité liée"
+
+#. module: golem_activity_queue
+#: model:ir.actions.act_window,name:golem_activity_queue.golem_activity_queue_action
+#: model:ir.ui.menu,name:golem_activity_queue.golem_activity_queue_menu
+msgid "Activity queue"
+msgstr "Liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Add Queue"
+msgstr "Ajouter une liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Add from queue"
+msgstr "Ajouter depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_automated_queue_actiave_wizard_view_form
+msgid "Are you sure you want to Add queue to this activity ?<br/>\n"
+"             If yes please confirm if you want automated registration from queue to activity."
+msgstr "Êtes-vous sûr de vouloir ajouter une liste d'attente à cette activité ?<br/>\n"
+"             Si oui, merci de confirmer si vous souhaitez une inscription automatique depuis la liste d'attente."
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Are you sure you want to remove queue from this activity ? This will delete all elements currently registred in"
+msgstr "Êtes-vous sûr de vouloir supprimer la liste d'attente pour cette activité ? Cela supprimera tous les membres inscrits dessus."
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Are you sure you want to switch to automated registration from queue mode ?"
+msgstr "Êtes-vous sûr de vouloir passer à une inscription automatique depuis la liste d'attente ?"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Are you sure you want to switch to manual registration from queue mode ?"
+msgstr "Êtes-vous sûr de vouloir passer à une inscription manuelle depuis la liste d'attente ?"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_auto_registration_from_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_auto_registration_from_queue
+msgid "Auto registration from queue"
+msgstr "Inscription automatique depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_automated_queue_actiave_wizard_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity.py:52
+#, python-format
+msgid "Choose the activity to register in"
+msgstr "Choisissez l'activité sur laquelle inscrire"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_automated_queue_actiave_wizard_view_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_create_uid
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_create_date
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_is_current
+msgid "Current season?"
+msgstr "Saison en cours?"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Default season"
+msgstr "Saison par défaut"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_display_name
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Full Activity"
+msgstr "Activité complète"
+
+#. module: golem_activity_queue
+#: model:ir.model,name:golem_activity_queue.model_golem_activity
+msgid "GOLEM Activity"
+msgstr "Activité"
+
+#. module: golem_activity_queue
+#: model:ir.model,name:golem_activity_queue.model_golem_activity_queue
+msgid "GOLEM Activity Queue"
+msgstr "Liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.model,name:golem_activity_queue.model_golem_member
+msgid "GOLEM Member"
+msgstr "Adhérent"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_id
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard___last_update
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_write_uid
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_automated_queue_activate_wizard_write_date
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_member_id
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Member"
+msgstr "Adhérent"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity.py:108
+#, python-format
+msgid "No remaining place for the activity : {}, please discard changes and register in the queue."
+msgstr "Plus de place disponible pour l'activité {}, veuillez annuler vos modifications et utiliser la liste d'attente."
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_queue_view_search
+msgid "Not Full Activity"
+msgstr "Activité disponible"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_activity_queue_ids
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_member_activity_queue_ids
+msgid "Pending registration"
+msgstr "Inscriptions en attente"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_activity_number
+msgid "Pending registration number"
+msgstr "Numéro de l'inscription en attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Queue"
+msgstr "File d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_allowed
+msgid "Queue allowed"
+msgstr "Liste d'attente activée"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_member_form_inherit_golem_activity_queue
+msgid "Queue list"
+msgstr "Listes d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Register from Queue"
+msgstr "Inscrire depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_automated_queue_actiave_wizard_view_form
+msgid "Rejection reason"
+msgstr "Motif du rejet"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_places_remain
+msgid "Remaining places"
+msgstr "Places restantes"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Remove Queue"
+msgstr "Supprimer la liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_season_id
+msgid "Season"
+msgstr "Saison"
+
+#. module: golem_activity_queue
+#: model:ir.model.fields,field_description:golem_activity_queue.field_golem_activity_queue_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Switch to automated registration from queue"
+msgstr "Passer à une inscription automatique depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
+msgid "Switch to manual registration from queue"
+msgstr "Passer à une inscription manuelle depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity_queue.py:52
+#, python-format
+msgid "The member your trying to add to the queue is already registered for this activity"
+msgstr "L'adhérent que vous essayez d'ajouter à la liste d'attente est déjà inscrit à cette activité"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity.py:118
+#, python-format
+msgid "There is a free place for the activity : {}, once you save it will be filled by the first member from queue"
+msgstr "Il y a une place disponible sur l'activité {}, une fois sauvegardée un membre de la liste d'attente sera automatiquement inscrit"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity.py:122
+#, python-format
+msgid "There is a free place for the activity : {}, you may fill it manually from the queue"
+msgstr "Il y a une place disponible sur l'activité {}, vous pouvez inscrire un membre depuis la liste d'attente"
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_member.py:39
+#, python-format
+msgid "This activity : {} is already full, please discard changes and register in the queue."
+msgstr "L'activité {} est complète, veuillez annuler vos modifications et enregistrer le membre dans la liste d'attente."
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity_queue.py:30
+#: sql_constraint:golem.activity.queue:0
+#, python-format
+msgid "This member has already been registered for the queue."
+msgstr "Le membre a déjà été inscrit sur la liste d'attente."
+
+#. module: golem_activity_queue
+#: code:addons/golem_activity_queue/models/golem_activity.py:112
+#: code:addons/golem_activity_queue/models/golem_activity.py:127
+#: code:addons/golem_activity_queue/models/golem_member.py:43
+#, python-format
+msgid "Warning"
+msgstr "Attention"
+
+#. module: golem_activity_queue
+#: model:ir.model,name:golem_activity_queue.model_golem_activity_automated_queue_activate_wizard
+msgid "golem.activity.automated.queue.activate.wizard"
+msgstr "golem.activity.automated.queue.activate.wizard"
