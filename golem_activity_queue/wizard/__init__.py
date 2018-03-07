@@ -16,4 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import golem_activity_queue_choose, golem_activity_automated_queue_activate
+from . import golem_activity_automated_queue_activate

@@ -20,7 +20,7 @@
     'name': 'GOLEM activity queues',
     'summary': 'GOLEM activity queues',
     'description': ''' GOLEM activity queue management ''',
-    'version': '10.0.1.2.2',
+    'version': '10.0.1.2.3',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -32,7 +32,6 @@
         'views/golem_activity_queue_views.xml',
         'views/golem_activity_views.xml',
         'views/golem_member_views.xml',
-        'wizard/golem_activity_queue_choose_views.xml',
         'wizard/golem_activity_automated_queue_activate_views.xml'
     ]
 }

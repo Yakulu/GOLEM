@@ -26,11 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity.automated.queue.activate.wizard</field>
       <field name="arch" type="xml">
         <form string="Rejection reason">
-          <group>
-            <label
-              class="oe_edit_only" for="name"
-              string="Are you sure you want to Add queue to this activity ? If yes please confirm if you want automated registration from queue to activity"/>
-          </group>
+           <p colspan="2">
+             Are you sure you want to Add queue to this activity ?<br />
+             If yes please confirm if you want automated registration from queue to activity.
+           </p>
           <group>
             <field name="activity_id" invisible="1" />
             <field name="auto_registration_from_queue"/>
