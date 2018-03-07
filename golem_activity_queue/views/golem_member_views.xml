@@ -20,30 +20,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <!-- add  the queue registration items to member form-->
+    <!-- Forms -->
     <record id="golem_member_form_inherit_golem_activity_queue"
-            model="ir.ui.view">
-      <field name="name">Add the queue onglet and registration button to member form</field>
+      model="ir.ui.view">
+      <field name="name">Queue adaptations on member form</field>
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
-        <!--Ajout bouton d'inscription en file d'attente sur member form-->
-        <xpath expr="//field[@name='activity_registration_ids']" position="after">
-          <group>
-            <button class="oe_highlight" name="choose_queue_to_register" string="Register in the queue"  type="object"/>
-          </group>
-        </xpath>
-        <!--Ajout onglet queue sur member form-->
         <page name="activities" position="after">
-          <page name="queue" string="List of queues">
+          <page name="queue" string="Queue list">
             <group>
               <field name="activity_queue_ids"
                 context="{'default_member_id': active_id}">
                 <tree editable="top">
                   <field name="sequence" widget="handle"/>
                   <field name="activity_id"
-                         domain="[('places_remain','&lt;' , 1), ('queue_allowed', '=', True), ('is_current', '=', True)]"
-                         options="{'no_create': True}"/>
+                    domain="[('places_remain','&lt;' , 1), ('queue_allowed', '=', True), ('is_current', '=', True)]"
+                    options="{'no_create': True}"/>
                   <field name="season_id" readonly="1" />
                 </tree>
               </field>
@@ -52,6 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </page>
       </field>
     </record>
-    
+
   </data>
 </odoo>
