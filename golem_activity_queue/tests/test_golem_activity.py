@@ -27,31 +27,26 @@ class TestGolemActivity(TransactionCase):
     def setUp(self):
         """ Bootstrap activity """
         super(TestGolemActivity, self).setUp()
-        #création du saison
-        self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
-        self.season.do_default_season()
-        #préparation des données pour la création des membres
+        self.season = self.env['golem.season'].create({'name': u'Season 1'})
         self.data_member_1 = {'lastname': u'LAST1',
                               'firstname': u'First1',
-                              'season_ids':[(4, self.season.id, False)]
-                             }
+                              'season_ids':[(4, self.season.id, False)]}
         self.data_member_2 = {'lastname': u'LAST2',
                               'firstname': u'First2',
-                              'season_ids':[(4, self.season.id, False)]
-                             }
-        self.member1 = self.env['golem.member']
-        self.member2 = self.env['golem.member']
-        #préparation des donnée pour la création de l'activité
-        type_id = self.ref("golem_activity.golem_activity_type_activity")
+                              'season_ids':[(4, self.season.id, False)]}
+        self.member = self.env['golem.member']
+        type_id = self.env.ref('golem_activity.golem_activity_type_activity')
         self.data_activity = {
             'name': u'Activity 1',
             'season_id': self.season.id,
-            'type_id': type_id}
+            'type_id': type_id.id
+        }
         self.activity = self.env['golem.activity']
+        self.activity_registration = self.env['golem.activity.registration']
+        self.activity_queue = self.env['golem.activity.queue']
 
-    # test de creation d'activity et inistialisation des champs
     def test_activity_creation(self):
-        """ Test creation of activity """
+        """ Test activity defaults for queue """
         activity = self.activity.create(self.data_activity)
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
@@ -59,8 +54,6 @@ class TestGolemActivity(TransactionCase):
         self.assertFalse(activity.activity_registration_ids)
         self.assertFalse(activity.activity_queue_ids)
 
-
-    #test toggle auto_registration
     def test_auto_registration_toggle(self):
         """ Test Toggle Autoregistration from queue """
         activity = self.activity.create(self.data_activity)
@@ -69,112 +62,73 @@ class TestGolemActivity(TransactionCase):
         self.assertFalse(activity.auto_registration_from_queue)
         activity.auto_registration_toggle()
         self.assertTrue(activity.auto_registration_from_queue)
-    #test du queue_allowed toggle: en cas de désactivation queue doit etre vidé
+
     def test_queue_allowed_toggle(self):
         """ Test Toggle queue_allowed """
         #création de 2 membre est une activité
-        member1 = self.member1.create(self.data_member_1)
-        member2 = self.member2.create(self.data_member_2)
+        member1 = self.member.create(self.data_member_1)
+        member2 = self.member.create(self.data_member_2)
         activity = self.activity.create(self.data_activity)
-        #membre 1 inscrit sur activity
-        registration = {
-            'activity_id' : activity.id,
-            'member_id' : member1.id
-            }
-        #memebre 2 inscrit sur attente
-        queue = {
-            'activity_id' : activity.id,
-            'member_id' : member2.id
-            }
-        #Verification que l'atente est aactivé
+        registration_data = {'activity_id' : activity.id, 'member_id' : member1.id}
+        queue_data = {'activity_id' : activity.id, 'member_id' : member2.id}
+
         self.assertTrue(activity.queue_allowed)
-        #réduire le nombre de place sur activity  à 1
-        activity.write({'places': 1})
-        #enregistrement du membre 1 sur activity et memebre 2 sur attente
-        activity.write({'activity_registration_ids': [(0, False, registration)]})
-        activity.write({'activity_queue_ids': [(0, False, queue)]})
-        #desactivation de l'attente
+        activity.places = 1
+        self.activity_registration.create(registration_data)
+        self.activity_queue.create(queue_data)
+
+        self.assertTrue(activity.auto_registration_from_queue)
         activity.queue_allowed_toggle()
-        #verification que l'attente est désactivé et vidé
         self.assertFalse(activity.queue_allowed)
         self.assertFalse(activity.activity_queue_ids)
-        #appel wizard pour activation de l'attente
+
         queue_activate_wizard_model = self.env['golem.activity.automated.queue.activate.wizard']
         queue_activate_wizard = queue_activate_wizard_model.create({'activity_id': activity.id})
         queue_activate_wizard.activate_queue()
-        #verification de l'attente activité
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
 
-    #test de basculement automatique depuis queue
     def test_auto_registration(self):
         """ Test auto registration from queue """
-        #création de 2 membre est une activité
-        member1 = self.member1.create(self.data_member_1)
-        member2 = self.member2.create(self.data_member_2)
+        member1 = self.member.create(self.data_member_1)
+        member2 = self.member.create(self.data_member_2)
         activity = self.activity.create(self.data_activity)
-        #réduire le nombre de place sur activity  à 1 et activation de queue et autoregistrement
-        activity.write({'places': 1,
-                        'queue_allowed': True,
-                        'auto_registration_from_queue': True})
-        #membre 1 inscrit sur activity
-        registration = {
-            'activity_id' : activity.id,
-            'member_id' : member1.id
-            }
-        #memebre 2 inscrit sur attente
-        queue = {
-            'activity_id' : activity.id,
-            'member_id' : member2.id
-            }
-        #enregistrement du membre 1 sur activity et memebre 2 sur attente
-        activity.write({'activity_registration_ids': [(0, False, registration)]})
-        activity.write({'activity_queue_ids': [(0, False, queue)]})
-        #vérification du membre 1 sur registration et membre 2 sur attente
+        self.assertTrue(activity.queue_allowed)
+        self.assertTrue(activity.auto_registration_from_queue)
+
+        registration_data = {'activity_id' : activity.id, 'member_id' : member1.id}
+        queue_data = {'activity_id' : activity.id, 'member_id' : member2.id}
+
+        activity.places = 1
+        registration = self.activity_registration.create(registration_data)
+        self.activity_queue.create(queue_data)
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
-        #suppression du membre 1 de l'activity
-        activity.write({'activity_registration_ids': [(2,
-                                                       activity.activity_registration_ids[0].id,
-                                                       False)]})
-        #verifcation de la presence du membre 2 sur activity : basculement depuis attente
+
+        registration.unlink()
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
-        #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
-    # suppression du membre sur l'attente s'il sinscrit directement sur l'activity
+
     def test_delete_queue_member(self):
         """ Test Delete Queue member if they directly register """
-        #création de 2 membre est une activité
-        member1 = self.member1.create(self.data_member_1)
-        member2 = self.member2.create(self.data_member_2)
+        member1 = self.member.create(self.data_member_1)
+        member2 = self.member.create(self.data_member_2)
         activity = self.activity.create(self.data_activity)
-        #réduire le nombre de place sur activity  à 1 et activation de queue et autoregistrement
-        activity.write({'places': 1,
-                        'queue_allowed': True,
-                        'auto_registration_from_queue': False})
-        #membre 1 inscrit sur activity
-        registration = {
-            'activity_id' : activity.id,
-            'member_id' : member1.id
-            }
-        #memebre 2 inscrit sur attente
-        queue = {
-            'activity_id' : activity.id,
-            'member_id' : member2.id
-            }
-        #enregistrement du membre 1 sur activity et memebre 2 sur attente
-        activity.write({'activity_registration_ids': [(0, False, registration)]})
-        activity.write({'activity_queue_ids': [(0, False, queue)]})
-        # vérification des inscriptions
+        self.assertTrue(activity.queue_allowed)
+        self.assertTrue(activity.auto_registration_from_queue)
+        activity.auto_registration_toggle()
+        self.assertFalse(activity.auto_registration_from_queue)
+
+        registration_data = {'activity_id' : activity.id, 'member_id' : member1.id}
+        queue_data = {'activity_id' : activity.id, 'member_id' : member2.id}
+
+        activity.places = 1
+        registration = self.activity_registration.create(registration_data)
+        self.activity_queue.create(queue_data)
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
-        #suppression du membre 1 de l'activity
-        activity.write({'activity_registration_ids': [(2,
-                                                       activity.activity_registration_ids[0].id,
-                                                       False)]})
-        #inscription sur activity avec le membre sur queue
-        activity.write({'activity_registration_ids': [(0, False, queue)]})
-        #vérification queue vide
+        registration.unlink()
+
+        activity.activity_registration_ids = [(0, False, queue_data)]
         self.assertFalse(activity.activity_queue_ids)
-        #verification du membre 2 sur inscriptions
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)

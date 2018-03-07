@@ -19,7 +19,6 @@
 """ GOLEM Member testing """
 
 from odoo.tests.common import TransactionCase
-# from psycopg2 import IntegrityError
 
 
 class TestGolemMember(TransactionCase):
@@ -29,95 +28,47 @@ class TestGolemMember(TransactionCase):
         """ Bootstrap member """
         super(TestGolemMember, self).setUp(*args, **kwargs)
         #création du saison
-        self.season = self.env['golem.season'].sudo().create({'name': u'Season 1'})
-        self.season.do_default_season()
-        #préparation des données pour la création des membres
+        self.season = self.env['golem.season'].create({'name': u'Season 1'})
         self.data_member_1 = {'lastname': u'LAST1',
                               'firstname': u'First1',
-                              'season_ids':[(4, self.season.id, False)]
-                             }
+                              'season_ids':[(4, self.season.id, False)]}
         self.data_member_2 = {'lastname': u'LAST2',
                               'firstname': u'First2',
-                              'season_ids':[(4, self.season.id, False)]
-                             }
-        self.member1 = self.env['golem.member']
-        self.member2 = self.env['golem.member']
-        #préparation des donnée pour la création de l'activité
-        type_id = self.ref("golem_activity.golem_activity_type_activity")
+                              'season_ids':[(4, self.season.id, False)]}
+        self.member = self.env['golem.member']
+        type_id = self.env.ref('golem_activity.golem_activity_type_activity')
         self.data_activity = {
             'name': u'Activity 1',
             'season_id': self.season.id,
-            'type_id': type_id}
+            'type_id': type_id.id
+        }
         self.activity = self.env['golem.activity']
-
+        self.activity_registration = self.env['golem.activity.registration']
+        self.activity_queue = self.env['golem.activity.queue']
 
     def test_member_creation(self):
-        """ Test member creation """
-        member1 = self.member1.create(self.data_member_1)
-        #verification que le membre n'est inscrit en aucune attente
+        """ Test member queue default """
+        member1 = self.member.create(self.data_member_1)
         self.assertFalse(member1.activity_queue_ids)
-
 
     def test_automated_registration(self):
         """ Test automated registration """
-        #création de 2 membre est une activité
-        member1 = self.member1.create(self.data_member_1)
-        member2 = self.member2.create(self.data_member_2)
+        member1 = self.member.create(self.data_member_1)
+        member2 = self.member.create(self.data_member_2)
         activity = self.activity.create(self.data_activity)
-        #membre 1 inscrit sur activity
-        registration = {
-            'activity_id' : activity.id,
-            'member_id' : member1.id
-            }
-        #memebre 2 inscrit sur attente
-        queue = {
-            'activity_id' : activity.id,
-            'member_id' : member2.id
-            }
-        #Verification que l'atente est le basculement automatique est aactivé
+
+        registration_data = {'activity_id' : activity.id, 'member_id' : member1.id}
+        queue_data = {'activity_id' : activity.id, 'member_id' : member2.id}
         self.assertTrue(activity.queue_allowed)
         self.assertTrue(activity.auto_registration_from_queue)
-        #réduire le nombre de place sur activity  à 1
-        activity.write({'places': 1})
-        #enregistrement du membre 1 sur activity et memebre 2 sur attente
-        activity.write({'activity_registration_ids': [(0, False, registration)]})
-        activity.write({'activity_queue_ids': [(0, False, queue)]})
-        #vérification des membre 1 sur registration et membre 2 sur attente
+
+        activity.places = 1
+        registration = self.activity_registration.create(registration_data)
+        self.activity_queue.create(queue_data)
+
         self.assertEqual(activity.activity_registration_ids[0].member_id, member1)
         self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
-        #suppression du membre 1 de l'activity
-        member1.write({'activity_registration_ids': [(2,
-                                                      member1.activity_registration_ids[0].id,
-                                                      False)]})
-        #verifcation de la presence du membre 2 sur activity : basculement depuis attente
+
+        registration.unlink()
         self.assertEqual(activity.activity_registration_ids[0].member_id, member2)
-        #verification de l'attente est vide
         self.assertFalse(activity.activity_queue_ids)
-
-    #test de l'inscription d'un membre à travers l'assistan lancé par le bouton
-    def test_choose_queue_to_register(self):
-        """ Queue register through wizard """
-
-        #création de 2 membre est une activité
-        member1 = self.member1.create(self.data_member_1)
-        member2 = self.member2.create(self.data_member_2)
-        activity = self.activity.create(self.data_activity)
-        #membre 1 inscrit sur activity
-        registration = {
-            'activity_id' : activity.id,
-            'member_id' : member1.id
-            }
-        #réduire le nombre de place sur activity  à 1
-        activity.write({'places': 1})
-        #enregistrement du membre 1 sur activity et memebre 2 sur attente
-        activity.write({'activity_registration_ids': [(0, False, registration)]})
-        #enregistrement du membre 2 a travers l'assistant
-        queue_register_wizard = self.env['golem.activity.queue.choose.wizard'].create({
-            'activity_id': activity.id,
-            'member_id': member2.id
-        })
-        queue_register_wizard.register_in_queue()
-
-        #verifcation de l'inscription en queue
-        self.assertEqual(activity.activity_queue_ids[0].member_id, member2)
-        self.assertEqual(member2.activity_queue_ids[0].activity_id, activity)
