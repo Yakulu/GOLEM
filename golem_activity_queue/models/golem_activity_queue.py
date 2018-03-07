@@ -29,7 +29,6 @@ class GolemActivityQueue(models.Model):
     _sql_constraints = [('golem_activity_queue_uniq', 'UNIQUE (member_id, activity_id)',
                          _('This member has already been registered for the queue.'))]
 
-
     member_id = fields.Many2one('golem.member', required=True,
                                 string='Member', ondelete='cascade',
                                 index=True)
@@ -51,4 +50,4 @@ class GolemActivityQueue(models.Model):
             if queue.activity_id in \
                 queue.member_id.activity_registration_all_ids.mapped('activity_id'):
                 raise ValidationError(_('The member your trying to add to the queue'
-                                        ' is already registred for this activity'))
+                                        ' is already registered for this activity'))

@@ -38,25 +38,6 @@ class GolemActivity(models.Model):
             activity.auto_registration_from_queue = not activity.auto_registration_from_queue
 
     @api.multi
-    def write(self, vals):
-        """ Override method write to delete record from queue if they register
-        in activity (only for manual queue processing) """
-        res = super(GolemActivity, self).write(vals)
-        registration_vals = vals.get('activity_registration_ids')
-        if registration_vals:
-            for rval in registration_vals:
-                if rval[0] == 0: # creation case
-                    act_id = rval[2].get('activity_id')
-                    mem_id = rval[2].get('member_id')
-                    if act_id and mem_id:
-                        domain = [('activity_id', '=', act_id),
-                                  ('member_id', '=', mem_id)]
-                        queue = self.env['golem.activity.queue'].search(domain)
-                        if queue:
-                            queue.unlink()
-        return res
-
-    @api.multi
     def queue_allowed_toggle(self):
         """ Toggle queue_alowed boolean """
         self.ensure_one()
@@ -90,6 +71,16 @@ class GolemActivity(models.Model):
                           'member_id' : queue.member_id.id}
                 self.env['golem.activity.registration'].create(values)
                 queue.unlink()
+
+    @api.constrains('activity_registration_ids')
+    def handle_queue_at_register(self):
+        """ Remove member from queue if he has been registered directly in
+        activity (only for manual queue processing) """
+        for activity in self:
+            member_ids = activity.activity_registration_ids.mapped('member_id.id')
+            queues_to_remove = activity.activity_queue_ids.filtered(
+                lambda q: q.member_id.id in member_ids)
+            queues_to_remove.unlink()
 
     @api.constrains('activity_queue_ids', 'activity_registration_ids',
                     'places_remain', 'queue_allowed', 'queue_activity_number',
