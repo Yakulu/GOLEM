@@ -50,6 +50,16 @@ class GolemActivity(models.Model):
     is_fullseason = fields.Boolean('Is full season?',
                                    compute='_compute_is_full_season')
 
+    @api.onchange('is_fullseason')
+    def onchange_fullseason(self):
+        """ Sets dates as season ones if needed """
+        for activity in self:
+            if activity.is_fullseason:
+                if activity.season_id.date_start:
+                    activity.date_start = activity.season_id.date_start
+                if activity.season_id.date_end:
+                    activity.date_stop = activity.season_id.date_end
+
     @api.depends('date_start', 'date_stop')
     def _compute_is_full_season(self):
         """ Display date for is full season """
