@@ -27,5 +27,5 @@
     'depends': ['golem_member', 'account', 'decimal_precision'],
     'data': ['views/golem_membership_invoice.xml',
              'views/golem_member_view.xml',
-             'report/golem_member_report.xml']
+             'views/report_golem_member.xml']
 }
