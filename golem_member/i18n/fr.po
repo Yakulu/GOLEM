@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-20 06:54+0000\n"
-"PO-Revision-Date: 2017-06-28 17:30+0000\n"
+"POT-Creation-Date: 2018-03-08 15:11+0000\n"
+"PO-Revision-Date: 2018-03-08 15:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "(num."
+msgstr "(num."
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
@@ -42,6 +47,11 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Activities"
+msgstr "Activités"
+
+#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Address"
 msgstr "Adresse"
@@ -50,6 +60,11 @@ msgstr "Adresse"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_type
 msgid "Address Type"
 msgstr "Type d'adresse"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Animator"
+msgstr "Intervenant"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_numberconfig_form
@@ -220,7 +235,6 @@ msgstr "Fiche contact"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_child_ids
-#: model:ir.ui.menu,name:golem_member.golem_members_menu_contacts
 msgid "Contacts"
 msgstr "Contacts"
 
@@ -306,9 +320,24 @@ msgid "Date on which membership has been cancelled"
 msgstr "Date à laquelle l'adhésion a été annulée"
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Date start"
+msgstr "Début"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Date stop"
+msgstr "Fin"
+
+#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_stop
 msgid "Date until which membership remains active."
 msgstr "Date jusqu'à laquelle l'adhésion reste active."
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Day"
+msgstr "Jour"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_search
@@ -430,7 +459,7 @@ msgid "GOLEM Members Tags"
 msgstr "Catégories d'adhérents"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:309
+#: code:addons/golem_member/models/golem_member.py:319
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr "La fusion d'adhérents n'a pas encore été implémentée. Merci de ne fusionner que des contacts non adhérents, ou bien de supprimer les adhérents manuellement en premier lieu."
@@ -446,6 +475,16 @@ msgid "Go to member form"
 msgstr "Voir la fiche adhérent"
 
 #. module: golem_member
+#: model:ir.actions.report.xml,name:golem_member.golem_member_report_html
+msgid "Golem member report [HTML]"
+msgstr "Fiche adhérent [HTML]"
+
+#. module: golem_member
+#: model:ir.actions.report.xml,name:golem_member.golem_member_report_pdf
+msgid "Golem member report [PDF]"
+msgstr "Fiche adhérent [PDF]"
+
+#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_search
 msgid "Group By"
 msgstr "Grouper par"
@@ -454,6 +493,16 @@ msgstr "Grouper par"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_has_unreconciled_entries
 msgid "Has unreconciled entries"
 msgstr "A des écritures non lettrées"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Hour start"
+msgstr "Début"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Hour stop"
+msgstr "Fin"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_id
@@ -700,7 +749,8 @@ msgstr "NIC"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_name
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4164
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4186
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
 msgid "Name"
 msgstr "Nom"
 
@@ -712,8 +762,8 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:262
-#: code:addons/golem_member/models/golem_member.py:265
+#: code:addons/golem_member/models/golem_member.py:264
+#: code:addons/golem_member/models/golem_member.py:267
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -791,6 +841,11 @@ msgid "Per season number?"
 msgstr "Numéro unique par saison?"
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Period :"
+msgstr "Période :"
+
+#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Personal details"
 msgstr "Détails personnels"
@@ -848,6 +903,11 @@ msgstr "Vendeur"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_season_id
 msgid "Season"
 msgstr "Saison"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Season :"
+msgstr "Saison :"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_season_ids
@@ -1078,6 +1138,11 @@ msgid "Total amount you have to pay to this vendor."
 msgstr "Montant total à payer au fournisseur."
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Type"
+msgstr "Type"
+
+#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_type
 msgid "Used to select automatically the right address according to the context in sales and purchases documents."
 msgstr "Utilisé pour sélectionner automatiquement la bonne adresse selon le contexte des documents de vente et d'achats"
@@ -1108,8 +1173,8 @@ msgid "Website of Partner or Company"
 msgstr "Site Web pour les Partenaires ou les Sociétés"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:262
-#: code:addons/golem_member/models/golem_member.py:265
+#: code:addons/golem_member/models/golem_member.py:264
+#: code:addons/golem_member/models/golem_member.py:267
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -1140,4 +1205,3 @@ msgstr "e.g. www.yaltik.com"
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "name@example.org"
 msgstr "name@example.org"
-
