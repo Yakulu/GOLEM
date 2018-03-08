@@ -20,13 +20,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
 
-    <report id="golem_member_report_pdf" string="Golem member report [PDF]"
-      model="golem.member" report_type="qweb-pdf"
-      name="golem_member.golem_member_card_template" />
-    <report id="golem_member_report_html" string="Golem member report [HTML]"
-      model="golem.member" report_type="qweb-html"
-      name="golem_member.golem_member_card_template" />
-
+  <report id="golem_member_report_pdf" model="golem.member"
+    string="Golem member report [PDF]" report_type="qweb-pdf"
+    name="golem_member.golem_member_card_template"
+    file="golem_member.golem_member_card_template"
+    attachment="(object.name + '.pdf')" />
+  <report id="golem_member_report_html" model="golem.member"
+    string="Golem member report [HTML]" report_type="qweb-html"
+    name="golem_member.golem_member_card_template"
+    file="golem_member.golem_member_card_template"
+    attachment="(object.name + '.html')" />
+    
     <template id="golem_member_card_template">
       <t t-call="report.html_container">
         <t t-set="season" t-value="docs._default_season()" />
