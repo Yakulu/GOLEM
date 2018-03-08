@@ -20,44 +20,49 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
 
-      <template id="membership" inherit_id="golem_member.golem_member_card_template">
-              <xpath expr="//div[@id='page_report_member']" position="after">
-                <t t-call="report.external_layout">
-                  <div class="page">
-                    <table class="table table-striped">
-                      <thead>
-                        <strong>Membership</strong>
-                        <tr>
-                          <th>Season date</th>
-                          <th>Registration</th>
-                          <th>Registration type</th>
-                          <th>State</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <t t-foreach="docs" t-as="o">
-                          <tr>
-                            <td class="col-xs-3">
-                              <spam t-field="o.membership_start" />
-                              <spam t-field="o.membership_stop" />
-                            </td>
-                            <td class="col-xs-3">
-                              <spam t-field="o.member_lines[0].date" />
-                            </td>
-                            <td class="col-xs-3">
-                              <spam t-field="o.member_lines[0].membership_id" />
-                            </td>
-                            <td class="col-xs-3">
-                              <spam t-field="o.membership_state" />
-                            </td>
-                          </tr>
-                        </t>
-                      </tbody>
-                    </table>
-                  </div>
-                </t>
-              </xpath>
-
-      </template>
+  <template id="golem_member_card_template_inherit_golem_membership"
+    inherit_id="golem_member.golem_member_card_template">
+    <xpath expr="//div[@id='page_report_member']" position="after">
+      <div class="page">
+        <div class="row">
+          <h2>Membership</h2>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Registration</th>
+              <th>Registration date</th>
+              <th>Date from</th>
+              <th>Date to</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="docs" t-as="member">
+              <t t-foreach="member.member_lines" t-as="mline">
+                <tr>
+                  <td class="col-xs-3">
+                    <spam t-field="mline.membership_id" />
+                  </td>
+                  <td class="col-xs-2">
+                    <spam t-field="mline.date_from" />
+                  </td>
+                  <td class="col-xs-2">
+                    <spam t-field="mline.date_to" />
+                  </td>
+                  <td class="col-xs-2">
+                    <spam t-field="mline.date" />
+                  </td>
+                  <td class="col-xs-3">
+                    <spam t-field="mline.state" />
+                  </td>
+                </tr>
+              </t>
+            </t>
+          </tbody>
+        </table>
+      </div>
+    </xpath>
+  </template>
 
 </odoo>
