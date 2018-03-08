@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
 
-      <template id="membership" inherit_id="golem_member.report_golem_member_template">
+      <template id="membership" inherit_id="golem_member.golem_member_card_template">
               <xpath expr="//div[@id='page_report_member']" position="after">
                 <t t-call="report.external_layout">
                   <div class="page">
@@ -42,10 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                               <spam t-field="o.membership_stop" />
                             </td>
                             <td class="col-xs-3">
-                              <spam t-field="o.member_lines.date" />
+                              <spam t-field="o.member_lines[0].date" />
                             </td>
                             <td class="col-xs-3">
-                              <spam t-field="o.member_lines.membership_id" />
+                              <spam t-field="o.member_lines[0].membership_id" />
                             </td>
                             <td class="col-xs-3">
                               <spam t-field="o.membership_state" />
