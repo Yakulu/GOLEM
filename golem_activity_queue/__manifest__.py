@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,20 +17,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM seasons',
-    'summary': 'GOLEM non-profit seasons management',
-    'description': '''GOLEM non-profit seasons management :
-    - add season with name and period ;
-    - choose on per default season ;
-    - link optionnally one or many memberships types''',
-    'version': '10.0.1.1.1',
+    'name': 'GOLEM activity queues',
+    'summary': 'GOLEM activity queues',
+    'description': ''' GOLEM activity queue management ''',
+    'version': '10.0.1.2.3',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
+    'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': False,
+    'application': True,
     'installable': True,
-    'depends': ['golem_base'],
-    'data': ['security/ir.model.access.csv',
-             'views/golem_season_views.xml',
-             'views/membership_views.xml']
+    'depends': ['golem_activity', 'golem_activity_registration'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/golem_activity_queue_views.xml',
+        'views/golem_activity_views.xml',
+        'views/golem_member_views.xml',
+        'wizard/golem_activity_automated_queue_activate_views.xml'
+    ]
 }

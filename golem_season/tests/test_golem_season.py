@@ -65,14 +65,25 @@ class TestGolemSeason(TransactionCase):
                                       'date_start' : False,
                                       'date_end': '2009-11-01'})
 
-
-    def test__onchange_season_dates(self):
+    def test_membership(self):
         """ Test if membership """
-        membership = self.env['product.template'].create({'name': 'Name',
-                                                          'membership': True,
-                                                          'membership_date_from': '2017-11-01',
-                                                          'membership_date_to': '2018-11-01'})
-
-        new_season = self.env['golem.season'].create({'name': 'Name',
-                                                      'membership_id': membership.id})
-        self.assertEqual(new_season.membership_id, membership)
+        new_season = self.env['golem.season'].create({'name': 'Name'})
+        membership = self.env['product.template'].create({
+            'name': 'Name',
+            'season_id': new_season.id,
+            'membership': True,
+            'membership_date_from': '2017-11-01',
+            'membership_date_to': '2018-11-01'
+        })
+        self.assertEqual(new_season.membership_ids[0], membership)
+        self.assertEqual(membership.season_id, new_season)
+        membership2 = self.env['product.template'].create({
+            'name': 'Name2',
+            'membership': True,
+            'membership_date_from': '2017-11-01',
+            'membership_date_to': '2018-11-01'
+        })
+        new_season.membership_ids = [(4, membership2.id, False)]
+        self.assertEqual(len(new_season.membership_ids), 2)
+        self.assertEqual(new_season.membership_ids[1], membership2)
+        self.assertEqual(membership2.season_id, new_season)

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Forms -->
+    <record id="golem_activity_form_inherit_golem_activity_queue"
+      model="ir.ui.view">
+     <field name="name">Add the queue registration items to activity form</field>
+     <field name="model">golem.activity</field>
+     <field name="inherit_id" ref="golem_activity.golem_activity_form" />
+     <field name="arch" type="xml">
+      <field name="activity_registration_ids" position="after">
+        <button name="register_from_queue" colspan="2"
+          string="Add from queue"  type="object"
+          attrs="{'invisible':['|', ('queue_allowed', '=', False), '|',
+          ('places_remain','=', 0), ('queue_activity_number', '=', 0)]}"/>
+      </field>
+      <page name="invoicing" position="before">
+        <page name="queue" string="Queue">
+          <group>
+            <field name="queue_allowed" readonly='1'/>
+            <field name="auto_registration_from_queue" readonly='1'/>
+          </group>
+          <group attrs="{'invisible': [('queue_allowed', '=', False)]}">>
+            <field name="queue_activity_number" readonly='1'/>
+            <field name="activity_queue_ids"
+                   context="{'default_activity_id': active_id}" >
+              <tree editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="member_id"/>
+                <field name="activity_id" readonly="1" />
+                <field name="season_id" readonly="1" />
+              </tree>
+            </field>
+            <button name="register_from_queue" colspan="2"
+              string="Register from Queue"  type="object"
+              attrs="{'invisible':['|', ('queue_allowed', '=', False), '|',
+              ('places_remain','=', 0), ('queue_activity_number', '=', 0)]}"/>
+          </group>
+        </page>
+      </page>
+      <header position="inside">
+        <button class="oe_highlight" name="queue_allowed_toggle"
+                string="Add Queue"  type="object"
+                attrs="{'invisible': [('queue_allowed', '=', True)]}"/>
+        <button class="oe_highlight" name="queue_allowed_toggle"
+                string="Remove Queue"  type="object"
+                attrs="{'invisible': [('queue_allowed', '=', False)]}"
+                confirm="Are you sure you want to remove queue from this activity ? This will delete all elements currently registred in"/>
+        <button name="auto_registration_toggle"
+                string="Switch to automated registration from queue"  type="object"
+                attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', True)]}"
+                confirm="Are you sure you want to switch to automated registration from queue mode ?"/>
+        <button name="auto_registration_toggle"
+                string="Switch to manual registration from queue"  type="object"
+                attrs="{'invisible': ['|', ('queue_allowed', '=', False),'&amp;', ('queue_allowed', '=', True), ('auto_registration_from_queue', '=', False)]}"
+                confirm="Are you sure you want to switch to manual registration from queue mode ?"/>
+       </header>
+     </field>
+   </record>
+
+  </data>
+</odoo>

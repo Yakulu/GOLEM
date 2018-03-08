@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Forms -->
+    <record id="membership_products_view_form_inherit_golem_season"
+      model="ir.ui.view">
+      <field name="name">Membership Product Form adaptations</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="membership.membership_products_form" />
+      <field name="arch" type="xml">
+        <field name="default_code" position="before">
+          <field name="membership_season_id" options="{'no_create': True}" />
+        </field>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <record id="membership_product_search_form_view_inherit_golem_season"
+      model="ir.ui.view">
+      <field name="name">Membership Product Search adaptations</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="membership.membership_product_search_form_view" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="membership_season_id" />
+        </field>
+        <xpath expr="//group/filter[1]" position="after">
+          <filter name="group_season" string="Season"
+            context="{'group_by': 'membership_season_id'}" />
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

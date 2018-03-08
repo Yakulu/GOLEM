@@ -108,15 +108,16 @@ class GolemActivity(models.Model):
     def _check_period(self):
         """ Checks if end date if after start date """
         for activity in self:
+            season = activity.season_id
             if activity.date_start and activity.date_stop and \
                     activity.date_start > activity.date_stop:
                 raise models.ValidationError(_('Start of the period cannot be '
                                                'after end of the period.'))
-            if activity.season_id.date_start > activity.date_start:
+            if season.date_start and season.date_start > activity.date_start:
                 msg = _(u'Activity start date can not be set before '
                         'linked season start.')
                 raise models.ValidationError(msg)
-            if activity.season_id.date_end < activity.date_stop:
+            if season.date_end and season.date_end < activity.date_stop:
                 msg = _(u'Activity end date can not be set after '
                         'linked season end.')
                 raise models.ValidationError(msg)

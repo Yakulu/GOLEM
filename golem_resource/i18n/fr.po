@@ -1,0 +1,488 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_resource
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-19 08:39+0000\n"
+"PO-Revision-Date: 2018-02-19 08:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_resource
+#: model:ir.model.fields,help:golem_resource.field_golem_resource_product_tmpl_id
+msgid "A generic product can be linked, in order to sell reservations (work in progress)"
+msgstr "Un article générique peut être lié, dans l'objectif de monétiser des réservations (à venir)"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_active
+msgid "Active"
+msgstr "Actif"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_form
+msgid "Availibility configuration"
+msgstr "Configuration des disponibilités"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_avaibility_start
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_avaibility_start
+msgid "Availibility start date"
+msgstr "Début de disponibilité"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_avaibility_stop
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_avaibility_stop
+msgid "Availibility stop date"
+msgstr "Fin de disponibilité"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_timetable_ids
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_ids
+msgid "Availibility timetable"
+msgstr "Tableau des disponibilités"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_reservation_rejection_wizard_view_form
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: golem_resource
+#: selection:golem.resource.reservation,state:0
+msgid "Canceled"
+msgstr "Annulé"
+
+#. module: golem_resource
+#: model:ir.ui.menu,name:golem_resource.resource_configuration_menu
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: golem_resource
+#: selection:golem.resource.reservation,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_create_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_create_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_create_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_create_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_create_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_create_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_create_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_create_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_date
+msgid "Date"
+msgstr "Date"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_date_start
+msgid "Date start"
+msgstr "Date de début"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_date_stop
+msgid "Date stop"
+msgstr "Date de fin"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Day"
+msgstr "Jour"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_display_name
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_display_name
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_display_name
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_display_name
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_resource
+#: selection:golem.resource.reservation,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource.py:63
+#, python-format
+msgid "End availibility should be after than start availibility"
+msgstr "La fin de disponibilité ne peut pas être après le début"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:107
+#: code:addons/golem_resource/models/golem_resource_timetable.py:55
+#, python-format
+msgid "End time should be after than start time"
+msgstr "L'heure de fin ne peut pas être après l'heure de début"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:37
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Friday"
+msgstr "Vendredi"
+
+#. module: golem_resource
+#: model:ir.model,name:golem_resource.model_golem_resource_reservation
+msgid "GOLEM Reservation Model"
+msgstr "GOLEM Reservation Model"
+
+#. module: golem_resource
+#: model:ir.model,name:golem_resource.model_golem_resource
+msgid "GOLEM Resource Model"
+msgstr "GOLEM Resource Model"
+
+#. module: golem_resource
+#: model:ir.model,name:golem_resource.model_golem_resource_type
+msgid "GOLEM Resource Type"
+msgstr "GOLEM Resource Type"
+
+#. module: golem_resource
+#: model:ir.model,name:golem_resource.model_golem_resource_timetable
+msgid "Golem Timetable"
+msgstr "Golem Timetable"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_id
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_id
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_id
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_id
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_validation_required
+msgid "Is validation required ?"
+msgstr "Une validation est-elle nécessaire ?"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard___last_update
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource___last_update
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation___last_update
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable___last_update
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_write_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_write_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_write_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_write_uid
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_write_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_write_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_write_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_write_date
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_product_tmpl_id
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "Linked product"
+msgstr "Article lié"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_resource_id
+msgid "Linked resource"
+msgstr "Ressource liée"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:33
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Month"
+msgstr "Mois"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_name
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:195
+#, python-format
+msgid "Not allowed, the resource is already taken during this period : from {} to {} this day, please choose another périod before confirming."
+msgstr "Interdit : la ressource est déjà réservée durant cette période : de {} à {} ce jour, merci de choisir une autre période avant de confirmer."
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:177
+#, python-format
+msgid "Not allowed, the resource is not available during this period, please choose another time before confirming."
+msgstr "Interdit : la ressource n'est pas disponible durant cette période, merci de choisir d'autres horaires avant de confirmer à nouveau."
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:164
+#, python-format
+msgid "Not allowed, the resource is not available in this period, please choose another périod before confirming"
+msgstr "Interdit : la ressource n'est pas disponible durant cette période, merci de choisir d'autres dates avant de confirmer à nouveau."
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:182
+#, python-format
+msgid "Not allowed, the resource is not available this day. Please choose another date."
+msgstr "Interdit : la ressource n'est pas disponible ce jour de la semaine. Merci de choisir un autre jour."
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_partner_id
+msgid "On behalf of"
+msgstr "Pour le compte de"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:139
+#, python-format
+msgid "Please enter the rejection reason"
+msgstr "Merci de saisir le motif du refus"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_form
+msgid "Please save the resource before fixing the timetable availibility\""
+msgstr "Merci de sauvegarder la ressource avant de pouvoir définir ses disponibilités\""
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_reason
+msgid "Reason"
+msgstr "Motif"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_reservation_rejection_wizard_view_form
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Reject"
+msgstr "Rejet"
+
+#. module: golem_resource
+#: selection:golem.resource.reservation,state:0
+msgid "Rejected"
+msgstr "Rejeté"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_rejection_reason
+#: model:ir.ui.view,arch_db:golem_resource.golem_reservation_rejection_wizard_view_form
+msgid "Rejection reason"
+msgstr "Motif du rejet"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Reservation"
+msgstr "Réservation"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_reservation_id
+msgid "Reservation id"
+msgstr "Reservation id"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Reservation to Validate"
+msgstr "Réservation à valider"
+
+#. module: golem_resource
+#: model:ir.actions.act_window,name:golem_resource.golem_resource_reservation_action
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_ids
+#: model:ir.ui.menu,name:golem_resource.golem_resource_reservation_menu
+msgid "Reservations"
+msgstr "Réservations"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_id
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Resource"
+msgstr "Ressource"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4449
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_name
+msgid "Resource Type"
+msgstr "Type de ressource"
+
+#. module: golem_resource
+#: model:ir.actions.act_window,name:golem_resource.golem_resource_type_action
+#: model:ir.ui.menu,name:golem_resource.resource_cofiguration_type_menu
+msgid "Resource Types"
+msgstr "Types de ressource"
+
+#. module: golem_resource
+#: sql_constraint:golem.resource.type:0
+msgid "Resource type must be unique."
+msgstr "Le type de ressource doit être unique."
+
+#. module: golem_resource
+#: model:ir.actions.act_window,name:golem_resource.golem_resource_action
+#: model:ir.ui.menu,name:golem_resource.golem_resource_menu
+#: model:ir.ui.menu,name:golem_resource.resource_list_menu
+msgid "Resources"
+msgstr "Resources"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:38
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Set to draft"
+msgstr "Brouillon"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_time_start
+msgid "Start"
+msgstr "Début"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_hour_start
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_timetable_view_tree
+msgid "Start hour"
+msgstr "Heure de début"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_state
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "State"
+msgstr "État"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_time_stop
+msgid "Stop"
+msgstr "Fin"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_hour_stop
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_timetable_view_tree
+msgid "Stop hour"
+msgstr "Heure de fin"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:39
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_supervisor_id
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "Supervisor"
+msgstr "Responsable"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:36
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:34
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "Type"
+msgstr "Type"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_user_id
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Validate"
+msgstr "Valider"
+
+#. module: golem_resource
+#: selection:golem.resource.reservation,state:0
+msgid "Validated"
+msgstr "Validé"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_timetable.py:35
+#: selection:golem.resource.timetable,weekday:0
+#, python-format
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Week"
+msgstr "Semaine"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_timetable_weekday
+msgid "Weekday"
+msgstr "Jour"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "With validation"
+msgstr "Avec validation"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
+msgid "Without validation"
+msgstr "Sans validation"
+
+#. module: golem_resource
+#: code:addons/golem_resource/models/golem_resource_reservation.py:153
+#, python-format
+msgid "You do not have permissions to validate or reject a reservation."
+msgstr "Vous n'avez pas les autorisations nécessaires pour valider ou rejeter une réservation."
+
+#. module: golem_resource
+#: model:ir.model,name:golem_resource.model_golem_reservation_rejection_wizard
+msgid "golem.reservation.rejection.wizard"
+msgstr "golem.reservation.rejection.wizard"

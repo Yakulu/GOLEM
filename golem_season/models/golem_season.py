@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -28,24 +28,22 @@ class GolemSeason(models.Model):
                          _('This season name has already been used.'))]
 
     name = fields.Char('Season name', copy=False, required=True)
-
-    membership_id = fields.Many2one('product.template', 'Membership type',
-                                    domain="[('membership', '=', True)]")
-
-
+    membership_ids = fields.One2many('product.template', 'membership_season_id',
+                                     string='Membership types',
+                                     domain=[('membership', '=', True)])
     member_counter = fields.Integer('Counter for member number generation',
                                     readonly=True, default=1)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
 
-    @api.onchange('membership_id')
+    @api.onchange('membership_ids')
     def _onchange_season_dates(self):
         """ Sets defaults dates according to membership type """
         for season in self:
-            if season.membership_id and not season.date_start:
+            if season.membership_ids and not season.date_start:
                 season.update({
-                    'date_start': season.membership_id.membership_date_from,
-                    'date_end': season.membership_id.membership_date_to
+                    'date_start': season.membership_ids[0].membership_date_from,
+                    'date_end': season.membership_ids[0].membership_date_to
                 })
 
     @api.constrains('date_start', 'date_end')

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,21 +16,17 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM seasons',
-    'summary': 'GOLEM non-profit seasons management',
-    'description': '''GOLEM non-profit seasons management :
-    - add season with name and period ;
-    - choose on per default season ;
-    - link optionnally one or many memberships types''',
-    'version': '10.0.1.1.1',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_base'],
-    'data': ['security/ir.model.access.csv',
-             'views/golem_season_views.xml',
-             'views/membership_views.xml']
-}
+""" GOLEM Resource Type """
+
+from odoo import models, fields
+
+class GolemResourceType(models.Model):
+    """ GOLEM Resource Type """
+    _name = 'golem.resource.type'
+    _description = 'GOLEM Resource Type'
+    _order = 'name asc'
+    _sql_constraints = [('golem_resource_type_name_uniq',
+                         'UNIQUE (name)',
+                         'Resource type must be unique.')]
+
+    name = fields.Char(string='Resource Type', required=True, index=True)
