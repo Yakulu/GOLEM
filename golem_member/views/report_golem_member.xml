@@ -20,64 +20,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
 
-    <record id="paperformat_euro_landscape"
-      model="report.paperformat">
-      <field name="name">European A4 Portrait</field>
-      <field name="default" eval="True" />
-      <field name="format">A4</field>
-      <field name="page_height">0</field>
-      <field name="page_width">0</field>
-      <field name="orientation">Portrait</field>
-      <field name="margin_top">40</field>
-      <field name="margin_bottom">23</field>
-      <field name="margin_left">7</field>
-      <field name="margin_right">7</field>
-      <field name="header_line" eval="True" />
-      <field name="header_spacing">35</field>
-      <field name="dpi">90</field>
-    </record>
+    <report id="golem_member_report_pdf" string="Golem member report [PDF]"
+      model="golem.member" report_type="qweb-pdf"
+      name="golem_member.golem_member_card_template" />
+    <report id="golem_member_report_html" string="Golem member report [HTML]"
+      model="golem.member" report_type="qweb-html"
+      name="golem_member.golem_member_card_template" />
 
-    <report id="golem_member_report"
-      string="Golem member report"
-      model="golem.member"
-      report_type="qweb-pdf"
-      name="golem_member.report_golem_member_template" />
-
-    <template id="report_golem_member_template">
+    <template id="golem_member_card_template">
       <t t-call="report.html_container">
         <t t-call="report.external_layout">
           <div id='page_report_member' class="page">
             <t t-foreach="docs" t-as="o">
-              <div class="oe_structure"/>
-                <div class="row">
-                  <div class="col-xs-4">
-                    <strong>Member</strong>
-                      <div t-field="o.partner_id"
-                        t-options='{"widget": "contact", "fields":
-                        ["address", "name", "street", "street2", "phone", "fax"],
-                         "no_marker": True, "phone_icons": True}'/>
-                      </div>
-                  <div class="oe_structure"/>
-                    <div class="col-xs-4">
-                      <strong>Season :</strong>
-                        <span t-field="o.season_ids[0].name" />
-                      </div>
-                      <div class="col-xs-4">
-                        <strong>Date :</strong>
-                        <span t-field="o.season_ids[0].date_start" />
-                        -
-                        <span t-field="o.season_ids[0].date_end" />
-                        <br></br>
-                        <br></br>
-                      </div>
+              <div class="row" style="margin: 3% 0 3% 0;">
+                <div class="col-xs-8">
+                  <h2><span t-field="o.name" /> - <span t-field="o.number" /></h2>
                 </div>
+                <div class="col-xs-4">
+                  <strong>Season :</strong>
+                  <span t-field="o.season_ids[0].name" />
+                  <br />
+                  <strong>Date :</strong>
+                  <span t-field="o.season_ids[0].date_start" />
+                  -
+                  <span t-field="o.season_ids[0].date_end" />
+                </div>
+              </div>
             </t>
+            <p><strong>Activities</strong> for this season</p>
             <table id="table_activity_ref" class="table table-striped">
               <thead>
-                <strong>Activity</strong>
-                <br></br>
                 <tr>
                   <th>Name</th>
+                  <th>Type</th>
                   <th>Animator</th>
                   <th>Day</th>
                   <th>Hour start</th>
@@ -90,25 +65,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <t t-foreach="docs" t-as="o">
                   <tr id="activity_inherit_price_sum" t-foreach="o.activity_registration_ids" t-as="t">
                       <td class="col-xs-2">
-                        <span t-esc="t.activity_id.name" /><br></br>
+                        <span t-esc="t.activity_id.name" />
                       </td>
                       <td class="col-xs-2">
-                        <span t-field="t.activity_id.animator_id" /><br></br>
+                        <span t-esc="t.activity_id.type_id.name" />
                       </td>
                       <td class="col-xs-2">
-                        <span t-field="t.activity_id.weekday" /><br></br>
+                        <span t-field="t.activity_id.animator_id" />
                       </td>
                       <td class="col-xs-2">
-                        <span t-field="t.activity_id.hour_start" /><br></br>
+                        <span t-field="t.activity_id.weekday" />
                       </td>
-                      <td class="col-xs-2">
-                          <span t-field="t.activity_id.hour_stop" /><br></br>
+                      <td class="col-xs-1">
+                        <t t-esc="'%02d:%02d' % (int(t.activity_id.hour_start), round(t.activity_id.hour_start % 1 * 60))" />
+                      </td>
+                      <td class="col-xs-1">
+                        <t t-esc="'%02d:%02d' % (int(t.activity_id.hour_stop), round(t.activity_id.hour_stop % 1 * 60))" />
                         </td>
                       <td class="col-xs-2">
-                          <span t-field="t.activity_id.date_start" /><br></br>
+                          <span t-if="t.activity_id.is_fullseason" t-field="o.season_ids[0].date_start" />
+                          <span t-else="" t-field="t.activity_id.date_start" />
                       </td>
                       <td id="activity_inherit_td">
-                          <span t-field="t.activity_id.date_stop" /><br></br>
+                          <span t-if="t.activity_id.is_fullseason" t-field="o.season_ids[0].date_end" />
+                          <span t-else="" t-field="t.activity_id.date_stop" />
                       </td>
                   </tr>
                   <tr id="activity_inherit_total"></tr>
