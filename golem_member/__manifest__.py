@@ -30,7 +30,7 @@
     'data': ['views/golem_member_views.xml',
              'views/res_partner_views.xml',
              'views/golem_member_numberconfig_views.xml',
+             'views/report_golem_member.xml',
              'data/golem_member_numberconfig_data.xml',
-             'report/golem_member_report.xml',
              'security/ir.model.access.csv']
 }
