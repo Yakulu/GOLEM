@@ -67,6 +67,8 @@ class GolemResourceReservation(models.Model):
 
     rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
 
+    resource_reservation_count = fields.Integer(compute='_reservation_count')
+
     @api.depends('resource_id', 'date')
     def _compute_name(self):
         """ Computes reservation name """
@@ -199,3 +201,41 @@ class GolemResourceReservation(models.Model):
                                  'please choose another périod before confirming.')
                         raise ValidationError(verr.format(other_res.date_start,
                                                           other_res.date_stop))
+    @api.multi
+    def reservation_calendar(self):
+        """ current resource reservation list """
+        self.ensure_one()
+        calendar_view = {
+            'name': ('Resource Reservation list'),
+            'view_mode': 'calendar',
+            'res_model': 'golem.resource.reservation',
+            'view_id': False,
+            'domain': [('resource_id', '=', self.resource_id.id)],
+            'type': 'ir.actions.act_window',
+            'target':'new'
+        }
+        return calendar_view
+
+    @api.multi
+    def reserveration_list(self):
+        """ current resource reservation list """
+        self.ensure_one()
+        tree_view = {
+            'name': ('Resource Reservation list'),
+            'view_mode': 'tree',
+            'res_model': 'golem.resource.reservation',
+            'view_id': False,
+            'domain': [('resource_id', '=', self.resource_id.id)],
+            'type': 'ir.actions.act_window',
+            'target':'new'
+        }
+        return tree_view
+
+    @api.multi
+    @api.depends('resource_id')
+    def _reservation_count(self):
+        for reservation in self:
+            count = reservation.search_count([('resource_id', '=', reservation.resource_id.id)])
+            reservation.resource_reservation_count = count
+            print "__________________________________"
+            print count
