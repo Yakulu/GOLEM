@@ -49,6 +49,8 @@ class GolemResourceReservation(models.Model):
     resource_avaibility_stop = fields.Date(related='resource_id.avaibility_stop')
     resource_timetable_ids = fields.One2many(related='resource_id.timetable_ids')
 
+    note = fields.Text(help='Notes, optional subject for the reservation, reason')
+
     user_id = fields.Many2one('res.users', required=True, index=True, readonly=True,
                               string='User', default=lambda self: self.env.user,
                               states={'draft': [('readonly', False)]})

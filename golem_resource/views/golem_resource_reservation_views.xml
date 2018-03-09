@@ -85,6 +85,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="hour_stop" widget="float_time" />
                   <field name="user_id" options="{'no_create': True}" />
                   <field name="partner_id" />
+                  <field name="note"
+                    placeholder="Notes, optional subject for the reservation, reason" />
                   <field name="rejection_reason"
                     attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
                 </group>

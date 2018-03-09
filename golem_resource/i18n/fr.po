@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 08:39+0000\n"
-"PO-Revision-Date: 2018-02-19 08:39+0000\n"
+"POT-Creation-Date: 2018-03-09 07:42+0000\n"
+"PO-Revision-Date: 2018-03-09 07:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgid "End availibility should be after than start availibility"
 msgstr "La fin de disponibilité ne peut pas être après le début"
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:107
+#: code:addons/golem_resource/models/golem_resource_reservation.py:109
 #: code:addons/golem_resource/models/golem_resource_timetable.py:55
 #, python-format
 msgid "End time should be after than start time"
@@ -242,28 +242,39 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:195
+#: code:addons/golem_resource/models/golem_resource_reservation.py:197
 #, python-format
 msgid "Not allowed, the resource is already taken during this period : from {} to {} this day, please choose another périod before confirming."
 msgstr "Interdit : la ressource est déjà réservée durant cette période : de {} à {} ce jour, merci de choisir une autre période avant de confirmer."
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:177
+#: code:addons/golem_resource/models/golem_resource_reservation.py:179
 #, python-format
 msgid "Not allowed, the resource is not available during this period, please choose another time before confirming."
 msgstr "Interdit : la ressource n'est pas disponible durant cette période, merci de choisir d'autres horaires avant de confirmer à nouveau."
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:164
+#: code:addons/golem_resource/models/golem_resource_reservation.py:166
 #, python-format
 msgid "Not allowed, the resource is not available in this period, please choose another périod before confirming"
 msgstr "Interdit : la ressource n'est pas disponible durant cette période, merci de choisir d'autres dates avant de confirmer à nouveau."
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:182
+#: code:addons/golem_resource/models/golem_resource_reservation.py:184
 #, python-format
 msgid "Not allowed, the resource is not available this day. Please choose another date."
 msgstr "Interdit : la ressource n'est pas disponible ce jour de la semaine. Merci de choisir un autre jour."
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_note
+msgid "Note"
+msgstr "Note"
+
+#. module: golem_resource
+#: model:ir.model.fields,help:golem_resource.field_golem_resource_reservation_note
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
+msgid "Notes, optional subject for the reservation, reason"
+msgstr "Notes, subjet, motif, descriptif optionnel pour la réservation"
 
 #. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_partner_id
@@ -276,7 +287,7 @@ msgid "Partner"
 msgstr "Partenaire"
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:139
+#: code:addons/golem_resource/models/golem_resource_reservation.py:141
 #, python-format
 msgid "Please enter the rejection reason"
 msgstr "Merci de saisir le motif du refus"
@@ -338,7 +349,7 @@ msgid "Resource"
 msgstr "Ressource"
 
 #. module: golem_resource
-#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4449
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4023
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_name
 msgid "Resource Type"
 msgstr "Type de ressource"
@@ -359,7 +370,7 @@ msgstr "Le type de ressource doit être unique."
 #: model:ir.ui.menu,name:golem_resource.golem_resource_menu
 #: model:ir.ui.menu,name:golem_resource.resource_list_menu
 msgid "Resources"
-msgstr "Resources"
+msgstr "Ressources"
 
 #. module: golem_resource
 #: code:addons/golem_resource/models/golem_resource_timetable.py:38
@@ -477,7 +488,7 @@ msgid "Without validation"
 msgstr "Sans validation"
 
 #. module: golem_resource
-#: code:addons/golem_resource/models/golem_resource_reservation.py:153
+#: code:addons/golem_resource/models/golem_resource_reservation.py:155
 #, python-format
 msgid "You do not have permissions to validate or reject a reservation."
 msgstr "Vous n'avez pas les autorisations nécessaires pour valider ou rejeter une réservation."
