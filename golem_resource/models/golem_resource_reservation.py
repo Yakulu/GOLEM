@@ -169,23 +169,25 @@ class GolemResourceReservation(models.Model):
                              'this period, please choose another périod before '
                              'confirming')
                     raise ValidationError(verr)
-                # Check if reservation is not taking place out the avaibility timetables
-                is_day_allowed = False
-                for timetable in reservation.resource_id.timetable_ids:
-                    # Check for the time according to resource timetable avaibility
-                    date = fields.Datetime.from_string(reservation.date)
-                    if int(timetable.weekday) == date.weekday():
-                        is_day_allowed = True
-                        if reservation.hour_start < timetable.time_start or \
-                            reservation.hour_stop > timetable.time_stop:
-                            verr = _('Not allowed, the resource is not available '
-                                     'during this period, please choose another '
-                                     'time before confirming.')
-                            raise ValidationError(verr)
-                if not is_day_allowed:
-                    verr = _('Not allowed, the resource is not available '
-                             'this day. Please choose another date.')
-                    raise ValidationError(verr)
+                #check if the resource hasn't a total availibility
+                if not reservation.resource_id.availibility_24_7:
+                    # Check if reservation is not taking place out the avaibility timetables
+                    is_day_allowed = False
+                    for timetable in reservation.resource_id.timetable_ids:
+                        # Check for the time according to resource timetable avaibility
+                        date = fields.Datetime.from_string(reservation.date)
+                        if int(timetable.weekday) == date.weekday():
+                            is_day_allowed = True
+                            if reservation.hour_start < timetable.time_start or \
+                                reservation.hour_stop > timetable.time_stop:
+                                verr = _('Not allowed, the resource is not available '
+                                         'during this period, please choose another '
+                                         'time before confirming.')
+                                raise ValidationError(verr)
+                    if not is_day_allowed:
+                        verr = _('Not allowed, the resource is not available '
+                                 'this day. Please choose another date.')
+                        raise ValidationError(verr)
                 # Check if the resource is already taken during this period
                 # PERF : check the date, not iterate over all reservations
                 domain = [('resource_id', '=', reservation.resource_id.id),
@@ -203,7 +205,7 @@ class GolemResourceReservation(models.Model):
                                                           other_res.date_stop))
     @api.multi
     def reservation_calendar(self):
-        """ current resource reservation list """
+        """ current resource reservation calendar """
         self.ensure_one()
         calendar_view = {
             'name': ('Resource Reservation list'),
