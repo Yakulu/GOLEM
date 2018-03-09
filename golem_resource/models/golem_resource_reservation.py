@@ -212,7 +212,7 @@ class GolemResourceReservation(models.Model):
             'view_id': False,
             'domain': [('resource_id', '=', self.resource_id.id)],
             'type': 'ir.actions.act_window',
-            'target':'new'
+            'target':'current'
         }
         return calendar_view
 
@@ -227,7 +227,7 @@ class GolemResourceReservation(models.Model):
             'view_id': False,
             'domain': [('resource_id', '=', self.resource_id.id)],
             'type': 'ir.actions.act_window',
-            'target':'new'
+            'target':'current'
         }
         return tree_view
 
@@ -235,7 +235,5 @@ class GolemResourceReservation(models.Model):
     @api.depends('resource_id')
     def _reservation_count(self):
         for reservation in self:
-            count = reservation.search_count([('resource_id', '=', reservation.resource_id.id)])
-            reservation.resource_reservation_count = count
-            print "__________________________________"
-            print count
+            reservation.resource_reservation_count = reservation.search_count([
+                ('resource_id', '=', reservation.resource_id.id)])
