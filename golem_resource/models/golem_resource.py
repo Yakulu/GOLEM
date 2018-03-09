@@ -49,6 +49,8 @@ class GolemResource(models.Model):
     reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
                                       string='Reservations')
 
+    availibility_24_7 = fields.Boolean(string='24/7 availibility')
+
     @api.multi
     def active_toggle(self):
         """ Toggles active boolean """

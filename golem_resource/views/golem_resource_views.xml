@@ -64,13 +64,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group string="Availibility configuration">
                 <group colspan="2">
                   <field name="id" invisible="1"/>
+                  <field name="availibility_24_7"/>
                   <field name="avaibility_start" />
                   <field name="avaibility_stop" />
                 </group>
-                <p attrs="{'invisible': [('id', '!=', False)]}">
+                <p attrs="{'invisible': ['|',
+                  ('id', '!=', False),
+                  ('availibility_24_7', '=', True)]}">
                   Please save the resource before fixing the timetable availibility"
                 </p>
-                <group colspan="2">
+                <group colspan="2" attrs="{'invisible': [('availibility_24_7', '=', True)]}">
                   <field name="timetable_ids"
                     context="{'default_resource_id': active_id}"
                     attrs="{'readonly': [('id', '=', False)]}" />
