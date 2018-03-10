@@ -62,7 +62,7 @@ class GolemResource(models.Model):
         self.ensure_one()
         return {
             'name': _('Resource Reservation'),
-            'view_mode': 'calendar',
+            'view_mode': 'calendar,tree,form',
             'res_model': 'golem.resource.reservation',
             'context': {'search_default_resource_id': self[0].id},
             'type': 'ir.actions.act_window'
@@ -74,7 +74,7 @@ class GolemResource(models.Model):
         self.ensure_one()
         return {
             'name': _('Resource Reservation list'),
-            'view_mode': 'tree',
+            'view_mode': 'tree,form,calendar',
             'res_model': 'golem.resource.reservation',
             'context': {'search_default_resource_id': self[0].id},
             'type': 'ir.actions.act_window'
