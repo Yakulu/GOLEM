@@ -141,7 +141,7 @@ class TestGolemResourceReservation(TransactionCase):
         self.env.user.groups_id = [(2, group_manager.id, False)]
         with self.assertRaises(ValidationError) as err:
             reservation.state_validated()
-        self.assertIn('do not have permissions to validate', err.exception.args[0])
+        self.assertIn(u'autorisations nécessaires pour valider', err.exception.args[0])
 
     def test_confirmed_period(self):
         """ Test allowed period """
@@ -149,7 +149,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('not available in this period', err.exception.args[0])
+        self.assertIn(u'pas disponible durant cette période', err.exception.args[0])
 
     def test_confirmed_allowed_day(self):
         """ Test allowed day """
@@ -157,7 +157,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('not available this day', err.exception.args[0])
+        self.assertIn('pas disponible ce jour', err.exception.args[0])
 
     def test_confirmed_allowed_hours(self):
         """ Test allowed hours """
@@ -165,7 +165,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('please choose another time', err.exception.args[0])
+        self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
         reservation = self.res_obj.create({'resource_id': self.resource.id,
                                            'date': '2018-02-05',
                                            'hour_start': 5.0, # Out of range start hour
@@ -173,7 +173,7 @@ class TestGolemResourceReservation(TransactionCase):
                                            'partner_id': self.partner.id})
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('please choose another time', err.exception.args[0])
+        self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
 
     def test_confirmed_other_res(self):
         """ Test if there are other reservations in conflict """
@@ -192,4 +192,4 @@ class TestGolemResourceReservation(TransactionCase):
         })
         with self.assertRaises(ValidationError) as err:
             reservation3.state_confirm()
-        self.assertIn('resource is already taken', err.exception.args[0])
+        self.assertIn(u'déjà réservée durant cette période', err.exception.args[0])
