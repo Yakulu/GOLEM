@@ -18,7 +18,7 @@
 
 """ GOLEM Resources management """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -44,12 +44,41 @@ class GolemResource(models.Model):
 
     avaibility_start = fields.Date(required=True, string='Availibility start date')
     avaibility_stop = fields.Date(required=True, string='Availibility stop date')
+    availibility_24_7 = fields.Boolean(string='24/7 availibility')
     timetable_ids = fields.One2many('golem.resource.timetable', 'resource_id',
                                     string='Availibility timetable')
     reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
                                       string='Reservations')
+    reservation_count = fields.Integer(compute='_compute_reservation_count')
 
-    availibility_24_7 = fields.Boolean(string='24/7 availibility')
+    @api.depends('reservation_ids')
+    def _compute_reservation_count(self):
+        for resource in self:
+            resource.reservation_count = len(resource.reservation_ids)
+
+    @api.multi
+    def reservation_calendar(self):
+        """ current resource reservation calendar """
+        self.ensure_one()
+        return {
+            'name': _('Resource Reservation'),
+            'view_mode': 'calendar',
+            'res_model': 'golem.resource.reservation',
+            'context': {'search_default_resource_id': self[0].id},
+            'type': 'ir.actions.act_window'
+        }
+
+    @api.multi
+    def reserveration_list(self):
+        """ current resource reservation list """
+        self.ensure_one()
+        return {
+            'name': _('Resource Reservation list'),
+            'view_mode': 'tree',
+            'res_model': 'golem.resource.reservation',
+            'context': {'search_default_resource_id': self[0].id},
+            'type': 'ir.actions.act_window'
+        }
 
     @api.multi
     def active_toggle(self):

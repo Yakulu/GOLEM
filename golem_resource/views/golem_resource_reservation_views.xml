@@ -70,17 +70,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <field name="state" widget="statusbar" />
           </header>
           <sheet>
-            <div class="oe_button_box" name="button_box">
-              <button class="oe_stat_button" icon="fa-list"
-                name="reserveration_list" type="object">
-                <field string="Reservation" name="resource_reservation_count"
-                  widget="statinfo"/>
-              </button>
-              <button class="oe_stat_button" icon="fa-calendar"
-                name="reservation_calendar" type="object">
-               <label string="Calendar"/>
-              </button>
-            </div>
             <group>
               <group string="Resource">
                 <field name="id" invisible="1" />

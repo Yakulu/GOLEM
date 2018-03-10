@@ -49,6 +49,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                <field name="active" widget="boolean_button"
                  options="{'terminology': 'archive'}" />
               </button>
+              <button class="oe_stat_button" icon="fa-list"
+                name="reserveration_list" type="object">
+                <field string="Reservations" name="reservation_count"
+                  widget="statinfo"/>
+              </button>
+              <button class="oe_stat_button" icon="fa-calendar"
+                name="reservation_calendar" type="object" string="Calendar" />
             </div>
             <group>
               <group>
