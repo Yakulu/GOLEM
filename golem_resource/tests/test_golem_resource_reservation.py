@@ -105,6 +105,15 @@ class TestGolemResourceReservation(TransactionCase):
         reservation.state_confirm() # Here the reservation is OK, pass the checks
         self.assertEqual(reservation.state, 'validated')
 
+    def test_avaibility_24_7(self):
+        """ Test reservation with avaibility 24/7 """
+        self.resource.availibility_24_7 = True
+        self.resource.timetable_ids.unlink()
+        self.assertTrue(self.resource.availibility_24_7)
+        reservation = self.res_obj.create(self.data)
+        reservation.state_confirm()
+        self.assertEqual(reservation.state, 'validated')
+
     def test_state_rejected(self):
         """ Tests state rejected """
         self.data['resource_id'] = self.resource_val.id
