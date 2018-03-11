@@ -39,6 +39,15 @@ class GolemTimetable(models.Model):
                                 ('6', _('Sunday'))], required=True)
     time_start = fields.Float(required=True, string='Start')
     time_stop = fields.Float(required=True, string='Stop')
+    availibility_24 = fields.Boolean(string="All day")
+    @api.onchange('availibility_24')
+    def _set_time_start_stop(self):
+        """ set start and stop time """
+        self.ensure_one()
+        if self.availibility_24:
+            self.time_start = 0.0
+            self.time_stop = 23.99
+
 
     @api.onchange('time_start')
     def onchange_time_start(self):
@@ -53,3 +62,10 @@ class GolemTimetable(models.Model):
         for timetable in self:
             if timetable.time_stop <= timetable.time_start:
                 raise ValidationError(_('End time should be after than start time'))
+
+    @api.constrains('time_start', 'time_stop')
+    def _check_time_all_day(self):
+        """ Checks time all day availibility """
+        for timetable in self:
+            if timetable.time_stop > 23.98 and timetable.time_start == 0:
+                timetable.write({'availibility_24': True})

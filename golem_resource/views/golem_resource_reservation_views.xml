@@ -39,9 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <tree>
           <field name="resource_id" />
-          <field name="date" />
-          <field name="hour_start" widget="float_time" />
-          <field name="hour_stop" widget="float_time" />
+          <field name="date_start" />
+          <field name="date_stop" />
           <field name="partner_id" />
           <field name="state" />
         </tree>
@@ -82,9 +81,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </group>
               <group string="Reservation">
                 <group>
-                  <field name="date" />
-                  <field name="hour_start" widget="float_time" />
-                  <field name="hour_stop" widget="float_time" />
+                  <field name="date_start" />
+                  <field name="date_stop" />
                   <field name="user_id" options="{'no_create': True}" />
                   <field name="partner_id" />
                   <field name="note"
