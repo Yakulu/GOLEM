@@ -82,6 +82,8 @@ class GolemResourceReservation(models.Model):
             reservation.name = u'{}/{}'.format(reservation.resource_id.name,
                                                reservation.date_start)
 
+
+
     #@api.depends('date', 'hour_start')
     #def _compute_date_start(self):
     #    """ Computes Date start """
@@ -220,7 +222,7 @@ class GolemResourceReservation(models.Model):
                                         raise ValidationError(verr)
                         if not is_day_allowed:
                             verr = _('Not allowed, the resource is not available '
-                                     'in a day you chosed. Please choose another date.')
+                                     'this day. Please choose another date.')
                             raise ValidationError(verr)
                 # Check if the resource is already taken during this period
                 domain = [('resource_id', '=', reservation.resource_id.id),
