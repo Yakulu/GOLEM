@@ -39,15 +39,6 @@ class GolemResourceReservation(models.Model):
     date_stop = fields.Datetime('Stop date', required=True,
                                 index=True, readonly=True,
                                 states={'draft': [('readonly', False)]})
-    #date = fields.Date(required=True, index=True, readonly=True,
-    #                   states={'draft': [('readonly', False)]})
-    #hour_start = fields.Float('Start hour', required=True, readonly=True,
-    #                          states={'draft': [('readonly', False)]})
-    #hour_stop = fields.Float('Stop hour', required=True, readonly=True,
-    #                         states={'draft': [('readonly', False)]})
-    #date_start = fields.Datetime(compute='_compute_date_start', store=True, index=True)
-    #date_stop = fields.Datetime(compute='_compute_date_stop', store=True, index=True)
-
     resource_id = fields.Many2one('golem.resource', required=True, index=True,
                                   string='Resource', readonly=True,
                                   track_visibility='onchange',
@@ -81,28 +72,6 @@ class GolemResourceReservation(models.Model):
         for reservation in self:
             reservation.name = u'{}/{}'.format(reservation.resource_id.name,
                                                reservation.date_start)
-
-
-
-    #@api.depends('date', 'hour_start')
-    #def _compute_date_start(self):
-    #    """ Computes Date start """
-    #    for reservation in self:
-    #        minute_start, hour_start = modf(reservation.hour_start)
-    #        hour_start = int(hour_start)
-    #        minute_start = int(round(minute_start * 60))
-    #        reservation.date_start = u'{} {}:{}:00'.format(reservation.date,
-    #                                                       hour_start, minute_start)
-
-    #@api.depends('date', 'hour_stop')
-    #def _compute_date_stop(self):
-    #    """ Computes Date stop """
-    #    for reservation in self:
-    #        minute_stop, hour_stop = modf(reservation.hour_stop)
-    #        hour_stop = int(hour_stop)
-    #        minute_stop = int(round(minute_stop * 60))
-    #        reservation.date_stop = u'{} {}:{}:00'.format(reservation.date,
-    #                                                      hour_stop, minute_stop)
 
     @api.onchange('date_start')
     def onchange_date_start(self):
@@ -206,7 +175,6 @@ class GolemResourceReservation(models.Model):
                                         hour_start = date_start.hour + date_start.minute/60.0
                                         hour_stop = 23.98
                                     elif reservation_day.date() == date_stop.date():
-
                                         hour_start = 0.0
                                         hour_stop = date_stop.hour + date_stop.minute/60.0
                                     else:

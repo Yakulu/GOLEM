@@ -37,25 +37,25 @@ class GolemTimetable(models.Model):
                                 ('4', _('Friday')),
                                 ('5', _('Saturday')),
                                 ('6', _('Sunday'))], required=True)
-    time_start = fields.Float(required=True, string='Start')
-    time_stop = fields.Float(required=True, string='Stop')
+    time_start = fields.Float(string='Start')
+    time_stop = fields.Float(string='Stop')
     availibility_24 = fields.Boolean(string="All day")
-    #@api.onchange('availibility_24')
-    #def _set_time_start_stop(self):
-    #    """ set start and stop time """
-    #    self.ensure_one()
-    #    if self.availibility_24:
-    #        self.time_start = 0.0
-    #        self.time_stop = 23.99
-
-
+    
     @api.onchange('availibility_24')
     def onchange_availibility_24(self):
-        """ Propose automatically stop hour after start hour had been filled """
+        """ fill time_start et time_stop if availibility_24 is True """
         for line in self:
             if line.availibility_24:
                 line.time_start = 0.0
                 line.time_stop = 23.98
+    @api.constrains('availibility_24')
+    @api.multi
+    def check_time_filling(self):
+        """ Check start and stop time filling out"""
+        for line in self:
+            if not line.availibility_24 and (not line.time_start or not line.time_stop):
+                raise ValidationError(_('Start and stop time should be filled out '
+                                        'if the 24 availibility is not checked.'))
 
     @api.onchange('time_start')
     def onchange_time_start(self):

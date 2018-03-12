@@ -43,9 +43,21 @@ class TestGolemResourceReservation(TransactionCase):
         })
 
         self.timetable_obj = self.env['golem.resource.timetable']
+
         timetable_data = {'resource_id': self.resource.id, 'weekday': '0',
                           'time_start': 8.0, 'time_stop': 12.0}
+        timetable_data2 = {'resource_id': self.resource.id, 'weekday': '1',
+                           'availibility_24': True}
+        timetable_data3 = {'resource_id': self.resource.id, 'weekday': '2',
+                           'time_start': 7.0, 'time_stop': 23.98}
+        timetable_data4 = {'resource_id': self.resource.id, 'weekday': '3',
+                           'availibility_24': True}
+
         self.timetable_obj.create(timetable_data)
+        self.timetable_obj.create(timetable_data2)
+        self.timetable_obj.create(timetable_data3)
+        self.timetable_obj.create(timetable_data4)
+
         timetable_data['resource_id'] = self.resource_val.id
         self.timetable_obj.create(timetable_data)
 
@@ -72,7 +84,7 @@ class TestGolemResourceReservation(TransactionCase):
         self.assertFalse(reservation.rejection_reason)
         self.assertEqual(reservation.name, 'Resource/2018-02-05 11:00:00')
         self.assertEqual(reservation.resource_id, self.resource)
-        self.assertEqual(len(reservation.resource_timetable_ids), 1)
+        self.assertEqual(len(reservation.resource_timetable_ids), 4)
         self.assertEqual(reservation.resource_id.reservation_ids[0], reservation)
 
     def test_reservation_hours(self):
@@ -111,6 +123,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation.state_confirm()
         self.assertEqual(reservation.state, 'validated')
 
+
     def test_state_rejected(self):
         """ Tests state rejected """
         self.data['resource_id'] = self.resource_val.id
@@ -146,12 +159,28 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn(u'pas disponible durant cette période', err.exception.args[0])
+            self.assertIn(u'pas disponible durant cette période', err.exception.args[0])
 
     def test_confirmed_allowed_day(self):
         """ Test allowed day """
         self.data['date_start'] = '2018-02-04 11:00:00' # Bad day
         reservation = self.res_obj.create(self.data)
+        with self.assertRaises(ValidationError) as err:
+            reservation.state_confirm()
+        self.assertIn('pas disponible ce jour', err.exception.args[0])
+
+    def test_multidays_reservation(self):
+        """ Test multidays reservation """
+        #two days allowed reservation
+        self.data['date_start'] = '2018-02-07 14:00:00' # Wednesday : allowed FROM 7
+        self.data['date_stop'] = '2018-02-08 11:00:00' # Thursday : allowed
+        reservation = self.res_obj.create(self.data)
+        reservation.state_confirm()
+        self.assertEqual(reservation.state, 'validated')
+        reservation.state_draft()
+        #Two days allowed but one not allowed in the middle
+        reservation.write({'date_start': '2018-02-06 14:00:00',# Tuesday : allowed
+                           'date_stop': '2018-02-08 11:00:00'})# Thursday : allowed but not Wednesday
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
         self.assertIn('pas disponible ce jour', err.exception.args[0])
@@ -162,7 +191,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
+            self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
         reservation = self.res_obj.create({'resource_id': self.resource.id,
                                            'date_start': '2018-02-05 05:00:00',# Out of range start hour
                                            'date_stop': '2018-02-05 12:00:00',

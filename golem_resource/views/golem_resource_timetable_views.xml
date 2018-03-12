@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-
     <!-- Trees -->
     <record model="ir.ui.view" id="golem_resource_timetable_view_tree">
       <field name="name">GOLEM Resource Timetable Tree</field>
@@ -28,11 +27,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="resource_id" invisible="1" />
           <field name="weekday" />
           <field name="availibility_24"/>
-          <field name="time_start" string="Start hour" widget="float_time"/>
-          <field name="time_stop" string="Stop hour" widget="float_time"/>
+          <field name="time_start" string="Start hour" widget="float_time"
+            attrs="{'required' : [('availibility_24', '=', False)]}"/>
+          <field name="time_stop" string="Stop hour" widget="float_time"
+            attrs="{'required' : [('availibility_24', '=', False)]}"/>
         </tree>
       </field>
     </record>
-
   </data>
 </odoo>
