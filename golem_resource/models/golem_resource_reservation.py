@@ -183,7 +183,8 @@ class GolemResourceReservation(models.Model):
                     # Check if reservation is not taking place out the avaibility timetables
                     date_start = fields.Datetime.from_string(reservation.date_start)
                     date_stop = fields.Datetime.from_string(reservation.date_stop)
-                    reservation_period = [date_start + timedelta(days=x) for x in range((date_stop - date_start).days +1)]
+                    reservation_period = [date_start + timedelta(days=x) for x in range(
+                        (date_stop - date_start).days +1)]
                     for reservation_day in reservation_period:
                         is_day_allowed = False
                         for timetable in reservation.resource_id.timetable_ids:
@@ -195,28 +196,31 @@ class GolemResourceReservation(models.Model):
                                 if  not timetable.availibility_24:
                                     hour_start = 0.0
                                     hour_stop = 0.0
-                                    if (reservation_day == date_start and
-                                        reservation_day == date_stop):
+                                    if (reservation_day.date() == date_start.date() and
+                                            reservation_day.date() == date_stop.date()):
                                         hour_start = date_start.hour + date_start.minute/60.0
                                         hour_stop = date_stop.hour + date_stop.minute/60.0
-                                    elif (reservation_day == date_start and
-                                          reservation_day != date_stop):
+                                    elif reservation_day.date() == date_start.date():
                                         hour_start = date_start.hour + date_start.minute/60.0
                                         hour_stop = 23.98
-                                    elif (reservation_day == date_stop and
-                                          reservation_day != date_start):
+                                    elif reservation_day.date() == date_stop.date():
+
                                         hour_start = 0.0
                                         hour_stop = date_stop.hour + date_stop.minute/60.0
+                                    else:
+                                        #if the day is not a start nor stop it's not allowed unless
+                                        #availibility_24 is True
+                                        is_day_allowed = False
 
-                                    if hour_start < timetable.time_start or \
-                                        hour_stop > timetable.time_stop:
+                                    if is_day_allowed and (hour_start < timetable.time_start or \
+                                        hour_stop > timetable.time_stop):
                                         verr = _('Not allowed, the resource is not available '
-                                                 'during this period, please choose another '
+                                                 'during this schedule, please choose another '
                                                  'time before confirming.')
                                         raise ValidationError(verr)
                         if not is_day_allowed:
                             verr = _('Not allowed, the resource is not available '
-                                     'this day. Please choose another date.')
+                                     'in a day you chosed. Please choose another date.')
                             raise ValidationError(verr)
                 # Check if the resource is already taken during this period
                 domain = [('resource_id', '=', reservation.resource_id.id),
