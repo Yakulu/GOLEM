@@ -217,7 +217,7 @@ class GolemResourceReservation(models.Model):
                                     if is_day_allowed and (hour_start < timetable.time_start or \
                                         hour_stop > timetable.time_stop):
                                         verr = _('Not allowed, the resource is not available '
-                                                 'during this schedule, please choose another '
+                                                 'during this period, please choose another '
                                                  'time before confirming.')
                                         raise ValidationError(verr)
                         if not is_day_allowed:
