@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+
+
+    <!-- Trees -->
+    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_tree">
+      <field name="name">GOLEM Resource Reservation Tree</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="resource_id" />
+          <field name="date" />
+          <field name="hour_start" widget="float_time" />
+          <field name="hour_stop" widget="float_time" />
+          <field name="partner_id" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>-->
+
+    <!-- Forms -->
+    <record model="ir.ui.view"
+      id="golem_resource_reservation_form_inherit_golem_resource_account">
+      <field name="name"> GOLEM Resource Reservation Form Adaptations to invoicing</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_form"/>
+      <field name="arch" type="xml">
+        <button name="state_rejected"  position="after">
+          <button name="create_invoice" type="object" string="Create Invoice" class="oe_highlight"
+            attrs="{'invisible': ['|', ('state', 'not in', 'validated'), ('id', '=', False)]}" />
+        </button>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_search">
+      <field name="name">GOLEM Resource Reservation Search</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="date_start" />
+          <field name="date_stop" />
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
+          <field name="state" />
+          <filter name="to_validate" string="Reservation to Validate"
+            domain="[('state', '=', 'confirmed')]" />
+          <filter name="group_state" string="State"
+            context="{'group_by': 'state'}" />
+          <filter name="group_resource" string="Resource"
+            context="{'group_by': 'resource_id'}" />
+          <filter name="group_partner_id" string="Partner"
+            context="{'group_by': 'partner_id'}" />
+          <filter name="group_user" string="User"
+            context="{'group_by': 'user_id'}" />
+          <filter name="group_date_month" string="Month"
+            context="{'group_by': 'date:month'}" />
+          <filter name="group_date_week" string="Week"
+            context="{'group_by': 'date:week'}" />
+          <filter name="group_date_day" string="Day"
+            context="{'group_by': 'date:day'}" />
+        </search>
+      </field>
+    </record>-->
+
+    <!-- Actions -->
+    <!--<act_window id="golem_resource_reservation_action" name="Reservations"
+      res_model="golem.resource.reservation" view_mode="tree,form,calendar" />-->
+
+    <!-- Menus -->
+    <!--<menuitem id="golem_resource_reservation_menu" name="Reservations"
+      parent="golem_resource_menu" action="golem_resource_reservation_action"
+      sequence="20" />-->
+
+  </data>
+</odoo>
