@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
     <!-- Trees -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_tree">
-      <field name="name">GOLEM Resource Reservation Tree</field>
+    <record model="ir.ui.view" id="golem_resource_reservation_tree_inherit_golem_resource_account">
+      <field name="name">GOLEM Resource Reservation Tree Adaptation to invoicing</field>
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
         <tree>

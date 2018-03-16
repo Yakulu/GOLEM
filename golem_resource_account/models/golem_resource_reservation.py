@@ -27,6 +27,9 @@ class GolemResourceReservation(models.Model):
     """ GOLEM Resource Reservation Adaptation """
     _inherit = 'golem.resource.reservation'
 
+    invoice_id = fields.Many2one('account.invoice')
+    invoice_state = fields.Selection(related="invoice_id.state")
+
 
     @api.multi
     def create_invoice(self):
@@ -47,7 +50,7 @@ class GolemResourceReservation(models.Model):
                     _('There is no income account defined for this product: "%s". \
                        You may have to install a chart of account from Accounting \
                        app, settings menu.') % (product.name,))
-            
+
 
             invoice = inv_obj.create({
                 'name': reservation.name,
