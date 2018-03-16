@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+
+
+    <!-- Trees -->
+    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_tree">
+      <field name="name">GOLEM Resource Reservation Tree</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="resource_id" />
+          <field name="date" />
+          <field name="hour_start" widget="float_time" />
+          <field name="hour_stop" widget="float_time" />
+          <field name="partner_id" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>-->
+
+    <!-- Forms -->
+    <record model="ir.ui.view"
+      id="golem_reservation_invoice_wizard_form_editable">
+      <field name="name"> GOLEM Reservation Invoice Wizard Form Editable</field>
+      <field name="model">golem.reservation.invoice.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Reservation to invoice">
+          <group>
+            <field name="reservation_ids" context="{'default_reservation_ids': active_ids}" />
+          </group>
+          <footer>
+            <button name="create_invoices" string="Create Invoices" type="object"
+              class="oe_highlight" />
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view"
+      id="golem_reservation_invoice_wizard_form">
+      <field name="name"> GOLEM Reservation Invoice Wizard Form</field>
+      <field name="model">golem.reservation.invoice.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Reservation to invoice">
+          <label string="Invoices will be created in draft so that you can review them before validation" />
+          <footer>
+            <button name="create_invoices" string="Create Invoices" type="object"
+              class="oe_highlight" />
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+
+
+  </data>
+</odoo>
