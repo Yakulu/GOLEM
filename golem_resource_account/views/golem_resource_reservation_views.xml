@@ -25,17 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record model="ir.ui.view" id="golem_resource_reservation_tree_inherit_golem_resource_account">
       <field name="name">GOLEM Resource Reservation Tree Adaptation to invoicing</field>
       <field name="model">golem.resource.reservation</field>
+      <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_tree"/>
       <field name="arch" type="xml">
-        <tree>
-          <field name="resource_id" />
-          <field name="date" />
-          <field name="hour_start" widget="float_time" />
-          <field name="hour_stop" widget="float_time" />
-          <field name="partner_id" />
-          <field name="state" />
-        </tree>
+        <field name="state" position="after">
+          <field name="invoicing_state"/>
+        </field>
       </field>
-    </record>-->
+    </record>
 
     <!-- Forms -->
     <record model="ir.ui.view"

@@ -76,3 +76,4 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                 'partner_id': partner_id.id,
                 'invoice_line_ids': lines,
                 })
+            self.reservation_ids.write({'invoice_id': invoice.id})

@@ -18,7 +18,7 @@
 
 """ GOLEM Resource Reservation  Adaptation"""
 
-from math import modf
+
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 
@@ -28,7 +28,7 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     invoice_id = fields.Many2one('account.invoice')
-    invoice_state = fields.Selection(related="invoice_id.state")
+    invoicing_state = fields.Selection(related="invoice_id.state", string="Invoicing Status", default="None")
 
 
     @api.multi
@@ -52,7 +52,7 @@ class GolemResourceReservation(models.Model):
                        app, settings menu.') % (product.name,))
 
 
-            invoice = inv_obj.create({
+            reservation.invoice_id = inv_obj.create({
                 'name': reservation.name,
                 #'origin': self.application_number,
                 'type': 'out_invoice',
