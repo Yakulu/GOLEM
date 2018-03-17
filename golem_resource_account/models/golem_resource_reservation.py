@@ -28,7 +28,44 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     invoice_id = fields.Many2one('account.invoice')
-    invoicing_state = fields.Selection(related="invoice_id.state", string="Invoicing Status", default="None")
+    invoicing_state = fields.Char(compute="_compute_invoicing_state",
+                                  search='_search_invoicing_state',
+                                  string="Invoicing Status",
+                                  default="None")
+
+    def _search_invoicing_state(self, operator, value):
+        if value == "None":
+            reservation = self.env['golem.resource.reservation'].search([('invoice_id', '=', False)])
+            return [('id', 'in', reservation.mapped('id'))]
+        else:
+            return [('invoice_id.state', operator, value)]
+        
+
+        """
+        print '________________________________'
+        print("kelri")
+
+        if self.invoice_id:
+            invoicing_state = self.invoice_id.state
+            print "_____________________1"
+            print invoicing_state
+            return [('invoicing_state', operator, value)]
+        else:
+            invoicing_state = "None"
+            print '_____________________2'
+            print invoicing_state
+            return [('invoicing_state', operator, value)]
+            print invoicing_state
+        """
+    @api.multi
+    @api.depends('invoice_id')
+    def _compute_invoicing_state(self):
+        """ Compute invoicing_state """
+        for reservation in self:
+            if reservation.invoice_id:
+                reservation.invoicing_state = reservation.invoice_id.state
+            else:
+                reservation.invoicing_state = "None"
 
 
     @api.multi
@@ -38,7 +75,7 @@ class GolemResourceReservation(models.Model):
             partner_id = reservation.partner_id
             product = reservation.resource_id.product_tmpl_id
             amount = product.standard_price
-
+            quantity = reservation.hour_stop - reservation.hour_start
             if product.id:
                 account_id = product.property_account_income_id.id
 
@@ -64,7 +101,7 @@ class GolemResourceReservation(models.Model):
                     #'origin': ,
                     'account_id': account_id,
                     'price_unit': amount,
-                    'quantity': 1.0,
+                    'quantity': quantity,
                     'discount': 0.0,
                     'uom_id': product.uom_id.id,
                     'product_id': product.id,

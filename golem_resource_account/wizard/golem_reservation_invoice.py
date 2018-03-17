@@ -57,12 +57,13 @@ class GolemReservationInvoiceWizard(models.TransientModel):
             for reservation in self.reservation_ids:
                 product = reservation.resource_id.product_tmpl_id
                 amount = product.standard_price
+                quantity = reservation.hour_stop - reservation.hour_start
                 lines.append((0, 0, {
                     'name': reservation.resource_id.name,
                     #'origin': ,
                     'account_id': account_id,
                     'price_unit': amount,
-                    'quantity': 1.0,
+                    'quantity': quantity,
                     'discount': 0.0,
                     'uom_id': product.uom_id.id,
                     'product_id': product.id,

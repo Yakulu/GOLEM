@@ -48,20 +48,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Searches -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_search">
-      <field name="name">GOLEM Resource Reservation Search</field>
+    <record model="ir.ui.view"
+      id="golem_resource_reservation_search_inherit_golem_resource_account">
+      <field name="name">GOLEM Resource Reservation Search Adaptations to invoicing</field>
       <field name="model">golem.resource.reservation</field>
+      <field name="inherit_id" ref="golem_resource.golem_resource_reservation_view_search"/>
       <field name="arch" type="xml">
-        <search>
-          <field name="date_start" />
-          <field name="date_stop" />
-          <field name="resource_id" />
-          <field name="user_id" />
-          <field name="partner_id" />
-          <field name="state" />
-          <filter name="to_validate" string="Reservation to Validate"
-            domain="[('state', '=', 'confirmed')]" />
-          <filter name="group_state" string="State"
+        <search position="inside">
+          <filter name="to_invoice" string="Reservation To Invoice"
+            domain="[('invoicing_state', '=', 'None')]" />
+          <filter name="invoice_draft" string="Invoice Draft"
+              domain="[('invoicing_state', '=', 'draft')]" />
+          <filter name="invoice_open" string="Invoice Open"
+              domain="[('invoicing_state', '=', 'open')]" />
+          <filter name="invoice_paid" string="Invoice Paid"
+              domain="[('invoicing_state', '=', 'paid')]" />
+          <!--<filter name="group_state" string="State"
             context="{'group_by': 'state'}" />
           <filter name="group_resource" string="Resource"
             context="{'group_by': 'resource_id'}" />
@@ -74,7 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <filter name="group_date_week" string="Week"
             context="{'group_by': 'date:week'}" />
           <filter name="group_date_day" string="Day"
-            context="{'group_by': 'date:day'}" />
+            context="{'group_by': 'date:day'}" />-->
         </search>
       </field>
     </record>-->
@@ -84,7 +86,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="golem.reservation.invoice.wizard"
       src_model="golem.resource.reservation"
       view_mode="form"
-      view_id="golem_reservation_invoice_wizard_form"
       multi="True"
       target="new"
       />
@@ -93,7 +94,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         res_model="golem.reservation.invoice.wizard"
         src_model="golem.resource.reservation"
         view_mode="form"
-        view_id="golem_reservation_invoice_wizard_form_editable"
         multi="True"
         target="new"
         />
