@@ -166,7 +166,7 @@ class GolemResourceReservation(models.Model):
                     date_start = fields.Datetime.from_string(reservation.date_start)
                     date_stop = fields.Datetime.from_string(reservation.date_stop)
                     reservation_period = [date_start + timedelta(days=x) for x in range(
-                        (date_stop - date_start).days +1)]
+                        (date_stop - date_start).days + 1)]
                     for reservation_day in reservation_period:
                         is_day_allowed = False
                         for timetable in reservation.resource_id.timetable_ids:
@@ -175,23 +175,26 @@ class GolemResourceReservation(models.Model):
                             if int(timetable.weekday) == reservation_day.weekday():
                                 is_day_allowed = True
                                 #only check if the day hasn't a 24 availibility
-                                if  not timetable.availibility_24:
-                                    hour_start = 0.0
-                                    hour_stop = 0.0
-                                    if (reservation_day.date() == date_start.date() and
-                                            reservation_day.date() == date_stop.date()):
-                                        hour_start = date_start.hour + date_start.minute/60.0
-                                        hour_stop = date_stop.hour + date_stop.minute/60.0
-                                    elif reservation_day.date() == date_start.date():
-                                        hour_start = date_start.hour + date_start.minute/60.0
-                                        hour_stop = 23.98
-                                    elif reservation_day.date() == date_stop.date():
+                                if not timetable.availibility_24:
+                                    reservation_day_date = reservation_day.date()
+                                    day_start = date_start.date()
+                                    day_stop = date_stop.date()
+                                    if reservation_day_date == day_start and \
+                                        reservation_day_date == day_stop:
+                                        hour_start = date_start.hour + date_start.minute / 60.0
+                                        hour_stop = date_stop.hour + date_stop.minute / 60.0
+                                    elif reservation_day_date == day_start:
+                                        hour_start = date_start.hour + date_start.minute / 60.0
+                                        hour_stop = 23.98 # Just before 23:59
+                                    elif reservation_day_date == day_stop:
                                         hour_start = 0.0
-                                        hour_stop = date_stop.hour + date_stop.minute/60.0
+                                        hour_stop = date_stop.hour + date_stop.minute / 60.0
                                     else:
-                                        #if the day is not a start nor stop it's not allowed unless
-                                        #availibility_24 is True
-                                        is_day_allowed = False
+                                        #if the day is not a start nor stop it
+                                        #should be covered on all day
+                                        #strange, as availibility_24 is not True
+                                        hour_start = 0.0
+                                        hour_stop = 23.98
 
                                     if is_day_allowed and (hour_start < timetable.time_start or \
                                         hour_stop > timetable.time_stop):
@@ -201,10 +204,15 @@ class GolemResourceReservation(models.Model):
                                         raise ValidationError(verr)
                         if not is_day_allowed:
                             verr = _('Not allowed, the resource is not available '
-                                     'this day. Please choose another date.')
+                                     'this day : {}. Please choose another '
+                                     'date.'.format(reservation_day.strftime('%A')))
                             raise ValidationError(verr)
                 # Check if the resource is already taken during this period
+                # PERF : check for res that can be in conflict,
+                # do not iterate over all reservations
                 domain = [('resource_id', '=', reservation.resource_id.id),
+                          ('date_start', '<=', reservation.date_stop),
+                          ('date_stop', '>=', reservation.date_start),
                           ('state', 'in', ('confirmed', 'validated')),
                           ('id', '!=', reservation.id)]
                 reservations = self.env['golem.resource.reservation'].search(domain)
