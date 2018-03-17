@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
-#
+#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -15,17 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM families',
-    'summary': 'GOLEM Members Families',
-    'version': '10.0.2.1.1',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['security/ir.model.access.csv', 'views/golem_family_views.xml',
-             'views/golem_member_views.xml', 'views/res_partner_views.xml',
-             'report/golem_family_report.xml']
-}
+from . import golem_family

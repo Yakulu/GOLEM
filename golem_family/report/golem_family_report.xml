@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+
+    <record id="paperformat_euro_Portrait"
+      model="report.paperformat">
+      <field name="name">European A4 Portrait</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">40</field>
+      <field name="margin_bottom">23</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="True" />
+      <field name="header_spacing">35</field>
+      <field name="dpi">90</field>
+    </record>
+
+    <report id="golem_family_report"
+      string="Golem family report"
+      model="golem.family"
+      report_type="qweb-pdf"
+      name="golem_family.report_golem_family_template" />
+
+    <template id="report_golem_family_template">
+      <t t-call="report.html_container">
+        <t t-call="report.external_layout">
+          <div class="page">
+            <t t-foreach="docs" t-as="o">
+              <div class="oe_structure"/>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <strong>Family</strong>
+                    <br></br>
+                    <strong><span t-field="o.name" /></strong><br></br>
+                    <span t-field="o.street" /><br></br>
+                    <t t-if="o.street2">
+                      <span t-field="o.street2" /><br></br>
+                    </t>
+                    <span t-field="o.zip" /><br></br>
+                    <span t-field="o.city" /><br></br>
+                    <t t-if="o.state_id">
+                      <span t-field="o.state_id" /><br></br>
+                    </t>
+                    <span t-field="o.country_id" /><br></br>
+                  </div>
+                </div>
+            </t>
+          </div>
+          <t t-foreach="docs" t-as="o">
+            <t t-foreach="o.member_ids" t-as="i" >
+              <!-- <div class="page"> -->
+                <t t-call="golem_member.report_golem_member_template" >
+                <t t-set="docs" t-value="i.member_id" />
+                </t>
+              <!-- </div> -->
+            </t>
+          </t>
+        </t>
+      </t>
+    </template>
+
+
+
+
+</odoo>
