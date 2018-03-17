@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+
+  <report id="golem_family_report_pdf" model="golem.family"
+    string="Golem family report [PDF]" report_type="qweb-pdf"
+    name="golem_family.golem_family_card_template"
+    file="golem_family.golem_family_card_template"
+    attachment="(object.name + '.pdf')" />
+  <report id="golem_family_report_html" model="golem.family"
+    string="Golem family report [HTML]" report_type="qweb-html"
+    name="golem_family.golem_family_card_template"
+    file="golem_family.golem_family_card_template"
+    attachment="(object.name + '.html')" />
+
+  <template id="golem_family_card_template">
+    <t t-call="report.html_container">
+      <t t-call="report.external_layout">
+        <div class="page">
+          <t t-foreach="docs" t-as="o">
+            <div class="oe_structure"/>
+            <div class="row">
+                <h2>Family <span t-field="o.name" /></h2>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <h3>Details</h3>
+                <t if="o.city">
+                  Address :
+                  <span t-field="o.street" /><br />
+                  <t t-if="o.street2">
+                    <span t-field="o.street2" /><br />
+                  </t>
+                  <span t-field="o.zip" />
+                  <span t-field="o.city" /><br /><br />
+                </t>
+                <t t-if="o.state_id">
+                  State :
+                  <span t-field="o.state_id" /><br />
+                </t>
+                <t t-if="o.country_id">
+                  Country :
+                  <span t-field="o.country_id" />
+                </t>
+              </div>
+              <div class="col-xs-6">
+                <h3>Communication</h3>
+                <t t-if="o.phone">
+                  Phone : <span t-field="o.phone" /><br />
+                </t>
+                <t t-if="o.mobile">
+                  Mobile : <span t-field="o.mobile" /><br />
+                </t>
+                <t t-if="o.email">
+                  Mail : <span t-field="o.email" /><br />
+                </t>
+                <t t-if="o.website">
+                  Website : <span t-field="o.website" /><br />
+                </t>
+              </div>
+            </div>
+          </t>
+        </div>
+        <t t-foreach="docs" t-as="o">
+          <t t-foreach="o.member_ids" t-as="i" >
+            <t t-call="golem_member.golem_member_card_template" >
+              <t t-set="docs" t-value="i.member_id" />
+            </t>
+          </t>
+        </t>
+      </t>
+    </t>
+  </template>
+
+
+
+
+</odoo>
