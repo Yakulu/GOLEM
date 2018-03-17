@@ -40,22 +40,13 @@ class GolemTimetable(models.Model):
     time_start = fields.Float(string='Start')
     time_stop = fields.Float(string='Stop')
     availibility_24 = fields.Boolean(string="All day")
-    
+
     @api.onchange('availibility_24')
     def onchange_availibility_24(self):
         """ fill time_start et time_stop if availibility_24 is True """
         for line in self:
             if line.availibility_24:
-                line.time_start = 0.0
-                line.time_stop = 23.98
-    @api.constrains('availibility_24')
-    @api.multi
-    def check_time_filling(self):
-        """ Check start and stop time filling out"""
-        for line in self:
-            if not line.availibility_24 and (not line.time_start or not line.time_stop):
-                raise ValidationError(_('Start and stop time should be filled out '
-                                        'if the 24 availibility is not checked.'))
+                line.update({'time_start': 0.0, 'time_stop': 23.98})
 
     @api.onchange('time_start')
     def onchange_time_start(self):
@@ -64,11 +55,18 @@ class GolemTimetable(models.Model):
             if line.time_start and not line.time_stop:
                 line.time_stop = line.time_start + 1
 
+    @api.constrains('availibility_24')
+    def check_avaibility24(self):
+        """ Checks hour consistency against avaibility 24 """
+        for line in self:
+            if line.availibility_24:
+                line.write({'time_start': 0.0, 'time_stop': 23.98})
+
     @api.constrains('time_start', 'time_stop')
     def _check_time_consistency(self):
         """ Checks time consistency """
-        for timetable in self:
-            if timetable.time_stop <= timetable.time_start:
+        for line in self:
+            if line.time_stop <= line.time_start:
                 raise ValidationError(_('End time should be after than start time'))
 
     @api.constrains('time_start', 'time_stop')

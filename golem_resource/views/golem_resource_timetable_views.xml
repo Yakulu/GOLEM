@@ -28,9 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="weekday" />
           <field name="availibility_24"/>
           <field name="time_start" string="Start hour" widget="float_time"
-            attrs="{'required' : [('availibility_24', '=', False)]}"/>
+            required="1" />
           <field name="time_stop" string="Stop hour" widget="float_time"
-            attrs="{'required' : [('availibility_24', '=', False)]}"/>
+            required="1" />
         </tree>
       </field>
     </record>
