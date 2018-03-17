@@ -151,7 +151,7 @@ class TestGolemResourceReservation(TransactionCase):
         self.env.user.groups_id = [(2, group_manager.id, False)]
         with self.assertRaises(ValidationError) as err:
             reservation.state_validated()
-        self.assertIn(u'autorisations nécessaires pour valider', err.exception.args[0])
+        self.assertIn(u'do not have permissions to validate', err.exception.args[0])
 
     def test_confirmed_period(self):
         """ Test allowed period """
@@ -167,7 +167,7 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('pas disponible ce jour', err.exception.args[0])
+        self.assertIn('not available this day', err.exception.args[0])
 
     def test_multidays_reservation(self):
         """ Test multidays reservation """
@@ -179,11 +179,11 @@ class TestGolemResourceReservation(TransactionCase):
         self.assertEqual(reservation.state, 'validated')
         reservation.state_draft()
         #Two days allowed but one not allowed in the middle
-        reservation.write({'date_start': '2018-02-06 14:00:00',# Tuesday : allowed
-                           'date_stop': '2018-02-08 11:00:00'})# Thursday : allowed but not Wednesday
+        reservation.write({'date_start': '2018-02-06 14:00:00',
+                           'date_stop': '2018-02-08 11:00:00'})
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn('pas disponible ce jour', err.exception.args[0])
+        self.assertIn('not available during this period', err.exception.args[0])
 
     def test_confirmed_allowed_hours(self):
         """ Test allowed hours """
@@ -192,13 +192,14 @@ class TestGolemResourceReservation(TransactionCase):
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
             self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
+        # Out of range start hour
         reservation = self.res_obj.create({'resource_id': self.resource.id,
-                                           'date_start': '2018-02-05 05:00:00',# Out of range start hour
+                                           'date_start': '2018-02-05 05:00:00',
                                            'date_stop': '2018-02-05 12:00:00',
                                            'partner_id': self.partner.id})
         with self.assertRaises(ValidationError) as err:
             reservation.state_confirm()
-        self.assertIn(u'merci de choisir d\'autres horaires', err.exception.args[0])
+        self.assertIn(u'the resource is not available during this period', err.exception.args[0])
 
     def test_confirmed_other_res(self):
         """ Test if there are other reservations in conflict """
@@ -219,4 +220,4 @@ class TestGolemResourceReservation(TransactionCase):
             })
         with self.assertRaises(ValidationError) as err:
             reservation3.state_confirm()
-        self.assertIn(u'déjà réservée durant cette période', err.exception.args[0])
+        self.assertIn(u'the resource is already taken', err.exception.args[0])
