@@ -29,7 +29,7 @@ class GolemResourceReservation(models.Model):
     _name = 'golem.resource.reservation'
     _description = 'GOLEM Reservation Model'
     _inherit = 'mail.thread'
-    _order = 'date_start desc'
+    _order = 'day_start desc, hour_start asc'
 
     name = fields.Char(compute='_compute_name', store=True)
     # TODO: handle multiple days reservation
@@ -39,6 +39,8 @@ class GolemResourceReservation(models.Model):
     date_stop = fields.Datetime('Stop date', required=True,
                                 index=True, readonly=True,
                                 states={'draft': [('readonly', False)]})
+    day_start = fields.Date(compute='_compute_day_hour_start', store=True)
+    hour_start = fields.Float(compute='_compute_day_hour_start', store=True)
     resource_id = fields.Many2one('golem.resource', required=True, index=True,
                                   string='Resource', readonly=True,
                                   track_visibility='onchange',
@@ -72,6 +74,15 @@ class GolemResourceReservation(models.Model):
         for reservation in self:
             reservation.name = u'{}/{}'.format(reservation.resource_id.name,
                                                reservation.date_start)
+
+    @api.depends('date_start')
+    def _compute_day_hour_start(self):
+        """ Computes Day and Hour Start : for better sorting """
+        for reservation in self:
+            if reservation.date_start:
+                date_start = fields.Datetime.from_string(reservation.date_start)
+                reservation.day_start = date_start.date().isoformat()
+                reservation.hour_start = date_start.hour + date_start.minute / 60.0
 
     @api.onchange('date_start')
     def onchange_date_start(self):
