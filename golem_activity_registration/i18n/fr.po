@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-14 23:16+0000\n"
-"PO-Revision-Date: 2017-06-28 17:30+0000\n"
+"POT-Creation-Date: 2018-03-17 14:18+0000\n"
+"PO-Revision-Date: 2018-03-17 14:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
 msgid "Activities"
 msgstr "Activités"
@@ -35,6 +36,11 @@ msgstr "Inscriptions"
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_all_ids
 msgid "All activities"
 msgstr "Toutes les activités"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Animator"
+msgstr "Intervenant"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
@@ -72,6 +78,21 @@ msgid "Current season?"
 msgstr "Saison en cours?"
 
 #. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Date start"
+msgstr "Début"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Date stop"
+msgstr "Fin"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Day"
+msgstr "Jour"
+
+#. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_search
 msgid "Default season"
 msgstr "Saison par défaut"
@@ -107,6 +128,16 @@ msgid "GOLEM Member"
 msgstr "Adhérent"
 
 #. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Hour start"
+msgstr "Début"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Hour stop"
+msgstr "Fin"
+
+#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_id
 msgid "ID"
 msgstr "ID"
@@ -136,6 +167,11 @@ msgstr "Adhérent"
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_form_inherit_registration
 msgid "Members"
 msgstr "Adhérents"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Name"
+msgstr "Nom"
 
 #. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:38
@@ -186,13 +222,13 @@ msgid "Subscription"
 msgstr "Inscription"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:98
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:99
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
 msgstr "L'inscription n'a pas pu être enregistrée : l'usager visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule l'activité."
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:90
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:91
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."
@@ -203,3 +239,7 @@ msgstr "L'usager a déjà été inscrit à cette activité."
 msgid "Total"
 msgstr "Total"
 
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
+msgid "Type"
+msgstr "Type"
