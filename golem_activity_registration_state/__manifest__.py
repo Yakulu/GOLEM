@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM Activity Session Member Registrations States',
     'summary': 'GOLEM Activities Session Member Registration states',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -27,6 +27,6 @@
     'depends': ['golem_activity_registration', 'golem_payment'],
     'data': ['views/golem_activity_registration_views.xml',
              'views/golem_member_views.xml', 'views/golem_activity_views.xml',
-             'wizard/golem_activity_registration_invoicing.xml',
-             'report/golem_member_report.xml']
+             'wizard/golem_activity_registration_invoicing.xml']
+             # 'report/golem_member_report.xml']
 }
