@@ -41,9 +41,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_form"/>
       <field name="arch" type="xml">
         <button name="state_rejected"  position="after">
-          <button name="create_invoice" type="object" string="Create Invoice" class="oe_highlight"
-            attrs="{'invisible': ['|', ('state', 'not in', 'validated'), ('id', '=', False)]}" />
+          <button name="create_invoice" type="object" string="Create New Invoice" class="oe_highlight"
+            attrs="{'invisible': ['|', ('state', 'not in', 'validated'),
+            '|',('id', '=', False), ('invoicing_state', '=', 'paid')]}" />
+          <button name="voir_invoice" type="object" string="Voir Invoice" class="oe_highlight"
+            attrs="{'invisible': [('invoicing_state', '==', 'None')]}" />
         </button>
+        <field name="partner_id" position="after">
+          <field name="invoicing_state" readonly="1" />
+        </field>
       </field>
     </record>
 

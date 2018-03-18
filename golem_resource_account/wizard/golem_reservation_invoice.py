@@ -78,3 +78,11 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                 'invoice_line_ids': lines,
                 })
             self.reservation_ids.write({'invoice_id': invoice.id})
+            if self._context.get('open_invoices', False):
+                return {'name' : _('Reservation Invoice'),
+                        'type' : 'ir.actions.act_window',
+                        'res_model' : 'account.invoice',
+                        'res_id' : invoice.id,
+                        'view_mode': 'form',
+                        'target': 'current'}
+            return {'type': 'ir.actions.act_window_close'}

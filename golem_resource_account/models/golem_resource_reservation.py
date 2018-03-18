@@ -39,24 +39,7 @@ class GolemResourceReservation(models.Model):
             return [('id', 'in', reservation.mapped('id'))]
         else:
             return [('invoice_id.state', operator, value)]
-        
 
-        """
-        print '________________________________'
-        print("kelri")
-
-        if self.invoice_id:
-            invoicing_state = self.invoice_id.state
-            print "_____________________1"
-            print invoicing_state
-            return [('invoicing_state', operator, value)]
-        else:
-            invoicing_state = "None"
-            print '_____________________2'
-            print invoicing_state
-            return [('invoicing_state', operator, value)]
-            print invoicing_state
-        """
     @api.multi
     @api.depends('invoice_id')
     def _compute_invoicing_state(self):
@@ -66,6 +49,17 @@ class GolemResourceReservation(models.Model):
                 reservation.invoicing_state = reservation.invoice_id.state
             else:
                 reservation.invoicing_state = "None"
+
+    @api.multi
+    def voir_invoice(self):
+        for reservation in self:
+            if reservation.invoice_id:
+                return {'name' : _('Reservation Invoice'),
+                        'type' : 'ir.actions.act_window',
+                        'res_model' : 'account.invoice',
+                        'res_id' : reservation.invoice_id.id,
+                        'view_mode': 'form',
+                        'target': 'current'}
 
 
     @api.multi
@@ -87,8 +81,6 @@ class GolemResourceReservation(models.Model):
                     _('There is no income account defined for this product: "%s". \
                        You may have to install a chart of account from Accounting \
                        app, settings menu.') % (product.name,))
-
-
             reservation.invoice_id = inv_obj.create({
                 'name': reservation.name,
                 #'origin': self.application_number,
