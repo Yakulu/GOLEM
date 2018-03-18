@@ -38,26 +38,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <t t-foreach="docs" t-as="o">
             <div class="oe_structure"/>
             <div class="row">
-                <h2>Family <span t-field="o.name" /></h2>
-            </div>
-            <div class="row">
+              <div class="col-xs-12">
+                <h2 class="golem_report_title">
+                  Family <span t-field="o.name" />
+                </h2>
+              </div>
               <div class="col-xs-6">
                 <h3>Details</h3>
                 <t if="o.city">
-                  Address :
-                  <span t-field="o.street" /><br />
-                  <t t-if="o.street2">
-                    <span t-field="o.street2" /><br />
-                  </t>
-                  <span t-field="o.zip" />
-                  <span t-field="o.city" /><br /><br />
+                  <address>
+                    <strong>Address</strong> :
+                    <span t-field="o.street" /><br />
+                    <t t-if="o.street2">
+                      <span t-field="o.street2" /><br />
+                    </t>
+                    <span t-field="o.zip" />
+                    <span t-field="o.city" /><br />
+                  </address>
                 </t>
                 <t t-if="o.state_id">
-                  State :
+                  <strong>State</strong> :
                   <span t-field="o.state_id" /><br />
                 </t>
                 <t t-if="o.country_id">
-                  Country :
+                  <strong>Country</strong> :
                   <span t-field="o.country_id" />
                 </t>
               </div>
@@ -90,7 +94,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </t>
   </template>
 
-
+  <template id="golem_member_card_template_inherit_golem_family"
+    inherit_id="golem_member.golem_member_card_template">
+    <xpath expr="//div[@id='season_info']" position="before">
+      <div class="col-xs-12 text-right" id="family_info" t-if="member.family_id">
+        <strong>Family </strong> <span t-field="member.family_id.name" />
+        <t t-if="member.family_role">(<em t-field="member.family_role.name" />)</t>
+      </div>
+    </xpath>
+  </template>
 
 
 </odoo>
