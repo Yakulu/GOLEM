@@ -69,11 +69,24 @@ class GolemResourceReservation(models.Model):
     def create_invoice(self):
         """ Create invoice """
         for reservation in self:
+            if reservation.state != "validated":
+                raise UserError(
+                    _("The reservation '%s' is not validated, please validate it before \
+                      creating invoice") % reservation.name)
+
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id
             product = reservation.resource_id.product_tmpl_id
             amount = product.standard_price
-            quantity = reservation.hour_stop - reservation.hour_start
+            delta = fields.Datetime.from_string(reservation.date_stop) - \
+            fields.Datetime.from_string(reservation.date_start)
+
+            quantity = (delta.days * 24) + (delta.seconds/3600.0)
+            account_id = False
+            if not product:
+                raise UserError(
+                    _("There is no product linked to resource : '%s', you can't invoice \
+                      reservation with no product linked") % (reservation.resource_id.name,))
             if product.id:
                 account_id = product.property_account_income_id.id
 
