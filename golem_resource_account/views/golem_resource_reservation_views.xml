@@ -18,9 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-
-
-
     <!-- Trees -->
     <record model="ir.ui.view" id="golem_resource_reservation_tree_inherit_golem_resource_account">
       <field name="name">GOLEM Resource Reservation Tree Adaptation to invoicing</field>
@@ -44,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <button name="create_invoice" type="object" string="Create New Invoice" class="oe_highlight"
             attrs="{'invisible': ['|', ('state', 'not in', 'validated'),
             '|',('id', '=', False), ('invoicing_state', '=', 'paid')]}" />
-          <button name="voir_invoice" type="object" string="Voir Invoice" class="oe_highlight"
+          <button name="open_invoice" type="object" string="Open Invoice" class="oe_highlight"
             attrs="{'invisible': [('invoicing_state', '==', 'None')]}" />
         </button>
         <field name="partner_id" position="after">
@@ -69,20 +66,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               domain="[('invoicing_state', '=', 'open')]" />
           <filter name="invoice_paid" string="Invoice Paid"
               domain="[('invoicing_state', '=', 'paid')]" />
-          <!--<filter name="group_state" string="State"
-            context="{'group_by': 'state'}" />
-          <filter name="group_resource" string="Resource"
-            context="{'group_by': 'resource_id'}" />
-          <filter name="group_partner_id" string="Partner"
-            context="{'group_by': 'partner_id'}" />
-          <filter name="group_user" string="User"
-            context="{'group_by': 'user_id'}" />
-          <filter name="group_date_month" string="Month"
-            context="{'group_by': 'date:month'}" />
-          <filter name="group_date_week" string="Week"
-            context="{'group_by': 'date:week'}" />
-          <filter name="group_date_day" string="Day"
-            context="{'group_by': 'date:day'}" />-->
         </search>
       </field>
     </record>-->
@@ -95,23 +78,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       multi="True"
       target="new"
       />
-      <act_window id="action_golem_reservation_invoice_editable_wizard"
-        name="Reservations to invoice-edition"
-        res_model="golem.reservation.invoice.wizard"
-        src_model="golem.resource.reservation"
-        view_mode="form"
-        multi="True"
-        target="new"
-        />
-
-    <!-- Actions -->
-    <!--<act_window id="golem_resource_reservation_action" name="Reservations"
-      res_model="golem.resource.reservation" view_mode="tree,form,calendar" />-->
-
-    <!-- Menus -->
-    <!--<menuitem id="golem_resource_reservation_menu" name="Reservations"
-      parent="golem_resource_menu" action="golem_resource_reservation_action"
-      sequence="20" />-->
-
   </data>
 </odoo>

@@ -20,7 +20,7 @@
 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError
 
 
 class GolemResourceReservation(models.Model):
@@ -35,7 +35,8 @@ class GolemResourceReservation(models.Model):
 
     def _search_invoicing_state(self, operator, value):
         if value == "None":
-            reservation = self.env['golem.resource.reservation'].search([('invoice_id', '=', False)])
+            reservation = self.env['golem.resource.reservation'].search(
+                [('invoice_id', '=', False)])
             return [('id', 'in', reservation.mapped('id'))]
         else:
             return [('invoice_id.state', operator, value)]
@@ -51,7 +52,8 @@ class GolemResourceReservation(models.Model):
                 reservation.invoicing_state = "None"
 
     @api.multi
-    def voir_invoice(self):
+    def open_invoice(self):
+        """ open invoice """
         for reservation in self:
             if reservation.invoice_id:
                 return {'name' : _('Reservation Invoice'),
@@ -59,11 +61,13 @@ class GolemResourceReservation(models.Model):
                         'res_model' : 'account.invoice',
                         'res_id' : reservation.invoice_id.id,
                         'view_mode': 'form',
+                        'view_id': self.env.ref('account.invoice_form').id,
                         'target': 'current'}
 
 
     @api.multi
     def create_invoice(self):
+        """ Create invoice """
         for reservation in self:
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id
@@ -81,9 +85,9 @@ class GolemResourceReservation(models.Model):
                     _('There is no income account defined for this product: "%s". \
                        You may have to install a chart of account from Accounting \
                        app, settings menu.') % (product.name,))
-            reservation.invoice_id = inv_obj.create({
+            invoice = inv_obj.create({
                 'name': reservation.name,
-                #'origin': self.application_number,
+                'origin': reservation.name,
                 'type': 'out_invoice',
                 'reference': False,
                 'account_id': partner_id.property_account_receivable_id.id,
@@ -99,3 +103,4 @@ class GolemResourceReservation(models.Model):
                     'product_id': product.id,
                     })],
                 })
+            reservation.invoice_id = invoice.id

@@ -30,11 +30,9 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                                        default=lambda self: self._context.get('active_ids', []),
                                        string='Reservations to invoice')
 
-
-
-
     @api.multi
     def create_invoices(self):
+        """ Create invoices for reservation """
         self.ensure_one()
         if self.reservation_ids:
 
@@ -55,6 +53,11 @@ class GolemReservationInvoiceWizard(models.TransientModel):
             lines = []
 
             for reservation in self.reservation_ids:
+                if partner_id != reservation.partner_id:
+                    raise ValidationError(
+                        _("You can't group reservations of multiple clients in the same \
+                           invoice, please remove inadequate reservations"))
+
                 product = reservation.resource_id.product_tmpl_id
                 amount = product.standard_price
                 quantity = reservation.hour_stop - reservation.hour_start
@@ -69,8 +72,8 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                     'product_id': product.id,
                     }))
             invoice = inv_obj.create({
-                'name': reservation.name,
-                #'origin': self.application_number,
+                #'name': reservation.name,
+                #'origin': ,
                 'type': 'out_invoice',
                 'reference': False,
                 'account_id': partner_id.property_account_receivable_id.id,
@@ -84,5 +87,6 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                         'res_model' : 'account.invoice',
                         'res_id' : invoice.id,
                         'view_mode': 'form',
+                        'view_id': self.env.ref('account.invoice_form').id,
                         'target': 'current'}
             return {'type': 'ir.actions.act_window_close'}
