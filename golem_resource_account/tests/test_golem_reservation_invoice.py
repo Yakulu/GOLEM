@@ -33,48 +33,32 @@ class TestGolemResourceReservation(TransactionCase):
         self.resource = self.env['golem.resource'].create({
             'name': 'Resource',
             'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01'
-        })
-        self.resource_val = self.env['golem.resource'].create({
-            'name': 'Resource to validate',
-            'avaibility_start': '2018-01-01',
             'avaibility_stop': '2020-01-01',
-            'validation_required': True
+            'availibility_24_7': True
         })
-
-        self.timetable_obj = self.env['golem.resource.timetable']
-
-        timetable_data = {'resource_id': self.resource.id, 'weekday': '0',
-                          'time_start': 8.0, 'time_stop': 12.0}
-        timetable_data2 = {'resource_id': self.resource.id, 'weekday': '1',
-                           'availibility_24': True}
-        timetable_data3 = {'resource_id': self.resource.id, 'weekday': '2',
-                           'time_start': 7.0, 'time_stop': 23.98}
-        timetable_data4 = {'resource_id': self.resource.id, 'weekday': '3',
-                           'availibility_24': True}
-
-        self.timetable_obj.create(timetable_data)
-        self.timetable_obj.create(timetable_data2)
-        self.timetable_obj.create(timetable_data3)
-        self.timetable_obj.create(timetable_data4)
-
-        timetable_data['resource_id'] = self.resource_val.id
-        self.timetable_obj.create(timetable_data)
 
         self.partner = self.env['res.partner'].create({'firstname': 'John',
                                                        'lastname': 'DOE',
                                                        'is_company': False})
-
+        self.partner2 = self.env['res.partner'].create({'firstname': 'John',
+                                                        'lastname': 'DOE',
+                                                        'is_company': False})
         self.data = {
             'resource_id': self.resource.id,
             'date_start': '2018-02-05 11:00:00', # is monday
             'date_stop': '2018-02-05 12:00:00',
             'partner_id': self.partner.id
         }
+        self.data2 = {
+            'resource_id': self.resource.id,
+            'date_start': '2018-03-05 11:00:00', # is monday
+            'date_stop': '2018-03-05 12:00:00',
+            'partner_id': self.partner2.id
+        }
         self.res_obj = self.env['golem.resource.reservation']
 
 
-    def test_reservation_invoice_single(self):
+    def test_single_reservation_invoice(self):
         """ Test reservation bases """
         reservation = self.res_obj.create(self.data)
         self.assertEqual(reservation.state, 'draft')
@@ -94,9 +78,32 @@ class TestGolemResourceReservation(TransactionCase):
             'product_tmpl_id': self.env.ref('product.product_product_5').id})
         reservation.create_invoice()
         self.assertTrue(reservation.invoice_id)
-        self.assertEqual(reservation.invoicing_state,"draft")
+        self.assertEqual(reservation.invoicing_state, "draft")
 
-        """
-            self.assertEqual(reservation.state, 'validated')
-            reservation.create_invoice()
-            self.assertTrue(reservation.invoice_id)"""
+    def test_multiple_reservation_in(self):
+        """ Test Multiple Reservation Invoices """
+        reservation_1 = self.res_obj.create(self.data)
+        reservation_2 = self.res_obj.create(self.data2)
+        #reservations = [reservation_1, reservation_2]
+        reservation_1.state_confirm()
+        reservation_2.state_confirm()
+        self.assertEqual(reservation_1.state, "validated")
+        self.assertEqual(reservation_2.state, "validated")
+        reservation_1.resource_id.write({
+            'product_tmpl_id': self.env.ref('product.product_product_5').id})
+        reservation_2.resource_id.write({
+            'product_tmpl_id': self.env.ref('product.product_product_5').id})
+        wizard = self.env['golem.reservation.invoice.wizard'].create({
+            'reservation_ids': [(4, reservation_1.id, 0), (4, reservation_2.id, 0)]})
+        self.assertTrue(wizard.reservation_ids)
+        self.assertEqual(wizard.reservation_ids[0], reservation_2)
+        self.assertEqual(wizard.reservation_ids[1], reservation_1)
+        #try to create invoice for to different client
+        with self.assertRaises(UserError) as err:
+            wizard.create_invoices()
+        self.assertIn(u'group reservations of multiple clients in the same', err.exception.args[0])
+        #fixing the same client for both reservation
+        reservation_2.write({'partner_id': self.partner.id})
+        wizard.create_invoices()
+        self.assertTrue(reservation_1.invoice_id)
+        self.assertTrue(reservation_2.invoice_id)

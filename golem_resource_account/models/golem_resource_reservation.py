@@ -80,7 +80,6 @@ class GolemResourceReservation(models.Model):
             amount = product.standard_price
             delta = fields.Datetime.from_string(reservation.date_stop) - \
             fields.Datetime.from_string(reservation.date_start)
-
             quantity = (delta.days * 24) + (delta.seconds/3600.0)
             account_id = False
             if not product:

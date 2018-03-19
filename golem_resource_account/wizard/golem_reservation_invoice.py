@@ -53,14 +53,25 @@ class GolemReservationInvoiceWizard(models.TransientModel):
             lines = []
 
             for reservation in self.reservation_ids:
+                if reservation.state != "validated":
+                    raise UserError(
+                        _("The reservation '%s' is not validated, please validate it before \
+                          creating invoice") % reservation.name)
+                product = reservation.resource_id.product_tmpl_id
+                if not product:
+                    raise UserError(
+                        _("There is no product linked to resource : '%s', you can't invoice \
+                          reservation with no product linked") % (reservation.resource_id.name,))
                 if partner_id != reservation.partner_id:
-                    raise ValidationError(
+                    raise UserError(
                         _("You can't group reservations of multiple clients in the same \
                            invoice, please remove inadequate reservations"))
 
-                product = reservation.resource_id.product_tmpl_id
                 amount = product.standard_price
-                quantity = reservation.hour_stop - reservation.hour_start
+                delta = fields.Datetime.from_string(reservation.date_stop) - \
+                fields.Datetime.from_string(reservation.date_start)
+
+                quantity = (delta.days * 24) + (delta.seconds/3600.0)
                 lines.append((0, 0, {
                     'name': reservation.resource_id.name,
                     #'origin': ,
