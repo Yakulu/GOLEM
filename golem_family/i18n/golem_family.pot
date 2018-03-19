@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-29 09:03+0000\n"
-"PO-Revision-Date: 2018-01-29 09:03+0000\n"
+"POT-Creation-Date: 2018-03-18 09:23+0000\n"
+"PO-Revision-Date: 2018-03-18 09:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,31 @@ msgstr ""
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
 #: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "0000000000"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "<strong>Address</strong> :"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "<strong>Country</strong> :"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_member_card_template_inherit_golem_family
+msgid "<strong>Family :</strong>"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_member_card_template_inherit_golem_family
+msgid "<strong>Role :</strong>"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "<strong>State</strong> :"
 msgstr ""
 
 #. module: golem_family
@@ -48,6 +73,7 @@ msgid "City"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
 #: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Communication"
@@ -55,6 +81,9 @@ msgstr ""
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_count
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_count
+#: model:ir.model.fields,field_description:golem_family.field_res_users_family_count
 msgid "Count"
 msgstr ""
 
@@ -81,6 +110,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "Details"
+msgstr ""
+
+#. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_display_name
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_role_display_name
 msgid "Display Name"
@@ -102,26 +136,17 @@ msgstr ""
 
 #. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_member_family_id
-#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_id
-#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_id
-#: model:ir.model.fields,field_description:golem_family.field_res_users_family_member
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
-#: model:ir.ui.view,arch_db:golem_family.golem_family_search_inherit_golem_membership
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Family"
 msgstr ""
 
 #. module: golem_family
-#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_count
-#: model:ir.model.fields,field_description:golem_family.field_res_partner_family_count
-#: model:ir.model.fields,field_description:golem_family.field_res_users_family_count
-msgid "Family Count"
-msgstr ""
-
-#. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:49
-#: code:addons/golem_family/models/golem_family.py:84
+#: code:addons/golem_family/models/golem_family.py:48
+#: code:addons/golem_family/models/golem_family.py:82
 #, python-format
 msgid "Family Members"
 msgstr ""
@@ -133,7 +158,6 @@ msgstr ""
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
-#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Family members"
 msgstr ""
 
@@ -168,6 +192,16 @@ msgid "GOLEM Member"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.actions.report.xml,name:golem_family.golem_family_report_html
+msgid "Golem family report [HTML]"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.actions.report.xml,name:golem_family.golem_family_report_pdf
+msgid "Golem family report [PDF]"
+msgstr ""
+
+#. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_search
 msgid "Group By"
 msgstr ""
@@ -197,7 +231,13 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "Mail :"
+msgstr ""
+
+#. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_member_ids
+#: model:ir.model.fields,field_description:golem_family.field_golem_member_family_member_ids
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_member_ids
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_member_ids
 msgid "Members"
@@ -209,6 +249,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_mobile
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_mobile
 msgid "Mobile"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "Mobile :"
 msgstr ""
 
 #. module: golem_family
@@ -238,6 +283,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_phone
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_phone
 msgid "Phone"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "Phone :"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
+msgid "Please save new member before assigning a family."
 msgstr ""
 
 #. module: golem_family
@@ -296,6 +351,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:golem_family.field_res_partner_family_website
 #: model:ir.model.fields,field_description:golem_family.field_res_users_family_website
 msgid "Website"
+msgstr ""
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
+msgid "Website :"
 msgstr ""
 
 #. module: golem_family

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM Activity Member Registrations',
     'summary': 'GOLEM Activities Member Registrations management',
-    'version': '10.0.1.1.0',
+    'version': '10.0.1.1.3',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
@@ -26,6 +26,8 @@
     'installable': True,
     'depends': ['golem_activity', 'golem_member'],
     'data': ['views/golem_activity_registration_views.xml',
-             'views/golem_member_views.xml', 'views/golem_activity_views.xml',
+             'views/golem_member_views.xml',
+             'views/golem_activity_views.xml',
+             'report/golem_member_card_templates.xml',
              'security/ir.model.access.csv']
 }

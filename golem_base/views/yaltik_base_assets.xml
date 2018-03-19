@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
-Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Michel Dessenne <michel@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -16,23 +17,15 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <odoo>
-  <data>
-    <!-- Trees -->
-    <record model="ir.ui.view" id="golem_resource_timetable_view_tree">
-      <field name="name">GOLEM Resource Timetable Tree</field>
-      <field name="model">golem.resource.timetable</field>
-      <field name="arch" type="xml">
-        <tree editable="bottom">
-          <field name="resource_id" invisible="1" />
-          <field name="weekday" />
-          <field name="availibility_24"/>
-          <field name="time_start" string="Start hour" widget="float_time"
-            required="1" />
-          <field name="time_stop" string="Stop hour" widget="float_time"
-            required="1" />
-        </tree>
-      </field>
-    </record>
-  </data>
+
+  <template id="report_assets_common_inherit_golem_base"
+    inherit_id="report.assets_common">
+    <xpath expr="." position="inside">
+      <link rel="stylesheet" type="text/css"
+        href="/golem_base/static/src/css/yaltik.css" />
+    </xpath>
+  </template>
+
 </odoo>

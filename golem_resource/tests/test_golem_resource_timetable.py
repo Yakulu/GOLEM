@@ -46,6 +46,7 @@ class TestGolemResourceTimetable(TransactionCase):
         self.assertEqual(timetable.resource_id, self.resource)
         self.assertEqual(timetable.time_start, 8.0)
         self.assertEqual(timetable.time_stop, 10.0)
+        self.assertFalse(timetable.availibility_24)
         self.assertEqual(timetable, self.resource.timetable_ids[0])
 
     def test_timetable_times(self):
