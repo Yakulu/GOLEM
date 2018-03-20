@@ -39,12 +39,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Reservation Tree</field>
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree
+          colors="black: state=='draft'; blue : state=='validated'; grey : state=='canceled'; orange : state=='rejected'">
           <field name="resource_id" />
           <field name="date_start" />
           <field name="date_stop" />
           <field name="partner_id" />
           <field name="state" />
+          <field name='day_start' invisible='1'/>
+
         </tree>
       </field>
     </record>
@@ -115,8 +118,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="user_id" />
           <field name="partner_id" />
           <field name="state" />
+          <field name="day_start"/>
           <filter name="to_validate" string="Reservation to Validate"
             domain="[('state', '=', 'confirmed')]" />
+          <filter name="day_reservation" string="Day Reservation"
+            domain="[('day_start', '=', context_today().strftime('%%Y-%%m-%%d'))]" />
+          <filter name="7days_reservation" string="7 Days Reservations"
+            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
+                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]" />
+          <filter name="30days_reservation" string="30 Days Reservations"
+            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
+                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=30)).strftime('%%Y-%%m-%%d'))]" />
           <filter name="group_state" string="State"
             context="{'group_by': 'state'}" />
           <filter name="group_resource" string="Resource"
