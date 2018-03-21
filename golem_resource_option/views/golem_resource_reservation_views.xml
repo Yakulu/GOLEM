@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <!-- Calendars -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_calendar">
+      <field name="name">GOLEM Resource Reservation Calendar</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date_start" date_stop="date_stop" color="resource_id">
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
+        </calendar>
+      </field>
+    </record>
+
+    <!-- Trees -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_tree">
+      <field name="name">GOLEM Resource Reservation Tree</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="resource_id" />
+          <field name="date_start" />
+          <field name="date_stop" />
+          <field name="partner_id" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Forms -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_form">
+      <field name="name">GOLEM Resource Reservation Form</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="state_confirm" type="object" string="Confirm" class="oe_highlight"
+              attrs="{'invisible': ['|', ('state', 'not in', 'draft'), ('id', '=', False)]}" />
+            <button name="state_canceled" type="object"
+              string="Cancel" states="confirmed,validated" />
+            <button name="state_draft" type="object" string="Set to draft"
+              states="canceled,confirmed,validated,rejected" />
+            <button name="state_validated" type="object" string="Validate"
+              states="confirmed" class="oe_highlight"
+              groups="golem_base.group_golem_manager" />
+            <button name="state_rejected" type="object" string="Reject"
+              states="confirmed" class="oe_highlight"
+              groups="golem_base.group_golem_manager" />
+            <field name="state" widget="statusbar" />
+          </header>
+          <sheet>
+            <group>
+              <group string="Resource">
+                <field name="id" invisible="1" />
+                <field name="resource_id" options="{'no_create': True}" />
+                <field name="resource_avaibility_24_7" readonly="1" />
+                <field name="resource_avaibility_start" readonly="1" />
+                <field name="resource_avaibility_stop" readonly="1" />
+                <field name="resource_timetable_ids" readonly="1"
+                  attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
+              </group>
+              <group string="Reservation">
+                <group>
+                  <field name="date_start" />
+                  <field name="date_stop" />
+                  <field name="user_id" options="{'no_create': True}" />
+                  <field name="partner_id" />
+                  <field name="note"
+                    placeholder="Notes, optional subject for the reservation, reason" />
+                  <field name="rejection_reason"
+                    attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                </group>
+              </group>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers" />
+              <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_search">
+      <field name="name">GOLEM Resource Reservation Search</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="date_start" />
+          <field name="date_stop" />
+          <field name="resource_id" />
+          <field name="user_id" />
+          <field name="partner_id" />
+          <field name="state" />
+          <filter name="to_validate" string="Reservation to Validate"
+            domain="[('state', '=', 'confirmed')]" />
+          <filter name="group_state" string="State"
+            context="{'group_by': 'state'}" />
+          <filter name="group_resource" string="Resource"
+            context="{'group_by': 'resource_id'}" />
+          <filter name="group_partner_id" string="Partner"
+            context="{'group_by': 'partner_id'}" />
+          <filter name="group_user" string="User"
+            context="{'group_by': 'user_id'}" />
+          <filter name="group_date_month" string="Month"
+            context="{'group_by': 'date:month'}" />
+          <filter name="group_date_week" string="Week"
+            context="{'group_by': 'date:week'}" />
+          <filter name="group_date_day" string="Day"
+            context="{'group_by': 'date:day'}" />
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_resource_reservation_action" name="Reservations"
+      res_model="golem.resource.reservation" view_mode="tree,form,calendar" />
+
+    <!-- Menus -->
+    <menuitem id="golem_resource_reservation_menu" name="Reservations"
+      parent="golem_resource_menu" action="golem_resource_reservation_action"
+      sequence="20" />
+
+  </data>
+</odoo>

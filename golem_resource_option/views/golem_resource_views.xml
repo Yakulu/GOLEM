@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <!-- Trees -->
+    <record model="ir.ui.view" id="golem_resource_view_tree">
+      <field name="name">GOLEM Resource Tree</field>
+      <field name="model">golem.resource</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="type_id" />
+          <field name="supervisor_id" />
+          <field name="product_tmpl_id" />
+          <field name="avaibility_start" />
+          <field name="avaibility_stop" />
+          <field name="validation_required" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Forms -->
+    <record model="ir.ui.view" id="golem_resource_view_form">
+      <field name="name">GOLEM Resource Form</field>
+      <field name="model">golem.resource</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" icon="fa-archive"
+                name="active_toggle" type="object">
+               <field name="active" widget="boolean_button"
+                 options="{'terminology': 'archive'}" />
+              </button>
+              <button class="oe_stat_button" icon="fa-list"
+                name="reserveration_list" type="object">
+                <field string="Reservations" name="reservation_count"
+                  widget="statinfo"/>
+              </button>
+              <button class="oe_stat_button" icon="fa-calendar"
+                name="reservation_calendar" type="object" string="Calendar" />
+            </div>
+            <group>
+              <group>
+                  <field name="name" />
+                  <field name="type_id" />
+                  <field name="product_tmpl_id" options="{'no_create': True}" />
+              </group>
+              <group>
+                  <field name="validation_required" />
+                  <field name="supervisor_id" />
+              </group>
+            </group>
+            <group string="Availibility configuration">
+                <group colspan="2">
+                  <field name="id" invisible="1"/>
+                  <field name="availibility_24_7"/>
+                  <field name="avaibility_start" />
+                  <field name="avaibility_stop" />
+                </group>
+                <p attrs="{'invisible': ['|',
+                  ('id', '!=', False),
+                  ('availibility_24_7', '=', True)]}">
+                  Please save the resource before fixing the timetable availibility"
+                </p>
+                <group colspan="2" attrs="{'invisible': [('availibility_24_7', '=', True)]}">
+                  <field name="timetable_ids"
+                    context="{'default_resource_id': active_id}"
+                    attrs="{'readonly': [('id', '=', False)]}" />
+                </group>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers" />
+              <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Searches -->
+    <record model="ir.ui.view" id="golem_resource_view_search">
+      <field name="name">GOLEM Resource search</field>
+      <field name="model">golem.resource</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="type_id" />
+          <field name="supervisor_id" />
+          <field name="product_tmpl_id" />
+          <filter name="with_validation" string="With validation"
+            domain="[('validation_required', '=', True)]" />
+          <filter name="without_validation" string="Without validation"
+            domain="[('validation_required', '=', False)]" />
+          <separator />
+          <filter name="archived" string="Archived"
+            domain="[('active', '=', False)]" />
+          <filter name="group_type" string="Type"
+            context="{'group_by': 'type_id'}"/>
+          <filter name="group_supervisor" string="Supervisor"
+            context="{'group_by': 'supervisor_id'}"/>
+          <filter name="group_product" string="Linked product"
+            context="{'group_by': 'product_tmpl_id'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_resource_action" name="Resources"
+      res_model="golem.resource" view_mode="tree,form" />
+
+    <!-- Menus -->
+    <menuitem id="golem_resource_menu" name="Resources"
+      sequence="55" groups="golem_base.group_golem_user"
+      web_icon="golem_resource,static/description/icon.png" />
+    <menuitem id="resource_list_menu" name="Resources" parent="golem_resource_menu"
+      action="golem_resource_action" sequence="10" />
+    <menuitem id="resource_configuration_menu" name="Configuration"
+      parent="golem_resource_menu" groups="golem_base.group_golem_manager"
+      sequence="90" />
+
+  </data>
+</odoo>
