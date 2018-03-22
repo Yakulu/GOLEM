@@ -19,14 +19,13 @@
 """ GOLEM Resource Option """
 
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class GolemResourceOption(models.Model):
     """ GOLEM Resource Option Model """
     _name = 'golem.resource.option'
-    _description = 'GOLEM Reservation Model'
+    _description = 'GOLEM Reservation Option Model'
 
-    name = fields.Char()
-    resource_id = fields.Many2one('golem.resource')
+    name = fields.Char("Option")
+    resource_id = fields.Many2one('golem.resource', "Resource")

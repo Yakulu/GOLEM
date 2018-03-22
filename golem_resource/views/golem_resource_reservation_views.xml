@@ -73,6 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
+                <field name="resource_option_ids" widget="many2many_tags" readonly="1"/>
                 <field name="resource_avaibility_24_7" readonly="1" />
                 <field name="resource_avaibility_start" readonly="1" />
                 <field name="resource_avaibility_stop" readonly="1" />
@@ -89,6 +90,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     placeholder="Notes, optional subject for the reservation, reason" />
                   <field name="rejection_reason"
                     attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                    <field name="selected_option_ids"
+                      context="{'default_reservation_id': active_id}"
+                      widget="many2many_tags">
+                      <tree>
+                        <field name="option_id"/>
+                      </tree>
+                    </field>
                 </group>
               </group>
             </group>

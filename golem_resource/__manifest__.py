@@ -31,6 +31,8 @@
              'views/golem_resource_type_views.xml',
              'views/golem_resource_reservation_views.xml',
              'views/golem_resource_timetable_views.xml',
+             'views/golem_resource_option_views.xml',
+             'views/golem_resource_option_selection_views.xml',
              'wizard/golem_reservation_rejection_views.xml',
              'security/ir.model.access.csv']
 }

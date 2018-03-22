@@ -20,7 +20,6 @@
 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
 
 
 class GolemResourceOptionSelection(models.Model):
@@ -28,9 +27,16 @@ class GolemResourceOptionSelection(models.Model):
     _name = 'golem.resource.option.selection'
     _description = 'GOLEM Resource option selection Model'
 
-    resource_id = fields.Many2one('golem.resource', 'Resource')
-    option_id = fields.Many2one('golem.resource.option', 'Option')
+    name = fields.Char(compute="_compute_name")
+    option_id = fields.Many2one('golem.resource.option', 'Option',
+                                domain="[('resource_id', '=', resource_id)]")
+    resource_id = fields.Many2one(related="reservation_id.resource_id")
     reservation_id = fields.Many2one('golem.resource.reservation', 'Reservation')
+
+    @api.multi
+    def _compute_name(self):
+        for selection in self:
+            selection.name = "{}/{}".format(selection.resource_id.name, selection.option_id.name)
 
     _sql_constraints = [
         ('unique_selection', "UNIQUE(resource_id, option_id, reservation_id)",
