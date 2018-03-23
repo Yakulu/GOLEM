@@ -16,32 +16,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Members """
+""" GOLEM Contact """
 
 
 from odoo import models, api, _
 
 
-
 class GolemMember(models.Model):
-    """ GOLEM Member model """
-    _inherit = 'golem.member'
+    """ Res Partner extention """
+    _inherit = 'res.partner'
 
     @api.multi
     def precreation_search(self):
-        """ Precreation member search """
+        """ Precreation contact search """
         self.ensure_one()
         return {
-            'name' : _('Please enter member searched'),
+            'name' : _('Please enter contact searched'),
             'type' : 'ir.actions.act_window',
             'res_model' : 'golem.precreation.member.request.wizard',
-            'context' : {'default_is_member' : True},
             'view_mode': 'form',
             'target': 'new'
             }
     @api.multi
     def open_line(self):
-        """ open member form """
+        """ open contact form """
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',

@@ -24,23 +24,33 @@ class GolemPrecreationMemberRequestWizard(models.TransientModel):
     _name = "golem.precreation.member.request.wizard"
 
     name = fields.Char()
+    is_member = fields.Boolean()
 
     @api.multi
     def search_members(self):
         """ Search members """
         self.ensure_one()
+        model = self._context.get('model')
         domain = ['|',
                   ('name', 'ilike', self.name),
                   ('email', 'ilike', self.name)]
-        members = self.env['golem.member'].search(domain)
-
+        members = self.env[model].search(domain)
+        ids = []
         if members:
             ids = members.mapped('id')
+        title = ""
+        context = {}
+        if self.is_member:
+            title = 'Member search result "{}"'.format(self.name)
+            context = {'default_member_ids': ids}
+        else:
+            title = 'Contact search result "{}"'.format(self.name)
+            context = {'default_contact_ids': ids}
 
-        return {'name' : ('Member search result "{}"'.format(self.name)),
+        return {'name' : (title),
                 'type' : 'ir.actions.act_window',
                 'res_model' : 'golem.precreation.member.result.wizard',
-                'context': {'default_member_ids': ids},
+                'context': context,
                 'view_mode': 'form',
                 'flags': {'initial_mode': 'view'},
                 'target': 'new'}

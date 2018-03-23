@@ -18,44 +18,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!--<record id="golem_precreation_member_wizard" type="ir.ui.view" >
-      <field name="name">Golem Precreation Member Wizard</field>
-      <field name="model">golem.precreation.member.wizard</field>
-      <field name="arch" type="xml">
-        <form>
-          <group>
-            <field name="name"/>
-          </group>
-        </form>
-      </field>
-    </record>-->
-
     <record model="ir.ui.view" id="golem_precreation_member_result_wizard">
       <field name="name">Golem Precreation Member result Wizard Form</field>
       <field name="model">golem.precreation.member.result.wizard</field>
       <field name="arch" type="xml">
         <form string="list">
-
-            <label string="No member found for the current search"
-              attrs="{'invisible': [('member_ids', '!=', [])]}"/>
-            <field name="member_ids" readonly="1"
+          <label string="No member found for the current search"
+              attrs="{'invisible': ['|',('member_ids', '!=', []),('contact_ids', '!=', [])]}"/>
+          <field name="member_ids" readonly="1"
               attrs="{'invisible': [('member_ids', '=', [])]}">
-              <tree readonly="1">
+            <tree readonly="1">
                 <field name="id" invisible="1"/>
                 <field name="firstname"/>
                 <field name="lastname"/>
                 <field name="email"/>
-                <button  name="open_line"  type="object"
-                  string="details" />
-              </tree>
-            </field>
-
+                <button  name="open_line"  type="object" icon="fa fa-external-link" />
+            </tree>
+          </field>
+          <field name="contact_ids" readonly="1"
+              attrs="{'invisible': [('contact_ids', '=', [])]}">
+            <tree readonly="1">
+                <field name="id" invisible="1"/>
+                <field name="firstname"/>
+                <field name="lastname"/>
+                <field name="email"/>
+                <button  name="open_line"  type="object" icon="fa fa-external-link" />
+            </tree>
+          </field>
           <footer>
             <button string="Close" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>
     </record>
-
   </data>
 </odoo>

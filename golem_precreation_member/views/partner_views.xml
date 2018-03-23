@@ -20,10 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
     <!-- Forms -->
-    <record id="golem_member_precreation_extention_form" model="ir.ui.view">
-      <field name="name">GOLEM Member Precreation extention Form</field>
-      <field name="model">golem.member</field>
-      <field name="inherit_id" ref="golem_member.golem_member_form"/>
+    <record id="res_partner_precreation_extention_form" model="ir.ui.view">
+      <field name="name">Res Partner Precreation extention Form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
             <header>

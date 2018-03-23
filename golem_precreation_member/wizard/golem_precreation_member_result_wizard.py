@@ -24,4 +24,4 @@ class GolemPrecreationMemberResultWizard(models.TransientModel):
     _name = "golem.precreation.member.result.wizard"
 
     member_ids = fields.Many2many('golem.member')
-    name_searched = fields.Char(default="test")
+    contact_ids = fields.Many2many('res.partner')
