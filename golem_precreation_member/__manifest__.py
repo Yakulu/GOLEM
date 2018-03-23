@@ -27,5 +27,6 @@
     'installable': True,
     'depends': ['golem_member', 'golem_family'],
     'data': ['views/golem_member_views.xml',
-             'wizard/golem_precreation_member_wizard_views.xml']
+             'wizard/golem_precreation_member_request_wizard_views.xml',
+             'wizard/golem_precreation_member_result_wizard_views.xml']
 }

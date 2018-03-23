@@ -18,32 +18,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!--<record id="golem_precreation_member_wizard" type="ir.ui.view" >
-      <field name="name">Golem Precreation Member Wizard</field>
-      <field name="model">golem.precreation.member.wizard</field>
+    <record model="ir.ui.view" id="golem_precreation_member_request_wizard">
+      <field name="name">Golem Precreation Member Request Wizard Form</field>
+      <field name="model">golem.precreation.member.request.wizard</field>
       <field name="arch" type="xml">
-        <form>
-          <group>
-            <field name="name"/>
-          </group>
-        </form>
-      </field>
-    </record>-->
-
-    <record model="ir.ui.view" id="golem_precreation_member_wizard">
-      <field name="name">Golem Precreation Member Wizard Form</field>
-      <field name="model">golem.precreation.member.wizard</field>
-      <field name="arch" type="xml">
-        <form string="Rejection reason">
+        <form string="Member Searching">
           <group>
             <field name="name" />
           </group>
           <footer>
+            <button  name="search_members" string="Search" type="object" class="oe_link" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>
     </record>
-
   </data>
 </odoo>

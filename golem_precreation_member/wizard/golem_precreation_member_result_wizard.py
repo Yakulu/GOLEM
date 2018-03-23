@@ -19,8 +19,9 @@
 
 from odoo import models, fields, api
 
-class GolemPrecreationMemberWizard(models.TransientModel):
-    """GOLEM Precreation member wizard """
-    _name = "golem.precreation.member.wizard"
+class GolemPrecreationMemberResultWizard(models.TransientModel):
+    """GOLEM Precreation member Result Wizard """
+    _name = "golem.precreation.member.result.wizard"
 
-    name = fields.Char()
+    member_ids = fields.Many2many('golem.member')
+    name_searched = fields.Char(default="test")

@@ -15,38 +15,32 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+""" GOLEM Precreation Member Request wizard"""
 
-""" GOLEM Members """
+from odoo import models, fields, api
 
+class GolemPrecreationMemberRequestWizard(models.TransientModel):
+    """GOLEM Precreation Request Member Wizard """
+    _name = "golem.precreation.member.request.wizard"
 
-from odoo import models, api, _
-
-
-
-class GolemMember(models.Model):
-    """ GOLEM Member model """
-    _inherit = 'golem.member'
+    name = fields.Char()
 
     @api.multi
-    def precreation_search(self):
-        """ Precreation member search """
+    def search_members(self):
+        """ Search members """
         self.ensure_one()
-        return {'name' : _('Please enter member searched'),
+        domain = ['|',
+                  ('name', 'ilike', self.name),
+                  ('email', 'ilike', self.name)]
+        members = self.env['golem.member'].search(domain)
+
+        if members:
+            ids = members.mapped('id')
+
+        return {'name' : ('Member search result "{}"'.format(self.name)),
                 'type' : 'ir.actions.act_window',
-                'res_model' : 'golem.precreation.member.request.wizard',
+                'res_model' : 'golem.precreation.member.result.wizard',
+                'context': {'default_member_ids': ids},
                 'view_mode': 'form',
+                'flags': {'initial_mode': 'view'},
                 'target': 'new'}
-    @api.multi
-    def open_line(self):
-        """ open member form """
-        self.ensure_one()
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Member',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': self._name,
-            'res_id': self.id,
-            'flags': {'initial_mode': 'edit'},
-            'target': 'current',
-        }
