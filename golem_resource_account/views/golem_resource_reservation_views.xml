@@ -52,6 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             attrs="{'invisible': [('invoice_id', '=', False)]}">
             <field name="resource_product_id" />
             <field name="invoice_id" />
+            <field name="invoice_state" />
             <field name="invoice_amount_total" />
             <field name="invoice_line_id" />
             <field name="invoice_line_price_subtotal" />
