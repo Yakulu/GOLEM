@@ -159,7 +159,7 @@ msgstr "Membres de la famille"
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
 msgid "Family form"
-msgstr "Family form"
+msgstr "Fiche Famille"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_form
