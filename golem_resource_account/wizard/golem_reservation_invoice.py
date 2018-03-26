@@ -31,43 +31,14 @@ class GolemReservationInvoiceWizard(models.TransientModel):
         default=lambda self: self._context.get('active_ids', []))
 
     @api.multi
-    def create_invoices(self):
-        """ Invoice creations """
+    def create_invoice(self):
+        """ Invoice creation """
         self.ensure_one()
 
-        inv_obj = self.env['account.invoice']
-        partner_id = self.reservation_ids[0].partner_id
-        product = self.reservation_ids[0].resource_id.product_tmpl_id
+        self.reservation_ids.check_before_invoicing()
+        self.reservation_ids[0].create_invoice()
+        if len(self.reservation_ids) > 1:
+            invoice_id = self.reservation_ids[0].invoice_id
+            self.reservation_ids[1:].create_invoice_line(invoice_id)
 
-        if product.id:
-            account_id = product.property_account_income_id.id
-        if not account_id:
-            account_id = product.categ_id.property_account_income_categ_id.id
-        if not account_id:
-            raise UserError(
-                _('There is no income account defined for this product: "%s". \
-                   You may have to install a chart of account from Accounting \
-                   app, settings menu.') % (product.name,))
-
-        lines = []
-
-        for reservation in self.reservation_ids:
-            product = reservation.resource_id.product_tmpl_id
-            amount = product.standard_price
-            lines.append((0, 0, {
-                'origin': reservation.resource_id.name,
-                'account_id': account_id,
-                'price_unit': amount,
-                'quantity': 1.0,
-                'uom_id': product.uom_id.id,
-                'product_id': product.id,
-                }))
-        invoice = inv_obj.create({
-            'origin': self.reservation_ids[-1].name,
-            'type': 'out_invoice',
-            'reference': False,
-            'account_id': partner_id.property_account_receivable_id.id,
-            'partner_id': partner_id.id,
-            'invoice_line_ids': lines,
-            })
-        self.reservation_ids.write({'invoice_id': invoice.id})
+        # return {}

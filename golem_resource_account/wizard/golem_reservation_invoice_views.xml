@@ -25,14 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name"> GOLEM Reservation Invoice Wizard Form</field>
       <field name="model">golem.reservation.invoice.wizard</field>
       <field name="arch" type="xml">
-        <form string="Reservation to invoice">
+        <form string="Reservations to invoice">
           <p>
             <strong>
-              Invoices will be created in draft so that you can review them before validation
+              Only one invoice will be created in draft with corresponding reservations.
+              Then, you will be redirected to the new invoice and can review it before validation.
             </strong>
           </p>
           <footer>
-            <button name="create_invoices" string="Create Invoices" type="object"
+            <button name="create_invoice" string="Create Invoice" type="object"
               class="oe_highlight" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
