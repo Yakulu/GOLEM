@@ -78,7 +78,7 @@ class TestGolemResourceReservation(TransactionCase):
             'product_tmpl_id': self.env.ref('product.product_product_5').id})
         reservation.create_invoice()
         self.assertTrue(reservation.invoice_id)
-        self.assertEqual(reservation.invoicing_state, "draft")
+        self.assertEqual(reservation.invoice_state, "draft")
 
     def test_multiple_reservation_in(self):
         """ Test Multiple Reservation Invoices """
