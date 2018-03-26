@@ -28,7 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <attribute name="colors">red : invoicing_state=='open'; green : invoicing_state=='paid'; black: state=='draft'; blue : state=='validated'; grey : state=='canceled'; orange : state=='rejected'</attribute>
         </xpath>
         <field name="state" position="after">
-          <field name="invoicing_state"/>
+          <field name="invoice_id" />
+          <field name="invoice_state" string="Invoice status" />
         </field>
       </field>
     </record>
@@ -41,37 +42,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_form"/>
       <field name="arch" type="xml">
         <button name="state_rejected"  position="after">
-          <button name="create_invoice" type="object" string="Create New Invoice" class="oe_highlight"
-            attrs="{'invisible': ['|', ('state', 'not in', 'validated'),
-            '|',('id', '=', False), ('invoicing_state', '=', 'paid')]}" />
-          <button name="open_invoice" type="object" string="Open Invoice" class="oe_highlight"
-            attrs="{'invisible': [('invoicing_state', '==', 'None')]}" />
+          <button name="create_invoice" type="object" string="Create Invoice" class="oe_highlight"
+            attrs="{'invisible': ['|', ('state', '!=', 'validated'), '|', ('resource_product_id', '=', False), ('invoice_id', '!=', False)]}" />
+          <button name="show_invoice" type="object" string="Show invoice" class="oe_highlight"
+            attrs="{'invisible': [('invoice_id', '=', False)]}" />
         </button>
-        <field name="partner_id" position="after">
-          <field name="invoicing_state" readonly="1" />
-        </field>
+        <group name="reservation" position="after">
+          <group name="invoicing" string="Invoicing"
+            attrs="{'invisible': [('invoice_id', '=', False)]}">
+            <field name="resource_product_id" />
+            <field name="invoice_id" />
+            <field name="invoice_state" />
+            <field name="invoice_amount_total" />
+            <field name="invoice_line_id" />
+            <field name="invoice_line_price_subtotal" />
+          </group>
+        </group>
       </field>
     </record>
 
     <!-- Searches -->
     <record model="ir.ui.view"
       id="golem_resource_reservation_search_inherit_golem_resource_account">
-      <field name="name">GOLEM Resource Reservation Search Adaptations to invoicing</field>
+      <field name="name"> GOLEM Resource Reservation Search Adaptations</field>
       <field name="model">golem.resource.reservation</field>
-      <field name="inherit_id" ref="golem_resource.golem_resource_reservation_view_search"/>
+      <field name='inherit_id'
+         ref="golem_resource.golem_resource_reservation_view_search"/>
       <field name="arch" type="xml">
-        <search position="inside">
-          <filter name="to_invoice" string="Reservation To Invoice"
-            domain="[('invoicing_state', '=', 'None')]" />
-          <filter name="invoice_draft" string="Invoice Draft"
-              domain="[('invoicing_state', '=', 'draft')]" />
-          <filter name="invoice_open" string="Invoice Open"
-              domain="[('invoicing_state', '=', 'open')]" />
-          <filter name="invoice_paid" string="Invoice Paid"
-              domain="[('invoicing_state', '=', 'paid')]" />
-        </search>
+        <field name="state" position="after">
+          <field name="invoice_id" string="Invoice"
+            filter_domain="[('invoice_id.number', 'ilike', self)]" />
+        </field>
+        <filter name="state_rejected" position="after">
+          <separator />
+          <filter name="invoiced" string="Invoiced"
+            domain="[('invoice_line_id', '!=', False)]" />
+          <filter name="not_invoiced" string="Not invoiced"
+            domain="[('state', '=', 'validated'), ('invoice_line_id', '=', False)]" />
+        </filter>
+        <filter name="group_state" position="after">
+          <filter name="group_invoice_state" string="Invoice state"
+            context="{'group_by': 'invoice_state'}" />
+        </filter>
       </field>
-    </record>-->
+    </record>
+
     <!-- Add option to the "More" button -->
     <act_window id="action_golem_reservation_invoice_wizard"
       name="Reservations to invoice"
@@ -79,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       src_model="golem.resource.reservation"
       view_mode="form"
       multi="True"
-      target="new"
-      />
+      target="new" />
+
   </data>
 </odoo>

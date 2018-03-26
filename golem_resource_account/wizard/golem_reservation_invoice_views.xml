@@ -18,24 +18,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+
     <!-- Forms -->
     <record model="ir.ui.view"
       id="golem_reservation_invoice_wizard_form">
       <field name="name"> GOLEM Reservation Invoice Wizard Form</field>
       <field name="model">golem.reservation.invoice.wizard</field>
       <field name="arch" type="xml">
-        <form string="Reservation to invoice">
-          <label string="Invoices will be created in draft so that you can review them before validation" />
-            <field name="reservation_ids" />
+        <form string="Reservations to invoice">
+          <p>
+            <strong>
+              Only one invoice will be created in draft with corresponding reservations.
+              Then, you will be redirected to the new invoice and can review it before validation.
+            </strong>
+          </p>
           <footer>
-            <button name="create_invoices" string="Create and View Invoices" type="object"
-              context="{'open_invoices': True}" class="oe_highlight" />
-            <button name="create_invoices" string="Create Invoices" type="object"
+            <button name="create_invoice" string="Create Invoice" type="object"
               class="oe_highlight" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>
     </record>
+
   </data>
 </odoo>

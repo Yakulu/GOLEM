@@ -18,101 +18,98 @@
 
 """ GOLEM Resource Reservation  Adaptation"""
 
-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class GolemResourceReservation(models.Model):
     """ GOLEM Resource Reservation Adaptation """
     _inherit = 'golem.resource.reservation'
 
-    invoice_id = fields.Many2one('account.invoice')
-    invoicing_state = fields.Char(compute="_compute_invoicing_state",
-                                  search='_search_invoicing_state',
-                                  string="Invoicing Status",
-                                  default="None")
-
-    def _search_invoicing_state(self, operator, value):
-        if value == "None":
-            reservation = self.env['golem.resource.reservation'].search(
-                [('invoice_id', '=', False)])
-            return [('id', 'in', reservation.mapped('id'))]
-        else:
-            return [('invoice_id.state', operator, value)]
+    resource_product_id = fields.Many2one(related='resource_id.product_tmpl_id')
+    invoice_line_id = fields.Many2one('account.invoice.line', copy=False)
+    invoice_line_price_subtotal = fields.Monetary(related='invoice_line_id.price_subtotal')
+    invoice_id = fields.Many2one(related='invoice_line_id.invoice_id',
+                                 string='Invoice')
+    invoice_state = fields.Selection(related='invoice_id.state', store=True,
+                                     copy=False)
+    invoice_amount_total = fields.Monetary(related='invoice_id.amount_total')
+    currency_id = fields.Many2one(related='invoice_id.currency_id')
 
     @api.multi
-    @api.depends('invoice_id')
-    def _compute_invoicing_state(self):
-        """ Compute invoicing_state """
+    def check_before_invoicing(self):
+        """ Checks data coherence before invoicing """
         for reservation in self:
-            if reservation.invoice_id:
-                reservation.invoicing_state = reservation.invoice_id.state
-            else:
-                reservation.invoicing_state = "None"
+            if reservation.state != "validated":
+                raise ValidationError(
+                    _('The reservation "{}" is not validated, please validate '
+                      'it before creating invoice'.format(reservation.name)))
+            if reservation.invoice_line_id:
+                raise ValidationError(_('You can not create an invoice as there '
+                                        'is already one.'))
+            product = reservation.resource_id.product_tmpl_id
+
+            if not product:
+                raise ValidationError(_('You can not create an invoice without '
+                                        'linked product on the resource reserved.'))
+
+            account_id = product.property_account_income_id.id or \
+                product.categ_id.property_account_income_categ_id.id
+
+            if not account_id:
+                raise ValidationError(
+                    _('There is no income account defined for this product: "{}"'
+                      '. You have to configure it on the product form.'.format(product.name)))
 
     @api.multi
-    def open_invoice(self):
-        """ open invoice """
+    def create_invoice_line(self, invoice_id):
+        """ Create invoice line corresponding to reservation """
         for reservation in self:
-            if reservation.invoice_id:
-                return {'name' : _('Reservation Invoice'),
-                        'type' : 'ir.actions.act_window',
-                        'res_model' : 'account.invoice',
-                        'res_id' : reservation.invoice_id.id,
-                        'view_mode': 'form',
-                        'view_id': self.env.ref('account.invoice_form').id,
-                        'target': 'current'}
+            product = reservation.resource_id.product_tmpl_id
+            amount = product.list_price
+            account_id = product.property_account_income_id.id or \
+                product.categ_id.property_account_income_categ_id.id
+            delta = fields.Datetime.from_string(reservation.date_stop) - \
+                fields.Datetime.from_string(reservation.date_start)
+            quantity = (delta.days * 24) + (delta.seconds/3600.0)
 
+            line_id = self.env['account.invoice.line'].create({
+                'invoice_id': invoice_id.id,
+                'name': product.name,
+                'origin': reservation.name,
+                'price_unit': amount,
+                'quantity': quantity,
+                'uom_id': product.uom_id.id,
+                'account_id': account_id,
+                'product_id': product.id,
+            })
+            reservation.invoice_line_id = line_id
 
     @api.multi
     def create_invoice(self):
-        """ Create invoice """
+        """ Invoice creation """
         for reservation in self:
-            if reservation.state != "validated":
-                raise UserError(
-                    _("The reservation '%s' is not validated, please validate it before \
-                      creating invoice") % reservation.name)
-
+            reservation.check_before_invoicing()
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id
-            product = reservation.resource_id.product_tmpl_id
-            amount = product.standard_price
-            delta = fields.Datetime.from_string(reservation.date_stop) - \
-            fields.Datetime.from_string(reservation.date_start)
-            quantity = (delta.days * 24) + (delta.seconds/3600.0)
-            account_id = False
-            if not product:
-                raise UserError(
-                    _("There is no product linked to resource : '%s', you can't invoice \
-                      reservation with no product linked") % (reservation.resource_id.name,))
-            if product.id:
-                account_id = product.property_account_income_id.id
 
-            if not account_id:
-                account_id = product.categ_id.property_account_income_categ_id.id
-
-            if not account_id:
-                raise UserError(
-                    _('There is no income account defined for this product: "%s". \
-                       You may have to install a chart of account from Accounting \
-                       app, settings menu.') % (product.name,))
-            invoice = inv_obj.create({
-                'name': reservation.name,
+            invoice_id = inv_obj.create({
                 'origin': reservation.name,
                 'type': 'out_invoice',
                 'reference': False,
                 'account_id': partner_id.property_account_receivable_id.id,
-                'partner_id': partner_id.id,
-                'invoice_line_ids': [(0, 0, {
-                    'name': reservation.resource_id.name,
-                    #'origin': ,
-                    'account_id': account_id,
-                    'price_unit': amount,
-                    'quantity': quantity,
-                    'discount': 0.0,
-                    'uom_id': product.uom_id.id,
-                    'product_id': product.id,
-                    })],
-                })
-            reservation.invoice_id = invoice.id
+                'partner_id': partner_id.id
+            })
+            reservation.create_invoice_line(invoice_id)
+
+    @api.multi
+    def show_invoice(self):
+        """ Redirects to linked invoice """
+        self.ensure_one()
+        reservation = self[0]
+        if reservation.invoice_id:
+            return {'type': 'ir.actions.act_window',
+                    'res_model': 'account.invoice',
+                    'res_id': reservation.invoice_id.id,
+                    'view_mode': 'form',
+                    'view_id': self.env.ref('account.invoice_form').id}

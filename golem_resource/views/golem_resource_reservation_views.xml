@@ -70,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </header>
           <sheet>
             <group>
-              <group string="Resource">
+              <group name="resource" string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
                 <field name="resource_avaibility_24_7" readonly="1" />
@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="resource_timetable_ids" readonly="1"
                   attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
               </group>
-              <group string="Reservation">
+              <group name="reservation" string="Reservation">
                 <group>
                   <field name="date_start" />
                   <field name="date_stop" />
@@ -113,8 +113,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="user_id" />
           <field name="partner_id" />
           <field name="state" />
-          <filter name="to_validate" string="Reservation to Validate"
+          <filter name="state_draft" string="Draft"
+            domain="[('state', '=', 'draft')]" />
+          <filter name="state_confirmed" string="Confirmed, to Validate"
             domain="[('state', '=', 'confirmed')]" />
+          <filter name="state_validated" string="Validated"
+            domain="[('state', '=', 'validated')]" />
+          <filter name="state_rejected" string="Rejected"
+            domain="[('state', '=', 'rejected')]" />
           <filter name="group_state" string="State"
             context="{'group_by': 'state'}" />
           <filter name="group_resource" string="Resource"
