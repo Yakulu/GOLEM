@@ -33,7 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </strong>
           </p>
           <footer>
-            <button name="create_invoice" string="Create Invoice" type="object"
+            <button name="create_invoice" string="Create and view invoice" type="object"
+              context="{'open_invoice': True}" class="oe_highlight" />
+            <button name="create_invoice" string="Create invoice and Close" type="object"
               class="oe_highlight" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
