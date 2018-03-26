@@ -50,25 +50,23 @@ class GolemResourceReservation(models.Model):
 
             if not account_id:
                 raise ValidationError(
-                    _('There is no income account defined for this product: "%s". \
-                       You may have to install a chart of account from Accounting \
-                       app, settings menu.') % (product.name,))
+                    _('There is no income account defined for this product: "{}"'
+                      '. You have to configure it on the product form.'.format(product.name)))
 
             reservation.invoice_id = inv_obj.create({
-                'name': reservation.name,
-                #'origin': self.application_number,
+                'origin': reservation.name,
                 'type': 'out_invoice',
                 'reference': False,
                 'account_id': partner_id.property_account_receivable_id.id,
                 'partner_id': partner_id.id,
                 'invoice_line_ids': [(0, 0, {
                     'name': reservation.resource_id.name,
-                    #'origin': ,
+                    'origin': reservation.name,
                     'account_id': account_id,
                     'price_unit': amount,
                     'quantity': 1.0,
                     'discount': 0.0,
                     'uom_id': product.uom_id.id,
                     'product_id': product.id,
-                    })],
+                    })]
                 })
