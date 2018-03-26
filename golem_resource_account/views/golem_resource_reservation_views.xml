@@ -96,14 +96,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       view_id="golem_reservation_invoice_wizard_form"
       multi="True"
       target="new" />
-    <act_window id="action_golem_reservation_invoice_editable_wizard"
-      name="Reservations to invoice-edition"
-      res_model="golem.reservation.invoice.wizard"
-      src_model="golem.resource.reservation"
-      view_mode="form"
-      view_id="golem_reservation_invoice_wizard_form_editable"
-      multi="True"
-      target="new" />
 
   </data>
 </odoo>

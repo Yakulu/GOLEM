@@ -21,24 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Forms -->
     <record model="ir.ui.view"
-      id="golem_reservation_invoice_wizard_form_editable">
-      <field name="name"> GOLEM Reservation Invoice Wizard Form Editable</field>
-      <field name="model">golem.reservation.invoice.wizard</field>
-      <field name="arch" type="xml">
-        <form string="Reservation to invoice">
-          <group>
-            <field name="reservation_ids" />
-          </group>
-          <footer>
-            <button name="create_invoices" string="Create Invoices" type="object"
-              class="oe_highlight" />
-            <button string="Cancel" class="oe_link" special="cancel" />
-          </footer>
-        </form>
-      </field>
-    </record>
-
-    <record model="ir.ui.view"
       id="golem_reservation_invoice_wizard_form">
       <field name="name"> GOLEM Reservation Invoice Wizard Form</field>
       <field name="model">golem.reservation.invoice.wizard</field>
