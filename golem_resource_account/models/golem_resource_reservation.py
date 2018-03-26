@@ -20,7 +20,7 @@
 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class GolemResourceReservation(models.Model):
@@ -41,18 +41,18 @@ class GolemResourceReservation(models.Model):
             product = reservation.resource_id.product_tmpl_id
             amount = product.standard_price
 
-            if product.id:
-                account_id = product.property_account_income_id.id
+            if not product:
+                raise ValidationError(_('You can not create an invoice without '
+                                        'linked product on the resource reserved.'))
+
+            account_id = product.property_account_income_id.id or \
+                product.categ_id.property_account_income_categ_id.id
 
             if not account_id:
-                account_id = product.categ_id.property_account_income_categ_id.id
-
-            if not account_id:
-                raise UserError(
+                raise ValidationError(
                     _('There is no income account defined for this product: "%s". \
                        You may have to install a chart of account from Accounting \
                        app, settings menu.') % (product.name,))
-
 
             reservation.invoice_id = inv_obj.create({
                 'name': reservation.name,
