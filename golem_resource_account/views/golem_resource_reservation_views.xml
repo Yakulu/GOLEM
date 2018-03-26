@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_tree"/>
       <field name="arch" type="xml">
         <field name="state" position="after">
-          <field name="invoicing_state"/>
+          <field name="invoice_state" string="Invoice status" />
         </field>
       </field>
     </record>
@@ -41,44 +41,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_form"/>
       <field name="arch" type="xml">
         <button name="state_rejected"  position="after">
-          <field name="resource_product_id" invisible="1" />
           <button name="create_invoice" type="object" string="Create Invoice" class="oe_highlight"
             attrs="{'invisible': ['|', ('state', '!=', 'validated'), ('resource_product_id', '=', False)]}" />
         </button>
+        <group name="reservation" position="after">
+          <group name="invoicing" string="Invoicing"
+            attrs="{'invisible': ['|', ('state', '!=', 'validated'), ('resource_product_id', '=', False)]}">
+            <field name="resource_product_id" />
+            <field name="invoice_id" />
+            <field name="invoice_amount_total" />
+            <field name="invoice_line_id" />
+            <field name="invoice_line_price_subtotal" />
+          </group>
+        </group>
       </field>
     </record>
 
     <!-- Searches -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_search">
-      <field name="name">GOLEM Resource Reservation Search</field>
+    <record model="ir.ui.view"
+      id="golem_resource_reservation_search_inherit_golem_resource_account">
+      <field name="name"> GOLEM Resource Reservation Search Adaptations</field>
       <field name="model">golem.resource.reservation</field>
+      <field name='inherit_id'
+         ref="golem_resource.golem_resource_reservation_view_search"/>
       <field name="arch" type="xml">
-        <search>
-          <field name="date_start" />
-          <field name="date_stop" />
-          <field name="resource_id" />
-          <field name="user_id" />
-          <field name="partner_id" />
-          <field name="state" />
-          <filter name="to_validate" string="Reservation to Validate"
-            domain="[('state', '=', 'confirmed')]" />
-          <filter name="group_state" string="State"
-            context="{'group_by': 'state'}" />
-          <filter name="group_resource" string="Resource"
-            context="{'group_by': 'resource_id'}" />
-          <filter name="group_partner_id" string="Partner"
-            context="{'group_by': 'partner_id'}" />
-          <filter name="group_user" string="User"
-            context="{'group_by': 'user_id'}" />
-          <filter name="group_date_month" string="Month"
-            context="{'group_by': 'date:month'}" />
-          <filter name="group_date_week" string="Week"
-            context="{'group_by': 'date:week'}" />
-          <filter name="group_date_day" string="Day"
-            context="{'group_by': 'date:day'}" />
-        </search>
+        <field name="state" position="after">
+          <field name="invoice_id" />
+        </field>
+        <filter name="group_state" position="after">
+          <filter name="group_invoice_state" string="Invoice state"
+            context="{'group_by': 'invoice_state'}" />
+        </filter>
       </field>
-    </record>-->
+    </record>
+
     <!-- Add option to the "More" button -->
     <act_window id="action_golem_reservation_invoice_wizard"
       name="Reservations to invoice"
