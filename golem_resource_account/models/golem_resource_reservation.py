@@ -77,3 +77,15 @@ class GolemResourceReservation(models.Model):
                 })]
             })
             reservation.invoice_line_id = reservation.invoice_id.invoice_line_ids[0]
+
+    @api.multi
+    def show_invoice(self):
+        """ Redirects to linked invoice """
+        self.ensure_one()
+        reservation = self[0]
+        if reservation.invoice_id:
+            return {'type': 'ir.actions.act_window',
+                    'res_model': 'account.invoice',
+                    'res_id': reservation.invoice_id.id,
+                    'view_mode': 'form',
+                    'view_id': self.env.ref('account.invoice_form').id}
