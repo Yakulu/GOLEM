@@ -42,7 +42,7 @@ class GolemResourceReservation(models.Model):
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id
             product = reservation.resource_id.product_tmpl_id
-            amount = product.standard_price
+            amount = product.list_price
 
             if not product:
                 raise ValidationError(_('You can not create an invoice without '
