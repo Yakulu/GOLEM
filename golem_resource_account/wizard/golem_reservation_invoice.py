@@ -37,8 +37,8 @@ class GolemReservationInvoiceWizard(models.TransientModel):
 
         self.reservation_ids.check_before_invoicing()
         self.reservation_ids[0].create_invoice()
+        invoice_id = self.reservation_ids[0].invoice_id
         if len(self.reservation_ids) > 1:
-            invoice_id = self.reservation_ids[0].invoice_id
             self.reservation_ids[1:].create_invoice_line(invoice_id)
 
-        # return {}
+        return self.reservation_ids[0].show_invoice()
