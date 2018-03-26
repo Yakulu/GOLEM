@@ -27,6 +27,7 @@ class GolemResourceReservation(models.Model):
     """ GOLEM Resource Reservation Adaptation """
     _inherit = 'golem.resource.reservation'
 
+    resource_product_id = fields.Many2one(related='resource_id.product_tmpl_id')
     invoice_id = fields.Many2one('account.invoice')
     invoicing_state = fields.Selection(related="invoice_id.state",
                                        string="Invoicing Status", default="None")
