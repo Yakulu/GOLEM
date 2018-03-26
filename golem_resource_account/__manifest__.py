@@ -26,8 +26,7 @@
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['golem_resource',
-                'account'],
-    'data': ['views/golem_resource_reservation_views.xml',
-             'wizard/golem_reservation_invoice.xml']
+    'depends': ['golem_resource', 'account'],
+    'data': ['wizard/golem_reservation_invoice.xml',
+             'views/golem_resource_reservation_views.xml']
 }
