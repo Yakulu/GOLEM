@@ -1,0 +1,186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_resource_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-26 15:13+0000\n"
+"PO-Revision-Date: 2018-03-26 15:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_resource_account
+#: model:ir.model.fields,help:golem_resource_account.field_golem_resource_reservation_invoice_state
+msgid " * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
+" * The 'Pro-forma' status is used when the invoice does not have an invoice number.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_invoice_wizard_form
+msgid "<strong>\n"
+"              Only one invoice will be created in draft with corresponding reservations.\n"
+"              Then, you will be redirected to the new invoice and can review it before validation.\n"
+"            </strong>"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,help:golem_resource_account.field_golem_resource_reservation_resource_product_id
+msgid "A generic product can be linked, in order to sell reservations (work in progress)"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_line_price_subtotal
+msgid "Amount"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_invoice_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_invoice_wizard_form
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_form_inherit_golem_resource_account
+msgid "Create Invoice"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model,name:golem_resource_account.model_golem_resource_reservation
+msgid "GOLEM Reservation Model"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_id
+msgid "ID"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_id
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
+msgid "Invoice"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_line_id
+msgid "Invoice line id"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
+msgid "Invoice state"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_tree_inherit_golem_resource_account
+msgid "Invoice status"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
+msgid "Invoiced"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_form_inherit_golem_resource_account
+msgid "Invoicing"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_resource_product_id
+msgid "Linked product"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
+msgid "Not invoiced"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.actions.act_window,name:golem_resource_account.action_golem_reservation_invoice_wizard
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_reservation_ids
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_invoice_wizard_form
+msgid "Reservations to invoice"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_form_inherit_golem_resource_account
+msgid "Show invoice"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_state
+msgid "Status"
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:57
+#, python-format
+msgid "There is no income account defined for this product: \"{}\". You have to configure it on the product form."
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_amount_total
+msgid "Total"
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:43
+#, python-format
+msgid "You can not create an invoice as there is already one."
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:48
+#, python-format
+msgid "You can not create an invoice without linked product on the resource reserved."
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model,name:golem_resource_account.model_golem_reservation_invoice_wizard
+msgid "golem.reservation.invoice.wizard"
+msgstr ""
+
