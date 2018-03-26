@@ -55,18 +55,15 @@ class GolemReservationInvoiceWizard(models.TransientModel):
             product = reservation.resource_id.product_tmpl_id
             amount = product.standard_price
             lines.append((0, 0, {
-                'name': reservation.resource_id.name,
-                #'origin': ,
+                'origin': reservation.resource_id.name,
                 'account_id': account_id,
                 'price_unit': amount,
                 'quantity': 1.0,
-                'discount': 0.0,
                 'uom_id': product.uom_id.id,
                 'product_id': product.id,
                 }))
         invoice = inv_obj.create({
-            'name': self.reservation_ids[-1].name,
-            #'origin': self.application_number,
+            'origin': self.reservation_ids[-1].name,
             'type': 'out_invoice',
             'reference': False,
             'account_id': partner_id.property_account_receivable_id.id,
