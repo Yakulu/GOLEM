@@ -47,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <group name="reservation" position="after">
           <group name="invoicing" string="Invoicing"
             attrs="{'invisible': ['|', ('state', '!=', 'validated'), ('resource_product_id', '=', False)]}">
+            attrs="{'invisible': [('invoice_id', '=', False)]}">
             <field name="resource_product_id" />
             <field name="invoice_id" />
             <field name="invoice_amount_total" />
@@ -66,7 +67,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
          ref="golem_resource.golem_resource_reservation_view_search"/>
       <field name="arch" type="xml">
         <field name="state" position="after">
-          <field name="invoice_id" />
+          <field name="invoice_id" string="Invoice"
+            filter_domain="[('invoice_id.number', 'ilike', self)]" />
         </field>
         <filter name="group_state" position="after">
           <filter name="group_invoice_state" string="Invoice state"

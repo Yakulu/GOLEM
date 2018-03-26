@@ -28,11 +28,12 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     resource_product_id = fields.Many2one(related='resource_id.product_tmpl_id')
-    invoice_id = fields.Many2one('account.invoice', 'Invoice', index=True)
-    invoice_state = fields.Selection(related='invoice_id.state', store=True)
-    invoice_amount_total = fields.Monetary(related='invoice_id.amount_total')
     invoice_line_id = fields.Many2one('account.invoice.line')
     invoice_line_price_subtotal = fields.Monetary(related='invoice_line_id.price_subtotal')
+    invoice_id = fields.Many2one(related='invoice_line_id.invoice_id',
+                                 string='Invoice')
+    invoice_state = fields.Selection(related='invoice_id.state', store=True)
+    invoice_amount_total = fields.Monetary(related='invoice_id.amount_total')
     currency_id = fields.Many2one(related='invoice_id.currency_id')
 
     @api.multi
