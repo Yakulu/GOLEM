@@ -20,7 +20,7 @@
 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError
 
 
 class GolemResourceReservation(models.Model):
@@ -28,11 +28,13 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     invoice_id = fields.Many2one('account.invoice')
-    invoicing_state = fields.Selection(related="invoice_id.state", string="Invoicing Status", default="None")
+    invoicing_state = fields.Selection(related="invoice_id.state",
+                                       string="Invoicing Status", default="None")
 
 
     @api.multi
     def create_invoice(self):
+        """ Invoice creation """
         for reservation in self:
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id

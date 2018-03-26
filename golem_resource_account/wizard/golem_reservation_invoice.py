@@ -19,7 +19,7 @@
 """ GOLEM Reservation Invoice Wizard"""
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError
 
 
 class GolemReservationInvoiceWizard(models.TransientModel):
@@ -30,11 +30,9 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                                        default=lambda self: self._context.get('active_ids', []),
                                        string='Reservations to invoice')
 
-
-
-
     @api.multi
     def create_invoices(self):
+        """ Invoice creations """
         self.ensure_one()
         if self.reservation_ids:
 
@@ -68,7 +66,7 @@ class GolemReservationInvoiceWizard(models.TransientModel):
                     'product_id': product.id,
                     }))
             invoice = inv_obj.create({
-                'name': reservation.name,
+                'name': self.reservation_ids[-1].name,
                 #'origin': self.application_number,
                 'type': 'out_invoice',
                 'reference': False,
