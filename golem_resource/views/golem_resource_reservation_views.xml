@@ -39,8 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Reservation Tree</field>
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <tree
-          colors="black: state=='draft'; blue : state=='validated'; grey : state=='canceled'; orange : state=='rejected'">
+        <tree colors="black: state=='draft'; blue: state=='validated'; gree : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
           <field name="resource_id" />
           <field name="date_start" />
           <field name="date_stop" />

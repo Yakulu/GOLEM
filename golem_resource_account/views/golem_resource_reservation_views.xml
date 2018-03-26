@@ -24,9 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resource.reservation</field>
       <field name='inherit_id' ref="golem_resource.golem_resource_reservation_view_tree"/>
       <field name="arch" type="xml">
-        <xpath expr="//tree" position="attributes">
-          <attribute name="colors">red : invoice_state=='open'; green : invoice_state=='paid'; black: state=='draft'; blue : state=='validated'; grey : state=='canceled'; orange : state=='rejected'</attribute>
-        </xpath>
         <field name="state" position="after">
           <field name="invoice_id" />
           <field name="invoice_state" string="Invoice status" />
