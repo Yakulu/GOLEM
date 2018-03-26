@@ -19,7 +19,7 @@
 {
     'name': 'GOLEM non-profit members',
     'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.1.2',
+    'version': '10.0.1.1.4',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
@@ -30,7 +30,7 @@
     'data': ['views/golem_member_views.xml',
              'views/res_partner_views.xml',
              'views/golem_member_numberconfig_views.xml',
-             'views/report_golem_member.xml',
+             'report/golem_member_card_templates.xml',
              'data/golem_member_numberconfig_data.xml',
              'security/ir.model.access.csv']
 }

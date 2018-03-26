@@ -19,6 +19,7 @@
 """ GOLEM Resource Reservation """
 
 from math import modf
+from datetime import timedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -28,19 +29,18 @@ class GolemResourceReservation(models.Model):
     _name = 'golem.resource.reservation'
     _description = 'GOLEM Reservation Model'
     _inherit = 'mail.thread'
-    _order = 'date desc,hour_start asc'
+    _order = 'day_start desc, hour_start asc'
 
     name = fields.Char(compute='_compute_name', store=True)
     # TODO: handle multiple days reservation
-    date = fields.Date(required=True, index=True, readonly=True,
-                       states={'draft': [('readonly', False)]})
-    hour_start = fields.Float('Start hour', required=True, readonly=True,
-                              states={'draft': [('readonly', False)]})
-    hour_stop = fields.Float('Stop hour', required=True, readonly=True,
-                             states={'draft': [('readonly', False)]})
-    date_start = fields.Datetime(compute='_compute_date_start', store=True, index=True)
-    date_stop = fields.Datetime(compute='_compute_date_stop', store=True, index=True)
-
+    date_start = fields.Datetime('Start date', required=True,
+                                 index=True, readonly=True,
+                                 states={'draft': [('readonly', False)]})
+    date_stop = fields.Datetime('Stop date', required=True,
+                                index=True, readonly=True,
+                                states={'draft': [('readonly', False)]})
+    day_start = fields.Date(compute='_compute_day_hour_start', store=True)
+    hour_start = fields.Float(compute='_compute_day_hour_start', store=True)
     resource_id = fields.Many2one('golem.resource', required=True, index=True,
                                   string='Resource', readonly=True,
                                   track_visibility='onchange',
@@ -68,46 +68,38 @@ class GolemResourceReservation(models.Model):
 
     rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
 
-    @api.depends('resource_id', 'date')
+    @api.depends('resource_id', 'date_start')
     def _compute_name(self):
         """ Computes reservation name """
         for reservation in self:
             reservation.name = u'{}/{}'.format(reservation.resource_id.name,
-                                               reservation.date)
+                                               reservation.date_start)
 
-    @api.depends('date', 'hour_start')
-    def _compute_date_start(self):
-        """ Computes Date start """
+    @api.depends('date_start')
+    def _compute_day_hour_start(self):
+        """ Computes Day and Hour Start : for better sorting """
         for reservation in self:
-            minute_start, hour_start = modf(reservation.hour_start)
-            hour_start = int(hour_start)
-            minute_start = int(round(minute_start * 60))
-            reservation.date_start = u'{} {}:{}:00'.format(reservation.date,
-                                                           hour_start, minute_start)
+            if reservation.date_start:
+                date_start = fields.Datetime.from_string(reservation.date_start)
+                reservation.day_start = date_start.date().isoformat()
+                reservation.hour_start = date_start.hour + date_start.minute / 60.0
 
-    @api.depends('date', 'hour_stop')
-    def _compute_date_stop(self):
-        """ Computes Date stop """
-        for reservation in self:
-            minute_stop, hour_stop = modf(reservation.hour_stop)
-            hour_stop = int(hour_stop)
-            minute_stop = int(round(minute_stop * 60))
-            reservation.date_stop = u'{} {}:{}:00'.format(reservation.date,
-                                                          hour_stop, minute_stop)
-
-    @api.onchange('hour_start')
-    def onchange_hour_start(self):
+    @api.onchange('date_start')
+    def onchange_date_start(self):
         """ Propose automatically stop hour after start hour had been filled """
         for reservation in self:
-            if reservation.hour_start and not reservation.hour_stop:
-                reservation.hour_stop = reservation.hour_start + 1
+            if reservation.date_start:
+                start = fields.Datetime.from_string(reservation.date_start)
+                duration = timedelta(hours=1)
+                reservation.date_stop = start + duration
 
-    @api.constrains('hour_start', 'hour_stop')
-    def _check_hour_consistency(self):
-        """ Checks hour consistency """
+
+    @api.constrains('date_start', 'date_stop')
+    def _check_date_consistency(self):
+        """ Checks date consistency """
         for reservation in self:
-            if reservation.hour_stop <= reservation.hour_start:
-                raise ValidationError(_('End time should be after than start time'))
+            if reservation.date_stop <= reservation.date_start:
+                raise ValidationError(_('Stop date should be after start date'))
 
     @api.multi
     def state_draft(self):
@@ -162,8 +154,8 @@ class GolemResourceReservation(models.Model):
         for reservation in self:
             if reservation.state == 'confirmed':
                 # Check is reservation is not taking place out of the resource avaibility period
-                if reservation.date < reservation.resource_id.avaibility_start or \
-                   reservation.date > reservation.resource_id.avaibility_stop:
+                if reservation.date_start < reservation.resource_id.avaibility_start or \
+                   reservation.date_stop > reservation.resource_id.avaibility_stop:
                     verr = _('Not allowed, the resource is not available in '
                              'this period, please choose another périod before '
                              'confirming')
@@ -171,32 +163,62 @@ class GolemResourceReservation(models.Model):
                 #check if the resource hasn't a total availibility
                 if not reservation.resource_id.availibility_24_7:
                     # Check if reservation is not taking place out the avaibility timetables
-                    is_day_allowed = False
-                    for timetable in reservation.resource_id.timetable_ids:
-                        # Check for the time according to resource timetable avaibility
-                        date = fields.Datetime.from_string(reservation.date)
-                        if int(timetable.weekday) == date.weekday():
-                            is_day_allowed = True
-                            if reservation.hour_start < timetable.time_start or \
-                                reservation.hour_stop > timetable.time_stop:
-                                verr = _('Not allowed, the resource is not available '
-                                         'during this period, please choose another '
-                                         'time before confirming.')
-                                raise ValidationError(verr)
-                    if not is_day_allowed:
-                        verr = _('Not allowed, the resource is not available '
-                                 'this day. Please choose another date.')
-                        raise ValidationError(verr)
+                    date_start = fields.Datetime.from_string(reservation.date_start)
+                    date_stop = fields.Datetime.from_string(reservation.date_stop)
+                    reservation_period = [date_start + timedelta(days=x) for x in range(
+                        (date_stop - date_start).days + 1)]
+                    for reservation_day in reservation_period:
+                        is_day_allowed = False
+                        for timetable in reservation.resource_id.timetable_ids:
+                            # Check for the time according to resource timetable avaibility
+                            #date = fields.Datetime.from_string(reservation_day)
+                            if int(timetable.weekday) == reservation_day.weekday():
+                                is_day_allowed = True
+                                #only check if the day hasn't a 24 availibility
+                                if not timetable.availibility_24:
+                                    reservation_day_date = reservation_day.date()
+                                    day_start = date_start.date()
+                                    day_stop = date_stop.date()
+                                    if reservation_day_date == day_start and \
+                                        reservation_day_date == day_stop:
+                                        hour_start = date_start.hour + date_start.minute / 60.0
+                                        hour_stop = date_stop.hour + date_stop.minute / 60.0
+                                    elif reservation_day_date == day_start:
+                                        hour_start = date_start.hour + date_start.minute / 60.0
+                                        hour_stop = 23.98 # Just before 23:59
+                                    elif reservation_day_date == day_stop:
+                                        hour_start = 0.0
+                                        hour_stop = date_stop.hour + date_stop.minute / 60.0
+                                    else:
+                                        #if the day is not a start nor stop it
+                                        #should be covered on all day
+                                        #strange, as availibility_24 is not True
+                                        hour_start = 0.0
+                                        hour_stop = 23.98
+
+                                    if is_day_allowed and (hour_start < timetable.time_start or \
+                                        hour_stop > timetable.time_stop):
+                                        verr = _('Not allowed, the resource is not available '
+                                                 'during this period, please choose another '
+                                                 'time before confirming.')
+                                        raise ValidationError(verr)
+                        if not is_day_allowed:
+                            verr = _('Not allowed, the resource is not available '
+                                     'this day : {}. Please choose another '
+                                     'date.'.format(reservation_day.strftime('%A')))
+                            raise ValidationError(verr)
                 # Check if the resource is already taken during this period
-                # PERF : check the date, not iterate over all reservations
+                # PERF : check for res that can be in conflict,
+                # do not iterate over all reservations
                 domain = [('resource_id', '=', reservation.resource_id.id),
-                          ('date', '=', reservation.date),
+                          ('date_start', '<=', reservation.date_stop),
+                          ('date_stop', '>=', reservation.date_start),
                           ('state', 'in', ('confirmed', 'validated')),
                           ('id', '!=', reservation.id)]
                 reservations = self.env['golem.resource.reservation'].search(domain)
                 for other_res in reservations:
-                    if (other_res.hour_start < reservation.hour_start < other_res.hour_stop) or \
-                        (other_res.hour_start < reservation.hour_stop < other_res.hour_stop):
+                    if (other_res.date_start < reservation.date_start < other_res.date_stop) or \
+                       (other_res.date_start < reservation.date_stop < other_res.date_stop):
                         verr = _('Not allowed, the resource is already taken '
                                  'during this period : from {} to {} this day, '
                                  'please choose another périod before confirming.')

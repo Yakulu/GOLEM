@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Michel Dessenne <michel@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+
+  <report id="golem_member_report_pdf" model="golem.member"
+    string="Golem member report [PDF]" report_type="qweb-pdf"
+    name="golem_member.golem_member_card_template"
+    file="golem_member.golem_member_card_template"
+    attachment="(object.name + '.pdf')" />
+  <report id="golem_member_report_html" model="golem.member"
+    string="Golem member report [HTML]" report_type="qweb-html"
+    name="golem_member.golem_member_card_template"
+    file="golem_member.golem_member_card_template"
+    attachment="(object.name + '.html')" />
+
+    <template id="golem_member_card_template">
+      <t t-call="report.html_container">
+        <t t-set="season" t-value="docs._default_season()" />
+        <t t-foreach="docs" t-as="member" id="foreach_member">
+          <t t-call="report.external_layout">
+            <div id='page_report_member' class="page">
+              <div class="row">
+                <div class="col-xs-12" id="member_title">
+                  <h2 class="golem_report_title">
+                    <span t-field="member.name" />
+                    <small>(num. <span t-field="member.number" />)</small>
+                  </h2>
+                </div>
+                <div class="col-xs-12" id="season_info">
+                  <h3 class="text-right" style="margin-top: 0;">
+                    Season :
+                    <span t-field="season.name" />
+                    <t t-if="season.date_start">
+                      <small>Period :
+                        <span t-field="season.date_start" /> -
+                        <span t-field="season.date_end" />
+                      </small>
+                    </t>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+</odoo>
