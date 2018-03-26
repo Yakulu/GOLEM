@@ -135,6 +135,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="resource_configuration_menu" name="Configuration"
       parent="golem_resource_menu" groups="golem_base.group_golem_manager"
       sequence="90" />
+    <menuitem id="product_template_menu" name="Sellable Products"
+      parent="resource_configuration_menu"
+      action="product.product_template_action" sequence="20" />
 
   </data>
 </odoo>
