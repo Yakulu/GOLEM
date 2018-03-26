@@ -40,6 +40,9 @@ class GolemResourceReservation(models.Model):
     def create_invoice(self):
         """ Invoice creation """
         for reservation in self:
+            if reservation.invoice_line_id:
+                raise ValidationError(_('You can not create an invoice as there '
+                                        'is already one.'))
             inv_obj = self.env['account.invoice']
             partner_id = reservation.partner_id
             product = reservation.resource_id.product_tmpl_id
@@ -66,11 +69,11 @@ class GolemResourceReservation(models.Model):
                 'invoice_line_ids': [(0, 0, {
                     'name': reservation.resource_id.name,
                     'origin': reservation.name,
-                    'account_id': account_id,
                     'price_unit': amount,
                     'quantity': 1.0,
-                    'discount': 0.0,
                     'uom_id': product.uom_id.id,
+                    'account_id': account_id,
                     'product_id': product.id,
-                    })]
-                })
+                })]
+            })
+            reservation.invoice_line_id = reservation.invoice_id.invoice_line_ids[0]
