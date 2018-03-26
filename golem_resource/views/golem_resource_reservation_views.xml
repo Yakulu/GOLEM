@@ -70,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </header>
           <sheet>
             <group>
-              <group string="Resource">
+              <group name="resource" string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
                 <field name="resource_avaibility_24_7" readonly="1" />
@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="resource_timetable_ids" readonly="1"
                   attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
               </group>
-              <group string="Reservation">
+              <group name="reservation" string="Reservation">
                 <group>
                   <field name="date_start" />
                   <field name="date_stop" />
