@@ -72,6 +72,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="invoice_id" string="Invoice"
             filter_domain="[('invoice_id.number', 'ilike', self)]" />
         </field>
+        <filter name="state_rejected" position="after">
+          <separator />
+          <filter name="invoiced" string="Invoiced"
+            domain="[('invoice_line_id', '!=', False)]" />
+          <filter name="not_invoiced" string="Not invoiced"
+            domain="[('state', '=', 'validated'), ('invoice_line_id', '=', False)]" />
+        </filter>
         <filter name="group_state" position="after">
           <filter name="group_invoice_state" string="Invoice state"
             context="{'group_by': 'invoice_state'}" />
