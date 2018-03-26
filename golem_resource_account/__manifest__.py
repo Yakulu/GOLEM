@@ -27,6 +27,6 @@
     'application': True,
     'installable': True,
     'depends': ['golem_resource', 'account'],
-    'data': ['wizard/golem_reservation_invoice.xml',
+    'data': ['wizard/golem_reservation_invoice_views.xml',
              'views/golem_resource_reservation_views.xml']
 }

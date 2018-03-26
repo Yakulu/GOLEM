@@ -19,24 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-
-
-    <!-- Trees -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_tree">
-      <field name="name">GOLEM Resource Reservation Tree</field>
-      <field name="model">golem.resource.reservation</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="resource_id" />
-          <field name="date" />
-          <field name="hour_start" widget="float_time" />
-          <field name="hour_stop" widget="float_time" />
-          <field name="partner_id" />
-          <field name="state" />
-        </tree>
-      </field>
-    </record>-->
-
     <!-- Forms -->
     <record model="ir.ui.view"
       id="golem_reservation_invoice_wizard_form_editable">
@@ -45,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form string="Reservation to invoice">
           <group>
-            <field name="reservation_ids" context="{'default_reservation_ids': active_ids}" />
+            <field name="reservation_ids" />
           </group>
           <footer>
             <button name="create_invoices" string="Create Invoices" type="object"
@@ -62,7 +44,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.reservation.invoice.wizard</field>
       <field name="arch" type="xml">
         <form string="Reservation to invoice">
-          <label string="Invoices will be created in draft so that you can review them before validation" />
+          <p>
+            <strong>
+              Invoices will be created in draft so that you can review them before validation
+            </strong>
+          </p>
           <footer>
             <button name="create_invoices" string="Create Invoices" type="object"
               class="oe_highlight" />
@@ -71,9 +57,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </form>
       </field>
     </record>
-
-
-
 
   </data>
 </odoo>
