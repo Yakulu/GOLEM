@@ -16,7 +16,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import golem_resource_type, \
-    golem_resource_timetable, \
+from . import golem_resource_option, \
+    golem_resource_option_selection, \
     golem_resource, \
     golem_resource_reservation

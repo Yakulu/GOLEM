@@ -16,17 +16,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Resource Type """
+""" GOLEM Resource Reservation """
 
-from odoo import models, fields
 
-class GolemResourceType(models.Model):
-    """ GOLEM Resource Type """
-    _name = 'golem.resource.type'
-    _description = 'GOLEM Resource Type'
-    _order = 'name asc'
-    _sql_constraints = [('golem_resource_type_name_uniq',
-                         'UNIQUE (name)',
-                         'Resource type must be unique.')]
+from datetime import timedelta
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
-    name = fields.Char(string='Resource Type', required=True, index=True)
+
+class GolemResourceReservation(models.Model):
+    """ GOLEM Resource Reservation Option Model """
+    _inherit = 'golem.resource.reservation'
+
+    resource_option_ids = fields.One2many(related="resource_id.option_ids")
+    selected_option_ids = fields.One2many('golem.resource.option.selection', 'reservation_id',
+                                          string="Selected option")

@@ -18,20 +18,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!-- Trees -->
-    <record model="ir.ui.view" id="golem_resource_timetable_view_tree">
-      <field name="name">GOLEM Resource Timetable Tree</field>
-      <field name="model">golem.resource.timetable</field>
+
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_resource_option_selection_form">
+      <field name="name">GOLEM Resource Option Selection Form</field>
+      <field name="model">golem.resource.option.selection</field>
       <field name="arch" type="xml">
-        <tree editable="bottom">
-          <field name="resource_id" invisible="1" />
-          <field name="weekday" />
-          <field name="availibility_24"/>
-          <field name="time_start" string="Start hour" widget="float_time"
-            required="1" />
-          <field name="time_stop" string="Stop hour" widget="float_time"
-            required="1" />
-        </tree>
+        <form >
+          <group>
+            <field name="name" invisible="1"/>
+            <field name="resource_id" invisible="1" />
+            <field name="reservation_id" invisible="1"/>
+            <field name="option_id"/>
+          </group>
+        </form>
       </field>
     </record>
   </data>

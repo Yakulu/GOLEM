@@ -18,16 +18,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!-- Forms -->
-    <record model="ir.ui.view" id="golem_resource_inherit_option_form">
-      <field name="name">GOLEM Resource Option Extention Form</field>
-      <field name="model">golem.resource</field>
-      <field name="inherit_id" ref="golem_resource.golem_resource_view_form"/>
+
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_resource_option_form">
+      <field name="name">GOLEM Resource Option Form</field>
+      <field name="model">golem.resource.option</field>
       <field name="arch" type="xml">
-        <field name="supervisor_id" position="after">
-          <field name="option_ids" widget="many2many_tags"
-            context="{'default_resource_id': active_id}" />
-        </field>
+        <form >
+          <group>
+            <field name="name" />
+            <field name="resource_id" invisible="1" />
+          </group>
+        </form>
       </field>
     </record>
   </data>
