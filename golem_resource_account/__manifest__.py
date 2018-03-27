@@ -20,7 +20,7 @@
     'name': 'GOLEM resources invoicing',
     'summary': 'GOLEM resources invoicing',
     'description': ''' GOLEM resources invoicing ''',
-    'version': '10.0.0.1.1',
+    'version': '10.0.0.1.2',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',

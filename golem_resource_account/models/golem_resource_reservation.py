@@ -81,7 +81,7 @@ class GolemResourceReservation(models.Model):
                 'quantity': quantity,
                 'uom_id': product.uom_id.id,
                 'account_id': account_id,
-                'product_id': product.id,
+                'product_id': product.product_variant_id.id,
             })
             reservation.invoice_line_id = line_id
 
