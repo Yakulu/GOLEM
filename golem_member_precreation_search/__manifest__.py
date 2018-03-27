@@ -26,7 +26,7 @@
     'application': False,
     'installable': True,
     'depends': ['golem_member'],
-    'data': ['views/golem_precreation_partner_menu.xml',
-             'wizard/golem_precreation_member_request_wizard_views.xml',
+    'data': ['views/golem_member_precreation_search_menu.xml',
+             'wizard/golem_member_precreation_search_views.xml',
              'wizard/golem_precreation_member_result_wizard_views.xml']
 }
