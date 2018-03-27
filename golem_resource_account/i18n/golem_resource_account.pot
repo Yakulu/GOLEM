@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 16:31+0000\n"
-"PO-Revision-Date: 2018-03-26 16:31+0000\n"
+"POT-Creation-Date: 2018-03-27 09:39+0000\n"
+"PO-Revision-Date: 2018-03-27 09:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -166,13 +166,13 @@ msgid "Status"
 msgstr ""
 
 #. module: golem_resource_account
-#: code:addons/golem_resource_account/models/golem_resource_reservation.py:46
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:50
 #, python-format
 msgid "The reservation \"{}\" is not validated, please validate it before creating invoice"
 msgstr ""
 
 #. module: golem_resource_account
-#: code:addons/golem_resource_account/models/golem_resource_reservation.py:62
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:66
 #, python-format
 msgid "There is no income account defined for this product: \"{}\". You have to configure it on the product form."
 msgstr ""
@@ -183,15 +183,21 @@ msgid "Total"
 msgstr ""
 
 #. module: golem_resource_account
-#: code:addons/golem_resource_account/models/golem_resource_reservation.py:48
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:52
 #, python-format
 msgid "You can not create an invoice as there is already one."
 msgstr ""
 
 #. module: golem_resource_account
-#: code:addons/golem_resource_account/models/golem_resource_reservation.py:53
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:57
 #, python-format
 msgid "You can not create an invoice without linked product on the resource reserved."
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:43
+#, python-format
+msgid "You can't group reservations of multiple clients in the same invoice, please remove inadequate reservations"
 msgstr ""
 
 #. module: golem_resource_account
