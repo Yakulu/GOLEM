@@ -39,6 +39,10 @@ class GolemResourceReservation(models.Model):
     @api.multi
     def check_before_invoicing(self):
         """ Checks data coherence before invoicing """
+        if len(self.mapped('partner_id')) > 1:
+            raise ValidationError(_('You can\'t group reservations of multiple '
+                                    'clients in the same invoice, please remove '
+                                    'inadequate reservations'))
         for reservation in self:
             if reservation.state != "validated":
                 raise ValidationError(
