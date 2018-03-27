@@ -62,12 +62,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="name" />
                   <field name="type_id" />
                   <field name="product_tmpl_id" options="{'no_create': True}" />
-                  <field name="supervisor_id" />
-                  <field name="validation_required" />
               </group>
               <group>
-                  <field name="option_ids" widget="many2many_tags"
-                     context="{'default_resource_id': active_id}" />
+                  <field name="validation_required" />
+                  <field name="supervisor_id" />
               </group>
             </group>
             <group string="Availibility configuration">

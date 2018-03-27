@@ -19,6 +19,4 @@
 from . import golem_resource_type, \
     golem_resource_timetable, \
     golem_resource, \
-    golem_resource_reservation, \
-    golem_resource_option, \
-    golem_resource_option_selection
+    golem_resource_reservation

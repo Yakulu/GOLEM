@@ -50,8 +50,6 @@ class GolemResource(models.Model):
     reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
                                       string='Reservations')
     reservation_count = fields.Integer(compute='_compute_reservation_count')
-    option_ids = fields.One2many('golem.resource.option', 'resource_id',
-                                 string='Option list')
 
     @api.depends('reservation_ids')
     def _compute_reservation_count(self):

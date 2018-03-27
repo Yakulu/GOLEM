@@ -66,9 +66,6 @@ class GolemResourceReservation(models.Model):
                              default='draft', track_visibility='onchange')
 
     rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
-    resource_option_ids = fields.One2many(related="resource_id.option_ids")
-    selected_option_ids = fields.One2many('golem.resource.option.selection', 'reservation_id',
-                                          string="Selected option")
 
     @api.depends('resource_id', 'date_start')
     def _compute_name(self):
