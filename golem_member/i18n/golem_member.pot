@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 15:10+0000\n"
-"PO-Revision-Date: 2018-03-08 15:10+0000\n"
+"POT-Creation-Date: 2018-03-27 13:57+0000\n"
+"PO-Revision-Date: 2018-03-27 13:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,11 +46,6 @@ msgid "Active"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Activities"
-msgstr ""
-
-#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Address"
 msgstr ""
@@ -58,11 +53,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_type
 msgid "Address Type"
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Animator"
 msgstr ""
 
 #. module: golem_member
@@ -319,23 +309,8 @@ msgid "Date on which membership has been cancelled"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Date start"
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Date stop"
-msgstr ""
-
-#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_stop
 msgid "Date until which membership remains active."
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Day"
 msgstr ""
 
 #. module: golem_member
@@ -491,16 +466,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_has_unreconciled_entries
 msgid "Has unreconciled entries"
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Hour start"
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Hour stop"
 msgstr ""
 
 #. module: golem_member
@@ -743,7 +708,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_name
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4186
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
 msgid "Name"
 msgstr ""
 
@@ -1104,6 +1068,11 @@ msgid "Title"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.ui.menu,name:golem_member.golem_member_tool_menu
+msgid "Tools"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_total_invoiced
 msgid "Total Invoiced"
 msgstr ""
@@ -1126,11 +1095,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_debit
 msgid "Total amount you have to pay to this vendor."
-msgstr ""
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Type"
 msgstr ""
 
 #. module: golem_member
