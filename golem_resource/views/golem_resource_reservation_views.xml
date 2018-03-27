@@ -24,10 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Reservation Calendar</field>
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <calendar date_start="date_start" date_stop="date_stop" color="resource_id">
+        <calendar date_start="date_start" date_stop="date_stop" color="resource_id"
+          event_open_popup="%(golem_resource.golem_resource_reservation_view_form)s"
+          mode="month">
           <field name="resource_id" />
-          <field name="user_id" />
           <field name="partner_id" />
+          <field name="note" />
         </calendar>
       </field>
     </record>
@@ -37,12 +39,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Reservation Tree</field>
       <field name="model">golem.resource.reservation</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree colors="black: state=='draft'; blue: state=='validated'; gree : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
           <field name="resource_id" />
           <field name="date_start" />
           <field name="date_stop" />
           <field name="partner_id" />
           <field name="state" />
+          <field name='day_start' invisible='1'/>
+
         </tree>
       </field>
     </record>
@@ -70,7 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </header>
           <sheet>
             <group>
-              <group string="Resource">
+              <group name="resource" string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
                 <field name="resource_option_ids" widget="many2many_tags" readonly="1"/>
@@ -80,7 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="resource_timetable_ids" readonly="1"
                   attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
               </group>
-              <group string="Reservation">
+              <group name="reservation" string="Reservation">
                 <group>
                   <field name="date_start" />
                   <field name="date_stop" />
@@ -117,12 +121,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <search>
           <field name="date_start" />
           <field name="date_stop" />
+          <field name="day_start"/>
           <field name="resource_id" />
           <field name="user_id" />
           <field name="partner_id" />
           <field name="state" />
-          <filter name="to_validate" string="Reservation to Validate"
+          <filter name="state_draft" string="Draft"
+            domain="[('state', '=', 'draft')]" />
+          <filter name="state_confirmed" string="Confirmed, to Validate"
             domain="[('state', '=', 'confirmed')]" />
+          <filter name="state_validated" string="Validated"
+            domain="[('state', '=', 'validated')]" />
+          <filter name="state_rejected" string="Rejected"
+            domain="[('state', '=', 'rejected')]" />
+          <separator />
+          <filter name="day_reservation" string="Day Reservation"
+            domain="[('day_start', '=', context_today().strftime('%%Y-%%m-%%d'))]" />
+          <filter name="7days_reservation" string="7 Days Reservations"
+            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
+                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]" />
+          <filter name="30days_reservation" string="30 Days Reservations"
+            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
+                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=30)).strftime('%%Y-%%m-%%d'))]" />
           <filter name="group_state" string="State"
             context="{'group_by': 'state'}" />
           <filter name="group_resource" string="Resource"

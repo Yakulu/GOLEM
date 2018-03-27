@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,16 +17,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM non-profit membership handling',
-    'summary': 'Extends Odoo membership',
-    'version': '10.0.1.1.3',
+    'name': 'GOLEM resources invoicing',
+    'summary': 'GOLEM resources invoicing',
+    'description': ''' GOLEM resources invoicing ''',
+    'version': '10.0.0.1.3',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Michel Dessenne',
+    'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': False,
+    'application': True,
     'installable': True,
-    'depends': ['golem_member', 'account', 'decimal_precision'],
-    'data': ['views/golem_membership_invoice.xml',
-             'views/golem_member_view.xml',
-             'report/golem_member_card_templates.xml']
+    'depends': ['golem_resource', 'account'],
+    'data': ['wizard/golem_reservation_invoice_views.xml',
+             'views/golem_resource_reservation_views.xml']
 }
