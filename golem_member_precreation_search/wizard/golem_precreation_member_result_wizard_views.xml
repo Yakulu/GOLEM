@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+
     <record model="ir.ui.view" id="golem_precreation_member_result_wizard">
       <field name="name">Golem Precreation Member result Wizard Form</field>
       <field name="model">golem.precreation.member.result.wizard</field>
@@ -51,5 +52,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </form>
       </field>
     </record>
+    
   </data>
 </odoo>

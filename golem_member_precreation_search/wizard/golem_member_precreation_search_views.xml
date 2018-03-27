@@ -18,26 +18,57 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <record model="ir.ui.view" id="golem_precreation_member_request_wizard">
-      <field name="name">Golem Precreation Member Request Wizard Form</field>
-      <field name="model">golem.precreation.member.request.wizard</field>
+
+    <record model="ir.ui.view" id="golem_member_precreation_search_view_form">
+      <field name="name">GOLEM Member Precreation Search Form</field>
+      <field name="model">golem.member.precreation.search</field>
       <field name="arch" type="xml">
-        <form string="Member Searching">
+        <form>
+          <field name="state" invisible="1" />
           <group>
-            <field name="name" />
-            <field name="is_member" invisible="1"/>
+            <p colspan="2" states="init">
+              Please enter a keyword. It will be searched, as case-insensitive, into firstname, lastname and emails.
+            </p>
+            <field name="keyword" attrs="{'readonly': [('state', '=', 'final')]}" />
+          </group>
+          <group states="final">
+            <p colspan="2" attrs="{'invisible': [('member_ids', '!=', [])]}">
+              No member found for the current search.
+            </p>
+            <field name="member_ids" readonly="1"
+                attrs="{'invisible': [('member_ids', '=', [])]}">
+              <tree>
+                  <field name="id" invisible="1"/>
+                  <field name="firstname"/>
+                  <field name="lastname"/>
+                  <field name="email"/>
+                  <button name="navigate_to_contact" type="object" icon="fa fa-external-link" />
+              </tree>
+            </field>
+            <p colspan="2" attrs="{'invisible': [('contact_ids', '!=', [])]}">
+              No contact found for the current search.
+            </p>
+            <field name="contact_ids" readonly="1"
+                attrs="{'invisible': [('contact_ids', '=', [])]}">
+              <tree>
+                  <field name="id" invisible="1"/>
+                  <field name="firstname"/>
+                  <field name="lastname"/>
+                  <field name="email"/>
+                  <button  name="navigate_to_contact"  type="object" icon="fa fa-external-link" />
+              </tree>
+            </field>
           </group>
           <footer>
-            <button  name="search_members" string="Search Member" type="object"
-              context="{'model': 'golem.member'}" class="oe_link"
-              attrs="{'invisible': [('is_member', '=', False)]}"/>
-            <button  name="search_members" string="Search Contact" type="object"
-              context="{'model': 'res.partner'}" class="oe_link"
-              attrs="{'invisible': [('is_member', '=', True)]}" />
-            <button string="Cancel" class="oe_link" special="cancel" />
+            <button name="search_partners" string="Search Members and Contacts"
+               type="object" class="oe_highlight" states="init" />
+            <button name="new_search" string="New search"
+              type="object" states="final" />
+            <button string="Close" special="cancel" />
           </footer>
         </form>
       </field>
     </record>
+
   </data>
 </odoo>

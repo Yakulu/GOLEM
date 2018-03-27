@@ -21,16 +21,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Actions -->
-    <act_window id="golem_precreation_member_request_action"
+    <act_window id="golem_member_precreation_search_action"
       name="Pre-creation contact search"
-      res_model="golem.precreation.member.request.wizard"
+      res_model="golem.member.precreation.search"
       view_mode="form" target="new" />
 
     <!-- Menus -->
-    <menuitem id="golem_precreation_member_request_menu"
-      name="Pre-creation contact search"
+    <menuitem id="golem_member_precreation_search_menu"
+      name="Search for contact before create"
       parent="golem_member.golem_member_tool_menu" sequence="10"
-      action="golem_precreation_member_request_action"
+      action="golem_member_precreation_search_action"
       groups="golem_base.group_golem_user" />
 
   </data>

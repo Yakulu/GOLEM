@@ -19,7 +19,7 @@
 {
     'name': 'GOLEM Pre-creation search member',
     'summary': 'Pre-creation search member',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef El ouahby',
     'license': 'AGPL-3',
@@ -27,6 +27,5 @@
     'installable': True,
     'depends': ['golem_member'],
     'data': ['views/golem_member_precreation_search_menu.xml',
-             'wizard/golem_member_precreation_search_views.xml',
-             'wizard/golem_precreation_member_result_wizard_views.xml']
+             'wizard/golem_member_precreation_search_views.xml']
 }
