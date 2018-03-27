@@ -18,7 +18,7 @@
 
 """ GOLEM Resource Reservation """
 
-
+from math import modf
 from datetime import timedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
@@ -32,6 +32,7 @@ class GolemResourceReservation(models.Model):
     _order = 'day_start desc, hour_start asc'
 
     name = fields.Char(compute='_compute_name', store=True)
+    # TODO: handle multiple days reservation
     date_start = fields.Datetime('Start date', required=True,
                                  index=True, readonly=True,
                                  states={'draft': [('readonly', False)]})
