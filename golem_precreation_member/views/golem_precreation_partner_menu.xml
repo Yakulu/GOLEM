@@ -19,18 +19,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
-    <!-- Forms -->
-    <record id="res_partner_precreation_extention_form" model="ir.ui.view">
-      <field name="name">Res Partner Precreation extention Form</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
-            <xpath expr="//sheet" position="before">
-            <header>
-              <button name="precreation_search" type="object" string="Pre-creation search" class="oe_highlight"/>
-            </header>
-          </xpath>
-      </field>
-    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_precreation_member_request_action"
+      name="Pre-creation contact search"
+      res_model="golem.precreation.member.request.wizard"
+      view_mode="form" target="new" />
+
+    <!-- Menus -->
+    <menuitem id="golem_precreation_member_request_menu"
+      name="Pre-creation contact search"
+      parent="golem_member.golem_member_tool_menu" sequence="10"
+      action="golem_precreation_member_request_action"
+      groups="golem_base.group_golem_user" />
+
   </data>
 </odoo>

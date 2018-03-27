@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="firstname"/>
                 <field name="lastname"/>
                 <field name="email"/>
-                <button  name="open_line"  type="object" icon="fa fa-external-link" />
+                <button name="navigate_to_contact" type="object" icon="fa fa-external-link" />
             </tree>
           </field>
           <field name="contact_ids" readonly="1"
@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="firstname"/>
                 <field name="lastname"/>
                 <field name="email"/>
-                <button  name="open_line"  type="object" icon="fa fa-external-link" />
+                <button  name="navigate_to_contact"  type="object" icon="fa fa-external-link" />
             </tree>
           </field>
           <footer>

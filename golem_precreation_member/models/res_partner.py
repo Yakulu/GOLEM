@@ -18,11 +18,9 @@
 
 """ GOLEM Contact """
 
-
 from odoo import models, api, _
 
-
-class GolemMember(models.Model):
+class ResPartner(models.Model):
     """ Res Partner extention """
     _inherit = 'res.partner'
 
@@ -37,9 +35,10 @@ class GolemMember(models.Model):
             'view_mode': 'form',
             'target': 'new'
             }
+
     @api.multi
-    def open_line(self):
-        """ open contact form """
+    def navigate_to_contact(self):
+        """ Navigates to contact form, in edit mode """
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
@@ -47,7 +46,7 @@ class GolemMember(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': self._name,
-            'res_id': self.id,
+            'res_id': self[0].id,
             'flags': {'initial_mode': 'edit'},
-            'target': 'current',
+            'target': 'current'
         }
