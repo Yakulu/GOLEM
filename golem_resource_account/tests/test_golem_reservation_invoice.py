@@ -20,7 +20,7 @@
 
 import logging
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -30,6 +30,15 @@ class TestGolemResourceReservation(TransactionCase):
     def setUp(self, *args, **kwargs):
         """ Bootstrap Resource Reservation """
         super(TestGolemResourceReservation, self).setUp(*args, **kwargs)
+        self.product = self.env['product.template'].create({
+            'name': 'Product',
+            'categ_id': self.env.ref('product.product_category_all').id,
+            'list_price': 7.0,
+            'type': 'service',
+            'uom_id': self.env.ref('product.product_uom_hour').id,
+            'uom_po_id': self.env.ref('product.product_uom_hour').id,
+            'property_account_income_id': self.env.ref('l10n_fr.pcg_706').id
+        })
         self.resource = self.env['golem.resource'].create({
             'name': 'Resource',
             'avaibility_start': '2018-01-01',
@@ -63,47 +72,49 @@ class TestGolemResourceReservation(TransactionCase):
         reservation = self.res_obj.create(self.data)
         self.assertEqual(reservation.state, 'draft')
         self.assertFalse(reservation.invoice_id)
+
         #try to create invoice withoud validating reservation
-        with self.assertRaises(UserError) as err:
+        with self.assertRaises(ValidationError) as err:
             reservation.create_invoice()
         self.assertIn(u'is not validated, please validate it', err.exception.args[0])
         reservation.state_confirm()
 
         #try to create invoice with no product linked
-        with self.assertRaises(UserError) as err:
+        with self.assertRaises(ValidationError) as err:
             reservation.create_invoice()
-        self.assertIn(u'no product linked to resource', err.exception.args[0])
+        self.assertIn(u'without linked product', err.exception.args[0])
 
-        reservation.resource_id.write({
-            'product_tmpl_id': self.env.ref('product.product_product_5').id})
+        reservation.resource_id.write({'product_tmpl_id': self.product.id})
         reservation.create_invoice()
         self.assertTrue(reservation.invoice_id)
-        self.assertEqual(reservation.invoice_state, "draft")
+        self.assertEqual(reservation.invoice_id.state, 'draft')
 
     def test_multiple_reservation_in(self):
         """ Test Multiple Reservation Invoices """
         reservation_1 = self.res_obj.create(self.data)
         reservation_2 = self.res_obj.create(self.data2)
-        #reservations = [reservation_1, reservation_2]
         reservation_1.state_confirm()
         reservation_2.state_confirm()
-        self.assertEqual(reservation_1.state, "validated")
-        self.assertEqual(reservation_2.state, "validated")
-        reservation_1.resource_id.write({
-            'product_tmpl_id': self.env.ref('product.product_product_5').id})
-        reservation_2.resource_id.write({
-            'product_tmpl_id': self.env.ref('product.product_product_5').id})
+        self.assertEqual(reservation_1.state, 'validated')
+        self.assertEqual(reservation_2.state, 'validated')
+
+        reservation_1.resource_id.product_tmpl_id = self.product.id
+        reservation_2.resource_id.product_tmpl_id = self.product.id
+
         wizard = self.env['golem.reservation.invoice.wizard'].create({
             'reservation_ids': [(4, reservation_1.id, 0), (4, reservation_2.id, 0)]})
         self.assertTrue(wizard.reservation_ids)
         self.assertEqual(wizard.reservation_ids[0], reservation_2)
         self.assertEqual(wizard.reservation_ids[1], reservation_1)
+
         #try to create invoice for to different client
-        with self.assertRaises(UserError) as err:
-            wizard.create_invoices()
-        self.assertIn(u'group reservations of multiple clients in the same', err.exception.args[0])
+        with self.assertRaises(ValidationError) as err:
+            wizard.create_invoice()
+        self.assertIn(u'group reservations of multiple clients in the same',
+                      err.exception.args[0])
+
         #fixing the same client for both reservation
         reservation_2.write({'partner_id': self.partner.id})
-        wizard.create_invoices()
+        wizard.create_invoice()
         self.assertTrue(reservation_1.invoice_id)
         self.assertTrue(reservation_2.invoice_id)
