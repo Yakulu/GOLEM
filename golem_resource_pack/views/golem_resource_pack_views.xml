@@ -35,29 +35,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>-->
 
     <!-- Trees -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_tree">
-      <field name="name">GOLEM Resource Reservation Tree</field>
-      <field name="model">golem.resource.reservation</field>
+    <record model="ir.ui.view" id="golem_resource_pack_view_tree">
+      <field name="name">GOLEM Resource Pack Tree</field>
+      <field name="model">golem.resource.pack</field>
       <field name="arch" type="xml">
-        <tree colors="black: state=='draft'; blue: state=='validated'; gree : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
-          <field name="resource_id" />
-          <field name="date_start" />
-          <field name="date_stop" />
+        <tree >
+          <field name="user_id" />
           <field name="partner_id" />
-          <field name="state" />
-          <field name='day_start' invisible='1'/>
-
         </tree>
       </field>
-    </record>-->
+    </record>
 
     <!-- Forms -->
-  <!--  <record model="ir.ui.view" id="golem_resource_reservation_view_form">
-      <field name="name">GOLEM Resource Reservation Form</field>
-      <field name="model">golem.resource.reservation</field>
+    <record model="ir.ui.view" id="golem_resource_pack_view_form">
+      <field name="name">GOLEM Resource Pack Form</field>
+      <field name="model">golem.resource.pack</field>
       <field name="arch" type="xml">
         <form>
-          <header>
+          <!--<header>
             <button name="state_confirm" type="object" string="Confirm" class="oe_highlight"
               attrs="{'invisible': ['|', ('state', 'not in', 'draft'), ('id', '=', False)]}" />
             <button name="state_canceled" type="object"
@@ -71,39 +66,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               states="confirmed" class="oe_highlight"
               groups="golem_base.group_golem_manager" />
             <field name="state" widget="statusbar" />
-          </header>
+          </header>-->
           <sheet>
             <group>
-              <group name="resource" string="Resource">
-                <field name="id" invisible="1" />
-                <field name="resource_id" options="{'no_create': True}" />
-                <field name="resource_avaibility_24_7" readonly="1" />
-                <field name="resource_avaibility_start" readonly="1" />
-                <field name="resource_avaibility_stop" readonly="1" />
-                <field name="resource_timetable_ids" readonly="1"
-                  attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
-              </group>
-              <group name="reservation" string="Reservation">
-                <group>
-                  <field name="date_start" />
-                  <field name="date_stop" />
-                  <field name="user_id" options="{'no_create': True}" />
-                  <field name="partner_id" />
-                  <field name="note"
-                    placeholder="Notes, optional subject for the reservation, reason" />
-                  <field name="rejection_reason"
-                    attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
-                </group>
+              <group name="general" string="Genaral">
+                <field name="user_id" />
+                <field name="partner_id" />
+                <field name="note" />
               </group>
             </group>
+            <field name="reservation_ids" />
           </sheet>
-          <div class="oe_chatter">
+          <!--<div class="oe_chatter">
               <field name="message_follower_ids" widget="mail_followers" />
               <field name="message_ids" widget="mail_thread" />
-          </div>
+          </div>-->
         </form>
       </field>
-    </record>-->
+    </record>
 
     <!-- Searches -->
     <!--<record model="ir.ui.view" id="golem_resource_reservation_view_search">
@@ -155,7 +135,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="golem_resource_pack_action" name="Reservation Pack"
-      res_model="golem.resource.pack" view_mode="tree,form,calendar" />
+      res_model="golem.resource.pack" view_mode="tree,form" />
 
     <!-- Menus -->
     <menuitem id="golem_resource_packs_menu" name="Reservation Packs"
