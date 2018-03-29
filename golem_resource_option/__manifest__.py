@@ -29,7 +29,8 @@
     'application': True,
     'installable': True,
     'depends': ['golem_resource'],
-    'data': ['views/golem_resource_views.xml',
+    'data': ['security/ir.model.access.csv',
+             'views/golem_resource_views.xml',
              'views/golem_resource_reservation_views.xml',
              'views/golem_resource_option_views.xml']
 }
