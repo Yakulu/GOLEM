@@ -36,3 +36,14 @@ class GolemResourcePack(models.Model):
                               string='User', default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='On behalf of',
                                  required=True, index=True)
+    state = fields.Selection([('canceled', 'Canceled'),
+                              ('draft', 'Draft'),
+                              ('confirmed', 'Confirmed'),
+                              ('validated', 'Validated'),
+                              ('rejected', 'Rejected')],
+                             default='draft')
+
+    @api.multi
+    def state_confirm(self):
+        for pack in self:
+            pack.reservation_ids.state_confirm()
