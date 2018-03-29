@@ -16,21 +16,22 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM non-profit resources',
-    'summary': 'GOLEM resources management',
-    'description': ''' GOLEM resources management ''',
-    'version': '10.0.1.13.1',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_base', 'product'],
-    'data': ['views/golem_resource_views.xml',
-             'views/golem_resource_type_views.xml',
-             'views/golem_resource_reservation_views.xml',
-             'views/golem_resource_timetable_views.xml',
-             'wizard/golem_reservation_rejection_views.xml',
-             'security/ir.model.access.csv']
-}
+""" GOLEM Resource Option """
+
+
+from odoo import models, fields, _
+
+
+class GolemResourceOption(models.Model):
+    """ GOLEM Resource Option Model """
+    _name = 'golem.resource.option'
+    _description = 'GOLEM Reservation Option Model'
+    _order = 'name asc, resource_id asc'
+    _sql_constraints = [('golem_resource_option_name_uniq',
+                         'UNIQUE (name, resource_id)',
+                         _('An option has already this name for this resource.'))]
+
+    name = fields.Char('Option', required=True, index=True)
+    resource_id = fields.Many2one('golem.resource', 'Resource',
+                                  index=True, required=True)
+    active = fields.Boolean(default=True)

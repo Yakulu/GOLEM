@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <!-- Forms -->
+    <record model="ir.ui.view"
+       id="golem_resource_reservation_view_form_inherit_golem_resource_option">
+      <field name="name">GOLEM Resource Reservation Option Extension Form</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="inherit_id" ref="golem_resource.golem_resource_reservation_view_form"/>
+      <field name="arch" type="xml">
+        <field name="partner_id" position="after" >
+          <field name="selected_option_ids"
+            context="{'default_reservation_id': active_id}"
+            widget="many2many_checkboxes" />
+        </field>
+      </field>
+
+    </record>
+  </data>
+</odoo>

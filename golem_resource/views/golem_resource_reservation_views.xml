@@ -19,21 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <!-- Calendars -->
-    <record model="ir.ui.view" id="golem_resource_reservation_view_calendar">
-      <field name="name">GOLEM Resource Reservation Calendar</field>
-      <field name="model">golem.resource.reservation</field>
-      <field name="arch" type="xml">
-        <calendar date_start="date_start" date_stop="date_stop" color="resource_id"
-          event_open_popup="%(golem_resource.golem_resource_reservation_view_form)s"
-          mode="month">
-          <field name="resource_id" />
-          <field name="partner_id" />
-          <field name="note" />
-        </calendar>
-      </field>
-    </record>
-
     <!-- Trees -->
     <record model="ir.ui.view" id="golem_resource_reservation_view_tree">
       <field name="name">GOLEM Resource Reservation Tree</field>
@@ -102,6 +87,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="message_ids" widget="mail_thread" />
           </div>
         </form>
+      </field>
+    </record>
+
+    <!-- Calendars -->
+    <record model="ir.ui.view" id="golem_resource_reservation_view_calendar">
+      <field name="name">GOLEM Resource Reservation Calendar</field>
+      <field name="model">golem.resource.reservation</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date_start" date_stop="date_stop" color="resource_id"
+          event_open_popup="%(golem_resource.golem_resource_reservation_view_form)s"
+          mode="month">
+          <field name="resource_id" />
+          <field name="partner_id" />
+          <field name="note" />
+        </calendar>
       </field>
     </record>
 

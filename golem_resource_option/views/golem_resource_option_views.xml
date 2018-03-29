@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_resource_option_form">
+      <field name="name">GOLEM Resource Option Form</field>
+      <field name="model">golem.resource.option</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name" />
+            <field name="resource_id" invisible="1" />
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Tree -->
+    <record model="ir.ui.view" id="golem_resource_option_tree">
+      <field name="name">GOLEM Resource Option Tree</field>
+      <field name="model">golem.resource.option</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="name" />
+          <field name="resource_id" options="{'no_create': True}" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record model="ir.ui.view" id="golem_resource_option_search">
+      <field name="name">GOLEM Resource Option Search</field>
+      <field name="model">golem.resource.option</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="resource_id" />
+          <filter name="inactive" string="Inactive"
+            domain="[('active', '=', False)]" />
+          <filter name="group_resource" string="By resource"
+            context="{'group_by': 'resource_id'}" />
+        </search>
+      </field>
+    </record>
+
+    <!-- Action -->
+    <act_window id="golem_resource_option_action" name="Options"
+      res_model="golem.resource.option" view_mode="tree" />
+    <!-- Menu -->
+    <menuitem id="golem_resource_option_menu" name="Options"
+      parent="golem_resource.resource_configuration_menu"
+      action="golem_resource_option_action" sequence="15" />
+
+  </data>
+</odoo>
