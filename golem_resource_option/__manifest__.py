@@ -26,7 +26,7 @@
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
     'depends': ['golem_resource'],
     'data': ['security/ir.model.access.csv',
