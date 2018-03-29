@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <field name="partner_id" position="after" >
           <field name="selected_option_ids"
             context="{'default_reservation_id': active_id}"
-            widget="many2many_tags" />
+            widget="many2many_checkboxes" />
         </field>
       </field>
 

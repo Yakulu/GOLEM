@@ -19,14 +19,19 @@
 """ GOLEM Resource Option """
 
 
-from odoo import models, fields
+from odoo import models, fields, _
 
 
 class GolemResourceOption(models.Model):
     """ GOLEM Resource Option Model """
     _name = 'golem.resource.option'
     _description = 'GOLEM Reservation Option Model'
+    _order = 'name asc, resource_id asc'
+    _sql_constraints = [('golem_resource_option_name_uniq',
+                         'UNIQUE (name, resource_id)',
+                         _('An option has already this name for this resource.'))]
 
-    name = fields.Char('Option', index=True)
+    name = fields.Char('Option', required=True, index=True)
     resource_id = fields.Many2one('golem.resource', 'Resource',
                                   index=True, required=True)
+    active = fields.Boolean(default=True)

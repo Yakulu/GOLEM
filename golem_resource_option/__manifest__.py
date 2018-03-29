@@ -31,6 +31,5 @@
     'depends': ['golem_resource'],
     'data': ['views/golem_resource_views.xml',
              'views/golem_resource_reservation_views.xml',
-             'views/golem_resource_option_views.xml',
-             'views/golem_resource_option_selection_views.xml']
+             'views/golem_resource_option_views.xml']
 }

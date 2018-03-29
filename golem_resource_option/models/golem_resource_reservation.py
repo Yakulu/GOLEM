@@ -27,6 +27,7 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     resource_option_ids = fields.One2many(related="resource_id.option_ids")
-    selected_option_ids = fields.One2many('golem.resource.option.selection',
-                                          'reservation_id',
-                                          string="Selected options")
+    selected_option_ids = fields.Many2many(
+        'golem.resource.option', string='Selected options',
+        index=True, readonly=True, domain='[("resource_id", "=", resource_id)]',
+        states={'draft': [('readonly', False)], 'confirmed': [('readonly', False)]})

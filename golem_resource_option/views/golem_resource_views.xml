@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.resource</field>
       <field name="inherit_id" ref="golem_resource.golem_resource_view_form"/>
       <field name="arch" type="xml">
-        <field name="supervisor_id" position="after">
+        <field name="product_tmpl_id" position="after">
           <field name="option_ids" widget="many2many_tags"
             context="{'default_resource_id': active_id}" />
         </field>
