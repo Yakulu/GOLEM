@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <field name="product_tmpl_id" position="after">
           <field name="option_ids" widget="many2many_tags"
+            domain="[('resource_id', '=', active_id)]"
             context="{'default_resource_id': active_id}" />
         </field>
       </field>
