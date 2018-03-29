@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 15:11+0000\n"
-"PO-Revision-Date: 2018-03-08 15:11+0000\n"
+"POT-Creation-Date: 2018-03-27 13:58+0000\n"
+"PO-Revision-Date: 2018-03-27 13:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,11 +47,6 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Activities"
-msgstr "Activités"
-
-#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Address"
 msgstr "Adresse"
@@ -60,11 +55,6 @@ msgstr "Adresse"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_type
 msgid "Address Type"
 msgstr "Type d'adresse"
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Animator"
-msgstr "Intervenant"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_numberconfig_form
@@ -320,24 +310,9 @@ msgid "Date on which membership has been cancelled"
 msgstr "Date à laquelle l'adhésion a été annulée"
 
 #. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Date start"
-msgstr "Début"
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Date stop"
-msgstr "Fin"
-
-#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_stop
 msgid "Date until which membership remains active."
 msgstr "Date jusqu'à laquelle l'adhésion reste active."
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Day"
-msgstr "Jour"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_search
@@ -493,16 +468,6 @@ msgstr "Grouper par"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_has_unreconciled_entries
 msgid "Has unreconciled entries"
 msgstr "A des écritures non lettrées"
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Hour start"
-msgstr "Début"
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Hour stop"
-msgstr "Fin"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_id
@@ -750,7 +715,6 @@ msgstr "NIC"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_name
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4186
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
 msgid "Name"
 msgstr "Nom"
 
@@ -1113,6 +1077,11 @@ msgid "Title"
 msgstr "Civilité"
 
 #. module: golem_member
+#: model:ir.ui.menu,name:golem_member.golem_member_tool_menu
+msgid "Tools"
+msgstr "Outils"
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_total_invoiced
 msgid "Total Invoiced"
 msgstr "Total facturé"
@@ -1136,11 +1105,6 @@ msgstr "Montant total que ce client vous doit."
 #: model:ir.model.fields,help:golem_member.field_golem_member_debit
 msgid "Total amount you have to pay to this vendor."
 msgstr "Montant total à payer au fournisseur."
-
-#. module: golem_member
-#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
-msgid "Type"
-msgstr "Type"
 
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_type

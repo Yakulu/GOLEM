@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_member_precreation_search
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-27 15:09+0000\n"
+"PO-Revision-Date: 2018-03-27 15:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_contact_ids
+msgid "Contacts"
+msgstr "Contacts"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_member_precreation_search
+#: selection:golem.member.precreation.search,state:0
+msgid "Final"
+msgstr "Final"
+
+#. module: golem_member_precreation_search
+#: model:ir.model,name:golem_member_precreation_search.model_golem_member
+msgid "GOLEM Member"
+msgstr "Adhérent"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_member_precreation_search
+#: selection:golem.member.precreation.search,state:0
+msgid "Init"
+msgstr "Init"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_keyword
+msgid "Keyword"
+msgstr "Mot-clé"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_member_ids
+msgid "Members"
+msgstr "Adhérents"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "New search"
+msgstr "Nouvelle recherche"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "No contact found for the current search."
+msgstr "Pas de contact trouvé pour cette recherche."
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "No member found for the current search."
+msgstr "Pas de membre trouvé pour cette recherche."
+
+#. module: golem_member_precreation_search
+#: model:ir.model,name:golem_member_precreation_search.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "Please enter a keyword. It will be searched, as case-insensitive, into firstname, lastname and emails."
+msgstr "Merci de saisir un mot-clé. Il sera recherché sur les nom, prénom et mail."
+
+#. module: golem_member_precreation_search
+#: code:addons/golem_member_precreation_search/models/res_partner.py:32
+#, python-format
+msgid "Please enter contact searched"
+msgstr "Merci de saisir la recherche"
+
+#. module: golem_member_precreation_search
+#: model:ir.actions.act_window,name:golem_member_precreation_search.golem_member_precreation_search_action
+msgid "Pre-creation contact search"
+msgstr "Recherche de contact avant création"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.view,arch_db:golem_member_precreation_search.golem_member_precreation_search_view_form
+msgid "Search Members and Contacts"
+msgstr "Rechercher des membres et contacts"
+
+#. module: golem_member_precreation_search
+#: model:ir.ui.menu,name:golem_member_precreation_search.golem_member_precreation_search_menu
+msgid "Search for contact before create"
+msgstr "Rechercher un contact avant création"
+
+#. module: golem_member_precreation_search
+#: code:addons/golem_member_precreation_search/wizard/golem_member_precreation_search.py:40
+#, python-format
+msgid "Search results"
+msgstr "Résultats de la recherche"
+
+#. module: golem_member_precreation_search
+#: model:ir.model.fields,field_description:golem_member_precreation_search.field_golem_member_precreation_search_state
+msgid "State"
+msgstr "État"
+
+#. module: golem_member_precreation_search
+#: model:ir.model,name:golem_member_precreation_search.model_golem_member_precreation_search
+msgid "golem.member.precreation.search"
+msgstr "golem.member.precreation.search"

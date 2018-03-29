@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
-#    Copyright 2018 Michel Dessenne <michel@yaltik.com>
-
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -17,20 +17,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM non-profit members',
-    'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.1.5',
+    'name': 'GOLEM Pre-creation search member',
+    'summary': 'Pre-creation search member',
+    'version': '10.0.0.2.0',
     'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Michel Dessenne',
+    'author': 'Fabien Bourgeois, Youssef El ouahby',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
-    'depends': ['golem_base', 'golem_activity', 'golem_season',
-                'odoo_partner_merge'],
-    'data': ['views/golem_member_views.xml',
-             'views/res_partner_views.xml',
-             'views/golem_member_numberconfig_views.xml',
-             'report/golem_member_card_templates.xml',
-             'data/golem_member_numberconfig_data.xml',
-             'security/ir.model.access.csv']
+    'depends': ['golem_member'],
+    'data': ['views/golem_member_precreation_search_menu.xml',
+             'wizard/golem_member_precreation_search_views.xml']
 }
