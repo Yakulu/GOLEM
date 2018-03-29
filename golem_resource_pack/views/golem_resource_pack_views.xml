@@ -39,9 +39,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Pack Tree</field>
       <field name="model">golem.resource.pack</field>
       <field name="arch" type="xml">
-        <tree >
-          <field name="user_id" />
+        <tree>
+          <field name="name" />
           <field name="partner_id" />
+          <field name="state" />
+          <field name="reservation_count" />
         </tree>
       </field>
     </record>
@@ -55,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <header>
             <button name="state_confirm" type="object" string="Confirm" class="oe_highlight"
               attrs="{'invisible': ['|', ('state', 'not in', 'draft'), ('id', '=', False)]}" />
-            <!--<button name="state_canceled" type="object"
+            <button name="state_canceled" type="object"
               string="Cancel" states="confirmed,validated" />
             <button name="state_draft" type="object" string="Set to draft"
               states="canceled,confirmed,validated,rejected" />
@@ -64,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               groups="golem_base.group_golem_manager" />
             <button name="state_rejected" type="object" string="Reject"
               states="confirmed" class="oe_highlight"
-              groups="golem_base.group_golem_manager" />-->
+              groups="golem_base.group_golem_manager" />
             <field name="state" widget="statusbar" />
           </header>
           <sheet>

@@ -27,8 +27,9 @@ class GolemResourcePack(models.Model):
     _name = 'golem.resource.pack'
     _description = 'GOLEM Resource Pack Model'
 
-    name = fields.Char()#compute='_compute_name', store=True)
+    name = fields.Char(compute='_compute_name', store=True)
     reservation_ids = fields.One2many('golem.resource.reservation', 'pack_id')
+
 
     note = fields.Text(help='Notes, optional subject for the reservation, reason')
 
@@ -41,9 +42,70 @@ class GolemResourcePack(models.Model):
                               ('confirmed', 'Confirmed'),
                               ('validated', 'Validated'),
                               ('rejected', 'Rejected')],
-                             default='draft')
+                             default='draft', compute="_compute_pack_state")
+    reservation_count = fields.Integer(compute="_compute_reservation_count",
+                                       string="Reservation count")
+
+    @api.multi
+    @api.depends('reservation_ids')
+    def _compute_reservation_count(self):
+        for pack in self:
+            pack.reservation_count = len(pack.reservation_ids)
 
     @api.multi
     def state_confirm(self):
+        """ pack confirm """
         for pack in self:
             pack.reservation_ids.state_confirm()
+
+    @api.multi
+    def state_draft(self):
+        """ pack canceled """
+        for pack in self:
+            pack.reservation_ids.state_draft()
+
+    @api.multi
+    def state_canceled(self):
+        """ pack canceled """
+        for pack in self:
+            pack.reservation_ids.state_canceled()
+
+    @api.multi
+    def state_validated(self):
+        """ pack validated """
+        for pack in self:
+            pack.reservation_ids.state_validated()
+
+    @api.multi
+    def state_rejected(self):
+        """ pack rejected """
+        for pack in self:
+            for reservation in pack.reservation_ids:
+                if reservation.state == "confirmed":
+                    reservation.write({'state' :'rejected'})
+
+
+    @api.depends('partner_id')
+    def _compute_name(self):
+        """ Compute pack name """
+        for pack in self:
+            pack.name = u'{}/{}'.format(pack.partner_id.name,
+                                        pack.create_date)
+
+    #@api.constrains('reservation_ids.state')
+    @api.multi
+    @api.depends('reservation_ids')
+    def _compute_pack_state(self):
+        """ get pack state """
+        for pack in self:
+            reservation_states = list(map(lambda x: x.state, pack.reservation_ids))
+            if "rejected" in reservation_states:
+                pack.state = 'rejected'
+            elif "canceled" in reservation_states:
+                pack.state = 'canceled'
+            elif "draft" in reservation_states:
+                pack.state = 'draft'
+            elif "confirmed" in reservation_states:
+                pack.state = 'confirmed'
+            elif "validated" in reservation_states:
+                pack.state = 'validated'
