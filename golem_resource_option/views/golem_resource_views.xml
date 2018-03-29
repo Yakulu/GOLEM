@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_resource_inherit_option_form">
       <field name="name">GOLEM Resource Option Extention Form</field>
@@ -30,5 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </field>
       </field>
     </record>
+
   </data>
 </odoo>

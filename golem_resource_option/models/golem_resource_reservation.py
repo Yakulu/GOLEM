@@ -19,9 +19,7 @@
 """ GOLEM Resource Reservation """
 
 
-from datetime import timedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class GolemResourceReservation(models.Model):
@@ -29,5 +27,6 @@ class GolemResourceReservation(models.Model):
     _inherit = 'golem.resource.reservation'
 
     resource_option_ids = fields.One2many(related="resource_id.option_ids")
-    selected_option_ids = fields.One2many('golem.resource.option.selection', 'reservation_id',
-                                          string="Selected option")
+    selected_option_ids = fields.One2many('golem.resource.option.selection',
+                                          'reservation_id',
+                                          string="Selected options")

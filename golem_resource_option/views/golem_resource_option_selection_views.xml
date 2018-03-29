@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <form >
           <group>
-            <field name="name" invisible="1"/>
             <field name="resource_id" invisible="1" />
             <field name="reservation_id" invisible="1"/>
             <field name="option_id"/>

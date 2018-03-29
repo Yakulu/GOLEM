@@ -27,5 +27,6 @@ class GolemResourceOption(models.Model):
     _name = 'golem.resource.option'
     _description = 'GOLEM Reservation Option Model'
 
-    name = fields.Char("Option")
-    resource_id = fields.Many2one('golem.resource', "Resource")
+    name = fields.Char('Option', index=True)
+    resource_id = fields.Many2one('golem.resource', 'Resource',
+                                  index=True, required=True)

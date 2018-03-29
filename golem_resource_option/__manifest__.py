@@ -17,19 +17,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM  resources option',
-    'summary': 'GOLEM resources option',
-    'description': ''' GOLEM resources option ''',
-    'version': '10.0.0.0.0',
+    'name': 'GOLEM  resources options',
+    'summary': 'GOLEM resources options',
+    'description': ''' GOLEM resources options management :
+    - create 1:n options per resource ;
+    - choose option on reservations ''',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
     'depends': ['golem_resource'],
-    'data': [
-        'views/golem_resource_views.xml',
-        'views/golem_resource_reservation_views.xml',
-        'views/golem_resource_option_views.xml',
-        'views/golem_resource_option_selection_views.xml']
+    'data': ['views/golem_resource_views.xml',
+             'views/golem_resource_reservation_views.xml',
+             'views/golem_resource_option_views.xml',
+             'views/golem_resource_option_selection_views.xml']
 }

@@ -26,18 +26,14 @@ class GolemResourceOptionSelection(models.Model):
     """ GOLEM Resource Option SelectionModel """
     _name = 'golem.resource.option.selection'
     _description = 'GOLEM Resource option selection Model'
-
-    name = fields.Char(compute="_compute_name")
-    option_id = fields.Many2one('golem.resource.option', 'Option',
-                                domain="[('resource_id', '=', resource_id)]")
-    resource_id = fields.Many2one(related="reservation_id.resource_id")
-    reservation_id = fields.Many2one('golem.resource.reservation', 'Reservation')
-
-    @api.multi
-    def _compute_name(self):
-        for selection in self:
-            selection.name = u"{}/{}".format(selection.resource_id.name, selection.option_id.name)
-
     _sql_constraints = [
-        ('unique_selection', "UNIQUE(resource_id, option_id, reservation_id)",
-         _("Not allowed, a reservation with same option and resource already exists"))]
+        ('unique_selection', 'UNIQUE(resource_id, option_id, reservation_id)',
+         _('Not allowed, a reservation with same option and resource already exists'))]
+
+    name = fields.Char(related='option_id.name')
+    option_id = fields.Many2one('golem.resource.option', 'Option',
+                                required=True, index=True,
+                                domain='[("resource_id", "=", resource_id)]')
+    resource_id = fields.Many2one(related='reservation_id.resource_id')
+    reservation_id = fields.Many2one('golem.resource.reservation', 'Reservation',
+                                     required=True, index=True)

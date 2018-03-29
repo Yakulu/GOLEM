@@ -18,8 +18,7 @@
 
 """ GOLEM Resources Option Management """
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class GolemResource(models.Model):
@@ -27,4 +26,4 @@ class GolemResource(models.Model):
     _inherit = 'golem.resource'
 
     option_ids = fields.One2many('golem.resource.option', 'resource_id',
-                                 string='Option list')
+                                 string='Options')
