@@ -36,7 +36,7 @@ class GolemResourceOptionSelection(models.Model):
     @api.multi
     def _compute_name(self):
         for selection in self:
-            selection.name = "{}/{}".format(selection.resource_id.name, selection.option_id.name)
+            selection.name = u"{}/{}".format(selection.resource_id.name, selection.option_id.name)
 
     _sql_constraints = [
         ('unique_selection', "UNIQUE(resource_id, option_id, reservation_id)",
