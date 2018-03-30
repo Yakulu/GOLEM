@@ -32,13 +32,42 @@ class GolemResourcePack(models.Model):
                                      copy=False)
     invoice_amount_total = fields.Monetary(related='invoice_id.amount_total')
     currency_id = fields.Many2one(related='invoice_id.currency_id')
+    is_products_set = fields.Boolean(compute="compute_is_products_set")
+
+    @api.multi
+    def compute_is_products_set(self):
+        for pack in self:
+            product_list = list(map(lambda x: x.resource_product_id, pack.reservation_ids))
+            if len(filter(lambda x: x.id == False, product_list)) > 0:
+                pack.is_products_set = False
+            else:
+                pack.is_products_set = True
 
     @api.multi
     def create_invoice(self):
-        """ create invoice """
-        pass
+        """ Invoice creation """
+        for pack in self:
+            pack.reservation_ids.check_before_invoicing()
+            inv_obj = self.env['account.invoice']
+            partner_id = pack.partner_id
+            invoice_id = inv_obj.create({
+                'origin': pack.name,
+                'type': 'out_invoice',
+                'reference': False,
+                'account_id': partner_id.property_account_receivable_id.id,
+                'partner_id': partner_id.id
+            })
+            pack.invoice_id = invoice_id.id
+            pack.reservation_ids.create_invoice_line(invoice_id)
 
     @api.multi
     def show_invoice(self):
-        """ show invoice """
-        pass
+        """ Redirects to linked invoice """
+        self.ensure_one()
+        pack = self[0]
+        if pack.invoice_id:
+            return {'type': 'ir.actions.act_window',
+                    'res_model': 'account.invoice',
+                    'res_id': pack.invoice_id.id,
+                    'view_mode': 'form',
+                    'view_id': self.env.ref('account.invoice_form').id}

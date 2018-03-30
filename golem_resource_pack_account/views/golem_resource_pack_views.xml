@@ -18,21 +18,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
+    <!-- Tree -->
+    <record model="ir.ui.view" id="golem_resource_pack_inherit_account_tree">
+      <field name="name">GOLEM Resource Pack Account extention Tree</field>
+      <field name="model">golem.resource.pack</field>
+      <field name="inherit_id" ref="golem_resource_pack.golem_resource_pack_view_tree"/>
+      <field name="arch" type="xml">
+        <field name="reservation_count" position="after">
+          <field name="invoice_state" />
+        </field>
+      </field>
+    </record>
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_resource_pack_inherit_account_form">
-      <field name="name">GOLEM Resource Pack Account extentionForm</field>
+      <field name="name">GOLEM Resource Pack Account extention Form</field>
       <field name="model">golem.resource.pack</field>
       <field name="inherit_id" ref="golem_resource_pack.golem_resource_pack_view_form"/>
       <field name="arch" type="xml">
         <button name="state_rejected"  position="after">
           <button name="create_invoice" type="object" string="Create Invoice" class="oe_highlight"
-            attrs="{'invisible': ['|', ('state', '!=', 'validated'), ('invoice_id', '!=', False)]}" />
+            attrs="{'invisible': ['|', ('state', '!=', 'validated'), '|', ('invoice_id', '!=', False), ('is_products_set', '=', False)]}" />
           <button name="show_invoice" type="object" string="Show invoice" class="oe_highlight"
             attrs="{'invisible': [('invoice_id', '=', False)]}" />
         </button>
         <group name="general" position="after">
           <group name="invoicing" string="Invoicing"
             attrs="{'invisible': [('invoice_id', '=', False)]}">
+            <field name="is_products_set"  invisible="1"/>
             <field name="invoice_id" />
             <field name="invoice_state" />
             <field name="invoice_amount_total" />
