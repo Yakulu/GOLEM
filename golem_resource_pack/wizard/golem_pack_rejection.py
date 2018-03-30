@@ -16,18 +16,23 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM resources pack',
-    'summary': 'GOLEM resources pack',
-    'description': ''' GOLEM resources pack ''',
-    'version': '10.0.0.0.4',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_resource'],
-    'data': ['views/golem_resource_pack_views.xml',
-             'wizard/golem_pack_rejection_views.xml',
-             'security/ir.model.access.csv']
-}
+""" GOLEM Resources Pack management """
+
+from odoo import models, fields, api
+
+class GolemReservationRejectionWizard(models.TransientModel):
+    """GOLEM Resource wizard : refusal reason for a pack """
+    _name = "golem.pack.rejection.wizard"
+
+    pack_id = fields.Many2one('golem.resource.pack', required=True)
+    reason = fields.Text(required=True)
+
+    @api.multi
+    def reject(self):
+        """ Sets pack status to rejected and add reason """
+        self.ensure_one()
+        rejection = self[0]
+        for reservation in rejection.pack_id.reservation_ids:
+            if reservation.state == "confirmed":
+                reservation.write({'state' :'rejected'})
+        rejection.pack_id.write({'rejection_reason': rejection.reason})

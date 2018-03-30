@@ -18,22 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-
-    <!-- Calendars -->
-  <!--  <record model="ir.ui.view" id="golem_resource_reservation_view_calendar">
-      <field name="name">GOLEM Resource Reservation Calendar</field>
-      <field name="model">golem.resource.reservation</field>
-      <field name="arch" type="xml">
-        <calendar date_start="date_start" date_stop="date_stop" color="resource_id"
-          event_open_popup="%(golem_resource.golem_resource_reservation_view_form)s"
-          mode="month">
-          <field name="resource_id" />
-          <field name="partner_id" />
-          <field name="note" />
-        </calendar>
-      </field>
-    </record>-->
-
     <!-- Trees -->
     <record model="ir.ui.view" id="golem_resource_pack_view_tree">
       <field name="name">GOLEM Resource Pack Tree</field>
@@ -76,65 +60,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="user_id" />
                 <field name="partner_id" />
                 <field name="note" />
+                <field name="rejection_reason"
+                  attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
               </group>
             </group>
             <field name="reservation_ids" context="{'default_partner_id' : partner_id}" />
           </sheet>
-          <!--<div class="oe_chatter">
+          <div class="oe_chatter">
               <field name="message_follower_ids" widget="mail_followers" />
               <field name="message_ids" widget="mail_thread" />
-          </div>-->
+          </div>
         </form>
       </field>
     </record>
-
-    <!-- Searches -->
-    <!--<record model="ir.ui.view" id="golem_resource_reservation_view_search">
-      <field name="name">GOLEM Resource Reservation Search</field>
-      <field name="model">golem.resource.reservation</field>
-      <field name="arch" type="xml">
-        <search>
-          <field name="date_start" />
-          <field name="date_stop" />
-          <field name="day_start"/>
-          <field name="resource_id" />
-          <field name="user_id" />
-          <field name="partner_id" />
-          <field name="state" />
-          <filter name="state_draft" string="Draft"
-            domain="[('state', '=', 'draft')]" />
-          <filter name="state_confirmed" string="Confirmed, to Validate"
-            domain="[('state', '=', 'confirmed')]" />
-          <filter name="state_validated" string="Validated"
-            domain="[('state', '=', 'validated')]" />
-          <filter name="state_rejected" string="Rejected"
-            domain="[('state', '=', 'rejected')]" />
-          <separator />
-          <filter name="day_reservation" string="Day Reservation"
-            domain="[('day_start', '=', context_today().strftime('%%Y-%%m-%%d'))]" />
-          <filter name="7days_reservation" string="7 Days Reservations"
-            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
-                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]" />
-          <filter name="30days_reservation" string="30 Days Reservations"
-            domain="[('date_start', '&gt;=', (context_today()+datetime.timedelta(days=0)).strftime('%%Y-%%m-%%d')),
-                     ('date_start', '&lt;=', (context_today()+datetime.timedelta(days=30)).strftime('%%Y-%%m-%%d'))]" />
-          <filter name="group_state" string="State"
-            context="{'group_by': 'state'}" />
-          <filter name="group_resource" string="Resource"
-            context="{'group_by': 'resource_id'}" />
-          <filter name="group_partner_id" string="Partner"
-            context="{'group_by': 'partner_id'}" />
-          <filter name="group_user" string="User"
-            context="{'group_by': 'user_id'}" />
-          <filter name="group_date_month" string="Month"
-            context="{'group_by': 'date:month'}" />
-          <filter name="group_date_week" string="Week"
-            context="{'group_by': 'date:week'}" />
-          <filter name="group_date_day" string="Day"
-            context="{'group_by': 'date:day'}" />
-        </search>
-      </field>
-    </record>-->
 
     <!-- Actions -->
     <act_window id="golem_resource_pack_action" name="Reservation Pack"

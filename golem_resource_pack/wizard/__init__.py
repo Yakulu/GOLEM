@@ -16,18 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM resources pack',
-    'summary': 'GOLEM resources pack',
-    'description': ''' GOLEM resources pack ''',
-    'version': '10.0.0.0.4',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_resource'],
-    'data': ['views/golem_resource_pack_views.xml',
-             'wizard/golem_pack_rejection_views.xml',
-             'security/ir.model.access.csv']
-}
+from . import golem_pack_rejection

@@ -26,25 +26,39 @@ class GolemResourcePack(models.Model):
     """ GOLEM Resource Pack Model """
     _name = 'golem.resource.pack'
     _description = 'GOLEM Resource Pack Model'
+    _inherit = 'mail.thread'
 
     name = fields.Char(compute='_compute_name', store=True)
-    reservation_ids = fields.One2many('golem.resource.reservation', 'pack_id')
+    reservation_ids = fields.One2many('golem.resource.reservation', 'pack_id',
+                                      readonly=True, states={'draft': [('readonly', False)]},
+                                      track_visibility='onchange')
 
-
-    note = fields.Text(help='Notes, optional subject for the reservation, reason')
+    note = fields.Text(help='Notes, optional subject for the reservation, reason',
+                       readonly=True, states={'draft': [('readonly', False)]},
+                       track_visibility='onchange')
 
     user_id = fields.Many2one('res.users', required=True, index=True, readonly=True,
                               string='User', default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='On behalf of',
-                                 required=True, index=True)
+                                 required=True, index=True, readonly=True,
+                                 states={'draft': [('readonly', False)]},
+                                 track_visibility='onchange')
     state = fields.Selection([('canceled', 'Canceled'),
                               ('draft', 'Draft'),
                               ('confirmed', 'Confirmed'),
                               ('validated', 'Validated'),
                               ('rejected', 'Rejected')],
-                             default='draft', compute="_compute_pack_state")
+                             default='draft', compute="_compute_pack_state",
+                             track_visibility='onchange')
     reservation_count = fields.Integer(compute="_compute_reservation_count",
                                        string="Reservation count")
+    rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
+
+    @api.multi
+    @api.constrains('partner_id')
+    def set_reservation_partner(self):
+        for pack in self:
+            pack.reservation_ids.write({'partner_id': pack.partner_id.id})
 
     @api.multi
     @api.depends('reservation_ids')
@@ -78,11 +92,15 @@ class GolemResourcePack(models.Model):
 
     @api.multi
     def state_rejected(self):
-        """ pack rejected """
-        for pack in self:
-            for reservation in pack.reservation_ids:
-                if reservation.state == "confirmed":
-                    reservation.write({'state' :'rejected'})
+        """ Wizard call for pack reject """
+        self.ensure_one()
+        pack_id = self[0]
+        return {'name' : _('Please enter the rejection reason'),
+                'type' : 'ir.actions.act_window',
+                'res_model' : 'golem.pack.rejection.wizard',
+                'context': {'default_pack_id': pack_id.id},
+                'view_mode': 'form',
+                'target': 'new'}
 
 
     @api.depends('partner_id')
