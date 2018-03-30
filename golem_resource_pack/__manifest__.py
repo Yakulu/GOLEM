@@ -20,12 +20,13 @@
     'name': 'GOLEM resources pack',
     'summary': 'GOLEM resources pack',
     'description': ''' GOLEM resources pack ''',
-    'version': '10.0.0.0.2',
+    'version': '10.0.0.0.3',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
     'depends': ['golem_resource'],
-    'data': ['views/golem_resource_pack_views.xml']
+    'data': ['views/golem_resource_pack_views.xml',
+             'security/ir.model.access.csv']
 }

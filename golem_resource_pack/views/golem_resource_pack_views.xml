@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Pack Tree</field>
       <field name="model">golem.resource.pack</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree colors="black: state=='draft'; blue: state=='validated'; gree : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
           <field name="name" />
           <field name="partner_id" />
           <field name="state" />
