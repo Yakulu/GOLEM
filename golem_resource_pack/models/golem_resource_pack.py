@@ -109,8 +109,13 @@ class GolemResourcePack(models.Model):
         for pack in self:
             pack.name = u'{}/{}'.format(pack.partner_id.name,
                                         pack.create_date)
+    @api.multi
+    @api.constrains('reservation_ids')
+    def check_reservation_partner(self):
+        for pack in self:
+            if len(filter(lambda x: x.partner_id == pack.partner_id, pack.reservation_ids)) < len(pack.reservation_ids):
+                raise ValidationError(_('Pack client should be the same for all reservations'))
 
-    #@api.constrains('reservation_ids.state')
     @api.multi
     @api.depends('reservation_ids')
     def _compute_pack_state(self):
