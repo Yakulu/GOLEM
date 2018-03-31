@@ -30,19 +30,21 @@ class GolemResourcePack(models.Model):
 
     name = fields.Char(compute='_compute_name', store=True)
     reservation_ids = fields.One2many('golem.resource.reservation', 'pack_id',
-                                      readonly=True, states={'draft': [('readonly', False)]},
-                                      track_visibility='onchange')
+                                      readonly=True, track_visibility='onchange',
+                                      states={'draft': [('readonly', False)],
+                                              False : [('readonly', False)]})
 
     note = fields.Text(help='Notes, optional subject for the reservation, reason',
-                       readonly=True, states={'draft': [('readonly', False)]},
-                       track_visibility='onchange')
+                       track_visibility='onchange',readonly=True,
+                       states={'draft': [('readonly', False)],
+                               False : [('readonly', False)]})
 
     user_id = fields.Many2one('res.users', required=True, index=True, readonly=True,
                               string='User', default=lambda self: self.env.user)
-    partner_id = fields.Many2one('res.partner', string='On behalf of',
-                                 required=True, index=True, readonly=True,
-                                 states={'draft': [('readonly', False)]},
-                                 track_visibility='onchange')
+    partner_id = fields.Many2one('res.partner', string='On behalf of', required=True,
+                                 index=True, track_visibility='onchange', readonly=True,
+                                 states={'draft': [('readonly', False)],
+                                         False : [('readonly', False)]})
     state = fields.Selection([('canceled', 'Canceled'),
                               ('draft', 'Draft'),
                               ('confirmed', 'Confirmed'),
