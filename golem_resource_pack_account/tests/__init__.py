@@ -15,17 +15,4 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-""" GOLEM Resource Reservation """
-
-from math import modf
-from datetime import timedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
-
-
-class GolemResourceReservation(models.Model):
-    """ GOLEM Resource Reservation Model """
-    _inherit = 'golem.resource.reservation'
-
-    pack_id = fields.Many2one('golem_resource_reservation', 'Reservation Pack')
+from . import test_golem_pack_invoice

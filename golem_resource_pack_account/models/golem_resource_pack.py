@@ -32,21 +32,38 @@ class GolemResourcePack(models.Model):
                                      copy=False)
     invoice_amount_total = fields.Monetary(related='invoice_id.amount_total')
     currency_id = fields.Many2one(related='invoice_id.currency_id')
-    is_products_set = fields.Boolean(compute="compute_is_products_set")
+    is_products_set = fields.Boolean(compute="_compute_is_products_set")
 
     @api.multi
-    def compute_is_products_set(self):
+    def _compute_is_products_set(self):
+        """ compute is_products_set """
         for pack in self:
-            product_list = list(map(lambda x: x.resource_product_id, pack.reservation_ids))
-            if len(filter(lambda x: x.id == False, product_list)) > 0:
+            if len(filter(lambda x: x.resource_product_id.id is False, pack.reservation_ids)) \
+                > 0:
                 pack.is_products_set = False
             else:
                 pack.is_products_set = True
 
     @api.multi
+    def chek_pack_to_invoice(self):
+        """ chek pack before invoicing """
+        for pack in self:
+            if pack.state != 'validated':
+                raise ValidationError(_('The current pack is not validated, please validate '
+                                        'it before creating invoice'))
+            elif not pack.is_products_set:
+                raise ValidationError(_('You can not create an invoice for a pack without '
+                                        'linked product on every resource reserved.'))
+            elif pack.invoice_id.id:
+                raise ValidationError(_('You can not create an invoice as there '
+                                        'is already one.'))
+
+
+    @api.multi
     def create_invoice(self):
         """ Invoice creation """
         for pack in self:
+            pack.chek_pack_to_invoice()
             pack.reservation_ids.check_before_invoicing()
             inv_obj = self.env['account.invoice']
             partner_id = pack.partner_id
@@ -56,7 +73,7 @@ class GolemResourcePack(models.Model):
                 'reference': False,
                 'account_id': partner_id.property_account_receivable_id.id,
                 'partner_id': partner_id.id
-            })
+                })
             pack.invoice_id = invoice_id.id
             pack.reservation_ids.create_invoice_line(invoice_id)
 
