@@ -117,3 +117,19 @@ class GolemResourceReservation(models.Model):
                     'res_id': reservation.invoice_id.id,
                     'view_mode': 'form',
                     'view_id': self.env.ref('account.invoice_form').id}
+    @api.multi
+    def add_to_invoice(self):
+        """ Add reservation to existing invoice"""
+        for reservation in self:
+            partner = reservation.partner_id
+            invoice_list = self.env['account.invoice'].search([('partner_id', '=', partner.id),
+                                                               ('state', '=', 'draft')])
+            #test if none
+            invoice_ids = invoice_list.mapped('id')
+            return {'name' : ("partner's invoice list"),
+                    'type' : 'ir.actions.act_window',
+                    'res_model' : 'golem.reservation.add.to.invoice.wizard',
+                    'context': {'default_invoice_ids': invoice_ids},
+                    'view_mode': 'form',
+                    'flags': {'initial_mode': 'view'},
+                    'target': 'new'}
