@@ -16,5 +16,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+""" GOLEM Resource Reservation  Adaptation"""
 
-from . import golem_resource_reservation, account_invoice
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+
+
+class AccountInvoice(models.Model):
+    """ Account Invoice """
+    _inherit = 'account.invoice'
+
+    @api.multi
+    def add_to_invoice(self):
+        """Add reservation to existing invoice """
+        for invoice in self:
+            reservation_id = self._context.get('reservation_id')
+            reservation = self.env['golem.resource.reservation'].browse(reservation_id)
+            reservation.create_invoice_line(invoice)

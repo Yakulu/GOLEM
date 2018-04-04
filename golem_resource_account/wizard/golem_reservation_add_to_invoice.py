@@ -25,9 +25,14 @@ class GolemReservationAddToInvoiceWizard(models.TransientModel):
     """GOLEM Resrvation Add to Invoice Wizard """
     _name = 'golem.reservation.add.to.invoice.wizard'
 
-    state = fields.Selection([('init', 'Init'), ('final', 'Final')],
-                             default='init')
+    #state = fields.Selection([('init', 'Init'), ('final', 'Final')],
+    #                         default='init')
     invoice_ids = fields.Many2many('account.invoice', string="Partner invoice list")
+    reservation_id = fields.Many2one('golem.resource.reservation')
+
+    @api.multi
+    def add(self):
+        print '__________________hjt______________________'
 
     """keyword = fields.Char(required=True)
     member_ids = fields.Many2many('golem.member', string='Members')
