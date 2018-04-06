@@ -19,4 +19,5 @@
 from . import golem_resource_type, \
     golem_resource_timetable, \
     golem_resource, \
-    golem_resource_reservation
+    golem_resource_reservation, \
+    product_template
