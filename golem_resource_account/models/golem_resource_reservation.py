@@ -75,8 +75,11 @@ class GolemResourceReservation(models.Model):
                 product.categ_id.property_account_income_categ_id.id
             delta = fields.Datetime.from_string(reservation.date_stop) - \
                 fields.Datetime.from_string(reservation.date_start)
-            quantity = (delta.days * 24) + (delta.seconds/3600.0)
-
+            quantity = 1
+            if product.uom_id.name == 'Hour(s)' or product.uom_id.name == 'Unit(s)':
+                quantity = int((delta.days * 24) + (delta.seconds/3600.0))
+            elif product.uom_id.name == 'Day(s)':
+                quantity = int(delta.days + (delta.seconds/86400.0))#number of seconds in a day
             line_id = self.env['account.invoice.line'].create({
                 'invoice_id': invoice_id.id,
                 'name': product.name,
