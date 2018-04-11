@@ -18,21 +18,27 @@
 
 """ GOLEM Resources management """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class GolemResourceReportWizard(models.TransientModel):
     """GOLEM Resource wizard : refusal reason for a reservation """
     _name = "golem.resource.report.wizard"
-    def _get_resources(self):
-        return self.env['golem.resource'].search([]).ids
 
-    resource_ids = fields.Many2many('golem.resource',default=_get_resources)
-    selected_resource_ids = fields.Many2many('golem.resource',
-                                             domaine="[('id', in, resources_ids.ids)]")
+    resource_ids = fields.Many2many('golem.resource')
     date_start = fields.Datetime(required=True)
     date_stop = fields.Datetime(required=True)
 
     @api.multi
     def print_report(self):
         for record in self:
-            pass
+            start_date = fields.Datetime.from_string(record.date_start)
+            stop_date = fields.Datetime.from_string(record.date_stop)
+            if start_date > stop_date:
+                raise ValidationError(_("Stop Date cannot be set before \
+                Start Date."))
+            else:
+                domain = [('date_start', '>', record.date_start),
+                          ('date_stop', '<', record.date_stop),
+                          ('resource_id', 'in', record.selected_resource_ids.ids)]
+                data = self.env['golem.resource.reservation'].search(domain)

@@ -2,11 +2,17 @@
   <data>
 
     <!-- Actions -->
-    <act_window id="golem_resource_report_action" name="Resources_reports"
-      res_model="golem.resource.report.wizard" view_mode="form" />
+      <record model="ir.actions.act_window" id="golem_resource_report_action">
+            <field name="name">Resources Reports</field>
+            <field name="res_model">golem.resource.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="golem_resource_report_wizard_view_form" />
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
 
     <!-- Menus -->
-
     <menuitem id="resource_report_menu" name="Report" parent="golem_resource.golem_resource_menu"
       action="golem_resource_report_action" sequence="10" />
 

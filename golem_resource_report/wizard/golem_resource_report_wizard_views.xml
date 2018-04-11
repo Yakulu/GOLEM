@@ -27,22 +27,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <form string="Resource Report">
           <group>
             <group>
-            <field name="resource_ids" readonly="1" invisible="1"/>
-            <field name="selected_resource_ids" >
-              <tree>
-                <field name="name"/>
-              </tree>
-            </field>
-          </group>
-          <group>
-            <field name="date_start" />
-            <field name="date_stop" />
-          </group>
+              <field name="resource_ids" >
+                <tree>
+                  <field name="name"/>
+                </tree>
+              </field>
+            </group>
+            <group>
+              <field name="date_start" />
+              <field name="date_stop" />
+            </group>
           </group>
           <footer>
             <button name="print_report" string="Print Report" type="object"
               class="oe_highlight" />
-            <button string="Cancel" class="oe_link" special="cancel" />
+            <button string="Close" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>
