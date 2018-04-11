@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+<report id="action_golem_reservation_report"
+  string="Reservations"
+  model="golem.resource.report.wizard"
+  report_type="qweb-html"
+  name="golem_resource_report.report_golem_reservation_template"/>
+</odoo>

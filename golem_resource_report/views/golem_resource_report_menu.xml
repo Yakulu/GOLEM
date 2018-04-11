@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+
+    <!-- Actions -->
+    <act_window id="golem_resource_report_action" name="Resources_reports"
+      res_model="golem.resource.report.wizard" view_mode="form" />
+
+    <!-- Menus -->
+
+    <menuitem id="resource_report_menu" name="Report" parent="golem_resource.golem_resource_menu"
+      action="golem_resource_report_action" sequence="10" />
+
+  </data>
+</odoo>
