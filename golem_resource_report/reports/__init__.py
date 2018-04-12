@@ -16,19 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM resources reports',
-    'summary': 'GOLEM resources reports',
-    'description': ''' GOLEM resources reports ''',
-    'version': '10.0.0.0.0',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_resource'],
-    'data': ['reports/golem_reservation_report.xml',
-             'reports/golem_reservation_report_menu.xml',
-             'views/golem_resource_report_menu.xml',
-             'wizard/golem_resource_report_wizard_views.xml']
-}
+from . import golem_reservation_report

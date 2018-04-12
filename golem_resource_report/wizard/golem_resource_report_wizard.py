@@ -38,7 +38,10 @@ class GolemResourceReportWizard(models.TransientModel):
                 raise ValidationError(_("Stop Date cannot be set before \
                 Start Date."))
             else:
-                domain = [('date_start', '>', record.date_start),
-                          ('date_stop', '<', record.date_stop),
-                          ('resource_id', 'in', record.selected_resource_ids.ids)]
-                data = self.env['golem.resource.reservation'].search(domain)
+                data = self.read(
+                    ['resource_ids', 'date_start', 'date_stop'])[0]
+                return self.env['report'].get_action(
+                    self, 'golem_resource_report.golem_reservation_report',
+                    data=data)
+
+                

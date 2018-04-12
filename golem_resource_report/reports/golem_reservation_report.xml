@@ -1,8 +1,62 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <odoo>
-<report id="action_golem_reservation_report"
-  string="Reservations"
-  model="golem.resource.report.wizard"
-  report_type="qweb-html"
-  name="golem_resource_report.report_golem_reservation_template"/>
+    <data>
+        <template id="golem_reservation_report">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <br></br>
+                            <table border="1" width="100%" cellpadding="0" bgcolor="#5F8CA3" >
+                                <tbody>
+                                    <tr width="100%">
+                                        <td class="text-center" width="100%">
+                                            <center><b>Maison Phare toutes les reservations</b><br/>
+                                            <b>From Date: </b>
+                                            <span t-esc="from_date" />
+                                            <span t-raw="'%s' % date_start if date_start else ''" />
+                                            <b>To Date:</b>
+                                            <span t-raw="'%s' % date_stop if date_stop else ''" /></center>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table border="1" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
+                                  <tbody>
+                                    <tr t-foreach="get_data" t-as="o">
+                                        <td class="text-left">
+                                            <span t-esc="o['resource_name']" />
+                                        </td>
+                                        <td>
+                                          <span t-raw="'%s' %  o['date_start'] if  o['date_start']  else ''" />
+                                        </td>
+                                        <td>
+                                          <span t-raw="'%s' %   o['date_stop']  if  o['date_stop']  else ''" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
 </odoo>

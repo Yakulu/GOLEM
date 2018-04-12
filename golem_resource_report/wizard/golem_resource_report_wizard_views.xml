@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_resource_report_wizard_view_form">
       <field name="name">GOLEM resource Report Wizard Form</field>
@@ -28,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <group>
             <group>
               <field name="resource_ids" >
-                <tree>
+                <tree options="{'no_create' : True}">
                   <field name="name"/>
                 </tree>
               </field>
@@ -45,7 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </footer>
         </form>
       </field>
-  </record>
-
+    </record>
   </data>
 </odoo>
