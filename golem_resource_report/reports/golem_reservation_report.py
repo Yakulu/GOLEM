@@ -47,17 +47,6 @@ class GolemResevationReport(models.AbstractModel):
                 'date_stop': reservation.date_stop
             }
             lst.append(res)
-
-        #self.total_student = 0
-        """for student in student_search:
-            self.total_student += 1
-            res = {
-                'name': student.name,
-                'middle_name': student.middle_name,
-                'last_name': student.last_name,
-                'application_no': student.application_number,
-            }
-            lst.append(res)"""
         return lst
 
     @api.model
