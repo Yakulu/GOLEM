@@ -18,7 +18,9 @@
 
 import time
 
+from random import randint
 from odoo import models, api
+
 
 
 class GolemResevationReport(models.AbstractModel):
@@ -30,6 +32,23 @@ class GolemResevationReport(models.AbstractModel):
                   ('resource_id', 'in', data['resource_ids'])]
         return self.env['golem.resource.reservation'].search_count(domain)
 
+
+
+
+    def get_resource(self, data):
+        lst = []
+        domain = [('date_start', '>', data['date_start']),
+                  ('date_stop', '<', data['date_stop']),
+                  ('resource_id', 'in', data['resource_ids'])]
+        reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
+        lst = reservations.mapped('resource_id.name')
+        return lst
+
+    def get_client_color(self, client_id):
+        client_id *= 777777
+        color = "#0" + str(client_id)
+        color = color[:7]
+        return color
 
     def get_data(self, data):
         lst = []
@@ -43,8 +62,10 @@ class GolemResevationReport(models.AbstractModel):
                 'name': reservation.name,
                 'resource_name': reservation.resource_id.name,
                 'client': reservation.partner_id.name,
+                'client_id': self.get_client_color(reservation.partner_id.id),
                 'date_start': reservation.date_start,
-                'date_stop': reservation.date_stop
+                'date_stop': reservation.date_stop,
+                'day_start': reservation.day_start
             }
             lst.append(res)
         return lst
@@ -63,6 +84,7 @@ class GolemResevationReport(models.AbstractModel):
             'date_stop': data['date_stop'],
             'get_total_reservation': self.get_total_reservation(data),
             'get_data': self.get_data(data),
+            'get_resource': self.get_resource(data),
         }
         return self.env['report'] \
             .render('golem_resource_report.golem_reservation_report', docargs)

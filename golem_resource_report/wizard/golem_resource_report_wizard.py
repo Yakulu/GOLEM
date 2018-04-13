@@ -40,8 +40,16 @@ class GolemResourceReportWizard(models.TransientModel):
             else:
                 data = self.read(
                     ['resource_ids', 'date_start', 'date_stop'])[0]
+
+                lst = []
+                domain = [('date_start', '>', data['date_start']),
+                          ('date_stop', '<', data['date_stop']),
+                          ('resource_id', 'in', data['resource_ids'])]
+                reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
+                lst = reservations.mapped('resource_id.name')
+                print '____________________________________'
+                print lst
+
                 return self.env['report'].get_action(
                     self, 'golem_resource_report.golem_reservation_report',
                     data=data)
-
-                
