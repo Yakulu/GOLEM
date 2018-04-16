@@ -45,10 +45,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                       <td><span t-esc="resource"/></td>
                                       <t t-foreach="get_data" t-as="data">
                                         <t t-if="data['resource_name']==resource">
-                                          <td t-attf-style="background-color:{{data['client_id']}}!important;">
+                                          <td t-attf-style="background-color:{{data['bgcolor']}}!important;">
                                             <b>Date :</b><span t-esc="data['day_start']"/><br/>
                                             <b>On behalf of :</b><span t-esc="data['client']"/><br/>
-                                            <b>client_id :</b><span t-esc="data['client_id']"/><br/>
+                                            <b>client_id :</b><span t-esc="data['bgcolor']"/><br/>
                                           </td>
                                         </t>
                                       </t>

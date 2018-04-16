@@ -44,10 +44,17 @@ class GolemResevationReport(models.AbstractModel):
         lst = reservations.mapped('resource_id.name')
         return lst
 
-    def get_client_color(self, client_id):
-        client_id *= 777777
-        color = "#0" + str(client_id)
-        color = color[:7]
+    def get_client_color(self, partner_number):
+        colors = ['#FFFF5B', '#81EC54', '#47C8C8', '#FB5A66', '#E8E750',
+                  '#CF4ACF', '#9655D2', '#FFA15B', '#5F68D5', '#60E652']
+        color = "#000000"
+        if partner_number < 10:
+            color = colors[partner_number]
+        else:
+            red = randint(128, 255)
+            green = randint(128, 255)
+            blue = randint(128, 255)
+            color = "#" +hex(red)[2:]+hex(green)[2:]+hex(blue)[2:]
         return color
 
     def get_data(self, data):
@@ -56,16 +63,23 @@ class GolemResevationReport(models.AbstractModel):
                   ('date_stop', '<', data['date_stop']),
                   ('resource_id', 'in', data['resource_ids'])]
         reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
+        partner_ids = reservations.mapped('partner_id.id')
+        partner_colors = {}
+        partner_number = 0
+        for partner_id in partner_ids:
+            partner_colors[str(partner_id)] = self.get_client_color(partner_number)
+            partner_number +=1
+
         res = {}
         for reservation in reservations:
             res = {
                 'name': reservation.name,
                 'resource_name': reservation.resource_id.name,
                 'client': reservation.partner_id.name,
-                'client_id': self.get_client_color(reservation.partner_id.id),
                 'date_start': reservation.date_start,
                 'date_stop': reservation.date_stop,
-                'day_start': reservation.day_start
+                'day_start': reservation.day_start,
+                'bgcolor': partner_colors[str(reservation.partner_id.id)]
             }
             lst.append(res)
         return lst
