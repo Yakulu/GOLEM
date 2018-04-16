@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
   <data>
-    <!-- search -->
+
+    <!-- Search -->
     <record id="product_template_search_inherit_resource_view" model="ir.ui.view">
       <field name="name">product.template.inherit.resource.search</field>
       <field name="model">product.template</field>
@@ -29,5 +30,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </filter>
       </field>
     </record>
+
+    <!-- Actions -->
+    <act_window id="golem_resource_product_action" name="Products"
+      res_model="product.template" view_mode="kanban,tree,form"
+      context="{'search_default_filter_resource_linked': 1}" />
+
+    <!-- Menus -->
+    <menuitem id="product_template_menu" name="Resource Products"
+      parent="resource_configuration_menu"
+      action="golem_resource_product_action" sequence="20" />
+      
   </data>
 </odoo>
