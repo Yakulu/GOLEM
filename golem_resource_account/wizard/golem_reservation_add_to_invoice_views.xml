@@ -24,16 +24,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.reservation.add.to.invoice.wizard</field>
       <field name="arch" type="xml">
         <form>
-          <field name="reservation_id" readonly="1" />
-          <field name="invoice_ids" widget="many2many"
-            context="{'reservation_id': reservation_id}"
-            readonly="1">
-            <tree>
-              <field name="partner_id" />
-              <field name="amount_total" />
-              <button name="add_to_invoice" type="object" icon="fa fa-plus-square" />
-            </tree>
-          </field>
+          <sheet>
+            <group>
+              <field name="reservation_id" readonly="1" />
+              <field name="invoice_ids" widget="many2many" readonly="1">
+                <tree>
+                  <field name="partner_id" />
+                  <field name="amount_total" />
+                  <field name="state" />
+                  <button name="add_to_invoice" type="object" icon="fa fa-plus-square" />
+                </tree>
+              </field>
+            </group>
+          </sheet>
           <footer>
             <button string="Close" special="cancel" />
           </footer>
