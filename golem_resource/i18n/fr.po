@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 15:36+0000\n"
-"PO-Revision-Date: 2018-03-26 15:36+0000\n"
+"POT-Creation-Date: 2018-04-16 14:29+0000\n"
+"PO-Revision-Date: 2018-04-16 14:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_avaibility_24_7
 msgid "24/7 availibility"
 msgstr "Disponibilité 24h/24 7j/7"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "30 Days Reservations"
+msgstr "Dans les 30 jours"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "7 Days Reservations"
+msgstr "Dans les 7 jours"
 
 #. module: golem_resource
 #: model:ir.model.fields,help:golem_resource.field_golem_resource_product_tmpl_id
@@ -122,6 +132,11 @@ msgstr "Créé le"
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
 msgid "Day"
 msgstr "Jour"
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Day Reservation"
+msgstr "Démarre ce jour"
 
 #. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_day_start
@@ -229,6 +244,11 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.product_template_search_inherit_resource_view
+msgid "Linked To A Resource"
+msgstr "Lié à une ressource"
+
+#. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_product_tmpl_id
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
 msgid "Linked product"
@@ -314,6 +334,16 @@ msgid "Please save the resource before fixing the timetable availibility\""
 msgstr "Merci de sauvegarder la ressource avant de pouvoir définir ses disponibilités\""
 
 #. module: golem_resource
+#: model:ir.model,name:golem_resource.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: golem_resource
+#: model:ir.actions.act_window,name:golem_resource.golem_resource_product_action
+msgid "Products"
+msgstr "Articles"
+
+#. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_reason
 msgid "Reason"
 msgstr "Motif"
@@ -367,6 +397,11 @@ msgid "Resource"
 msgstr "Ressource"
 
 #. module: golem_resource
+#: model:ir.ui.menu,name:golem_resource.product_template_menu
+msgid "Resource Products"
+msgstr "Articles liés à des ressources"
+
+#. module: golem_resource
 #: code:addons/golem_resource/models/golem_resource.py:64
 #, python-format
 msgid "Resource Reservation"
@@ -379,7 +414,7 @@ msgid "Resource Reservation list"
 msgstr "Liste des réservations"
 
 #. module: golem_resource
-#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4449
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4023
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_name
 msgid "Resource Type"
 msgstr "Type de ressource"
@@ -389,6 +424,12 @@ msgstr "Type de ressource"
 #: model:ir.ui.menu,name:golem_resource.resource_cofiguration_type_menu
 msgid "Resource Types"
 msgstr "Types de ressource"
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_product_product_resource_ids
+#: model:ir.model.fields,field_description:golem_resource.field_product_template_resource_ids
+msgid "Resource ids"
+msgstr "Ressources"
 
 #. module: golem_resource
 #: sql_constraint:golem.resource.type:0
@@ -408,11 +449,6 @@ msgstr "Ressources"
 #, python-format
 msgid "Saturday"
 msgstr "Samedi"
-
-#. module: golem_resource
-#: model:ir.ui.menu,name:golem_resource.product_template_menu
-msgid "Sellable Products"
-msgstr "Articles en vente"
 
 #. module: golem_resource
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form

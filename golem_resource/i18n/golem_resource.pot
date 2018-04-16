@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 15:37+0000\n"
-"PO-Revision-Date: 2018-03-26 15:37+0000\n"
+"POT-Creation-Date: 2018-04-16 14:29+0000\n"
+"PO-Revision-Date: 2018-04-16 14:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_availibility_24_7
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_resource_avaibility_24_7
 msgid "24/7 availibility"
+msgstr ""
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "30 Days Reservations"
+msgstr ""
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "7 Days Reservations"
 msgstr ""
 
 #. module: golem_resource
@@ -121,6 +131,11 @@ msgstr ""
 #. module: golem_resource
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
 msgid "Day"
+msgstr ""
+
+#. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
+msgid "Day Reservation"
 msgstr ""
 
 #. module: golem_resource
@@ -229,6 +244,11 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_resource
+#: model:ir.ui.view,arch_db:golem_resource.product_template_search_inherit_resource_view
+msgid "Linked To A Resource"
+msgstr ""
+
+#. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_product_tmpl_id
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_view_search
 msgid "Linked product"
@@ -314,6 +334,16 @@ msgid "Please save the resource before fixing the timetable availibility\""
 msgstr ""
 
 #. module: golem_resource
+#: model:ir.model,name:golem_resource.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: golem_resource
+#: model:ir.actions.act_window,name:golem_resource.golem_resource_product_action
+msgid "Products"
+msgstr ""
+
+#. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_reservation_rejection_wizard_reason
 msgid "Reason"
 msgstr ""
@@ -367,6 +397,11 @@ msgid "Resource"
 msgstr ""
 
 #. module: golem_resource
+#: model:ir.ui.menu,name:golem_resource.product_template_menu
+msgid "Resource Products"
+msgstr ""
+
+#. module: golem_resource
 #: code:addons/golem_resource/models/golem_resource.py:64
 #, python-format
 msgid "Resource Reservation"
@@ -379,7 +414,7 @@ msgid "Resource Reservation list"
 msgstr ""
 
 #. module: golem_resource
-#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4449
+#: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_id_4023
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_type_name
 msgid "Resource Type"
 msgstr ""
@@ -388,6 +423,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:golem_resource.golem_resource_type_action
 #: model:ir.ui.menu,name:golem_resource.resource_cofiguration_type_menu
 msgid "Resource Types"
+msgstr ""
+
+#. module: golem_resource
+#: model:ir.model.fields,field_description:golem_resource.field_product_product_resource_ids
+#: model:ir.model.fields,field_description:golem_resource.field_product_template_resource_ids
+msgid "Resource ids"
 msgstr ""
 
 #. module: golem_resource
@@ -407,11 +448,6 @@ msgstr ""
 #: selection:golem.resource.timetable,weekday:0
 #, python-format
 msgid "Saturday"
-msgstr ""
-
-#. module: golem_resource
-#: model:ir.ui.menu,name:golem_resource.product_template_menu
-msgid "Sellable Products"
 msgstr ""
 
 #. module: golem_resource

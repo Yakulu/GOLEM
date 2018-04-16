@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <!-- Search -->
+    <record id="product_template_search_inherit_resource_view" model="ir.ui.view">
+      <field name="name">product.template.inherit.resource.search</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref='product.product_template_search_view' />
+      <field name="arch" type="xml">
+        <filter name="filter_to_sell" position="after">
+          <filter string="Linked To A Resource" name="filter_resource_linked" domain="[('resource_ids','!=',False)]"/>
+        </filter>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <act_window id="golem_resource_product_action" name="Products"
+      res_model="product.template" view_mode="kanban,tree,form"
+      context="{'search_default_filter_resource_linked': 1}" />
+
+    <!-- Menus -->
+    <menuitem id="product_template_menu" name="Resource Products"
+      parent="resource_configuration_menu"
+      action="golem_resource_product_action" sequence="20" />
+      
+  </data>
+</odoo>
