@@ -62,7 +62,7 @@ class GolemResourceReservation(models.Model):
 
             if not account_id:
                 raise ValidationError(
-                    _('There is no income account defined for this product: "{}"'
+                    _(u'There is no income account defined for this product: "{}"'
                       '. You have to configure it on the product form.'.format(product.name)))
 
     @api.multi
@@ -117,6 +117,7 @@ class GolemResourceReservation(models.Model):
                     'res_id': reservation.invoice_id.id,
                     'view_mode': 'form',
                     'view_id': self.env.ref('account.invoice_form').id}
+
     @api.multi
     def add_to_invoice(self):
         """ Add reservation to existing invoice"""
