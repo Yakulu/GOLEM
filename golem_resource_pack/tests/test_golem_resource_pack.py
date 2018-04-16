@@ -20,7 +20,6 @@
 
 import logging
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -102,7 +101,7 @@ class TestGolemResourcePack(TransactionCase):
         pack.reservation_ids[0].state_confirm()
         self.assertEqual(pack.reservation_ids[0].state, "validated")
         self.assertEqual(pack.state, "validated")
-        pack.reservation_ids=[(5,0,0)]
+        pack.reservation_ids = [(5, 0, 0)]
         self.assertFalse(pack.reservation_ids)
         self.assertEqual(pack.reservation_count, 0)
 

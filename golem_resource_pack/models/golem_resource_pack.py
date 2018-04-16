@@ -35,7 +35,7 @@ class GolemResourcePack(models.Model):
                                               False : [('readonly', False)]})
 
     note = fields.Text(help='Notes, optional subject for the reservation, reason',
-                       track_visibility='onchange',readonly=True,
+                       track_visibility='onchange', readonly=True,
                        states={'draft': [('readonly', False)],
                                False : [('readonly', False)]})
 
@@ -59,6 +59,7 @@ class GolemResourcePack(models.Model):
     @api.multi
     @api.constrains('partner_id')
     def set_reservation_partner(self):
+        """ Set reservation partner """
         for pack in self:
             pack.reservation_ids.write({'partner_id': pack.partner_id.id})
 
@@ -114,6 +115,7 @@ class GolemResourcePack(models.Model):
     @api.multi
     @api.constrains('reservation_ids')
     def check_reservation_partner(self):
+        """ Check reservation partner """
         for pack in self:
             if len(filter(lambda x: x.partner_id == pack.partner_id, pack.reservation_ids)) < len(pack.reservation_ids):
                 raise ValidationError(_('Pack client should be the same for all reservations'))

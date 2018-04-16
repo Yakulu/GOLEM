@@ -18,10 +18,7 @@
 
 """ GOLEM Resource Reservation """
 
-from math import modf
-from datetime import timedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class GolemResourceReservation(models.Model):
