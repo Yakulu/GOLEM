@@ -18,7 +18,7 @@
 
 """ GOLEM Resource Reservation  Adaptation"""
 
-from odoo import models, fields, api, _
+from odoo import models, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -31,5 +31,12 @@ class AccountInvoice(models.Model):
         """Add reservation to existing invoice """
         for invoice in self:
             reservation_id = self._context.get('reservation_id')
+            if not reservation_id:
+                raise ValidationError(_('There is no reservation passed through '
+                                        'context. Please contact your administrator.'))
             reservation = self.env['golem.resource.reservation'].browse(reservation_id)
+            if not reservation:
+                raise ValidationError(_('No reservation has been found with {} '
+                                        'reservation ID. Please contact your '
+                                        'administrator.'.format(reservation_id)))
             reservation.create_invoice_line(invoice)

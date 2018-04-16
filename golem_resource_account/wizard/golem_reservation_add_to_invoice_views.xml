@@ -19,20 +19,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="golem_reservation_add_to_invoice_form">
+    <record id="golem_reservation_add_to_invoice_form" model="ir.ui.view">
       <field name="name">GOLEM Reservation Add to invoice Form</field>
       <field name="model">golem.reservation.add.to.invoice.wizard</field>
       <field name="arch" type="xml">
         <form>
-          <field name="reservation_id" invisible="1" />
+          <field name="reservation_id" readonly="1" />
           <field name="invoice_ids" widget="many2many"
             context="{'reservation_id': reservation_id}"
             readonly="1">
             <tree>
               <field name="partner_id" />
               <field name="amount_total" />
-              <field name="state"/>
-              <button name="add_to_invoice" type="object" icon="fas fa-plus-square"/>
+              <button name="add_to_invoice" type="object" icon="fa fa-plus-square" />
             </tree>
           </field>
           <footer>
