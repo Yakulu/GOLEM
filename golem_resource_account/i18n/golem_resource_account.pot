@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-27 09:39+0000\n"
-"PO-Revision-Date: 2018-03-27 09:39+0000\n"
+"POT-Creation-Date: 2018-04-16 16:11+0000\n"
+"PO-Revision-Date: 2018-04-16 16:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,11 @@ msgid "A generic product can be linked, in order to sell reservations (work in p
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_form_inherit_golem_resource_account
+msgid "Add To Invoice"
+msgstr ""
+
+#. module: golem_resource_account
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_line_price_subtotal
 msgid "Amount"
 msgstr ""
@@ -45,6 +50,11 @@ msgstr ""
 #. module: golem_resource_account
 #: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_invoice_wizard_form
 msgid "Cancel"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.ui.view,arch_db:golem_resource_account.golem_reservation_add_to_invoice_form
+msgid "Close"
 msgstr ""
 
 #. module: golem_resource_account
@@ -63,11 +73,13 @@ msgid "Create invoice and Close"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_create_uid
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_create_date
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_create_date
 msgid "Created on"
 msgstr ""
@@ -78,6 +90,7 @@ msgid "Currency"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_display_name
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_display_name
 msgid "Display Name"
 msgstr ""
@@ -88,11 +101,13 @@ msgid "GOLEM Reservation Model"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_id
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_id
 msgid "ID"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model,name:golem_resource_account.model_account_invoice
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_resource_reservation_invoice_id
 #: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
 msgid "Invoice"
@@ -124,16 +139,19 @@ msgid "Invoicing"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard___last_update
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_write_uid
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_write_date
 #: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_invoice_wizard_write_date
 msgid "Last Updated on"
 msgstr ""
@@ -144,8 +162,30 @@ msgid "Linked product"
 msgstr ""
 
 #. module: golem_resource_account
+#: code:addons/golem_resource_account/models/account_invoice.py:41
+#, python-format
+msgid "No reservation has been found with {} reservation ID. Please contact your administrator."
+msgstr ""
+
+#. module: golem_resource_account
 #: model:ir.ui.view,arch_db:golem_resource_account.golem_resource_reservation_search_inherit_golem_resource_account
 msgid "Not invoiced"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_invoice_ids
+msgid "Partner invoice list"
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:130
+#, python-format
+msgid "Partner's invoice list"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model.fields,field_description:golem_resource_account.field_golem_reservation_add_to_invoice_wizard_reservation_id
+msgid "Reservation id"
 msgstr ""
 
 #. module: golem_resource_account
@@ -172,9 +212,21 @@ msgid "The reservation \"{}\" is not validated, please validate it before creati
 msgstr ""
 
 #. module: golem_resource_account
+#: code:addons/golem_resource_account/models/golem_resource_reservation.py:139
+#, python-format
+msgid "There is no existing invoice for the current client, please create new one to invoice this reservation"
+msgstr ""
+
+#. module: golem_resource_account
 #: code:addons/golem_resource_account/models/golem_resource_reservation.py:66
 #, python-format
 msgid "There is no income account defined for this product: \"{}\". You have to configure it on the product form."
+msgstr ""
+
+#. module: golem_resource_account
+#: code:addons/golem_resource_account/models/account_invoice.py:35
+#, python-format
+msgid "There is no reservation passed through context. Please contact your administrator."
 msgstr ""
 
 #. module: golem_resource_account
@@ -198,6 +250,11 @@ msgstr ""
 #: code:addons/golem_resource_account/models/golem_resource_reservation.py:43
 #, python-format
 msgid "You can't group reservations of multiple clients in the same invoice, please remove inadequate reservations"
+msgstr ""
+
+#. module: golem_resource_account
+#: model:ir.model,name:golem_resource_account.model_golem_reservation_add_to_invoice_wizard
+msgid "golem.reservation.add.to.invoice.wizard"
 msgstr ""
 
 #. module: golem_resource_account
