@@ -25,10 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.pack.rejection.wizard</field>
       <field name="arch" type="xml">
         <form string="Rejection reason">
-          <group>
-            <field name="pack_id" readonly="1" />
-            <field name="reason" />
-          </group>
+          <sheet>
+            <group>
+              <field name="pack_id" readonly="1" />
+              <field name="reason" />
+            </group>
+          </sheet>
           <footer>
             <button name="reject" string="Reject" type="object"
               class="oe_highlight" />

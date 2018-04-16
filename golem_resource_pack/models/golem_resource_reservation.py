@@ -25,4 +25,5 @@ class GolemResourceReservation(models.Model):
     """ GOLEM Resource Reservation Model """
     _inherit = 'golem.resource.reservation'
 
-    pack_id = fields.Many2one('golem_resource_reservation', 'Reservation Pack')
+    pack_id = fields.Many2one('golem.resource.pack', 'Reservation Pack',
+                              index=True)

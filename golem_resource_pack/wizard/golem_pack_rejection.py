@@ -31,8 +31,7 @@ class GolemReservationRejectionWizard(models.TransientModel):
     def reject(self):
         """ Sets pack status to rejected and add reason """
         self.ensure_one()
-        rejection = self[0]
-        for reservation in rejection.pack_id.reservation_ids:
-            if reservation.state == "confirmed":
-                reservation.write({'state' :'rejected'})
-        rejection.pack_id.write({'rejection_reason': rejection.reason})
+        rdata = {'state': 'rejected',
+                 'rejection_reason': self[0].reason}
+        self[0].pack_id.reservation_ids.filtered(lambda r: r.state == 'confirmed').write(rdata)
+        self[0].pack_id.rejection_reason = self[0].reason

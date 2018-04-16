@@ -20,13 +20,13 @@
     'name': 'GOLEM resources pack invoicing',
     'summary': 'GOLEM resources pack invoicing',
     'description': ''' GOLEM resources pack invoicing ''',
-    'version': '10.0.0.0.1',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
+    'auto_install': True,
     'depends': ['golem_resource_pack', 'golem_resource_account'],
     'data': ['views/golem_resource_pack_views.xml']
-             #'security/ir.model.access.csv']
 }

@@ -28,46 +28,53 @@ class GolemResourcePack(models.Model):
     _description = 'GOLEM Resource Pack Model'
     _inherit = 'mail.thread'
 
-    name = fields.Char(compute='_compute_name', store=True)
+    name = fields.Char(required=True)
     reservation_ids = fields.One2many('golem.resource.reservation', 'pack_id',
-                                      readonly=True, track_visibility='onchange',
-                                      states={'draft': [('readonly', False)],
-                                              False : [('readonly', False)]})
+                                      readonly=True, string='Reservations',
+                                      states={'draft': [('readonly', False)]})
 
     note = fields.Text(help='Notes, optional subject for the reservation, reason',
                        track_visibility='onchange', readonly=True,
-                       states={'draft': [('readonly', False)],
-                               False : [('readonly', False)]})
+                       states={'draft': [('readonly', False)]})
 
     user_id = fields.Many2one('res.users', required=True, index=True, readonly=True,
                               string='User', default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='On behalf of', required=True,
                                  index=True, track_visibility='onchange', readonly=True,
-                                 states={'draft': [('readonly', False)],
-                                         False : [('readonly', False)]})
+                                 states={'draft': [('readonly', False)]})
     state = fields.Selection([('canceled', 'Canceled'),
                               ('draft', 'Draft'),
                               ('confirmed', 'Confirmed'),
                               ('validated', 'Validated'),
                               ('rejected', 'Rejected')],
-                             default='draft', compute="_compute_pack_state",
+                             default='draft', compute='_compute_pack_state',
                              track_visibility='onchange')
-    reservation_count = fields.Integer(compute="_compute_reservation_count",
-                                       string="Reservation count")
+    reservation_count = fields.Integer(compute='_compute_reservation_count')
     rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
 
-    @api.multi
-    @api.constrains('partner_id')
-    def set_reservation_partner(self):
-        """ Set reservation partner """
-        for pack in self:
-            pack.reservation_ids.write({'partner_id': pack.partner_id.id})
-
-    @api.multi
     @api.depends('reservation_ids')
     def _compute_reservation_count(self):
         for pack in self:
             pack.reservation_count = len(pack.reservation_ids)
+
+    @api.depends('reservation_ids', 'reservation_ids.state')
+    def _compute_pack_state(self):
+        """ get pack state """
+        for pack in self:
+            if not pack.reservation_ids:
+                pack.state = 'draft'
+            else:
+                reservation_states = pack.mapped('reservation_ids.state')
+                if 'rejected' in reservation_states:
+                    pack.state = 'rejected'
+                elif 'canceled' in reservation_states:
+                    pack.state = 'canceled'
+                elif 'draft' in reservation_states:
+                    pack.state = 'draft'
+                elif 'confirmed' in reservation_states:
+                    pack.state = 'confirmed'
+                elif 'validated' in reservation_states:
+                    pack.state = 'validated'
 
     @api.multi
     def state_confirm(self):
@@ -105,34 +112,16 @@ class GolemResourcePack(models.Model):
                 'view_mode': 'form',
                 'target': 'new'}
 
-
-    @api.depends('partner_id')
-    def _compute_name(self):
-        """ Compute pack name """
+    @api.constrains('partner_id')
+    def set_reservation_partner(self):
+        """ Set reservation partner """
         for pack in self:
-            pack.name = u'{}/{}'.format(pack.partner_id.name,
-                                        pack.create_date)
-    @api.multi
+            pack.reservation_ids.write({'partner_id': pack.partner_id.id})
+
     @api.constrains('reservation_ids')
     def check_reservation_partner(self):
         """ Check reservation partner """
         for pack in self:
-            if len(filter(lambda x: x.partner_id == pack.partner_id, pack.reservation_ids)) < len(pack.reservation_ids):
-                raise ValidationError(_('Pack client should be the same for all reservations'))
-
-    @api.multi
-    @api.depends('reservation_ids')
-    def _compute_pack_state(self):
-        """ get pack state """
-        for pack in self:
-            reservation_states = list(map(lambda x: x.state, pack.reservation_ids))
-            if "rejected" in reservation_states:
-                pack.state = 'rejected'
-            elif "canceled" in reservation_states:
-                pack.state = 'canceled'
-            elif "draft" in reservation_states:
-                pack.state = 'draft'
-            elif "confirmed" in reservation_states:
-                pack.state = 'confirmed'
-            elif "validated" in reservation_states:
-                pack.state = 'validated'
+            if len(pack.reservation_ids.mapped('partner_id')) > 1:
+                raise ValidationError(_('Pack partner should be the same for '
+                                        'all reservations'))

@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Resource Pack Tree</field>
       <field name="model">golem.resource.pack</field>
       <field name="arch" type="xml">
-        <tree colors="black: state=='draft'; blue: state=='validated'; gree : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
+        <tree colors="black: state=='draft'; blue: state=='validated'; green : state=='validated'; grey: state=='canceled'; orange: state=='rejected'">
           <field name="name" />
           <field name="partner_id" />
           <field name="state" />
@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </header>
           <sheet>
             <group>
-              <group name="general" string="Genaral">
+              <group name="general" string="Pack" colspan="2">
                 <field name="id" invisible="1"/>
                 <field name="user_id" />
                 <field name="partner_id" />
@@ -63,8 +63,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="rejection_reason"
                   attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
               </group>
+              <group colspan="2" name="reservations">
+                <field name="reservation_ids" widget="many2many"
+                   context="{'default_partner_id' : partner_id, 'default_pack_id': active_id, 'search_default_state_draft': 1, 'search_default_partner_id': partner_id}" />
+              </group>
             </group>
-            <field name="reservation_ids" context="{'default_partner_id' : partner_id}" />
           </sheet>
           <div class="oe_chatter">
               <field name="message_follower_ids" widget="mail_followers" />
