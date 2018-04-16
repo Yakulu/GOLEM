@@ -40,7 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 </table>
                                 <table border="1" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
                                   <tbody>
-                                    <!--<tr t-foreach="get_resource" t-as="r">-->
                                     <tr t-foreach="get_resource" t-as="resource">
                                       <td><span t-esc="resource"/></td>
                                       <t t-foreach="get_data" t-as="data">
@@ -48,7 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                           <td t-attf-style="background-color:{{data['bgcolor']}}!important;">
                                             <b>Date :</b><span t-esc="data['day_start']"/><br/>
                                             <b>On behalf of :</b><span t-esc="data['client']"/><br/>
-                                            <b>client_id :</b><span t-esc="data['bgcolor']"/><br/>
                                           </td>
                                         </t>
                                       </t>

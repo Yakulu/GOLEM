@@ -16,13 +16,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Resources management """
+""" GOLEM Resources Report Wizard """
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class GolemResourceReportWizard(models.TransientModel):
-    """GOLEM Resource wizard : refusal reason for a reservation """
+    """GOLEM Report Wizard : Choose report parameters """
     _name = "golem.resource.report.wizard"
 
     resource_ids = fields.Many2many('golem.resource')
@@ -31,6 +31,7 @@ class GolemResourceReportWizard(models.TransientModel):
 
     @api.multi
     def print_report(self):
+        """ Print Report """
         for record in self:
             start_date = fields.Datetime.from_string(record.date_start)
             stop_date = fields.Datetime.from_string(record.date_stop)
@@ -40,16 +41,6 @@ class GolemResourceReportWizard(models.TransientModel):
             else:
                 data = self.read(
                     ['resource_ids', 'date_start', 'date_stop'])[0]
-
-                lst = []
-                domain = [('date_start', '>', data['date_start']),
-                          ('date_stop', '<', data['date_stop']),
-                          ('resource_id', 'in', data['resource_ids'])]
-                reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
-                lst = reservations.mapped('resource_id.name')
-                print '____________________________________'
-                print lst
-
                 return self.env['report'].get_action(
                     self, 'golem_resource_report.golem_reservation_report',
                     data=data)
