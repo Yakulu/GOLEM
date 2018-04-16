@@ -124,18 +124,17 @@ class GolemResourceReservation(models.Model):
             partner = reservation.partner_id
             domain = [('partner_id', '=', partner.id),
                       ('state', '=', 'draft')]
-            invoice_list = self.env['account.invoice'].search(domain)
-            #test if none
-            if invoice_list:
-                invoice_ids = invoice_list.mapped('id')
-                return {'name' : ("partner's invoice list"),
+            invoice_ids = self.env['account.invoice'].search(domain)
+            if invoice_ids:
+                return {'name' : (_('Partner\'s invoice list')),
                         'type' : 'ir.actions.act_window',
                         'res_model' : 'golem.reservation.add.to.invoice.wizard',
-                        'context': {'default_invoice_ids': invoice_ids,
+                        'context': {'default_invoice_ids': invoice_ids.ids,
                                     'default_reservation_id': reservation.id},
                         'view_mode': 'form',
                         'flags': {'initial_mode': 'view'},
                         'target': 'new'}
             else:
-                raise ValidationError(_('There is no existing invoice for the current client, '
-                                        'please create new one to invoice this reservation'))
+                raise ValidationError(_('There is no existing invoice for the '
+                                        'current client, please create new one '
+                                        'to invoice this reservation'))

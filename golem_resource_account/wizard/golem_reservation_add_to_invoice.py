@@ -17,33 +17,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """ GOLEM Reservation's Adding to invoice wizard"""
 
-import logging
 from odoo import models, fields, api, _
-_LOGGER = logging.getLogger(__name__)
 
 class GolemReservationAddToInvoiceWizard(models.TransientModel):
-    """GOLEM Resrvation Add to Invoice Wizard """
+    """GOLEM Reservation Add to Invoice Wizard """
     _name = 'golem.reservation.add.to.invoice.wizard'
 
-    #state = fields.Selection([('init', 'Init'), ('final', 'Final')],
-    #                         default='init')
     invoice_ids = fields.Many2many('account.invoice', string="Partner invoice list")
     reservation_id = fields.Many2one('golem.resource.reservation')
 
-    @api.multi
-    def add(self):
-        print '__________________hjt______________________'
-
-    """keyword = fields.Char(required=True)
+    keyword = fields.Char(required=True)
     member_ids = fields.Many2many('golem.member', string='Members')
     contact_ids = fields.Many2many('res.partner', string='Contacts')
 
     @api.multi
     def action(self):
-
+        """ Returns action window with current model and instance """
         self.ensure_one()
-        _LOGGER.warning(self[0].contact_ids)
-        _LOGGER.warning(self[0].member_ids)
         return {'name' : _('Search results'),
                 'type' : 'ir.actions.act_window',
                 'res_model' : self._name,
@@ -52,22 +42,13 @@ class GolemReservationAddToInvoiceWizard(models.TransientModel):
                 'target': 'new'}
 
     @api.multi
-    def new_search(self):
-
-        self[0].write({'member_ids': [(6, False, [])],
-                       'contact_ids': [(6, False, [])],
-                       'state': 'init'})
-        return self[0].action()
-
-    @api.multi
     def search_partners(self):
-
+        """ Searches partners in name, email """
         self.ensure_one()
         domain = ['|',
                   ('name', 'ilike', self[0].keyword),
                   ('email', 'ilike', self[0].keyword)]
         partner_ids = self.env['res.partner'].search(domain)
         self[0].write({'contact_ids': [(6, False, partner_ids.ids)],
-                       'member_ids': [(6, False, partner_ids.mapped('member_id').ids)],
-                       'state': 'final'})
-        return self[0].action()"""
+                       'member_ids': [(6, False, partner_ids.mapped('member_id').ids)]})
+        return self[0].action()
