@@ -69,6 +69,7 @@ class TestGolemResourcePack(TransactionCase):
         })
         self.pack_obj = self.env['golem.resource.pack']
         self.pack_data = {
+            'name': 'Pack Test',
             'partner_id': self.partner.id
         }
 

@@ -47,7 +47,7 @@ class GolemResourcePack(models.Model):
             if pack.state != 'validated':
                 raise ValidationError(_('The current pack is not validated, please validate '
                                         'it before creating invoice'))
-            elif not pack.is_products_set:
+            elif not pack.are_products_set:
                 raise ValidationError(_('You can not create an invoice for a pack without '
                                         'linked product on every resource reserved.'))
             elif pack.invoice_id.id:
