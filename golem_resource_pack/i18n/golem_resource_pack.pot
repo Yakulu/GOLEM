@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_resource_pack
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-17 06:51+0000\n"
+"PO-Revision-Date: 2018-04-17 06:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_rejection_wizard_view_form
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Cancel"
+msgstr ""
+
+#. module: golem_resource_pack
+#: selection:golem.resource.pack,state:0
+msgid "Canceled"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Confirm"
+msgstr ""
+
+#. module: golem_resource_pack
+#: selection:golem.resource.pack,state:0
+msgid "Confirmed"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_create_uid
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_create_date
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_display_name
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_resource_pack
+#: selection:golem.resource.pack,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model,name:golem_resource_pack.model_golem_resource_reservation
+msgid "GOLEM Reservation Model"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model,name:golem_resource_pack.model_golem_resource_pack
+msgid "GOLEM Resource Pack Model"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_id
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_id
+msgid "ID"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard___last_update
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_write_uid
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_write_date
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_name
+msgid "Name"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_note
+msgid "Note"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,help:golem_resource_pack.field_golem_resource_pack_note
+msgid "Notes, optional subject for the reservation, reason"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_partner_id
+msgid "On behalf of"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Pack"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_pack_id
+msgid "Pack id"
+msgstr ""
+
+#. module: golem_resource_pack
+#: code:addons/golem_resource_pack/models/golem_resource_pack.py:126
+#, python-format
+msgid "Pack partner should be the same for all reservations"
+msgstr ""
+
+#. module: golem_resource_pack
+#: code:addons/golem_resource_pack/models/golem_resource_pack.py:108
+#, python-format
+msgid "Please enter the rejection reason"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_reason
+msgid "Reason"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_rejection_wizard_view_form
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Reject"
+msgstr ""
+
+#. module: golem_resource_pack
+#: selection:golem.resource.pack,state:0
+msgid "Rejected"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_rejection_reason
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_rejection_wizard_view_form
+msgid "Rejection reason"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.actions.act_window,name:golem_resource_pack.golem_resource_pack_action
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_reservation_pack_id
+msgid "Reservation Pack"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.menu,name:golem_resource_pack.golem_resource_packs_menu
+msgid "Reservation Packs"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_reservation_count
+msgid "Reservation count"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_reservation_ids
+msgid "Reservations"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Set to draft"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_state
+msgid "State"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_user_id
+msgid "User"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Validate"
+msgstr ""
+
+#. module: golem_resource_pack
+#: selection:golem.resource.pack,state:0
+msgid "Validated"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model,name:golem_resource_pack.model_golem_pack_rejection_wizard
+msgid "golem.pack.rejection.wizard"
+msgstr ""
+

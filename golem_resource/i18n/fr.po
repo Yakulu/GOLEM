@@ -352,19 +352,19 @@ msgstr "Motif"
 #: model:ir.ui.view,arch_db:golem_resource.golem_reservation_rejection_wizard_view_form
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
 msgid "Reject"
-msgstr "Rejet"
+msgstr "Refus"
 
 #. module: golem_resource
 #: selection:golem.resource.reservation,state:0
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_search
 msgid "Rejected"
-msgstr "Rejeté"
+msgstr "Refusé"
 
 #. module: golem_resource
 #: model:ir.model.fields,field_description:golem_resource.field_golem_resource_reservation_rejection_reason
 #: model:ir.ui.view,arch_db:golem_resource.golem_reservation_rejection_wizard_view_form
 msgid "Rejection reason"
-msgstr "Motif du rejet"
+msgstr "Motif du refus"
 
 #. module: golem_resource
 #: model:ir.ui.view,arch_db:golem_resource.golem_resource_reservation_view_form
@@ -577,7 +577,7 @@ msgstr "Sans validation"
 #: code:addons/golem_resource/models/golem_resource_reservation.py:148
 #, python-format
 msgid "You do not have permissions to validate or reject a reservation."
-msgstr "Vous n'avez pas les autorisations nécessaires pour valider ou rejeter une réservation."
+msgstr "Vous n'avez pas les autorisations nécessaires pour valider ou refuser une réservation."
 
 #. module: golem_resource
 #: model:ir.model,name:golem_resource.model_golem_reservation_rejection_wizard
