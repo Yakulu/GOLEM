@@ -57,6 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <group name="general" string="Pack" colspan="2">
                 <field name="id" invisible="1"/>
+                <field name="name" />
                 <field name="user_id" />
                 <field name="partner_id" />
                 <field name="note" />
