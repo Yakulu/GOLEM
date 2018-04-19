@@ -52,6 +52,18 @@ class GolemResourcePack(models.Model):
     reservation_count = fields.Integer(compute='_compute_reservation_count')
     rejection_reason = fields.Text(readonly=True, track_visibility='onchange')
 
+    @api.multi
+    def quick_reservation(self):
+        """ Quick Reservation Creating"""
+        self.ensure_one()
+        pack_id = self[0]
+        return {'name' : _('Reservations Creating'),
+                'type' : 'ir.actions.act_window',
+                'res_model' : 'golem.pack.quick.reservation.wizard',
+                'context': {'default_pack_id': pack_id.id},
+                'view_mode': 'form',
+                'target': 'new'}
+
     @api.depends('reservation_ids')
     def _compute_reservation_count(self):
         for pack in self:
