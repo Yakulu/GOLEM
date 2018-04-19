@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <sheet>
             <group>
               <field name="pack_id" readonly="1" />
+              <field name="partner_id" readonly="1"/>
               <field name="resource_ids" />
               <field name="date_start" />
               <field name="date_stop" />

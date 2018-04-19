@@ -60,7 +60,8 @@ class GolemResourcePack(models.Model):
         return {'name' : _('Reservations Creating'),
                 'type' : 'ir.actions.act_window',
                 'res_model' : 'golem.pack.quick.reservation.wizard',
-                'context': {'default_pack_id': pack_id.id},
+                'context': {'default_pack_id': pack_id.id,
+                            'default_partner_id': pack_id.partner_id.id},
                 'view_mode': 'form',
                 'target': 'new'}
 

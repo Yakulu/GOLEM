@@ -25,6 +25,7 @@ class GolemPackQuickReservationWizard(models.TransientModel):
     _name = "golem.pack.quick.reservation.wizard"
 
     pack_id = fields.Many2one('golem.resource.pack', required=True)
+    partner_id = fields.Many2one('res.partner', string='On behalf of', readonly=True)
     resource_ids = fields.Many2many('golem.resource', string="Resource List")
 
     date_start = fields.Datetime('Start date', required=True)
@@ -34,10 +35,14 @@ class GolemPackQuickReservationWizard(models.TransientModel):
     @api.multi
     def create_reservations(self):
         """ Create a reservation for each resource """
-        pass
-        """
         self.ensure_one()
-        rdata = {'state': 'rejected',
-                 'rejection_reason': self[0].reason}
-        self[0].pack_id.reservation_ids.filtered(lambda r: r.state == 'confirmed').write(rdata)
-        self[0].pack_id.rejection_reason = self[0].reason"""
+        wizard = self[0]
+        data = []
+        for resource in wizard.resource_ids:
+            reservation = {'user_id': self.env.user,
+                           'partner_id': wizard.partner_id,
+                           'resource_id': resource,
+                           'date_start': wizard.date_start,
+                           'date_stop': wizard.date_stop}
+            data.append((0, 0, reservation))
+        wizard.pack_id.reservation_ids = data
