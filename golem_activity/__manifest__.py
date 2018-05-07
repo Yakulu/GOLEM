@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM activities',
     'summary': 'Extends Odoo products for multi-activity',
-    'version': '10.0.2.1.2',
+    'version': '10.0.2.1.3',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
@@ -27,5 +27,6 @@
     'depends': ['product', 'account', 'golem_base', 'golem_season'],
     'data': ['security/ir.model.access.csv',
              'data/golem_activity_data.xml',
-             'views/golem_activity_views.xml']
+             'views/golem_activity_views.xml',
+             'report/golem_activity_report_templates.xml']
 }
