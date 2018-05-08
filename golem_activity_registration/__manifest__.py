@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM Activity Member Registrations',
     'summary': 'GOLEM Activities Member Registrations management',
-    'version': '10.0.1.1.3',
+    'version': '10.0.1.1.4',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
@@ -29,5 +29,6 @@
              'views/golem_member_views.xml',
              'views/golem_activity_views.xml',
              'report/golem_member_card_templates.xml',
-             'security/ir.model.access.csv']
+             'security/ir.model.access.csv',
+             'report/golem_activity_report_templates.xml']
 }
