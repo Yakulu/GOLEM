@@ -17,4 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import golem_resource_reservation
+from . import golem_resource_reservation, account_invoice

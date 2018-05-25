@@ -43,6 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             attrs="{'invisible': ['|', ('state', '!=', 'validated'), '|', ('resource_product_id', '=', False), ('invoice_id', '!=', False)]}" />
           <button name="show_invoice" type="object" string="Show invoice" class="oe_highlight"
             attrs="{'invisible': [('invoice_id', '=', False)]}" />
+          <button name="add_to_invoice" type="object" string="Add To Invoice" class="oe_highlight"
+            attrs="{'invisible': ['|', ('state', '!=', 'validated'), '|', ('resource_product_id', '=', False), ('invoice_id', '!=', False)]}" />
         </button>
         <group name="reservation" position="after">
           <group name="invoicing" string="Invoicing"

@@ -16,22 +16,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM non-profit resources',
-    'summary': 'GOLEM resources management',
-    'description': ''' GOLEM resources management ''',
-    'version': '10.0.1.13.2',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_base', 'product'],
-    'data': ['views/golem_resource_views.xml',
-             'views/golem_resource_type_views.xml',
-             'views/golem_resource_reservation_views.xml',
-             'views/golem_resource_timetable_views.xml',
-             'wizard/golem_reservation_rejection_views.xml',
-             'security/ir.model.access.csv',
-             'views/product_template_views.xml']
-}
+from . import models, wizard

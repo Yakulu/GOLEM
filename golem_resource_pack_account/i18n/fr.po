@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_resource_pack_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-17 06:51+0000\n"
+"PO-Revision-Date: 2018-04-17 06:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,help:golem_resource_pack_account.field_golem_resource_pack_invoice_state
+msgid " * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
+" * The 'Pro-forma' status is used when the invoice does not have an invoice number.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr "* L'état \"Brouillon\" est utilisé lorsqu'un utilisateur est en train de saisir ou de modifier une nouvelle facture non confirmée.\n"
+"* L'état \"Pro-forma\" est utilisé lorsque la facture n'a pas de numéro de facture.\n"
+"* L'état 'Ouvert' est utilisé lorsque l'utilisateur crée une facture, celle-ci a alors un numéro de facture. La facture reste dans l'état \"Ouvert\" tant qu'elle n'est pas payée.\n"
+"* L'état 'Payé' est affecté automatiquement lorsque la facture est payée. Les écritures correspondantes dans les journaux peuvent ou non être lettrées.\n"
+"* L'état \"Annulé\" est utilisé lorsque l'utilisateur annule la facture."
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,field_description:golem_resource_pack_account.field_golem_resource_pack_are_products_set
+msgid "Are products set"
+msgstr "Articles liés ?"
+
+#. module: golem_resource_pack_account
+#: model:ir.ui.view,arch_db:golem_resource_pack_account.golem_resource_pack_inherit_account_form
+msgid "Create Invoice"
+msgstr "Créer une facture"
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,field_description:golem_resource_pack_account.field_golem_resource_pack_currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: golem_resource_pack_account
+#: model:ir.model,name:golem_resource_pack_account.model_golem_resource_pack
+msgid "GOLEM Resource Pack Model"
+msgstr "GOLEM Resource Pack Model"
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,field_description:golem_resource_pack_account.field_golem_resource_pack_invoice_id
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: golem_resource_pack_account
+#: model:ir.ui.view,arch_db:golem_resource_pack_account.golem_resource_pack_inherit_account_form
+msgid "Invoicing"
+msgstr "Facturation"
+
+#. module: golem_resource_pack_account
+#: model:ir.ui.view,arch_db:golem_resource_pack_account.golem_resource_pack_inherit_account_form
+msgid "Show invoice"
+msgstr "Voir la facture"
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,field_description:golem_resource_pack_account.field_golem_resource_pack_invoice_state
+msgid "Status"
+msgstr "État"
+
+#. module: golem_resource_pack_account
+#: code:addons/golem_resource_pack_account/models/golem_resource_pack.py:48
+#, python-format
+msgid "The current pack is not validated, please validate it before creating invoice"
+msgstr "Le lot actuel n'est pas validé, merci de le valider avant de pouvoir créer une facture"
+
+#. module: golem_resource_pack_account
+#: model:ir.model.fields,field_description:golem_resource_pack_account.field_golem_resource_pack_invoice_amount_total
+msgid "Total"
+msgstr "Total"
+
+#. module: golem_resource_pack_account
+#: code:addons/golem_resource_pack_account/models/golem_resource_pack.py:54
+#, python-format
+msgid "You can not create an invoice as there is already one."
+msgstr "Vous ne pouvez pas créer une facture s'il y en a déjà une liée."
+
+#. module: golem_resource_pack_account
+#: code:addons/golem_resource_pack_account/models/golem_resource_pack.py:51
+#, python-format
+msgid "You can not create an invoice for a pack without linked product on every resource reserved."
+msgstr "Vous ne pouvez pas créer une facture pour un lot sans article pour chacune des ressources liées aux réservations."

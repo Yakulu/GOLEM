@@ -17,21 +17,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM non-profit resources',
-    'summary': 'GOLEM resources management',
-    'description': ''' GOLEM resources management ''',
-    'version': '10.0.1.13.2',
+    'name': 'GOLEM resources pack invoicing',
+    'summary': 'GOLEM resources pack invoicing',
+    'description': ''' GOLEM resources pack invoicing ''',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Youssef El Ouahby, Fabien Bourgeois',
     'license': 'AGPL-3',
-    'application': True,
+    'application': False,
     'installable': True,
-    'depends': ['golem_base', 'product'],
-    'data': ['views/golem_resource_views.xml',
-             'views/golem_resource_type_views.xml',
-             'views/golem_resource_reservation_views.xml',
-             'views/golem_resource_timetable_views.xml',
-             'wizard/golem_reservation_rejection_views.xml',
-             'security/ir.model.access.csv',
-             'views/product_template_views.xml']
+    'auto_install': True,
+    'depends': ['golem_resource_pack', 'golem_resource_account'],
+    'data': ['views/golem_resource_pack_views.xml']
 }
