@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+
+    <template id="golem_reservation_report">
+      <t t-call="report.html_container">
+        <t t-call="report.external_layout">
+          <div class="font">
+            <div class="page">
+              <h3 class="text-center">
+                <span t-esc="company.name" /> : <span t-esc="total_reservations" /> reservations<br />
+                <small>
+                  <strong>From Date: </strong>
+                  <span t-esc="time.strftime('%d/%m/%Y',time.strptime(date_start,'%Y-%m-%d %H:%M:%S'))"/>
+                  <strong>To Date:</strong>
+                  <span t-esc="time.strftime('%d/%m/%Y',time.strptime(date_stop,'%Y-%m-%d %H:%M:%S'))"/>
+                </small>
+              </h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <t t-foreach="days" t-as="day">
+                      <th class="text-center" t-esc="time.strftime('%A %d/%m',time.strptime(day,'%Y-%m-%d'))"/>
+                    </t>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr t-foreach="resources" t-as="resource_id">
+                    <td><span t-esc="resources[resource_id]" /></td>
+                    <t t-foreach="days" t-as="day">
+                      <td>
+                        <t t-if="datas.get(resource_id, {}).get(day)">
+                          <t t-set="reservations" t-value="datas[resource_id][day]" />
+                          <t t-foreach="reservations" t-as="resa">
+                            <div t-attf-style="background-color:{{resa['bgcolor']}}!important;border-top: 1px solid #333333;">
+                              <t t-if="resa['day_start']==resa['day_stop']">
+                                <span t-esc="time.strftime('%Hh%M',time.strptime(resa['date_start'],'%Y-%m-%d %H:%M:%S'))"/> -
+                                <span t-esc="time.strftime('%Hh%M',time.strptime(resa['date_stop'],'%Y-%m-%d %H:%M:%S'))"/>
+                              </t>
+                              <t t-else="">
+                                From <span t-esc="time.strftime('%d/%m %Hh%M',time.strptime(resa['date_start'],'%Y-%m-%d %H:%M:%S'))"/><br />
+                                To <span t-esc="time.strftime('%d/%m %Hh%M',time.strptime(resa['date_stop'],'%Y-%m-%d %H:%M:%S'))"/>
+                              </t>
+                              <p t-if="resa.get('note')" t-esc="resa['note']" />
+                              <br />
+                              <em>For <span t-esc="resa['partner']"/></em>
+                            </div>
+                          </t>
+                        </t>
+                      </td>
+                    </t>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </t>
+      </t>
+    </template>
+
+  </data>
+</odoo>
