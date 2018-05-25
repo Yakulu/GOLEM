@@ -19,14 +19,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
     <data>
 
-      <report id="action_report_report_admission_analysis"
-        model="golem.resource.report.wizard"
-        string="Reservations Report"
-        report_type="qweb-pdf"
-        name="golem_resource_report.golem_reservation_report"
-        file="golem_resource_report.golem_reservation_report"
-        menu="False" auto="False"
-        paperformat="paperformat_euro_landscape" />
+      <record id="paperformat_euro_landscape"
+        model="report.paperformat">
+        <field name="name">European A4 Landscape</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">23</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+      </record>
 
-  </data>
-</odoo>
+      </data>
+    </odoo>

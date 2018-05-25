@@ -17,46 +17,48 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <odoo>
-    <data>
-        <template id="golem_reservation_report">
-            <t t-call="report.html_container">
-                <t t-call="report.external_layout">
-                    <div class="font">
-                        <div class="page">
-                            <br></br>
-                            <table border="1" width="100%" cellpadding="0" bgcolor="#5F8CA3" >
-                                <tbody>
-                                    <tr width="100%">
-                                        <td class="text-center" width="100%">
-                                            <center><b>Maison Phare toutes les reservations</b><br/>
-                                            <b>From Date: </b>
-                                            <span t-esc="from_date" />
-                                            <span t-raw="'%s' % date_start if date_start else ''" />
-                                            <b>To Date:</b>
-                                            <span t-raw="'%s' % date_stop if date_stop else ''" /></center>
-                                        </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <table border="1" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
-                                  <tbody>
-                                    <tr t-foreach="get_resource" t-as="resource">
-                                      <td><span t-esc="resource"/></td>
-                                      <t t-foreach="get_data" t-as="data">
-                                        <t t-if="data['resource_name']==resource">
-                                          <td t-attf-style="background-color:{{data['bgcolor']}}!important;">
-                                            <b>Date :</b><span t-esc="data['day_start']"/><br/>
-                                            <b>On behalf of :</b><span t-esc="data['client']"/><br/>
-                                          </td>
-                                        </t>
-                                      </t>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </t>
-            </t>
-        </template>
-    </data>
+  <data>
+
+    <template id="golem_reservation_report">
+      <t t-call="report.html_container">
+        <t t-call="report.external_layout">
+          <div class="font">
+            <div class="page">
+              <br></br>
+              <table border="1" width="100%" cellpadding="0" bgcolor="#5F8CA3" >
+                <tbody>
+                  <tr width="100%">
+                    <td class="text-center" width="100%">
+                      <center><b>Maison Phare toutes les reservations</b><br/>
+                      <b>From Date: </b>
+                      <span t-esc="from_date" />
+                      <span t-raw="'%s' % date_start if date_start else ''" />
+                      <b>To Date:</b>
+                      <span t-raw="'%s' % date_stop if date_stop else ''" /></center>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border="1" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
+                <tbody>
+                  <tr t-foreach="get_resource" t-as="resource">
+                    <td><span t-esc="resource"/></td>
+                    <t t-foreach="get_data" t-as="data">
+                      <t t-if="data['resource_name']==resource">
+                        <td t-attf-style="background-color:{{data['bgcolor']}}!important;">
+                          <b>Date :</b><span t-esc="data['day_start']"/><br/>
+                          <b>On behalf of :</b><span t-esc="data['client']"/><br/>
+                        </td>
+                      </t>
+                    </t>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </t>
+      </t>
+    </template>
+
+  </data>
 </odoo>
