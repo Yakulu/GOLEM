@@ -57,11 +57,10 @@ class GolemResourcePack(models.Model):
         """ Quick Reservation Creating"""
         self.ensure_one()
         pack_id = self[0]
-        return {'name' : _('Reservations Creating'),
+        return {'name' : _('Reservations Creation'),
                 'type' : 'ir.actions.act_window',
                 'res_model' : 'golem.pack.quick.reservation.wizard',
-                'context': {'default_pack_id': pack_id.id,
-                            'default_partner_id': pack_id.partner_id.id},
+                'context': {'default_pack_id': pack_id.id},
                 'view_mode': 'form',
                 'target': 'new'}
 

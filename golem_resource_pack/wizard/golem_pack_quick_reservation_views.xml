@@ -29,14 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <field name="pack_id" readonly="1" />
               <field name="partner_id" readonly="1"/>
-              <field name="resource_ids" />
+              <field name="resource_ids" options="{'no_create': True}" />
               <field name="date_start" />
               <field name="date_stop" />
             </group>
           </sheet>
           <footer>
-            <button name="create_reservations" string="Create Reservations" type="object"
-              class="oe_highlight" />
+            <button name="create_reservations" string="Create Reservations"
+              type="object" class="oe_highlight" />
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
         </form>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-17 06:51+0000\n"
-"PO-Revision-Date: 2018-04-17 06:51+0000\n"
+"POT-Creation-Date: 2018-05-25 16:47+0000\n"
+"PO-Revision-Date: 2018-05-25 16:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_quick_reservation_wizard_view_form
 #: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_rejection_wizard_view_form
 #: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
 msgid "Cancel"
@@ -37,18 +38,26 @@ msgid "Confirmed"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_quick_reservation_wizard_view_form
+msgid "Create Reservations"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_create_uid
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_create_uid
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_create_date
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_create_date
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_display_name
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_display_name
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_display_name
 msgid "Display Name"
@@ -57,6 +66,11 @@ msgstr ""
 #. module: golem_resource_pack
 #: selection:golem.resource.pack,state:0
 msgid "Draft"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model,name:golem_resource_pack.model_golem_pack_quick_reservation_wizard
+msgid "GOLEM Pack Quick Reservation Wizard"
 msgstr ""
 
 #. module: golem_resource_pack
@@ -70,24 +84,28 @@ msgid "GOLEM Resource Pack Model"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_id
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_id
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_id
 msgid "ID"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard___last_update
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard___last_update
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_write_uid
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_write_uid
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_write_date
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_write_date
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_write_date
 msgid "Last Updated on"
@@ -109,6 +127,7 @@ msgid "Notes, optional subject for the reservation, reason"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_partner_id
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_partner_id
 msgid "On behalf of"
 msgstr ""
@@ -119,20 +138,31 @@ msgid "Pack"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_pack_id
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_rejection_wizard_pack_id
 msgid "Pack id"
 msgstr ""
 
 #. module: golem_resource_pack
-#: code:addons/golem_resource_pack/models/golem_resource_pack.py:126
+#: code:addons/golem_resource_pack/models/golem_resource_pack.py:138
 #, python-format
 msgid "Pack partner should be the same for all reservations"
 msgstr ""
 
 #. module: golem_resource_pack
-#: code:addons/golem_resource_pack/models/golem_resource_pack.py:108
+#: code:addons/golem_resource_pack/models/golem_resource_pack.py:120
 #, python-format
 msgid "Please enter the rejection reason"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
+msgid "Quick Reservation"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.ui.view,arch_db:golem_resource_pack.golem_pack_quick_reservation_wizard_view_form
+msgid "Quick Reservations"
 msgstr ""
 
 #. module: golem_resource_pack
@@ -179,13 +209,34 @@ msgid "Reservations"
 msgstr ""
 
 #. module: golem_resource_pack
+#: code:addons/golem_resource_pack/models/golem_resource_pack.py:60
+#, python-format
+msgid "Reservations Creation"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_resource_ids
+msgid "Resource List"
+msgstr ""
+
+#. module: golem_resource_pack
 #: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
 msgid "Set to draft"
 msgstr ""
 
 #. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_date_start
+msgid "Start date"
+msgstr ""
+
+#. module: golem_resource_pack
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_resource_pack_state
 msgid "State"
+msgstr ""
+
+#. module: golem_resource_pack
+#: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_date_stop
+msgid "Stop date"
 msgstr ""
 
 #. module: golem_resource_pack

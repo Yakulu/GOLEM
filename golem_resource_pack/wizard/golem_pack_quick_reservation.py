@@ -18,31 +18,42 @@
 
 """ GOLEM Pack Quick Reservation Wizard """
 
+from datetime import timedelta
 from odoo import models, fields, api
 
 class GolemPackQuickReservationWizard(models.TransientModel):
-    """GOLEM Pack Quick Reservation Wizard """
-    _name = "golem.pack.quick.reservation.wizard"
+    """ GOLEM Pack Quick Reservation Wizard """
+    _name = 'golem.pack.quick.reservation.wizard'
+    _description = 'GOLEM Pack Quick Reservation Wizard'
 
-    pack_id = fields.Many2one('golem.resource.pack', required=True)
-    partner_id = fields.Many2one('res.partner', string='On behalf of', readonly=True)
+    pack_id = fields.Many2one('golem.resource.pack', required=True,
+                              ondelete='cascade')
+    partner_id = fields.Many2one(related='pack_id.partner_id')
     resource_ids = fields.Many2many('golem.resource', string="Resource List")
 
     date_start = fields.Datetime('Start date', required=True)
     date_stop = fields.Datetime('Stop date', required=True)
 
+    @api.onchange('date_start')
+    def onchange_date_start(self):
+        """ Propose automatically stop hour after start hour had been filled """
+        for reservation in self:
+            if reservation.date_start:
+                start = fields.Datetime.from_string(reservation.date_start)
+                duration = timedelta(hours=1)
+                reservation.date_stop = start + duration
 
     @api.multi
     def create_reservations(self):
         """ Create a reservation for each resource """
         self.ensure_one()
         wizard = self[0]
-        data = []
         for resource in wizard.resource_ids:
-            reservation = {'user_id': self.env.user,
-                           'partner_id': wizard.partner_id,
-                           'resource_id': resource,
-                           'date_start': wizard.date_start,
-                           'date_stop': wizard.date_stop}
-            data.append((0, 0, reservation))
-        wizard.pack_id.reservation_ids = data
+            self.env['golem.resource.reservation'].create({
+                'user_id': self.env.user.id,
+                'partner_id': wizard.partner_id.id,
+                'resource_id': resource.id,
+                'date_start': wizard.date_start,
+                'date_stop': wizard.date_stop,
+                'pack_id': wizard.pack_id.id
+            })
