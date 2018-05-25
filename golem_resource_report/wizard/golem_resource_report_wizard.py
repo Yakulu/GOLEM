@@ -26,17 +26,15 @@ class GolemResourceReportWizard(models.TransientModel):
     _name = "golem.resource.report.wizard"
 
     resource_ids = fields.Many2many('golem.resource')
-    date_start = fields.Datetime(required=True)
-    date_stop = fields.Datetime(required=True)
+    date_start = fields.Date(required=True)
+    date_stop = fields.Date(required=True)
 
     @api.multi
     def print_resource_report(self):
         """ Print Report """
         self.ensure_one()
         record = self[0]
-        start_date = fields.Datetime.from_string(record.date_start)
-        stop_date = fields.Datetime.from_string(record.date_stop)
-        if start_date > stop_date:
+        if record.date_start > record.date_stop:
             raise ValidationError(_('Stop Date cannot be set before Start Date.'))
         else:
             data = self.read(

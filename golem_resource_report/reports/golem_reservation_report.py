@@ -20,7 +20,9 @@
 
 import time
 from random import randint
-from odoo import models, api
+from odoo import models, fields, api
+
+# FIXME: usage of Odoo  fields will be needed for i18n awareness
 
 def get_client_color(partner_number):
     """ Get Client Color """
@@ -44,13 +46,13 @@ class GolemResevationReport(models.AbstractModel):
 
     def get_data(self, data):
         """ Get Resevation Data """
-        res = []
         domain = [('date_start', '>', data['date_start']),
                   ('date_stop', '<', data['date_stop']),
                   ('resource_id', 'in', data['resource_ids'])]
         reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
         total_reservations = len(reservations)
-        resources = list(reservations.mapped('resource_id.name'))
+        resources = {r.resource_id.id: r.resource_id.name for r in reservations}
+        days = sorted(list(set(reservations.mapped('day_start'))))
 
         partner_ids = reservations.mapped('partner_id.id')
         partner_colors = {}
@@ -59,36 +61,47 @@ class GolemResevationReport(models.AbstractModel):
             partner_colors[str(partner_id)] = get_client_color(partner_number)
             partner_number += 1
 
+        res = {} # List of multi-levels : group by resource, then, day_start
         for reservation in reservations:
+            resource = reservation.resource_id.id
+            day_start = reservation.day_start
+            if not resource in res:
+                res[resource] = {}
+            if not day_start in res[resource]:
+                res[resource][day_start] = []
             line = {
                 'name': reservation.name,
                 'resource_name': reservation.resource_id.name,
-                'client': reservation.partner_id.name,
+                'partner': reservation.partner_id.name,
                 'date_start': reservation.date_start,
                 'date_stop': reservation.date_stop,
                 'day_start': reservation.day_start,
-                'bgcolor': partner_colors[str(reservation.partner_id.id)]
+                'day_stop': fields.Datetime.from_string(reservation.date_stop).strftime('%Y-%m-%d'),
+                'bgcolor': partner_colors[str(reservation.partner_id.id)],
+                'note': reservation.note
             }
-            res.append(line)
-        return res, total_reservations, resources
+            res[resource][day_start].append(line)
+        return res, total_reservations, resources, days
 
     @api.model
     def render_html(self, docids, data=None):
         """ Render HTML """
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
-        _data, total_reservations, resources = self.get_data(data)
+        _data, total_reservations, resources, days = self.get_data(data)
         docargs = {
             'doc_ids': self.ids,
             'doc_model': model,
             'docs': docs,
+            'company': self.env.ref('base.main_company'),
             'time': time,
             'data': data,
-            'date_start': data['date_start'],
-            'date_stop': data['date_stop'],
-            'get_total_reservation': total_reservations,
-            'get_data': _data,
-            'get_resource': resources
+            'date_start': '%s 00:00:00' % data['date_start'],
+            'date_stop': '%s 23:59:59' % data['date_stop'],
+            'total_reservations': total_reservations,
+            'datas': _data,
+            'resources': resources,
+            'days': days
         }
         return self.env['report'] \
             .render('golem_resource_report.golem_reservation_report', docargs)
