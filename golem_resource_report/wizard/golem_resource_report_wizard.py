@@ -25,7 +25,7 @@ class GolemResourceReportWizard(models.TransientModel):
     """GOLEM Report Wizard : Choose report parameters """
     _name = "golem.resource.report.wizard"
 
-    resource_ids = fields.Many2many('golem.resource')
+    resource_ids = fields.Many2many('golem.resource', required=True)
     date_start = fields.Date(required=True)
     date_stop = fields.Date(required=True)
 
