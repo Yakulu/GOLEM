@@ -29,6 +29,6 @@
     'depends': ['golem_resource'],
     'data': ['reports/golem_reservation_report.xml',
              'reports/golem_reservation_report_menu.xml',
-             'views/golem_resource_report_menu.xml',
-             'wizard/golem_resource_report_wizard_views.xml']
+             'wizard/golem_resource_report_wizard_views.xml',
+             'views/golem_resource_report_menu.xml']
 }
