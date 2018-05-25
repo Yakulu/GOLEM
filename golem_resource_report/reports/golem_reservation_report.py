@@ -46,7 +46,8 @@ class GolemResevationReport(models.AbstractModel):
 
     def get_data(self, data):
         """ Get Resevation Data """
-        domain = [('date_start', '>', data['date_start']),
+        domain = [('state', '=', 'validated'),
+                  ('date_start', '>', data['date_start']),
                   ('date_stop', '<', data['date_stop']),
                   ('resource_id', 'in', data['resource_ids'])]
         reservations = self.env['golem.resource.reservation'].search(domain, order='date_start')
