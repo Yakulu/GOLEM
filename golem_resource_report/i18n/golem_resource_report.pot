@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_resource_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-25 16:13+0000\n"
+"PO-Revision-Date: 2018-05-25 16:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "<br/>\n"
+"                                To"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "<strong>From Date: </strong>"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "<strong>To Date:</strong>"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_resource_report_wizard_view_form
+msgid "Close"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_date_start
+msgid "Date start"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_date_stop
+msgid "Date stop"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_display_name
+#: model:ir.model.fields,field_description:golem_resource_report.field_report_golem_resource_report_golem_reservation_report_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "For"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "From"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model,name:golem_resource_report.model_report_golem_resource_report_golem_reservation_report
+msgid "Golem Reservation Report"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_id
+#: model:ir.model.fields,field_description:golem_resource_report.field_report_golem_resource_report_golem_reservation_report_id
+msgid "ID"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard___last_update
+#: model:ir.model.fields,field_description:golem_resource_report.field_report_golem_resource_report_golem_reservation_report___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_resource_report_wizard_view_form
+msgid "Print Report"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.menu,name:golem_resource_report.report_menu
+msgid "Report"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.actions.report.xml,name:golem_resource_report.action_report_report_admission_analysis
+msgid "Reservations Report"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.menu,name:golem_resource_report.reservation_resource_day_menu
+msgid "Reservations per resource and day"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_resource_report_wizard_view_form
+msgid "Resource Report"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model.fields,field_description:golem_resource_report.field_golem_resource_report_wizard_resource_ids
+msgid "Resource ids"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.actions.act_window,name:golem_resource_report.reservation_resource_day_action
+msgid "Resources Reports"
+msgstr ""
+
+#. module: golem_resource_report
+#: code:addons/golem_resource_report/wizard/golem_resource_report_wizard.py:38
+#, python-format
+msgid "Stop Date cannot be set before Start Date."
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.model,name:golem_resource_report.model_golem_resource_report_wizard
+msgid "golem.resource.report.wizard"
+msgstr ""
+
+#. module: golem_resource_report
+#: model:ir.ui.view,arch_db:golem_resource_report.golem_reservation_report
+msgid "reservations<br/>"
+msgstr ""
+

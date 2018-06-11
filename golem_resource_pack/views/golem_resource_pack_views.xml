@@ -61,8 +61,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="user_id" />
                 <field name="partner_id" />
                 <field name="note" />
+
                 <field name="rejection_reason"
                   attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+
+              </group>
+              <group>
+                <button name="quick_reservation" type="object"
+                  string="Quick Reservation" states="draft" class="oe_highlight" />
               </group>
               <group colspan="2" name="reservations">
                 <field name="reservation_ids" widget="many2many"
