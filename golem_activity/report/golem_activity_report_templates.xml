@@ -44,71 +44,87 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </h2>
                 </div>
               </div>
-              <div class="col-xs-12 bg-info" style="margin-top: 40px;" >
-                <div class="col-xs-4" id="activity_info_left"><h4>General Information</h4></div>
-                <div class="col-xs-4" id="activity_info_middle"><h4>Type</h4></div>
-                <div class="col-xs-4" id="activity_info_right"><h4>Session</h4></div>
+              <div class="col-xs-12" style="margin-top: 40px;" >
+                <div class="col-xs-4" id="activity_info_left">
+                  <h4 style="font-weight: bold;">General Information</h4>
+                </div>
+                <div class="col-xs-4" id="activity_info_middle">
+                  <h4 style="font-weight: bold;">Type</h4>
+                </div>
+                <div class="col-xs-4" id="activity_info_right">
+                  <h4 style="font-weight: bold;">Session</h4>
+                </div>
               </div>
               <div id="activity_info" class="col-xs-12" >
                 <div class="col-xs-4" id="activity_info_left">
-                  <t t-if="activity.season_id">
-                    <div><b>Season : </b><span t-field="activity.season_id"/></div>
-                  </t>
-                  <t t-if="activity.animator_id">
-                    <div><b>Animator : </b><span t-field="activity.animator_id"/></div>
-                  </t>
-                  <t t-if="activity.list_price">
-                    <div><b>Price : </b><span t-field="activity.list_price"/></div>
-                  </t>
-                  <t t-if="activity.default_code">
-                    <div><b>Reference : </b><span t-field="activity.default_code"/></div>
-                  </t>
+                  <div t-if="activity.season_id">
+                    <strong>Season : </strong>>
+                    <span t-field="activity.season_id"/>
+                  </div>
+                  <div t-if="activity.animator_id">
+                    <strong>Animator : </strong>>
+                    <span t-field="activity.animator_id"/>
+                  </div>
+                  <div t-if="activity.list_price">
+                    <strong>Price : </strong>>
+                    <span t-field="activity.list_price"/>
+                  </div>
+                  <div t-if="activity.default_code">
+                    <strong>Reference : </strong>>
+                    <span t-field="activity.default_code"/>
+                  </div>
                 </div>
                 <div class="col-xs-4" id="activity_info_middle">
-                  <t t-if="activity.type_id">
-                    <div><b>Type : </b><span t-field="activity.type_id"/></div>
-                  </t>
-                  <t t-if="activity.categ_id">
-                    <div><b>Category : </b><span t-field="activity.categ_id"/></div>
-                  </t>
+                  <div t-if="activity.type_id">
+                    <strong>Type : </strong><span t-field="activity.type_id"/>
+                  </div>
+                  <div t-if="activity.categ_id">
+                    <strong>Category : </strong><span t-field="activity.categ_id"/>
+                  </div>
                 </div>
                 <div class="col-xs-4" id="activity_info_right">
-                  <t t-if="activity.places">
-                    <div><b>Places : </b><span t-field="activity.places"/></div>
-                  </t>
+                  <div t-if="activity.places">
+                    <strong>Places : </strong><span t-field="activity.places"/>
+                  </div>
                   <t t-if="activity.is_recurrent">
-                    <div><b>Is Recurrent : </b><span t-field="activity.is_recurrent"/></div>
+                    <div>
+                      <strong>Is Recurrent : </strong>
+                      <span t-field="activity.is_recurrent"/>
+                    </div>
                     <t t-if="activity.is_fullseason">
-                      <div><b>Is Full Season : </b><span t-field="activity.is_fullseason"/></div>
-                      <t t-if="activity.weekday">
-                        <div><b>Weekday : </b><span t-field="activity.weekday"/></div>
-                      </t>
-                    </t>
-                    <t t-else="">
-                      <t t-if="activity.date_start">
-                        <div><b>Date Start : </b><span t-field="activity.date_start"/></div>
-                      </t>
-                      <t t-if="activity.date_stop">
-                        <div><b>Date Stop : </b><span t-field="activity.date_stop"/></div>
-                      </t>
-                    </t>
-                    <t t-if="activity.hour_start">
-                      <div><b>Start Hour : </b>
-                        <t t-esc="'%02d:%02d' % (int(activity.hour_start), round(activity.hour_start % 1 * 60))" />
+                      <div><strong>Is Full Season : </strong>
+                        <span t-field="activity.is_fullseason"/></div>
+                      <div t-if="activity.weekday">
+                        <strong>Weekday : </strong>
+                        <span t-field="activity.weekday"/>
                       </div>
                     </t>
-                    <t t-if="activity.hour_stop">
-                      <div><b>Stop Hour : </b>
-                        <t t-esc="'%02d:%02d' % (int(activity.hour_stop), round(activity.hour_stop % 1 * 60))" /></div>
+                    <t t-else="">
+                      <div t-if="activity.date_start">
+                        <strong>Date Start : </strong><span t-field="activity.date_start"/>
+                      </div>
+                      <div t-if="activity.date_stop">
+                        <strong>Date Stop : </strong><span t-field="activity.date_stop"/>
+                      </div>
                     </t>
+                    <div t-if="activity.hour_start">
+                      <strong>Start Hour : </strong>>
+                      <span t-esc="'%02d:%02d' % (int(activity.hour_start), round(activity.hour_start % 1 * 60))" />
+                    </div>
+                    <div t-if="activity.hour_stop">
+                      <strong>Stop Hour : </strong>>
+                      <span t-esc="'%02d:%02d' % (int(activity.hour_stop), round(activity.hour_stop % 1 * 60))" />
+                    </div>
                   </t>
                   <t t-else="">
-                    <t t-if="activity.date_start">
-                      <div><b>Date Start : </b><span t-field="activity.date_start"/></div>
-                    </t>
-                    <t t-if="activity.date_stop">
-                      <div><b>Date Stop : </b><span t-field="activity.date_stop"/></div>
-                    </t>
+                    <div t-if="activity.date_start">
+                      <strong>Date Start : </strong>
+                      <span t-field="activity.date_start"/>
+                    </div>
+                    <div t-if="activity.date_stop">
+                      <strong>Date Stop : </strong>
+                      <span t-field="activity.date_stop"/>
+                    </div>
                   </t>
                 </div>
               </div>
@@ -117,4 +133,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </t>
       </t>
     </template>
+
 </odoo>

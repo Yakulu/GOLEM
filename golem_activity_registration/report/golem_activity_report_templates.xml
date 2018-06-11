@@ -21,10 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <template id="golem_activity_report_template_inherited_golem_activity_registration"
       inherit_id="golem_activity.golem_activity_report_template">
-      <xpath expr="//div[@id='page_report_activity']/div[3]" position="after">
-        <div class="col-xs-4 text-left" style="margin-top: 80px;" >
-          <u><h4> Enroled members : <span t-field="activity.places_used" /></h4></u>
-          <br/></div>
+      <xpath expr="//div[@id='page_report_activity']" position="inside">
+        <div class="col-xs-4 text-left" style="margin-top: 50px;" >
+          <h4 style="text-decoration: underline;">
+            Enroled members : <span t-field="activity.places_used" />
+          </h4>
+        </div>
         <table class="table table-striped" id="members_table">
           <thead>
             <tr>
@@ -39,106 +41,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <tr id="activity_registration_line"
               t-foreach="activity.activity_registration_ids" t-as="reg">
               <td class="col-xs-2">
-                <span t-esc="reg.member_id.lastname" />
+                <span t-field="reg.member_id.lastname" />
               </td>
               <td class="col-xs-2">
-                <span t-esc="reg.member_id.firstname" />
+                <span t-field="reg.member_id.firstname" />
               </td>
               <td class="col-xs-3">
-                <span t-esc="reg.member_id.phone" />
+                <span t-field="reg.member_id.phone" />
               </td>
               <td class="col-xs-3">
-                <span t-esc="reg.member_id.email" />
+                <span t-field="reg.member_id.email" />
               </td>
               <td class="col-xs-2">
-                <span t-esc="reg.member_id.city" />
+                <span t-field="reg.member_id.city" />
               </td>
             </tr>
-
-
           </tbody>
         </table>
       </xpath>
-
-      <!--<t t-call="report.html_container">
-        <t t-set="season" t-value="docs._default_season()" />
-        <t t-foreach="docs" t-as="activity" id="foreach_activity">
-          <t t-call="report.external_layout">
-            <div id='page_report_activity' class="page">
-              <div class="row">
-                <div class="col-xs-12" id="activity_title">
-                  <h2 class="golem_report_title">
-                    Activity : <span t-field="activity.name" />
-                  </h2>
-                </div>
-              </div>
-              <div class="col-xs-12 bg-info" style="margin-top: 40px;" >
-                <div class="col-xs-4" id="activity_info_left"><h4>General Information</h4></div>
-                <div class="col-xs-4" id="activity_info_middle"><h4>Type</h4></div>
-                <div class="col-xs-4" id="activity_info_right"><h4>Session</h4></div>
-              </div>
-              <div class="col-xs-12" id="activity_info">
-                <div class="col-xs-4" id="activity_info_left">
-                  <t t-if="activity.season_id">
-                    <div><b>Season : </b><span t-field="activity.season_id"/></div>
-                  </t>
-                  <t t-if="activity.animator_id">
-                    <div><b>Animator : </b><span t-field="activity.animator_id"/></div>
-                  </t>
-                  <t t-if="activity.list_price">
-                    <div><b>Price : </b><span t-field="activity.list_price"/></div>
-                  </t>
-                  <t t-if="activity.default_code">
-                    <div><b>Reference : </b><span t-field="activity.default_code"/></div>
-                  </t>
-                </div>
-                <div class="col-xs-4" id="activity_info_middle">
-                  <t t-if="activity.type_id">
-                    <div><b>Type : </b><span t-field="activity.type_id"/></div>
-                  </t>
-                  <t t-if="activity.categ_id">
-                    <div><b>Category : </b><span t-field="activity.categ_id"/></div>
-                  </t>
-                </div>
-                <div class="col-xs-4" id="activity_info_right">
-                  <t t-if="activity.places">
-                    <div><b>Places : </b><span t-field="activity.places"/></div>
-                  </t>
-                  <t t-if="activity.is_recurrent">
-                    <div><b>Is Recurrent : </b><span t-field="activity.is_recurrent"/></div>
-                    <t t-if="activity.is_fullseason">
-                      <t t-if="activity.weekday">
-                        <div><b>Weekday : </b><span t-field="activity.weekday"/></div>
-                      </t>
-                    </t>
-                    <t t-else="">
-                      <t t-if="activity.date_start">
-                        <div><b>Date Start : </b><span t-field="activity.date_start"/></div>
-                      </t>
-                      <t t-if="activity.date_stop">
-                        <div><b>Date Stop : </b><span t-field="activity.date_stop"/></div>
-                      </t>
-                    </t>
-                    <t t-if="activity.hour_start">
-                      <div><b>Start Hour : </b><span t-field="activity.hour_start" /></div>
-                    </t>
-                    <t t-if="activity.hour_stop">
-                      <div><b>Stop Hour : </b><span t-field="activity.hour_stop"/></div>
-                    </t>
-                  </t>
-                  <t t-else="">
-                    <t t-if="activity.date_start">
-                      <div><b>Date Start : </b><span t-field="activity.date_start"/></div>
-                    </t>
-                    <t t-if="activity.date_stop">
-                      <div><b>Date Stop : </b><span t-field="activity.date_stop"/></div>
-                    </t>
-                  </t>
-                </div>
-              </div>
-            </div>
-          </t>
-        </t>
-      </t>-->
     </template>
+
 </odoo>
