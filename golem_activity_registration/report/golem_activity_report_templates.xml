@@ -30,29 +30,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <table class="table table-striped" id="members_table">
           <thead>
             <tr>
-              <th class="col-xs-2">Last Name</th>
-              <th class="col-xs-2">First Name</th>
-              <th class="col-xs-3">Phone</th>
-              <th class="col-xs-3">Email</th>
-              <th class="col-xs-2">City</th>
+              <th class="col-xs-3"><i class="fa fa-user" />Name</th>
+              <th class="col-xs-3"><i class="fa fa-phone" /> Phone</th>
+              <th class="col-xs-3"><i class="fa fa-envelope" /> Email</th>
+              <th class="col-xs-3"><i class="fa fa-university" />City</th>
             </tr>
           </thead>
           <tbody>
             <tr id="activity_registration_line"
               t-foreach="activity.activity_registration_ids" t-as="reg">
-              <td class="col-xs-2">
-                <span t-field="reg.member_id.lastname" />
-              </td>
-              <td class="col-xs-2">
-                <span t-field="reg.member_id.firstname" />
+              <td class="col-xs-3">
+                <span t-field="reg.member_id.name" />
               </td>
               <td class="col-xs-3">
-                <span t-field="reg.member_id.phone" />
+                <t t-set="two_phones" t-value="reg.member_id.phone and reg.member_id.mobile" />
+                <t t-if="reg.member_id.phone">
+                  <t t-if="two_phones">
+                    Landline :
+                  </t>
+                  <span t-field="reg.member_id.phone" />
+                </t>
+                <t t-if="reg.member_id.mobile">
+                  <t t-if="two_phones">
+                    <br />Mobile :
+                  </t>
+                  <span t-field="reg.member_id.mobile" />
+              </t>
               </td>
               <td class="col-xs-3">
                 <span t-field="reg.member_id.email" />
               </td>
-              <td class="col-xs-2">
+              <td class="col-xs-3">
                 <span t-field="reg.member_id.city" />
               </td>
             </tr>
