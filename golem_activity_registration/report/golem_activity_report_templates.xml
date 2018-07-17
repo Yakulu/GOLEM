@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <table class="table table-striped" id="members_table">
           <thead>
             <tr>
-              <th class="col-xs-3"><i class="fa fa-user" />Name</th>
+              <th class="col-xs-3"><i class="fa fa-user" /> Name</th>
               <th class="col-xs-3"><i class="fa fa-phone" /> Phone</th>
               <th class="col-xs-3"><i class="fa fa-envelope" /> Email</th>
               <th class="col-xs-3"><i class="fa fa-university" />City</th>
