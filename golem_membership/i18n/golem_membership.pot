@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 15:09+0000\n"
-"PO-Revision-Date: 2018-03-08 15:09+0000\n"
+"POT-Creation-Date: 2018-07-17 15:27+0000\n"
+"PO-Revision-Date: 2018-07-17 15:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,12 @@ msgid "Cancel"
 msgstr ""
 
 #. module: golem_membership
+#: code:addons/golem_membership/models/account_config.py:43
+#, python-format
+msgid "Check"
+msgstr ""
+
+#. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_create_uid
 msgid "Created by"
 msgstr ""
@@ -33,6 +39,12 @@ msgstr ""
 #. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_create_date
 msgid "Created on"
+msgstr ""
+
+#. module: golem_membership
+#: code:addons/golem_membership/models/account_config.py:48
+#, python-format
+msgid "Credit Card"
 msgstr ""
 
 #. module: golem_membership
@@ -46,6 +58,7 @@ msgid "Date to"
 msgstr ""
 
 #. module: golem_membership
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config_display_name
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_display_name
 msgid "Display Name"
 msgstr ""
@@ -56,11 +69,17 @@ msgid "GOLEM MemberShip invoicing"
 msgstr ""
 
 #. module: golem_membership
+#: model:ir.model,name:golem_membership.model_golem_membership_account_config
+msgid "GOLEM Membership Account Configuration"
+msgstr ""
+
+#. module: golem_membership
 #: model:ir.ui.view,arch_db:golem_membership.golem_member_search_inherit_golem_membership
 msgid "Has contributed"
 msgstr ""
 
 #. module: golem_membership
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config_id
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_id
 msgid "ID"
 msgstr ""
@@ -81,6 +100,7 @@ msgid "Join Membership"
 msgstr ""
 
 #. module: golem_membership
+#: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config___last_update
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice___last_update
 msgid "Last Modified on"
 msgstr ""

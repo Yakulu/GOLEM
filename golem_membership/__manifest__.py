@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,15 @@
 {
     'name': 'GOLEM non-profit membership handling',
     'summary': 'Extends Odoo membership',
-    'version': '10.0.1.1.3',
+    'version': '10.0.1.1.4',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'depends': ['golem_member', 'account', 'decimal_precision'],
-    'data': ['views/golem_membership_invoice.xml',
+    'data': ['data/account_data.xml',
+             'views/golem_membership_invoice.xml',
              'views/golem_member_view.xml',
              'report/golem_member_card_templates.xml']
 }
