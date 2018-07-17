@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 16:47+0000\n"
-"PO-Revision-Date: 2018-05-25 16:47+0000\n"
+"PO-Revision-Date: 2018-07-17 08:28+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgstr "Création de réservations"
 #. module: golem_resource_pack
 #: model:ir.model.fields,field_description:golem_resource_pack.field_golem_pack_quick_reservation_wizard_resource_ids
 msgid "Resource List"
-msgstr "Resource List"
+msgstr "Ressources sélectionnées"
 
 #. module: golem_resource_pack
 #: model:ir.ui.view,arch_db:golem_resource_pack.golem_resource_pack_view_form
