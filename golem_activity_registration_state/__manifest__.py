@@ -19,7 +19,7 @@
     'name': 'GOLEM Activity Session Member Registrations States',
     'summary': 'GOLEM Activities Session Member Registration states',
     'description': 'GOLEM Activities Session Member Registration states',
-    'version': '10.0.1.0.2',
+    'version': '10.0.1.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

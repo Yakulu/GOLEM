@@ -18,6 +18,7 @@
 """ GOLEM Activity Registration Invoicing Wizard """
 
 import logging
+from math import ceil
 from odoo import models, fields, api
 _LOGGER = logging.getLogger(__name__)
 
@@ -81,18 +82,21 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
         """ Create payment if schedule has been chosen """
         self.ensure_one()
         if self.schedule_id and self.schedule_id.occurences > 0:
-            # TODO: make more intelligent price cut
             amount = invoice.amount_total
-            amount_per_occurence = amount / self.schedule_id.occurences
-            for day in self.schedule_id.day_ids:
+            amount_per_occurence = ceil(amount / self.schedule_id.occurences)
+            for index, day in enumerate(self.schedule_id.day_ids):
+                payment_amount = (amount_per_occurence if index !=
+                                  (len(self.schedule_id.day_ids.ids) - 1)
+                                  else amount)
                 payment = self.env['account.payment'].new({
                     'payment_type': 'inbound',
                     'partner_type': 'customer',
                     'partner_id': self.member_id.partner_id.id,
-                    'amount': amount_per_occurence,
+                    'amount': payment_amount,
                     'payment_date': day.day,
                     'journal_id': self.journal_id.id,
                 })
+                amount -= amount_per_occurence
                 payment._onchange_journal()
                 payment_values = dict(payment._cache)
                 payment = self.env['account.payment'].create(payment_values)
