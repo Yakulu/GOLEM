@@ -30,7 +30,8 @@ class GolemActivityRegistrationInvoicingLine(models.TransientModel):
                                    required=True)
     registration_id = fields.Many2one('golem.activity.registration', required=True)
     activity_id = fields.Many2one('golem.activity', required=True, readonly=True)
-    price = fields.Float('Price')
+    price = fields.Float()
+
 
 class GolemActivityRegistrationInvoicing(models.TransientModel):
     """ GOLEM Activity Registration Invoicing Wizard """

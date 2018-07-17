@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,8 @@
 {
     'name': 'GOLEM Activity Session Member Registrations States',
     'summary': 'GOLEM Activities Session Member Registration states',
-    'version': '10.0.1.0.1',
+    'description': 'GOLEM Activities Session Member Registration states',
+    'version': '10.0.1.0.2',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -28,5 +29,5 @@
     'data': ['views/golem_activity_registration_views.xml',
              'views/golem_member_views.xml', 'views/golem_activity_views.xml',
              'wizard/golem_activity_registration_invoicing.xml']
-             # 'report/golem_member_report.xml']
+            # 'report/golem_member_report.xml']
 }
