@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -52,7 +52,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="number" readonly="True"
                   attrs="{'invisible': [('is_number_manual', '=', True)]}" />
                 <field name="number_manual"
-                  attrs="{'invisible': [('is_number_manual', '=', False)]}" />
+                  attrs="{'invisible': [('is_number_manual', '=', False)],
+                  'required': [('is_number_manual', '=', True)]}" />
               </group>
               <group>
                 <field name="gender" />

@@ -134,7 +134,7 @@ class GolemMember(models.Model):
     def _compute_is_number_manual(self):
         conf = self.env['ir.config_parameter']
         is_num_man = (conf.get_param('golem_numberconfig_isautomatic') == '0')
-        self.write({'is_number_manual': is_num_man})
+        self.update({'is_number_manual': is_num_man})
 
     @api.multi
     def generate_number_perseason(self):
