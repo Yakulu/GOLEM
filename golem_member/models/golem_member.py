@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -40,8 +40,8 @@ class ResPartner(models.Model):
 
     member_id = fields.One2many('golem.member', 'partner_id', 'GOLEM Member',
                                 readonly=True)
-    is_member = fields.Boolean('Is member', compute='_compute_is_member')
-    member_number = fields.Char('Member number', related='member_id.number')
+    is_member = fields.Boolean(compute='_compute_is_member')
+    member_number = fields.Char(related='member_id.number')
 
     @api.depends('member_id')
     def _compute_is_member(self):
@@ -53,11 +53,10 @@ class ResPartner(models.Model):
     def view_member(self):
         """ Go to member form """
         self.ensure_one()
-        if self[0].member_id:
-            return {'type': 'ir.actions.act_window',
-                    'res_model': 'golem.member',
-                    'view_mode': 'form',
-                    'res_id': self[0].member_id.id}
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'golem.member',
+                'view_mode': 'form',
+                'res_id': self[0].member_id.id if self[0].member_id else False}
 
     @api.multi
     def create_golem_member(self):
@@ -99,20 +98,20 @@ class GolemMember(models.Model):
                                   required=True, default=_default_season,
                                   ondelete='restrict')
     is_current = fields.Boolean('Current user?', default=False, readonly=True,
-                                store=True, compute='compute_is_current')
+                                store=True, compute='_compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
     image_permission = fields.Boolean('Image permission?', default=True)
 
     @api.onchange('country_id')
-    def _onchange_country_id(self):
+    def onchange_country_domain_state(self):
+        """ On country change : adapts state domain """
         member = self[0]
         if member.country_id:
             return {
                 'domain': {'state_id': [('country_id', '=', member.country_id.id)]}
             }
-        else:
-            return {'domain': {'state_id': []}}
+        return {'domain': {'state_id': []}}
 
     @api.depends('number', 'name')
     def _compute_number_name(self):
@@ -123,15 +122,13 @@ class GolemMember(models.Model):
             else:
                 member.number_name = u''
 
-    @api.multi
     @api.depends('season_ids')
-    def compute_is_current(self):
+    def _compute_is_current(self):
         """ Computes is current according to seasons """
         default_s = self._default_season()
         for member in self:
             member.is_current = default_s in member.season_ids
 
-    @api.multi
     @api.depends('number')
     def _compute_is_number_manual(self):
         conf = self.env['ir.config_parameter']
@@ -226,15 +223,14 @@ class GolemMemberNumber(models.Model):
     _name = 'golem.member.number'
     _description = 'GOLEM Member Numbers'
 
-    name = fields.Char('Name', compute='_compute_name')
+    name = fields.Char(compute='_compute_name')
     member_id = fields.Many2one('golem.member', string='Member', index=True,
                                 required=True, ondelete='cascade',
                                 auto_join=True)
     season_id = fields.Many2one('golem.season', string='Season', index=True,
                                 auto_join=True)
-    number = fields.Char('Number', index=True, readonly=True)
+    number = fields.Char(index=True, readonly=True)
 
-    @api.multi
     @api.depends('season_id')
     def _compute_name(self):
         for number in self:
@@ -285,6 +281,7 @@ class GolemNumberConfig(models.TransientModel):
             self.env['golem.season'].search([]).write({
                 'member_counter': self.number_from
             })
+
     @api.multi
     def apply_nocompute(self):
         """ Apply new configuration only for new members (keep old numbers) """
@@ -305,6 +302,7 @@ class GolemNumberConfig(models.TransientModel):
             'member_counter': int(self.number_from)
         })
         self.env['golem.member'].search([]).generate_number()
+
 
 class MergePartnerAutomatic(models.TransientModel):
     """ Merge Partner Automatic adaptations """
