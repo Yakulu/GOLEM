@@ -45,7 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="audience_id" />
               </group>
               <group>
-                <field name="categ_id" required="True" />
+                <field name="categ_id" required="True"
+                  help="Select category for the current activity" />
                 <field name="default_code" />
                 <field name="list_price" />
               </group>

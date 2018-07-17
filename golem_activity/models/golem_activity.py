@@ -112,8 +112,6 @@ class GolemActivity(models.Model):
 
     animator_id = fields.Many2one('res.partner', string='Animator',
                                   domain=[('is_company', '=', False)])
-    categ_id = fields.Many2one('product.category',
-                               help='Select category for the current activity')
     type_id = fields.Many2one('golem.activity.type', required=True, index=True,
                               string='Type')
     is_recurrent = fields.Boolean(related='type_id.is_recurrent')

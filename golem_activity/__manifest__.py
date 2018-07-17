@@ -19,7 +19,7 @@
     'name': 'GOLEM activities',
     'summary': 'Extends Odoo products for multi-activity',
     'description': 'Extends Odoo products for multi-activity',
-    'version': '10.0.2.3.0',
+    'version': '10.0.2.3.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
