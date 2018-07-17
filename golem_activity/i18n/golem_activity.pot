@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-12 14:16+0000\n"
-"PO-Revision-Date: 2018-06-12 14:16+0000\n"
+"POT-Creation-Date: 2018-07-17 07:30+0000\n"
+"PO-Revision-Date: 2018-07-17 07:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -140,6 +140,11 @@ msgid "Activity :"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.ui.menu,name:golem_activity.golem_activity_audience_menu_list
+msgid "Activity Audiences"
+msgstr ""
+
+#. module: golem_activity
 #: model:ir.ui.view,arch_db:golem_activity.golem_activity_form
 msgid "Activity Name"
 msgstr ""
@@ -160,13 +165,18 @@ msgid "Activity Types"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:131
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_name
+msgid "Activity audience"
+msgstr ""
+
+#. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:144
 #, python-format
 msgid "Activity end date can not be set after linked season end."
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:127
+#: code:addons/golem_activity/models/golem_activity.py:140
 #, python-format
 msgid "Activity start date can not be set before linked season start."
 msgstr ""
@@ -177,6 +187,11 @@ msgid "Activity type"
 msgstr ""
 
 #. module: golem_activity
+#: model:golem.activity.audience,name:golem_activity.golem_activity_audience_adults
+msgid "Adults"
+msgstr ""
+
+#. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_animator_id
 msgid "Animator"
 msgstr ""
@@ -184,6 +199,11 @@ msgstr ""
 #. module: golem_activity
 #: model:product.category,name:golem_activity.golem_product_category_martial
 msgid "Arts martiaux"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_id_4516
+msgid "Audience"
 msgstr ""
 
 #. module: golem_activity
@@ -253,6 +273,11 @@ msgid "Check if the product is eligible for membership."
 msgstr ""
 
 #. module: golem_activity
+#: model:golem.activity.audience,name:golem_activity.golem_activity_audience_children
+msgid "Childrens"
+msgstr ""
+
+#. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_color
 msgid "Color Index"
 msgstr ""
@@ -278,12 +303,14 @@ msgid "Cost of the product, in the default unit of measure of the product."
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_create_uid
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_create_uid
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_create_date
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_create_date
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_create_date
 msgid "Created on"
@@ -350,6 +377,7 @@ msgid "Description"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_display_name
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_display_name
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_display_name
 msgid "Display Name"
@@ -366,7 +394,7 @@ msgid "Expense Account"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:149
+#: code:addons/golem_activity/models/golem_activity.py:162
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Friday"
@@ -380,6 +408,16 @@ msgstr ""
 #. module: golem_activity
 #: model:ir.model,name:golem_activity.model_golem_activity
 msgid "GOLEM Activity"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model,name:golem_activity.model_golem_activity_audience
+msgid "GOLEM Activity Audience"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.actions.act_window,name:golem_activity.golem_activity_audience_action
+msgid "GOLEM Activity Audiences"
 msgstr ""
 
 #. module: golem_activity
@@ -413,6 +451,7 @@ msgid "Group By"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_id
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_id
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_id
 msgid "ID"
@@ -461,17 +500,20 @@ msgstr ""
 
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity___last_update
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience___last_update
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_write_uid
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_write_uid
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_audience_write_date
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_type_write_date
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_write_date
 msgid "Last Updated on"
@@ -480,6 +522,11 @@ msgstr ""
 #. module: golem_activity
 #: model:ir.model.fields,field_description:golem_activity.field_golem_activity_membership_season_id
 msgid "Linked season"
+msgstr ""
+
+#. module: golem_activity
+#: model:ir.model.fields,field_description:golem_activity.field_golem_activity_location
+msgid "Location"
 msgstr ""
 
 #. module: golem_activity
@@ -513,7 +560,7 @@ msgid "Membership Start Date"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:145
+#: code:addons/golem_activity/models/golem_activity.py:158
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Monday"
@@ -607,7 +654,7 @@ msgid "Sale Price"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:150
+#: code:addons/golem_activity/models/golem_activity.py:163
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Saturday"
@@ -655,8 +702,8 @@ msgid "Start date"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:124
-#: code:addons/golem_activity/models/golem_activity.py:167
+#: code:addons/golem_activity/models/golem_activity.py:137
+#: code:addons/golem_activity/models/golem_activity.py:180
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr ""
@@ -672,7 +719,7 @@ msgid "Stop time"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:151
+#: code:addons/golem_activity/models/golem_activity.py:164
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Sunday"
@@ -704,6 +751,13 @@ msgid "This account will be used for invoices instead of the default one to valu
 msgstr ""
 
 #. module: golem_activity
+#: code:addons/golem_activity/models/golem_activity.py:40
+#: sql_constraint:golem.activity.audience:0
+#, python-format
+msgid "This activity audience name has already been used."
+msgstr ""
+
+#. module: golem_activity
 #: code:addons/golem_activity/models/golem_activity.py:28
 #: sql_constraint:golem.activity.type:0
 #, python-format
@@ -716,7 +770,7 @@ msgid "This field holds the image used as image for the activity."
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:148
+#: code:addons/golem_activity/models/golem_activity.py:161
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Thursday"
@@ -733,7 +787,7 @@ msgid "True"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:146
+#: code:addons/golem_activity/models/golem_activity.py:159
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Tuesday"
@@ -771,7 +825,7 @@ msgid "Warranty"
 msgstr ""
 
 #. module: golem_activity
-#: code:addons/golem_activity/models/golem_activity.py:147
+#: code:addons/golem_activity/models/golem_activity.py:160
 #: selection:golem.activity,weekday:0
 #, python-format
 msgid "Wednesday"

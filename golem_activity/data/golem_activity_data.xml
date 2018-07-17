@@ -34,6 +34,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Base data for activities -->
+    <record model="golem.activity.audience" id="golem_activity_audience_adults">
+      <field name="name">Adults</field>
+    </record>
+    <record model="golem.activity.audience" id="golem_activity_audience_children">
+      <field name="name">Childrens</field>
+    </record>
     <record model="golem.activity.type" id="golem_activity_type_activity">
       <field name="name">Activity</field>
       <field name="is_recurrent">1</field>

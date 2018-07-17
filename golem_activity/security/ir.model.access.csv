@@ -11,3 +11,5 @@ access_golem_activity_user,Access GOLEM Activity User,model_golem_activity,golem
 access_golem_activity_manager,Access GOLEM Activity Manager,model_golem_activity,golem_base.group_golem_manager,1,1,1,1
 access_golem_activity_type_user,Access GOLEM Activity Type User,model_golem_activity_type,golem_base.group_golem_user,1,1,1,0
 access_golem_activity_type_manager,Access GOLEM Activity Type Manager,model_golem_activity_type,golem_base.group_golem_manager,1,1,1,1
+access_golem_activity_audience_user,Access GOLEM Activity Audience User,model_golem_activity_audience,golem_base.group_golem_user,1,1,1,0
+access_golem_activity_audience_manager,Access GOLEM Activity Audience Manager,model_golem_activity_audience,golem_base.group_golem_manager,1,1,1,1

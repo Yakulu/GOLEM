@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -40,7 +40,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group>
                 <field name="season_id" required="True" />
                 <field name="animator_id" />
-                <field name="type_id" required="True" />
+                <field name="type_id" required="True"
+                  options="{'no_create': True}" />
+                <field name="audience_id" />
               </group>
               <group>
                 <field name="categ_id" required="True" />
@@ -68,6 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="date_stop"
                       attrs="{'invisible':[('is_recurrent', '=', True),
                              ('is_fullseason', '=', True)]}" />
+                    <field name="location" />
                   </group>
                   <group name="places">
                   </group>
@@ -131,6 +134,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </tree>
     </field>
   </record>
+  <record model="ir.ui.view" id="golem_activity_audience_tree">
+    <field name="name">GOLEM Activity Audience Tree/List</field>
+    <field name="model">golem.activity.audience</field>
+    <field name="arch" type="xml">
+      <tree editable="top">
+        <field name="name" />
+      </tree>
+    </field>
+  </record>
 
     <!-- Calendars -->
     <record id="golem_activity_calendar" model="ir.ui.view">
@@ -177,6 +189,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       context="{'search_default_season_default': True}" />
     <act_window id="golem_activity_type_action" name="GOLEM Activity Types"
       res_model="golem.activity.type" view_mode="tree" />
+    <act_window id="golem_activity_audience_action" name="GOLEM Activity Audiences"
+      res_model="golem.activity.audience" view_mode="tree" />
     <record id="product_category_action" model="ir.actions.act_window">
       <field name="name">Activities Categories</field>
       <field name="res_model">product.category</field>
@@ -198,6 +212,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       groups="golem_base.group_golem_manager"
       parent="golem_activity_menu_configuration" sequence="5"
       action="golem_activity_type_action" />
+    <menuitem id="golem_activity_audience_menu_list" name="Activity Audiences"
+      groups="golem_base.group_golem_manager"
+      parent="golem_activity_menu_configuration" sequence="7"
+      action="golem_activity_audience_action" />
     <menuitem  id="product_category_menu" name="Categories"
       parent="golem_activity_menu_configuration" sequence="10"
       groups="golem_base.group_golem_manager"

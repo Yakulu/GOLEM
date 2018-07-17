@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,17 @@ class GolemActivityType(models.Model):
     is_recurrent = fields.Boolean('Is recurrent?')
 
 
+class GolemActivityAudience(models.Model):
+    """ GOLEM Activity Audience """
+    _name = 'golem.activity.audience'
+    _description = 'GOLEM Activity Audience'
+
+    _sql_constraints = [('golem_activity_audience_name_uniq', 'UNIQUE (name)',
+                         _('This activity audience name has already been used.'))]
+
+    name = fields.Char('Activity audience', required=True, translate=True)
+
+
 class GolemActivity(models.Model):
     """ GOLEM Activity """
     _name = 'golem.activity'
@@ -49,6 +60,8 @@ class GolemActivity(models.Model):
                             index=True)
     is_fullseason = fields.Boolean('Is full season?',
                                    compute='_compute_is_full_season')
+    location = fields.Char()
+    audience_id = fields.Many2one('golem.activity.audience', string='Audience')
 
     @api.onchange('is_fullseason')
     def onchange_fullseason(self):
@@ -88,10 +101,10 @@ class GolemActivity(models.Model):
                                 ondelete='restrict')
 
     is_current = fields.Boolean('Current season?', store=True, default=False,
-                                compute='compute_is_current')
+                                compute='_compute_is_current')
 
     @api.depends('season_id')
-    def compute_is_current(self):
+    def _compute_is_current(self):
         """ Checks if activity is active for current season """
         default_season = self._default_season()
         for activity in self:
