@@ -19,7 +19,8 @@
 
 import logging
 from math import ceil
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
 class GolemActivityRegistrationInvoicingLine(models.TransientModel):
@@ -39,17 +40,26 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     _name = 'golem.activity.registration.invoicing'
     _description = 'GOLEM Activity Registration Invoicing Wizard'
 
-    season_id = fields.Many2one('golem.season', 'Season', required=True)
-    member_id = fields.Many2one('golem.member', 'Member', required=True)
+    state = fields.Selection([('init', 'init'), ('final', 'final')],
+                             default='init', required=True)
+    season_id = fields.Many2one('golem.season', 'Season', required=True,
+                                ondelete='cascade')
+    member_id = fields.Many2one('golem.member', 'Member', required=True,
+                                ondelete='cascade')
     line_ids = fields.One2many('golem.activity.registration.invoicing.line',
                                'invoicing_id', string='Activities')
     schedule_id = fields.Many2one('golem.payment.schedule', 'Payment schedule',
                                   domain='[("season_id", "=", season_id)]',
+                                  ondelete='cascade',
                                   help='If no schedule is selected, only the '
                                   'invoice will be create. Otherwise, draft '
                                   'payments will be generated.')
     journal_id = fields.Many2one('account.journal', 'Journal',
-                                 domain=[('type', 'in', ('bank', 'cash'))])
+                                 domain=[('type', 'in', ('bank', 'cash'))],
+                                 ondelete='cascade')
+    invoice_id = fields.Many2one('account.invoice', string='Generated invoice',
+                                 ondelete='cascade')
+    payment_ids = fields.Many2many('account.payment', string='Generated payments')
 
     @api.multi
     def _create_invoice(self):
@@ -81,6 +91,7 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     def _create_payments(self, invoice):
         """ Create payment if schedule has been chosen """
         self.ensure_one()
+        payments = self.env['account.payment']
         if self.schedule_id and self.schedule_id.occurences > 0:
             amount = invoice.amount_total
             amount_per_occurence = ceil(amount / self.schedule_id.occurences)
@@ -101,6 +112,8 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                 payment_values = dict(payment._cache)
                 payment = self.env['account.payment'].create(payment_values)
                 payment.invoice_ids = [(4, invoice.id, False)]
+                payments |= payment
+        return payments
 
     @api.multi
     def validate(self):
@@ -110,4 +123,44 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
             lambda r: r.state == 'draft')
         draft_registrations.write({'state': 'confirmed'})
         invoice = self._create_invoice()
-        self._create_payments(invoice)
+        self.invoice_id = invoice
+        payments = self._create_payments(invoice)
+        self.payment_ids |= payments
+        self.write({'state': 'final'})
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self[0].id,
+            'target': 'new'
+        }
+
+    @api.multi
+    def go_invoice(self):
+        """ Navigate to generated invoice """
+        self.ensure_one()
+        if not self.invoice_id:
+            uerr = _('There is no generated invoice.')
+            raise UserError(uerr)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Generated invoice'),
+            'view_mode': 'form,tree',
+            'res_model': 'account.invoice',
+            'res_id': self[0].invoice_id.id
+        }
+
+    @api.multi
+    def go_payments(self):
+        """ Navigate to generated payments """
+        self.ensure_one()
+        if not self.payment_ids:
+            uerr = _('There is no generated payments.')
+            raise UserError(uerr)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Generated payments'),
+            'view_mode': 'tree,form',
+            'res_model': 'account.payment',
+            'domain': [('id', 'in', self.payment_ids.ids)]
+        }
