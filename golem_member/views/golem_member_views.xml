@@ -83,7 +83,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       widget="phonefr" />
                     <field name="mobile" placeholder="0000000000"
                       widget="phonefr" />
-                    <field name="pictures_agreement"/>
                     <field name="opt_out_sms" />
                     <field name="email" widget="email"
                       placeholder="name@example.org" />
@@ -91,9 +90,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <field name="opt_out" nolabel="1" />
                   </group>
                   <group>
+                    <field name="electronic_processing_agreement"/>
+                    <field name="pictures_agreement"/>
                     <field name="website" widget="url"
                       placeholder="e.g. www.odoo.com"/>
-                    <field name="image_permission" />
                   </group>
                 </group>
               </page>

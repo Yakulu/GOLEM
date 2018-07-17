@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-27 13:57+0000\n"
-"PO-Revision-Date: 2018-03-27 13:57+0000\n"
+"POT-Creation-Date: 2018-07-17 06:55+0000\n"
+"PO-Revision-Date: 2018-07-17 06:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -341,6 +341,11 @@ msgid "Either customer (no user), either shared user. Indicated the current part
 msgstr ""
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_electronic_processing_agreement
+msgid "Electronic Processing Agreement?"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_email
 msgid "Email"
 msgstr ""
@@ -433,7 +438,7 @@ msgid "GOLEM Members Tags"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:319
+#: code:addons/golem_member/models/golem_member.py:318
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr ""
@@ -498,11 +503,6 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_image
 msgid "Image"
-msgstr ""
-
-#. module: golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_image_permission
-msgid "Image permission?"
 msgstr ""
 
 #. module: golem_member
@@ -707,7 +707,7 @@ msgstr ""
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_name
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4186
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4260
 msgid "Name"
 msgstr ""
 
@@ -719,8 +719,8 @@ msgid "Nationality"
 msgstr ""
 
 #. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:261
 #: code:addons/golem_member/models/golem_member.py:264
-#: code:addons/golem_member/models/golem_member.py:267
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -1031,7 +1031,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:78
+#: code:addons/golem_member/models/golem_member.py:77
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -1128,8 +1128,8 @@ msgid "Website of Partner or Company"
 msgstr ""
 
 #. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:261
 #: code:addons/golem_member/models/golem_member.py:264
-#: code:addons/golem_member/models/golem_member.py:267
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format

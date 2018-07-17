@@ -90,7 +90,9 @@ class GolemMember(models.Model):
     number_manual = fields.Char('Manual number', size=50, index=True,
                                 help='Manual number overwriting automatic '
                                 'numbering')
-    pictures_agreement = fields.Boolean('Pictures agreement?')
+    pictures_agreement = fields.Boolean('Pictures agreement?', default=True)
+    electronic_processing_agreement = fields.Boolean('Electronic Processing Agreement?',
+                                                     default=True)
     opt_out_sms = fields.Boolean('Out of SMS campaigns?',
                                  help='If this field has been checked, it '
                                  'tells that the user refuses to receive SMS')
@@ -101,7 +103,6 @@ class GolemMember(models.Model):
                                 store=True, compute='_compute_is_current')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
-    image_permission = fields.Boolean('Image permission?', default=True)
 
     @api.onchange('country_id')
     def onchange_country_domain_state(self):

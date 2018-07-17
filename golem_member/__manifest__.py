@@ -19,7 +19,8 @@
 {
     'name': 'GOLEM non-profit members',
     'summary': 'Extends Odoo contacts for MJC',
-    'version': '10.0.1.1.6',
+    'description': 'Extends Odoo contacts for MJC',
+    'version': '10.0.1.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
