@@ -118,10 +118,12 @@ class GolemMember(models.Model):
     def _compute_number_name(self):
         """ Computes a name composed with number and name """
         for member in self:
+            vals = []
+            if member.number:
+                vals.append(member.number)
             if member.name:
-                member.number_name = u'{} - {}'.format(member.number, member.name)
-            else:
-                member.number_name = u''
+                vals.append(member.name)
+            member.number_name = u' - '.join(vals)
 
     @api.depends('season_ids')
     def _compute_is_current(self):
