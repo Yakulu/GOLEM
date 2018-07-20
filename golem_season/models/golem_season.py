@@ -18,6 +18,7 @@
 """ GOLEM Season management """
 
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class GolemSeason(models.Model):
     """ GOLEM Season """
@@ -35,6 +36,7 @@ class GolemSeason(models.Model):
                                     readonly=True, default=1)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
+    is_default = fields.Boolean('Default season for views?', readonly=True)
 
     @api.onchange('membership_ids')
     def _onchange_season_dates(self):
@@ -53,28 +55,26 @@ class GolemSeason(models.Model):
         for season in self:
             if season.date_start or season.date_end:
                 if season.date_start and not season.date_end:
-                    raise models.ValidationError(_('The date end is required'))
+                    raise ValidationError(_('The date end is required'))
                 elif season.date_end and not season.date_start:
-                    raise models.ValidationError(_('The date start is required'))
+                    raise ValidationError(_('The date start is required'))
                 if season.date_start > season.date_end:
-                    raise models.ValidationError(_('Start of the period cannot be '
+                    raise ValidationError(_('Start of the period cannot be '
                                                    'after end of the period.'))
                 seasons = self.env['golem.season'].search([])
                 for eachs in seasons:
                     if eachs.date_start < season.date_start < eachs.date_end:
                         msg = _(u'Start of the period is in range of an '
                                 'existing period.')
-                        raise models.ValidationError(msg)
+                        raise ValidationError(msg)
                     if eachs.date_start < season.date_end < eachs.date_end:
                         msg = _(u'End of the period is in range of an '
                                 'existing period.')
-                        raise models.ValidationError(msg)
+                        raise ValidationError(msg)
                     if season.date_start < eachs.date_start < season.date_end:
                         msg = _(u'Current period cannot be included into '
                                 'another existing period.')
-                        raise models.ValidationError(msg)
-
-    is_default = fields.Boolean('Default season for views?', readonly=True)
+                        raise ValidationError(msg)
 
     @api.multi
     def do_default_season(self):
@@ -97,7 +97,6 @@ class GolemSeason(models.Model):
             self.env['golem.activity'].search([]).compute_is_current()
 
     @api.model
-    @api.returns('self', lambda rec: rec.id)
     def create(self, values):
         """ If the season if the first one created, it must be by default """
         if self.search_count([]) == 0:
@@ -110,6 +109,6 @@ class GolemSeason(models.Model):
         for season in self:
             if season.is_default:
                 emsg = _('You can\'t delete the default season')
-                raise models.ValidationError(emsg)
+                raise ValidationError(emsg)
             else:
                 return super(GolemSeason, self).unlink()
