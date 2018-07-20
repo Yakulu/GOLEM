@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 10:07+0000\n"
-"PO-Revision-Date: 2018-07-20 10:07+0000\n"
+"POT-Creation-Date: 2018-07-20 14:15+0000\n"
+"PO-Revision-Date: 2018-07-20 14:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -446,7 +446,6 @@ msgid "GOLEM MemberShip invoicing"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.actions.act_window,name:golem_member.golem_member_action
 #: model:ir.ui.view,arch_db:golem_member.golem_member_graph
 #: model:ir.ui.view,arch_db:golem_member.golem_member_tree
 msgid "GOLEM Members"
@@ -706,11 +705,6 @@ msgid "Member number"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.ui.menu,name:golem_member.golem_members_menu
-msgid "Members"
-msgstr ""
-
-#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_member_lines
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Membership"
@@ -942,6 +936,16 @@ msgid "Self"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.actions.act_window,name:golem_member.golem_member_user_action
+msgid "Service Users"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.menu,name:golem_member.golem_member_user_menu
+msgid "Service users"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_partner_share
 msgid "Share Partner"
 msgstr ""
@@ -1001,6 +1005,12 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_street2
 msgid "Street2"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.actions.act_window,name:golem_member.golem_member_action
+#: model:ir.ui.menu,name:golem_member.golem_members_menu
+msgid "Subscribers"
 msgstr ""
 
 #. module: golem_member

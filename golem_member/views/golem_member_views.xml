@@ -21,10 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Actions -->
-    <act_window id="golem_member_action"
-      name="GOLEM Members"
-      res_model="golem.member"
-      view_mode="kanban,tree,form,graph" />
+    <act_window id="golem_member_action" name="Subscribers"
+      res_model="res.partner" view_mode="kanban,tree,form,graph"
+      domain="[('membership_state', '!=', 'none')]" />
+    <act_window id="golem_member_user_action" name="Service Users"
+      res_model="golem.member" view_mode="kanban,tree,form,graph" />
     <act_window id="res_partner_category_action" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
     <record id="golem_membership_invoice_action" model="ir.actions.act_window">
@@ -310,19 +311,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </record>
 
     <!-- Menu items -->
-    <!-- Deactivate classic membership list -->
-    <record id="membership.menu_membership" model="ir.ui.menu">
-      <field name="active">0</field>
-    </record>
     <!-- Add new menu items -->
-    <menuitem id="golem_members_menu" name="Members"
-      parent="membership.menu_association" sequence="5"
+    <menuitem id="golem_member_user_menu" name="Service users"
+      parent="golem_membership.menu_association" sequence="5"
+      action="golem_member_user_action" groups="golem_base.group_golem_user" />
+    <menuitem id="golem_members_menu" name="Subscribers"
+      parent="golem_membership.menu_association" sequence="10"
       action="golem_member_action" groups="golem_base.group_golem_user" />
     <menuitem id="golem_member_tool_menu" name="Tools"
-      parent="membership.menu_association" sequence="80"
+      parent="golem_membership.menu_association" sequence="80"
       groups="golem_base.group_golem_user" />
     <menuitem id="res_partner_category_menu" name="Member Tags"
-      parent="membership.menu_marketing_config_association" sequence="10"
+      parent="golem_membership.menu_config_association" sequence="15"
       action="res_partner_category_action"
       groups="golem_base.group_golem_manager" />
   </data>

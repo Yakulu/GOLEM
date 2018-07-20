@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 10:08+0000\n"
-"PO-Revision-Date: 2018-07-20 12:09+0200\n"
+"POT-Creation-Date: 2018-07-20 14:15+0000\n"
+"PO-Revision-Date: 2018-07-20 16:16+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,11 @@ msgstr "Annuler"
 #, python-format
 msgid "Check"
 msgstr "Chèque"
+
+#. module: golem_membership
+#: model:ir.ui.menu,name:golem_membership.menu_config_association
+msgid "Configuration"
+msgstr "Configuration"
 
 #. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_create_uid
@@ -91,6 +96,11 @@ msgid "Member Price"
 msgstr "Tarif d'adhésion"
 
 #. module: golem_membership
+#: model:ir.ui.menu,name:golem_membership.menu_association
+msgid "Members and users"
+msgstr "Adhérents et usagers"
+
+#. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_product_id
 msgid "Membership"
 msgstr "Adhésion"
@@ -104,6 +114,11 @@ msgstr "Facture de l'adhésion"
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_partner_id
 msgid "Partner"
 msgstr "Contact"
+
+#. module: golem_membership
+#: model:ir.ui.menu,name:golem_membership.subscription_product_menu
+msgid "Subscriptions"
+msgstr "Adhésions"
 
 #. module: golem_membership
 #: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form

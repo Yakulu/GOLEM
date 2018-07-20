@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM non-profit membership handling',
     'summary': 'Extends Odoo membership',
-    'version': '10.0.2.0.0',
+    'version': '10.0.2.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',
@@ -26,5 +26,6 @@
     'installable': True,
     'depends': ['account', 'decimal_precision'],
     'data': ['data/account_data.xml',
+             'views/membership_views.xml',
              'views/golem_membership_invoice.xml']
 }
