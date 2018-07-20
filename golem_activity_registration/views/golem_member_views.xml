@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 context="{'default_member_id': active_id}">
                 <tree editable="top">
                   <field name="activity_id"
-                    domain="[('is_current', '=', True)]" />
+                    domain="[('is_default', '=', True)]" />
                   <field name="season_id" readonly="1" />
                   <field name="member_id" readonly="1" invisible="1" />
                   <field name="activity_price" string="Base price" sum="Total" />

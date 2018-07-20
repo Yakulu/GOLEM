@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-12 14:17+0000\n"
-"PO-Revision-Date: 2018-06-12 16:18+0200\n"
+"POT-Creation-Date: 2018-07-20 07:46+0000\n"
+"PO-Revision-Date: 2018-07-20 10:07+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_report_template_inherited_golem_activity_registration
@@ -38,7 +37,7 @@ msgstr "<i class=\"fa fa-university\"/>Ville"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_report_template_inherited_golem_activity_registration
-msgid "<i class=\"fa fa-user\"/>Name"
+msgid "<i class=\"fa fa-user\"/> Name"
 msgstr "<i class=\"fa fa-user\"/>Nom"
 
 #. module: golem_activity_registration
@@ -46,6 +45,11 @@ msgstr "<i class=\"fa fa-user\"/>Nom"
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
 msgid "Activities"
 msgstr "Activités"
+
+#. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_ids
+msgid "Activities for default season"
+msgstr "Activités de la saison par défaut"
 
 #. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_activity_id
@@ -91,16 +95,6 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_create_date
 msgid "Created on"
 msgstr "Créé le"
-
-#. module: golem_activity_registration
-#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_member_activity_registration_ids
-msgid "Current activities"
-msgstr "Activités de la saison affichée par défaut"
-
-#. module: golem_activity_registration
-#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_is_current
-msgid "Current season?"
-msgstr "Saison en cours?"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
@@ -209,7 +203,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:38
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:39
 #: sql_constraint:golem.activity:0
 #, python-format
 msgid "Number of places cannot be negative."
@@ -246,7 +240,7 @@ msgid "Season"
 msgstr "Saison"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:69
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:70
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr "Désolé, il n'y a  plus de place disponible !"
@@ -257,13 +251,13 @@ msgid "Subscription"
 msgstr "Inscription"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:99
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:100
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
 msgstr "L'inscription n'a pas pu être enregistrée : l'usager visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule l'activité."
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:91
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:92
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."

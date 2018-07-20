@@ -22,7 +22,7 @@
     - add season with name and period ;
     - choose on per default season ;
     - link optionnally one or many memberships types''',
-    'version': '10.0.1.1.1',
+    'version': '10.0.1.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

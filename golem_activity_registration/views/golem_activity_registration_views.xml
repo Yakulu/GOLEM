@@ -44,8 +44,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <tree create="true" edit="false" delete="false" editable="top">
           <field name="season_id" readonly="1" />
-          <field name="member_id" domain="[('is_current', '=', True)]" />
-          <field name="activity_id" domain="[('is_current', '=', True)]" />
+          <field name="member_id" domain="[('is_default', '=', True)]" />
+          <field name="activity_id" domain="[('is_default', '=', True)]" />
         </tree>
       </field>
     </record>
@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="member_id" widget="many2one" />
           <field name="activity_id" widget="many2one" />
           <filter name="season_default" string="Default season"
-           domain="[('is_current', '=', True)]" />
+           domain="[('is_default', '=', True)]" />
          <filter name="group_season" string="By season"
            context="{'group_by': 'season_id'}"/>
         </search>
@@ -72,7 +72,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Activity Registration List</field>
       <field name="res_model">golem.activity.registration</field>
       <field name="view_mode">tree</field>
-      <field name="context">{'search_default_season_default': True}</field>
     </record>
 
     <!-- Menu -->

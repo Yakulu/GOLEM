@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 06:55+0000\n"
-"PO-Revision-Date: 2018-07-17 09:01+0200\n"
+"POT-Creation-Date: 2018-07-20 07:46+0000\n"
+"PO-Revision-Date: 2018-07-20 10:03+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -284,11 +284,6 @@ msgid "Current Membership Status"
 msgstr "État actuel de l'adhésion"
 
 #. module: golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_current
-msgid "Current user?"
-msgstr "Adhérent de cette saison?"
-
-#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_property_payment_term_id
 msgid "Customer Payment Terms"
 msgstr "Conditions de Paiement Client"
@@ -319,6 +314,11 @@ msgid "Default season"
 msgstr "Saison par défaut"
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_default
+msgid "Default season?"
+msgstr "Usager de la saison par défaut?"
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_trust
 msgid "Degree of trust you have in this debtor"
 msgstr "Niveau de confiance que vous avez avec ce débiteur"
@@ -338,7 +338,7 @@ msgstr "Nom affiché"
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_partner_share
 msgid "Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data."
-msgstr "Soit un contact (pas un utilisateur), soit un utilisateur partagé. Indique que le contact actuel est un client sans permission ou avec des accès limités créés pour partager des données."
+msgstr "Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data."
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_electronic_processing_agreement
@@ -366,7 +366,7 @@ msgid "Fax"
 msgstr "Fax"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:39
+#: code:addons/golem_member/models/golem_member.py:40
 #, python-format
 msgid "Female"
 msgstr "Féminin"
@@ -438,10 +438,15 @@ msgid "GOLEM Members Tags"
 msgstr "Catégories d'adhérents"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:318
+#: code:addons/golem_member/models/golem_member.py:334
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr "La fusion d'adhérents n'a pas encore été implémentée. Merci de ne fusionner que des contacts non adhérents, ou bien de supprimer les adhérents manuellement en premier lieu."
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_season
+msgid "GOLEM Season"
+msgstr "Saison"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_gender
@@ -618,7 +623,7 @@ msgid "Latest Invoices & Payments Matching Date"
 msgstr "Date de dernière correspondance des factures et paiements"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:39
+#: code:addons/golem_member/models/golem_member.py:40
 #, python-format
 msgid "Male"
 msgstr "Masculin"
@@ -674,7 +679,7 @@ msgstr "Numéro d'adhérent"
 #. module: golem_member
 #: model:ir.ui.menu,name:golem_member.golem_members_menu
 msgid "Members"
-msgstr "Adhérents"
+msgstr "Membres"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_member_lines
@@ -725,8 +730,8 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:261
-#: code:addons/golem_member/models/golem_member.py:264
+#: code:addons/golem_member/models/golem_member.py:277
+#: code:addons/golem_member/models/golem_member.py:280
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -961,7 +966,7 @@ msgstr "Numéro fiscal"
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_category_id
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr "Catégories"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
@@ -1039,7 +1044,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px."
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:77
+#: code:addons/golem_member/models/golem_member.py:78
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -1106,6 +1111,12 @@ msgid "Total amount you have to pay to this vendor."
 msgstr "Montant total à payer au fournisseur."
 
 #. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:145
+#, python-format
+msgid "Unsupported operator for defautl season search"
+msgstr "Opérateur de recherche non supporté pour le filtre de saison par défaut"
+
+#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_type
 msgid "Used to select automatically the right address according to the context in sales and purchases documents."
 msgstr "Utilisé pour sélectionner automatiquement la bonne adresse selon le contexte des documents de vente et d'achats"
@@ -1136,8 +1147,8 @@ msgid "Website of Partner or Company"
 msgstr "Site Web pour les Partenaires ou les Sociétés"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:261
-#: code:addons/golem_member/models/golem_member.py:264
+#: code:addons/golem_member/models/golem_member.py:277
+#: code:addons/golem_member/models/golem_member.py:280
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format

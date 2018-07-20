@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -40,7 +40,7 @@ class GolemActivityTestCase(TransactionCase):
         self.assertEqual(a1.name, 'a1')
         self.assertEqual(a1.date_start, self.season_current.date_start)
         self.assertEqual(a1.date_end, self.season_current.date_end)
-        self.assertTrue(a1.is_current)
+        self.assertTrue(a1.is_default)
         adata.update({'name': 'a2', 'date_start': '2010-01-01',
                       'date_end': '2009-12-01'})
         with self.assertRaises(ValidationError):

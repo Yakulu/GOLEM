@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="email" />
           <field name="category_id" widget="many2one" />
           <filter name="season_default" string="Default season"
-           domain="[('is_current', '=', True)]" />
+           domain="[('is_default', '=', True)]" />
           <group string="Group By">
             <filter name="group_age" string="By age"
               context="{'group_by': 'is_minor'}"/>
@@ -246,8 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <act_window id="golem_member_action"
       name="GOLEM Members"
       res_model="golem.member"
-      view_mode="kanban,tree,form,graph"
-      context="{'search_default_season_default': True}" />
+      view_mode="kanban,tree,form,graph" />
     <act_window id="res_partner_category_action" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
 

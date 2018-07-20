@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -46,16 +46,16 @@ class GolemMemberTestCase(TransactionCase):
         self.assertIn('Error(s) with partner', exc_cm.exception.args[0])
         self.assertEqual('No name is set.', exc_cm.exception.args[1])
 
-    def test_current_season(self):
+    def test_default_season(self):
         """ Test if default season if fixed according to setUp and if users
         are correctly seen """
         self.assertEqual(self.member_model._default_season(),
                          self.season_current)
-        self.assertTrue(self.member1.is_current)
-        self.assertTrue(self.member2.is_current)
+        self.assertTrue(self.member1.is_default)
+        self.assertTrue(self.member2.is_default)
         self.season_next.do_default_season()
-        self.assertFalse(self.member1.is_current)
-        self.assertFalse(self.member2.is_current)
+        self.assertFalse(self.member1.is_default)
+        self.assertFalse(self.member2.is_default)
 
     def test_member_numbers_manual(self):
         """ Tests manual member number generation """
@@ -82,9 +82,9 @@ class GolemMemberTestCase(TransactionCase):
         self.member2.season_ids += self.season_next
         self.assertEqual(self.member2.number, u'M2')
         self.season_next.do_default_season()
-        self.assertTrue(self.member2.is_current)
+        self.assertTrue(self.member2.is_default)
         self.assertEqual(self.member2.number, u'M1')
-        self.assertFalse(self.member1.is_current)
+        self.assertFalse(self.member1.is_default)
         self.assertFalse(self.member1.number)
 
     def test_mnumbers_auto_season_from(self):
@@ -100,9 +100,9 @@ class GolemMemberTestCase(TransactionCase):
         self.member2.season_ids += self.season_next
         self.assertEqual(self.member2.number, u'101')
         self.season_next.do_default_season()
-        self.assertTrue(self.member2.is_current)
+        self.assertTrue(self.member2.is_default)
         self.assertEqual(self.member2.number, u'100')
-        self.assertFalse(self.member1.is_current)
+        self.assertFalse(self.member1.is_default)
         self.assertFalse(self.member1.number)
 
     def test_member_numbers_auto_global(self):

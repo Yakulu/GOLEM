@@ -36,8 +36,7 @@ class GolemActivityQueue(models.Model):
                                   string='Activity', ondelete='cascade',
                                   index=True)
     season_id = fields.Many2one(related='activity_id.season_id')
-    is_current = fields.Boolean('Current season?',
-                                related='activity_id.is_current', store=True)
+    is_default = fields.Boolean(related='activity_id.is_default')
 
     places_remain = fields.Integer(related='activity_id.places_remain')
     sequence = fields.Integer()

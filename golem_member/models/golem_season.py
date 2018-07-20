@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,22 +15,23 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM activity queues',
-    'summary': 'GOLEM activity queues',
-    'description': ''' GOLEM activity queue management ''',
-    'version': '10.0.1.3.0',
-    'category': 'GOLEM',
-    'author': 'Youssef El Ouahby, Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['golem_activity', 'golem_activity_registration'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/golem_activity_queue_views.xml',
-        'views/golem_activity_views.xml',
-        'views/golem_member_views.xml',
-        'wizard/golem_activity_automated_queue_activate_views.xml'
-    ]
-}
+""" GOLEM Season adaptations """
+
+from odoo import models, api
+
+
+class GolemSeason(models.Model):
+    """ GOLEM Season adaptations """
+    _inherit = 'golem.season'
+
+    @api.multi
+    def do_default_season(self):
+        """ Add number regenration in some cases """
+        self.ensure_one()
+        res = super(GolemSeason, self).do_default_season()
+        all_members = self.env['golem.member'].search([])
+        conf = self.env['ir.config_parameter']
+        if conf.get_param('golem_numberconfig_isautomatic') == '1' and \
+                conf.get_param('golem_numberconfig_isperseason') == '1':
+            all_members.generate_number()
+        return res

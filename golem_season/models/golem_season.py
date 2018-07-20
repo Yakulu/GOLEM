@@ -60,7 +60,7 @@ class GolemSeason(models.Model):
                     raise ValidationError(_('The date start is required'))
                 if season.date_start > season.date_end:
                     raise ValidationError(_('Start of the period cannot be '
-                                                   'after end of the period.'))
+                                            'after end of the period.'))
                 seasons = self.env['golem.season'].search([])
                 for eachs in seasons:
                     if eachs.date_start < season.date_start < eachs.date_end:
@@ -78,23 +78,12 @@ class GolemSeason(models.Model):
 
     @api.multi
     def do_default_season(self):
-        """ is_default on and ensure that only one is_default is active. Also
-        recomputes is_current for members and activities. For simplicity use a
-        magic trick around registry rather than double inheritance """
+        """ is_default on and ensure that only one is_default is active """
         self.ensure_one()
         old_default_season = self.search([('is_default', '=', True)])
         if old_default_season:
             old_default_season.is_default = False
         self.is_default = True
-        if 'golem.member' in self.env.registry:
-            all_members = self.env['golem.member'].search([])
-            all_members.compute_is_current()
-            conf = self.env['ir.config_parameter']
-            if conf.get_param('golem_numberconfig_isautomatic') == '1' and \
-                    conf.get_param('golem_numberconfig_isperseason') == '1':
-                all_members.generate_number()
-        if 'golem.activity' in self.env.registry:
-            self.env['golem.activity'].search([]).compute_is_current()
 
     @api.model
     def create(self, values):

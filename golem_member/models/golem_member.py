@@ -32,6 +32,7 @@ class ResPartner(models.Model):
         return self.env.ref('base.main_company').country_id
 
     nationality_id = fields.Many2one('res.country', 'Nationality',
+                                     auto_join=True,
                                      default=_get_default_nationality_id)
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
@@ -80,7 +81,7 @@ class GolemMember(models.Model):
                                  ondelete='cascade')
 
     @api.model
-    def _default_season(self):
+    def default_season(self):
         """ Get default season """
         domain = [('is_default', '=', True)]
         return self.env['golem.season'].search(domain, limit=1)
@@ -97,10 +98,11 @@ class GolemMember(models.Model):
                                  help='If this field has been checked, it '
                                  'tells that the user refuses to receive SMS')
     season_ids = fields.Many2many('golem.season', string='Seasons',
-                                  required=True, default=_default_season,
-                                  ondelete='restrict')
-    is_current = fields.Boolean('Current user?', default=False, readonly=True,
-                                store=True, compute='_compute_is_current')
+                                  required=True, default=default_season,
+                                  auto_join=True, ondelete='restrict')
+    is_default = fields.Boolean('Default season?',
+                                compute='_compute_is_default',
+                                search='_search_is_default')
     is_number_manual = fields.Boolean('Is number manual?', store=False,
                                       compute='_compute_is_number_manual')
 
@@ -126,11 +128,23 @@ class GolemMember(models.Model):
             member.number_name = u' - '.join(vals)
 
     @api.depends('season_ids')
-    def _compute_is_current(self):
+    def _compute_is_default(self):
         """ Computes is current according to seasons """
         default_s = self._default_season()
         for member in self:
-            member.is_current = default_s in member.season_ids
+            member.is_default = default_s in member.season_ids
+
+    @api.multi
+    def _search_is_default(self, operator, value):
+        """ Search function for is default """
+        if operator in ('in', '='):
+            operator = '=' if value else '!='
+        elif operator in ('not in', '!='):
+            operator = '!=' if value else '='
+        else:
+            err = _('Unsupported operator for defautl season search')
+            raise NotImplementedError(err)
+        return [('season_ids', operator, self.default_season().id)]
 
     @api.depends('number')
     def _compute_is_number_manual(self):

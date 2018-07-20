@@ -61,7 +61,8 @@ class GolemActivity(models.Model):
     is_fullseason = fields.Boolean('Is full season?',
                                    compute='_compute_is_full_season')
     location = fields.Char()
-    audience_id = fields.Many2one('golem.activity.audience', string='Audience')
+    audience_id = fields.Many2one('golem.activity.audience', string='Audience',
+                                  index=True, auto_join=True)
 
     @api.onchange('is_fullseason')
     def onchange_fullseason(self):
@@ -91,29 +92,43 @@ class GolemActivity(models.Model):
             activity.full_name = full_name
 
     @api.model
-    def _default_season(self):
+    def default_season(self):
         """ Get default season """
         domain = [('is_default', '=', True)]
         return self.env['golem.season'].search(domain)
 
     season_id = fields.Many2one('golem.season', string='Season', copy=False,
-                                required=True, default=_default_season,
+                                required=True, default=default_season,
+                                index=True, auto_join=True,
                                 ondelete='restrict')
-
-    is_current = fields.Boolean('Current season?', store=True, default=False,
-                                compute='_compute_is_current')
+    is_default = fields.Boolean('Default season?',
+                                compute='_compute_is_default',
+                                search='_search_is_default')
 
     @api.depends('season_id')
-    def _compute_is_current(self):
-        """ Checks if activity is active for current season """
-        default_season = self._default_season()
+    def _compute_is_default(self):
+        """ Checks if activity is active for default season """
+        default_season = self.default_season()
         for activity in self:
-            activity.is_current = (default_season == activity.season_id)
+            activity.is_default = (default_season == activity.season_id)
+
+    @api.multi
+    def _search_is_default(self, operator, value):
+        """ Search function for is default """
+        if operator in ('in', '='):
+            operator = '=' if value else '!='
+        elif operator in ('not in', '!='):
+            operator = '!=' if value else '='
+        else:
+            err = _('Unsupported operator for defautl season search')
+            raise NotImplementedError(err)
+        return [('season_id', operator, self.default_season().id)]
 
     animator_id = fields.Many2one('res.partner', string='Animator',
+                                  index=True, auto_join=True,
                                   domain=[('is_company', '=', False)])
     type_id = fields.Many2one('golem.activity.type', required=True, index=True,
-                              string='Type')
+                              auto_join=True, string='Type')
     is_recurrent = fields.Boolean(related='type_id.is_recurrent')
     date_start = fields.Date('Start date', copy=False)
     date_stop = fields.Date('End date', copy=False)

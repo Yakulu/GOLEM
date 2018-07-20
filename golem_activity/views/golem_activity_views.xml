@@ -169,7 +169,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="categ_id" />
           <field name="season_id" />
           <filter name="season_default" string="Default season"
-           domain="[('is_current', '=', True)]" />
+           domain="[('is_default', '=', True)]" />
           <group string="Group By">
             <filter name="group_type_id" string="By type"
               context="{'group_by': 'type_id'}" />
@@ -186,8 +186,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Actions -->
     <act_window id="golem_activity_action" name="GOLEM Activities"
-      res_model="golem.activity" view_mode="tree,form,calendar"
-      context="{'search_default_season_default': True}" />
+      res_model="golem.activity" view_mode="tree,form,calendar" />
     <act_window id="golem_activity_type_action" name="GOLEM Activity Types"
       res_model="golem.activity.type" view_mode="tree" />
     <act_window id="golem_activity_audience_action" name="GOLEM Activity Audiences"
