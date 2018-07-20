@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 07:46+0000\n"
-"PO-Revision-Date: 2018-07-20 07:46+0000\n"
+"POT-Creation-Date: 2018-07-20 10:07+0000\n"
+"PO-Revision-Date: 2018-07-20 10:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_message_bounce
 msgid "Bounce"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_form
+msgid "Buy Membership"
 msgstr ""
 
 #. module: golem_member
@@ -294,6 +299,11 @@ msgid "Date"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Date from"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_start
 msgid "Date from which membership becomes active."
 msgstr ""
@@ -301,6 +311,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_cancel
 msgid "Date on which membership has been cancelled"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Date to"
 msgstr ""
 
 #. module: golem_member
@@ -426,6 +441,11 @@ msgid "GOLEM Member Numbers"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_membership_invoice
+msgid "GOLEM MemberShip invoicing"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.golem_member_action
 #: model:ir.ui.view,arch_db:golem_member.golem_member_graph
 #: model:ir.ui.view,arch_db:golem_member.golem_member_tree
@@ -438,7 +458,7 @@ msgid "GOLEM Members Tags"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:334
+#: code:addons/golem_member/models/golem_member.py:343
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr ""
@@ -471,6 +491,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_search
 msgid "Group By"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_search
+msgid "Has contributed"
 msgstr ""
 
 #. module: golem_member
@@ -526,6 +551,11 @@ msgid "Invoices"
 msgstr ""
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_search
+msgid "Is Free Member"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_is_company
 msgid "Is a Company"
 msgstr ""
@@ -567,6 +597,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_function
 msgid "Job Position"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.actions.act_window,name:golem_member.golem_membership_invoice_action
+msgid "Join Membership"
 msgstr ""
 
 #. module: golem_member
@@ -677,6 +712,7 @@ msgstr ""
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_member_lines
+#: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Membership"
 msgstr ""
 
@@ -693,6 +729,12 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_membership_start
 msgid "Membership Start Date"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+#: model:ir.ui.view,arch_db:golem_member.golem_member_form
+msgid "Memberships"
 msgstr ""
 
 #. module: golem_member
@@ -724,8 +766,8 @@ msgid "Nationality"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:277
-#: code:addons/golem_member/models/golem_member.py:280
+#: code:addons/golem_member/models/golem_member.py:283
+#: code:addons/golem_member/models/golem_member.py:286
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -835,6 +877,16 @@ msgid "Put an internal note..."
 msgstr ""
 
 #. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Registration"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
+msgid "Registration date"
+msgstr ""
+
+#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_parent_id
 msgid "Related Company"
 msgstr ""
@@ -931,6 +983,7 @@ msgstr ""
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_state_id
+#: model:ir.ui.view,arch_db:golem_member.golem_member_card_template
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "State"
 msgstr ""
@@ -1036,7 +1089,7 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:78
+#: code:addons/golem_member/models/golem_member.py:91
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
@@ -1103,7 +1156,7 @@ msgid "Total amount you have to pay to this vendor."
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:145
+#: code:addons/golem_member/models/golem_member.py:158
 #, python-format
 msgid "Unsupported operator for defautl season search"
 msgstr ""
@@ -1139,8 +1192,8 @@ msgid "Website of Partner or Company"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:277
-#: code:addons/golem_member/models/golem_member.py:280
+#: code:addons/golem_member/models/golem_member.py:283
+#: code:addons/golem_member/models/golem_member.py:286
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format

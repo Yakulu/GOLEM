@@ -6,19 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 07:47+0000\n"
-"PO-Revision-Date: 2018-07-20 09:51+0200\n"
+"POT-Creation-Date: 2018-07-20 10:08+0000\n"
+"PO-Revision-Date: 2018-07-20 12:09+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
-msgid "Buy Membership"
-msgstr "Payer une cotisation"
 
 #. module: golem_membership
 #: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
@@ -48,16 +43,6 @@ msgid "Credit Card"
 msgstr "Carte bancaire"
 
 #. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-msgid "Date from"
-msgstr "Début"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-msgid "Date to"
-msgstr "Fin"
-
-#. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config_display_name
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_display_name
 msgid "Display Name"
@@ -74,11 +59,6 @@ msgid "GOLEM Membership Account Configuration"
 msgstr "GOLEM Membership Account Configuration"
 
 #. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_search_inherit_golem_membership
-msgid "Has contributed"
-msgstr "A cotisé"
-
-#. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config_id
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_id
 msgid "ID"
@@ -88,16 +68,6 @@ msgstr "ID"
 #: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
 msgid "Invoice Membership"
 msgstr "Facture d'adhésion"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_search_inherit_golem_membership
-msgid "Is Free Member"
-msgstr "Membre libre"
-
-#. module: golem_membership
-#: model:ir.actions.act_window,name:golem_membership.golem_membership_invoice_action
-msgid "Join Membership"
-msgstr "Adhésion"
 
 #. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_account_config___last_update
@@ -122,7 +92,6 @@ msgstr "Tarif d'adhésion"
 
 #. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_product_id
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
 msgid "Membership"
 msgstr "Adhésion"
 
@@ -132,30 +101,9 @@ msgid "Membership Invoice"
 msgstr "Facture de l'adhésion"
 
 #. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_form_inherit_golem_membership
-msgid "Memberships"
-msgstr "Adhésions"
-
-#. module: golem_membership
 #: model:ir.model.fields,field_description:golem_membership.field_golem_membership_invoice_partner_id
 msgid "Partner"
 msgstr "Contact"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-msgid "Registration"
-msgstr "Inscription"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-msgid "Registration date"
-msgstr "Inscription"
-
-#. module: golem_membership
-#: model:ir.ui.view,arch_db:golem_membership.golem_member_card_template_inherit_golem_membership
-msgid "State"
-msgstr "État"
 
 #. module: golem_membership
 #: model:ir.ui.view,arch_db:golem_membership.golem_membership_invoice_form
