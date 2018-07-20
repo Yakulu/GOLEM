@@ -68,10 +68,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="lastname" required="True" />
                 <field name="firstname" required="True" />
                 <field name="number" readonly="True"
-                  attrs="{'invisible': [('is_number_manual', '=', True)]}" />
+                  attrs="{'invisible': ['|', ('membership_state', '=', 'none'), ('is_number_manual', '=', True)]}" />
                 <field name="number_manual"
-                  attrs="{'invisible': [('is_number_manual', '=', False)],
-                  'required': [('is_number_manual', '=', True)]}" />
+                  attrs="{'invisible': ['|', ('membership_state', '=', 'none'), ('is_number_manual', '=', False)],
+                  'required': [('is_number_manual', '=', True), ('membership_state', '!=', 'none')]}" />
               </group>
               <group>
                 <field name="gender" />
@@ -210,7 +210,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div class="oe_kanban_details">
                   <h4 class="oe_partner_heading">
                     <a type="open"><field name="display_name" /></a>
-                    (N° <field name="number" />)
+                    <t t-if="record.number.raw_value != ''">(N° <field name="number" />)</t>
                   </h4>
                   <div class="oe_kanban_partner_categories" />
                   <div class="oe_kanban_partner_links" />

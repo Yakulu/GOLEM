@@ -66,6 +66,19 @@ class ResPartner(models.Model):
         gm_obj = self.env['golem.member']
         gm_obj.create({'partner_id': self[0].id})
 
+class GolemMembershipInvoice(models.TransientModel):
+    """ GOLEM Membership Invoice adaptations """
+    _inherit = 'golem.membership.invoice'
+
+    @api.multi
+    def membership_invoice(self):
+        """ Extend invoice generation with number generation """
+        self.ensure_one()
+        res = super(GolemMembershipInvoice, self).membership_invoice()
+        if self.partner_id.member_id:
+            self.partner_id.member_id.generate_number()
+        return res
+
 
 class GolemMember(models.Model):
     """ GOLEM Member model """
@@ -210,7 +223,7 @@ class GolemMember(models.Model):
         isauto = conf.get_param('golem_numberconfig_isautomatic') == '1'
         isperseason = conf.get_param('golem_numberconfig_isperseason') == '1'
         isfornew = conf.get_param('golem_numberconfig_isfornewmembersonly') == '1'
-        for member in self:
+        for member in self.filtered(lambda m: m.membership_state != 'none'):
             if not isauto or (isfornew and member.number_manual):
                 member.number = member.number_manual
             else:
@@ -218,13 +231,6 @@ class GolemMember(models.Model):
                     member.number = member.generate_number_perseason()
                 else:
                     member.number = member.generate_number_global()
-
-    @api.model
-    def create(self, values):
-        """ Number generation after creation """
-        new_member = super(GolemMember, self).create(values)
-        new_member.generate_number()
-        return new_member
 
     @api.multi
     def write(self, values):
@@ -318,7 +324,10 @@ class GolemNumberConfig(models.TransientModel):
         self.env['golem.season'].search([]).write({
             'member_counter': int(self.number_from)
         })
-        self.env['golem.member'].search([]).generate_number()
+        member_obj = self.env['golem.member']
+        member_obj.search([('membership_state', '=', 'none')]).write({'number': False})
+        member_obj.search([('membership_state', '!=', 'none')]).generate_number()
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
 
 
 class MergePartnerAutomatic(models.TransientModel):
