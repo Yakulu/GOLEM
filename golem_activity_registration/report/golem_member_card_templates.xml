@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   <template id="golem_member_card_template_inherit_golem_activity_resgitration"
     inherit_id="golem_member.golem_member_card_template">
-    <xpath expr="//div[@id='page_report_member']/div[1]" postion="after">
+    <xpath expr="//div[@id='page_report_member']/t[1]" postion="after">
       <h3>Activities</h3>
       <table id="table_activity_ref" class="table table-striped">
         <thead>

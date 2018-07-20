@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <template id="golem_member_card_template">
       <t t-call="report.html_container">
-        <t t-set="season" t-value="docs._default_season()" />
+        <t t-set="season" t-value="docs.default_season()" />
         <t t-foreach="docs" t-as="member" id="foreach_member">
           <t t-call="report.external_layout">
             <div id='page_report_member' class="page">
@@ -57,6 +57,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </h3>
                 </div>
               </div>
+	      <t t-if="member.membership_state != 'none'">
+		<div class="row" id="page_report_membership">
+		    <div class="col-xs-12">
+		      <h3>Memberships</h3>
+		  </div>
+		</div>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>Registration</th>
+		      <th>Registration date</th>
+		      <th>Date from</th>
+		      <th>Date to</th>
+		      <th>State</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <t t-foreach="member.member_lines" t-as="mline">
+		      <tr>
+			<td class="col-xs-3">
+			  <spam t-field="mline.membership_id" />
+			</td>
+			<td class="col-xs-2">
+			  <spam t-field="mline.date_from" />
+			</td>
+			<td class="col-xs-2">
+			  <spam t-field="mline.date_to" />
+			</td>
+			<td class="col-xs-2">
+			  <spam t-field="mline.date" />
+			</td>
+			<td class="col-xs-3">
+			  <spam t-field="mline.state" />
+			</td>
+		      </tr>
+		    </t>
+		  </tbody>
+		</table>
+	      </t>
             </div>
           </t>
         </t>

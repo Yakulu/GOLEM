@@ -49,7 +49,7 @@ class GolemMemberTestCase(TransactionCase):
     def test_default_season(self):
         """ Test if default season if fixed according to setUp and if users
         are correctly seen """
-        self.assertEqual(self.member_model._default_season(),
+        self.assertEqual(self.member_model.default_season(),
                          self.season_current)
         self.assertTrue(self.member1.is_default)
         self.assertTrue(self.member2.is_default)

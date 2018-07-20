@@ -19,6 +19,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
+    <!-- Actions -->
+    <act_window id="golem_member_action"
+      name="GOLEM Members"
+      res_model="golem.member"
+      view_mode="kanban,tree,form,graph" />
+    <act_window id="res_partner_category_action" name="GOLEM Members Tags"
+      res_model="res.partner.category" view_mode="tree,form" />
+    <record id="golem_membership_invoice_action" model="ir.actions.act_window">
+        <field name="name">Join Membership</field>
+        <field name="res_model">golem.membership.invoice</field>
+        <field name="src_model">golem.member</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="golem_membership.golem_membership_invoice_form"/>
+        <field name="target">new</field>
+    </record>
+
     <!-- Forms -->
     <record id="golem_member_form" model="ir.ui.view">
       <field name="name">GOLEM Member Form</field>
@@ -97,6 +115,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                       placeholder="e.g. www.odoo.com"/>
                   </group>
                 </group>
+              </page>
+              <page name="membership" string="Membership">
+                <group>
+                  <group>
+                    <field name="free_member"/>
+                    <label for="membership_state"/>
+                    <div>
+                      <field name="partner_id" invisible="True" required="False" />
+                      <field name="membership_state"/>
+                      <button name="%(golem_membership_invoice_action)d"
+                        type="action" string="Buy Membership"
+                        attrs="{'invisible':[('free_member','=',True)]}"
+                        context="{'default_partner_id': partner_id}"
+                        class="oe_link"/>
+                    </div>
+                  </group>
+                  <group>
+                    <field name="membership_start"
+                      attrs="{'invisible':[('membership_start','=',False)]}"/>
+                    <field name="membership_stop"
+                      attrs="{'invisible':[('membership_stop','=',False)]}"/>
+                    <field name="membership_cancel"
+                      attrs="{'invisible':[('membership_cancel','=',False)]}"/>
+                  </group>
+                </group>
+                <field name="member_lines" nolabel="1" colspan="4" readonly="1">
+                  <tree string="Memberships">
+                    <field name="date"/>
+                    <field name="membership_id"/>
+                    <field name="member_price"/>
+                    <field name="account_invoice_id"/>
+                    <field name="state"/>
+                  </tree>
+                  <form string="Memberships">
+                    <group>
+                      <field name="date"/>
+                      <field name="member_price"/>
+                      <field name="membership_id"/>
+                      <field name="account_invoice_id"
+                        context="{'form_view_ref': 'account.invoice_form'}"/>
+                      <field name="state" colspan="4"/>
+                    </group>
+                  </form>
+                </field>
               </page>
               <page name="other_page" string="Others">
                 <group>
@@ -219,6 +281,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="category_id" widget="many2one" />
           <filter name="season_default" string="Default season"
            domain="[('is_default', '=', True)]" />
+          <separator />
+          <filter name="has_contributed" string="Has contributed"
+            domain="[('membership_state','in',['invoiced', 'paid'])]" />
+          <filter name="is_free_member" string="Is Free Member"
+            domain="[('free_member', '=', True)]" />
           <group string="Group By">
             <filter name="group_age" string="By age"
               context="{'group_by': 'is_minor'}"/>
@@ -241,14 +308,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </graph>
       </field>
     </record>
-
-    <!-- Actions -->
-    <act_window id="golem_member_action"
-      name="GOLEM Members"
-      res_model="golem.member"
-      view_mode="kanban,tree,form,graph" />
-    <act_window id="res_partner_category_action" name="GOLEM Members Tags"
-      res_model="res.partner.category" view_mode="tree,form" />
 
     <!-- Menu items -->
     <!-- Deactivate classic membership list -->

@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="family_role"
             attrs="{'readonly': [('id', '=', False)]}" />
         </field>
-        <page name="other_page" position="before">
+        <page name="membership" position="before">
           <page string="Family"
             attrs="{'invisible': [('family_id', '=', False)]}">
             <group>

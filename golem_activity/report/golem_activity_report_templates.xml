@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <template id="golem_activity_report_template">
       <t t-call="report.html_container">
-        <t t-set="season" t-value="docs._default_season()" />
+        <t t-set="season" t-value="docs.default_season()" />
         <t t-foreach="docs" t-as="activity" id="foreach_activity">
           <t t-call="report.external_layout">
             <div id='page_report_activity' class="page">

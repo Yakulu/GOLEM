@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,19 +15,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM activities',
-    'summary': 'Extends Odoo products for multi-activity',
-    'description': 'Extends Odoo products for multi-activity',
-    'version': '10.0.2.4.1',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Michel Dessenne',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['product', 'account', 'golem_base', 'golem_season'],
-    'data': ['security/ir.model.access.csv',
-             'data/golem_activity_data.xml',
-             'views/golem_activity_views.xml',
-             'report/golem_activity_report_templates.xml']
-}
+""" Migration script """
+
+from openupgradelib import openupgrade
+
+@openupgrade.migrate(use_env=False)
+def migrate(cursor, version):
+    """ Clean up olders views references """
+    cursor.execute('''
+    DELETE FROM ir_ui_view WHERE key IN
+    ('golem_membership.golem_member_card_template_inherit_golem_membership',
+    'golem_membership.golem_member_form_inherit_golem_membership',
+    'golem_membership.golem_member_search_inherit_golem_membership')
+    ''')

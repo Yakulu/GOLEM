@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -38,17 +38,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </footer>
         </form>
       </field>
-    </record>
-
-    <!-- Actions -->
-    <record id="golem_membership_invoice_action" model="ir.actions.act_window">
-        <field name="name">Join Membership</field>
-        <field name="res_model">golem.membership.invoice</field>
-        <field name="src_model">golem.member</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="golem_membership_invoice_form"/>
-        <field name="target">new</field>
     </record>
 
   </data>

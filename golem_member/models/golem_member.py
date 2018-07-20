@@ -130,7 +130,7 @@ class GolemMember(models.Model):
     @api.depends('season_ids')
     def _compute_is_default(self):
         """ Computes is current according to seasons """
-        default_s = self._default_season()
+        default_s = self.default_season()
         for member in self:
             member.is_default = default_s in member.season_ids
 
