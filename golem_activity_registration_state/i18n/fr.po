@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 09:11+0000\n"
-"PO-Revision-Date: 2018-07-17 11:31+0200\n"
+"POT-Creation-Date: 2018-07-20 16:23+0000\n"
+"PO-Revision-Date: 2018-07-20 18:24+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,17 +28,17 @@ msgstr "Activities and Prices"
 #. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_activity_id
 msgid "Activity id"
-msgstr "Activité"
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Cancel"
-msgstr "Annuler"
+msgstr "Activité liée"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
 msgid "Canceled"
 msgstr "Annulé"
+
+#. module: golem_activity_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
+msgid "Close"
+msgstr "Fermer"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0

@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               states="final" class="oe_highlight" />
             <button name="go_payments" string="Display payments" type="object"
               states="final" />
-            <button string="Cancel" class="oe_link" special="cancel" />
+            <button string="Close" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 07:46+0000\n"
-"PO-Revision-Date: 2018-07-20 17:04+0200\n"
+"POT-Creation-Date: 2018-07-20 16:22+0000\n"
+"PO-Revision-Date: 2018-07-20 18:22+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "<i class=\"fa fa-envelope\"/> Email"
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_report_template_inherited_golem_activity_registration
 msgid "<i class=\"fa fa-phone\"/> Phone"
-msgstr "<i class=\"fa fa-phone\"/> Téléhone"
+msgstr "<i class=\"fa fa-phone\"/> Téléphone"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_report_template_inherited_golem_activity_registration
@@ -115,6 +115,11 @@ msgstr "Jour"
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_search
 msgid "Default season"
 msgstr "Saison par défaut"
+
+#. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_is_default
+msgid "Default season?"
+msgstr "Saison par défaut?"
 
 #. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_display_name
