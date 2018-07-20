@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-20 07:46+0000\n"
-"PO-Revision-Date: 2018-07-20 10:05+0200\n"
+"PO-Revision-Date: 2018-07-20 17:06+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Êtes-vous sûr de vouloir ajouter une liste d'attente à cette activit�
 #. module: golem_activity_queue
 #: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
 msgid "Are you sure you want to remove queue from this activity ? This will delete all elements currently registred in"
-msgstr "Êtes-vous sûr de vouloir supprimer la liste d'attente pour cette activité ? Cela supprimera tous les membres inscrits dessus."
+msgstr "Êtes-vous sûr de vouloir supprimer la liste d'attente pour cette activité ? Cela supprimera tous les usagers inscrits dessus."
 
 #. module: golem_activity_queue
 #: model:ir.ui.view,arch_db:golem_activity_queue.golem_activity_form_inherit_golem_activity_queue
@@ -256,26 +256,26 @@ msgstr "L'adhérent que vous essayez d'ajouter à la liste d'attente est déjà 
 #: code:addons/golem_activity_queue/models/golem_activity.py:118
 #, python-format
 msgid "There is a free place for the activity : {}, once you save it will be filled by the first member from queue"
-msgstr "Il y a une place disponible sur l'activité {}, une fois sauvegardée un membre de la liste d'attente sera automatiquement inscrit"
+msgstr "Il y a une place disponible sur l'activité {}, une fois sauvegardée un usager de la liste d'attente sera automatiquement inscrit"
 
 #. module: golem_activity_queue
 #: code:addons/golem_activity_queue/models/golem_activity.py:122
 #, python-format
 msgid "There is a free place for the activity : {}, you may fill it manually from the queue"
-msgstr "Il y a une place disponible sur l'activité {}, vous pouvez inscrire un membre depuis la liste d'attente"
+msgstr "Il y a une place disponible sur l'activité {}, vous pouvez inscrire un usager depuis la liste d'attente"
 
 #. module: golem_activity_queue
 #: code:addons/golem_activity_queue/models/golem_member.py:39
 #, python-format
 msgid "This activity : {} is already full, please discard changes and register in the queue."
-msgstr "L'activité {} est complète, veuillez annuler vos modifications et enregistrer le membre dans la liste d'attente."
+msgstr "L'activité {} est complète, veuillez annuler vos modifications et enregistrer l'usager dans la liste d'attente."
 
 #. module: golem_activity_queue
 #: code:addons/golem_activity_queue/models/golem_activity_queue.py:30
 #: sql_constraint:golem.activity.queue:0
 #, python-format
 msgid "This member has already been registered for the queue."
-msgstr "Le membre a déjà été inscrit sur la liste d'attente."
+msgstr "L'usager a déjà été inscrit sur la liste d'attente."
 
 #. module: golem_activity_queue
 #: code:addons/golem_activity_queue/models/golem_activity.py:112
