@@ -86,6 +86,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <field name="name" position="after">
           <field name="member_number" />
         </field>
+        <filter name="filter_my_partners" position="before">
+          <filter name="is_subscriber" string="Is Subscriber"
+            domain="[('membership_state', '!=', 'none')]" />
+          <filter name="has_contributed" string="Has contributed"
+            domain="[('membership_state', 'in', ['invoiced', 'paid'])]" />
+          <filter name="old_member" string="Is Old Member"
+            domain="[('membership_state', 'in', ['old', 'cancel'])]" />
+          <filter name="is_free_member" string="Is Free Member"
+            domain="[('free_member', '=', True)]" />
+          <separator />
+          <filter name="is_service_user" string="Is Service User"
+            domain="[('member_id', '!=', False)]" />
+          <separator />
+        </filter>
       </field>
     </record>
 

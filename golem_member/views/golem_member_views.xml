@@ -283,10 +283,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <filter name="season_default" string="Default season"
            domain="[('is_default', '=', True)]" />
           <separator />
-          <filter name="has_contributed" string="Has contributed"
-            domain="[('membership_state','in',['invoiced', 'paid'])]" />
-          <filter name="is_free_member" string="Is Free Member"
-            domain="[('free_member', '=', True)]" />
+          <filter name="is_subscriber" string="Is Subscriber"
+            domain="[('membership_state', '!=', 'none')]" />
+          <filter name="is_service_user_only" string="Is Service User Only"
+            domain="[('membership_state', '=', 'none')]" />
           <group string="Group By">
             <filter name="group_age" string="By age"
               context="{'group_by': 'is_minor'}"/>
