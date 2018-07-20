@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_company_group_golem_manager,Access Companies GOLEM Manager,base.model_res_company,golem_base.group_golem_manager,1,1,0,0
+access_res_users_group_golem_manager,Access Users GOLEM Manager,base.model_res_users,golem_base.group_golem_manager,1,1,1,1
+access_res_groups_group_golem_manager,Access Groups GOLEM Manager,base.model_res_groups,golem_base.group_golem_manager,1,1,0,0
+access_ir_module_category_group_golem_manager,Access IR Module Category GOLEM Manager,base.model_ir_module_category,golem_base.group_golem_manager,1,0,0,0
+access_ir_ui_view_group_golem_manager,Access IR UI View GOLEM Manager,base.model_ir_ui_view,golem_base.group_golem_manager,1,1,0,0

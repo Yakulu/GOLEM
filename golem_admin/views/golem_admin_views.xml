@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Menus -->
+    <menuitem id="security_menu" name="Security" sequence="400"
+      web_icon="golem_admin,static/description/icon.png"
+      groups="golem_base.group_golem_manager" />
+    <menuitem id="res_groups_menu" action="base.action_res_groups"
+      parent="security_menu" sequence="10"
+      groups="golem_base.group_golem_manager" />
+    <menuitem id="res_users_menu" action="base.action_res_users"
+      parent="security_menu" sequence="5"
+      groups="golem_base.group_golem_manager" />
+    <menuitem id="res_company_menu" action="base.action_res_company_form"
+      parent="security_menu" sequence="10"
+      groups="golem_base.group_golem_manager" />
+
+  </data>
+</odoo>
