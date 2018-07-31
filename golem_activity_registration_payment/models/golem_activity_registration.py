@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,4 +15,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import models
+""" GOLEM Activity Registration adaptations """
+
+from odoo import models, fields
+
+class GolemActivityRegistration(models.Model):
+    """ GOLEM Activity Registration adaptations """
+    _inherit = 'golem.activity.registration'
+
+    invoice_line_id = fields.Many2one('account.invoice.line',
+                                      string='Invoice line',
+                                      ondelete='set null')
+    invoice_id = fields.Many2one(related='invoice_line_id.invoice_id')
+    invoice_state = fields.Selection(related='invoice_line_id.invoice_id.state')

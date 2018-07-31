@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Form -->
-    <record id="invoicing_form" model="ir.ui.view">
+    <record id="golem_activity_registration_invoicing_view_form" model="ir.ui.view">
       <field name="name">GOLEM Activity Registration Invoicing Form</field>
       <field name="model">golem.activity.registration.invoicing</field>
       <field name="arch" type="xml">

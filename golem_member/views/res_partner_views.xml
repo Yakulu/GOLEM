@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             attrs="{'invisible': ['|', ('is_company', '=', True),
             ('is_member', '=', False)]}" />
           <button type="object" name="create_golem_member"
-            string="Create a GOLEM member from this contact"
+            string="Create a service user from this contact"
             attrs="{'invisible': ['|', ('is_company', '=', True),
             ('is_member', '!=', False)]}" />
         </h1>

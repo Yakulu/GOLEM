@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 16:23+0000\n"
-"PO-Revision-Date: 2018-07-20 18:24+0200\n"
+"POT-Creation-Date: 2018-07-31 17:51+0000\n"
+"PO-Revision-Date: 2018-07-31 17:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,6 @@ msgid "Activities"
 msgstr "Activités"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Activities and Prices"
-msgstr "Activities and Prices"
-
-#. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_activity_id
 msgid "Activity id"
 msgstr "Activité liée"
@@ -36,47 +31,15 @@ msgid "Canceled"
 msgstr "Annulé"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Close"
-msgstr "Fermer"
-
-#. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
 msgid "Confirmed"
 msgstr "Confirmé"
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Congratulations, activities had been confirmed and invoiced."
-msgstr "Félicitations, les activités ont été confirmées et facturées."
-
-#. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_create_uid
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_create_uid
-msgid "Created by"
-msgstr "Créé par"
-
-#. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_create_date
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_create_date
-msgid "Created on"
-msgstr "Créé le"
 
 #. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_display_name
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Display invoice"
-msgstr "Afficher la facture"
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Display payments"
-msgstr "Afficher les paiements"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
@@ -94,6 +57,11 @@ msgid "GOLEM Activity Registration"
 msgstr "Inscription à l'activité"
 
 #. module: golem_activity_registration_state
+#: model:ir.model,name:golem_activity_registration_state.model_golem_activity_registration_invoicing_line
+msgid "GOLEM Activity Registration Invoicing Lines"
+msgstr "GOLEM Activity Registration Invoicing Lines"
+
+#. module: golem_activity_registration_state
 #: model:ir.model,name:golem_activity_registration_state.model_golem_activity_registration_invoicing
 msgid "GOLEM Activity Registration Invoicing Wizard"
 msgstr "GOLEM Activity Registration Invoicing Wizard"
@@ -104,16 +72,12 @@ msgid "GOLEM Member"
 msgstr "Adhérent"
 
 #. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/wizard/golem_activity_registration_invoicing.py:147
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_invoice_id
-#, python-format
 msgid "Generated invoice"
 msgstr "Facture générée"
 
 #. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/wizard/golem_activity_registration_invoicing.py:162
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_payment_ids
-#, python-format
 msgid "Generated payments"
 msgstr "Paiements générés"
 
@@ -123,30 +87,14 @@ msgid "Has draft registrations ?"
 msgstr "A des inscriptions non validées ?"
 
 #. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_id
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_id
-msgid "ID"
-msgstr "ID"
-
-#. module: golem_activity_registration_state
 #: model:ir.model.fields,help:golem_activity_registration_state.field_golem_activity_registration_invoicing_schedule_id
 msgid "If no schedule is selected, only the invoice will be create. Otherwise, draft payments will be generated."
 msgstr "Si aucun échéancier n'est sélectionné, seule la facture sera créée. Sinon, des brouillons de paiements seront générés."
 
 #. module: golem_activity_registration_state
 #: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
-msgid "If you validate draft registration, they will be seen as confirmed. Then, an invoice will be created for the current member."
-msgstr "Si vous validez les inscriptions, elles seront vues comme confirmées. Ensuite, une facture sera créée pour l'adhérent."
-
-#. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoice_id
-msgid "Invoice Reference"
-msgstr "Référence de la facture"
-
-#. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoice_line_id
-msgid "Invoice line"
-msgstr "Ligne de facturation"
+msgid "If you validate draft registrations, they will be seen as confirmed."
+msgstr "If you validate draft registrations, they will be seen as confirmed."
 
 #. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_invoicing_id
@@ -165,18 +113,6 @@ msgid "Last Modified on"
 msgstr "Dernière Modification le"
 
 #. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_write_uid
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_write_uid
-msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
-
-#. module: golem_activity_registration_state
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_write_date
-#: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_write_date
-msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
-
-#. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_member_id
 msgid "Member"
 msgstr "Adhérent"
@@ -192,11 +128,6 @@ msgid "Payment schedule"
 msgstr "Échéancier de paiement"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Please confirm activity prices and choose a payment schedule if needed."
-msgstr "Merci de confirmer les coûts des activités et de choisir, si souhaité, un échéancier de paiement."
-
-#. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_price
 msgid "Price"
 msgstr "Prix"
@@ -205,13 +136,6 @@ msgstr "Prix"
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_line_registration_id
 msgid "Registration id"
 msgstr "Registration id"
-
-#. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/models/golem_activity_registration.py:58
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-#, python-format
-msgid "Registration invoicing"
-msgstr "Registration invoicing"
 
 #. module: golem_activity_registration_state
 #: model:ir.model.fields,field_description:golem_activity_registration_state.field_golem_activity_registration_invoicing_season_id
@@ -225,28 +149,6 @@ msgid "State"
 msgstr "État"
 
 #. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/wizard/golem_activity_registration_invoicing.py:143
-#, python-format
-msgid "There is no generated invoice."
-msgstr "Il n'y a pas de facture générée."
-
-#. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/wizard/golem_activity_registration_invoicing.py:158
-#, python-format
-msgid "There is no generated payments."
-msgstr "Il n'y a pas de paiement généré."
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Total"
-msgstr "Total"
-
-#. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.invoicing_form
-msgid "Validate"
-msgstr "Valider"
-
-#. module: golem_activity_registration_state
 #: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
 msgid "Validate all draft registrations"
 msgstr "Valider toutes les inscriptions"
@@ -255,11 +157,6 @@ msgstr "Valider toutes les inscriptions"
 #: selection:golem.activity.registration.invoicing,state:0
 msgid "final"
 msgstr "final"
-
-#. module: golem_activity_registration_state
-#: model:ir.model,name:golem_activity_registration_state.model_golem_activity_registration_invoicing_line
-msgid "golem.activity.registration.invoicing.line"
-msgstr "golem.activity.registration.invoicing.line"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration.invoicing,state:0
