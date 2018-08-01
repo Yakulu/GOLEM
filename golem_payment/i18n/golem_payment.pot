@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-14 23:14+0000\n"
-"PO-Revision-Date: 2017-06-14 23:14+0000\n"
+"POT-Creation-Date: 2018-08-01 16:06+0000\n"
+"PO-Revision-Date: 2018-08-01 16:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: golem_payment
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "By month"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "By week"
+msgstr ""
 
 #. module: golem_payment
 #: model:ir.model.fields,field_description:golem_payment.field_golem_payment_schedule_create_uid
@@ -33,13 +43,20 @@ msgid "Day"
 msgstr ""
 
 #. module: golem_payment
-#: code:addons/golem_payment/models/golem_payment.py:27
+#: code:addons/golem_payment/models/golem_payment.py:80
+#, python-format
+msgid "Day %s is out of season period (%s-%s)"
+msgstr ""
+
+#. module: golem_payment
+#: code:addons/golem_payment/models/golem_payment.py:36
 #: sql_constraint:golem.payment.schedule.day:0
 #, python-format
 msgid "Day must be unique."
 msgstr ""
 
 #. module: golem_payment
+#: model:ir.model.fields,field_description:golem_payment.field_golem_payment_schedule_day_display
 #: model:ir.model.fields,field_description:golem_payment.field_golem_payment_schedule_day_ids
 msgid "Days"
 msgstr ""
@@ -51,13 +68,13 @@ msgid "Display Name"
 msgstr ""
 
 #. module: golem_payment
-#: model:ir.model,name:golem_payment.model_golem_member
-msgid "GOLEM Member"
+#: model:ir.model,name:golem_payment.model_golem_payment_schedule
+msgid "GOLEM Payment Schedule"
 msgstr ""
 
 #. module: golem_payment
-#: model:ir.model,name:golem_payment.model_golem_payment_schedule
-msgid "GOLEM Payment Schedule"
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "Group By"
 msgstr ""
 
 #. module: golem_payment
@@ -101,12 +118,43 @@ msgid "Payment Schedules"
 msgstr ""
 
 #. module: golem_payment
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "Payment delayed"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.model.fields,field_description:golem_payment.field_account_payment_reference
+msgid "Payment reference"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.model,name:golem_payment.model_account_payment
+msgid "Payments"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.model.fields,field_description:golem_payment.field_golem_payment_schedule_day_schedule_id
+msgid "Schedule id"
+msgstr ""
+
+#. module: golem_payment
 #: model:ir.model.fields,field_description:golem_payment.field_golem_payment_schedule_season_id
+#: model:ir.ui.view,arch_db:golem_payment.golem_payment_schedule_search
 msgid "Season"
 msgstr ""
 
 #. module: golem_payment
 #: model:ir.model,name:golem_payment.model_golem_payment_schedule_day
 msgid "golem.payment.schedule.day"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "payment in 30 days"
+msgstr ""
+
+#. module: golem_payment
+#: model:ir.ui.view,arch_db:golem_payment.account_payment_search
+msgid "payment in 7 days"
 msgstr ""
 

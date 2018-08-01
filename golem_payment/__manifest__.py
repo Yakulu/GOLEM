@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,8 +19,8 @@
     'name': 'GOLEM payment',
     'summary': 'Usage of account invoice and account payments',
     'description': ''' Ability to create invoice(s) from activity subscriptions
-    and anticipate multiple payments. Uses GOLEM Activity Registration State. ''',
-    'version': '10.0.0.1.0',
+    and anticipate multiple payments. ''',
+    'version': '10.0.0.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

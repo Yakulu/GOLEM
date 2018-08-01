@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -30,7 +30,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
             <field name="name" />
             <field name="season_id" options="{'no_open': True, 'no_create': True}" />
-            <field name="day_ids" widget="many2many_tags" />
+            <field name="day_ids">
+              <tree editable="bottom">
+                <field name="day" />
+                <field name="schedule_id" invisible="1" />
+              </tree>
+            </field>
             <field name="occurences" />
             </group>
           </sheet>
@@ -46,7 +51,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree>
           <field name="name" />
           <field name="season_id" />
-          <field name="day_ids" widget="many2many_tags" />
+          <field name="day_ids" invisible="1" />
+          <field name="day_display" />
           <field name="occurences" />
         </tree>
       </field>
@@ -61,6 +67,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="name" />
           <field name="season_id" />
           <field name="day_ids" />
+          <filter name="group_season" string="Season"
+            context="{'group_by': 'season_id'}" />
         </search>
       </field>
     </record>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,8 @@
 """ GOLEM Payment models """
 
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+from odoo.tools import formatLang
 
 class AccountPayment(models.Model):
     """ Add number bank check"""
@@ -28,10 +30,14 @@ class GolemPaymentScheduleDay(models.Model):
     """ Schedule day simple model """
     _name = 'golem.payment.schedule.day'
     _rec_name = 'day'
-    _sql_constraints = [('golem_payment_schedule_day_uniq', 'UNIQUE (day)',
+    _order = 'schedule_id asc,day asc'
+    _sql_constraints = [('golem_payment_schedule_day_uniq',
+                         'UNIQUE (day, schedule_id)',
                          _('Day must be unique.'))]
 
-    day = fields.Date(required=True, index=True)
+    day = fields.Date(required=True)
+    schedule_id = fields.Many2one('golem.payment.schedule', required=True,
+                                  auto_join=True)
 
 
 class GolemPaymentSchedule(models.Model):
@@ -41,12 +47,35 @@ class GolemPaymentSchedule(models.Model):
     _order = 'season_id desc'
 
     name = fields.Char(required=True)
-    day_ids = fields.Many2many('golem.payment.schedule.day', string='Days')
+    day_ids = fields.One2many('golem.payment.schedule.day', 'schedule_id',
+                              string='Days')
+    day_display = fields.Char(compute='_compute_day_display', string='Days')
     occurences = fields.Integer(compute='_compute_occurences')
     season_id = fields.Many2one('golem.season', 'Season', required=True)
+
+    @api.depends('day_ids')
+    def _compute_day_display(self):
+        """ Computes day display """
+        for schedule in self:
+            days = [fields.Date.from_string(d.day).strftime('%d/%m/%Y')
+                    for d in schedule.day_ids]
+            schedule.day_display = u', '.join(days)
 
     @api.depends('day_ids')
     def _compute_occurences(self):
         """ Computes number of occurences """
         for schedule in self:
             schedule.occurences = len(schedule.day_ids)
+
+    @api.constrains('day_ids', 'season_id')
+    def check_dates(self):
+        """ Check date coherence """
+        for schedule in self:
+            if schedule.season_id.date_start:
+                days = schedule.day_ids.mapped('day')
+                for day in days:
+                    season = schedule.season_id
+                    if (day < season.date_start or day > season.date_end):
+                        verr = _('Day %s is out of season period (%s-%s)'% \
+                                 (day, season.date_start, season.date_end))
+                        raise ValidationError(verr)
