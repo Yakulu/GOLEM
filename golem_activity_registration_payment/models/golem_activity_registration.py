@@ -26,6 +26,8 @@ class GolemActivityRegistration(models.Model):
     invoice_line_id = fields.Many2one('account.invoice.line',
                                       string='Invoice line',
                                       ondelete='set null')
+    currency_id = fields.Many2one(related='invoice_line_id.currency_id')
+    invoice_line_price = fields.Monetary(related='invoice_line_id.price_subtotal')
     invoice_id = fields.Many2one(related='invoice_line_id.invoice_id')
     invoice_state = fields.Selection(related='invoice_line_id.invoice_id.state',
                                      store=True)

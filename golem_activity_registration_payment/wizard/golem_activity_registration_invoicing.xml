@@ -39,11 +39,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="price" sum="Total" />
               </tree>
             </field>
-            <field name="schedule_id" />
-            <field name="journal_id"
+            <field name="schedule_id" context="{'default_season_id': season_id}" />
+            <field name="journal_id" string="Payment method"
+              options="{'no_create': True}"
               attrs="{'invisible': [('schedule_id', '=', False)],
               'required': [('schedule_id', '!=', False)]}" />
           </group>
+          <p states="init">If the service user wants to pay with several payment methods, please validate with the main one, go to the payments and change journal on those needed.</p>
           <p states="final">
             Congratulations, activities had been confirmed and invoiced.
           </p>

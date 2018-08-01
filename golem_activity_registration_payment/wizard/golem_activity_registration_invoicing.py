@@ -54,7 +54,7 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                                   help='If no schedule is selected, only the '
                                   'invoice will be create. Otherwise, draft '
                                   'payments will be generated.')
-    journal_id = fields.Many2one('account.journal', 'Journal',
+    journal_id = fields.Many2one('account.journal', string='Payment method',
                                  domain=[('type', 'in', ('bank', 'cash'))],
                                  ondelete='cascade')
     invoice_id = fields.Many2one('account.invoice', string='Generated invoice',
