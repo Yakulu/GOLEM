@@ -39,14 +39,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               attrs="{'invisible': [('has_draft_registrations', '=', False)]}" />
           </p>
         </field>
-        <!-- TODO : one by one cancelation -->
-        <!-- TODO : do not allow removal if confirmed -->
-        <tree position="attributes">
-          <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
-        </tree>
-        <tree position="inside">
-          <field name="state" invisible="1" />
-        </tree>
+        <xpath expr="//field[@name='activity_registration_ids']/tree" position="attributes">
+          <attribute name="colors">darkgrey: state == 'canceled';blue: state == 'confirmed';</attribute>
+          <attribute name="delete">0</attribute>
+        </xpath>
+        <xpath expr="//field[@name='activity_registration_ids']/tree" position="inside">
+          <field name="state" />
+          <button type="object" name="state_draft" string="Reset to draft"
+            icon="fa-arrow-up" attrs="{'invisible': [('state', '=', 'draft')]}" />
+          <button type="object" name="state_confirm" string="Confirm"
+            icon="fa-check" attrs="{'invisible': [('state', '!=', 'draft')]}" />
+          <button type="object" name="state_cancel" string="Cancel"
+            icon="fa-ban" attrs="{'invisible': [('state', '=', 'canceled')]}" />
+          <button type="object" name="state_remove" string="Remove"
+            icon="fa-trash"
+            confirm="Are you sure you want to remove this subscription ?"
+            attrs="{'invisible': [('state', '!=', 'canceled')]}" />
+        </xpath>
+        <xpath expr="//field[@name='activity_registration_all_ids']/tree" position="attributes">
+          <attribute name="colors">darkgrey: state == 'canceled';blue: state == 'confirmed';</attribute>
+        </xpath>
+        <xpath expr="//field[@name='activity_registration_all_ids']/tree" position="inside">
+          <field name="state" />
+        </xpath>
       </field>
     </record>
 

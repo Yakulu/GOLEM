@@ -17,7 +17,8 @@
 
 """ GOLEM Activity Registration State """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class GolemMember(models.Model):
     """ GOLEM Member adaptations """
@@ -44,28 +45,6 @@ class GolemMember(models.Model):
             lambda r: r.state == 'draft'
         ).write({'state': 'confirmed'})
 
-    @api.multi
-    def write(self, values):
-        """ Handle removed activities to be canceled """
-        if 'activity_registration_ids' in values:
-            rids = values['activity_registration_ids']
-            r_keep, r_removed = [], []
-            for rid in rids:  # == 2 is removal case
-                if rid[0] == 2:
-                    r_removed.append(rid)
-                else:
-                    r_keep.append(rid)
-            reg_obj = self.env['golem.activity.registration']
-            for rem in r_removed:
-                reg = reg_obj.browse([rem[1]])
-                # if already canceled, let it be removed, else cancel it
-                if reg.state != 'canceled':
-                    reg.state = 'canceled'
-                else:
-                    r_keep.append(rem)
-            values['activity_registration_ids'] = r_keep
-        return super(GolemMember, self).write(values)
-
 
 class GolemActivity(models.Model):
     """ GOLEM Activity adaptations """
@@ -87,6 +66,32 @@ class GolemActivityRegistration(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
                               ('canceled', 'Canceled')], required=True,
                              default='draft')
+
+    @api.multi
+    def state_draft(self):
+        """ Set registration to state draft """
+        self.write({'state': 'draft'})
+
+    @api.multi
+    def state_confirm(self):
+        """ Set registration to state confirmed """
+        if self.filtered(lambda r: r.state == 'canceled'):
+            uerr = _('You can not confirm a canceled registration.')
+            raise UserError(uerr)
+        self.write({'state': 'confirmed'})
+
+    @api.multi
+    def state_cancel(self):
+        """ Set registration to state canceled """
+        self.write({'state': 'canceled'})
+
+    @api.multi
+    def state_remove(self):
+        """ Remove registrations, only if canceled """
+        if self.filtered(lambda r: r.state != 'canceled'):
+            uerr = _('You can not confirm a canceled registration.')
+            raise UserError(uerr)
+        self.unlink()
 
     @api.multi
     def write(self, values):
