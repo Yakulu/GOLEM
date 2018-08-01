@@ -19,29 +19,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <data>
 
     <!-- Tree -->
-    <record id="golem_activity_registration_tree_inherit_payment" model="ir.ui.view">
-      <field name="name">Activity Registration Tree adaptations</field>
+    <record id="golem_activity_registration_state_tree_inherit_payment" model="ir.ui.view">
+      <field name="name">Activity Registration State Tree adaptations</field>
       <field name="model">golem.activity.registration</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.golem_activity_registration_tree" />
+        ref="golem_activity_registration_state.golem_activity_registration_tree_inherit_state" />
       <field name="arch" type="xml">
-        <field name="activity_id" position="after">
-          <field name="invoice_id" readonly="1" />
-          <field name="invoice_line_id" readonly="1" />
+        <field name="state" position="after">
+          <field name="invoice_line_id" invisible="1" />
+          <field name="invoice_state" string="Invoice state" />
         </field>
       </field>
     </record>
 
     <!-- Search -->
     <record id="golem_activity_registration_search_inherit_payment" model="ir.ui.view">
-      <field name="name">Activity Registration Search adaptations</field>
+      <field name="name">Activity Registration State Search adaptations</field>
       <field name="model">golem.activity.registration</field>
       <field name="inherit_id"
-        ref="golem_activity_registration.golem_activity_registration_search" />
+        ref="golem_activity_registration_state.golem_activity_registration_search_inherit_state" />
       <field name="arch" type="xml">
         <field name="activity_id" position="after">
-          <field name="invoice_id" widget="many2one" />
+          <field name="invoice_id" />
         </field>
+        <filter name="state_canceled" position="after">
+          <separator />
+          <filter name="invoice_state_draft" string="Draft Invoice"
+           domain="[('invoice_state', '=', 'draft')]" />
+          <filter name="invoice_state_open" string="Opened Invoice"
+           domain="[('invoice_state', '=', 'open')]" />
+          <filter name="invoice_state_paid" string="Paid Invoice"
+           domain="[('invoice_state', '=', 'paid')]" />
+          <filter name="invoice_state_cancel" string="Canceled Invoice"
+           domain="[('invoice_state', '=', 'cancel')]" />
+        </filter>
+        <filter name="group_state" position="after">
+         <filter name="group_invoice_state" string="By invoice state"
+           context="{'group_by': 'invoice_state'}"/>
+        </filter>
       </field>
     </record>
 

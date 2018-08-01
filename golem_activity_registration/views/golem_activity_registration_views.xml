@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -25,11 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
         <form>
+          <header></header>
           <sheet>
-            <group string="Subscription">
-              <field name="member_id" invisible="1" />
+            <group name="subscription" string="Subscription">
               <field name="activity_id" />
               <field name="season_id" />
+              <field name="member_id" />
             </group>
           </sheet>
         </form>
@@ -42,10 +43,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">Activity registration list</field>
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
-        <tree create="true" edit="false" delete="false" editable="top">
-          <field name="season_id" readonly="1" />
-          <field name="member_id" domain="[('is_default', '=', True)]" />
-          <field name="activity_id" domain="[('is_default', '=', True)]" />
+        <tree create="true" edit="true" delete="false" editable="top">
+          <field name="season_id" readonly="1"
+            invisible="not context.get('season_show', 1)" />
+          <field name="member_id" domain="[('is_default', '=', True)]"
+            invisible="not context.get('member_show', 1)" />
+          <field name="activity_id" domain="[('is_default', '=', True)]"
+            invisible="not context.get('activity_show', 1)" />
+          <field name="activity_price" string="Base price" sum="Total"
+            invisible="not context.get('activity_show', 1)" />
         </tree>
       </field>
     </record>
@@ -56,9 +62,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.activity.registration</field>
       <field name="arch" type="xml">
         <search>
-          <field name="season_id" widget="many2one" />
-          <field name="member_id" widget="many2one" />
-          <field name="activity_id" widget="many2one" />
+          <field name="season_id" />
+          <field name="member_id" />
+          <field name="activity_id" />
           <filter name="season_default" string="Default season"
            domain="[('is_default', '=', True)]" />
          <filter name="group_season" string="By season"
@@ -71,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <record id="golem_activity_registration_action" model="ir.actions.act_window">
       <field name="name">GOLEM Activity Registration List</field>
       <field name="res_model">golem.activity.registration</field>
-      <field name="view_mode">tree</field>
+      <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu -->

@@ -18,6 +18,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
+    <!-- Form -->
+    <record id="golem_activity_registration_form_inherit_state"
+      model="ir.ui.view">
+      <field name="name">Activity Registration form adaptations</field>
+      <field name="model">golem.activity.registration</field>
+      <field name="inherit_id"
+        ref="golem_activity_registration.golem_activity_registration_form" />
+      <field name="arch" type="xml">
+        <header position="inside">
+          <field name="state" widget="statusbar" readonly="1" />
+        </header>
+      </field>
+    </record>
+
     <!-- Tree -->
     <record id="golem_activity_registration_tree_inherit_state"
       model="ir.ui.view">
@@ -27,11 +41,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         ref="golem_activity_registration.golem_activity_registration_tree" />
       <field name="arch" type="xml">
         <tree position="attributes">
-          <attribute name="colors">red: state == 'canceled';darkgrey: state == 'draft';</attribute>
+          <attribute name="colors">darkgrey: state == 'canceled';blue: state == 'confirmed';</attribute>
+          <attribute name="delete">0</attribute>
         </tree>
         <tree position="inside">
-          <field name="state" invisible="1" />
+          <field name="state" readonly="1" />
+          <button type="object" name="state_draft" string="Reset to draft"
+            icon="fa-arrow-up" attrs="{'invisible': [('state', '=', 'draft')]}"
+            invisible="not context.get('action_show', 1)" />
+          <button type="object" name="state_confirm" string="Confirm"
+            icon="fa-check" attrs="{'invisible': [('state', '!=', 'draft')]}"
+            invisible="not context.get('action_show', 1)" />
+          <button type="object" name="state_cancel" string="Cancel"
+            icon="fa-ban" attrs="{'invisible': [('state', '=', 'canceled')]}"
+            invisible="not context.get('action_show', 1)" />
+          <button type="object" name="state_remove" string="Remove"
+            icon="fa-trash"
+            confirm="Are you sure you want to remove this subscription ?"
+            attrs="{'invisible': [('state', '!=', 'canceled')]}"
+            invisible="not context.get('action_show', 1)" />
         </tree>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record id="golem_activity_registration_search_inherit_state"
+      model="ir.ui.view">
+      <field name="name">Activity Registration search adaptations</field>
+      <field name="model">golem.activity.registration</field>
+      <field name="inherit_id"
+        ref="golem_activity_registration.golem_activity_registration_search" />
+      <field name="arch" type="xml">
+        <filter name="season_default" position="after">
+          <separator />
+          <filter name="state_draft" string="Draft"
+           domain="[('state', '=', 'draft')]" />
+          <filter name="state_confirmed" string="Confirmed"
+           domain="[('state', '=', 'confirmed')]" />
+          <filter name="state_canceled" string="Canceled"
+           domain="[('state', '=', 'canceled')]" />
+         <filter name="group_state" string="By state"
+           context="{'group_by': 'state'}"/>
+        </filter>
       </field>
     </record>
 

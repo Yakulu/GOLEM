@@ -31,22 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <field name="activity_registration_ids"
                 attrs="{'readonly': [('id', '=', False)]}"
-                context="{'default_member_id': active_id}">
-                <tree editable="top">
-                  <field name="activity_id"
-                    domain="[('is_default', '=', True)]" />
-                  <field name="season_id" readonly="1" />
-                  <field name="member_id" readonly="1" invisible="1" />
-                  <field name="activity_price" string="Base price" sum="Total"
-                    readonly="1" />
-                </tree>
-              </field>
-              <field name="activity_registration_all_ids" readonly="1">
-                <tree>
-                  <field name="activity_id" />
-                  <field name="season_id" />
-                </tree>
-              </field>
+                context="{'default_member_id': active_id, 'member_show': 0}" />
+              <field name="activity_registration_all_ids" readonly="1"
+                context="{'member_show': 0}" />
             </group>
           </page>
         </page>

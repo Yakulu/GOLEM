@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 11:37+0000\n"
-"PO-Revision-Date: 2018-08-01 13:43+0200\n"
+"POT-Creation-Date: 2018-08-01 14:09+0000\n"
+"PO-Revision-Date: 2018-08-01 16:13+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,30 +26,34 @@ msgid "Activity id"
 msgstr "Activité liée"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_form_inherit_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_tree_inherit_state
 msgid "Are you sure you want to remove this subscription ?"
 msgstr "Êtes-vous sûr de vouloir supprimer cette inscription ?"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_form_inherit_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_search_inherit_state
+msgid "By state"
+msgstr "Par état"
+
+#. module: golem_activity_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_tree_inherit_state
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_search_inherit_state
 msgid "Canceled"
 msgstr "Annulé"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_form_inherit_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_tree_inherit_state
 msgid "Confirm"
 msgstr "Confirmer"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_search_inherit_state
 msgid "Confirmed"
 msgstr "Confirmé"
 
@@ -61,6 +65,7 @@ msgstr "Nom affiché"
 
 #. module: golem_activity_registration_state
 #: selection:golem.activity.registration,state:0
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_search_inherit_state
 msgid "Draft"
 msgstr "Brouillon"
 
@@ -156,14 +161,12 @@ msgid "Registration id"
 msgstr "Registration id"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_form_inherit_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_tree_inherit_state
 msgid "Remove"
 msgstr "Supprimer"
 
 #. module: golem_activity_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_form_inherit_registration_state
-#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_member_form_inherit_registration_state
+#: model:ir.ui.view,arch_db:golem_activity_registration_state.golem_activity_registration_tree_inherit_state
 msgid "Reset to draft"
 msgstr "Remettre en brouillon"
 
@@ -184,8 +187,8 @@ msgid "Validate all draft registrations"
 msgstr "Valider toutes les inscriptions"
 
 #. module: golem_activity_registration_state
-#: code:addons/golem_activity_registration_state/models/golem_activity_registration.py:101
-#: code:addons/golem_activity_registration_state/models/golem_activity_registration.py:114
+#: code:addons/golem_activity_registration_state/models/golem_activity_registration.py:79
+#: code:addons/golem_activity_registration_state/models/golem_activity_registration.py:92
 #, python-format
 msgid "You can not confirm a canceled registration."
 msgstr "Vous ne pouvez pas confirmer une inscription qui a été annulée."

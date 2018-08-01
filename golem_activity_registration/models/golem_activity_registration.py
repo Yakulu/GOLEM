@@ -77,8 +77,8 @@ class GolemActivityRegistration(models.Model):
     _description = 'GOLEM Activity Registration'
     _rec_name ='activity_id'
 
-    member_id = fields.Many2one('golem.member', string='Member', required=True,
-                                ondelete='cascade', index=True)
+    member_id = fields.Many2one('golem.member', string='Service user',
+                                required=True, ondelete='cascade', index=True)
     activity_id = fields.Many2one('golem.activity', required=True, index=True,
                                   string='Activity', ondelete='cascade')
     activity_price = fields.Float(related='activity_id.list_price')

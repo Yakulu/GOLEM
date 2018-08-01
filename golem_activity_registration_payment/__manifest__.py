@@ -19,15 +19,14 @@
     'name': 'GOLEM Activity Member Registration Payments',
     'summary': 'GOLEM Activities Member Registration Payments',
     'description': 'GOLEM Activities Member Registration Payments',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'depends': ['golem_activity_registration_state', 'golem_payment'],
-    'data': ['views/golem_activity_views.xml',
-             'views/golem_member_views.xml',
+    'data': ['views/golem_member_views.xml',
              'views/golem_activity_registration_views.xml',
              'wizard/golem_activity_registration_invoicing.xml']
 }

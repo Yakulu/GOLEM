@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 16:21+0000\n"
-"PO-Revision-Date: 2018-07-20 16:21+0000\n"
+"POT-Creation-Date: 2018-08-01 14:09+0000\n"
+"PO-Revision-Date: 2018-08-01 14:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgid "Animator"
 msgstr ""
 
 #. module: golem_activity_registration
-#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_tree
 msgid "Base price"
 msgstr ""
 
@@ -192,11 +192,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: golem_activity_registration
-#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_member_id
-msgid "Member"
-msgstr ""
-
-#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_activity_registration_ids
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_form_inherit_registration
 msgid "Members"
@@ -245,6 +240,11 @@ msgid "Season"
 msgstr ""
 
 #. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_member_id
+msgid "Service user"
+msgstr ""
+
+#. module: golem_activity_registration
 #: code:addons/golem_activity_registration/models/golem_activity_registration.py:70
 #, python-format
 msgid "Sorry, there is no more place !"
@@ -269,7 +269,7 @@ msgid "This member has already been registered for this activity."
 msgstr ""
 
 #. module: golem_activity_registration
-#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_form_inherit_golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_registration_tree
 msgid "Total"
 msgstr ""
 

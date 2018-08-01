@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-31 17:51+0000\n"
-"PO-Revision-Date: 2018-07-31 19:58+0200\n"
+"POT-Creation-Date: 2018-08-01 14:10+0000\n"
+"PO-Revision-Date: 2018-08-01 16:15+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,16 @@ msgid "All confirmed registrations had already been invoiced."
 msgstr "Toutes les inscriptions confirmées ont déjà été facturées."
 
 #. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_search_inherit_payment
+msgid "By invoice state"
+msgstr "Par état de facturation"
+
+#. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_search_inherit_payment
+msgid "Canceled Invoice"
+msgstr "Facture Annulée"
+
+#. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Close"
 msgstr "Fermer"
@@ -70,6 +80,11 @@ msgstr "Afficher la facture"
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Display payments"
 msgstr "Afficher les paiements"
+
+#. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_search_inherit_payment
+msgid "Draft Invoice"
+msgstr "Facture Brouillon"
 
 #. module: golem_activity_registration_payment
 #: model:ir.model,name:golem_activity_registration_payment.model_golem_activity_registration
@@ -129,6 +144,11 @@ msgid "Invoice pending registrations"
 msgstr "Inscriptions en attente de facturation"
 
 #. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_state_tree_inherit_payment
+msgid "Invoice state"
+msgstr "Invoice state"
+
+#. module: golem_activity_registration_payment
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_write_uid
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_write_uid
 msgid "Last Updated by"
@@ -139,6 +159,16 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_search_inherit_payment
+msgid "Opened Invoice"
+msgstr "Facture Ouverte"
+
+#. module: golem_activity_registration_payment
+#: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_search_inherit_payment
+msgid "Paid Invoice"
+msgstr "Facture Payée"
 
 #. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form

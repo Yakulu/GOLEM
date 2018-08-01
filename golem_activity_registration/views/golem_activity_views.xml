@@ -34,14 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
               <field name="places_remain" readonly="True" />
               <field name="activity_registration_ids"
-                context="{'default_activity_id': active_id}">
-                <tree editable="top">
-                  <field name="member_id"
-                    domain="[('season_ids', '=', season_id)]" />
-                  <field name="activity_id" invisible="1" />
-                  <field name="season_id" invisible="1" />
-                </tree>
-              </field>
+                context="{'default_activity_id': active_id, 'season_show': 0, 'activity_show': 0}" />
             </group>
           </page>
         </page>
