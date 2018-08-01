@@ -44,6 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
         <form>
+          <header></header>
           <sheet>
             <div colspan="2" attrs="{'invisible': [('membership_state', '=', 'none')]}"
               style="background-color: #ccc; color: #fff; font-size: 150%; font-weight: bold; padding: 0.5%; text-align: center; margin-bottom: 1%;">Service User form</div>
