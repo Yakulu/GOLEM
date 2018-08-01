@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,15 +18,15 @@
 {
     'name': 'GOLEM base module for global dependencies',
     'summary': 'GOLEM base installs base and shared dependencies for GOLEM',
-    'version': '10.0.1.0.2',
+    'version': '10.0.1.0.3',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['report', 'membership', 'contacts', 'mail', 'account_voucher',
-                'partner_firstname', 'partner_contact_birthdate',
-                'partner_contact_gender',
+    'depends': ['document', 'report', 'membership', 'contacts', 'mail',
+                'account_voucher', 'partner_firstname',
+                'partner_contact_birthdate', 'partner_contact_gender',
                 'l10n_fr', 'l10n_fr_state', 'l10n_fr_department',
                 'l10n_fr_siret',
                 'web_widget_phone_check_fr', 'web_widget_email_check',
