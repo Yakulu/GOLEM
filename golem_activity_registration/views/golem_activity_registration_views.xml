@@ -27,10 +27,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <form>
           <header></header>
           <sheet>
-            <group name="subscription" string="Subscription">
-              <field name="activity_id" />
-              <field name="season_id" />
-              <field name="member_id" />
+            <group>
+              <group name="subscription" string="Subscription">
+                <field name="activity_id" />
+                <field name="season_id" />
+                <field name="member_id" />
+              </group>
             </group>
           </sheet>
         </form>
