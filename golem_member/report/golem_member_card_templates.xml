@@ -41,7 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div class="col-xs-12" id="member_title">
                   <h2 class="golem_report_title">
                     <span t-field="member.name" />
-                    <small>(num. <span t-field="member.number" />)</small>
+                    <small t-if="member.number">
+                      (num. <span t-field="member.number" />)
+                    </small>
                   </h2>
                 </div>
                 <div class="col-xs-12" id="season_info">
