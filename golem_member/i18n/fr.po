@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 05:38+0000\n"
-"PO-Revision-Date: 2018-08-01 07:39+0200\n"
+"POT-Creation-Date: 2018-08-01 08:51+0000\n"
+"PO-Revision-Date: 2018-08-01 10:51+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -418,9 +418,6 @@ msgstr "Adhérent libre"
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_member_id
-#: model:ir.model.fields,field_description:golem_member.field_res_partner_member_id
-#: model:ir.model.fields,field_description:golem_member.field_res_users_member_id
 msgid "GOLEM Member"
 msgstr "Adhérent"
 
@@ -474,8 +471,8 @@ msgstr "Genre"
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.res_partner_form_inherit_golem_member
-msgid "Go to member form"
-msgstr "Voir la fiche adhérent"
+msgid "Go to service user form"
+msgstr "Voir la fiche usager"
 
 #. module: golem_member
 #: model:ir.actions.report.xml,name:golem_member.golem_member_report_html
@@ -591,17 +588,17 @@ msgid "Is a Vendor"
 msgstr "Est un Fournisseur"
 
 #. module: golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_member
-#: model:ir.model.fields,field_description:golem_member.field_res_partner_is_member
-#: model:ir.model.fields,field_description:golem_member.field_res_users_is_member
-#: model:ir.ui.view,arch_db:golem_member.res_partner_kanban_inherit_golem_member
-msgid "Is member"
-msgstr "Est un adhérent"
-
-#. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_is_number_manual
 msgid "Is number manual?"
 msgstr "Le numéro d'adhérent est-il saisi manuellement?"
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_service_user
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_is_service_user
+#: model:ir.model.fields,field_description:golem_member.field_res_users_is_service_user
+#: model:ir.ui.view,arch_db:golem_member.res_partner_kanban_inherit_golem_member
+msgid "Is service user"
+msgstr "Est un usager"
 
 #. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_membership_state
@@ -975,6 +972,13 @@ msgid "Service Users"
 msgstr "Usagers"
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_member_id
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_member_id
+#: model:ir.model.fields,field_description:golem_member.field_res_users_member_id
+msgid "Service user"
+msgstr "Usager"
+
+#. module: golem_member
 #: model:ir.ui.menu,name:golem_member.golem_member_user_menu
 msgid "Service users"
 msgstr "Usagers"
@@ -1039,7 +1043,7 @@ msgstr "Rue..."
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_street2
 msgid "Street2"
-msgstr "Rue 2"
+msgstr "Complément de rue"
 
 #. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.golem_member_action

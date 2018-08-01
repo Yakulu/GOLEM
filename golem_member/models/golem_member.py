@@ -39,16 +39,16 @@ class ResPartner(models.Model):
     # Gender overwriting : no need for 'other' choice
     gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
 
-    member_id = fields.One2many('golem.member', 'partner_id', 'GOLEM Member',
+    member_id = fields.One2many('golem.member', 'partner_id', 'Service user',
                                 readonly=True)
-    is_member = fields.Boolean(compute='_compute_is_member')
+    is_service_user = fields.Boolean(compute='_compute_is_service_user')
     member_number = fields.Char(related='member_id.number')
 
     @api.depends('member_id')
-    def _compute_is_member(self):
+    def _compute_is_service_user(self):
         """ Computes is member """
         for partner in self:
-            partner.is_member = len(partner.member_id) > 0
+            partner.is_service_user = len(partner.member_id) > 0
 
     @api.multi
     def view_member(self):

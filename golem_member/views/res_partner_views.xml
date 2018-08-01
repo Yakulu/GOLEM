@@ -31,19 +31,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             style="background-color: #ccc; color: #fff; font-size: 150%; font-weight: bold; padding: 0.5%; text-align: center; margin-bottom: 1%;">Contact form</div>
         </div>
         <h1 position="after">
-          <field name="is_member" invisible="1" />
+          <field name="is_service_user" invisible="1" />
           <label for="member_id"
-            attrs="{'invisible': ['|', ('is_company', '=', True),
-            ('is_member', '=', False)]}" />
+            attrs="{'invisible': ['|', ('is_company', '=', True), ('is_service_user', '=', False)]}" />
           <field name="member_id" invisible="1" />
-          <button name="view_member" string="Go to member form" type="object"
+          <button name="view_member" string="Go to service user form" type="object"
             class="oe_link"
             attrs="{'invisible': ['|', ('is_company', '=', True),
-            ('is_member', '=', False)]}" />
+            ('is_service_user', '=', False)]}" />
           <button type="object" name="create_golem_member"
             string="Create a service user from this contact"
             attrs="{'invisible': ['|', ('is_company', '=', True),
-            ('is_member', '!=', False)]}" />
+            ('is_service_user', '!=', False)]}" />
         </h1>
       </field>
     </record>
@@ -55,12 +54,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="base.res_partner_kanban_view" />
       <field name="arch" type="xml">
         <field name="type" position="after">
-          <field name="is_member" />
+          <field name="is_service_user" />
         </field>
         <xpath expr="//div[@class='oe_kanban_global_click o_res_partner_kanban']"
           position="inside">
           <hr style="clear: both; background-color: #ecffe2; height: 10%; margin: 2% 0 0 0;"
-            title="Is member" t-if="!!record.is_member.raw_value" />
+            title="Is service user" t-if="!!record.is_service_user.raw_value" />
         </xpath>
       </field>
     </record>
@@ -72,7 +71,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="base.view_partner_tree" />
       <field name="arch" type="xml">
         <field name="display_name" position="before">
-          <field name="member_number" />
+          <field name="member_number"
+            attrs="{'invisible': [('member_number', '=', False)]}" />
         </field>
       </field>
     </record>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 05:38+0000\n"
-"PO-Revision-Date: 2018-08-01 05:38+0000\n"
+"POT-Creation-Date: 2018-08-01 08:51+0000\n"
+"PO-Revision-Date: 2018-08-01 08:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -418,9 +418,6 @@ msgstr ""
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_member_id
-#: model:ir.model.fields,field_description:golem_member.field_res_partner_member_id
-#: model:ir.model.fields,field_description:golem_member.field_res_users_member_id
 msgid "GOLEM Member"
 msgstr ""
 
@@ -474,7 +471,7 @@ msgstr ""
 
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.res_partner_form_inherit_golem_member
-msgid "Go to member form"
+msgid "Go to service user form"
 msgstr ""
 
 #. module: golem_member
@@ -591,16 +588,16 @@ msgid "Is a Vendor"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_member
-#: model:ir.model.fields,field_description:golem_member.field_res_partner_is_member
-#: model:ir.model.fields,field_description:golem_member.field_res_users_is_member
-#: model:ir.ui.view,arch_db:golem_member.res_partner_kanban_inherit_golem_member
-msgid "Is member"
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_number_manual
+msgid "Is number manual?"
 msgstr ""
 
 #. module: golem_member
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_number_manual
-msgid "Is number manual?"
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_is_service_user
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_is_service_user
+#: model:ir.model.fields,field_description:golem_member.field_res_users_is_service_user
+#: model:ir.ui.view,arch_db:golem_member.res_partner_kanban_inherit_golem_member
+msgid "Is service user"
 msgstr ""
 
 #. module: golem_member
@@ -964,6 +961,13 @@ msgstr ""
 #. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.golem_member_user_action
 msgid "Service Users"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_member_id
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_member_id
+#: model:ir.model.fields,field_description:golem_member.field_res_users_member_id
+msgid "Service user"
 msgstr ""
 
 #. module: golem_member
