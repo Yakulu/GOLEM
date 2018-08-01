@@ -19,7 +19,7 @@
     'name': 'GOLEM families',
     'summary': 'GOLEM Members Families',
     'description': 'GOLEM Members Families',
-    'version': '10.0.2.2.4',
+    'version': '10.0.2.3.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

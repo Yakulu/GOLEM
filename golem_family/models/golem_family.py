@@ -85,6 +85,33 @@ class GolemMember(models.Model):
                 'view_mode': 'form',
                 'res_id': member.family_id.id}
 
+    @api.multi
+    def create_family(self):
+        """ Create family from service user """
+        self.ensure_one()
+        member = self[0]
+        if member.family_id:
+            member.family_id = False
+        data = {'name': member.lastname,
+                'street': member.street,
+                'street2': member.street2,
+                'zip': member.zip,
+                'city': member.city,
+                'member_ids': [(4, member.partner_id.id, False)]}
+        self.env['golem.family'].create(data)
+        # self.family_id = new_family.id
+
+    @api.model
+    def create(self, values):
+        """ Handles family fields at creation """
+        family_id = values.get('family_id')
+        if family_id:
+            del values['family_id']
+        members = super(GolemMember, self).create(values)
+        if family_id:
+            members.mapped('partner_id').write({'family_id': family_id})
+        return members
+
 
 class GolemFamily(models.Model):
     """ GOLEM Family Entity """

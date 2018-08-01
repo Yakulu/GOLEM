@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-18 09:23+0000\n"
-"PO-Revision-Date: 2018-03-18 09:23+0000\n"
+"POT-Creation-Date: 2018-08-01 10:12+0000\n"
+"PO-Revision-Date: 2018-08-01 10:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,12 +38,7 @@ msgstr ""
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_member_card_template_inherit_golem_family
-msgid "<strong>Family :</strong>"
-msgstr ""
-
-#. module: golem_family
-#: model:ir.ui.view,arch_db:golem_family.golem_member_card_template_inherit_golem_family
-msgid "<strong>Role :</strong>"
+msgid "<strong>Family </strong>"
 msgstr ""
 
 #. module: golem_family
@@ -98,6 +93,11 @@ msgid "Country"
 msgstr ""
 
 #. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
+msgid "Create a new family"
+msgstr ""
+
+#. module: golem_family
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_create_uid
 #: model:ir.model.fields,field_description:golem_family.field_golem_family_role_create_uid
 msgid "Created by"
@@ -145,8 +145,8 @@ msgid "Family"
 msgstr ""
 
 #. module: golem_family
-#: code:addons/golem_family/models/golem_family.py:48
-#: code:addons/golem_family/models/golem_family.py:82
+#: code:addons/golem_family/models/golem_family.py:50
+#: code:addons/golem_family/models/golem_family.py:84
 #, python-format
 msgid "Family Members"
 msgstr ""
@@ -288,11 +288,6 @@ msgstr ""
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_card_template
 msgid "Phone :"
-msgstr ""
-
-#. module: golem_family
-#: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
-msgid "Please save new member before assigning a family."
 msgstr ""
 
 #. module: golem_family

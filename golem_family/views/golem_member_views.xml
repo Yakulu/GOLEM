@@ -25,64 +25,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
+        <header position="inside">
+          <button type="object" name="create_family" string="Create a new family"
+            attrs="{'invisible': ['|', ('id', '=', False), ('family_id', '!=', False)]}" />
+        </header>
         <field name="lastname" position="before">
           <field name="id" invisible="1" />
           <field name="partner_id" invisible="1" required="0" />
-          <p class="oe_grey" colspan="2"
-            attrs="{'invisible': [('id', '!=', False)]}">
-            Please save new member before assigning a family.
-          </p>
           <field name="family_id"
-            attrs="{'readonly': [('id', '=', False)]}"
-            context="{'default_member_ids': [(4, partner_id, False)]}" />
-          <field name="family_role"
-            attrs="{'readonly': [('id', '=', False)]}" />
+            options="{'no_create': True}" />
+          <field name="family_role" />
         </field>
         <page name="membership" position="before">
           <page string="Family"
-            attrs="{'invisible': [('family_id', '=', False)]}">
-            <group>
-              <group string="Address">
-                <group>
-                  <field name="family_street" placeholder="Street..." />
-                  <field name="family_street2" />
-                  <field name="family_zip" placeholder="ZIP" />
-                  <field name="family_city" placeholder="City" />
-                </group>
-                <group>
-                  <field name="family_state_id" class="oe_no_button"
-                    placeholder="State" />
-                  <field name="family_country_id" placeholder="Country"
-                    class="oe_no_button" />
-                </group>
+            attrs="{'invisible': ['|', ('id', '=', False), ('family_id', '=', False)]}">
+            <group string="Address">
+              <group>
+                <field name="family_street" placeholder="Street..." />
+                <field name="family_street2" />
+                <field name="family_zip" placeholder="ZIP" />
+                <field name="family_city" placeholder="City" />
+              </group>
+              <group>
+                <field name="family_state_id" class="oe_no_button"
+                  placeholder="State" />
+                <field name="family_country_id" placeholder="Country"
+                  class="oe_no_button" />
+              </group>
+            </group>
+            <group string="Communication">
+              <group>
+                <field name="family_phone" placeholder="0000000000"
+                  widget="phonefr" />
+                <field name="family_mobile" placeholder="0000000000"
+                  widget="phonefr" />
+              </group>
+              <group>
+                <field name="family_email" widget="email"
+                  placeholder="name@example.org" />
+                <field name="family_website" widget="url"
+                  placeholder="e.g. www.odoo.com"/>
               </group>
             </group>
             <group>
-              <group string="Communication">
-                <group>
-                  <field name="family_phone" placeholder="0000000000"
-                    widget="phonefr" />
-                  <field name="family_mobile" placeholder="0000000000"
-                    widget="phonefr" />
-                </group>
-                <group>
-                  <field name="family_email" widget="email"
-                    placeholder="name@example.org" />
-                  <field name="family_website" widget="url"
-                    placeholder="e.g. www.odoo.com"/>
-                </group>
-              </group>
+              <field name="family_member_ids" widget="many2many"
+                context="{'default_family_id': active_id}">
+                <tree delete="false" create="true" edit="true">
+                  <field name="name" />
+                  <field name="family_role" />
+                  <field name="phone" />
+                  <field name="mobile" />
+                  <field name="email" widget="email" />
+                </tree>
+              </field>
             </group>
-            <field name="family_member_ids"
-              context="{'default_family_id': active_id}">
-              <tree delete="false">
-                <field name="name" />
-                <field name="family_role" />
-                <field name="phone" />
-                <field name="mobile" />
-                <field name="email" widget="email" />
-              </tree>
-            </field>
           </page>
         </page>
       </field>
