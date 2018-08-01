@@ -36,7 +36,8 @@ class GolemSeason(models.Model):
                                     readonly=True, default=1)
     date_start = fields.Date('Period start')
     date_end = fields.Date('Period end')
-    is_default = fields.Boolean('Default season for views?', readonly=True)
+    is_default = fields.Boolean('Default season for views?', readonly=True,
+                                copy=False)
 
     @api.onchange('membership_ids')
     def _onchange_season_dates(self):
@@ -84,6 +85,13 @@ class GolemSeason(models.Model):
         if old_default_season:
             old_default_season.is_default = False
         self.is_default = True
+
+    @api.multi
+    def copy(self, default=None):
+        """ Handles copy name """
+        self.ensure_one()
+        default = dict(default or {}, name=_('%s (copy)') % self.name)
+        return super(GolemSeason, self).copy(default)
 
     @api.model
     def create(self, values):

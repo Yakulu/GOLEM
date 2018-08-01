@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-20 07:46+0000\n"
-"PO-Revision-Date: 2018-07-20 07:46+0000\n"
+"POT-Creation-Date: 2018-08-01 08:27+0000\n"
+"PO-Revision-Date: 2018-08-01 08:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: golem_season
+#: code:addons/golem_season/models/golem_season.py:93
+#, python-format
+msgid "%s (copy)"
+msgstr ""
 
 #. module: golem_season
 #: model:ir.model.fields,field_description:golem_season.field_golem_season_member_counter
@@ -31,7 +37,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:75
+#: code:addons/golem_season/models/golem_season.py:76
 #, python-format
 msgid "Current period cannot be included into another existing period."
 msgstr ""
@@ -57,7 +63,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:71
+#: code:addons/golem_season/models/golem_season.py:72
 #, python-format
 msgid "End of the period is in range of an existing period."
 msgstr ""
@@ -141,25 +147,25 @@ msgid "Seasons"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:62
+#: code:addons/golem_season/models/golem_season.py:63
 #, python-format
 msgid "Start of the period cannot be after end of the period."
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:67
+#: code:addons/golem_season/models/golem_season.py:68
 #, python-format
 msgid "Start of the period is in range of an existing period."
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:58
+#: code:addons/golem_season/models/golem_season.py:59
 #, python-format
 msgid "The date end is required"
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:60
+#: code:addons/golem_season/models/golem_season.py:61
 #, python-format
 msgid "The date start is required"
 msgstr ""
@@ -172,7 +178,7 @@ msgid "This season name has already been used."
 msgstr ""
 
 #. module: golem_season
-#: code:addons/golem_season/models/golem_season.py:100
+#: code:addons/golem_season/models/golem_season.py:108
 #, python-format
 msgid "You can't delete the default season"
 msgstr ""
