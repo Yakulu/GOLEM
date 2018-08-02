@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+
+  <template id="golem_activity_registration_state_member_card_template_inherit_golem_activity_resgitration_payment"
+    inherit_id="golem_activity_registration_state.golem_member_card_template_inherit_golem_activity_resgitration_state">
+    <xpath expr="//table[@id='table_activity_ref']/thead/tr[1]" position="inside">
+      <th class="text-right">Invoice line price</th>
+    </xpath>
+    <xpath expr="//table[@id='table_activity_ref']/tbody/tr[1]" position="inside">
+      <td class="text-right">
+        <span t-field="reg.invoice_line_price"
+          t-field-options="{'widget': 'monetary', 'display_currency': reg.currency_id}"/>
+      </td>
+    </xpath>
+  </template>
+
+  <template id="golem_member_card_template_inherit_golem_activity_resgitration_payment"
+    inherit_id="golem_member.golem_member_card_template">
+    <xpath expr="//table[@id='table_activity_ref']/tbody" position="before">
+      <tfoot>
+        <tr>
+          <td class="text-right" colspan="8">
+            <strong>
+              <span style="padding-right: 5px;">Total</span>
+              <span t-esc="sum(member.activity_registration_ids.mapped('invoice_line_id.price_subtotal'))"
+                t-esc-options="{'widget': 'monetary', 'display_currency': member.currency_id}" />
+            </strong>
+          </td>
+        </tr>
+      </tfoot>
+    </xpath>
+    <xpath expr="//div[@id='page_report_member']" position="inside">
+      <!-- <p style="page-break-before:always;"> </p> -->
+      <div id="page_report_invoicing" class="row">
+        <h3>Invoices</h3>
+        <table id="table_activity_ref" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Invoice</th>
+              <th>Date</th>
+              <th>State</th>
+              <th class="text-right">Amount</th>
+              <th class="text-right">Residual</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td class="text-right" colspan="5">
+                <strong>
+                  <span style="padding-right: 5px;">Total</span>
+                  <span t-esc="sum(member.activity_registration_ids.mapped('invoice_line_id.invoice_id.amount_total'))"
+                    t-esc-options="{'widget': 'monetary', 'display_currency': member.currency_id}" />
+                </strong>
+              </td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr t-foreach="member.activity_registration_ids.mapped('invoice_line_id.invoice_id')" t-as="inv">
+              <td>
+                <span t-field="inv.display_name" />
+              </td>
+              <td>
+                <span t-field="inv.date_invoice" />
+              </td>
+              <td>
+                <span t-field="inv.state" />
+              </td>
+              <td class="text-right">
+                <span t-field="inv.amount_total" />
+              </td>
+              <td class="text-right">
+                <span t-field="inv.residual" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Payments</h3>
+        <table id="table_activity_ref" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Method</th>
+              <th>State</th>
+              <th class="text-right">Amount</th>
+            </tr>
+          </thead>
+          <t t-set="invoices" t-value="member.activity_registration_ids.mapped('invoice_line_id.invoice_id')" />
+          <tfoot>
+            <tr>
+              <td class="text-right" colspan="5">
+                <strong>
+                  <span style="padding-right: 5px;">Total</span>
+                  <span t-esc="sum(invoices.mapped('payment_ids.amount'))"
+                    t-esc-options="{'widget': 'monetary', 'display_currency': member.currency_id}" />
+                </strong>
+              </td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr t-foreach="invoices.mapped('payment_ids')" t-as="payment">
+              <td>
+                <span t-field="payment.payment_date" />
+              </td>
+              <td>
+                <span t-field="payment.journal_id.name" />
+              </td>
+              <td>
+                <span t-field="payment.state" />
+              </td>
+              <td class="text-right">
+                <span t-field="payment.amount" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </xpath>
+  </template>
+
+</odoo>
