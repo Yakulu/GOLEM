@@ -24,7 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     inherit_id="golem_member.golem_member_card_template">
     <xpath expr="//div[@id='page_report_member']" postion="inside">
       <h3>Activities</h3>
-      <table id="table_activity_ref" class="table table-striped">
+      <p t-if="not member.activity_registration_ids">
+        On default season, there is no activity for this member.
+      </p>
+      <table t-else="" id="table_activity_ref" class="table table-striped">
         <thead>
           <tr>
             <th>Name</th>

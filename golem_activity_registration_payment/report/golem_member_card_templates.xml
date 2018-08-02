@@ -51,7 +51,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <!-- <p style="page-break-before:always;"> </p> -->
       <div id="page_report_invoicing" class="row">
         <h3>Invoices</h3>
-        <table id="table_activity_ref" class="table table-striped">
+        <t t-set="invoices" t-value="member.activity_registration_ids.mapped('invoice_line_id.invoice_id')" />
+        <p t-if="not invoices">
+          On default season, there is no activity linked invoice for this member.
+        </p>
+        <table t-else="" id="table_activity_ref" class="table table-striped">
           <thead>
             <tr>
               <th>Invoice</th>
@@ -73,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </tr>
           </tfoot>
           <tbody>
-            <tr t-foreach="member.activity_registration_ids.mapped('invoice_line_id.invoice_id')" t-as="inv">
+            <tr t-foreach="invoices" t-as="inv">
               <td>
                 <span t-field="inv.display_name" />
               </td>
@@ -93,7 +97,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </tbody>
         </table>
         <h3>Payments</h3>
-        <table id="table_activity_ref" class="table table-striped">
+        <t t-set="payments" t-value="member.activity_registration_ids.mapped('invoice_line_id.invoice_id.payment_ids')" />
+        <p t-if="not payments">
+          On default season, there is no activity linked payment for this member.
+        </p>
+        <table t-else="" id="table_activity_ref" class="table table-striped">
           <thead>
             <tr>
               <th>Date</th>
@@ -102,13 +110,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <th class="text-right">Amount</th>
             </tr>
           </thead>
-          <t t-set="invoices" t-value="member.activity_registration_ids.mapped('invoice_line_id.invoice_id')" />
           <tfoot>
             <tr>
               <td class="text-right" colspan="5">
                 <strong>
                   <span style="padding-right: 5px;">Total</span>
-                  <span t-esc="sum(invoices.mapped('payment_ids.amount'))"
+                  <span t-esc="sum(payments.mapped('amount'))"
                     t-esc-options="{'widget': 'monetary', 'display_currency': member.currency_id}" />
                 </strong>
               </td>

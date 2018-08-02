@@ -19,7 +19,7 @@
     'name': 'GOLEM Activity Member Registration Payments',
     'summary': 'GOLEM Activities Member Registration Payments',
     'description': 'GOLEM Activities Member Registration Payments',
-    'version': '10.0.0.3.0',
+    'version': '10.0.0.3.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
