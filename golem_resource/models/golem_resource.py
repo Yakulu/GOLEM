@@ -42,11 +42,11 @@ class GolemResource(models.Model):
                                       'order to sell reservations (work in '
                                       'progress)')
 
-    avaibility_start = fields.Date(required=True, string='Availibility start date')
-    avaibility_stop = fields.Date(required=True, string='Availibility stop date')
-    availibility_24_7 = fields.Boolean(string='24/7 availibility')
+    availability_start = fields.Date(required=True, string='availability start date')
+    availability_stop = fields.Date(required=True, string='availability stop date')
+    availability_24_7 = fields.Boolean(string='24/7 availability')
     timetable_ids = fields.One2many('golem.resource.timetable', 'resource_id',
-                                    string='Availibility timetable')
+                                    string='availability timetable')
     reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
                                       string='Reservations')
     reservation_count = fields.Integer(compute='_compute_reservation_count')
@@ -86,10 +86,10 @@ class GolemResource(models.Model):
         for resource in self:
             resource.active = not resource.active
 
-    @api.constrains('avaibility_start', 'avaibility_stop')
+    @api.constrains('availability_start', 'availability_stop')
     def _check_date_consistency(self):
         """ Checks date consistency """
         for resource in self:
-            if resource.avaibility_stop <= resource.avaibility_start:
-                raise ValidationError(_('End availibility should be after than '
-                                        'start availibility'))
+            if resource.availability_stop <= resource.availability_start:
+                raise ValidationError(_('End availability should be after than '
+                                        'start availability'))

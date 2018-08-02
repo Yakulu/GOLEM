@@ -44,15 +44,15 @@ class TestGolemResourcePack(TransactionCase):
         self.resource_1 = self.env['golem.resource'].create({
             'name': 'Resource1',
             'product_tmpl_id': self.product.id,
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01',
-            'availibility_24_7': True
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01',
+            'availability_24_7': True
         })
         self.resource_2 = self.env['golem.resource'].create({
             'name': 'Resource2',
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01',
-            'availibility_24_7': True
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01',
+            'availability_24_7': True
         })
 
         #set partners

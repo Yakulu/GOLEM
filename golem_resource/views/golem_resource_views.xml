@@ -29,8 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="type_id" />
           <field name="supervisor_id" />
           <field name="product_tmpl_id" />
-          <field name="avaibility_start" />
-          <field name="avaibility_stop" />
+          <field name="availability_start" />
+          <field name="availability_stop" />
           <field name="validation_required" />
         </tree>
       </field>
@@ -68,19 +68,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <field name="supervisor_id" />
               </group>
             </group>
-            <group string="Availibility configuration">
+            <group string="availability configuration">
                 <group colspan="2">
                   <field name="id" invisible="1"/>
-                  <field name="availibility_24_7"/>
-                  <field name="avaibility_start" />
-                  <field name="avaibility_stop" />
+                  <field name="availability_24_7"/>
+                  <field name="availability_start" />
+                  <field name="availability_stop" />
                 </group>
                 <p attrs="{'invisible': ['|',
                   ('id', '!=', False),
-                  ('availibility_24_7', '=', True)]}">
-                  Please save the resource before fixing the timetable availibility"
+                  ('availability_24_7', '=', True)]}">
+                  Please save the resource before fixing the timetable availability"
                 </p>
-                <group colspan="2" attrs="{'invisible': [('availibility_24_7', '=', True)]}">
+                <group colspan="2" attrs="{'invisible': [('availability_24_7', '=', True)]}">
                   <field name="timetable_ids"
                     context="{'default_resource_id': active_id}"
                     attrs="{'readonly': [('id', '=', False)]}" />

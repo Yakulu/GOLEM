@@ -45,9 +45,9 @@ class GolemResourceReservation(models.Model):
                                   string='Resource', readonly=True,
                                   track_visibility='onchange',
                                   states={'draft': [('readonly', False)]})
-    resource_avaibility_start = fields.Date(related='resource_id.avaibility_start')
-    resource_avaibility_stop = fields.Date(related='resource_id.avaibility_stop')
-    resource_avaibility_24_7 = fields.Boolean(related='resource_id.availibility_24_7')
+    resource_availability_start = fields.Date(related='resource_id.availability_start')
+    resource_availability_stop = fields.Date(related='resource_id.availability_stop')
+    resource_availability_24_7 = fields.Boolean(related='resource_id.availability_24_7')
     resource_timetable_ids = fields.One2many(related='resource_id.timetable_ids')
 
     note = fields.Text(help='Notes, optional subject for the reservation, reason')
@@ -153,16 +153,16 @@ class GolemResourceReservation(models.Model):
         """ Check date coherence on reservation confirmation """
         for reservation in self:
             if reservation.state == 'confirmed':
-                # Check is reservation is not taking place out of the resource avaibility period
-                if reservation.date_start < reservation.resource_id.avaibility_start or \
-                   reservation.date_stop > reservation.resource_id.avaibility_stop:
+                # Check is reservation is not taking place out of the resource availability period
+                if reservation.date_start < reservation.resource_id.availability_start or \
+                   reservation.date_stop > reservation.resource_id.availability_stop:
                     verr = _('Not allowed, the resource is not available in '
                              'this period, please choose another périod before '
                              'confirming')
                     raise ValidationError(verr)
-                #check if the resource hasn't a total availibility
-                if not reservation.resource_id.availibility_24_7:
-                    # Check if reservation is not taking place out the avaibility timetables
+                #check if the resource hasn't a total availability
+                if not reservation.resource_id.availability_24_7:
+                    # Check if reservation is not taking place out the availability timetables
                     date_start = fields.Datetime.from_string(reservation.date_start)
                     date_stop = fields.Datetime.from_string(reservation.date_stop)
                     reservation_period = [date_start + timedelta(days=x) for x in range(
@@ -170,12 +170,12 @@ class GolemResourceReservation(models.Model):
                     for reservation_day in reservation_period:
                         is_day_allowed = False
                         for timetable in reservation.resource_id.timetable_ids:
-                            # Check for the time according to resource timetable avaibility
+                            # Check for the time according to resource timetable availability
                             #date = fields.Datetime.from_string(reservation_day)
                             if int(timetable.weekday) == reservation_day.weekday():
                                 is_day_allowed = True
-                                #only check if the day hasn't a 24 availibility
-                                if not timetable.availibility_24:
+                                #only check if the day hasn't a 24 availability
+                                if not timetable.availability_24:
                                     reservation_day_date = reservation_day.date()
                                     day_start = date_start.date()
                                     day_stop = date_stop.date()
@@ -192,7 +192,7 @@ class GolemResourceReservation(models.Model):
                                     else:
                                         #if the day is not a start nor stop it
                                         #should be covered on all day
-                                        #strange, as availibility_24 is not True
+                                        #strange, as availability_24 is not True
                                         hour_start = 0.0
                                         hour_stop = 23.98
 

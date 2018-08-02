@@ -31,8 +31,8 @@ class TestGolemResourceTimetable(TransactionCase):
         self.resource = self.env['golem.resource'].create({
             'name': 'Resource',
             'validation_required': False,
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01'
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01'
         })
         self.timetable_obj = self.env['golem.resource.timetable']
         self.data = {'resource_id': self.resource.id,
@@ -46,7 +46,7 @@ class TestGolemResourceTimetable(TransactionCase):
         self.assertEqual(timetable.resource_id, self.resource)
         self.assertEqual(timetable.time_start, 8.0)
         self.assertEqual(timetable.time_stop, 10.0)
-        self.assertFalse(timetable.availibility_24)
+        self.assertFalse(timetable.availability_24)
         self.assertEqual(timetable, self.resource.timetable_ids[0])
 
     def test_timetable_times(self):

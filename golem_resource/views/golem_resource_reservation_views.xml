@@ -62,11 +62,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <group name="resource" string="Resource">
                 <field name="id" invisible="1" />
                 <field name="resource_id" options="{'no_create': True}" />
-                <field name="resource_avaibility_24_7" readonly="1" />
-                <field name="resource_avaibility_start" readonly="1" />
-                <field name="resource_avaibility_stop" readonly="1" />
+                <field name="resource_availability_24_7" readonly="1" />
+                <field name="resource_availability_start" readonly="1" />
+                <field name="resource_availability_stop" readonly="1" />
                 <field name="resource_timetable_ids" readonly="1"
-                  attrs="{'invisible': [('resource_avaibility_24_7', '=', True)]}" />
+                  attrs="{'invisible': [('resource_availability_24_7', '=', True)]}" />
               </group>
               <group name="reservation" string="Reservation">
                 <group>

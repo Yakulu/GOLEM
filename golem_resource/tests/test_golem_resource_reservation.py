@@ -32,13 +32,13 @@ class TestGolemResourceReservation(TransactionCase):
         super(TestGolemResourceReservation, self).setUp(*args, **kwargs)
         self.resource = self.env['golem.resource'].create({
             'name': 'Resource',
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01'
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01'
         })
         self.resource_val = self.env['golem.resource'].create({
             'name': 'Resource to validate',
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01',
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01',
             'validation_required': True
         })
 
@@ -47,11 +47,11 @@ class TestGolemResourceReservation(TransactionCase):
         timetable_data = {'resource_id': self.resource.id, 'weekday': '0',
                           'time_start': 8.0, 'time_stop': 12.0}
         timetable_data2 = {'resource_id': self.resource.id, 'weekday': '1',
-                           'availibility_24': True}
+                           'availability_24': True}
         timetable_data3 = {'resource_id': self.resource.id, 'weekday': '2',
                            'time_start': 7.0, 'time_stop': 23.98}
         timetable_data4 = {'resource_id': self.resource.id, 'weekday': '3',
-                           'availibility_24': True}
+                           'availability_24': True}
 
         self.timetable_obj.create(timetable_data)
         self.timetable_obj.create(timetable_data2)
@@ -114,11 +114,11 @@ class TestGolemResourceReservation(TransactionCase):
         reservation.state_confirm() # Here the reservation is OK, pass the checks
         self.assertEqual(reservation.state, 'validated')
 
-    def test_avaibility_24_7(self):
-        """ Test reservation with avaibility 24/7 """
-        self.resource.availibility_24_7 = True
+    def test_availability_24_7(self):
+        """ Test reservation with availability 24/7 """
+        self.resource.availability_24_7 = True
         self.resource.timetable_ids.unlink()
-        self.assertTrue(self.resource.availibility_24_7)
+        self.assertTrue(self.resource.availability_24_7)
         reservation = self.res_obj.create(self.data)
         reservation.state_confirm()
         self.assertEqual(reservation.state, 'validated')

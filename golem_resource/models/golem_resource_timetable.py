@@ -39,13 +39,13 @@ class GolemTimetable(models.Model):
                                 ('6', _('Sunday'))], required=True)
     time_start = fields.Float(string='Start')
     time_stop = fields.Float(string='Stop')
-    availibility_24 = fields.Boolean(string="All day")
+    availability_24 = fields.Boolean(string="All day")
 
-    @api.onchange('availibility_24')
-    def onchange_availibility_24(self):
-        """ fill time_start et time_stop if availibility_24 is True """
+    @api.onchange('availability_24')
+    def onchange_availability_24(self):
+        """ fill time_start et time_stop if availability_24 is True """
         for line in self:
-            if line.availibility_24:
+            if line.availability_24:
                 line.update({'time_start': 0.0, 'time_stop': 23.98})
 
     @api.onchange('time_start')
@@ -55,11 +55,11 @@ class GolemTimetable(models.Model):
             if line.time_start and not line.time_stop:
                 line.time_stop = line.time_start + 1
 
-    @api.constrains('availibility_24')
-    def check_avaibility24(self):
-        """ Checks hour consistency against avaibility 24 """
+    @api.constrains('availability_24')
+    def check_availability24(self):
+        """ Checks hour consistency against availability 24 """
         for line in self:
-            if line.availibility_24:
+            if line.availability_24:
                 line.write({'time_start': 0.0, 'time_stop': 23.98})
 
     @api.constrains('time_start', 'time_stop')
@@ -71,7 +71,7 @@ class GolemTimetable(models.Model):
 
     @api.constrains('time_start', 'time_stop')
     def _check_time_all_day(self):
-        """ Checks time all day availibility """
+        """ Checks time all day availability """
         for timetable in self:
             if timetable.time_stop > 23.98 and timetable.time_start == 0:
-                timetable.write({'availibility_24': True})
+                timetable.write({'availability_24': True})
