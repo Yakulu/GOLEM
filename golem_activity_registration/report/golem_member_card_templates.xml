@@ -31,43 +31,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <th>Type</th>
             <th>Animator</th>
             <th>Day</th>
-            <th>Hour start</th>
-            <th>Hour stop</th>
-            <th>Date start</th>
-            <th id="activity_inherit_th">Date stop</th>
+            <th class="text-right">Hours</th>
+            <th class="text-right">Dates</th>
           </tr>
         </thead>
         <tbody>
-          <tr id="activity_inherit_price_sum"
-            t-foreach="member.activity_registration_ids" t-as="reg">
-              <td class="col-xs-2">
-                <span t-esc="reg.activity_id.name" />
+          <tr t-foreach="member.activity_registration_ids" t-as="reg">
+              <td>
+                <span t-field="reg.activity_id.name" />
               </td>
-              <td class="col-xs-2">
-                <span t-esc="reg.activity_id.type_id.name" />
+              <td>
+                <span t-field="reg.activity_id.type_id.name" />
               </td>
-              <td class="col-xs-2">
+              <td>
                 <span t-field="reg.activity_id.animator_id" />
               </td>
-              <td class="col-xs-2">
+              <td>
                 <span t-field="reg.activity_id.weekday" />
               </td>
-              <td class="col-xs-1">
+              <td class="text-right">
                 <t t-esc="'%02d:%02d' % (int(reg.activity_id.hour_start), round(reg.activity_id.hour_start % 1 * 60))" />
-              </td>
-              <td class="col-xs-1">
+                -
                 <t t-esc="'%02d:%02d' % (int(reg.activity_id.hour_stop), round(reg.activity_id.hour_stop % 1 * 60))" />
                 </td>
-              <td class="col-xs-2">
-                  <span t-if="reg.activity_id.is_fullseason" t-field="season.date_start" />
-                  <span t-else="" t-field="reg.activity_id.date_start" />
-              </td>
-              <td id="activity_inherit_td">
-                  <span t-if="reg.activity_id.is_fullseason" t-field="season.date_end" />
-                  <span t-else="" t-field="reg.activity_id.date_stop" />
+              <td class="text-right">
+                <span t-if="reg.activity_id.is_fullseason" t-field="season.date_start" />
+                <span t-else="" t-field="reg.activity_id.date_start" />
+                -
+                <span t-if="reg.activity_id.is_fullseason" t-field="season.date_end" />
+                <span t-else="" t-field="reg.activity_id.date_stop" />
               </td>
           </tr>
-          <tr id="activity_inherit_total" />
         </tbody>
       </table>
     </xpath>

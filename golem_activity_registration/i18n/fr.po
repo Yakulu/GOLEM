@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 14:09+0000\n"
-"PO-Revision-Date: 2018-08-01 16:12+0200\n"
+"POT-Creation-Date: 2018-08-02 16:31+0000\n"
+"PO-Revision-Date: 2018-08-02 18:32+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -98,13 +98,8 @@ msgstr "Créé le"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
-msgid "Date start"
-msgstr "Début"
-
-#. module: golem_activity_registration
-#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
-msgid "Date stop"
-msgstr "Fin"
+msgid "Dates"
+msgstr "Dates"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
@@ -158,13 +153,8 @@ msgstr "Adhérent"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
-msgid "Hour start"
-msgstr "Début"
-
-#. module: golem_activity_registration
-#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_card_template_inherit_golem_activity_resgitration
-msgid "Hour stop"
-msgstr "Fin"
+msgid "Hours"
+msgstr "Horaires"
 
 #. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_id
