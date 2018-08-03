@@ -17,7 +17,9 @@
 
 """ GOLEM activities related models """
 
+import logging
 from odoo import models, fields, api, _
+_LOGGER = logging.getLogger(__name__)
 
 class GolemActivityType(models.Model):
     """ GOLEM Activity Type """
@@ -201,3 +203,11 @@ class ProductTemplate(models.Model):
     type = fields.Selection(default='service')
     default_code = fields.Char(copy=True)
     categ_id = fields.Many2one(copy=True)
+
+
+class ProductCategory(models.Model):
+    """ Product Category adaptations """
+    _inherit = 'product.category'
+
+    property_account_income_categ_id = fields.Many2one(required=True)
+    property_account_expense_categ_id = fields.Many2one(required=True)
