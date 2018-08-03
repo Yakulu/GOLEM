@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM base module for global dependencies',
     'summary': 'GOLEM base installs base and shared dependencies for GOLEM',
-    'version': '10.0.1.0.3',
+    'version': '10.0.1.0.4',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -31,7 +31,8 @@
                 'l10n_fr_siret',
                 'web_widget_phone_check_fr', 'web_widget_email_check',
                 'web_widget_url_check',
-                'web_responsive', 'backend_theme_v10'],
+                'web_responsive', 'backend_theme_v10',
+                'web_widget_x2many_2d_matrix'],
     'data': ['security/golem_security.xml',
              'views/menus.xml',
              'views/yaltik_base_assets.xml']
