@@ -36,6 +36,12 @@ class GolemMember(models.Model):
             regis = regis.filtered(lambda r: r.state == 'confirmed' and not r.invoice_line_id)
             member.has_invoicable_registrations = bool(len(regis))
 
+    def invoice_line_data_get(self, registration):
+        """ Returns dict with invoice line data """
+        return {'registration_id': registration.id,
+                'activity_id': registration.activity_id.id,
+                'price': registration.activity_id.list_price}
+
     @api.multi
     def invoice_registrations(self):
         """ Launch wizard to generate invoices for registrations """
@@ -51,10 +57,9 @@ class GolemMember(models.Model):
             })
             line_obj = self.env['golem.activity.registration.invoicing.line']
             for reg in registrations:
-                line_obj.create({'invoicing_id': invoicing.id,
-                                 'registration_id': reg.id,
-                                 'activity_id': reg.activity_id.id,
-                                 'price': reg.activity_id.list_price})
+                line_data = self.invoice_line_data_get(reg)
+                line_data['invoicing_id'] = invoicing.id
+                line_obj.create(line_data)
             return {'name': _('Registration invoicing'),
                     'type': 'ir.actions.act_window',
                     'res_model': 'golem.activity.registration.invoicing',

@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <field name="line_ids" string="Activities and Prices">
               <tree delete="false" create="false" edit="true" editable="bottom">
                 <field name="activity_id" readonly="1" />
+                <field name="currency_id" invisible="1" />
                 <field name="price" sum="Total" />
               </tree>
             </field>
