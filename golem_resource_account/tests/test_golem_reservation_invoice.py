@@ -41,9 +41,9 @@ class TestGolemResourceReservation(TransactionCase):
         })
         self.resource = self.env['golem.resource'].create({
             'name': 'Resource',
-            'avaibility_start': '2018-01-01',
-            'avaibility_stop': '2020-01-01',
-            'availibility_24_7': True
+            'availability_start': '2018-01-01',
+            'availability_stop': '2020-01-01',
+            'availability_24_7': True
         })
 
         self.partner = self.env['res.partner'].create({'firstname': 'John',

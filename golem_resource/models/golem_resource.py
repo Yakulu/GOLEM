@@ -42,11 +42,11 @@ class GolemResource(models.Model):
                                       'order to sell reservations (work in '
                                       'progress)')
 
-    availability_start = fields.Date(required=True, string='availability start date')
-    availability_stop = fields.Date(required=True, string='availability stop date')
+    availability_start = fields.Date(required=True, string='Availability start date')
+    availability_stop = fields.Date(required=True, string='Availability stop date')
     availability_24_7 = fields.Boolean(string='24/7 availability')
     timetable_ids = fields.One2many('golem.resource.timetable', 'resource_id',
-                                    string='availability timetable')
+                                    string='Availability timetable')
     reservation_ids = fields.One2many('golem.resource.reservation', 'resource_id',
                                       string='Reservations')
     reservation_count = fields.Integer(compute='_compute_reservation_count')
