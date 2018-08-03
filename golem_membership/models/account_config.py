@@ -27,7 +27,8 @@ class AccountConfig(models.AbstractModel):
 
     @api.model
     def account_settings(self):
-        """ Please use better default taxes and account.journal config """
+        """ Please use better default taxes, account.journal config, base
+        accounts for categories """
         account_conf_obj = self.env['account.config.settings']
         data = {'company_id': self.env.ref('base.main_company').id}
         account_conf = account_conf_obj.create(data)
@@ -53,3 +54,20 @@ class AccountConfig(models.AbstractModel):
                 'default_debit_account_id': bank_journal.default_debit_account_id.id,
                 'default_credit_account_id': bank_journal.default_credit_account_id.id
             })
+
+        # Default categories account to 706 and 604
+        categories = (self.env.ref('product.product_category_all'),
+                      self.env.ref('product.product_category_1'))
+        account_obj = self.env['account.account']
+        income_account = account_obj.search([('code', '=', '706000')])
+        expense_account = account_obj.search([('code', '=', '604000')])
+        for categ in categories:
+            categ.write({
+                'property_account_income_categ_id': income_account.id,
+                'property_account_expense_categ_id': expense_account.id
+            })
+            property_obj = self.env['ir.property']
+            income = property_obj.search([('name', '=', 'property_account_income_categ_id')])
+            income.write({'value_reference': 'account.account,%s' % income_account.id})
+            expense = property_obj.search([('name', '=', 'property_account_expense_categ_id')])
+            expense.write({'value_reference': 'account.account,%s' % expense_account.id})
