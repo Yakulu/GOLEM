@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -24,4 +24,4 @@ class GolemMember(models.Model):
     _inherit = 'golem.member'
 
     caf_number = fields.Char('CAF Number')
-    qf = fields.Integer('Family Quotient')
+    family_quotient = fields.Monetary()

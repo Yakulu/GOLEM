@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 20:54+0000\n"
-"PO-Revision-Date: 2017-05-01 20:54+0000\n"
+"POT-Creation-Date: 2018-08-03 22:59+0000\n"
+"PO-Revision-Date: 2018-08-03 22:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,8 +21,8 @@ msgid "CAF Number"
 msgstr ""
 
 #. module: golem_member_familyquotient
-#: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_qf
-msgid "Family Quotient"
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_family_quotient
+msgid "Family quotient"
 msgstr ""
 
 #. module: golem_member_familyquotient

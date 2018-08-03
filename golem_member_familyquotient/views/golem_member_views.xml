@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <field name="number" position="after">
           <field name="caf_number" />
-          <field name="qf" />
+          <field name="family_quotient" />
         </field>
       </field>
     </record>
