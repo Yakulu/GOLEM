@@ -25,22 +25,56 @@ class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
+    total_paid = fields.Monetary(compute='_compute_total_paid', store=True,
+                                 groups='account.group_account_invoice')
     last_payment_state = fields.Selection([('draft', 'Draft'),
                                            ('posted', 'Posted'),
                                            ('checked', 'Checked'),
                                            ('reconciled', 'Reconciled')],
                                           compute='_compute_last_payment_state')
 
+    @api.depends('invoice_ids.payment_ids', 'invoice_ids.payment_ids.state',
+                 'invoice_ids.payment_ids.amount')
+    def _compute_total_paid(self):
+        """ Computes total paid """
+        for member in self:
+            payments = member.invoice_ids.mapped('payment_ids')
+            member.total_paid = sum(
+                payments.filtered(lambda p: p.state != 'draft').mapped('amount')
+            )
+
     @api.multi
     def open_partner_invoices(self):
         """ Open member invoices """
         self.ensure_one()
+        action = self.env.ref('account.action_invoice_tree1')
+        context = {'type':'out_invoice', 'journal_type': 'sale',
+                   'search_default_partner_id': self[0].partner_id.id,
+                   'default_partner_id': self[0].partner_id.id}
         return {'type': 'ir.actions.act_window',
-                'name': 'Invoices',
+                'name': action.name,
                 'res_model': 'account.invoice',
-                'view_mode': 'tree,form',
-                'context': {'search_default_partner_id': self[0].partner_id.id,
-                            'default_partner_id': self[0].partner_id.id}}
+                'view_type': action.view_type,
+                'view_mode': action.view_mode,
+                'domain': action.domain,
+                'context': context}
+
+    @api.multi
+    def open_partner_payments(self):
+        """ Open member payments """
+        self.ensure_one()
+        action = self.env.ref('account.action_account_payments')
+        context = {'default_payment_type': 'inbound',
+                   'default_partner_type': 'customer',
+                   'search_default_partner_id': self[0].partner_id.id,
+                   'default_partner_id': self[0].partner_id.id}
+        return {'type': 'ir.actions.act_window',
+                'name': action.name,
+                'res_model': 'account.payment',
+                'view_type': action.view_type,
+                'view_mode': action.view_mode,
+                'domain': action.domain,
+                'context': context}
 
     @api.depends('invoice_ids')
     def _compute_last_payment_state(self):
