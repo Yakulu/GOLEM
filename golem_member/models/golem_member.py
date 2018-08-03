@@ -23,6 +23,19 @@ from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
 
+class PartnerArea(models.Model):
+    """ Partner Area """
+    _name = 'golem.partner.area'
+    _description = 'Partner Area'
+    _order = 'sequence asc, name asc'
+    _sql_constraints = [('golem_partner_area_uniq',
+                         'UNIQUE (name)',
+                         _('This patner area has already been used.'))]
+
+    name = fields.Char(required=True, index=True)
+    sequence = fields.Integer()
+
+
 class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
@@ -34,6 +47,10 @@ class ResPartner(models.Model):
     nationality_id = fields.Many2one('res.country', 'Nationality',
                                      auto_join=True,
                                      default=_get_default_nationality_id)
+    area_id = fields.Many2one(
+        'golem.partner.area', index=True, auto_join=True, string='Area',
+        help="Area, quarter... for statistics and activity price."
+    )
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice

@@ -90,6 +90,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <group>
                     <field name="street" placeholder="Street..." />
                     <field name="street2" />
+                    <field name="area_id" placeholder="Area, quarter..."
+                      options="{'no_create': true}" />
                     <field name="zip" placeholder="ZIP" />
                     <field name="city" placeholder="City" />
                   </group>
@@ -307,7 +309,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Member Graph</field>
       <field name="model">golem.member</field>
       <field name="arch" type="xml">
-        <graph string="GOLEM Members" type="pivot">
+        <graph string="Service Users" type="pivot">
           <field name="partner_id" />
         </graph>
       </field>
@@ -324,7 +326,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <menuitem id="golem_member_tool_menu" name="Tools"
       parent="golem_membership.menu_association" sequence="80"
       groups="golem_base.group_golem_user" />
-    <menuitem id="res_partner_category_menu" name="Member Tags"
+    <menuitem id="res_partner_category_menu" name="Service User Tags"
       parent="golem_membership.menu_config_association" sequence="15"
       action="res_partner_category_action"
       groups="golem_base.group_golem_manager" />

@@ -44,6 +44,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             attrs="{'invisible': ['|', ('is_company', '=', True),
             ('is_service_user', '!=', False)]}" />
         </h1>
+        <xpath expr="//div[@class='o_address_format'][1]/field[@name='street2']"
+          position="after">
+          <field name="area_id" placeholder="Area, quarter..."
+            options="{'no_create': true}" />
+        </xpath>
       </field>
     </record>
 
