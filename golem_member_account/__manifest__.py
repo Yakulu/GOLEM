@@ -19,7 +19,8 @@
 {
     'name': 'GOLEM members account',
     'summary': 'GOLEM non-profit members account',
-    'version': '10.0.1.0.1',
+    'description': 'GOLEM non-profit members account',
+    'version': '10.0.1.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',

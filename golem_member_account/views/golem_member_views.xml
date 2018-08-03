@@ -27,6 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
+        <form position="inside">
+          <field name="currency_id" invisible="1" />
+        </form>
         <div name="buttons" position="inside">
           <button type="object" class="oe_stat_button" id="invoice_button"
             icon="fa-pencil-square-o" name="open_partner_invoices"
@@ -39,11 +42,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <span class="o_stat_text">Invoiced</span>
             </div>
           </button>
+          <button type="object" class="oe_stat_button" id="payment_button"
+            icon="fa-money" name="open_partner_payments"
+            context="{'default_partner_id': active_id}">
+            <div class="o_form_field o_stat_info">
+              <span class="o_stat_value">
+                <field name="total_paid" widget='monetary'
+                  options="{'currency_field': 'currency_id'}"/>
+              </span>
+              <span class="o_stat_text">Paid</span>
+            </div>
+          </button>
         </div>
-        <field name="comment" position="before">
-          <field name="last_payment_state" />
-          <field name="currency_id" invisible="1" />
-        </field>
       </field>
     </record>
 

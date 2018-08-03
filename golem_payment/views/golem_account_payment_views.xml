@@ -63,15 +63,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">account.payment</field>
       <field name="arch" type="xml">
         <search>
+          <field name="partner_id" />
           <field name="state" />
           <field name="payment_date" />
           <field name="reference" />
-          <group string="Group By">
-            <filter name="group_week" string="By week"
-              context="{'group_by': 'payment_date:week'}"/>
-            <filter name="group_month" string="By month"
-              context="{'group_by': 'payment_date:month'}"/>
-          </group>
+          <filter name="state_draft" string="Draft"
+            domain="[('state', '=', 'draft')]" />
+          <filter name="state_posted" string="Post"
+            domain="[('state', '=', 'posted')]" />
+          <filter name="state_sent" string="Sent"
+            domain="[('state', '=', 'sent')]" />
+          <filter name="state_reconciled" string="Reconciled"
+            domain="[('state', '=', 'reconciled')]" />
+          <separator />
           <filter name="payment_7_days" string="payment in 7 days"
             domain="[('state','=', 'draft'),
               ('payment_date','&lt;=', (context_today() + datetime.timedelta(days=7)).strftime('%Y-%m-%d')),
@@ -83,6 +87,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <separator />
             <filter name="payment_delayed" string="Payment delayed"
               domain="[('state','=', 'draft'), ('payment_date','&lt;=', context_today().strftime('%Y-%m-%d'))]" />
+          <group string="Group By">
+            <filter name="group_week" string="By week"
+              context="{'group_by': 'payment_date:week'}"/>
+            <filter name="group_month" string="By month"
+              context="{'group_by': 'payment_date:month'}"/>
+          </group>
         </search>
       </field>
     </record>
