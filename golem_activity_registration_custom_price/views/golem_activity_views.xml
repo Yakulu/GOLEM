@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Form -->
+    <record id="golem_activity_form_inherit_custom_price" model="ir.ui.view">
+      <field name="name">GOLEM Activity Adaptations</field>
+      <field name="model">golem.activity</field>
+      <field name="inherit_id" ref="golem_activity.golem_activity_form" />
+      <field name="arch" type="xml">
+        <group name="properties" position="before">
+          <group name="prices" string="Prices">
+            <button name="fill_price_combinations" type="object" class="oe_link"
+              string="Populates other / new options with default price" colspan="1"
+              confirm="Are you sure you want to apply default price to all other options ?" />
+            <button name="reset_price_combinations" type="object" class="oe_link"
+              string="Resets all options with default price" colspan="1"
+              confirm="Are you sure you want to RESET ALL options ?" />
+            <field name="price_line_ids" nolabel="1" colspan="2"
+              context="{'default_activity_id': active_id}"
+              widget="x2many_2d_matrix"
+              field_y_axis="slice_id" field_x_axis="area_id" field_value="price">
+              <tree default_order="area_sequence asc">
+                <field name="activity_id" invisible="1" />
+                <field name="currency_id" invisible="1" />
+                <field name="area_id" />
+                <field name="area_sequence" invisible="1" />
+                <field name="slice_id" />
+                <field name="price" />
+              </tree>
+            </field>
+          </group>
+        </group>
+      </field>
+    </record>
+
+  </data>
+</odoo>

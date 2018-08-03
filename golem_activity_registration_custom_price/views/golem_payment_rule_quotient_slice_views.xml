@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Tree -->
+    <record model="ir.ui.view" id="golem_payment_rule_qfslice_view_tree">
+      <field name="name">GOLEM Payment Rule QF Slice Tree</field>
+      <field name="model">golem.payment.rule.familyquotient.slice</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name" />
+          <field name="currency_id" invisible="1" />
+          <field name="family_quotient_from" />
+          <field name="family_quotient_to" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Search -->
+    <record model="ir.ui.view" id="golem_payment_rule_qfslice_view_search">
+      <field name="name">GOLEM Payment Rule QF Slice Search</field>
+      <field name="model">golem.payment.rule.familyquotient.slice</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+        </search>
+      </field>
+    </record>
+
+
+    <!-- Actions -->
+    <act_window id="golem_payment_rule_qfslice_action"
+      name="Family Quotients"  view_mode="tree"
+      res_model="golem.payment.rule.familyquotient.slice" />
+
+    <!-- Menus -->
+    <menuitem id="golem_payment_rule_menu" name="Pricing rules"
+      parent="golem_activity.golem_activity_menu_configuration"
+      groups="golem_base.group_golem_manager" sequence="20" />
+    <menuitem id="golem_payment_rule_qfslice_menu" name="Family Quotients"
+      parent="golem_payment_rule_menu" action="golem_payment_rule_qfslice_action"
+      sequence="10" />
+    <menuitem id="golem_partner_area_menu" name="Areas"
+      parent="golem_payment_rule_menu" sequence="20"
+      action="golem_member.golem_partner_area_action" />
+
+  </data>
+</odoo>

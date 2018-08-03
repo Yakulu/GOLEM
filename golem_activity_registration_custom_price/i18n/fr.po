@@ -1,0 +1,248 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_registration_custom_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-03 23:02+0000\n"
+"PO-Revision-Date: 2018-08-04 01:17+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_activity_id
+msgid "Activity id"
+msgstr "Activité liée"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_form_inherit_custom_price
+msgid "Are you sure you want to RESET ALL options ?"
+msgstr "Êtes-vous sûr de vouloir REINITIALISER TOUTES les options tarifaires ?"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_form_inherit_custom_price
+msgid "Are you sure you want to apply default price to all other options ?"
+msgstr "Êtes-vous sûr de vouloir appliquer le tarif par défaut aux autres options ?"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_area_id
+msgid "Area"
+msgstr "Territoire"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.menu,name:golem_activity_registration_custom_price.golem_partner_area_menu
+msgid "Areas"
+msgstr "Territoires"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,help:golem_activity_registration_custom_price.field_golem_activity_registration_invoicing_line_activity_price
+msgid "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr "Prix de base pour calculer le prix usager. Parfois appelé prix catalogue."
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_create_uid
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_create_date
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_currency_id
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_currency_id
+msgid "Currency id"
+msgstr "Currency id"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_payment_rule_quotient_slice.py:66
+#, python-format
+msgid "Current family quotient slice cannot be included into another existing slice."
+msgstr "La tranche de quotient familial ne peut être incluse dans une tranche existante."
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_member.py:29
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_registration_invoicing_form_inherit_custom_price
+#, python-format
+msgid "Default price"
+msgstr "Prix par défaut"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_display_name
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.actions.act_window,name:golem_activity_registration_custom_price.golem_payment_rule_qfslice_action
+#: model:ir.ui.menu,name:golem_activity_registration_custom_price.golem_payment_rule_qfslice_menu
+msgid "Family Quotients"
+msgstr "Quotients familiaux"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_member.py:61
+#, python-format
+msgid "Family quotient and area"
+msgstr "Quotient familial et territoire"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_member.py:59
+#, python-format
+msgid "Family quotient but random area"
+msgstr "Quotient familial mais territoire aléatoire"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_family_quotient_from
+msgid "Family quotient from"
+msgstr "QF à partir de"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_payment_rule_quotient_slice.py:56
+#, python-format
+msgid "Family quotient from is in range of an existing slice."
+msgstr "La borne basse du quotient familial fait partie d'une tranche existante."
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_slice_id
+msgid "Family quotient slice"
+msgstr "Tranche de quotient familial"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_family_quotient_to
+msgid "Family quotient to"
+msgstr "QF jusqu'à"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_payment_rule_quotient_slice.py:61
+#, python-format
+msgid "Family quotient to is in range of an existing slice."
+msgstr "La borne haute du quotient familial fait partie d'une tranche existante."
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_activity
+msgid "GOLEM Activity"
+msgstr "Activité"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_activity_price_line
+msgid "GOLEM Activity Price Line"
+msgstr "GOLEM Activity Price Line"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_activity_registration_invoicing_line
+msgid "GOLEM Activity Registration Invoicing Lines"
+msgstr "GOLEM Activity Registration Invoicing Lines"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_member
+msgid "GOLEM Member"
+msgstr "Usager"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_payment_rule_familyquotient_slice
+msgid "GOLEM Payment Rule Family Quotient Slice"
+msgstr "GOLEM Payment Rule Family Quotient Slice"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model,name:golem_activity_registration_custom_price.model_golem_payment_rule_geo
+msgid "GOLEM Payment Rule Geo"
+msgstr "GOLEM Payment Rule Geo"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_id
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line___last_update
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_write_uid
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_write_date
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_payment_rule_familyquotient_slice_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_form_inherit_custom_price
+msgid "Populates other / new options with default price"
+msgstr "Alimenter les autres ou nouvelles options avec le tarif par défaut"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_price
+msgid "Price"
+msgstr "Prix"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_ids
+msgid "Price lines"
+msgstr "Lignes tarifaires"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_form_inherit_custom_price
+msgid "Prices"
+msgstr "Tarifs"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.menu,name:golem_activity_registration_custom_price.golem_payment_rule_menu
+msgid "Pricing rules"
+msgstr "Règles tarifaires"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.ui.view,arch_db:golem_activity_registration_custom_price.golem_activity_form_inherit_custom_price
+msgid "Resets all options with default price"
+msgstr "Réinitialiser toutes les options tarifaires avec le prix par défaut"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_registration_invoicing_line_activity_price
+msgid "Sale Price"
+msgstr "Prix de vente"
+
+#. module: golem_activity_registration_custom_price
+#: model:ir.model.fields,field_description:golem_activity_registration_custom_price.field_golem_activity_price_line_area_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_payment_rule_quotient_slice.py:49
+#, python-format
+msgid "The 'to' family quotient must be higher than the 'from' one."
+msgstr "La borne haute du quotient familial doit être supérieur à la borne basse."
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_activity_price_line.py:30
+#: sql_constraint:golem.activity.price.line:0
+#, python-format
+msgid "This activity, geo rule, FQ slice rule has already been used."
+msgstr "Cette activité, ce territoire et cette tranche QF ont déjà été renseignées."
+
+#. module: golem_activity_registration_custom_price
+#: code:addons/golem_activity_registration_custom_price/models/golem_payment_rule_quotient_slice.py:31
+#: sql_constraint:golem.payment.rule.familyquotient.slice:0
+#, python-format
+msgid "This name has already been used. It must be unique."
+msgstr "Ce nom a déjà été utilisé. Il doit être unique."
+
