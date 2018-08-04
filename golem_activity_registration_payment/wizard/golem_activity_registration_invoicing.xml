@@ -31,28 +31,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             Please confirm activity prices and choose a payment schedule if needed.
           </p>
           <group states="init">
-            <field name="season_id" readonly="1" />
-            <field name="member_id" readonly="1" />
-            <field name="line_ids" string="Activities and Prices">
-              <tree delete="false" create="false" edit="true" editable="bottom">
-                <field name="activity_id" readonly="1" />
-                <field name="currency_id" invisible="1" />
-                <field name="price" sum="Total" />
-              </tree>
-            </field>
-            <field name="schedule_id" context="{'default_season_id': season_id}" />
-            <field name="journal_id" string="Payment method"
-              options="{'no_create': True}"
-              attrs="{'invisible': [('schedule_id', '=', False)],
-              'required': [('schedule_id', '!=', False)]}" />
+            <group name="lines" colspan="2">
+              <field name="season_id" readonly="1" />
+              <field name="member_id" readonly="1" />
+              <field name="line_ids" string="Activities and Prices">
+                <tree delete="false" create="false" edit="true" editable="bottom">
+                  <field name="activity_id" readonly="1" />
+                  <field name="currency_id" invisible="1" />
+                  <field name="price" sum="Total" />
+                </tree>
+              </field>
+            </group>
+            <group name="payment" colspan="2">
+              <field name="schedule_id" context="{'default_season_id': season_id}" />
+              <field name="journal_id" string="Payment method"
+                options="{'no_create': True}"
+                attrs="{'invisible': [('schedule_id', '=', False)],
+                'required': [('schedule_id', '!=', False)]}" />
+            </group>
           </group>
           <p states="init">If the service user wants to pay with several payment methods, please validate with the main one, go to the payments and change journal on those needed.</p>
           <p states="final">
             Congratulations, activities had been confirmed and invoiced.
           </p>
           <group states="final">
-            <field name="invoice_id" readonly="1" />
-            <field name="payment_ids" readonly="1" />
+            <group>
+              <field name="invoice_id" readonly="1" />
+              <field name="payment_ids" readonly="1" />
+            </group>
           </group>
           <footer>
             <button name="validate" string="Validate" type="object"
