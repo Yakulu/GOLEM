@@ -37,7 +37,7 @@ class GolemPaymentScheduleDay(models.Model):
 
     day = fields.Date(required=True)
     schedule_id = fields.Many2one('golem.payment.schedule', required=True,
-                                  auto_join=True)
+                                  auto_join=True, ondelete='cascade')
 
 
 class GolemPaymentSchedule(models.Model):

@@ -30,10 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <group>
             <field name="name" />
             <field name="season_id" options="{'no_open': True, 'no_create': True}" />
-            <field name="day_ids">
+            <field name="day_ids" context="{'default_schedule_id': active_id}">
               <tree editable="bottom">
                 <field name="day" />
-                <field name="schedule_id" invisible="1" />
+                <field name="schedule_id" invisible="1" required="0" />
               </tree>
             </field>
             <field name="occurences" />
