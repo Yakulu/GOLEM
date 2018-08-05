@@ -33,7 +33,11 @@ class GolemMember(models.Model):
         """ Check if there are confirmed registrations with no invoice linked """
         for member in self:
             regis = member.activity_registration_ids
-            regis = regis.filtered(lambda r: r.state == 'confirmed' and not r.invoice_line_id)
+            regis = regis.filtered(
+                lambda r: (r.state == 'confirmed' and
+                           (not r.invoice_line_id or
+                            r.invoice_line_id.invoice_id.state == 'cancel'))
+            )
             member.has_invoicable_registrations = bool(len(regis))
 
     def invoice_line_data_get(self, registration):
@@ -48,7 +52,9 @@ class GolemMember(models.Model):
         self.ensure_one()
         member = self[0]
         registrations = member.activity_registration_ids.filtered(
-            lambda r: r.state == 'confirmed' and not r.invoice_line_id
+            lambda r: r.state == 'confirmed' and
+            (not r.invoice_line_id or
+             r.invoice_line_id.invoice_id.state == 'cancel')
         )
         if registrations:
             invoicing = self.env['golem.activity.registration.invoicing'].create({
