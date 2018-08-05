@@ -20,13 +20,13 @@
     'summary': 'Usage of account invoice and account payments',
     'description': ''' Ability to create invoice(s) from activity subscriptions
     and anticipate multiple payments. ''',
-    'version': '10.0.0.3.0',
+    'version': '10.0.0.3.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': True,
     'installable': True,
-    'depends': ['account', 'golem_season'],
+    'depends': ['account', 'payment', 'golem_season'],
     'data': ['views/golem_payment_views.xml',
              'views/golem_account_payment_views.xml',
              'security/ir.model.access.csv']
