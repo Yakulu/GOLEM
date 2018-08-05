@@ -62,6 +62,21 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                                  ondelete='cascade')
     payment_ids = fields.Many2many('account.payment', string='Generated payments')
 
+
+    def _create_invoice_line(self, product, price, invoice):
+        """ Create invoice line : needs cache record for onchange, then real
+        writing... """
+        invoice_line = self.env['account.invoice.line'].new({
+            'product_id': product.id,
+            'invoice_id': invoice.id
+        })
+        invoice_line._onchange_product_id()
+        line_values = dict(invoice_line._cache)
+        line_values['price_unit'] = price
+        invoice_line = self.env['account.invoice.line'].create(line_values)
+        invoice.compute_taxes()
+        return invoice_line
+
     @api.multi
     def _create_invoice(self):
         """ Create invoice and lines """
@@ -74,17 +89,7 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
         })
         for line in self.line_ids:
             product = line.activity_id.product_id
-            # Handling of invoice lines : needs cache record for onchange, then
-            # real writing...
-            invoice_line = self.env['account.invoice.line'].new({
-                'product_id': product.id,
-                'invoice_id': invoice.id
-            })
-            invoice_line._onchange_product_id()
-            line_values = dict(invoice_line._cache)
-            line_values['price_unit'] = line.price
-            invoice_line = self.env['account.invoice.line'].create(line_values)
-            invoice.compute_taxes()
+            invoice_line = self._create_invoice_line(product, line.price, invoice)
             line.registration_id.invoice_line_id = invoice_line.id
         return invoice
 
@@ -120,9 +125,7 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     def validate(self):
         """ Validate and create invoice and payments """
         self.ensure_one()
-        draft_registrations = self.member_id.activity_registration_ids.filtered(
-            lambda r: r.state == 'draft')
-        draft_registrations.write({'state': 'confirmed'})
+        self[0].line_ids.mapped('registration_id').write({'state': 'confirmed'})
         invoice = self._create_invoice()
         self.invoice_id = invoice
         payments = self._create_payments(invoice)
