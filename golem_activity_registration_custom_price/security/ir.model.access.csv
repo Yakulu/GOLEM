@@ -1,6 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_golem_payment_rule_geo_user,Access GOLEM Payment Rule ZIP User,model_golem_payment_rule_geo,golem_base.group_golem_user,1,0,0,0
-access_golem_payment_rule_geo_manager,Access GOLEM Payment Rule ZIP Manager,model_golem_payment_rule_geo,golem_base.group_golem_manager,1,1,1,1
 access_golem_payment_rule_familyquotient_slice_user,Access GOLEM Payment Rule Familyquotient Slice User,model_golem_payment_rule_familyquotient_slice,golem_base.group_golem_user,1,0,0,0
 access_golem_payment_rule_familyquotient_slice_manager,Access GOLEM Payment Rule Familyquotient Slice Manager,model_golem_payment_rule_familyquotient_slice,golem_base.group_golem_manager,0,1,1,1
 access_golem_activity_priceline_user,Access GOLEM Activity Price Line User,model_golem_activity_price_line,golem_base.group_golem_user,1,0,0,0
