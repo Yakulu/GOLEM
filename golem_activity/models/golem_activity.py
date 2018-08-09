@@ -180,6 +180,15 @@ class GolemActivity(models.Model):
                                 ('sun', _('Sunday'))], copy=False)
     hour_start = fields.Float('Start time', copy=False)
     hour_stop = fields.Float('Stop time', copy=False)
+    hour_start_display = fields.Char('Hour start',
+                                     compute='_compute_hour_start_display')
+
+    @api.depends('hour_start')
+    def _compute_hour_start_display(self):
+        """ Computes datetime from day hour start """
+        for activity in self:
+            activity.hour_start_display = (activity.hour_start if
+                                           activity.hour_start else u'')
 
     @api.onchange('hour_start')
     def _onchange_hour_start(self):

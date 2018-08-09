@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <tree position="attributes">
           <attribute name="colors">red: places_remain == 0;orange: places_remain &lt;= 4;</attribute>
         </tree>
-        <field name="date_start" position="after">
+        <field name="hour_start_display" position="after">
           <field name="places" invisible="True" />
           <field name="places_remain" string="Remain" />
         </field>

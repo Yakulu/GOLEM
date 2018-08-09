@@ -118,9 +118,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="type_id" />
           <field name="full_name" />
           <field name="animator_id" />
-          <field name="weekday" string="Day"
-              attrs="{'invisible': [('is_recurrent', '=', False)]}" />
+          <field name="weekday" string="Day" />
           <field name="date_start" string="Date" />
+          <field name="hour_start_display" string="Hour" widget="float_time" />
           <field name="list_price" sum="True" />
         </tree>
       </field>
