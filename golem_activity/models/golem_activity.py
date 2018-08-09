@@ -50,6 +50,7 @@ class GolemActivity(models.Model):
     _description = 'GOLEM Activity'
     _inherit = 'mail.thread'
     _inherits = {'product.template': 'product_id'}
+    _order = 'default_code, name, id'
     _rec_name = 'full_name'
 
     product_id = fields.Many2one('product.template', required=True,
