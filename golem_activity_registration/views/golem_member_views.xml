@@ -47,8 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="model">golem.member</field>
       <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
-          <field name="number" position="before">
-            <field name="activity_registration_all_ids" widget="many2one"/>
+          <field name="season_ids" position="after">
+            <field name="activity_registration_all_ids" widget="many2one"
+              string="Practiced activities" />
           </field>
       </field>
     </record>

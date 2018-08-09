@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-02 16:46+0000\n"
-"PO-Revision-Date: 2018-08-02 18:47+0200\n"
+"POT-Creation-Date: 2018-08-09 14:23+0000\n"
+"PO-Revision-Date: 2018-08-09 16:38+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -213,6 +213,11 @@ msgstr "Places"
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_places_used
 msgid "Places used"
 msgstr "Places prises"
+
+#. module: golem_activity_registration
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_member_searches_inherit_golem_activity_registration
+msgid "Practiced activities"
+msgstr "Activités pratiquées"
 
 #. module: golem_activity_registration
 #: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_tree_inherit_registration
