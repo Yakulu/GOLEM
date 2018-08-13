@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+  <data>
+    <!-- Forms -->    
+    <record id="golem_membership_family_invoice_form" model="ir.ui.view">
+      <field name="name">membership.family.invoice.view.form</field>
+      <field name="model">golem.membership.invoice</field>
+      <field name="arch" type="xml">
+        <form string="Membership Invoice">
+          <group>
+            <field name="family_id" readonly="1"/>
+            <field name="members_ids" invisible="1" widget="many2many_tags"/>
+            <field name="on_the_name_of" options="{'no_create': True}" />
+            <field name="product_id" domain="[('membership','=',True)]"
+              widget="selection" />
+            <field name="member_price" />
+          </group>
+          <footer>
+            <button string="Invoice Membership" name="membership_family_invoice"
+              type="object" class="oe_highlight"  />
+                or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>
