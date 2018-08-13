@@ -30,8 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <header>
             <button name="family_membership" type="object"
               string="Family membership" class="oe_highlight"
-              attrs="{'invisible': ['|', ('id', '=', False), ('member_ids', '=', False)]}" />
+              attrs="{'invisible': ['|', ('id', '=', False), ('member_ids', '=', [])]}" />
             <field name="id" invisible="1"/>
+            <field name="member_ids" invisible="1"/>
           </header>
         </sheet>
       </field>
