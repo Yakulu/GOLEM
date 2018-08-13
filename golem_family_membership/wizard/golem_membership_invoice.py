@@ -18,7 +18,7 @@
 
 """ GOLEM Membership Invoice Adaptations"""
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 class GolemMembershipInvoice(models.TransientModel):
     """ GOLEM Membership Invoice adaptations """
@@ -47,9 +47,9 @@ class GolemMembershipInvoice(models.TransientModel):
                  'amount': 0}
         gen = (member for member in record.members_ids if member != record.on_the_name_of)
         for member in gen:
-            id = member.create_membership_invoice(datas=datas)
-            self.env['account.invoice'].browse(id).action_invoice_open()
-            invoice_list += id
+            id_membership = member.create_membership_invoice(datas=datas)
+            self.env['account.invoice'].browse(id_membership).action_invoice_open()
+            invoice_list += id_membership
 
         search_view_id = self.env.ref('account.view_account_invoice_filter')
         form_view_id = self.env.ref('account.invoice_form')
