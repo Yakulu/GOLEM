@@ -24,7 +24,8 @@ class GolemActivity(models.Model):
     _inherit = 'golem.activity'
 
     price_line_ids = fields.One2many('golem.activity.price.line',
-                                     'activity_id', string='Price lines')
+                                     'activity_id', string='Price lines',
+                                     copy=True)
 
     @api.multi
     def reset_price_combinations(self):

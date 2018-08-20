@@ -24,7 +24,7 @@
     - allow set price per area and slice ;
     - computes automatically applicable price ;
     - anticipate ruleset to be implemented for computing.''',
-    'version': '10.0.0.1.1',
+    'version': '10.0.0.1.2',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
