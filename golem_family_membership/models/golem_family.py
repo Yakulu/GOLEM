@@ -18,7 +18,8 @@
 
 """ GOLEM Families Adaptations"""
 
-from odoo import models, fields, api, _
+from odoo import models, api, _
+
 
 class GolemFamily(models.Model):
     """ GOLEM Family Adaptations """
@@ -28,12 +29,12 @@ class GolemFamily(models.Model):
     def family_membership(self):
         """ Wizard call for family membership """
         self.ensure_one()
-        family_id = self[0]
+        family = self[0]
         return {
             'name' : _('Please fill the family membership form'),
             'type' : 'ir.actions.act_window',
             'res_model' : 'golem.membership.invoice',
-            'context': {'default_family_id': family_id.id},
+            'context': {'default_family_id': family.id},
             'view_mode': 'form',
             'target': 'new'
             }

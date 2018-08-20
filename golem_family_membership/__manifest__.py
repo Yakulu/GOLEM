@@ -17,16 +17,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM families membership',
-    'summary': 'GOLEM Families membership ',
-    'description': 'GOLEM Families Membership',
-    'version': '10.0.0.0.0',
+    'name': 'GOLEM Family Memberships',
+    'summary': 'GOLEM Family Membership Management',
+    'description': 'GOLEM Family Membership Management',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef ELOUAHBY',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_family'],
+    'depends': ['golem_family', 'membership'],
     'data': ['views/golem_family_views.xml',
              'wizard/golem_membership_invoice_views.xml']
 }

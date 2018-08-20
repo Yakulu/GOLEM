@@ -24,27 +24,26 @@ class GolemMembershipInvoice(models.TransientModel):
     """ GOLEM Membership Invoice adaptations """
     _inherit = 'golem.membership.invoice'
 
-    family_id = fields.Many2one('golem.family')
+    family_id = fields.Many2one('golem.family', required=True)
     members_ids = fields.Many2many('res.partner')
     on_the_name_of = fields.Many2one('res.partner', domain="[('id', '=', members_ids[0][2])]")
 
     @api.onchange('family_id')
-    def onchange_family_id(self):
-        """ fill members_ids """
+    def onchange_family(self):
+        """ Fill members_ids """
         for record in self:
-            for member in record.family_id.member_ids:
-                record.members_ids += member
+            record.members_ids = [(6, False, record.family_id.members_ids.ids)]
 
     @api.multi
     def membership_family_invoice(self):
         """ Create family membership """
         self.ensure_one()
         record = self[0]
-        datas = {'membership_product_id': self.product_id.id,
-                 'amount': self.member_price}
+        datas = {'membership_product_id': record.product_id.id,
+                 'amount': record.member_price}
         invoice_list = record.on_the_name_of.create_membership_invoice(datas=datas)
-        datas = {'membership_product_id': self.product_id.id,
-                 'amount': 0}
+        datas = {'membership_product_id': record.product_id.id,
+                 'amount': 0.0}
         gen = (member for member in record.members_ids if member != record.on_the_name_of)
         for member in gen:
             id_membership = member.create_membership_invoice(datas=datas)

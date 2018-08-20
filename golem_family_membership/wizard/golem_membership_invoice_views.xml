@@ -16,17 +16,19 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <odoo>
   <data>
-    <!-- Forms -->    
+
+    <!-- Forms -->
     <record id="golem_membership_family_invoice_form" model="ir.ui.view">
-      <field name="name">membership.family.invoice.view.form</field>
+      <field name="name">GOLEM Membership Family Invoice Form</field>
       <field name="model">golem.membership.invoice</field>
       <field name="arch" type="xml">
         <form string="Membership Invoice">
           <group>
-            <field name="family_id" readonly="1"/>
-            <field name="members_ids" invisible="1" widget="many2many_tags"/>
+            <field name="family_id" readonly="1" />
+            <field name="members_ids" widget="many2many_tags" />
             <field name="on_the_name_of" options="{'no_create': True}" />
             <field name="product_id" domain="[('membership','=',True)]"
               widget="selection" />
@@ -34,12 +36,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </group>
           <footer>
             <button string="Invoice Membership" name="membership_family_invoice"
-              type="object" class="oe_highlight"  />
+              type="object" class="oe_highlight" />
                 or
             <button string="Cancel" class="oe_link" special="cancel" />
           </footer>
         </form>
       </field>
     </record>
+
   </data>
 </odoo>
