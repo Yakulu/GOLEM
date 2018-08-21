@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Actions -->
     <act_window id="golem_member_action" name="Subscribers"
       res_model="res.partner" view_mode="kanban,tree,form,graph"
-      domain="[('membership_state', '!=', 'none')]" />
+      domain="[('membership_state', 'not in', ['none', 'canceled'])]" />
     <act_window id="golem_member_user_action" name="Service Users"
       res_model="golem.member" view_mode="kanban,tree,form,graph" />
     <act_window id="res_partner_category_action" name="GOLEM Members Tags"
