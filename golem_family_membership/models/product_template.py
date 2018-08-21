@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,4 +15,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import product_template, membership, golem_family
+""" Product adaptations """
+
+from odoo import models, fields
+
+
+class ProductTemplate(models.Model):
+    """ Product Template adaptations """
+    _inherit = 'product.template'
+
+    family_membership = fields.Boolean(default=False)

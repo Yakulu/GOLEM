@@ -18,12 +18,15 @@
 
 """ GOLEM Families Adaptations"""
 
-from odoo import models, api, _
+from odoo import models, fields, api, _
 
 
 class GolemFamily(models.Model):
     """ GOLEM Family Adaptations """
     _inherit = 'golem.family'
+
+    member_line_ids = fields.One2many('membership.membership_line',
+                                      'family_id', string='Membership lines')
 
     @api.multi
     def family_membership(self):

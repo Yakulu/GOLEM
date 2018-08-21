@@ -20,22 +20,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_family_form_inherit_golem_family">
       <field name="name">Golem Family form adaptations</field>
       <field name="model">golem.family</field>
       <field name="inherit_id" ref="golem_family.golem_family_form" />
       <field name="arch" type="xml">
-        <sheet position="before">
-          <header>
+        <page name="members" position="after">
+          <page name="subscriptions" string="Subscriptions">
+            <field name="id" invisible="1" />
             <button name="family_membership" type="object"
-              string="Family membership" class="oe_highlight"
+              string="Add a new family membership" class="oe_link"
               attrs="{'invisible': ['|', ('id', '=', False), ('member_ids', '=', [])]}" />
-            <field name="id" invisible="1"/>
-            <field name="member_ids" invisible="1"/>
-          </header>
-        </sheet>
+            <field name="member_line_ids" nolabel="1" readonly="1">
+              <tree string="Memberships">
+                <field name="date"/>
+                <field name="membership_id"/>
+                <field name="partner" />
+                <field name="member_price"/>
+                <field name="account_invoice_id"/>
+                <field name="state"/>
+              </tree>
+            </field>
+          </page>
+        </page>
       </field>
     </record>
+
   </data>
 </odoo>

@@ -16,4 +16,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import product_template, membership, golem_family
+""" GOLEM Families Adaptations"""
+
+from odoo import models, fields
+
+
+class MembershipLine(models.Model):
+    """ Membership Line Adaptations """
+    _inherit = 'membership.membership_line'
+
+    family_id = fields.Many2one('golem.family', string='Family',
+                                ondelete='cascade', index=True)
