@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_family_membership
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-21 09:06+0000\n"
+"PO-Revision-Date: 2018-08-21 09:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_family_form_inherit_golem_family
+msgid "Add a new family membership"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_membership_family_invoice_form
+msgid "Cancel"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.membership_product_search_form_view_inherit_golem_family_membership
+msgid "Classic"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_golem_membership_invoice_member_ids
+msgid "Concerned members"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_golem_membership_invoice_family_id
+#: model:ir.model.fields,field_description:golem_family_membership.field_membership_membership_line_family_id
+#: model:ir.ui.view,arch_db:golem_family_membership.membership_product_search_form_view_inherit_golem_family_membership
+msgid "Family"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_golem_activity_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_product_product_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_product_template_family_membership
+msgid "Family membership"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model,name:golem_family_membership.model_golem_family
+msgid "GOLEM Family Entity"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model,name:golem_family_membership.model_golem_membership_invoice
+msgid "GOLEM MemberShip invoicing"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_membership_family_invoice_form
+msgid "Invoice Membership"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_membership_family_invoice_form
+msgid "Membership Invoice"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_golem_family_member_line_ids
+msgid "Membership lines"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_family_form_inherit_golem_family
+msgid "Memberships"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model.fields,field_description:golem_family_membership.field_golem_membership_invoice_on_the_name_of
+msgid "On the name of"
+msgstr ""
+
+#. module: golem_family_membership
+#: code:addons/golem_family_membership/models/golem_family.py:37
+#, python-format
+msgid "Please fill the family membership form"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model,name:golem_family_membership.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_family_form_inherit_golem_family
+msgid "Subscriptions"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.model,name:golem_family_membership.model_membership_membership_line
+msgid "membership.membership_line"
+msgstr ""
+
+#. module: golem_family_membership
+#: model:ir.ui.view,arch_db:golem_family_membership.golem_membership_family_invoice_form
+msgid "or"
+msgstr ""
+
