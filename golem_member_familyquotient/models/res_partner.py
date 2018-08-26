@@ -19,9 +19,9 @@
 
 from odoo import models, fields
 
-class GolemMember(models.Model):
-    """ GOLEM Member adaptations """
-    _inherit = 'golem.member'
+class Partner(models.Model):
+    """ Partnner adaptations """
+    _inherit = 'res.partner'
 
     caf_number = fields.Char('CAF Number')
     family_quotient = fields.Monetary()

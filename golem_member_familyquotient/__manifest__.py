@@ -18,12 +18,13 @@
 {
     'name': 'GOLEM Member Family Quotient',
     'summary': 'GOLEM Members Family Quotients',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_member'],
-    'data': ['views/golem_member_views.xml']
+    'depends': ['partner_contact_personal_information_page', 'golem_member'],
+    'data': ['views/golem_member_views.xml',
+             'views/res_partner_views.xml']
 }

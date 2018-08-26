@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-03 22:59+0000\n"
-"PO-Revision-Date: 2018-08-03 22:59+0000\n"
+"POT-Creation-Date: 2018-08-26 15:40+0000\n"
+"PO-Revision-Date: 2018-08-26 15:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,25 @@ msgstr ""
 
 #. module: golem_member_familyquotient
 #: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_caf_number
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_res_partner_caf_number
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_res_users_caf_number
 msgid "CAF Number"
 msgstr ""
 
 #. module: golem_member_familyquotient
 #: model:ir.model.fields,field_description:golem_member_familyquotient.field_golem_member_family_quotient
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_res_partner_family_quotient
+#: model:ir.model.fields,field_description:golem_member_familyquotient.field_res_users_family_quotient
 msgid "Family quotient"
 msgstr ""
 
 #. module: golem_member_familyquotient
 #: model:ir.model,name:golem_member_familyquotient.model_golem_member
 msgid "GOLEM Member"
+msgstr ""
+
+#. module: golem_member_familyquotient
+#: model:ir.model,name:golem_member_familyquotient.model_res_partner
+msgid "Partner"
 msgstr ""
 
