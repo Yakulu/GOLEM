@@ -121,7 +121,7 @@ class GolemMember(models.Model):
     number_manual = fields.Char('Manual number', size=50, index=True,
                                 help='Manual number overwriting automatic '
                                 'numbering')
-    pictures_agreement = fields.Boolean('Pictures agreement?', default=True)
+    pictures_agreement = fields.Boolean('Pictures agreement?')
     electronic_processing_agreement = fields.Boolean('Electronic Processing Agreement?',
                                                      default=True)
     opt_out_sms = fields.Boolean('Out of SMS campaigns?',
