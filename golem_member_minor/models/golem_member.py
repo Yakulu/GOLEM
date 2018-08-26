@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,27 +17,38 @@
 
 """ GOLEM Member Minor management """
 
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 from odoo import models, fields, api
+
+ADULT_DURATION = timedelta(days=365.25*18)
 
 class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
-    ADULT_DURATION = timedelta(days=365*18)
     legal_guardian_ids = fields.Many2many(
-        'res.partner', string='Legal guardians', index=True,
+        'res.partner', string='Legal guardians', index=True, auto_join=True,
         domain="['&', ('is_company', '=', False), ('id', '!=', partner_id)]")
     activities_participation = fields.Boolean('Activities participation?')
+    leave_alone = fields.Boolean('Can leave alone?')
     is_minor = fields.Boolean('Is minor?', compute='_compute_is_minor',
-                              store=True, default=False)
+                              search='_search_is_minor', default=False)
 
-    @api.multi
     @api.depends('birthdate_date')
     def _compute_is_minor(self):
         for member in self:
             if member.birthdate_date:
-                member.is_minor = ((datetime.now() - self.ADULT_DURATION) <
-                                   fields.Datetime.from_string(member.birthdate_date))
+                member.is_minor = ((date.today() - ADULT_DURATION) <
+                                   fields.Date.from_string(member.birthdate_date))
             else:
                 member.is_minor = False
+
+    def _search_is_minor(self, operator, value):
+        """ Search function for is minor """
+        today = date.today()
+        adult_date = today - ADULT_DURATION
+        if operator == '=':
+            operator = '>' if value else '<='
+        else:
+            operator = '<=' if value else '>'
+        return [('birthdate_date', operator, adult_date)]

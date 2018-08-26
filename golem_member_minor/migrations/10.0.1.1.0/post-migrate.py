@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,15 +15,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM members minor',
-    'summary': 'GOLEM non-profit members minor management',
-    'version': '10.0.1.1.0',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['views/golem_member_views.xml']
-}
+""" Post-migration script """
+
+from openupgradelib import openupgrade
+
+@openupgrade.migrate(use_env=False)
+def migrate(cursor, version):
+    """ Remove is_minor obsolete column """
+    cursor.execute('ALTER TABLE golem_member DROP COLUMN IF EXISTS is_minor')

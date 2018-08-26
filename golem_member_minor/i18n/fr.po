@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 20:16+0000\n"
-"PO-Revision-Date: 2017-05-01 20:16+0000\n"
+"POT-Creation-Date: 2018-08-26 16:15+0000\n"
+"PO-Revision-Date: 2018-08-26 18:15+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: golem_member_minor
 #: model:ir.model.fields,field_description:golem_member_minor.field_golem_member_activities_participation
@@ -22,9 +21,14 @@ msgid "Activities participation?"
 msgstr "Participation aux activités?"
 
 #. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_member_leave_alone
+msgid "Can leave alone?"
+msgstr "Peut quitter la structure seul?"
+
+#. module: golem_member_minor
 #: model:ir.model,name:golem_member_minor.model_golem_member
 msgid "GOLEM Member"
-msgstr "GOLEM : Adhérent"
+msgstr "Usager"
 
 #. module: golem_member_minor
 #: model:ir.ui.view,arch_db:golem_member_minor.golem_member_search_inherit_minor
