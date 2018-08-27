@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-03 23:00+0000\n"
-"PO-Revision-Date: 2018-08-04 01:09+0200\n"
+"POT-Creation-Date: 2018-08-27 10:09+0000\n"
+"PO-Revision-Date: 2018-08-27 12:10+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,12 +34,22 @@ msgid "<span style=\"padding-right: 5px;\">Total</span>"
 msgstr "<span style=\"padding-right: 5px;\">Total</span>"
 
 #. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Activities and Prices"
 msgstr "Activités et tarifs"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/models/golem_member.py:70
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_activity_id
+msgid "Activity id"
+msgstr "Activité liée"
+
+#. module: golem_activity_registration_payment
+#: code:addons/golem_activity_registration_payment/models/golem_member.py:76
 #, python-format
 msgid "All confirmed registrations had already been invoiced."
 msgstr "Toutes les inscriptions confirmées ont déjà été facturées."
@@ -94,6 +104,12 @@ msgid "Date"
 msgstr "Date "
 
 #. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_display_name
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Display invoice"
 msgstr "Afficher la facture"
@@ -129,13 +145,15 @@ msgid "GOLEM Member"
 msgstr "Adhérent"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:148
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:151
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_invoice_id
 #, python-format
 msgid "Generated invoice"
 msgstr "Facture générée"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:163
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:166
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_payment_ids
 #, python-format
 msgid "Generated payments"
 msgstr "Paiements générés"
@@ -144,6 +162,17 @@ msgstr "Paiements générés"
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_member_has_invoicable_registrations
 msgid "Has invoicable registrations ?"
 msgstr "A des inscriptions à facturer ?"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_id
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,help:golem_activity_registration_payment.field_golem_activity_registration_invoicing_schedule_id
+msgid "If no schedule is selected, only the invoice will be create. Otherwise, draft payments will be generated."
+msgstr "Si aucune échéance n'est sélectionnée, la facture seule sera créée. Sinon, des paiements en brouillon seront en plus générés."
 
 #. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
@@ -198,6 +227,17 @@ msgid "Invoicing"
 msgstr "Facturation"
 
 #. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_invoicing_id
+msgid "Invoicing id"
+msgstr "Facturation"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing___last_update
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_activity_registration_payment
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_write_uid
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_write_uid
 msgid "Last Updated by"
@@ -208,6 +248,11 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_member_id
+msgid "Member"
+msgstr "Usager"
 
 #. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_member_card_template_inherit_golem_activity_resgitration_payment
@@ -235,9 +280,15 @@ msgid "Paid Invoice"
 msgstr "Facture Payée"
 
 #. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_journal_id
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Payment method"
 msgstr "Moyen de paiement"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_schedule_id
+msgid "Payment schedule"
+msgstr "Échéancier de paiement"
 
 #. module: golem_activity_registration_payment
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_member_card_template_inherit_golem_activity_resgitration_payment
@@ -250,7 +301,17 @@ msgid "Please confirm activity prices and choose a payment schedule if needed."
 msgstr "Merci de confirmer les coûts des activités et de choisir, si souhaité, un échéancier de paiement."
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/models/golem_member.py:58
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_price
+msgid "Price"
+msgstr "Prix"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_line_registration_id
+msgid "Registration id"
+msgstr "Inscription"
+
+#. module: golem_activity_registration_payment
+#: code:addons/golem_activity_registration_payment/models/golem_member.py:69
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 #, python-format
 msgid "Registration invoicing"
@@ -262,6 +323,12 @@ msgid "Residual"
 msgstr "Restant"
 
 #. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_season_id
+msgid "Season"
+msgstr "Saison"
+
+#. module: golem_activity_registration_payment
+#: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_state
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_member_card_template_inherit_golem_activity_resgitration_payment
 msgid "State"
 msgstr "État"
@@ -272,13 +339,13 @@ msgid "Status"
 msgstr "État"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:144
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:147
 #, python-format
 msgid "There is no generated invoice."
 msgstr "Il n'y a pas de facture générée."
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:159
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:162
 #, python-format
 msgid "There is no generated payments."
 msgstr "Il n'y a pas de paiement généré."
@@ -292,4 +359,14 @@ msgstr "Total"
 #: model:ir.ui.view,arch_db:golem_activity_registration_payment.golem_activity_registration_invoicing_view_form
 msgid "Validate"
 msgstr "Valider"
+
+#. module: golem_activity_registration_payment
+#: selection:golem.activity.registration.invoicing,state:0
+msgid "final"
+msgstr "final"
+
+#. module: golem_activity_registration_payment
+#: selection:golem.activity.registration.invoicing,state:0
+msgid "init"
+msgstr "init"
 
