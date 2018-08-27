@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,4 +15,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import models
+"""IR Mail Server fix for >64 characters pass """
+
+from odoo import models, fields
+
+
+class IrMailServer(models.Model):
+    """IR Mail Server fix for >64 characters pass """
+    _inherit = 'ir.mail_server'
+
+    smtp_user = fields.Char(size=100)
+    smtp_pass = fields.Char(size=100)
