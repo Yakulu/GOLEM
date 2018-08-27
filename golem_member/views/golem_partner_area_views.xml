@@ -48,8 +48,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Menus -->
     <menuitem id="golem_partner_area_menu" name="Areas"
-      parent="res_partner_category_menu" action="golem_partner_area_action"
-      sequence="20" />
+      parent="golem_membership.menu_config_association" sequence="20"
+      action="golem_partner_area_action" />
 
   </data>
 </odoo>
