@@ -38,7 +38,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
             <group>
               <group>
-                <field name="season_id" required="True" />
+                <field name="season_id" required="True"
+                  options="{'no_create': True}" />
                 <field name="animator_id" />
                 <field name="type_id" required="True"
                   options="{'no_create': True}" />

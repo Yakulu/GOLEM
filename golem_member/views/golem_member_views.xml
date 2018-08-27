@@ -61,7 +61,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               </div>
               <div class="oe_right oe_button_box" name="buttons" />
               <group>
-                <field name="season_ids" widget="many2many_tags" />
+                <field name="season_ids" widget="many2many_tags"
+		  options="{'no_create': True}" />
                 <field name="category_id" widget="many2many_tags"
                   placeholder="Tags..."/>
               </group>
