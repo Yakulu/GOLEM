@@ -29,5 +29,6 @@
     'data': ['views/golem_member_views.xml',
              'views/golem_activity_registration_views.xml',
              'report/golem_member_card_templates.xml',
-             'wizard/golem_activity_registration_invoicing.xml']
+             'wizard/golem_activity_registration_invoicing.xml',
+             'views/golem_activity_views.xml']
 }
