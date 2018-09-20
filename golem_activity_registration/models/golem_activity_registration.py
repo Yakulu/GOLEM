@@ -43,6 +43,7 @@ class GolemActivity(models.Model):
                                                 index=True)
     places_used = fields.Integer('Places used', compute='compute_places_used',
                                  store=True)
+    only_for_subscriber = fields.Boolean(required=True)
 
     @api.multi
     @api.depends('activity_registration_ids')
@@ -96,6 +97,11 @@ class GolemActivityRegistration(models.Model):
         """ Forbid registration when member season if not coherent with
         activity season or are duplicates """
         for reg in self:
+            if (reg.activity_id.only_for_subscriber and \
+                reg.member_id.membership_state in ['none', 'canceled', 'old']):
+                emsg = _('Subscription can not be executed : the targeted '
+                         'activity is only for subscriber.')
+                raise models.ValidationError(emsg)
             if reg.activity_id.season_id not in reg.member_id.season_ids:
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the activity.')
