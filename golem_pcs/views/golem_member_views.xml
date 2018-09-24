@@ -28,10 +28,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_form" />
       <field name="arch" type="xml">
         <field name='function' position='after'>
-          <field name='pcs_id' options="{'no_create':True}"/>
+          <field name='pcs_id' options="{'no_create':True}" />
         </field>
       </field>
     </record>
+
     <!-- Search -->
     <record model="ir.ui.view" id="golem_member_search_inherit_golem_pcs">
       <field name="name">GOLEM Member Search PCS adaptations</field>
@@ -39,10 +40,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_member.golem_member_search" />
       <field name="arch" type="xml">
         <field name='category_id' position='after'>
-          <field name='pcs_id'/>
+          <field name='pcs_id' />
         </field>
         <filter name="group_city" position='after'>
-          <filter name="group_pcs" string="By PCS" context="{'group_by': 'pcs_id'}"/>
+          <filter name="group_pcs" string="By PCS" context="{'group_by': 'pcs_id'}" />
         </filter>
       </field>
     </record>

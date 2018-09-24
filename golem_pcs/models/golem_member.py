@@ -18,11 +18,11 @@
 
 """ GOLEM Member adaptations """
 
-from odoo import models, fields, api, _
+from odoo import models, fields
 
 class GolemMember(models.Model):
     """ GOLEM Member extention """
     _inherit = 'golem.member'
 
-    pcs_id = fields.Many2one('golem.pcs', string='Professions and Socioprofessional Categories',
-                             domain="[('parent_id', '!=', False)]")
+    pcs_id = fields.Many2one('golem.pcs', string='PCS', index=True,
+                             help='Professions and Socioprofessional Categories')

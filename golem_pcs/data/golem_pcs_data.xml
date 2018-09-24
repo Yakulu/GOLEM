@@ -24,39 +24,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Groupes socioprofessionnels  -->
     <record model="golem.pcs" id="golem_pcs_agriculteurs_exploitants">
       <field name="name">Agriculteurs exploitants</field>
-      <field name="code">1</field>
+      <field name="code">01</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_artisans_commercants_et_chefs_entreprise">
       <field name="name">Artisans, commerçants et chefs d’entreprise</field>
-      <field name="code">2</field>
+      <field name="code">02</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_cadres_et_professions_intellectuelles_superieures">
       <field name="name">Cadres et professions intellectuelles supérieures</field>
-      <field name="code">3</field>
+      <field name="code">03</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_professions_intermediaires">
       <field name="name">Professions intermédiaires</field>
-      <field name="code">4</field>
+      <field name="code">04</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_employes">
       <field name="name">Employés</field>
-      <field name="code">5</field>
+      <field name="code">05</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_ouvriers">
       <field name="name">Ouvriers</field>
-      <field name="code">6</field>
+      <field name="code">06</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_retraites">
       <field name="name">Retraités</field>
-      <field name="code">7</field>
-    </record>
-    <record model="golem.pcs" id="golem_pcs_retraites">
-      <field name="name">Retraités</field>
-      <field name="code">7</field>
+      <field name="code">07</field>
     </record>
     <record model="golem.pcs" id="golem_pcs_autres_personnes_sans_activite_professionnelle">
       <field name="name">Autres personnes sans activité professionnelle</field>
-      <field name="code">8</field>
+      <field name="code">08</field>
     </record>
 
     <!-- Catégories socioprofessionnelles   -->
