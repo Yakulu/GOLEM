@@ -16,13 +16,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Member adaptations """
+""" Partner adaptations """
 
 from odoo import models, fields
 
-class GolemMember(models.Model):
-    """ GOLEM Member extention """
-    _inherit = 'golem.member'
+class ResPartner(models.Model):
+    """ Partner extention """
+    _inherit = 'res.partner'
 
     pcs_id = fields.Many2one('golem.pcs', string='PCS', index=True,
                              help='Professions and Socioprofessional Categories')
