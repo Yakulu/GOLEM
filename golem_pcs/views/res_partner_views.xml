@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
         <field name='function' position='after'>
-          <field name='pcs_id' options="{'no_create':True}" />
+          <field name='pcs_id' options="{'no_create':True, 'no_open': True}" />
         </field>
       </field>
     </record>
