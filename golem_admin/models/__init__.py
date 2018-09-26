@@ -15,20 +15,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM Admin module',
-    'summary': 'GOLEM Admin module',
-    'description': '''GOLEM Admin module :
-        - New application on top menu ;
-        - Management of users and groups, companies ;
-        - Good default access / rights to do. ''',
-    'version': '10.0.0.1.3',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': True,
-    'installable': True,
-    'depends': ['base'],
-    'data': ['security/ir.model.access.csv',
-             'views/golem_admin_views.xml']
-}
+from . import res_partner
