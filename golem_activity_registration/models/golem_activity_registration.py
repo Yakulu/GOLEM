@@ -76,7 +76,7 @@ class GolemActivityRegistration(models.Model):
     """ GOLEM Activity Registration """
     _name = 'golem.activity.registration'
     _description = 'GOLEM Activity Registration'
-    _rec_name ='activity_id'
+    _rec_name = 'activity_id'
 
     member_id = fields.Many2one('golem.member', string='Service user',
                                 required=True, ondelete='cascade', index=True)
@@ -91,6 +91,23 @@ class GolemActivityRegistration(models.Model):
     _sql_constraints = [
         ('registration_uniq', 'UNIQUE (member_id, activity_id)',
          _('This member has already been registered for this activity.'))]
+
+    @api.onchange('activity_id', 'activity_id.only_for_subscriber')
+    def onchange_activity_subcrib(self):
+        """ If activity only for subscribers : do not allow non subscribers """
+        domain = []
+        if self.activity_id.only_for_subscriber:
+            domain.append(('membership_state', 'not in', ('none', 'canceled', 'old')))
+        return {'domain':  {'member_id': domain}}
+
+    @api.onchange('member_id')
+    def onchange_member_subcrib(self):
+        """ If not subscriber : do not show subscribers only activities """
+        domain = []
+        if self.member_id and self.member_id.membership_state in ('none', 'canceled', 'old'):
+            domain.append(('only_for_subscriber', '=', False))
+        return {'domain':  {'activity_id': domain}}
+
 
     @api.constrains('member_id', 'activity_id')
     def _check_season_reliability(self):

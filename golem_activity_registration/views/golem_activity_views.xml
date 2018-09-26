@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
           </page>
         </page>
-        <field name="list_price" position="after">
+        <field name="audience_id" position="before">
           <field name="only_for_subscriber"/>
         </field>
       </field>
