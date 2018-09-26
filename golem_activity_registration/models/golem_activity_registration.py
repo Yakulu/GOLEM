@@ -43,6 +43,7 @@ class GolemActivity(models.Model):
                                                 index=True)
     places_used = fields.Integer('Places used', compute='compute_places_used',
                                  store=True)
+    only_for_subscriber = fields.Boolean(required=True)
 
     @api.multi
     @api.depends('activity_registration_ids')
@@ -75,7 +76,7 @@ class GolemActivityRegistration(models.Model):
     """ GOLEM Activity Registration """
     _name = 'golem.activity.registration'
     _description = 'GOLEM Activity Registration'
-    _rec_name ='activity_id'
+    _rec_name = 'activity_id'
 
     member_id = fields.Many2one('golem.member', string='Service user',
                                 required=True, ondelete='cascade', index=True)
@@ -91,11 +92,33 @@ class GolemActivityRegistration(models.Model):
         ('registration_uniq', 'UNIQUE (member_id, activity_id)',
          _('This member has already been registered for this activity.'))]
 
+    @api.onchange('activity_id', 'activity_id.only_for_subscriber')
+    def onchange_activity_subcrib(self):
+        """ If activity only for subscribers : do not allow non subscribers """
+        domain = []
+        if self.activity_id.only_for_subscriber:
+            domain.append(('membership_state', 'not in', ('none', 'canceled', 'old')))
+        return {'domain':  {'member_id': domain}}
+
+    @api.onchange('member_id')
+    def onchange_member_subcrib(self):
+        """ If not subscriber : do not show subscribers only activities """
+        domain = []
+        if self.member_id and self.member_id.membership_state in ('none', 'canceled', 'old'):
+            domain.append(('only_for_subscriber', '=', False))
+        return {'domain':  {'activity_id': domain}}
+
+
     @api.constrains('member_id', 'activity_id')
     def _check_season_reliability(self):
         """ Forbid registration when member season if not coherent with
         activity season or are duplicates """
         for reg in self:
+            if (reg.activity_id.only_for_subscriber and \
+                reg.member_id.membership_state in ['none', 'canceled', 'old']):
+                emsg = _('Subscription can not be executed : the targeted '
+                         'activity is only for subscriber.')
+                raise models.ValidationError(emsg)
             if reg.activity_id.season_id not in reg.member_id.season_ids:
                 emsg = _('Subscription can not be executed : the targeted '
                          'member is not on the same season as the activity.')
