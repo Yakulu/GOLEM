@@ -43,7 +43,7 @@ class GolemActivity(models.Model):
                                                 index=True)
     places_used = fields.Integer('Places used', compute='compute_places_used',
                                  store=True)
-    only_for_subscriber = fields.Boolean(required=True)
+    only_for_subscriber = fields.Boolean(default=False)
 
     @api.multi
     @api.depends('activity_registration_ids')
