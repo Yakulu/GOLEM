@@ -22,24 +22,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Forms -->
     <record id="golem_activity_form_inherit_activity_registration_payment"
       model="ir.ui.view">
-     <field name="name">Golem activity form activity registration payment adaptations</field>
+     <field name="name">Golem activity form adaptations</field>
      <field name="model">golem.activity</field>
      <field name="inherit_id" ref="golem_activity.golem_activity_form" />
      <field name="arch" type="xml">
-      <field name="list_price" position="after">
-        <field name='free_activity'/>
+      <field name="list_price" position="attributes">
+        <attribute name="attrs">{'invisible': [('free_activity', '=', True)]}</attribute>
+      </field>
+      <field name="list_price" position="before">
+        <field name='free_activity' />
       </field>
      </field>
    </record>
+
    <!-- Search -->
    <record id="golem_activity_search_inherit_activity_registration_payment"
   model="ir.ui.view">
-     <field name="name">Golem Activity Search activity registration payment adaptations</field>
+     <field name="name">Golem Activity Search adaptations</field>
      <field name="model">golem.activity</field>
      <field name="inherit_id" ref="golem_activity.golem_activity_search" />
      <field name="arch" type="xml">
        <filter name="season_default" position="after">
-         <filter name="free_activity" string="Free activity" domain="[('free_activity', '=', True)]"/>
+         <filter name="free_activity" string="Free activity"
+           domain="[('free_activity', '=', True)]" />
        </filter>
      </field>
     </record>

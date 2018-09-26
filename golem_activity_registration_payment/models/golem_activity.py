@@ -18,10 +18,17 @@
 
 """ GOLEM Activity adaptations """
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 class GolemActivity(models.Model):
     """ GOLEM Activity adaptations """
     _inherit = 'golem.activity'
 
-    free_activity = fields.Boolean(required=True)
+    free_activity = fields.Boolean(default=False)
+
+    @api.onchange('free_activity')
+    def onchange_free_activity(self):
+        """ If free activity, price should be 0.0 """
+        for activity in self:
+            if activity.free_activity:
+                activity.list_price = 0.0

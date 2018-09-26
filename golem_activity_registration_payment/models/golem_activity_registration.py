@@ -31,3 +31,4 @@ class GolemActivityRegistration(models.Model):
     invoice_id = fields.Many2one(related='invoice_line_id.invoice_id')
     invoice_state = fields.Selection(related='invoice_line_id.invoice_id.state',
                                      store=True)
+    free_activity = fields.Boolean(related='activity_id.free_activity')

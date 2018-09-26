@@ -35,9 +35,9 @@ class GolemMember(models.Model):
             regis = member.activity_registration_ids
             regis = regis.filtered(
                 lambda r: (r.state == 'confirmed' and
+                           not r.activity_id.free_activity and
                            (not r.invoice_line_id or
-                            r.invoice_line_id.invoice_id.state == 'cancel') and
-                           not r.activity_id.free_activity)
+                            r.invoice_line_id.invoice_id.state == 'cancel'))
             )
             member.has_invoicable_registrations = bool(len(regis))
 
@@ -53,10 +53,10 @@ class GolemMember(models.Model):
         self.ensure_one()
         member = self[0]
         registrations = member.activity_registration_ids.filtered(
-            lambda r: r.state == 'confirmed' and
-            (not r.invoice_line_id or
-             r.invoice_line_id.invoice_id.state == 'cancel') and
-            not r.activity_id.free_activity
+            lambda r: (r.state == 'confirmed' and
+                       not r.activity_id.free_activity and
+                       (not r.invoice_line_id or
+                        r.invoice_line_id.invoice_id.state == 'cancel'))
         )
         if registrations:
             invoicing = self.env['golem.activity.registration.invoicing'].create({
