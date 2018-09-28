@@ -38,6 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 context="{'search_default_type_person': 1}">
                 <tree>
                   <field name="name" />
+                  <field name="is_default_gardian"/>
+                  <button name="do_default_gardian" type="object"
+                    icon="fa-bookmark"
+                    attrs="{'invisible': [('is_default_gardian', '=', False)]}"
+                    context="{'member_id': id}"/>
                   <field name="contact_address" />
                   <field name="phone" />
                   <field name="mobile" />
