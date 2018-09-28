@@ -15,19 +15,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Member Minor management """
+""" Res Partner adaptations """
 
-from datetime import date, timedelta
-from odoo import models, fields, api
+from odoo import models, fields
 
-ADULT_DURATION = timedelta(days=365.25*18)
-
-class GolemMember(models.Model):
-    """ GOLEM Member adaptations """
+class ResPartner(models.Model):
+    """ Res Partner adaptations """
     _inherit = 'res.partner'
 
     is_default_gardian = fields.Boolean()
-
 
     def do_default_gardian(self):
         """ make only default gardian """
