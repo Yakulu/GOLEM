@@ -34,6 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <label for="name" string="Family" class="oe_edit_only" />
                   <field name="name" class="oe_inline" placeholder="Name" />
                 </h1>
+                <label for="single_parent" string="Single-Parent Family"/>
+                <field name="single_parent"/>
               </div>
             </group>
             <group string="Address">
@@ -187,6 +189,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="phone" />
           <field name="mobile" />
           <field name="email" />
+          <filter name="single_parent" string="Single-parent Family"
+            domain="[('single_parent', '=', True)]"/>
           <group string="Group By">
             <filter name="group_city" string="By city"
               context="{'group_by': 'city'}"/>
