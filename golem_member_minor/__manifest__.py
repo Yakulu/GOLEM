@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM members minor',
     'summary': 'GOLEM non-profit members minor management',
-    'version': '10.0.1.1.0',
+    'version': '10.0.1.1.3',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
