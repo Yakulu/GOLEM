@@ -29,6 +29,8 @@ class GolemMember(models.Model):
     legal_guardian_ids = fields.Many2many(
         'res.partner', string='Legal guardians', index=True, auto_join=True,
         domain="['&', ('is_company', '=', False), ('id', '!=', partner_id)]")
+    legal_guardian2_ids = fields.One2many('golem.legal.gardian', 'member_id',
+                                          string='Legal guardians')
     activities_participation = fields.Boolean('Activities participation?')
     leave_alone = fields.Boolean('Can leave alone?')
     is_minor = fields.Boolean('Is minor?', compute='_compute_is_minor',
