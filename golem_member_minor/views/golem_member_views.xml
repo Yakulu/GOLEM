@@ -34,17 +34,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="leave_alone"/>
               <field name="partner_id" invisible="True" required="False" />
               <field name="is_minor" invisible="True" />
-              <field name="legal_guardian2_ids" context="{'default_member_id': active_id}">
+              <field name="legal_guardian_ids" context="{'default_member_id': active_id}">
                 <tree>
                   <field name="name"/>
                   <field name="contact_address" />
                   <field name="phone" />
                   <field name="mobile" />
                   <field name="email" widget="email" />
-                  <field name="is_default_gardian"/>
-                  <button name="do_default_gardian" type="object"
+                  <field name="is_default_guardian"/>
+                  <button name="do_default_guardian" type="object"
                     icon="fa-bookmark"
-                    attrs="{'invisible': [('is_default_gardian', '=', True)]}"/>
+                    attrs="{'invisible': [('is_default_guardian', '=', True)]}"/>
                 </tree>
               </field>
             </group>
@@ -53,15 +53,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
     <!-- Forms -->
-    <record id="golem_legal_gardian_form" model="ir.ui.view">
-      <field name="name">GOLEM Legal Gardian Form</field>
-      <field name="model">golem.legal.gardian</field>
+    <record id="golem_legal_guardian_form" model="ir.ui.view">
+      <field name="name">GOLEM Legal Guardian Form</field>
+      <field name="model">golem.legal.guardian</field>
       <field name="arch" type="xml">
         <form>
           <group>
             <field name="member_id" invisible="1"/>
-            <field name="legal_gardian_id"/>
-            <field name="is_default_gardian"/>
+            <field name="legal_guardian_id"/>
+            <field name="is_default_guardian"/>
           </group>
         </form>
       </field>
