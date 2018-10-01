@@ -17,7 +17,8 @@
 
 """ Golem Legal Gardian Management """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class GolemLegalGardian(models.Model):
     """ Golem Legal Gardian Management """
@@ -53,10 +54,20 @@ class GolemLegalGardian(models.Model):
 
     @api.model
     def create(self, values):
-        """ If current gardian is default if the only, and the only if default """
+        """ Make the current gardian is default if the only, and the only if default """
         if values['is_default_gardian']:
             self.env['golem.member'].browse(values['member_id']).legal_guardian2_ids.write(
                 {'is_default_gardian': False})
         if not self.env['golem.member'].browse(values['member_id']).legal_guardian2_ids:
             values['is_default_gardian'] = True
         return  super(GolemLegalGardian, self).create(values)
+
+    @api.multi
+    def unlink(self):
+        """ Forbids default legal gardian removal """
+        for gardian in self:
+            if gardian.is_default_gardian and len(gardian.member_id.legal_guardian2_ids) > 1:
+                emsg = _('You can\'t delete the default legal gardian')
+                raise ValidationError(emsg)
+            else:
+                return super(GolemLegalGardian, self).unlink()
