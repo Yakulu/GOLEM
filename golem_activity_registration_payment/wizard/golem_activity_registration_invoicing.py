@@ -82,13 +82,21 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
         """ Create invoice and lines """
         self.ensure_one()
         partner = self.member_id.partner_id
-        invoice = self.env['account.invoice'].create({
-            'partner_id': partner.id,
-            'account_id': partner.property_account_receivable_id.id,
-            'fiscal_position_id': partner.property_account_position_id.id
-        })
+        #check if there is a draft invoice for the current customer
+        member_line = partner.member_lines.filtered(
+            lambda ml: (ml.membership_id.membership_season_id.is_default and
+                        ml.account_invoice_id.state == 'draft')
+            )
+        if member_line:
+            invoice = member_line[0].account_invoice_id
+        else:
+            invoice = self.env['account.invoice'].create({
+                'partner_id': partner.id,
+                'account_id': partner.property_account_receivable_id.id,
+                'fiscal_position_id': partner.property_account_position_id.id
+                })
         for line in self.line_ids:
-            product = line.activity_id.product_id
+            product = line.activity_id.product_id.product_variant_id
             invoice_line = self._create_invoice_line(product, line.price, invoice)
             line.registration_id.invoice_line_id = invoice_line.id
         return invoice
