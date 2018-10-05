@@ -28,6 +28,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       res_model="golem.member" view_mode="kanban,tree,form,graph" />
     <act_window id="res_partner_category_action" name="GOLEM Members Tags"
       res_model="res.partner.category" view_mode="tree,form" />
+
+      <act_window id="golem_test_action2"
+        name="Golem Test"
+        res_model="golem.test"
+        view_mode="tree,form"
+        domain="[('partner_id.is_company', '=', False)]"/>
+
+      <!--<record id="golem_test_action" model="ir.actions.act_window">
+          <field name="name">Golem Test</field>
+          <field name="res_model">golem.test</field>
+          <field name="domain">[('partner_id.is_company', '=', False)]</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+      </record>-->
+      <menuitem name="golem test" id="golem_test_menu"
+        action="golem_test_action2" />
+
     <record id="golem_membership_invoice_action" model="ir.actions.act_window">
         <field name="name">Join Membership</field>
         <field name="res_model">golem.membership.invoice</field>
@@ -131,10 +148,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <div>
                       <field name="partner_id" invisible="True" required="False" />
                       <field name="membership_state"/>
-                      <button name="%(golem_membership_invoice_action)d"
-                        type="action" string="Buy Membership"
+                      <!--"%(golem_membership_invoice_action)d"-->
+                      <!--  <button name="%(golem_test_action2)d"-->
+                        <button name="membership_invoice_action"
+                        type="object" string="Buy Membership"
                         attrs="{'invisible':[('free_member','=',True)]}"
-                        context="{'default_partner_id': partner_id}"
                         class="oe_link"/>
                     </div>
                   </group>

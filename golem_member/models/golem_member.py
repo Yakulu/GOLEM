@@ -22,6 +22,13 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
+class golemTest(models.Model):
+    """ Partner Area """
+    _name = 'golem.test'
+
+    partner_id = fields.Many2one('res.partner')
+    nomination = fields.Char()
+    product_id = fields.Many2one('product.product')
 
 class PartnerArea(models.Model):
     """ Partner Area """
@@ -109,6 +116,27 @@ class GolemMember(models.Model):
 
     partner_id = fields.Many2one('res.partner', required=True, index=True,
                                  ondelete='cascade')
+    def membership_invoice_action(self):
+        self.ensure_one()
+        member = self[0]
+        action = self.env.ref('golem_member.golem_membership_invoice_action').read()[0]
+        action['domain'] = [('partner_id', 'in', member.legal_guardian_ids.ids)]
+        return action
+        #action = self.env.ref('golem_member.golem_test_action2').read()[0]
+        #return action
+        #lst = member.legal_guardian_ids.ids
+        #return {
+        #    'name': _('Next activity'),
+        #    'res_model': 'golem.test',
+        #    'context': {},
+        #    'domain' : [('product_id.type', '=', 'service')],
+        #    'type': 'ir.actions.act_window',
+        #    'view_id': False,
+        #    'view_mode': 'form',
+        #    'target': 'new',
+        #    'view_type': 'form'
+        #}
+
 
     @api.model
     def default_season(self):
