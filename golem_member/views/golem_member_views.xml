@@ -131,7 +131,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <div>
                       <field name="partner_id" invisible="True" required="False" />
                       <field name="membership_state"/>
-                        <button name="%(golem_membership_invoice_action)d"
+                      <button name="%(golem_membership_invoice_action)d"
                         type="action" string="Buy Membership"
                         attrs="{'invisible':[('free_member','=',True)]}"
                         context="{'default_partner_id': partner_id}"
