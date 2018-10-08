@@ -39,3 +39,18 @@ class GolemMembershipInvoice(models.TransientModel):
                                [('id', 'in', record.src_member_id.legal_guardian_ids.ids)]
                               }
                    }
+    @api.multi
+    def membership_invoice(self):
+        """ Create invoice and redirect to partner invoice list """
+        self.ensure_one()
+        res = super(GolemMembershipInvoice, self).membership_invoice()
+        if self.src_member_id and self.src_member_id.is_minor:
+            invoice_id = (res['domain'][0][2] if
+                          res['domain'][0][2] else False)
+            if invoice_id:
+                self.env['account.invoice'].browse(invoice_id).partner_ids = [
+                    (6, 0, [self.partner_id.id,
+                            self.src_member_id.partner_id.id])]
+            self.src_member_id.partner_id.membership_state = self.partner_id.membership_state
+            self.partner_id.membership_state = 'none'
+        return res

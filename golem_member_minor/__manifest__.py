@@ -27,5 +27,6 @@
     'installable': True,
     'depends': ['golem_member'],
     'data': ['views/golem_member_views.xml',
-             'views/golem_membership_invoice.xml']
+             'views/golem_membership_invoice.xml',
+             'views/account_invoice.xml']
 }

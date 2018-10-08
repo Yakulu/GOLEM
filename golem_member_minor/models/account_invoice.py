@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,4 +16,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import golem_member, golem_membership, account_invoice
+""" Account Invoice adaptations """
+
+from odoo import models, fields, api
+
+class AccountInvoice(models.Model):
+    """ Account Invoice adaptations """
+    _inherit = 'account.invoice'
+
+    partner_ids = fields.Many2many('res.partner')
