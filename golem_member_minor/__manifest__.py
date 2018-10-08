@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,5 +26,6 @@
     'application': False,
     'installable': True,
     'depends': ['golem_member'],
-    'data': ['views/golem_member_views.xml']
+    'data': ['views/golem_member_views.xml',
+             'views/golem_membership_invoice.xml']
 }
