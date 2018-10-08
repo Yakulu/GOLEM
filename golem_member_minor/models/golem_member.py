@@ -55,6 +55,7 @@ class GolemMember(models.Model):
         return [('birthdate_date', operator, adult_date)]
 
     def membership_invoice_action(self):
+        """ Membership invoice action for minor member """
         self.ensure_one()
         member = self[0]
         action = self.env.ref('golem_member.golem_membership_invoice_action').read()[0]
