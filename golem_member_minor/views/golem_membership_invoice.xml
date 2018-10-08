@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+    <!-- Forms -->
+    <record id="golem_membership_invoice_form_inherit" model="ir.ui.view">
+      <field name="name">membership.invoice.view.form_iherit</field>
+      <field name="model">golem.membership.invoice</field>
+      <field name="inherit_id" ref="golem_membership.golem_membership_invoice_form" />
+      <field name="arch" type="xml">
+        <field name='product_id' position='before'>
+            <field name='partner_id'
+                   attrs="{'invisible': [('src_member_id', '=', False)]}"
+                   options="{'no_create': True}"/>
+            <field name='src_member_id' invisible="1"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</odoo>
