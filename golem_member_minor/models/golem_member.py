@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -52,3 +53,12 @@ class GolemMember(models.Model):
         else:
             operator = '<=' if value else '>'
         return [('birthdate_date', operator, adult_date)]
+
+    def membership_invoice_action(self):
+        self.ensure_one()
+        member = self[0]
+        action = self.env.ref('golem_member.golem_membership_invoice_action').read()[0]
+        if member.is_minor:
+            action['context'] = {'default_src_member_id': member.id,
+                                 'default_partner_id': False}
+        return action
