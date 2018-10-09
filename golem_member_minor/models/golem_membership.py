@@ -19,7 +19,6 @@
 """ GOLEM Membership """
 
 from odoo import models, fields, api
-from odoo.addons import decimal_precision as dp
 
 
 class GolemMembershipInvoice(models.TransientModel):
@@ -41,16 +40,21 @@ class GolemMembershipInvoice(models.TransientModel):
                    }
     @api.multi
     def membership_invoice(self):
-        """ Create invoice and redirect to partner invoice list """
+        """ Add partners concerned to invoice and move membership from legal guardian to minor """
         self.ensure_one()
+        record = self[0]
         res = super(GolemMembershipInvoice, self).membership_invoice()
-        if self.src_member_id and self.src_member_id.is_minor:
+        if record.src_member_id and record.src_member_id.is_minor:
+            #gettin invoice_id from action's domain already declared
             invoice_id = (res['domain'][0][2] if
                           res['domain'][0][2] else False)
             if invoice_id:
-                self.env['account.invoice'].browse(invoice_id).partner_ids = [
-                    (6, 0, [self.partner_id.id,
-                            self.src_member_id.partner_id.id])]
-            self.src_member_id.partner_id.membership_state = self.partner_id.membership_state
-            self.partner_id.membership_state = 'none'
+                invoice = self.env['account.invoice'].browse(invoice_id)
+                invoice.is_minor_invoice = True
+                invoice.partner_ids = [(6, 0, [record.partner_id.id,
+                                               record.src_member_id.partner_id.id])]
+            # move the created membership from legal guardian to the minor
+            membership_line = record.partner_id.member_lines[0]
+            membership_line.copy({'partner': record.src_member_id.partner_id.id})
+            membership_line.unlink()
         return res
