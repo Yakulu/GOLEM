@@ -24,4 +24,5 @@ class AccountInvoice(models.Model):
     """ Account Invoice adaptations """
     _inherit = 'account.invoice'
 
-    partner_ids = fields.Many2many('res.partner')
+    partner_ids = fields.Many2many('res.partner', string="Concerned partners")
+    is_minor_invoice = fields.Boolean()
