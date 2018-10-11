@@ -34,6 +34,8 @@ class PartnerArea(models.Model):
 
     name = fields.Char(required=True, index=True)
     sequence = fields.Integer()
+    area_street_ids = fields.One2many('golem.partner.area.street', 'area_id',
+                                      string="street list")
 
 
 class ResPartner(models.Model):
@@ -82,6 +84,18 @@ class ResPartner(models.Model):
         self.ensure_one()
         gm_obj = self.env['golem.member']
         gm_obj.create({'partner_id': self[0].id})
+
+    @api.multi
+    @api.constrains('street')
+    def save_street(self):
+        """ Save street if no exist """
+        for member in self:
+            if member.street:
+                street = self.env['golem.partner.area.street'].search([
+                    ('name', 'ilike', member.street)])
+                if not street:
+                    self.env['golem.partner.area.street'].create({'name': member.street,
+                                                                  'area_id': member.area_id.id})
 
 class GolemMembershipInvoice(models.TransientModel):
     """ GOLEM Membership Invoice adaptations """
@@ -257,6 +271,14 @@ class GolemMember(models.Model):
             self.generate_number()
         return res
 
+    @api.onchange('street')
+    def onchange_street(self):
+        """ Area auto assignement """
+        self.ensure_one()
+        member = self[0]
+        street = self.env['golem.partner.area.street'].search([('name', 'ilike', member.street)])
+        if street:
+            member.area_id = street[0].area_id
 
 class GolemMemberNumber(models.Model):
     """ GOLEM Member Numbers """
