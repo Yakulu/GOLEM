@@ -22,6 +22,12 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
+def get_root_area(area_id):
+    """ Get root area """
+    if not area_id.parent_id:
+        return area_id
+    else:
+        return get_root_area(area_id.parent_id)
 
 class PartnerArea(models.Model):
     """ Partner Area """
@@ -38,8 +44,14 @@ class PartnerArea(models.Model):
                                       string="street list")
     parent_id = fields.Many2one('golem.partner.area', string="Parent Territory",
                                 domain="[('id', '!=', id)]")
-    sub_territorie_ids = fields.One2many('golem.partner.area', 'parent_id',
-                                         string="Sub Territories List")
+    root_id = fields.Many2one('golem.partner.area', compute="_compute_root_id",
+                              string="Root area")
+
+    @api.depends('parent_id')
+    def _compute_root_id(self):
+        """ Compute root_id """
+        for area in self:
+            area.root_id = get_root_area(area)
 
 
 class ResPartner(models.Model):
