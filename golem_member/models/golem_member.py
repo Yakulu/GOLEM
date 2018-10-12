@@ -36,6 +36,10 @@ class PartnerArea(models.Model):
     sequence = fields.Integer()
     area_street_ids = fields.One2many('golem.partner.area.street', 'area_id',
                                       string="street list")
+    parent_id = fields.Many2one('golem.partner.area', string="Parent Territory",
+                                domain="[('id', '!=', id)]")
+    sub_territorie_ids = fields.One2many('golem.partner.area', 'parent_id',
+                                         string="Sub Territories List")
 
 
 class ResPartner(models.Model):
