@@ -19,7 +19,7 @@
 
 import logging
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 _LOGGER = logging.getLogger(__name__)
 
 def get_root_area(area_id):
@@ -28,6 +28,15 @@ def get_root_area(area_id):
         return area_id
     else:
         return get_root_area(area_id.parent_id)
+
+def is_sub_area(area_id, parent_id):
+    """ Check if parent is sub area """
+    if parent_id.parent_id.id == area_id.id:
+        return True
+    elif not parent_id.parent_id:
+        return False
+    else:
+        return is_sub_area(area_id, parent_id.parent_id)
 
 class PartnerArea(models.Model):
     """ Partner Area """
@@ -53,6 +62,13 @@ class PartnerArea(models.Model):
         for area in self:
             area.root_id = get_root_area(area)
 
+    @api.constrains('parent_id')
+    def check_parent_id(self):
+        """ Check if parent is sub area """
+        for area in self:
+            if  is_sub_area(area, area.parent_id):
+                err = _("The parent area is a sub area of the current area, please change it")
+                raise ValidationError(err)
 
 class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
