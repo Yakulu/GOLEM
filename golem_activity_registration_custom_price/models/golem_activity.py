@@ -43,7 +43,7 @@ class GolemActivity(models.Model):
         existing_combinations = [u'%s-%s' % (line.area_id.id, line.slice_id.id)
                                  for line in activity.price_line_ids]
         slice_ids = self.env['golem.payment.rule.familyquotient.slice'].search([])
-        for area_id in self.env['golem.partner.area'].search([]):
+        for area_id in self.env['golem.partner.area'].search([('parent_id', '=', False)]):
             for slice_id in slice_ids:
                 combination = u'%s-%s' % (area_id.id, slice_id.id)
                 if combination not in existing_combinations:
