@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_golem_pcs_user,Access GOLEM PCS User,model_golem_pcs,base.group_user,1,0,0,0
+access_golem_pcs_golem_user,Access GOLEM PCS GOLEM User,model_golem_pcs,golem_base.group_golem_user,1,0,0,0
+access_golem_pcs_golem_manager,Access GOLEM PCS GOLEM Manager,model_golem_pcs,golem_base.group_golem_manager,1,1,1,1

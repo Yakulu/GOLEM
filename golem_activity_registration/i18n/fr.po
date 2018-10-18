@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-09 14:23+0000\n"
-"PO-Revision-Date: 2018-08-09 16:38+0200\n"
+"POT-Creation-Date: 2018-09-26 08:25+0000\n"
+"PO-Revision-Date: 2018-09-26 10:28+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -205,6 +205,13 @@ msgid "On default season, there is no activity for this member."
 msgstr "Sur la saison par défaut, il n'y a pas d'activité pour cet usager."
 
 #. module: golem_activity_registration
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_only_for_subscriber
+#: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_registration_only_for_subscriber
+#: model:ir.ui.view,arch_db:golem_activity_registration.golem_activity_search_inherit_registration
+msgid "Only for subscriber"
+msgstr "Réservé aux adhérents"
+
+#. module: golem_activity_registration
 #: model:ir.model.fields,field_description:golem_activity_registration.field_golem_activity_places
 msgid "Places"
 msgstr "Places"
@@ -245,7 +252,7 @@ msgid "Service user"
 msgstr "Usager"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:70
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:71
 #, python-format
 msgid "Sorry, there is no more place !"
 msgstr "Désolé, il n'y a  plus de place disponible !"
@@ -256,13 +263,19 @@ msgid "Subscription"
 msgstr "Inscription"
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:100
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:130
+#, python-format
+msgid "Subscription can not be executed : the targeted activity is only for subscriber."
+msgstr "L'inscription n'a pas pu être faite : l'activité choisie est réservée aux adhérents."
+
+#. module: golem_activity_registration
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:134
 #, python-format
 msgid "Subscription can not be executed : the targeted member is not on the same season as the activity."
 msgstr "L'inscription n'a pas pu être enregistrée : l'usager visé n'est pas ahdérant pour la même saison que celle pendant laquelle se déroule l'activité."
 
 #. module: golem_activity_registration
-#: code:addons/golem_activity_registration/models/golem_activity_registration.py:92
+#: code:addons/golem_activity_registration/models/golem_activity_registration.py:104
 #: sql_constraint:golem.activity.registration:0
 #, python-format
 msgid "This member has already been registered for this activity."

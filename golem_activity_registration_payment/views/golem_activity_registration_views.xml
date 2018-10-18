@@ -45,6 +45,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id"
         ref="golem_activity_registration_state.golem_activity_registration_tree_inherit_state" />
       <field name="arch" type="xml">
+        <field name="activity_price" position="before">
+          <field name="free_activity" readonly="1" />
+        </field>
+        <field name="activity_price" position="attributes">
+          <attribute name="attrs">{'readonly': [('free_activity', '=', True)]}</attribute>
+        </field>
         <field name="state" position="after">
           <field name="invoice_line_id" invisible="1" />
           <field name="invoice_state" string="Invoice state" />
