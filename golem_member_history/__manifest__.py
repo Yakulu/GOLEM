@@ -25,6 +25,6 @@
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_member'],
-    'data': []
+    'depends': ['golem_member', 'golem_pcs', 'golem_member_familyquotient'],
+    'data': ['views/golem_member_views.xml']
 }
