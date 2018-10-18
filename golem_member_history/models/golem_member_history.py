@@ -24,13 +24,16 @@ class GolemMemberHistory(models.Model):
     """ GOLEM Member History """
     _name = 'golem.member.history'
     _description = 'GOLEM Member History Management'
+    _order = "season_id desc, id desc"
 
     member_id = fields.Many2one('golem.member', required=True, auto_join=True,
                                 ondelete="cascade")
     season_id = fields.Many2one('golem.season', required=True, auto_join=True,
                                 ondelete="cascade")
     gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
-    area_id = fields.Many2one('golem.partner.area', index=True, auto_join=True,
-                              string='Area', ondelete="cascade")
+    area_id = fields.Many2one('golem.partner.area', string='Area', ondelete="cascade")
     city = fields.Char()
     family_quotient = fields.Monetary()
+    currency_id = fields.Many2one(related="member_id.currency_id", string="Currency", readonly=True)
+    pcs_id = fields.Many2one('golem.pcs', string='PCS')
+    nationality_id = fields.Many2one('res.country', string="Nationality", ondelete="cascade")
