@@ -33,3 +33,4 @@ class GolemMemberHistory(models.Model):
     area_id = fields.Many2one('golem.partner.area', index=True, auto_join=True,
                               string='Area', ondelete="cascade")
     city = fields.Char()
+    family_quotient = fields.Monetary()
