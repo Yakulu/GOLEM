@@ -38,6 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
           </page>
         </page>
+        <field name="audience_id" position="before">
+          <field name="only_for_subscriber"/>
+        </field>
       </field>
     </record>
 
@@ -66,6 +69,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <filter name="season_default" position="after">
           <filter name="full_activity" string="Full"
            domain="[('places_remain', '=', 0)]" />
+          <filter name="only_for_subscriber" string="Only for subscriber"
+           domain="[('only_for_subscriber', '=', True)]"/>
         </filter>
       </field>
     </record>
