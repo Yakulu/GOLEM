@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<odoo>
+  <data>
+
+    <!-- Groupes socioprofessionnels  -->
+    <record model="golem.pcs" id="golem_pcs_agriculteurs_exploitants">
+      <field name="name">Agriculteurs exploitants</field>
+      <field name="code">01</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_artisans_commercants_et_chefs_entreprise">
+      <field name="name">Artisans, commerçants et chefs d’entreprise</field>
+      <field name="code">02</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_cadres_et_professions_intellectuelles_superieures">
+      <field name="name">Cadres et professions intellectuelles supérieures</field>
+      <field name="code">03</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professions_intermediaires">
+      <field name="name">Professions intermédiaires</field>
+      <field name="code">04</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_employes">
+      <field name="name">Employés</field>
+      <field name="code">05</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers">
+      <field name="name">Ouvriers</field>
+      <field name="code">06</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_retraites">
+      <field name="name">Retraités</field>
+      <field name="code">07</field>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_autres_personnes_sans_activite_professionnelle">
+      <field name="name">Autres personnes sans activité professionnelle</field>
+      <field name="code">08</field>
+    </record>
+
+    <!-- Catégories socioprofessionnelles   -->
+    <record model="golem.pcs" id="golem_pcs_agriculteurs_sur_petite_exploitation">
+      <field name="name">Agriculteurs sur petite exploitation</field>
+      <field name="code">11</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_agriculteurs_exploitants')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_agriculteurs_sur_moyenne_exploitation">
+      <field name="name">Agriculteurs sur moyenne exploitation</field>
+      <field name="code">12</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_agriculteurs_exploitants')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_agriculteurs_sur_grande_exploitation">
+      <field name="name">Agriculteurs sur grande exploitation</field>
+      <field name="code">13</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_agriculteurs_exploitants')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_artisan">
+      <field name="name">Artisan</field>
+      <field name="code">21</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_artisans_commercants_et_chefs_entreprise')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_commercant_et_assimiles">
+      <field name="name">Commerçant et assimilés</field>
+      <field name="code">22</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_artisans_commercants_et_chefs_entreprise')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_Chefs_entreprise_de_10_salaries_ou_plus">
+      <field name="name">Chefs d’entreprise de 10 salariés ou plus</field>
+      <field name="code">23</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_artisans_commercants_et_chefs_entreprise')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_professions_liberales">
+      <field name="name">Professions libérales</field>
+      <field name="code">31</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_cadres_de_la_fonction_publique">
+      <field name="name">Cadres de la fonction publique </field>
+      <field name="code">33</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professeurs_professions_scientifiques">
+      <field name="name">Professeurs, professions scientifiques </field>
+      <field name="code">34</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professions_de_l_information_des_arts_et_des_spectacles">
+      <field name="name">Professions de l’information, des arts et des spectacles</field>
+      <field name="code">35</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_cadres_administratifs_et_commerciaux_d_entreprise">
+      <field name="name">Cadres administratifs et commerciaux d’entreprise</field>
+      <field name="code">37</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ingenieurs_et_cadres_techniques_d_entreprise">
+      <field name="name">Ingénieurs et cadres techniques d’entreprise</field>
+      <field name="code">38</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_cadres_et_professions_intellectuelles_superieures')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_professeurs_des_ecoles_instituteurs_et_assimiles">
+      <field name="name">Professeurs des écoles, instituteurs et assimilés</field>
+      <field name="code">42</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professions_intermediaires_de_la_sante_et_du_travail_social">
+      <field name="name">Professions intermédiaires de la santé et du travail social </field>
+      <field name="code">43</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_clerge_religieux">
+      <field name="name">Clergé, religieux</field>
+      <field name="code">44</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professions_intermediaires_administratives_de_la_fonction_publique">
+      <field name="name">Professions intermédiaires administratives de la fonction publique</field>
+      <field name="code">45</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_professions_intermediaires_administratives_et_commerciales_des_entreprises">
+      <field name="name">Professions intermédiaires administratives et commerciales des entreprises</field>
+      <field name="code">46</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_techniciens">
+      <field name="name">Techniciens</field>
+      <field name="code">47</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_contremaitres_agents_de_maitrise">
+      <field name="name">Contremaîtres, agents de maîtrise</field>
+      <field name="code">48</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_professions_intermediaires')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_employes_civils_et_agents_de_service_de_la_fonction_publique">
+      <field name="name">Employés civils et agents de service de la fonction publique</field>
+      <field name="code">52</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_employes')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_policiers_et_militaires">
+      <field name="name">Policiers et militaires</field>
+      <field name="code">53</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_employes')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_employes_administratifs_d_entreprise">
+      <field name="name">Employés administratifs d’entreprise</field>
+      <field name="code">54</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_employes')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_employes_de_commerce">
+      <field name="name">Employés de commerce</field>
+      <field name="code">55</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_employes')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_personnels_des_services_directs_aux_particuliers">
+      <field name="name">Personnels des services directs aux particuliers </field>
+      <field name="code">56</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_employes')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_ouvriers_qualifies_de_type_industriel">
+      <field name="name">Ouvriers qualifiés de type industriel</field>
+      <field name="code">62</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers_qualifies_de_type_artisanal">
+      <field name="name">Ouvriers qualifiés de type artisanal</field>
+      <field name="code">63</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_chauffeurs">
+      <field name="name">Chauffeurs</field>
+      <field name="code">64</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers_qualifies_de_la_manutention_du_magasinage_et_du_transport ">
+      <field name="name">Ouvriers qualifiés de la manutention, du magasinage et du transport </field>
+      <field name="code">65</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers_non_qualifies_de_type_industriel">
+      <field name="name">Ouvriers non qualifiés de type industriel</field>
+      <field name="code">67</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers_non_qualifies_de_type_artisanal">
+      <field name="name">Ouvriers non qualifiés de type artisanal</field>
+      <field name="code">68</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_ouvriers_agricoles">
+      <field name="name">Ouvriers agricoles</field>
+      <field name="code">69</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_ouvriers')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_anciens_agriculteurs_exploitants">
+      <field name="name">Anciens agriculteurs exploitants</field>
+      <field name="code">71</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_anciens_artisans_commercants_et_chefs_d_entreprise">
+      <field name="name">Anciens artisans, commerçants et chefs d’entreprise</field>
+      <field name="code">72</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_anciens_cadres">
+      <field name="name">Anciens cadres</field>
+      <field name="code">74</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_anciennes_professions_intermediaires">
+      <field name="name">Anciennes professions intermédiaires</field>
+      <field name="code">75</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_anciens_employes">
+      <field name="name">Anciens employés</field>
+      <field name="code">77</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_anciens_ouvriers">
+      <field name="name">Anciens ouvriers</field>
+      <field name="code">78</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_retraites')"/>
+    </record>
+
+    <record model="golem.pcs" id="golem_pcs_chomeurs_n_ayant_jamais_travaille">
+      <field name="name">Chômeurs n’ayant jamais travaillé</field>
+      <field name="code">81</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_autres_personnes_sans_activite_professionnelle')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_militaires_du_contingent">
+      <field name="name">Militaires du contingent </field>
+      <field name="code">83</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_autres_personnes_sans_activite_professionnelle')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_eleves_etudiants">
+      <field name="name">Élèves, étudiants</field>
+      <field name="code">84</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_autres_personnes_sans_activite_professionnelle')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_personnes_diverses_sans_activite_professionnelle_de_moins_de_60_ans_sauf_retraites">
+      <field name="name">Personnes diverses sans activité professionnelle de moins de 60 ans (sauf retraités)</field>
+      <field name="code">85</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_autres_personnes_sans_activite_professionnelle')"/>
+    </record>
+    <record model="golem.pcs" id="golem_pcs_personnes_diverses_sans_activite_professionnelle_de_60_ans_et_plus_sauf_retraites">
+      <field name="name">Personnes diverses sans activité professionnelle de 60 ans et plus (sauf retraités) </field>
+      <field name="code">86</field>
+      <field name="parent_id" eval="ref('golem_pcs.golem_pcs_autres_personnes_sans_activite_professionnelle')"/>
+    </record>
+  </data>
+</odoo>

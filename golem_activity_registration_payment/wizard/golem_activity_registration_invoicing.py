@@ -29,9 +29,11 @@ class GolemActivityRegistrationInvoicingLine(models.TransientModel):
     _description = 'GOLEM Activity Registration Invoicing Lines'
 
     invoicing_id = fields.Many2one('golem.activity.registration.invoicing',
-                                   required=True)
-    registration_id = fields.Many2one('golem.activity.registration', required=True)
-    activity_id = fields.Many2one('golem.activity', required=True, readonly=True)
+                                   required=True, ondelete='cascade')
+    registration_id = fields.Many2one('golem.activity.registration', required=True,
+                                      ondelete='cascade')
+    activity_id = fields.Many2one('golem.activity', required=True, readonly=True,
+                                  ondelete='cascade')
     price = fields.Monetary()
     currency_id = fields.Many2one(related='activity_id.currency_id')
 
