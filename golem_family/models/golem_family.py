@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -140,10 +141,9 @@ class GolemFamily(models.Model):
 
     member_ids = fields.One2many('res.partner', 'family_id', 'Members',
                                  domain=[('is_company', '=', False)])
+    single_parent = fields.Boolean()
     note = fields.Text()
     count = fields.Integer(compute='_compute_count', store=True)
-
-    single_parent = fields.Boolean()
 
     @api.depends('member_ids')
     def _compute_count(self):
