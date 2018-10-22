@@ -31,19 +31,19 @@ class GolemMember(models.Model):
                     'pcs_id', 'nationality_id', 'season_ids')
     def save_history(self):
         """ save member history """
-        default_season = self.env['golem.season'].search([('is_default', '=', True)])
+        default_season = self.env['golem.season'].search([('is_default', '=', True)], limit=1)
         for member in self:
             history = self.env['golem.member.history'].search([
                 ('member_id', '=', member.id),
-                ('season_id', '=', default_season.id)])
+                ('season_id', '=', default_season.id)], limit=1)
             if history:
 
-                history[0].write({'gender': member.gender,
-                                  'nationality_id': member.nationality_id.id,
-                                  'city': member.city,
-                                  'family_quotient': member.family_quotient,
-                                  'pcs_id': member.pcs_id.id,
-                                  'area_id': member.area_id.id})
+                history.write({'gender': member.gender,
+                               'nationality_id': member.nationality_id.id,
+                               'city': member.city,
+                               'family_quotient': member.family_quotient,
+                               'pcs_id': member.pcs_id.id,
+                               'area_id': member.area_id.id})
             else:
                 self.env['golem.member.history'].create({'member_id': member.id,
                                                          'season_id': default_season.id,

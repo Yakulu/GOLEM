@@ -30,13 +30,13 @@ class GolemFamily(models.Model):
     @api.constrains('city', 'country_id', 'member_ids')
     def save_family_history(self):
         """ save family history """
-        default_season = self.env['golem.season'].search([('is_default', '=', True)])
+        default_season = self.env['golem.season'].search([('is_default', '=', True)], limit=1)
         for family in self:
             history = self.env['golem.family.history'].search([
                 ('family_id', '=', family.id),
-                ('season_id', '=', default_season.id)])
+                ('season_id', '=', default_season.id)], limit=1)
             if history:
-                history[0].write({
+                history.write({
                     'city': family.city,
                     'country_id': family.country_id.id,
                     'member_ids':[(6, False, family.member_ids.ids)]
