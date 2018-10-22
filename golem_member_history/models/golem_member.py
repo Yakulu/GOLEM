@@ -27,13 +27,17 @@ class GolemMember(models.Model):
 
     member_history_ids = fields.One2many('golem.member.history', 'member_id')
 
-    @api.constrains('gender', 'area_id', 'city', 'family_quotient', 'pcs_id', 'nationality_id')
+    @api.constrains('gender', 'area_id', 'city', 'family_quotient',
+                    'pcs_id', 'nationality_id', 'season_ids')
     def save_history(self):
+        """ save member history """
         default_season = self.env['golem.season'].search([('is_default', '=', True)])
         for member in self:
-            history = self.env['golem.member.history'].search([('member_id', '=', member.id),
-                                                               ('season_id', '=', default_season.id)])
+            history = self.env['golem.member.history'].search([
+                ('member_id', '=', member.id),
+                ('season_id', '=', default_season.id)])
             if history:
+
                 history[0].write({'gender': member.gender,
                                   'nationality_id': member.nationality_id.id,
                                   'city': member.city,
@@ -49,4 +53,4 @@ class GolemMember(models.Model):
                                                          'family_quotient': member.family_quotient,
                                                          'pcs_id': member.pcs_id.id,
                                                          'area_id': member.area_id.id
-                                                         })
+                                                        })
