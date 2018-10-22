@@ -15,4 +15,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import golem_member, golem_season, golem_partner_area_street
+from . import golem_member, golem_season
