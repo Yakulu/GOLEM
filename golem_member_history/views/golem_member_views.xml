@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <page name="membership" position="after">
           <page name="history" string="History">
-            <field  name="member_history_ids">
+            <field  name="member_history_ids" readonly="1">
               <tree>
                 <field name="season_id"/>
                 <field name="gender"/>
