@@ -29,5 +29,6 @@
     'data': ['security/ir.model.access.csv',
              'data/golem_activity_data.xml',
              'views/golem_activity_views.xml',
-             'report/golem_activity_report_templates.xml']
+             'report/golem_activity_report_templates.xml',
+             'views/res_partner_views.xml']
 }
