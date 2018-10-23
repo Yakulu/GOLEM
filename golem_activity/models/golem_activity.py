@@ -136,6 +136,13 @@ class GolemActivity(models.Model):
     date_start = fields.Date('Start date', copy=False)
     date_stop = fields.Date('End date', copy=False)
 
+    @api.constrains('animator_id')
+    def save_animator_id(self):
+        """ Enabling is_animator flag """
+        for activity in self:
+            activity.animator_id.is_animator = True
+
+
     @api.onchange('date_start')
     def _onchange_date_start(self):
         """ Sets end date to start date if no start date """
@@ -221,3 +228,9 @@ class ProductCategory(models.Model):
 
     property_account_income_categ_id = fields.Many2one(required=True)
     property_account_expense_categ_id = fields.Many2one(required=True)
+
+class ResPartner(models.Model):
+    """ GOLEM Member partner adaptations """
+    _inherit = 'res.partner'
+
+    is_animator = fields.Boolean()
