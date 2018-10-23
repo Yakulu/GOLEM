@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,9 +20,22 @@
 
 import logging
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 _LOGGER = logging.getLogger(__name__)
 
+def get_root_area(area_id):
+    """ Get root area """
+    if not area_id.parent_id:
+        return area_id
+    return get_root_area(area_id.parent_id)
+
+def is_sub_area(area_id, parent_id):
+    """ Check if parent is sub area """
+    if parent_id.parent_id.id == area_id.id:
+        return True
+    if not parent_id.parent_id:
+        return False
+    return is_sub_area(area_id, parent_id.parent_id)
 
 class PartnerArea(models.Model):
     """ Partner Area """
@@ -34,6 +48,37 @@ class PartnerArea(models.Model):
 
     name = fields.Char(required=True, index=True)
     sequence = fields.Integer()
+    area_street_ids = fields.One2many('golem.partner.area.street', 'area_id',
+                                      string='Street list')
+    parent_id = fields.Many2one('golem.partner.area', string='Parent Territory',
+                                domain="[('id', '!=', id)]")
+    root_id = fields.Many2one('golem.partner.area', compute='_compute_root_id',
+                              string='Root area')
+
+    @api.depends('parent_id')
+    def _compute_root_id(self):
+        """ Compute root_id """
+        for area in self:
+            area.root_id = get_root_area(area)
+
+    @api.constrains('parent_id')
+    def check_parent_id(self):
+        """ Check if parent is sub area """
+        for area in self:
+            if  is_sub_area(area, area.parent_id):
+                err = _('The parent area is a sub area of the current area, '
+                        'please change it.')
+                raise ValidationError(err)
+
+
+class GolemPartnerAreaStreet(models.Model):
+    """ GOLEM Partner Area Street Management """
+    _name = 'golem.partner.area.street'
+    _description = 'GOLEM Partner Area Street'
+
+    name = fields.Char(required=True)
+    area_id = fields.Many2one('golem.partner.area', required=True, sring='Area',
+                              index=True, auto_join=True, ondelete='set null')
 
 
 class ResPartner(models.Model):
@@ -51,6 +96,7 @@ class ResPartner(models.Model):
         'golem.partner.area', index=True, auto_join=True, string='Area',
         help="Area, quarter... for statistics and activity price."
     )
+    area_from_street = fields.Boolean(store=False, default=False)
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
     # Gender overwriting : no need for 'other' choice
@@ -82,6 +128,20 @@ class ResPartner(models.Model):
         self.ensure_one()
         gm_obj = self.env['golem.member']
         gm_obj.create({'partner_id': self[0].id})
+
+    @api.constrains('street')
+    def save_street(self):
+        """ Save street if no exist """
+        for member in self:
+            if member.street and not member.area_from_street:
+                mstreet = member.street.strip()
+                street_id = self.env['golem.partner.area.street'].search(
+                    [('name', 'ilike', mstreet)]
+                )
+                if not street_id:
+                    self.env['golem.partner.area.street'].create(
+                        {'name': mstreet, 'area_id': member.area_id.id}
+                    )
 
 class GolemMembershipInvoice(models.TransientModel):
     """ GOLEM Membership Invoice adaptations """
@@ -182,6 +242,19 @@ class GolemMember(models.Model):
         is_num_man = (conf.get_param('golem_numberconfig_isautomatic') == '0')
         self.update({'is_number_manual': is_num_man})
 
+    @api.onchange('street')
+    def onchange_street(self):
+        """ Area auto assignement """
+        for member in self:
+            mstreet = member.street.strip() if member.street else False
+            if mstreet and not member.area_id:
+                street_id = self.env['golem.partner.area.street'].search(
+                    [('name', 'ilike', mstreet)], limit=1
+                )
+                if street_id:
+                    member.area_id = street_id.area_id
+                    member.area_from_street = True
+
     @api.multi
     def generate_number_perseason(self):
         """ Number generation in case of per season configuration """
@@ -250,10 +323,10 @@ class GolemMember(models.Model):
                     member.number = member.generate_number_global()
 
     @api.multi
-    def write(self, values):
+    def write(self, vals):
         """ Number generation after updates """
-        res = super(GolemMember, self).write(values)
-        if 'season_ids' in values or 'number_manual' in values:
+        res = super(GolemMember, self).write(vals)
+        if 'season_ids' in vals or 'number_manual' in vals:
             self.generate_number()
         return res
 
