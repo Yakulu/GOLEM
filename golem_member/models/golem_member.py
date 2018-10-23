@@ -99,8 +99,11 @@ class ResPartner(models.Model):
     area_from_street = fields.Boolean(store=False, default=False)
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
-    # Gender overwriting : no need for 'other' choice
-    gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
+    # Gender overwriting
+    gender = fields.Selection([('male', _('Male')),
+                               ('female', _('Female')),
+                               ('not_disclosed', _('Not Disclosed'))],
+                              default='not_disclosed')
 
     member_id = fields.One2many('golem.member', 'partner_id', 'Service user',
                                 readonly=True)
