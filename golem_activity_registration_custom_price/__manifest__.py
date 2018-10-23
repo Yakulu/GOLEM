@@ -20,11 +20,11 @@
     'summary': 'GOLEM Activity Registration Custom Price',
     'description': '''GOLEM Activity Registration Custom Price :
     - allow set of 1:n slices based on family quotient ;
-    - allow set 1:n area data ;
+    - allow set 1:n root area data ;
     - allow set price per area and slice ;
     - computes automatically applicable price ;
     - anticipate ruleset to be implemented for computing.''',
-    'version': '10.0.0.1.2',
+    'version': '10.0.0.2.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

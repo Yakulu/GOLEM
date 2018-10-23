@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -24,10 +25,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="name">GOLEM Partner Area Tree</field>
       <field name="model">golem.partner.area</field>
       <field name="arch" type="xml">
-        <tree editable="bottom">
+        <tree>
           <field name="sequence" widget="handle" />
           <field name="name" />
+          <field name="parent_id"/>
         </tree>
+      </field>
+    </record>
+
+    <!-- Form -->
+    <record model="ir.ui.view" id="golem_partner_area_view_form">
+      <field name="name">GOLEM Partner Area Form</field>
+      <field name="model">golem.partner.area</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+            <field name="name" />
+            </group>
+            <group>
+              <field name="parent_id" />
+              <field name="root_id" />
+            </group>
+          </group>
+          <group>
+            <field name="area_street_ids">
+              <tree editable="bottom">
+                <field name="name" />
+              </tree>
+            </field>
+          </group>
+        </form>
       </field>
     </record>
 
@@ -38,13 +66,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <search>
           <field name="name" />
+          <field name="parent_id" />
+          <filter name="sub_territories" string="Sub Territories"
+            domain="[('parent_id', '!=', False)]" />
+          <filter name="root_territories" string="Root Territories"
+            domain="[('parent_id', '=', False)]" />
+          <filter name="group_parent" string="Parent"
+            context="{'group_by': 'parent_id'}" />
         </search>
       </field>
     </record>
 
     <!-- Actions -->
-    <act_window id="golem_partner_area_action"
-      name="Areas" res_model="golem.partner.area" view_mode="tree" />
+    <act_window id="golem_partner_area_action" name="Areas"
+      res_model="golem.partner.area" view_mode="tree,form" />
 
     <!-- Menus -->
     <menuitem id="golem_partner_area_menu" name="Areas"

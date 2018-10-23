@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-27 09:04+0000\n"
-"PO-Revision-Date: 2018-08-27 11:21+0200\n"
+"POT-Creation-Date: 2018-10-22 16:02+0000\n"
+"PO-Revision-Date: 2018-10-22 18:09+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,18 @@ msgstr "Appliquer pour les nouveaux adhérents"
 #: model:ir.model.fields,field_description:golem_member.field_res_partner_area_id
 #: model:ir.model.fields,field_description:golem_member.field_res_users_area_id
 msgid "Area"
+msgstr "Territoire"
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_area_from_street
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_area_from_street
+#: model:ir.model.fields,field_description:golem_member.field_res_users_area_from_street
+msgid "Area from street"
+msgstr "Territoire automatique depuis la rue"
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_area_id
+msgid "Area id"
 msgstr "Territoire"
 
 #. module: golem_member
@@ -295,6 +307,7 @@ msgstr "Faire de ce contact un usager"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_create_uid
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_create_uid
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_create_uid
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_create_uid
 msgid "Created by"
 msgstr "Créé par"
 
@@ -303,6 +316,7 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_create_date
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_create_date
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_create_date
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_create_date
 msgid "Created on"
 msgstr "Créé le"
 
@@ -381,6 +395,7 @@ msgstr "Département"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_display_name
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_display_name
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_display_name
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -415,7 +430,7 @@ msgid "Fax"
 msgstr "Fax"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:57
+#: code:addons/golem_member/models/golem_member.py:103
 #, python-format
 msgid "Female"
 msgstr "Féminin"
@@ -487,10 +502,15 @@ msgid "GOLEM Members Tags"
 msgstr "Catégories d'adhérents"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:360
+#: code:addons/golem_member/models/golem_member.py:433
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr "La fusion d'adhérents n'a pas encore été implémentée. Merci de ne fusionner que des contacts non adhérents, ou bien de supprimer les adhérents manuellement en premier lieu."
+
+#. module: golem_member
+#: model:ir.model,name:golem_member.model_golem_partner_area_street
+msgid "GOLEM Partner Area Street"
+msgstr "GOLEM Partner Area Street"
 
 #. module: golem_member
 #: model:ir.model,name:golem_member.model_golem_season
@@ -537,6 +557,7 @@ msgstr "A des écritures non lettrées"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_id
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_id
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_id
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_id
 msgid "ID"
 msgstr "ID"
 
@@ -677,6 +698,7 @@ msgstr "Langue"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number___last_update
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig___last_update
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area___last_update
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street___last_update
 msgid "Last Modified on"
 msgstr "Dernière Modification le"
 
@@ -684,6 +706,7 @@ msgstr "Dernière Modification le"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_write_uid
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_write_uid
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_write_uid
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_write_uid
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
@@ -692,6 +715,7 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_write_date
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_numberconfig_write_date
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_write_date
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_write_date
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
@@ -712,7 +736,7 @@ msgid "Latest Invoices & Payments Matching Date"
 msgstr "Date de dernière correspondance des factures et paiements"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:57
+#: code:addons/golem_member/models/golem_member.py:103
 #, python-format
 msgid "Male"
 msgstr "Masculin"
@@ -740,7 +764,7 @@ msgstr "Image de taille moyenne de ce contact. Elle est automatiquement redimens
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_member_id
 msgid "Member"
-msgstr "Adhérent"
+msgstr "Usager"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name
@@ -804,8 +828,9 @@ msgstr "NIC"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_name
-#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4301
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_number_name_4230
 #: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_name
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_street_name
 msgid "Name"
 msgstr "Nom"
 
@@ -817,8 +842,8 @@ msgid "Nationality"
 msgstr "Nationalité"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:300
-#: code:addons/golem_member/models/golem_member.py:303
+#: code:addons/golem_member/models/golem_member.py:373
+#: code:addons/golem_member/models/golem_member.py:376
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
@@ -864,6 +889,16 @@ msgstr "Refuse les SMS ?"
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Out of mailings?"
 msgstr "Refuse la réception de mails ?"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_partner_area_view_search
+msgid "Parent"
+msgstr "Parent"
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_parent_id
+msgid "Parent Territory"
+msgstr "Territoire parent"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_parent_name
@@ -948,6 +983,16 @@ msgstr "Date d'inscription"
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_parent_id
 msgid "Related Company"
 msgstr "Société liée"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_partner_area_view_search
+msgid "Root Territories"
+msgstr "Territoires racines"
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_root_id
+msgid "Root area"
+msgstr "Territoire racine"
 
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_siren
@@ -1085,6 +1130,11 @@ msgid "Street"
 msgstr "Rue"
 
 #. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_partner_area_area_street_ids
+msgid "Street list"
+msgstr "Liste de rues"
+
+#. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Street..."
 msgstr "Rue..."
@@ -1092,7 +1142,12 @@ msgstr "Rue..."
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_street2
 msgid "Street2"
-msgstr "Complément de rue"
+msgstr "Rue 2"
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.golem_partner_area_view_search
+msgid "Sub Territories"
+msgstr "Sous-territoires"
 
 #. module: golem_member
 #: model:ir.actions.act_window,name:golem_member.golem_member_action
@@ -1151,6 +1206,12 @@ msgid "The name of official registry where this company was declared."
 msgstr "Nom de la ville du tribunal de commerce dans laquelle la société est enregistrée."
 
 #. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:69
+#, python-format
+msgid "The parent area is a sub area of the current area, please change it."
+msgstr "Le territoire parent est un sous-territoire du territoire courant, merci de modifier vos saisies."
+
+#. module: golem_member
 #: model:ir.model.fields,help:golem_member.field_golem_member_has_unreconciled_entries
 msgid "The partner has at least one unreconciled debit and credit since last time the invoices & payments matching was performed."
 msgstr "Le partenaire a au moins un débit et un crédit non lettré depuis le dernier lettrage des factures et des paiements."
@@ -1186,14 +1247,14 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px."
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:108
+#: code:addons/golem_member/models/golem_member.py:168
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
 msgstr "Ce numéro d'adhérent a été déjà utilisé."
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:33
+#: code:addons/golem_member/models/golem_member.py:47
 #: sql_constraint:golem.partner.area:0
 #, python-format
 msgid "This patner area has already been used."
@@ -1260,7 +1321,7 @@ msgid "Total amount you have to pay to this vendor."
 msgstr "Montant total à payer au fournisseur."
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:175
+#: code:addons/golem_member/models/golem_member.py:235
 #, python-format
 msgid "Unsupported operator for defautl season search"
 msgstr "Opérateur de recherche non supporté pour le filtre de saison par défaut"
@@ -1296,8 +1357,8 @@ msgid "Website of Partner or Company"
 msgstr "Site Web pour les Partenaires ou les Sociétés"
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:300
-#: code:addons/golem_member/models/golem_member.py:303
+#: code:addons/golem_member/models/golem_member.py:373
+#: code:addons/golem_member/models/golem_member.py:376
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
