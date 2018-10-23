@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -86,8 +87,8 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
         partner = self.member_id.partner_id
         #check if there is a draft invoice for the current customer
         member_line = partner.member_lines.filtered(
-            lambda ml: (ml.membership_id.membership_season_id.is_default and
-                        ml.account_invoice_id.state == 'draft')
+            lambda ml: (ml.membership_id.membership_season_id == self.season_id
+                        and ml.account_invoice_id.state == 'draft')
             )
         if member_line:
             invoice = member_line[0].account_invoice_id
