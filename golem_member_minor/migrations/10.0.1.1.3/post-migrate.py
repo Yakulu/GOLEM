@@ -27,3 +27,5 @@ def migrate(cursor, version):
         cursor.execute('''INSERT INTO golem_legal_guardian(member_id, legal_guardian_id) VALUES
                            (%s, %s)''' % (member_id, legal_guardian_id))
     cursor.execute('DROP TABLE golem_member_res_partner_rel')
+    cursor.execute('DELETE FROM ir_model_fields WHERE name=\'legal_guardian_ids\' '
+                   'AND ttype=\'many2many\'')
