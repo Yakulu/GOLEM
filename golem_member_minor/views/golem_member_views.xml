@@ -39,7 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </group>
           </page>
         </page>
-        <xpath expr="//page[@name='membership']/group/group/div/button[1]" position="attributes">
+        <xpath expr="//page[@name='membership']/group/group/div/button[1]"
+          position="attributes">
           <attribute name="name">membership_invoice_action</attribute>
           <attribute name="type">object</attribute>
         </xpath>

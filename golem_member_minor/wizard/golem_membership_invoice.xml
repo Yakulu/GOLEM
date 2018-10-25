@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
     <!-- Forms -->
     <record id="golem_membership_invoice_form_inherit" model="ir.ui.view">
       <field name="name">membership.invoice.view.form_iherit</field>
@@ -27,12 +28,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="golem_membership.golem_membership_invoice_form" />
       <field name="arch" type="xml">
         <field name='product_id' position='before'>
-            <field name='partner_id'
-                   attrs="{'invisible': [('src_member_id', '=', False)]}"
-                   options="{'no_create': True}"/>
-            <field name='src_member_id' invisible="1"/>
+            <field name='src_member_id' invisible="1" />
+            <field name='src_member_minor' invisible="1" />
+            <field name='partner_id' string="Legal guardian"
+              options="{'no_create': True}"
+              attrs="{'invisible': [('src_member_id', '=', False)], 'required': [('src_member_minor', '=', True)]}" />
         </field>
       </field>
     </record>
+
   </data>
 </odoo>

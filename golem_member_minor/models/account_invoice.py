@@ -18,11 +18,12 @@
 
 """ Account Invoice adaptations """
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 class AccountInvoice(models.Model):
     """ Account Invoice adaptations """
     _inherit = 'account.invoice'
 
-    partner_ids = fields.Many2many('res.partner', string="Concerned partners")
+    partner_ids = fields.Many2many('res.partner', string='Concerned partners',
+                                   auto_join=True)
     is_minor_invoice = fields.Boolean()

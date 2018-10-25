@@ -19,7 +19,7 @@
 {
     'name': 'GOLEM members minor',
     'summary': 'GOLEM non-profit members minor management',
-    'version': '10.0.1.2.0',
+    'version': '10.0.1.3.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
@@ -28,6 +28,6 @@
     'depends': ['golem_member'],
     'data': ['security/ir.model.access.csv',
              'views/golem_member_views.xml',
-             'views/golem_membership_invoice.xml',
-             'views/account_invoice.xml']
+             'views/account_invoice.xml',
+             'wizard/golem_membership_invoice.xml']
 }

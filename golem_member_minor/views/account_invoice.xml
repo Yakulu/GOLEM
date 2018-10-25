@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
     <!-- Forms -->
     <record id="account.invoice_form_inherited_member_minor" model="ir.ui.view">
       <field name="name">account.invoice.form.iherited.member.minor</field>
@@ -27,13 +28,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="account.invoice_form" />
       <field name="arch" type="xml">
         <field name='partner_id' position='after'>
-            <field name='is_minor_invoice' invisible="1"/>
-            <field name="partner_ids"
-                   widget="many2many_tags"
-                   readonly="1"
-                   attrs="{'invisible': [('is_minor_invoice', '=', False)]}"/>
+            <field name='is_minor_invoice' invisible="1" />
+            <field name="partner_ids" widget="many2many_tags" readonly="1"
+              attrs="{'invisible': [('is_minor_invoice', '=', False)]}" />
         </field>
       </field>
     </record>
+
   </data>
 </odoo>
