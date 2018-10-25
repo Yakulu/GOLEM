@@ -26,7 +26,8 @@ class GolemMembershipInvoice(models.TransientModel):
     _name = 'golem.membership.invoice'
     _description = 'GOLEM MemberShip invoicing'
 
-    partner_id = fields.Many2one('res.partner', 'Partner')
+    partner_id = fields.Many2one('res.partner', 'Partner', required=True,
+                                 ondelete='cascade')
     product_id = fields.Many2one('product.product', 'Membership',
                                  required=True)
     member_price = fields.Float('Member Price',

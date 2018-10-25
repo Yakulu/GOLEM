@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_golem_member_user,Access GOLEM Member User,model_golem_member,golem_base.group_golem_user,1,1,1,1
 access_partner_area_user,Access GOLEM Partner Area User,model_golem_partner_area,golem_base.group_golem_user,1,1,1,1
+access_partner_area_street_user,Access GOLEM Partner Area Street User,model_golem_partner_area_street,golem_base.group_golem_user,1,1,1,1
 access_golem_member_season_user,Access GOLEM Member Season User,model_golem_member_number,golem_base.group_golem_user,1,1,1,1
 access_ir_config_parameter_manager,Access IR Config Parameter Manager,base.model_ir_config_parameter,golem_base.group_golem_manager,1,1,1,1

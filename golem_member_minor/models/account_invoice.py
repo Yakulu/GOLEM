@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,15 +16,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Family Minor glue module"""
+""" Account Invoice adaptations """
 
 from odoo import models, fields
 
-LEGAL_DMN = "['&', ('family_id', '=', family_id), ('id', '!=', partner_id)]"
+class AccountInvoice(models.Model):
+    """ Account Invoice adaptations """
+    _inherit = 'account.invoice'
 
-
-class GolemMember(models.Model):
-    """ Member adaptations """
-    _inherit = 'golem.member'
-
-    legal_guardian_ids = fields.Many2many(domain=LEGAL_DMN)
+    partner_ids = fields.Many2many('res.partner', string='Concerned partners',
+                                   auto_join=True)
+    is_minor_invoice = fields.Boolean()

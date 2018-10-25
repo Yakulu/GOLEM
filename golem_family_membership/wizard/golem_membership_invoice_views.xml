@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <field name="member_ids" widget="many2many_tags"
               options="{'no_create': True}" />
             <field name="on_the_name_of" options="{'no_create': True}"
-              attrs="{'readonly': [('member_ids', '=', [])]}" />
+              attrs="{'readonly': [('member_ids', '=', [])], 'required': [('family_id', '!=', False)]}" />
             <field name="product_id" domain="[('family_membership','=',True)]"
               widget="selection" />
             <field name="member_price" />

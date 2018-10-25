@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -40,7 +41,7 @@ class GolemMember(models.Model):
                 area_ids = self.env['golem.partner.area'].search([])
                 if member.area_id:
                     applicable_areas += area_ids.filtered(
-                        lambda r: r == member.area_id
+                        lambda r: r == member.area_id.root_id
                     )
                 if not applicable_areas and area_ids:
                     applicable_areas += area_ids[0]
