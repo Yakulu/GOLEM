@@ -22,7 +22,7 @@
         - New application on top menu ;
         - Management of users and groups, companies ;
         - Good default access / rights to do. ''',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.1.3',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',

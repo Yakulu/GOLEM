@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <odoo>
   <data>
 
-    <!-- Form -->
+    <!-- Forms -->
     <record model="ir.ui.view" id="golem_member_form_inherit_minor">
       <field name="name">Add Minor Page/Tab</field>
       <field name="model">golem.member</field>
@@ -35,16 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <field name="leave_alone"/>
               <field name="partner_id" invisible="True" required="False" />
               <field name="is_minor" invisible="True" />
-              <field name="legal_guardian_ids"
-                context="{'search_default_type_person': 1}">
-                <tree>
-                  <field name="name" />
-                  <field name="contact_address" />
-                  <field name="phone" />
-                  <field name="mobile" />
-                  <field name="email" widget="email" />
-                </tree>
-              </field>
+              <field name="legal_guardian_ids" context="{'default_member_id': active_id}" />
             </group>
           </page>
         </page>
@@ -52,6 +43,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <attribute name="name">membership_invoice_action</attribute>
           <attribute name="type">object</attribute>
         </xpath>
+      </field>
+    </record>
+
+    <record id="golem_legal_guardian_view_form" model="ir.ui.view">
+      <field name="name">GOLEM Legal Guardian Form</field>
+      <field name="model">golem.legal.guardian</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="member_id" />
+              <field name="legal_guardian_id" />
+              <field name="is_default_guardian" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Trees -->
+    <record id="golem_legal_guardian_view_tree" model="ir.ui.view">
+      <field name="name">GOLEM Legal Guardian Tree</field>
+      <field name="model">golem.legal.guardian</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="legal_guardian_id" />
+          <field name="contact_address" />
+          <field name="phone" attrs="{'readonly': [('legal_guardian_id', '=', False)]}" />
+          <field name="mobile" attrs="{'readonly': [('legal_guardian_id', '=', False)]}" />
+          <field name="email" widget="email" attrs="{'readonly': [('legal_guardian_id', '=', False)]}" />
+          <field name="is_default_guardian" />
+        </tree>
       </field>
     </record>
 

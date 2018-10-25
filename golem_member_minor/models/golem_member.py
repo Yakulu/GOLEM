@@ -19,7 +19,8 @@
 """ GOLEM Member Minor management """
 
 from datetime import date, timedelta
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 ADULT_DURATION = timedelta(days=365.25*18)
 
@@ -27,9 +28,8 @@ class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
-    legal_guardian_ids = fields.Many2many(
-        'res.partner', string='Legal guardians', index=True, auto_join=True,
-        domain="['&', ('is_company', '=', False), ('id', '!=', partner_id)]")
+    legal_guardian_ids = fields.One2many('golem.legal.guardian', 'member_id',
+                                         string='Legal guardians')
     activities_participation = fields.Boolean('Activities participation?')
     leave_alone = fields.Boolean('Can leave alone?')
     is_minor = fields.Boolean('Is minor?', compute='_compute_is_minor',
@@ -63,3 +63,16 @@ class GolemMember(models.Model):
             action['context'] = {'default_src_member_id': member.id,
                                  'default_partner_id': False}
         return action
+
+    @api.constrains('legal_guardian_ids')
+    def check_default_guardian(self):
+        """ Ensures there is one and only one default guardian, no double """
+        for member in self:
+            if len(member.legal_guardian_ids):
+                default_guardians_count = len(member.legal_guardian_ids.filtered(
+                    'is_default_guardian'
+                ))
+                if not default_guardians_count or default_guardians_count > 1:
+                    verr = _('You must have one and only one default legal '
+                             'guardian. Please check your fills.')
+                    raise ValidationError(verr)

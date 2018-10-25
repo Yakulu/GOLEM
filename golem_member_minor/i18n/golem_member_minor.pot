@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 16:15+0000\n"
-"PO-Revision-Date: 2018-08-26 16:15+0000\n"
+"POT-Creation-Date: 2018-10-24 05:59+0000\n"
+"PO-Revision-Date: 2018-10-24 05:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,13 +26,53 @@ msgid "Can leave alone?"
 msgstr ""
 
 #. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_contact_address
+msgid "Complete Address"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_email
+msgid "Email"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model,name:golem_member_minor.model_golem_legal_guardian
+msgid "GOLEM Legal Guardian Management"
+msgstr ""
+
+#. module: golem_member_minor
 #: model:ir.model,name:golem_member_minor.model_golem_member
 msgid "GOLEM Member"
 msgstr ""
 
 #. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_id
+msgid "ID"
+msgstr ""
+
+#. module: golem_member_minor
 #: model:ir.ui.view,arch_db:golem_member_minor.golem_member_search_inherit_minor
 msgid "Is adult"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_is_default_guardian
+msgid "Is default guardian"
 msgstr ""
 
 #. module: golem_member_minor
@@ -46,12 +86,60 @@ msgid "Is minor?"
 msgstr ""
 
 #. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_legal_guardian_id
+msgid "Legal guardian"
+msgstr ""
+
+#. module: golem_member_minor
 #: model:ir.model.fields,field_description:golem_member_minor.field_golem_member_legal_guardian_ids
 msgid "Legal guardians"
 msgstr ""
 
 #. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_member_id
+msgid "Member id"
+msgstr ""
+
+#. module: golem_member_minor
 #: model:ir.ui.view,arch_db:golem_member_minor.golem_member_form_inherit_minor
 msgid "Minor"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: golem_member_minor
+#: model:ir.model.fields,field_description:golem_member_minor.field_golem_legal_guardian_phone
+msgid "Phone"
+msgstr ""
+
+#. module: golem_member_minor
+#: code:addons/golem_member_minor/models/golem_legal_guardian.py:29
+#: sql_constraint:golem.legal.guardian:0
+#, python-format
+msgid "There are doubles in your legal guardians. Please check your fills."
+msgstr ""
+
+#. module: golem_member_minor
+#: code:addons/golem_member_minor/models/golem_member.py:65
+#, python-format
+msgid "You must have one and only one default legal guardian. Please check your fills."
 msgstr ""
 

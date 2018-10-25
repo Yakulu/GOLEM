@@ -18,7 +18,7 @@
 """ GOLEM Activity Registration State """
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 class GolemMember(models.Model):
     """ GOLEM Member adaptations """
@@ -89,9 +89,10 @@ class GolemActivityRegistration(models.Model):
     def state_remove(self):
         """ Remove registrations, only if canceled """
         if self.filtered(lambda r: r.state != 'canceled'):
-            uerr = _('You can not confirm a canceled registration.')
+            uerr = _('You can not remove a uncanceled registration.')
             raise UserError(uerr)
         self.unlink()
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
 
     @api.multi
     def write(self, values):

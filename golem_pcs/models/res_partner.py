@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2017 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
+#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,15 +16,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-""" GOLEM Family Minor glue module"""
+""" Partner adaptations """
 
 from odoo import models, fields
 
-LEGAL_DMN = "['&', ('family_id', '=', family_id), ('id', '!=', partner_id)]"
+class ResPartner(models.Model):
+    """ Partner extention """
+    _inherit = 'res.partner'
 
-
-class GolemMember(models.Model):
-    """ Member adaptations """
-    _inherit = 'golem.member'
-
-    legal_guardian_ids = fields.Many2many(domain=LEGAL_DMN)
+    pcs_id = fields.Many2one('golem.pcs', string='PCS', index=True,
+                             help='Professions and Socioprofessional Categories')
