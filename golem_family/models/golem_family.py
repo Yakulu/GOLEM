@@ -179,7 +179,7 @@ class GolemFamily(models.Model):
                 if street_id:
 
                     family.area_id = street_id.area_id
-                    member.area_from_street = True
+                    family.area_from_street = True
     @api.constrains('street')
     def save_street(self):
         """ Save street if no exist """
