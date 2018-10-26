@@ -77,7 +77,7 @@ class GolemPartnerAreaStreet(models.Model):
     _description = 'GOLEM Partner Area Street'
 
     name = fields.Char(required=True)
-    area_id = fields.Many2one('golem.partner.area', required=True, sring='Area',
+    area_id = fields.Many2one('golem.partner.area', required=True, string='Area',
                               index=True, auto_join=True, ondelete='set null')
 
 
