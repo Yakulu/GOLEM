@@ -149,6 +149,7 @@ class GolemFamily(models.Model):
         'golem.partner.area', index=True, auto_join=True, string='Area',
         help="Area, quarter... for statistics and activity price."
     )
+    area_from_street = fields.Boolean(store=False, default=False)
 
     @api.depends('member_ids')
     def _compute_count(self):
@@ -165,6 +166,33 @@ class GolemFamily(models.Model):
                                'street2': family.member_ids[0].street2,
                                'zip': family.member_ids[0].zip,
                                'city': family.member_ids[0].city})
+
+    @api.onchange('street')
+    def onchange_street(self):
+        """ Area auto assignement """
+        for family in self:
+            mstreet = family.street.strip() if family.street else False
+            if mstreet and not family.area_id:
+                street_id = self.env['golem.partner.area.street'].search(
+                    [('name', 'ilike', mstreet)], limit=1
+                )
+                if street_id:
+
+                    family.area_id = street_id.area_id
+                    member.area_from_street = True
+    @api.constrains('street')
+    def save_street(self):
+        """ Save street if no exist """
+        for family in self:
+            if family.street and not family.area_from_street:
+                mstreet = family.street.strip()
+                street_id = self.env['golem.partner.area.street'].search(
+                    [('name', 'ilike', mstreet)]
+                )
+                if not street_id:
+                    self.env['golem.partner.area.street'].create(
+                        {'name': mstreet, 'area_id': family.area_id.id}
+                    )
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """
