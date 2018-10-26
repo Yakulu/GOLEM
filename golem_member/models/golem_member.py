@@ -19,6 +19,8 @@
 """ GOLEM Members """
 
 import logging
+from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 _LOGGER = logging.getLogger(__name__)
@@ -84,6 +86,15 @@ class GolemPartnerAreaStreet(models.Model):
 class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
+
+    age = fields.Integer(compute='_compute_age', store=True)
+
+    @api.depends('birthdate_date')
+    def _compute_age(self):
+        for contact in self:
+            if contact.birthdate_date:
+                age = relativedelta(date.today(), fields.Date.from_string(contact.birthdate_date))
+                contact.age = age.years
 
     @api.model
     def _get_default_nationality_id(self):

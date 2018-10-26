@@ -48,6 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           position="after">
           <field name="area_id" placeholder="Area, quarter..."
             options="{'no_create': true}" />
+          <field name="age"/>
         </xpath>
       </field>
     </record>
@@ -90,6 +91,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="member_number" />
+          <field name="area_id"/>
+          <field name="age"/>
         </field>
         <filter name="filter_my_partners" position="before">
           <filter name="is_subscriber" string="Is Subscriber"
@@ -103,6 +106,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <separator />
           <filter name="is_service_user" string="Is Service User"
             domain="[('member_id', '!=', False)]" />
+          <filter name="by_are_id" string="By Area"
+            context="{'group_by': area_id}"/>
           <separator />
         </filter>
       </field>
