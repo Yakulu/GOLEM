@@ -25,32 +25,28 @@ class GolemMember(models.Model):
     """ GOLEM Member adaptations """
     _inherit = 'golem.member'
 
-    member_history_ids = fields.One2many('golem.member.history', 'member_id')
+    member_history_ids = fields.One2many('golem.member.history', 'member_id',
+                                         readonly=True, string='History details')
 
-    @api.constrains('gender', 'area_id', 'city', 'family_quotient',
+    @api.constrains('gender', 'area_id', 'zip', 'city', 'family_quotient',
                     'pcs_id', 'nationality_id', 'season_ids')
     def save_history(self):
-        """ save member history """
+        """ Saves member history """
         default_season = self.env['golem.season'].search([('is_default', '=', True)], limit=1)
         for member in self:
-            history = self.env['golem.member.history'].search([
+            history_id = self.env['golem.member.history'].search([
                 ('member_id', '=', member.id),
                 ('season_id', '=', default_season.id)], limit=1)
-            if history:
-
-                history.write({'gender': member.gender,
-                               'nationality_id': member.nationality_id.id,
-                               'city': member.city,
-                               'family_quotient': member.family_quotient,
-                               'pcs_id': member.pcs_id.id,
-                               'area_id': member.area_id.id})
+            history_data = {'gender': member.gender,
+                            'nationality_id': member.nationality_id.id,
+                            'zip_code': member.zip,
+                            'city': member.city,
+                            'family_quotient': member.family_quotient,
+                            'pcs_id': member.pcs_id.id,
+                            'area_id': member.area_id.id}
+            if history_id:
+                history_id.write(history_data)
             else:
-                self.env['golem.member.history'].create({'member_id': member.id,
-                                                         'season_id': default_season.id,
-                                                         'gender': member.gender,
-                                                         'nationality_id': member.nationality_id.id,
-                                                         'city': member.city,
-                                                         'family_quotient': member.family_quotient,
-                                                         'pcs_id': member.pcs_id.id,
-                                                         'area_id': member.area_id.id
-                                                        })
+                history_data.update({'member_id': member.id,
+                                     'season_id': default_season.id})
+                self.env['golem.member.history'].create(history_data)

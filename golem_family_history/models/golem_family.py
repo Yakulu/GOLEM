@@ -18,34 +18,33 @@
 
 """ GOLEM Families Adaptations"""
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class GolemFamily(models.Model):
     """ GOLEM Family Adaptations """
     _inherit = 'golem.family'
 
-    family_history_ids = fields.One2many('golem.family.history', 'family_id')
+    family_history_ids = fields.One2many('golem.family.history', 'family_id',
+                                         readonly=True, string='History details')
 
-    @api.constrains('city', 'country_id', 'member_ids')
+    @api.constrains('zip', 'city', 'country_id', 'member_ids')
     def save_family_history(self):
-        """ save family history """
+        """ Saves family history """
         default_season = self.env['golem.season'].search([('is_default', '=', True)], limit=1)
         for family in self:
-            history = self.env['golem.family.history'].search([
+            history_id = self.env['golem.family.history'].search([
                 ('family_id', '=', family.id),
                 ('season_id', '=', default_season.id)], limit=1)
-            if history:
-                history.write({
-                    'city': family.city,
-                    'country_id': family.country_id.id,
-                    'member_ids':[(6, False, family.member_ids.ids)]
-                    })
+            history_data = {
+                'zip_code': family.zip,
+                'city': family.city,
+                'country_id': family.country_id.id,
+                'member_ids':[(6, False, family.member_ids.ids)]
+            }
+            if history_id:
+                history_id.write(history_data)
             else:
-                self.env['golem.family.history'].create({
-                    'family_id': family.id,
-                    'season_id': default_season.id,
-                    'city': family.city,
-                    'country_id': family.country_id.id,
-                    'member_ids':[(6, False, family.member_ids.ids)]
-                    })
+                history_data.update({'family_id': family.id,
+                                     'season_id': default_season.id})
+                self.env['golem.family.history'].create(history_data)

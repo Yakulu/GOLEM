@@ -18,22 +18,30 @@
 
 """ GOLEM Member History Management """
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 
 class GolemMemberHistory(models.Model):
     """ GOLEM Member History """
     _name = 'golem.member.history'
     _description = 'GOLEM Member History Management'
-    _order = "season_id desc, id desc"
+    _order = 'season_id desc, id desc'
+    _sql_constraints = [('golem_member_history_member_season_uniq',
+                         'UNIQUE (member_id, season_id)',
+                         _('You can only have one history line for each '
+                           'member and season combination.'))]
 
     member_id = fields.Many2one('golem.member', required=True, auto_join=True,
-                                ondelete="cascade")
+                                string='Service user', ondelete='cascade')
     season_id = fields.Many2one('golem.season', required=True, auto_join=True,
-                                ondelete="cascade")
+                                string='Season', ondelete='cascade')
     gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
-    area_id = fields.Many2one('golem.partner.area', string='Area', ondelete="cascade")
+    area_id = fields.Many2one('golem.partner.area', string='Area',
+                              auto_join=True, ondelete='cascade')
+    zip_code = fields.Char(string='ZIP')
     city = fields.Char()
     family_quotient = fields.Monetary()
-    currency_id = fields.Many2one(related="member_id.currency_id", string="Currency", readonly=True)
+    currency_id = fields.Many2one(related='member_id.currency_id',
+                                  string='Currency', readonly=True)
     pcs_id = fields.Many2one('golem.pcs', string='PCS')
-    nationality_id = fields.Many2one('res.country', string="Nationality", ondelete="cascade")
+    nationality_id = fields.Many2one('res.country', string='Nationality',
+                                     auto_join=True, ondelete='cascade')

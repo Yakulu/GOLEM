@@ -20,12 +20,12 @@
     'name': 'GOLEM Families History',
     'summary': 'GOLEM Families History',
     'description': 'GOLEM Families History',
-    'version': '10.0.0.0.1',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef El ouahby',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'depends': ['golem_family'],
-    'data': ['views/golem_family_views.xml']
+    'data': ['security/ir.model.access.csv', 'views/golem_family_views.xml']
 }

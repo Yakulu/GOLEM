@@ -19,12 +19,12 @@
 {
     'name': 'GOLEM Member History',
     'summary': 'Member History',
-    'version': '10.0.0.0.1',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef El ouahby',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'depends': ['golem_member', 'golem_pcs', 'golem_member_familyquotient'],
-    'data': ['views/golem_member_views.xml']
+    'data': ['security/ir.model.access.csv', 'views/golem_member_views.xml']
 }

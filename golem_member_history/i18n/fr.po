@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_member_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-26 06:41+0000\n"
+"PO-Revision-Date: 2018-10-26 08:45+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_area_id
+msgid "Area"
+msgstr "Territoire"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_city
+msgid "City"
+msgstr "Ville"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_family_quotient
+msgid "Family quotient"
+msgstr "Quotient familial"
+
+#. module: golem_member_history
+#: code:addons/golem_member_history/models/golem_member_history.py:37
+#: selection:golem.member.history,gender:0
+#, python-format
+msgid "Female"
+msgstr "Féminin"
+
+#. module: golem_member_history
+#: model:ir.model,name:golem_member_history.model_golem_member
+msgid "GOLEM Member"
+msgstr "Adhérent"
+
+#. module: golem_member_history
+#: model:ir.model,name:golem_member_history.model_golem_member_history
+msgid "GOLEM Member History Management"
+msgstr "GOLEM Member History Management"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_gender
+msgid "Gender"
+msgstr "Genre"
+
+#. module: golem_member_history
+#: model:ir.ui.view,arch_db:golem_member_history.golem_member_form_inherit_golem_member_history
+msgid "History"
+msgstr "Historique"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_member_history_ids
+msgid "History details"
+msgstr "Historique"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_id
+msgid "ID"
+msgstr "ID"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: golem_member_history
+#: code:addons/golem_member_history/models/golem_member_history.py:37
+#: selection:golem.member.history,gender:0
+#, python-format
+msgid "Male"
+msgstr "Masculin"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_nationality_id
+msgid "Nationality"
+msgstr "Nationalité"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_pcs_id
+msgid "PCS"
+msgstr "PCS"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_season_id
+msgid "Season"
+msgstr "Saison"
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_member_id
+msgid "Service user"
+msgstr "Usager"
+
+#. module: golem_member_history
+#: model:ir.model.fields,help:golem_member_history.field_golem_member_history_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Champ utile pour indiquer le montant de la monnaie"
+
+#. module: golem_member_history
+#: code:addons/golem_member_history/models/golem_member_history.py:30
+#: sql_constraint:golem.member.history:0
+#, python-format
+msgid "You can only have one history line for each member and season combination."
+msgstr "Vous ne pouvez avoir qu'une seule ligne par usager par saison."
+
+#. module: golem_member_history
+#: model:ir.model.fields,field_description:golem_member_history.field_golem_member_history_zip_code
+msgid "ZIP"
+msgstr "Code postal"
+

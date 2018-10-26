@@ -18,18 +18,24 @@
 
 """ GOLEM Family History Management """
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 
 class GolemFamilyHistory(models.Model):
     """ GOLEM Family History  Management """
     _name = 'golem.family.history'
     _description = 'GOLEM Family History Management'
-    _order = "season_id desc, id desc"
+    _order = 'season_id desc, id desc'
+    _sql_constraints = [('golem_family_history_family_season_uniq',
+                         'UNIQUE (family_id, season_id)',
+                         _('You can only have one history line for each '
+                           'family and season combination.'))]
 
     family_id = fields.Many2one('golem.family', required=True, auto_join=True,
-                                ondelete="cascade")
+                                string='Family', ondelete='cascade')
     season_id = fields.Many2one('golem.season', required=True, auto_join=True,
-                                ondelete="cascade")
+                                string='Season', ondelete='cascade')
+    zip_code = fields.Char(string='ZIP')
     city = fields.Char()
     country_id = fields.Many2one('res.country', string='Country')
-    member_ids = fields.Many2many('res.partner')
+    member_ids = fields.Many2many('res.partner', string='Members',
+                                  auto_join=True)

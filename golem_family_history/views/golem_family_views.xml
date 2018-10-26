@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <odoo>
   <data>
+
     <!-- Forms -->
     <record model="ir.ui.view" id="golem_family_form_inherit_golem_family_history">
       <field name="name">Golem Family form history adaptations</field>
@@ -32,6 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tree>
                 <field name="season_id"/>
                 <field name="member_ids"/>
+                <field name="zip_code"/>
                 <field name="city"/>
                 <field name="country_id"/>
               </tree>
@@ -40,5 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </page>
       </field>
     </record>
+
   </data>
 </odoo>
