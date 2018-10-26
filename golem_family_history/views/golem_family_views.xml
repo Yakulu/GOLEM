@@ -33,8 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <tree>
                 <field name="season_id"/>
                 <field name="member_ids"/>
-                <field name="zip_code"/>
                 <field name="area_id"/>
+                <field name="zip_code"/>
                 <field name="city"/>
                 <field name="country_id"/>
               </tree>

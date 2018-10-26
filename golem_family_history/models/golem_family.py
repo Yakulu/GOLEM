@@ -28,7 +28,7 @@ class GolemFamily(models.Model):
     family_history_ids = fields.One2many('golem.family.history', 'family_id',
                                          readonly=True, string='History details')
 
-    @api.constrains('zip', 'city', 'country_id', 'member_ids')
+    @api.constrains('area_id', 'zip', 'city', 'country_id', 'member_ids')
     def save_family_history(self):
         """ Saves family history """
         default_season = self.env['golem.season'].search([('is_default', '=', True)], limit=1)

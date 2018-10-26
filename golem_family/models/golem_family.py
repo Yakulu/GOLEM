@@ -177,9 +177,9 @@ class GolemFamily(models.Model):
                     [('name', 'ilike', mstreet)], limit=1
                 )
                 if street_id:
-
                     family.area_id = street_id.area_id
                     family.area_from_street = True
+
     @api.constrains('street')
     def save_street(self):
         """ Save street if no exist """
@@ -193,6 +193,7 @@ class GolemFamily(models.Model):
                     self.env['golem.partner.area.street'].create(
                         {'name': mstreet, 'area_id': family.area_id.id}
                     )
+
 
 class GolemFamilyRole(models.Model):
     """ GOLEM Family Role """

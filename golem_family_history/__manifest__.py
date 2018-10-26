@@ -20,7 +20,7 @@
     'name': 'GOLEM Families History',
     'summary': 'GOLEM Families History',
     'description': 'GOLEM Families History',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.1.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef El ouahby',
     'license': 'AGPL-3',

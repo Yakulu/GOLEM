@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 06:41+0000\n"
-"PO-Revision-Date: 2018-10-26 06:41+0000\n"
+"POT-Creation-Date: 2018-10-26 15:44+0000\n"
+"PO-Revision-Date: 2018-10-26 15:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: golem_family_history
+#: model:ir.model.fields,field_description:golem_family_history.field_golem_family_history_area_id
+msgid "Area"
+msgstr ""
 
 #. module: golem_family_history
 #: model:ir.model.fields,field_description:golem_family_history.field_golem_family_history_city
@@ -99,7 +104,7 @@ msgstr ""
 #: code:addons/golem_family_history/models/golem_family_history.py:30
 #: sql_constraint:golem.family.history:0
 #, python-format
-msgid "You can only have one history line for each member and season combination."
+msgid "You can only have one history line for each family and season combination."
 msgstr ""
 
 #. module: golem_family_history

@@ -188,19 +188,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <search>
           <field name="name" />
+          <field name='area_id' />
           <field name="zip" />
           <field name="city" />
           <field name="phone" />
           <field name="mobile" />
           <field name="email" />
-          <field name='area_id'/>
           <filter name="single_parent" string="Single-parent"
             domain="[('single_parent', '=', True)]" />
           <group string="Group By">
-            <filter name="group_city" string="By city"
-              context="{'group_by': 'city'}"/>
             <filter name='group_by_area_id' string="By area"
               context='{"group_by": "area_id"}'/>
+            <filter name="group_city" string="By city"
+              context="{'group_by': 'city'}"/>
           </group>
         </search>
       </field>
