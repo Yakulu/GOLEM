@@ -26,12 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="inherit_id" ref="base.view_res_partner_filter" />
       <field name="arch" type="xml">
         <filter name="filter_my_partners" position="before">
-          <filter name="is_animator" string="Is Animator"
-            domain="[('is_animator', '=', True)]" />
-          <separator />
+          <filter name="filter_is_animator" string="Is Animator"
+            domain="[('activity_id', '!=', False)]" />
+          <filter name="by_activity" string="By Activity"
+            context="{'group_by': 'activity_id'}"/>
         </filter>
       </field>
     </record>
-
   </data>
 </odoo>

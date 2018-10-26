@@ -137,10 +137,10 @@ class GolemActivity(models.Model):
     date_stop = fields.Date('End date', copy=False)
 
     @api.constrains('animator_id')
-    def save_animator_id(self):
-        """ Enabling is_animator flag """
+    def save_activity_id(self):
+        """ Saving Activity in animator_id """
         for activity in self:
-            activity.animator_id.is_animator = True
+            activity.animator_id.activity_id = activity
 
 
     @api.onchange('date_start')
@@ -233,4 +233,4 @@ class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
 
-    is_animator = fields.Boolean()
+    activity_id = fields.Many2one('golem.activity', ondelete='set null')
