@@ -45,6 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="street" placeholder="Street..." />
                 <field name="street2" />
                 <field name="zip" placeholder="ZIP" />
+                <field name="area_id" placeholder="Area, quarter..."
+                  options="{'no_create': true}" />  
                 <field name="city" placeholder="City" />
               </group>
               <group>

@@ -145,6 +145,11 @@ class GolemFamily(models.Model):
     note = fields.Text()
     count = fields.Integer(compute='_compute_count', store=True)
 
+    area_id = fields.Many2one(
+        'golem.partner.area', index=True, auto_join=True, string='Area',
+        help="Area, quarter... for statistics and activity price."
+    )
+
     @api.depends('member_ids')
     def _compute_count(self):
         for family in self:
