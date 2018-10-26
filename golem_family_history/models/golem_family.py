@@ -38,6 +38,7 @@ class GolemFamily(models.Model):
                 ('season_id', '=', default_season.id)], limit=1)
             history_data = {
                 'zip_code': family.zip,
+                'area_id': family.area_id.id,
                 'city': family.city,
                 'country_id': family.country_id.id,
                 'member_ids':[(6, False, family.member_ids.ids)]

@@ -35,6 +35,7 @@ class GolemFamilyHistory(models.Model):
     season_id = fields.Many2one('golem.season', required=True, auto_join=True,
                                 string='Season', ondelete='cascade')
     zip_code = fields.Char(string='ZIP')
+    area_id = fields.Many2one('golem.partner.area', string='Area')
     city = fields.Char()
     country_id = fields.Many2one('res.country', string='Country')
     member_ids = fields.Many2many('res.partner', string='Members',
