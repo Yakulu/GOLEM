@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <field name="street2" />
                 <field name="zip" placeholder="ZIP" />
                 <field name="area_id" placeholder="Area, quarter..."
-                  options="{'no_create': true}" />  
+                  options="{'no_create': true}" />
                 <field name="city" placeholder="City" />
               </group>
               <group>
@@ -193,11 +193,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <field name="phone" />
           <field name="mobile" />
           <field name="email" />
+          <field name='area_id'/>
           <filter name="single_parent" string="Single-parent"
             domain="[('single_parent', '=', True)]" />
           <group string="Group By">
             <filter name="group_city" string="By city"
               context="{'group_by': 'city'}"/>
+            <filter name='group_by_area_id' string="By area"
+              context='{"group_by": "area_id"}'/>
           </group>
         </search>
       </field>
