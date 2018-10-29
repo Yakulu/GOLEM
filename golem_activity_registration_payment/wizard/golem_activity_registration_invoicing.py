@@ -21,6 +21,7 @@
 import logging
 from math import ceil
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,6 +51,11 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                                 ondelete='cascade')
     member_id = fields.Many2one('golem.member', 'Member', required=True,
                                 ondelete='cascade')
+    partner_ids = fields.Many2many('res.partner', compute='_compute_partner_ids')
+    on_the_name_of = fields.Many2one('res.partner', 'On the Name of',
+                                     ondelete='cascade',
+                                     domain="[('id', '=', partner_ids[0][2])]")
+    is_minor = fields.Boolean(related='member_id.is_minor')
     line_ids = fields.One2many('golem.activity.registration.invoicing.line',
                                'invoicing_id', string='Activities')
     schedule_id = fields.Many2one('golem.payment.schedule', 'Payment schedule',
@@ -65,6 +71,14 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                                  ondelete='cascade')
     payment_ids = fields.Many2many('account.payment', string='Generated payments')
 
+    @api.depends('member_id')
+    def _compute_partner_ids(self):
+        for rec in self:
+            partner_ids = rec.member_id.legal_guardian_ids.mapped('legal_guardian_id').ids
+            if hasattr(rec.member_id, 'family_member_ids'):
+                partner_ids += rec.member_id.family_member_ids.filtered(
+                    lambda r: r.id != self.member_id.partner_id.id).ids
+            rec.partner_ids = [(6, 0, partner_ids)]
 
     def _create_invoice_line(self, product, price, invoice):
         """ Create invoice line : needs cache record for onchange, then real
@@ -84,7 +98,10 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     def _create_invoice(self):
         """ Create invoice and lines """
         self.ensure_one()
-        partner = self.member_id.partner_id
+        if self.is_minor:
+            partner = self.on_the_name_of
+        else:
+            partner = self.member_id.partner_id
         #check if there is a draft invoice for the current customer
         member_line = partner.member_lines.filtered(
             lambda ml: (ml.membership_id.membership_season_id == self.season_id
@@ -136,6 +153,10 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     def validate(self):
         """ Validate and create invoice and payments """
         self.ensure_one()
+        if self.is_minor and not self.on_the_name_of:
+            err = _('This member is a minor, please fill on the name of so you '
+                    'invoice this registration')
+            raise ValidationError(err)
         self[0].line_ids.mapped('registration_id').write({'state': 'confirmed'})
         invoice = self._create_invoice()
         self.invoice_id = invoice
