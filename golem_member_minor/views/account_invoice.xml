@@ -35,5 +35,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </field>
     </record>
 
+    <record id="account.invoice_supplier_form_inherited_member_minor" model="ir.ui.view">
+      <field name="name">account.invoice.supplier.form.iherited.member.minor</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form" />
+      <field name="arch" type="xml">
+        <field name='partner_id' position='after'>
+            <field name='is_minor_invoice' invisible="1" />
+            <field name="partner_ids" widget="many2many_tags" readonly="1"
+              attrs="{'invisible': [('is_minor_invoice', '=', False)]}" />
+        </field>
+      </field>
+    </record>
+
   </data>
 </odoo>
