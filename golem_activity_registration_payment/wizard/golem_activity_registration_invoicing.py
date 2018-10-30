@@ -98,10 +98,10 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     def _create_invoice(self):
         """ Create invoice and lines """
         self.ensure_one()
-        if self.is_minor:
-            partner = self.on_the_name_of
+        if self[0].is_minor:
+            partner = self[0].on_the_name_of
         else:
-            partner = self.member_id.partner_id
+            partner = self[0].member_id.partner_id
         #check if there is a draft invoice for the current customer
         member_line = partner.member_lines.filtered(
             lambda ml: (ml.membership_id.membership_season_id == self.season_id
@@ -115,6 +115,10 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                 'account_id': partner.property_account_receivable_id.id,
                 'fiscal_position_id': partner.property_account_position_id.id
                 })
+        if self[0].is_minor:
+            invoice.write({'is_minor_invoice': True,
+                           'partner_ids': [(6, 0, [self[0].on_the_name_of.id,
+                                                   self[0].member_id.partner_id.id])]})
         for line in self.line_ids:
             product = line.activity_id.product_id.product_variant_id
             invoice_line = self._create_invoice_line(product, line.price, invoice)
