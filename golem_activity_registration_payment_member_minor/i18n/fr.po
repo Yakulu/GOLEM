@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-01 17:44+0000\n"
-"PO-Revision-Date: 2018-11-01 17:44+0000\n"
+"POT-Creation-Date: 2018-11-01 18:52+0000\n"
+"PO-Revision-Date: 2018-11-01 19:53+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "GOLEM Activity Registration Invoicing Wizard"
 #. module: golem_activity_registration_payment_member_minor
 #: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_guardian_ids
 msgid "Guardian ids"
-msgstr "Guardian ids"
+msgstr "Représentants légaux"
 
 #. module: golem_activity_registration_payment_member_minor
 #: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_is_minor
@@ -33,11 +33,11 @@ msgstr "Est mineur?"
 #. module: golem_activity_registration_payment_member_minor
 #: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_on_the_name_of
 msgid "On the Name of"
-msgstr "On the Name of"
+msgstr "Pour le compte de"
 
 #. module: golem_activity_registration_payment_member_minor
-#: code:addons/golem_activity_registration_payment_member_minor/wizard/golem_activity_registration_invoicing.py:58
+#: code:addons/golem_activity_registration_payment_member_minor/wizard/golem_activity_registration_invoicing.py:66
 #, python-format
 msgid "This member is a minor, please fill on the name of so you invoice this registration"
-msgstr "This member is a minor, please fill on the name of so you invoice this registration"
+msgstr "Cet usager est un mineur, merci de remplir le champ pour le compte de pour permettre la facturation"
 

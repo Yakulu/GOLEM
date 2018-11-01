@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-01 17:44+0000\n"
-"PO-Revision-Date: 2018-11-01 17:44+0000\n"
+"POT-Creation-Date: 2018-11-01 18:52+0000\n"
+"PO-Revision-Date: 2018-11-01 18:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "On the Name of"
 msgstr ""
 
 #. module: golem_activity_registration_payment_member_minor
-#: code:addons/golem_activity_registration_payment_member_minor/wizard/golem_activity_registration_invoicing.py:58
+#: code:addons/golem_activity_registration_payment_member_minor/wizard/golem_activity_registration_invoicing.py:66
 #, python-format
 msgid "This member is a minor, please fill on the name of so you invoice this registration"
 msgstr ""
