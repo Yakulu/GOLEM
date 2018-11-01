@@ -51,10 +51,9 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
                                 ondelete='cascade')
     member_id = fields.Many2one('golem.member', 'Member', required=True,
                                 ondelete='cascade')
-    partner_ids = fields.Many2many('res.partner', compute='_compute_partner_ids')
+    guardian_ids = fields.Many2many('res.partner', compute='_compute_guardian_ids')
     on_the_name_of = fields.Many2one('res.partner', 'On the Name of',
-                                     ondelete='cascade',
-                                     domain="[('id', '=', partner_ids[0][2])]")
+                                     ondelete='cascade')
     is_minor = fields.Boolean(related='member_id.is_minor')
     line_ids = fields.One2many('golem.activity.registration.invoicing.line',
                                'invoicing_id', string='Activities')
@@ -72,13 +71,13 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
     payment_ids = fields.Many2many('account.payment', string='Generated payments')
 
     @api.depends('member_id')
-    def _compute_partner_ids(self):
+    def _compute_guardian_ids(self):
         for rec in self:
             partner_ids = rec.member_id.legal_guardian_ids.mapped('legal_guardian_id').ids
             if hasattr(rec.member_id, 'family_member_ids'):
                 partner_ids += rec.member_id.family_member_ids.filtered(
                     lambda r: r.id != self.member_id.partner_id.id).ids
-            rec.partner_ids = [(6, 0, partner_ids)]
+            rec.guardian_ids = [(6, 0, partner_ids)]
 
     def _create_invoice_line(self, product, price, invoice):
         """ Create invoice line : needs cache record for onchange, then real

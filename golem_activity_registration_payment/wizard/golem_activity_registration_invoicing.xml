@@ -33,11 +33,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <group states="init">
             <group name="lines" colspan="2">
               <field name="season_id" readonly="1" />
-              <field name="member_id"/><!-- readonly="1" />-->
-              <field name='on_the_name_of' attrs="{'invisible': [('is_minor', '=', False)]}"
-                options="{'no_create': True}"/>
-              <field name='is_minor' invisible='1'/>
-              <field name="partner_ids" invisible='1'/>
+              <field name="member_id" readonly="0" />
+              <field name="on_the_name_of"
+                attrs="{'invisible': [('is_minor', '=', False)], 'required': [('is_minor', '=', True)]}"
+                options="{'no_create': True}"
+                domain="[('id', 'in', guardian_ids[0][2])]" />
+              <field name="is_minor" invisible="1" />
+              <field name="guardian_ids" invisible="1" widget="many2many_tags" />
               <field name="line_ids" string="Activities and Prices">
                 <tree delete="false" create="false" edit="true" editable="bottom">
                   <field name="activity_id" readonly="1" />
