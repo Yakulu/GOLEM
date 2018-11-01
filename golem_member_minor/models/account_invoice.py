@@ -25,5 +25,5 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     partner_ids = fields.Many2many('res.partner', string='Concerned partners',
-                                   auto_join=True)
+                                   index=True, auto_join=True)
     is_minor_invoice = fields.Boolean()
