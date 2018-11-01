@@ -221,3 +221,11 @@ class ProductCategory(models.Model):
 
     property_account_income_categ_id = fields.Many2one(required=True)
     property_account_expense_categ_id = fields.Many2one(required=True)
+
+class ResPartner(models.Model):
+    """ GOLEM Member partner adaptations """
+    _inherit = 'res.partner'
+
+    animator_activity_ids = fields.One2many('golem.activity', 'animator_id',
+                                            string='Animated activities',
+                                            auto_join=True)

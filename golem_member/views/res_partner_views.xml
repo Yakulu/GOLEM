@@ -2,6 +2,7 @@
 
 <!--
 Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
+Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -90,6 +91,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="member_number" />
+          <field name="age" />
+          <field name="area_id" />
         </field>
         <filter name="filter_my_partners" position="before">
           <filter name="is_subscriber" string="Is Subscriber"
@@ -103,7 +106,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <separator />
           <filter name="is_service_user" string="Is Service User"
             domain="[('member_id', '!=', False)]" />
+          <filter name="is_animator" string="Is Animator"
+            domain="[('animator_activity_ids', '!=', False)]" />
           <separator />
+        </filter>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="l10n_fr_department_filter_inherit_golem_member">
+      <field name="name">Partner search adaptations</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="l10n_fr_department.view_res_partner_filter" />
+      <field name="arch" type="xml">
+        <filter name="department_groupby" position="before">
+          <filter name="group_area" string="By Area"
+            context="{'group_by': 'area_id'}" />
         </filter>
       </field>
     </record>

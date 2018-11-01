@@ -19,6 +19,8 @@
 """ GOLEM Members """
 
 import logging
+from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 _LOGGER = logging.getLogger(__name__)
@@ -85,6 +87,27 @@ class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
 
+    age = fields.Integer(compute='_compute_age', search='_search_age')
+
+    @api.depends('birthdate_date')
+    def _compute_age(self):
+        for contact in self:
+            if contact.birthdate_date:
+                age = relativedelta(date.today(),
+                                    fields.Date.from_string(contact.birthdate_date))
+                contact.age = age.years
+
+    def _search_age(self, operator, value):
+        """ Age search function """
+        if operator != '=':
+            err = _('Unsupported operator for age search')
+            raise NotImplementedError(err)
+        today = date.today()
+        min_birthdate_date = today - timedelta(days=365.25 * value)
+        max_birthdate_date = today - timedelta(days=365.25 * (value + 1))
+        return ['&', ('birthdate_date', '>', max_birthdate_date),
+                ('birthdate_date', '<=', min_birthdate_date)]
+
     @api.model
     def _get_default_nationality_id(self):
         return self.env.ref('base.main_company').country_id
@@ -99,8 +122,11 @@ class ResPartner(models.Model):
     area_from_street = fields.Boolean(store=False, default=False)
     country_id = fields.Many2one(default=_get_default_nationality_id)
 
-    # Gender overwriting : no need for 'other' choice
-    gender = fields.Selection([('male', _('Male')), ('female', _('Female'))])
+    # Gender overwriting
+    gender = fields.Selection([('male', _('Male')),
+                               ('female', _('Female')),
+                               ('not_disclosed', _('Not Disclosed'))],
+                              default='not_disclosed')
 
     member_id = fields.One2many('golem.member', 'partner_id', 'Service user',
                                 readonly=True)

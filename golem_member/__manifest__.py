@@ -2,6 +2,7 @@
 
 #    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
 #    Copyright 2018 Michel Dessenne <michel@yaltik.com>
+#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,7 +21,7 @@
     'name': 'GOLEM non-profit members',
     'summary': 'Extends Odoo contacts for MJC',
     'description': 'Extends Odoo contacts for MJC',
-    'version': '10.0.2.4.0',
+    'version': '10.0.2.5.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Michel Dessenne',
     'license': 'AGPL-3',

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:43+0000\n"
-"PO-Revision-Date: 2018-10-26 15:43+0000\n"
+"POT-Creation-Date: 2018-11-01 15:15+0000\n"
+"PO-Revision-Date: 2018-11-01 15:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,18 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_type
 msgid "Address Type"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_age
+#: model:ir.model.fields,field_description:golem_member.field_res_partner_age
+#: model:ir.model.fields,field_description:golem_member.field_res_users_age
+msgid "Age"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.model.fields,field_description:golem_member.field_golem_member_animator_activity_ids
+msgid "Animated activities"
 msgstr ""
 
 #. module: golem_member
@@ -133,6 +145,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.ui.view,arch_db:golem_member.golem_member_form
 msgid "Buy Membership"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.l10n_fr_department_filter_inherit_golem_member
+msgid "By Area"
 msgstr ""
 
 #. module: golem_member
@@ -426,7 +443,7 @@ msgid "Fax"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:103
+#: code:addons/golem_member/models/golem_member.py:127
 #, python-format
 msgid "Female"
 msgstr ""
@@ -498,7 +515,7 @@ msgid "GOLEM Members Tags"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:433
+#: code:addons/golem_member/models/golem_member.py:459
 #, python-format
 msgid "GOLEM Members merge has not been implemented yet. Please only merge partners, not members, or delete GOLEM Members manually before merging."
 msgstr ""
@@ -595,6 +612,11 @@ msgstr ""
 #. module: golem_member
 #: model:ir.model.fields,field_description:golem_member.field_golem_member_invoice_ids
 msgid "Invoices"
+msgstr ""
+
+#. module: golem_member
+#: model:ir.ui.view,arch_db:golem_member.res_partner_search_inherit_golem_member
+msgid "Is Animator"
 msgstr ""
 
 #. module: golem_member
@@ -726,7 +748,7 @@ msgid "Latest Invoices & Payments Matching Date"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:103
+#: code:addons/golem_member/models/golem_member.py:126
 #, python-format
 msgid "Male"
 msgstr ""
@@ -832,12 +854,18 @@ msgid "Nationality"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:373
-#: code:addons/golem_member/models/golem_member.py:376
+#: code:addons/golem_member/models/golem_member.py:399
+#: code:addons/golem_member/models/golem_member.py:402
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
 msgid "No"
+msgstr ""
+
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:128
+#, python-format
+msgid "Not Disclosed"
 msgstr ""
 
 #. module: golem_member
@@ -1194,7 +1222,7 @@ msgid "The name of official registry where this company was declared."
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:69
+#: code:addons/golem_member/models/golem_member.py:71
 #, python-format
 msgid "The parent area is a sub area of the current area, please change it."
 msgstr ""
@@ -1235,14 +1263,14 @@ msgid "This field holds the image used as avatar for this contact, limited to 10
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:168
+#: code:addons/golem_member/models/golem_member.py:194
 #: sql_constraint:golem.member:0
 #, python-format
 msgid "This member number has already been used."
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:47
+#: code:addons/golem_member/models/golem_member.py:49
 #: sql_constraint:golem.partner.area:0
 #, python-format
 msgid "This patner area has already been used."
@@ -1309,7 +1337,13 @@ msgid "Total amount you have to pay to this vendor."
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:235
+#: code:addons/golem_member/models/golem_member.py:103
+#, python-format
+msgid "Unsupported operator for age search"
+msgstr ""
+
+#. module: golem_member
+#: code:addons/golem_member/models/golem_member.py:261
 #, python-format
 msgid "Unsupported operator for defautl season search"
 msgstr ""
@@ -1345,8 +1379,8 @@ msgid "Website of Partner or Company"
 msgstr ""
 
 #. module: golem_member
-#: code:addons/golem_member/models/golem_member.py:373
-#: code:addons/golem_member/models/golem_member.py:376
+#: code:addons/golem_member/models/golem_member.py:399
+#: code:addons/golem_member/models/golem_member.py:402
 #: selection:golem.member.numberconfig,is_automatic:0
 #: selection:golem.member.numberconfig,is_per_season:0
 #, python-format
