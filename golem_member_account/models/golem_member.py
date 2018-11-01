@@ -47,34 +47,22 @@ class GolemMember(models.Model):
     def open_partner_invoices(self):
         """ Open member invoices """
         self.ensure_one()
-        action = self.env.ref('account.action_invoice_tree1')
-        context = {'type':'out_invoice', 'journal_type': 'sale',
-                   'search_default_partner_id': self[0].partner_id.id,
-                   'default_partner_id': self[0].partner_id.id}
-        return {'type': 'ir.actions.act_window',
-                'name': action.name,
-                'res_model': 'account.invoice',
-                'view_type': action.view_type,
-                'view_mode': action.view_mode,
-                'domain': action.domain,
-                'context': context}
+        action = self.env.ref('account.action_invoice_tree1').read()[0]
+        action['context'] = {'type':'out_invoice', 'journal_type': 'sale',
+                             'search_default_partner_id': self[0].partner_id.id,
+                             'default_partner_id': self[0].partner_id.id}
+        return action
 
     @api.multi
     def open_partner_payments(self):
         """ Open member payments """
         self.ensure_one()
-        action = self.env.ref('account.action_account_payments')
-        context = {'default_payment_type': 'inbound',
-                   'default_partner_type': 'customer',
-                   'search_default_partner_id': self[0].partner_id.id,
-                   'default_partner_id': self[0].partner_id.id}
-        return {'type': 'ir.actions.act_window',
-                'name': action.name,
-                'res_model': 'account.payment',
-                'view_type': action.view_type,
-                'view_mode': action.view_mode,
-                'domain': action.domain,
-                'context': context}
+        action = self.env.ref('account.action_account_payments').read()[0]
+        action['context'] = {'default_payment_type': 'inbound',
+                             'default_partner_type': 'customer',
+                             'search_default_partner_id': self[0].partner_id.id,
+                             'default_partner_id': self[0].partner_id.id}
+        return action
 
     @api.depends('invoice_ids')
     def _compute_last_payment_state(self):
