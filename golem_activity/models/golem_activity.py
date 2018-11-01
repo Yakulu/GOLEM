@@ -136,13 +136,6 @@ class GolemActivity(models.Model):
     date_start = fields.Date('Start date', copy=False)
     date_stop = fields.Date('End date', copy=False)
 
-    @api.constrains('animator_id')
-    def save_activity_id(self):
-        """ Saving Activity in animator_id """
-        for activity in self:
-            activity.animator_id.activity_id = activity
-
-
     @api.onchange('date_start')
     def _onchange_date_start(self):
         """ Sets end date to start date if no start date """
@@ -233,4 +226,6 @@ class ResPartner(models.Model):
     """ GOLEM Member partner adaptations """
     _inherit = 'res.partner'
 
-    activity_id = fields.Many2one('golem.activity', ondelete='set null')
+    animator_activity_ids = fields.One2many('golem.activity', 'animator_id',
+                                            string='Animated activities',
+                                            auto_join=True)
