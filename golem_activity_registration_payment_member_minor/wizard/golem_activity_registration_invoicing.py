@@ -43,11 +43,19 @@ class GolemActivityRegistrationInvoicing(models.TransientModel):
         self.ensure_one()
         invoice = super(GolemActivityRegistrationInvoicing, self)._create_invoice()
         if self[0].is_minor:
-            invoice.write({'': self[0].on_the_name_of.id,
+            invoice.write({'partner_id': self[0].on_the_name_of.id,
                            'is_minor_invoice': True,
                            'partner_ids': [(6, 0, [self[0].on_the_name_of.id,
                                                    self[0].member_id.partner_id.id])]})
         return invoice
+
+    def _create_payments(self, invoice):
+        """ Create payment if schedule has been chosen : handling minor case """
+        self.ensure_one()
+        payments = super(GolemActivityRegistrationInvoicing, self)._create_payments(invoice)
+        if self.on_the_name_of:
+            payments.write({'partner_id': self.on_the_name_of.id})
+        return payments
 
     @api.multi
     def validate(self):

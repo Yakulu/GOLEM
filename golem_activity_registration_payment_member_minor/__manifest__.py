@@ -18,7 +18,7 @@
 {
     'name': 'GOLEM Activity Payment for Minors',
     'summary': 'GOLEM Activity Registration Payment for Minors',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.1.1',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
