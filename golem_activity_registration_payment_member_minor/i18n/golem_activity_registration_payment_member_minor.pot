@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* golem_activity_registration_payment_member_minor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-01 17:44+0000\n"
+"PO-Revision-Date: 2018-11-01 17:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: golem_activity_registration_payment_member_minor
+#: model:ir.model,name:golem_activity_registration_payment_member_minor.model_golem_activity_registration_invoicing
+msgid "GOLEM Activity Registration Invoicing Wizard"
+msgstr ""
+
+#. module: golem_activity_registration_payment_member_minor
+#: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_guardian_ids
+msgid "Guardian ids"
+msgstr ""
+
+#. module: golem_activity_registration_payment_member_minor
+#: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_is_minor
+msgid "Is minor?"
+msgstr ""
+
+#. module: golem_activity_registration_payment_member_minor
+#: model:ir.model.fields,field_description:golem_activity_registration_payment_member_minor.field_golem_activity_registration_invoicing_on_the_name_of
+msgid "On the Name of"
+msgstr ""
+
+#. module: golem_activity_registration_payment_member_minor
+#: code:addons/golem_activity_registration_payment_member_minor/wizard/golem_activity_registration_invoicing.py:58
+#, python-format
+msgid "This member is a minor, please fill on the name of so you invoice this registration"
+msgstr ""
+

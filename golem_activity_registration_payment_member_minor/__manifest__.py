@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
-#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-    'name': 'GOLEM Activity Member Registration Payments',
-    'summary': 'GOLEM Activities Member Registration Payments',
-    'description': 'GOLEM Activities Member Registration Payments',
-    'version': '10.0.0.6.1',
+    'name': 'GOLEM Activity Payment for Minors',
+    'summary': 'GOLEM Activity Registration Payment for Minors',
+    'version': '10.0.0.1.0',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'depends': ['golem_activity_registration_state', 'golem_payment'],
-    'data': ['views/golem_member_views.xml',
-             'views/golem_activity_registration_views.xml',
-             'report/golem_member_card_templates.xml',
-             'wizard/golem_activity_registration_invoicing.xml',
-             'views/golem_activity_views.xml']
+    'auto_install': True,
+    'depends': ['golem_member_minor', 'golem_activity_registration_payment'],
+    'data': ['views/golem_activity_registration_invoicing.xml']
 }

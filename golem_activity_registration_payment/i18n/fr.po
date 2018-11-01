@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 09:44+0000\n"
-"PO-Revision-Date: 2018-09-26 11:58+0200\n"
+"POT-Creation-Date: 2018-11-01 17:43+0000\n"
+"PO-Revision-Date: 2018-11-01 18:45+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -157,14 +157,14 @@ msgid "GOLEM Member"
 msgstr "Adhérent"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:153
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:161
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_invoice_id
 #, python-format
 msgid "Generated invoice"
 msgstr "Facture générée"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:168
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:176
 #: model:ir.model.fields,field_description:golem_activity_registration_payment.field_golem_activity_registration_invoicing_payment_ids
 #, python-format
 msgid "Generated payments"
@@ -351,13 +351,13 @@ msgid "Status"
 msgstr "État"
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:149
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:157
 #, python-format
 msgid "There is no generated invoice."
 msgstr "Il n'y a pas de facture générée."
 
 #. module: golem_activity_registration_payment
-#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:164
+#: code:addons/golem_activity_registration_payment/wizard/golem_activity_registration_invoicing.py:172
 #, python-format
 msgid "There is no generated payments."
 msgstr "Il n'y a pas de paiement généré."

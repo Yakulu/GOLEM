@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,20 +16,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM Activity Member Registration Payments',
-    'summary': 'GOLEM Activities Member Registration Payments',
-    'description': 'GOLEM Activities Member Registration Payments',
-    'version': '10.0.0.6.1',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_activity_registration_state', 'golem_payment'],
-    'data': ['views/golem_member_views.xml',
-             'views/golem_activity_registration_views.xml',
-             'report/golem_member_card_templates.xml',
-             'wizard/golem_activity_registration_invoicing.xml',
-             'views/golem_activity_views.xml']
-}
+""" GOLEM Activity Registration Invoicing Wizard """
+
+from odoo import models, api
+
+
+class GolemActivityRegistrationInvoicing(models.TransientModel):
+    """ GOLEM Activity Registration Invoicing Wizard """
+    _inherit = 'golem.activity.registration.invoicing'
+
+    @api.depends('member_id')
+    def _compute_guardian_ids(self):
+        res = super(GolemActivityRegistrationInvoicing, self)._compute_guardian_ids()
+        for rec in self:
+            if rec.member_id.family_member_ids:
+                rec.guardian_ids += rec.member_id.family_member_ids.filtered(
+                    lambda r: r.id != self.member_id.partner_id.id
+                )
+        return res
