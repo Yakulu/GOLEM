@@ -79,6 +79,7 @@ class GolemMembershipInvoice(models.TransientModel):
 
         search_view_id = self.env.ref('account.view_account_invoice_filter')
         form_view_id = self.env.ref('account.invoice_form')
+        tree_view_ref = self.env.ref('account.invoice_tree', False)
         return {
             'domain': [('id', 'in', invoice_list)],
             'name': 'Membership Invoices',
@@ -86,6 +87,6 @@ class GolemMembershipInvoice(models.TransientModel):
             'view_mode': 'tree,form',
             'res_model': 'account.invoice',
             'type': 'ir.actions.act_window',
-            'views': [(False, 'tree'), (form_view_id.id, 'form')],
+            'views': [(tree_view_ref.id, 'tree'), (form_view_id.id, 'form')],
             'search_view_id': search_view_id.id
         }

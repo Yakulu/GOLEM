@@ -20,7 +20,7 @@
     'name': 'GOLEM Family Memberships',
     'summary': 'GOLEM Family Membership Management',
     'description': 'GOLEM Family Membership Management',
-    'version': '10.0.0.1.3',
+    'version': '10.0.0.1.4',
     'category': 'GOLEM',
     'author': 'Fabien Bourgeois, Youssef ELOUAHBY',
     'license': 'AGPL-3',
