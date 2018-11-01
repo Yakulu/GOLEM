@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2018 Youssef El Ouahby <youssef@yaltik.com>
 #    Copyright 2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,18 +15,17 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM Family Memberships',
-    'summary': 'GOLEM Family Membership Management',
-    'description': 'GOLEM Family Membership Management',
-    'version': '10.0.0.1.1',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Youssef ELOUAHBY',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_family', 'membership'],
-    'data': ['views/membership_views.xml',
-             'views/golem_family_views.xml',
-             'wizard/golem_membership_invoice_views.xml']
-}
+""" Post-migration script """
+
+from openupgradelib import openupgrade
+
+@openupgrade.migrate(use_env=False)
+def migrate(cursor, version):
+    """ Recover old legal_gardian_ids and delete their database table  """
+    cursor.execute('SELECT golem_member_id, res_partner_id FROM golem_member_res_partner_rel')
+    for member_id, legal_guardian_id in cursor.fetchall():
+        cursor.execute('''INSERT INTO golem_legal_guardian(member_id, legal_guardian_id) VALUES
+                           (%s, %s)''' % (member_id, legal_guardian_id))
+    cursor.execute('DROP TABLE golem_member_res_partner_rel')
+    cursor.execute('DELETE FROM ir_model_fields WHERE name=\'legal_guardian_ids\' '
+                   'AND ttype=\'many2many\'')

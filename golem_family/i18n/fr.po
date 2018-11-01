@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-19 07:03+0000\n"
-"PO-Revision-Date: 2018-10-19 09:04+0200\n"
+"POT-Creation-Date: 2018-10-26 15:44+0000\n"
+"PO-Revision-Date: 2018-10-26 17:45+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,31 @@ msgstr "<strong>Région</strong> :"
 #: model:ir.ui.view,arch_db:golem_family.golem_member_form_inherit_golem_family
 msgid "Address"
 msgstr "Adresse"
+
+#. module: golem_family
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_area_id
+msgid "Area"
+msgstr "Territoire"
+
+#. module: golem_family
+#: model:ir.model.fields,field_description:golem_family.field_golem_family_area_from_street
+msgid "Area from street"
+msgstr "Territoire automatique depuis la rue"
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_form
+msgid "Area, quarter..."
+msgstr "Lieu, quartier..."
+
+#. module: golem_family
+#: model:ir.model.fields,help:golem_family.field_golem_family_area_id
+msgid "Area, quarter... for statistics and activity price."
+msgstr "Lieu, quartier... pour les statistiques et les tarifs des activités."
+
+#. module: golem_family
+#: model:ir.ui.view,arch_db:golem_family.golem_family_search
+msgid "By area"
+msgstr "Par territoire"
 
 #. module: golem_family
 #: model:ir.ui.view,arch_db:golem_family.golem_family_search

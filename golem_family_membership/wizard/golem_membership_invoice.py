@@ -25,10 +25,9 @@ class GolemMembershipInvoice(models.TransientModel):
     _inherit = 'golem.membership.invoice'
 
     family_id = fields.Many2one('golem.family', string='Family',
-                                required=True, ondelete='cascade')
+                                ondelete='cascade')
     member_ids = fields.Many2many('res.partner', string='Concerned members')
-    on_the_name_of = fields.Many2one('res.partner', ondelete='cascade',
-                                     required=True)
+    on_the_name_of = fields.Many2one('res.partner', ondelete='cascade')
 
     @api.onchange('family_id')
     def onchange_family(self):

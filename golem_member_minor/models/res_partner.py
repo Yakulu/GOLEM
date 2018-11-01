@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#    Copyright 2016-2018 Fabien Bourgeois <fabien@yaltik.com>
+#    Copyright 2017-2018 Fabien Bourgeois <fabien@yaltik.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,20 +15,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'GOLEM families',
-    'summary': 'GOLEM Members Families',
-    'description': 'GOLEM Members Families',
-    'version': '10.0.2.5.0',
-    'category': 'GOLEM',
-    'author': 'Fabien Bourgeois, Youssef El Ouahby',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': ['golem_member'],
-    'data': ['security/ir.model.access.csv',
-             'views/golem_family_views.xml',
-             'views/golem_member_views.xml',
-             'views/res_partner_views.xml',
-             'report/golem_member_card_templates.xml']
-}
+""" Res Partner adaptations """
+
+from odoo import models, fields
+
+class ResPartner(models.Model):
+    """ Res Partner adaptations """
+    _inherit = 'res.partner'
+
+    is_default_gardian = fields.Boolean()
+
+    def do_default_gardian(self):
+        """ make only default gardian """
+        self.ensure_one()
+        self.is_default_gardian = True
+        member_id = self._context.get('member_id', False)
