@@ -34,14 +34,10 @@ class GolemMembershipInvoice(models.TransientModel):
         """ Set partner domain if src_member_id is filled """
         self.ensure_one()
         record = self[0]
-        if record.src_member_id.is_minor:
-            partner_ids = record.src_member_id.mapped('legal_guardian_ids.legal_guardian_id').ids
-        else:
-            partner_ids = []
-        if hasattr(record.src_member_id, 'family_member_ids'):
-            partner_ids += record.src_member_id.family_member_ids.filtered(
-                lambda r: r.id != self.src_member_id.partner_id.id).ids
-        return {'domain': {'partner_id': [('id', 'in', partner_ids)]}}
+        domain = ([('id', 'in',
+                    record.src_member_id.mapped('legal_guardian_ids.legal_guardian_id').ids)]
+                  if record.src_member_id.is_minor else [])
+        return {'domain': {'partner_id': domain}}
 
     @api.multi
     def membership_invoice(self):

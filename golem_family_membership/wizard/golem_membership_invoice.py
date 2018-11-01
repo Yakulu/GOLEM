@@ -47,6 +47,20 @@ class GolemMembershipInvoice(models.TransientModel):
             }
         return {'domain': {'on_the_name_of': []}}
 
+    @api.onchange('src_member_id')
+    def onchange_member(self):
+        """ Set partner domain if src_member_id is filled """
+        self.ensure_one()
+        record = self[0]
+        res = super(GolemMembershipInvoice, self).onchange_member()
+        if record.src_member_id.family_member_ids:
+            guardian_ids = res['domain']['partner_id'][0][2]
+            partner_ids = record.src_member_id.family_member_ids.filtered(
+                lambda r: r.id != self.src_member_id.partner_id.id
+            ).ids
+            res['domain']['partner_id'] = [('id', 'in', guardian_ids + partner_ids)]
+        return res
+
     @api.multi
     def membership_family_invoice(self):
         """ Create family membership """
